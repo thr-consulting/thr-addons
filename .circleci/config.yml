@@ -14,7 +14,7 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum ".package-hash" }}
+          - v1-dependencies-{{ checksum ".packages-hash" }}
           - v1-dependencies-
 
       - run: npm install -g lerna
@@ -23,7 +23,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum ".package-hash" }}
+          key: v1-dependencies-{{ checksum ".packages-hash" }}
 
       - run: yarn build
       - run: yarn test
@@ -38,7 +38,7 @@ jobs:
       - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum ".package-hash" }}
+            - v1-dependencies-{{ checksum ".packages-hash" }}
             - v1-dependencies-
       - run: npm install -g lerna
       - run: lerna bootstrap
