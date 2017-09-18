@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotificationSystem should render without throwing an error 1`] = `
+<div
+  style={
+    Object {
+      "height": "100%",
+    }
+  }
+>
+  <div>
+    Hello World
+  </div>
+  <Component
+    allowHTML={false}
+    noAnimation={false}
+    style={Object {}}
+  />
+</div>
+`;

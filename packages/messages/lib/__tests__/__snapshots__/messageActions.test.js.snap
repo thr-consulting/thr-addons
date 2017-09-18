@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message Actions should return a clear all messages action 1`] = `
+Object {
+  "type": "CLEAR_MESSAGES",
+}
+`;
+
+exports[`Message Actions should return a clear message action 1`] = `
+Object {
+  "id": "1234",
+  "type": "CLEAR_MESSAGE",
+}
+`;
+
+exports[`Message Actions should return a message with a random id 1`] = `
+Object {
+  "message": Object {
+    "id": "d5mycmr0npclkde1m7vi",
+    "level": "success",
+    "message": "This is a message",
+    "title": "This is a title",
+  },
+  "type": "ADD_MESSAGE",
+}
+`;
+
+exports[`Message Actions should return a message with a set id 1`] = `
+Object {
+  "message": Object {
+    "id": "1234",
+    "level": "success",
+    "message": "This is a message",
+    "title": "This is a title",
+  },
+  "type": "ADD_MESSAGE",
+}
+`;
+
+exports[`Message Actions should return a success message 1`] = `
+Object {
+  "message": Object {
+    "id": "success",
+    "level": "success",
+    "message": "This is a message",
+    "title": "Success",
+  },
+  "type": "ADD_MESSAGE",
+}
+`;
+
+exports[`Message Actions should return a warning message 1`] = `
+Object {
+  "message": Object {
+    "id": "warn",
+    "level": "yellow",
+    "message": "This is a message",
+    "title": "Warning",
+  },
+  "type": "ADD_MESSAGE",
+}
+`;
+
+exports[`Message Actions should return an error message 1`] = `
+Object {
+  "message": Object {
+    "id": "error",
+    "level": "error",
+    "message": "This is a message",
+    "title": "Error",
+  },
+  "type": "ADD_MESSAGE",
+}
+`;

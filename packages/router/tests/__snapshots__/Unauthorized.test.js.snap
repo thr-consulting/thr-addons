@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unauthorized should render without throwing an error 1`] = `
+<Styled(Grid)
+  centered={true}
+  columns="equal"
+  container={true}
+  relaxed={true}
+  stackable={true}
+>
+  <GridColumn
+    verticalAlign="middle"
+    width="5"
+  >
+    <Header
+      as="h2"
+    >
+      Not Authorized
+    </Header>
+    <p>
+      You have insufficient permissions to access this page.
+    </p>
+  </GridColumn>
+  <GridColumn
+    textAlign="center"
+    width="5"
+  >
+    <Image
+      alt="No Authorized"
+      as="img"
+      size="small"
+      src="test-file-stub"
+      ui={true}
+    />
+  </GridColumn>
+</Styled(Grid)>
+`;

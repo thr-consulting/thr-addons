@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioGroup should render without throwing an error 1`] = `
+<FormGroup>
+  <FormRadio
+    as={[Function]}
+    checked={false}
+    control={[Function]}
+    label="ABC"
+    onChange={[Function]}
+    value="abc"
+  />
+  <FormRadio
+    as={[Function]}
+    checked={false}
+    control={[Function]}
+    label="DEF"
+    onChange={[Function]}
+    value="def"
+  />
+</FormGroup>
+`;

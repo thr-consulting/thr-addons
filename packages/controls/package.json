@@ -1,0 +1,100 @@
+{
+  "name": "@thx/controls",
+  "version": "3.0.0",
+  "description": "A collection of form components designed with SemanticUI. They all adhere to React Formal's policy of having a value prop and an onChange() prop.",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "npm run clean:lib && npm run build:lib",
+    "build:lib": "babel src --out-dir lib",
+    "clean:lib": "rimraf ./lib/*",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage && cat coverage/lcov.info | coverbadge -o coverage/coverage.svg",
+    "flow": "flow",
+    "lint": "eslint *.js src",
+    "docs": "jsdoc -c jsdoc.json",
+    "docs:md": "jsdoc2md -c jsdoc.json -f src/*.js > docs/README.md",
+    "docs:explain": "jsdoc -X -c jsdoc.json",
+    "validate": "npm ls",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thr-consulting/controls.git"
+  },
+  "keywords": [
+    "react",
+    "controls",
+    "semantic-ui"
+  ],
+  "author": "Mike Kornelson <mike@durbn.net>",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.2.6",
+    "@storybook/addon-knobs": "^3.2.7",
+    "@storybook/react": "^3.2.7",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.0",
+    "babel-plugin-flow-react-proptypes": "^5.1.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-jason": "^3.1.0",
+    "coverbadge": "^0.5.5",
+    "enzyme": "^2.9.1",
+    "enzyme-to-json": "^1.5.1",
+    "eslint": "^4.4.1",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-flowtype": "^2.34.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jest": "^21.1.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "flow-bin": "^0.54.1",
+    "ink-docstrap": "^1.3.0",
+    "jest": "^21.1.0",
+    "jsdoc": "^3.4.3",
+    "jsdoc-babel": "^0.3.0",
+    "jsdoc-to-markdown": "^3.0.0",
+    "precommit-hook-eslint": "^3.0.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-formal": "^0.25.4",
+    "react-test-renderer": "^15.6.1",
+    "rimraf": "^2.6.2",
+    "semantic-ui-react": "^0.73.0"
+  },
+  "peerDependencies": {
+    "react": "^15.5.0",
+    "react-dom": "^15.6.0",
+    "react-formal": "^0.25.4",
+    "semantic-ui-react": "^0.73.0"
+  },
+  "dependencies": {
+    "@thx/tschemas": "^2.0.0",
+    "debug": "^3.0.0",
+    "inputmask": "^3.3.7",
+    "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
+    "react-input-message": "^0.15.1",
+    "react-responsive": "^1.3.0",
+    "string-hash": "^1.1.3"
+  },
+  "greenkeeper": {
+    "ignore": [
+      "eslint-plugin-jsx-a11y"
+    ]
+  },
+  "pre-commit": [
+    "lint",
+    "flow",
+    "test"
+  ]
+}

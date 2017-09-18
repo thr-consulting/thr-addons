@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound should render without throwing an error 1`] = `
+<Styled(Grid)
+  centered={true}
+  columns="equal"
+  container={true}
+  relaxed={true}
+  stackable={true}
+>
+  <GridColumn
+    verticalAlign="middle"
+    width="5"
+  >
+    <Header
+      as="h2"
+    >
+      Page Not Found
+    </Header>
+    <p>
+      The page you are trying to access does not exist.
+    </p>
+  </GridColumn>
+  <GridColumn
+    textAlign="center"
+    width="5"
+  >
+    <Image
+      alt="Page Not Found"
+      as="img"
+      size="small"
+      src="test-file-stub"
+      ui={true}
+    />
+  </GridColumn>
+</Styled(Grid)>
+`;

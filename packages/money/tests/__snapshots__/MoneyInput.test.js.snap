@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoneyInput should render without throwing an error 1`] = `
+<Input
+  icon={false}
+  type="text"
+>
+  <input
+    readOnly={null}
+    type="text"
+  />
+</Input>
+`;

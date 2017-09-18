@@ -1,0 +1,8 @@
+node_modules
+dist
+.idea
+npm-debug.log
+.npmrc
+coverage
+docs/*
+!docs/README.md

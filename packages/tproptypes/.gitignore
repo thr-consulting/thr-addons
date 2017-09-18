@@ -1,0 +1,9 @@
+node_modules
+lib
+.idea
+npm-debug.log
+yarn.lock
+.npmrc
+coverage
+docs/*
+!docs/README.md

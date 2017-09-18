@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Money MoneyInput 1`] = `
+<div
+  style={
+    Object {
+      "width": "300px",
+    }
+  }
+>
+  <div
+    className="ui icon input"
+  >
+    <input
+      disabled={undefined}
+      onChange={[Function]}
+      placeholder={undefined}
+      readOnly={null}
+      tabIndex={undefined}
+      type="text"
+    />
+    <i
+      aria-hidden="true"
+      className="server link icon"
+      data-content="Click for more details"
+      data-title="Details"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;

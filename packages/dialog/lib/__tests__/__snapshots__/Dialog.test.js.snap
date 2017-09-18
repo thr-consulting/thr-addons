@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DialogButtons should render a single child without throwing an error 1`] = `
+<Segment
+  basic={true}
+>
+  <Container>
+    <div>
+      Hello World
+    </div>
+  </Container>
+</Segment>
+`;
+
+exports[`DialogButtons should render multiple children with a DialogButtons instance without throwing an error 1`] = `
+<Segment
+  basic={true}
+>
+  <Container>
+    <div>
+      Hello
+    </div>
+    <div>
+      World
+    </div>
+  </Container>
+  <DialogButtons
+    container={true}
+  />
+</Segment>
+`;
+
+exports[`DialogButtons should render multiple children without throwing an error 1`] = `
+<Segment
+  basic={true}
+>
+  <Container>
+    <div>
+      Hello
+    </div>
+    <div>
+      World
+    </div>
+  </Container>
+</Segment>
+`;

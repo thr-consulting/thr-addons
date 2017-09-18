@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should fail validation 1`] = `
+Object {
+  "errors": Array [
+    "anumber must be a \`number\` type, but the final value was: \`\\"this is not a number\\"\`.",
+  ],
+  "inner": Array [],
+  "message": "anumber must be a \`number\` type, but the final value was: \`\\"this is not a number\\"\`.",
+  "name": "ValidationError",
+  "params": Object {
+    "label": undefined,
+    "originalValue": "this is not a number",
+    "path": "anumber",
+    "type": "number",
+    "value": "this is not a number",
+  },
+  "path": "anumber",
+  "type": "typeError",
+}
+`;

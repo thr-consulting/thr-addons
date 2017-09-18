@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Messages should render null if no messages are given 1`] = `null`;
+
+exports[`Messages should render without throwing an error 1`] = `
+<GridRow>
+  <GridColumn>
+    <Connect(MessageComponent)
+      message={
+        Object {
+          "id": "myid",
+          "level": "success",
+          "message": "This is a message",
+          "title": "This is a title",
+        }
+      }
+    />
+  </GridColumn>
+</GridRow>
+`;

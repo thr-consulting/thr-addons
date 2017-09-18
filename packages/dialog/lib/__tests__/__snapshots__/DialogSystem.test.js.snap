@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DialogSystem should render without throwing an error 1`] = `
+<div
+  className="dialogSystem"
+>
+  <Dock
+    defaultSize={0.3}
+    dimMode="opaque"
+    duration={200}
+    fluid={false}
+    isVisible={false}
+    position="bottom"
+    size={0}
+    zIndex={9997}
+  >
+    <div />
+  </Dock>
+</div>
+`;

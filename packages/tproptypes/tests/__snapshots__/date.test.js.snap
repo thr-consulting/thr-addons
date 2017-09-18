@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Local Date renders without error 1`] = `
+<div>
+  2017-06-23
+</div>
+`;

@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Date transforms should map epoch integers into LocalDates 1`] = `
+Object {
+  "field1": "2017-08-22",
+  "field2": Object {
+    "subField2": "2017-08-22",
+    "subField3": 13000,
+  },
+  "field3": Array [
+    "2017-08-22",
+    "2005-08-05",
+  ],
+  "field4": Array [
+    17400,
+    13000,
+  ],
+  "field5": Array [
+    Object {
+      "a": "2017-08-22",
+      "b": 17400,
+    },
+    Object {
+      "a": "2005-08-05",
+      "b": 13000,
+    },
+  ],
+  "field6": Array [
+    Object {
+      "a": Array [
+        Object {
+          "b": Array [
+            "2017-08-22",
+            "2005-08-05",
+          ],
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`Date transforms should transform objects to LocalDates 1`] = `
+Object {
+  "field1": "2017-08-22",
+  "field2": Array [
+    "2005-08-05",
+    "1970-01-02",
+  ],
+}
+`;
+
+exports[`Formatting should format with defaults 1`] = `"6/23/2017"`;
+
+exports[`Formatting should format with options 1`] = `"6/23/2017 6:00 am"`;
+
+exports[`Formatting should format with options 2`] = `"Jun 23, 2017 6:00 am"`;
+
+exports[`Formatting should format with options 3`] = `"June 23, 2017 6:00 am"`;
+
+exports[`Formatting should use a custom date format 1`] = `"June_23_2017_6_00_am"`;

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DialogButtons should render without throwing an error 1`] = `
+<div>
+  <Divider />
+  <Container
+    className="buttonWrapper"
+  >
+    <div
+      className="rightButtons"
+    />
+  </Container>
+</div>
+`;

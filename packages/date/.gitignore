@@ -1,0 +1,9 @@
+node_modules
+dist
+lib
+.idea
+npm-debug.log
+.npmrc
+docs/*
+!docs/README.md
+server.js

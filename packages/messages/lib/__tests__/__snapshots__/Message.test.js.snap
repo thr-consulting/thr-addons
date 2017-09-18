@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Messages should render without throwing an error 1`] = `
+<Message
+  error={false}
+  info={false}
+  success={true}
+  warning={false}
+>
+  <Icon
+    as="i"
+    name="close"
+    onClick={[Function]}
+  />
+  <MessageHeader>
+    This is a title
+  </MessageHeader>
+  <p>
+    This is a message
+  </p>
+</Message>
+`;

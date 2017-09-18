@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocalMonthSelect should render without throwing an error 1`] = `
+<Select
+  onChange={[Function]}
+  options={
+    Array [
+      Object {
+        "text": "January",
+        "value": 1,
+      },
+      Object {
+        "text": "February",
+        "value": 2,
+      },
+      Object {
+        "text": "March",
+        "value": 3,
+      },
+      Object {
+        "text": "April",
+        "value": 4,
+      },
+      Object {
+        "text": "May",
+        "value": 5,
+      },
+      Object {
+        "text": "June",
+        "value": 6,
+      },
+      Object {
+        "text": "July",
+        "value": 7,
+      },
+      Object {
+        "text": "August",
+        "value": 8,
+      },
+      Object {
+        "text": "September",
+        "value": 9,
+      },
+      Object {
+        "text": "October",
+        "value": 10,
+      },
+      Object {
+        "text": "November",
+        "value": 11,
+      },
+      Object {
+        "text": "December",
+        "value": 12,
+      },
+    ]
+  }
+  placeholder="Select Month"
+  value=""
+/>
+`;

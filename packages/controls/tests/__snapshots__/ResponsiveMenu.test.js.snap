@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResponsiveMenu should render without throwing an error 1`] = `
+<ResponsiveMenu
+  mobileWidth={768}
+>
+  <div>
+    <MediaQuery
+      query="(min-width: 769px)"
+      values={Object {}}
+    />
+    <MediaQuery
+      query="(max-width: 768px)"
+      values={Object {}}
+    />
+  </div>
+</ResponsiveMenu>
+`;

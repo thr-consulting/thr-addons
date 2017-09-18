@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Messages MessageComponent - Array 1`] = `
+<div
+  style={
+    Object {
+      "width": "300px",
+    }
+  }
+>
+  <div
+    className="ui success message"
+  >
+    <i
+      aria-hidden="true"
+      className="close icon"
+      onClick={[Function]}
+    />
+    <div
+      className="header"
+    >
+      This is a title
+    </div>
+    <div
+      className="ui bulleted list"
+      role="list"
+    >
+      <div
+        className="item"
+        data-value={undefined}
+        onClick={[Function]}
+        role="listitem"
+      >
+        This is the first message
+      </div>
+      <div
+        className="item"
+        data-value={undefined}
+        onClick={[Function]}
+        role="listitem"
+      >
+        This is the second message
+      </div>
+      <div
+        className="item"
+        data-value={undefined}
+        onClick={[Function]}
+        role="listitem"
+      >
+        This is the third message
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Messages MessageComponent - Single 1`] = `
+<div
+  style={
+    Object {
+      "width": "300px",
+    }
+  }
+>
+  <div
+    className="ui success message"
+  >
+    <i
+      aria-hidden="true"
+      className="close icon"
+      onClick={[Function]}
+    />
+    <div
+      className="header"
+    >
+      This is a title
+    </div>
+    <p>
+      This is a message.
+    </p>
+  </div>
+</div>
+`;
