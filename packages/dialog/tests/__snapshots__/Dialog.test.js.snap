@@ -17,15 +17,20 @@ exports[`DialogButtons should render multiple children with a DialogButtons inst
   basic={true}
 >
   <Container>
-    <div>
+    <div
+      key=".0"
+    >
       Hello
     </div>
-    <div>
+    <div
+      key=".1"
+    >
       World
     </div>
   </Container>
   <DialogButtons
     container={true}
+    key=".2"
   />
 </Segment>
 `;
@@ -35,10 +40,14 @@ exports[`DialogButtons should render multiple children without throwing an error
   basic={true}
 >
   <Container>
-    <div>
+    <div
+      key=".0"
+    >
       Hello
     </div>
-    <div>
+    <div
+      key=".1"
+    >
       World
     </div>
   </Container>
