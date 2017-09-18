@@ -6,5 +6,6 @@
   "hoist": true,
   "version": "3.0.0",
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "concurrency": 4
 }

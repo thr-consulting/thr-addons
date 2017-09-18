@@ -1,0 +1,25 @@
+{
+	"private": true,
+	"name": "@thx/storybook",
+	"version": "3.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "jest",
+		"start": "start-storybook -p 6006",
+		"build-storybook": "build-storybook"
+	},
+	"jest": {
+		"snapshotSerializers": [
+			"enzyme-to-json/serializer"
+		]
+	},
+	"author": "Mike Kornelson <mike@durbn.net>",
+	"license": "MIT",
+	"devDependencies": {
+		"@storybook/addon-actions": "^3.2.6",
+		"@storybook/addon-knobs": "^3.2.6",
+		"@storybook/addon-storyshots": "^3.2.6",
+		"@storybook/react": "^3.2.5"
+	}
+}

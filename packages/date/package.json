@@ -3,6 +3,13 @@
   "version": "3.0.0",
   "description": "Date controls and utils",
   "main": "lib/index.js",
+  "author": "Mike Kornelson <mike@durbn.net>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thr-consulting/thr-addons.git"
+  },
+  "keywords": ["react", "controls", "date", "moment"],
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm run clean:lib && npm run clean:dist && npm run build:lib && npm run build:dist && npm run assets:dist",
@@ -11,44 +18,16 @@
     "clean:lib": "rimraf ./lib/*",
     "clean:dist": "rimraf ./dist/*",
     "assets:dist": "rimraf ./dist/*.js && cpy dist/* lib/",
-    "test": "node --harmony_proxies node_modules/.bin/jest",
+    "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage && cat coverage/lcov.info | coverbadge -o coverage/coverage.svg",
     "flow": "flow",
     "lint": "eslint *.js src",
     "docs": "jsdoc -c jsdoc.json",
     "docs:md": "jsdoc2md -c jsdoc.json -f src/*.js > docs/README.md",
-    "docs:explain": "jsdoc -X -c jsdoc.json",
-    "validate": "npm ls",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "docs:explain": "jsdoc -X -c jsdoc.json"
   },
-  "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css)$": "identity-obj-proxy"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/thr-consulting/date.git"
-  },
-  "keywords": [
-    "react",
-    "controls",
-    "date",
-    "moment"
-  ],
-  "author": "Mike Kornelson <mike@durbn.net>",
-  "license": "MIT",
   "devDependencies": {
-    "@storybook/addon-actions": "^3.2.6",
-    "@storybook/addon-knobs": "^3.2.6",
-    "@storybook/addon-storyshots": "^3.2.6",
-    "@storybook/react": "^3.2.5",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.0",
     "babel-loader": "^7.1.1",
@@ -85,8 +64,7 @@
     "semantic-ui-react": "^0.73.0",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
-    "webpack": "^3.5.4",
-    "webpack-node-externals": "^1.6.0"
+    "webpack": "^3.5.4"
   },
   "peerDependencies": {
     "react": "^15.5.0",
@@ -104,9 +82,13 @@
     "react-widgets-moment": "^4.0.0",
     "yup": "^0.22.0"
   },
-  "greenkeeper": {
-    "ignore": [
-      "eslint-plugin-jsx-a11y"
-    ]
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/__mocks__/fileMock.js",
+      "\\.(css)$": "identity-obj-proxy"
+    }
   }
 }

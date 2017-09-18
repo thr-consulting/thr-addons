@@ -1,16 +1,11 @@
-.circleci/
-__mocks__/
 coverage/
+deprecated/
 docs/
 node_modules/
 src/
 tests/
-.babelrc
-.eslintrc
 .flowconfig
 .gitignore
 .npmignore
-.nvmrc
 jsdoc.globals.js
 jsdoc.json
-yarn.lock

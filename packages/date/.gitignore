@@ -1,9 +1,6 @@
 node_modules
-dist
 lib
-.idea
-npm-debug.log
-.npmrc
+coverage
 docs/*
 !docs/README.md
 server.js

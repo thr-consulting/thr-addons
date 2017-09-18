@@ -1,4 +1,11 @@
-src/
-lib/
-docs/
 coverage/
+deprecated/
+docs/
+node_modules/
+src/
+tests/
+.flowconfig
+.gitignore
+.npmignore
+jsdoc.globals.js
+jsdoc.json

@@ -7,12 +7,12 @@
     ]
   },
   "source": {
-    "include": "lib",
+    "include": "src",
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"
   },
   "plugins": [
-    "node_modules/jsdoc-babel",
+    "../../node_modules/jsdoc-babel",
     "./jsdoc.globals.js"
   ],
   "templates": {
@@ -27,13 +27,12 @@
       "js"
     ],
     "presets": [
-	    "es2015",
-      "stage-1",
+	    ["jason", {"debug": false}],
 	    "flow"
     ]
   },
   "opts": {
-    "template": "node_modules/ink-docstrap/template",
+    "template": "../../node_modules/ink-docstrap/template",
     "recurse": true,
     "verbose": false,
     "debug": false,

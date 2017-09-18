@@ -2,5 +2,6 @@ package-lock.json
 lerna-debug.log
 .idea
 packages/**/yarn-error.log
+packages/**/npm-debug.log
 packages/**/yarn.lock
 node_modules

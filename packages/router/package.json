@@ -1,8 +1,15 @@
 {
   "name": "@thx/router",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "React router enhancements",
   "main": "lib/index.js",
+  "author": "Mike Kornelson <mike@durbn.net>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thr-consulting/thr-addons.git"
+  },
+  "keywords": ["react", "router"],
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm run clean:lib && npm run build:lib && npm run assets:lib",
@@ -18,33 +25,12 @@
     "docs:md": "jsdoc2md -c jsdoc.json -f src/*.js > docs/README.md",
     "docs:explain": "jsdoc -X -c jsdoc.json"
   },
-  "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/thr-consulting/router.git"
-  },
-  "keywords": [
-    "react",
-    "router"
-  ],
-  "author": "Mike Kornelson <mike@durbn.net>",
-  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.0",
     "babel-plugin-flow-react-proptypes": "^5.1.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
     "babel-preset-flow": "^6.23.0",
-    "babel-preset-react": "^6.24.1",
+    "babel-preset-jason": "^3.1.0",
     "coverbadge": "^0.5.5",
     "cpy-cli": "^1.0.1",
     "enzyme": "^2.9.1",
@@ -77,7 +63,7 @@
     "react-redux": "^5.0.0",
     "react-router-dom": "^4.1.0",
     "redux": "^3.7.0",
-    "semantic-ui-react": "^0.73"
+    "semantic-ui-react": "^0.73.0"
   },
   "dependencies": {
     "debug": "^3.0.0",
@@ -86,9 +72,12 @@
     "prop-types": "^15.5.10",
     "styled-components": "^2.1.2"
   },
-  "greenkeeper": {
-    "ignore": [
-      "eslint-plugin-jsx-a11y"
-    ]
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/__mocks__/fileMock.js"
+    }
   }
 }

@@ -1,8 +1,5 @@
 node_modules
-dist
-.idea
-npm-debug.log
-.npmrc
+lib
 coverage
 docs/*
 !docs/README.md

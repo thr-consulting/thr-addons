@@ -12,7 +12,7 @@
     "excludePattern": "(^|\\/|\\\\)_"
   },
   "plugins": [
-    "node_modules/jsdoc-babel",
+    "../../node_modules/jsdoc-babel",
     "./jsdoc.globals.js"
   ],
   "templates": {
@@ -33,7 +33,7 @@
     ]
   },
   "opts": {
-    "template": "node_modules/ink-docstrap/template",
+    "template": "../../node_modules/ink-docstrap/template",
     "recurse": true,
     "verbose": false,
     "debug": false,
