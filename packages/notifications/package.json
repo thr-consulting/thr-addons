@@ -9,7 +9,12 @@
     "type": "git",
     "url": "https://github.com/thr-consulting/thr-addons.git"
   },
-  "keywords": ["react", "controls", "notifications", "growl"],
+  "keywords": [
+    "react",
+    "controls",
+    "notifications",
+    "growl"
+  ],
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm run clean:lib && npm run build:lib",

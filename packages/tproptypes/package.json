@@ -9,7 +9,10 @@
     "type": "git",
     "url": "https://github.com/thr-consulting/thr-addons.git"
   },
-  "keywords": ["react", "proptypes"],
+  "keywords": [
+    "react",
+    "proptypes"
+  ],
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm run clean:lib && npm run build:lib",

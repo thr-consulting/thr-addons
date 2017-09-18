@@ -9,7 +9,10 @@
     "type": "git",
     "url": "https://github.com/thr-consulting/thr-addons.git"
   },
-  "keywords": ["yup", "schema"],
+  "keywords": [
+    "yup",
+    "schema"
+  ],
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm run clean:lib && npm run build:lib",

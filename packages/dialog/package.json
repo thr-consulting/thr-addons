@@ -9,7 +9,12 @@
     "type": "git",
     "url": "https://github.com/thr-consulting/thr-addons.git"
   },
-  "keywords": ["react", "controls", "dialog", "dock"],
+  "keywords": [
+    "react",
+    "controls",
+    "dialog",
+    "dock"
+  ],
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm run clean:lib && npm run clean:dist && npm run build:lib && npm run build:dist && npm run assets:dist",

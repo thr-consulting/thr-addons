@@ -9,7 +9,10 @@
     "type": "git",
     "url": "https://github.com/thr-consulting/thr-addons.git"
   },
-  "keywords": ["react", "controls"],
+  "keywords": [
+    "react",
+    "controls"
+  ],
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm run clean:lib && npm run build:lib",
@@ -51,8 +54,8 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "react-test-renderer": "^15.6.1",
-    "rimraf": "^2.6.2",
     "redux": "^3.7.2",
+    "rimraf": "^2.6.2",
     "semantic-ui-react": "^0.73.1"
   },
   "peerDependencies": {

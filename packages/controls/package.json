@@ -9,7 +9,11 @@
     "type": "git",
     "url": "https://github.com/thr-consulting/thr-addons.git"
   },
-  "keywords": ["react", "controls", "semantic-ui"],
+  "keywords": [
+    "react",
+    "controls",
+    "semantic-ui"
+  ],
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm run clean:lib && npm run build:lib",
