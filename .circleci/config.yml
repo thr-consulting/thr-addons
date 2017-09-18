@@ -14,25 +14,21 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-{{ checksum ".package-hash" }}
           - v1-dependencies-
 
-      - run: yarn install
+      - run: npm install -g lerna
+      - run: lerna bootstrap
 
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum ".package-hash" }}
 
       - run: yarn build
       - run: yarn test
-      - run: yarn test:coverage
       - run: yarn lint
-      - run: yarn flow
 
-      - store_artifacts:
-          path: ~/repo/coverage/coverage.svg
-          destination: coverage
   publish:
     docker:
       - image: circleci/node:6
@@ -42,11 +38,11 @@ jobs:
       - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum ".package-hash" }}
             - v1-dependencies-
-      - run: yarn install
+      - run: npm install -g lerna
+      - run: lerna bootstrap
       - run: yarn build
-      - run: npm publish --access public
 
 workflows:
   version: 2
