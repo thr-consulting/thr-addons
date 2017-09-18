@@ -1,9 +1,9 @@
 {
-	"private": true,
-	"devDependencies": {
-		"lerna": "^2.2.0"
-	},
-	"workspaces": [
-		"packages/*"
-	]
+  "private": true,
+  "devDependencies": {
+    "lerna": "^2.2.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

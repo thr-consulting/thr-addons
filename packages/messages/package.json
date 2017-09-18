@@ -14,7 +14,6 @@
     "docs": "jsdoc -c jsdoc.json",
     "docs:md": "jsdoc2md -c jsdoc.json -f lib/*.js > docs/README.md",
     "docs:explain": "jsdoc -X -c jsdoc.json",
-    "validate": "npm ls",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -63,7 +62,6 @@
     "jsdoc": "^3.5.4",
     "jsdoc-babel": "^0.3.0",
     "jsdoc-to-markdown": "^3.0.0",
-    "precommit-hook-eslint": "^3.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
@@ -88,11 +86,5 @@
     "ignore": [
       "eslint-plugin-jsx-a11y"
     ]
-  },
-  "pre-commit": [
-    "lint",
-    "flow",
-    "test",
-    "docs:md"
-  ]
+  }
 }

@@ -13,8 +13,7 @@
     "lint": "eslint *.js lib",
     "docs": "jsdoc -c jsdoc.json",
     "docs:md": "jsdoc2md -c jsdoc.json -f lib/*.js > docs/README.md",
-    "docs:explain": "jsdoc -X -c jsdoc.json",
-    "validate": "npm ls"
+    "docs:explain": "jsdoc -X -c jsdoc.json"
   },
   "repository": {
     "type": "git",
@@ -48,7 +47,6 @@
     "jsdoc": "^3.4.3",
     "jsdoc-babel": "^0.3.0",
     "jsdoc-to-markdown": "^3.0.0",
-    "precommit-hook-eslint": "^3.0.0",
     "webpack": "^3.1.0",
     "webpack-node-externals": "^1.6.0"
   },
@@ -56,11 +54,5 @@
     "ignore": [
       "eslint-plugin-jsx-a11y"
     ]
-  },
-  "pre-commit": [
-    "lint",
-    "flow",
-    "test",
-    "docs:md"
-  ]
+  }
 }

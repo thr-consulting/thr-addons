@@ -14,8 +14,7 @@
     "lint": "eslint *.js lib",
     "docs": "jsdoc -c jsdoc.json",
     "docs:md": "jsdoc2md -c jsdoc.json -f lib/*.js > docs/README.md",
-    "docs:explain": "jsdoc -X -c jsdoc.json",
-    "validate": "npm ls"
+    "docs:explain": "jsdoc -X -c jsdoc.json"
   },
   "jest": {
     "snapshotSerializers": [
@@ -69,7 +68,6 @@
     "jsdoc-to-markdown": "^3.0.0",
     "postcss-loader": "^2.0.6",
     "postcss-modules-values": "^1.3.0",
-    "precommit-hook-eslint": "^3.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-test-renderer": "^15.6.1",
@@ -92,11 +90,5 @@
     "ignore": [
       "eslint-plugin-jsx-a11y"
     ]
-  },
-  "pre-commit": [
-    "lint",
-    "flow",
-    "test",
-    "docs:md"
-  ]
+  }
 }

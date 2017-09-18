@@ -3,3 +3,4 @@ lerna-debug.log
 .idea
 packages/**/yarn-error.log
 packages/**/yarn.lock
+node_modules
