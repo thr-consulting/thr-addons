@@ -1,3 +1,10 @@
+## Classes
+
+<dl>
+<dt><a href="#RouteDirector">RouteDirector</a></dt>
+<dd></dd>
+</dl>
+
 ## Functions
 
 <dl>
@@ -8,6 +15,15 @@
 <dd><p>Compares an auth object against a permission or list of permissions.</p>
 </dd>
 </dl>
+
+<a name="RouteDirector"></a>
+
+## RouteDirector
+**Kind**: global class  
+<a name="new_RouteDirector_new"></a>
+
+### new RouteDirector()
+RouteDirector - Component that manages multiple root routes, layouts, and permissions
 
 <a name="checkPermissions"></a>
 

@@ -11,3 +11,4 @@ jsdoc.globals.js
 jsdoc.json
 index.server.js
 webpack.config.babel.js
+dist/

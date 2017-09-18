@@ -9,3 +9,4 @@ tests/
 .npmignore
 jsdoc.globals.js
 jsdoc.json
+dist/

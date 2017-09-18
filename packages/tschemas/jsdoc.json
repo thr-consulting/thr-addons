@@ -27,17 +27,8 @@
       "js"
     ],
     "presets": [
-      "flow",
-	    ["jason", {
-			  "debug": false,
-			  "targets": {
-  				"browsers": [
-  					"> 1%",
-  					"last 4 versions",
-  					"not ie < 9"
-  				]
-  			}
-  		}]
+	    ["jason", {"debug": false}],
+	    "flow"
     ]
   },
   "opts": {

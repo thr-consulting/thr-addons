@@ -41,7 +41,7 @@
     "prefer-arrow-callback": ["error", {"allowNamedFunctions": true}],
     "class-methods-use-this": "off",
     "max-len": ["error", {"code": 200}],
-    "space-before-function-paren": ["error", "never"],
+    "space-before-function-paren": ["error", {"anonymous": "never", "named": "never", "asyncArrow": "always"}],
     "no-return-assign": ["error", "except-parens"],
 
     "react/forbid-prop-types": "error",

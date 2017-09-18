@@ -7,6 +7,12 @@
     "packages/*"
   ],
   "scripts": {
-    "lerna": "lerna"
+    "lerna": "lerna",
+    "upgrades": "./tools/upgrades",
+    "build": "lerna run --parallel build",
+    "test": "lerna run --parallel test",
+    "lint": "lerna run --parallel lint",
+    "clean": "lerna clean",
+    "bootstrap": "lerna bootstrap && npm run build"
   }
 }

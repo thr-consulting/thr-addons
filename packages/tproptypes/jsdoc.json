@@ -27,7 +27,6 @@
       "js"
     ],
     "presets": [
-      "react",
 	    ["jason", {"debug": false}],
 	    "flow"
     ]
