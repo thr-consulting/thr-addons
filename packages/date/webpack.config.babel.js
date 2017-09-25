@@ -3,7 +3,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 module.exports = {
 	entry: {
-		dateTimePicker: './src/dateTimePicker.css',
+		styles: './src/styles.css',
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),

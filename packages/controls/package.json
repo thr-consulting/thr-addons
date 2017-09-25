@@ -56,13 +56,13 @@
     "react-formal": "^0.25.4",
     "react-test-renderer": "^15.6.1",
     "rimraf": "^2.6.2",
-    "semantic-ui-react": "^0.73.1"
+    "semantic-ui-react": "^0.74.1"
   },
   "peerDependencies": {
     "react": "^15.6.0",
     "react-dom": "^15.6.0",
     "react-formal": "^0.25.4",
-    "semantic-ui-react": "^0.73.1"
+    "semantic-ui-react": "^0.74.1"
   },
   "dependencies": {
     "@thx/tschemas": "^3.0.0",
