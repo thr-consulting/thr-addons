@@ -3,7 +3,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 module.exports = {
 	entry: {
-		dateTimePicker: './src/dateTimePicker.css',
+		styles: './src/styles.css',
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
@@ -22,7 +22,7 @@ module.exports = {
 			},
 			{
 				test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)(\?[a-z0-9=.]+)?$/,
-				use: [{loader: 'url-loader', query: {limit: 10000}}],
+				use: [{loader: 'url-loader', query: {limit: 30000}}],
 			},
 		],
 	},

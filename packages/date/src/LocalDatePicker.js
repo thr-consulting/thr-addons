@@ -4,7 +4,6 @@ import React, {Component} from 'react';
 import DTPicker from 'react-widgets/lib/DateTimePicker';
 import omit from 'lodash/omit';
 import {LocalDate} from 'js-joda';
-import './dateTimePicker.css';
 import {transformLocalDateToDate, transformDateToLocalDate} from './util';
 
 type Props = {

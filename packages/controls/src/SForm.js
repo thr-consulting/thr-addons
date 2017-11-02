@@ -10,7 +10,7 @@ import SFormSummary from './SFormSummary';
 import SField from './SField';
 
 type Props = {
-	showSummary: boolean,
+	showSummary?: boolean,
 	otherErrors?: string[],
 	children?: ChildrenArray<*>,
 	onError?: (event: Event) => {},

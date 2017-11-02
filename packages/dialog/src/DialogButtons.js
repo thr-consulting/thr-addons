@@ -10,7 +10,7 @@ type Props = {
 	onApprove: () => {},
 	onReject: () => {},
 	onRemove: () => {},
-	container: boolean,
+	container?: boolean,
 };
 
 /**
