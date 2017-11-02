@@ -1,6 +1,6 @@
 {
   "name": "@thx/tproptypes",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "Useful React PropType shortcuts",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",

@@ -1,6 +1,6 @@
 {
   "name": "@thx/router",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "React router enhancements",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",

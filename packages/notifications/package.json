@@ -1,6 +1,6 @@
 {
   "name": "@thx/notifications",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "Notifications Addon that displays growl-like messages.",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
@@ -45,7 +45,9 @@
     "react-notification-system": "^0.2.16"
   },
   "jest": {
-    "setupFiles": ["<rootDir>/tests/setupTests.js"],
+    "setupFiles": [
+      "<rootDir>/tests/setupTests.js"
+    ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ]
