@@ -6,8 +6,8 @@ upgrades=("$(tput setaf 14)Package $(tput setaf 26)Dependency $(tput setaf 5)Hav
 for dep in "${arr[@]}"
 do
   depName=$(echo ${dep} | awk '{print $1}')
-  wanted=$(echo ${dep} | awk '{print $3}')
-  latest=$(echo ${dep} | awk '{print $4}')
+  latest=$(echo ${dep} | awk '{print $3}')
+  wanted=$(echo ${dep} | awk '{print $4}')
   pkg=$(echo ${dep} | awk '{print $5}')
 
   if [ "$pkg" != "Location" ]; then

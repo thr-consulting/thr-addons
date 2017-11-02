@@ -9,6 +9,7 @@
   "scripts": {
     "lerna": "lerna",
     "upgrades": "./tools/upgrades",
+    "upgradepkg": "./tools/upgradepkg",
     "build": "lerna run build",
     "test": "lerna run test",
     "lint": "lerna run lint",
