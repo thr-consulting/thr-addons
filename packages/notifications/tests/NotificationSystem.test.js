@@ -6,14 +6,6 @@ import NotificationSystem from '../src/NotificationSystem';
 jest.mock('../src/registerNotificationSystem');
 
 describe('NotificationSystem', () => {
-	it('should render without throwing an error', () => {
-		expect(shallow(
-			<NotificationSystem>
-				<div>Hello World</div>
-			</NotificationSystem>
-		)).toMatchSnapshot();
-	});
-
 	it('should register the notification system', () => {
 		const reg = require('../src/registerNotificationSystem');
 		mount(
@@ -22,5 +14,13 @@ describe('NotificationSystem', () => {
 			</NotificationSystem>
 		);
 		expect(reg.registerNotificationSystem.mock.calls.length).toBe(1);
+	});
+
+	it('should render without throwing an error', () => {
+		expect(shallow(
+			<NotificationSystem>
+				<div>Hello World</div>
+			</NotificationSystem>
+		)).toMatchSnapshot();
 	});
 });

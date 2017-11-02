@@ -5,7 +5,7 @@ import type {ChildrenArray} from 'react';
 import {Dropdown} from 'semantic-ui-react';
 
 type Props = {
-	isMobile: boolean,
+	isMobile?: boolean,
 	children?: ChildrenArray<*>,
 	icon?: string,
 	text?: string,

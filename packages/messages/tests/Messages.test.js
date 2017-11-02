@@ -19,7 +19,7 @@ describe('Messages', () => {
 		)).toMatchSnapshot();
 	});
 
-	it('should render null if no messages are given', () => {
+	it('should render empty if no messages are given', () => {
 		expect(shallow(<MessagesComponent messages={new Map()}/>)).toMatchSnapshot();
 	});
 });

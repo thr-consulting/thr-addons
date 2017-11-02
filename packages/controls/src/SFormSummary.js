@@ -15,9 +15,11 @@ type Props = {
  * @property {string[]} otherErrors - An array of additional errors strings to display.
  */
 export default function SFormSummary(props: Props) {
-	const otherErrors = (props.otherErrors) ? (<ul>
-		{props.otherErrors.map(msg => <li key={hash(msg)}>{msg}</li>)}
-	</ul>) : null;
+	const otherErrors = (props.otherErrors) ? (
+		<ul>
+			{props.otherErrors.map(msg => <li key={hash(msg)}>{msg}</li>)}
+		</ul>
+	) : null;
 
 	return (
 		<Message error>

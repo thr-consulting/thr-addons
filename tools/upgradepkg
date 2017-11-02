@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# mapfile -t arr < <(lerna exec npm outdated)
-
-echo $@
