@@ -2324,27 +2324,27 @@ entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
-enzyme-adapter-react-15@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-15/-/enzyme-adapter-react-15-1.0.3.tgz#6fd6d1b11c92198dae886efd12cb2b22db9f601a"
+enzyme-adapter-react-15@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-15/-/enzyme-adapter-react-15-1.0.5.tgz#99f9a03ff2c2303e517342935798a6bdfbb75fac"
   dependencies:
-    enzyme-adapter-utils "^1.0.0"
+    enzyme-adapter-utils "^1.1.0"
     lodash "^4.17.4"
     object.assign "^4.0.4"
     object.values "^1.0.4"
     prop-types "^15.5.10"
 
-enzyme-adapter-utils@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/enzyme-adapter-utils/-/enzyme-adapter-utils-1.1.0.tgz#7d765b2e7ebd305899e99b2eb60e77382369d8de"
+enzyme-adapter-utils@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/enzyme-adapter-utils/-/enzyme-adapter-utils-1.1.1.tgz#689de8853f0751710590d6dfa730ff4056ea36b2"
   dependencies:
     lodash "^4.17.4"
     object.assign "^4.0.4"
     prop-types "^15.5.10"
 
-enzyme-to-json@^3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/enzyme-to-json/-/enzyme-to-json-3.1.4.tgz#a4a85a8f7b561cb8c9c0d728ad1b619a3fed7df2"
+enzyme-to-json@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/enzyme-to-json/-/enzyme-to-json-3.2.1.tgz#bdee118fb94eb058311a76a6f94670c0c504b71d"
   dependencies:
     lodash "^4.17.4"
 
@@ -6007,9 +6007,9 @@ schema-utils@^0.3.0:
   dependencies:
     ajv "^5.0.0"
 
-semantic-ui-react@^0.75.1:
-  version "0.75.1"
-  resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-0.75.1.tgz#81c2ed7ed45562f89e5049c5a64195b9638d8daf"
+semantic-ui-react@^0.76.0:
+  version "0.76.0"
+  resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-0.76.0.tgz#39d8135416d787d904e0361399006fb8e0b24c8a"
   dependencies:
     babel-runtime "^6.25.0"
     classnames "^2.2.5"
