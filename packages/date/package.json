@@ -1,6 +1,6 @@
 {
   "name": "@thx/date",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Date controls and utils",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
@@ -59,7 +59,7 @@
     "semantic-ui-react": "^0.76.0"
   },
   "dependencies": {
-    "@thx/controls": "^3.0.2",
+    "@thx/controls": "^3.0.3",
     "debug": "^3.1.0",
     "js-joda": "^1.6.2",
     "lodash": "^4.17.4",

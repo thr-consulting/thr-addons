@@ -1,6 +1,6 @@
 {
   "name": "@thx/controls",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "A collection of form components designed with SemanticUI. They all adhere to React Formal's policy of having a value prop and an onChange() prop.",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",

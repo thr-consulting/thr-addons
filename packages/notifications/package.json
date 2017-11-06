@@ -1,6 +1,6 @@
 {
   "name": "@thx/notifications",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Notifications Addon that displays growl-like messages.",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
