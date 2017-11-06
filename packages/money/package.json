@@ -31,18 +31,18 @@
     "docs:explain": "jsdoc -X -c jsdoc.json"
   },
   "devDependencies": {
-    "enzyme": "^3.1.0",
-    "enzyme-adapter-react-15": "^1.0.3",
-    "enzyme-to-json": "^3.1.4",
+    "enzyme": "^3.1.1",
+    "enzyme-adapter-react-15": "^1.0.5",
+    "enzyme-to-json": "^3.2.1",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
     "react-test-renderer": "^15.6.2",
     "rimraf": "^2.6.2",
-    "semantic-ui-react": "^0.75.1"
+    "semantic-ui-react": "^0.76.0"
   },
   "peerDependencies": {
     "react": "^15.6.0",
-    "semantic-ui-react": "^0.75.1"
+    "semantic-ui-react": "^0.76.0"
   },
   "dependencies": {
     "@thx/tproptypes": "^3.0.2",
