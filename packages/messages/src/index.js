@@ -14,7 +14,8 @@ import Messages from './Messages';
  * @param store - Redux store
  */
 function clearAllMessages(store) {
-	if (store.getState().get('messages').size > 0) store.dispatch(clearMessages());
+	const msgs = store.getState().get('messages');
+	if (msgs && msgs.size > 0) store.dispatch(clearMessages());
 }
 
 export {
