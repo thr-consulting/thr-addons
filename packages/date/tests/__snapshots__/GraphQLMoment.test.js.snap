@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Moment GraphQL should validate literal values 1`] = `
+Object {
+  "data": Object {
+    "moment": 2017-01-02T06:00:00.000Z,
+  },
+}
+`;
+
+exports[`Moment GraphQL should validate literal values 2`] = `
+Object {
+  "data": Object {
+    "moment": 1970-01-01T00:00:01.716Z,
+  },
+}
+`;
+
+exports[`Moment GraphQL should validate variable values 1`] = `
+Object {
+  "data": Object {
+    "moment": 1970-01-01T00:00:17.384Z,
+  },
+}
+`;
+
+exports[`Moment GraphQL should validate variable values 2`] = `
+Object {
+  "data": Object {
+    "moment": 1970-01-01T00:00:00.042Z,
+  },
+}
+`;
+
+exports[`Moment GraphQL should validate variable values 3`] = `
+Object {
+  "data": Object {
+    "moment": 2017-01-02T06:00:00.000Z,
+  },
+}
+`;

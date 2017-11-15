@@ -2,7 +2,7 @@ import {graphql} from 'graphql';
 import gql from 'graphql-tag';
 import {LocalDate} from 'js-joda';
 import {makeExecutableSchema} from 'graphql-tools';
-import {GraphQLLocalDate} from '../src/graphql/graphqlScalars';
+import GraphQLLocalDate from '../src/graphql/GraphQLLocalDate';
 
 const typeDefs = gql`
   scalar LocalDate

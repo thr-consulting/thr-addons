@@ -12,7 +12,7 @@ function toLocalDate(value) {
 	throw new GraphQLError('Not a valid LocalDate.');
 }
 
-export const GraphQLLocalDate = new GraphQLScalarType({
+const GraphQLLocalDate = new GraphQLScalarType({
 	name: 'LocalDate',
 	description: 'JS-Joda LocalDate',
 	parseValue(value) {
@@ -27,3 +27,5 @@ export const GraphQLLocalDate = new GraphQLScalarType({
 		throw new GraphQLError(`Cannot convert literal ${ast.value} into LocalDate.`);
 	},
 });
+
+export default GraphQLLocalDate;
