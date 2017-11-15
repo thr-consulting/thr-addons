@@ -26,7 +26,7 @@ expect.addSnapshotSerializer({
 
 describe('Moment GraphQL', () => {
 	it('should validate literal values', async () => {
-		expect(graphql(schema, '{moment(item: "2017-01-01 24:00:00.000")}')).resolves.toMatchSnapshot();
+		expect(graphql(schema, '{moment(item: "2017-01-01 24:00:00.000Z")}')).resolves.toMatchSnapshot();
 		expect(graphql(schema, '{moment(item: 1716)}')).resolves.toMatchSnapshot();
 	});
 
@@ -34,6 +34,6 @@ describe('Moment GraphQL', () => {
 		const query = 'query basic($val: Moment) {moment(item: $val)}';
 		expect(graphql(schema, query, null, null, {val: moment(17384)})).resolves.toMatchSnapshot();
 		expect(graphql(schema, query, null, null, {val: 42})).resolves.toMatchSnapshot();
-		expect(graphql(schema, query, null, null, {val: '2017-01-01 24:00:00.000'})).resolves.toMatchSnapshot();
+		expect(graphql(schema, query, null, null, {val: '2017-01-01 24:00:00.000Z'})).resolves.toMatchSnapshot();
 	});
 });
