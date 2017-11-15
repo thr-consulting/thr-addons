@@ -11,6 +11,8 @@ import {
 	mapEpochIntegerToLocalDates,
 	transformObjectsToLocalDates,
 } from './lib/util';
+import GraphQLLocalDate from './lib/graphql/GraphQLLocalDate';
+import GraphQLMoment from './lib/graphql/GraphQLMoment';
 
 export {
 	formatDate,
@@ -24,4 +26,6 @@ export {
 	transformEpochIntegerToLocalDate,
 	mapEpochIntegerToLocalDates,
 	transformObjectsToLocalDates,
+	GraphQLLocalDate,
+	GraphQLMoment,
 };

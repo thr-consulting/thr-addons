@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocalDate GraphQL should validate literal values 1`] = `
+Object {
+  "data": Object {
+    "localDate": 17167 2017-01-01,
+  },
+}
+`;
+
+exports[`LocalDate GraphQL should validate literal values 2`] = `
+Object {
+  "data": Object {
+    "localDate": 1716 1974-09-13,
+  },
+}
+`;
+
+exports[`LocalDate GraphQL should validate variable values 1`] = `
+Object {
+  "data": Object {
+    "localDate": 42 1970-02-12,
+  },
+}
+`;
+
+exports[`LocalDate GraphQL should validate variable values 2`] = `
+Object {
+  "data": Object {
+    "localDate": 42 1970-02-12,
+  },
+}
+`;
+
+exports[`LocalDate GraphQL should validate variable values 3`] = `
+Object {
+  "data": Object {
+    "localDate": 17167 2017-01-01,
+  },
+}
+`;

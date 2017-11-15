@@ -144,6 +144,10 @@ anymatch@^1.3.0:
     micromatch "^2.1.5"
     normalize-path "^2.0.0"
 
+apollo-utilities@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.1.tgz#34b4df0bd6ed71d0afaa7c62489173dca5d07e92"
+
 app-usage-stats@^0.5.0:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/app-usage-stats/-/app-usage-stats-0.5.1.tgz#6547c5db9bab0aa5f5b2c560eacc8af20d0ab13b"
@@ -2150,6 +2154,10 @@ delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
 
+deprecated-decorator@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/deprecated-decorator/-/deprecated-decorator-0.1.6.tgz#00966317b7a12fe92f3cc831f7583af329b86c37"
+
 des.js@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/des.js/-/des.js-1.0.0.tgz#c074d2e2aa6a8a9a07dbd61f9a15c2cd83ec8ecc"
@@ -3154,6 +3162,24 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.4, graceful-fs@^4.1.6,
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
+graphql-tag@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.5.0.tgz#b43bfd8b5babcd2c205ad680c03e98b238934e0f"
+
+graphql-tools@^2.7.2:
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-2.7.2.tgz#03104a155b15f8441b0e5a7113b12b9512341a9e"
+  dependencies:
+    apollo-utilities "^1.0.1"
+    deprecated-decorator "^0.1.6"
+    uuid "^3.1.0"
+
+graphql@^0.11.7:
+  version "0.11.7"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.11.7.tgz#e5abaa9cb7b7cccb84e9f0836bf4370d268750c6"
+  dependencies:
+    iterall "1.1.3"
+
 growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
@@ -3737,6 +3763,10 @@ istanbul-reports@^1.1.2:
   resolved "https://registry.yarnpkg.com/istanbul-reports/-/istanbul-reports-1.1.2.tgz#0fb2e3f6aa9922bd3ce45d05d8ab4d5e8e07bd4f"
   dependencies:
     handlebars "^4.0.3"
+
+iterall@1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.1.3.tgz#1cbbff96204056dde6656e2ed2e2226d0e6d72c9"
 
 jest-changed-files@^21.2.0:
   version "21.2.0"
