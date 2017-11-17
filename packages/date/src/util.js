@@ -6,6 +6,7 @@ import isObject from 'lodash/isObject';
 import isInteger from 'lodash/isInteger';
 import map from 'lodash/map';
 import isDate from 'lodash/isDate';
+import isString from 'lodash/isString';
 import {LocalDate} from 'js-joda';
 import indexOf from 'lodash/indexOf';
 
@@ -145,6 +146,7 @@ export function mapEpochIntegerToLocalDates(obj, paths, curPath = []) {
 	return obj;
 }
 
+const localDateRegEx = /^\d\d\d\d-\d\d-\d\d$/;
 /**
  * Transforms anything that has LocalDate style objects into LocalDates.
  * @param obj
@@ -160,6 +162,7 @@ export function transformObjectsToLocalDates(obj) {
 			result[key] = transformObjectsToLocalDates(value); // eslint-disable-line no-param-reassign
 		}, {});
 	}
+	if (isString(obj) && localDateRegEx.test(obj)) return LocalDate.parse(obj);
 	return obj;
 }
 

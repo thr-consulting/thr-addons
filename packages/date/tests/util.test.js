@@ -176,9 +176,11 @@ describe('Date transforms', () => {
 		const val = transformObjectsToLocalDates({
 			field1: LocalDate.ofEpochDay(17400),
 			field2: [LocalDate.ofEpochDay(13000), LocalDate.ofEpochDay(1)],
+			field3: '2017-06-23',
 		});
 		expect(val.field1).toBeInstanceOf(LocalDate);
 		expect(val.field2[0]).toBeInstanceOf(LocalDate);
+		expect(val.field3).toBeInstanceOf(LocalDate);
 		expect(val).toMatchSnapshot();
 	});
 });
