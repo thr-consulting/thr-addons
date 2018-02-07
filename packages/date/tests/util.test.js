@@ -9,6 +9,9 @@ import {
 	transformLocalDateToMoment,
 	transformMomentsToDate,
 	transformDatesToMoment,
+	transformEpochIntegerToDate,
+	transformLocalDateToEpochInteger,
+	transformDateToEpochInteger,
 	transformLocalDatesToEpochInteger,
 	transformEpochIntegerToLocalDate,
 	mapEpochIntegerToLocalDates,
@@ -150,6 +153,24 @@ describe('Date transforms', () => {
 		expect(val.dayOfMonth()).toBe(22);
 		expect(val.monthValue()).toBe(8);
 		expect(val.year()).toBe(2017);
+	});
+
+	it('should transform an epoch integer into a JS Date', () => {
+		const val = transformEpochIntegerToDate(17400);
+		expect(val).toBeInstanceOf(Date);
+		expect(val.getDate()).toBe(22);
+		expect(val.getMonth()).toBe(7);
+		expect(val.getFullYear()).toBe(2017);
+	});
+
+	it('should transform a LocalDate into an epoch integer', () => {
+		const val = transformLocalDateToEpochInteger(LocalDate.ofEpochDay(17400));
+		expect(val).toBe(17400);
+	});
+
+	it('should transform a JS Date into an epoch integer', () => {
+		const val = transformDateToEpochInteger(new Date(2017, 5, 23, 6, 0, 0));
+		expect(val).toBe(17340);
 	});
 
 	it('should map epoch integers into LocalDates', () => {

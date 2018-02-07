@@ -10,6 +10,17 @@ import isString from 'lodash/isString';
 import {LocalDate} from 'js-joda';
 import indexOf from 'lodash/indexOf';
 
+/*
+	Simple Transforms
+
+								To
+	From					Date    LocalDate   Moment    EpochInteger
+	Date            -         x                     x
+	LocalDate       x         -         x           x
+	Moment                    x         -
+	EpochInteger    x         x                     -
+ */
+
 /**
  * Initializes the date-time pickers
  */
@@ -56,6 +67,44 @@ export function transformLocalDateToMoment(localDate) {
 		day: localDate.dayOfMonth(),
 	});
 }
+
+/**
+ * Transforms an epoch integer into a LocalDate
+ * @param value
+ * @returns {JSJoda.LocalDate}
+ */
+export function transformEpochIntegerToLocalDate(value) {
+	return LocalDate.ofEpochDay(value);
+}
+
+/**
+ * Transforms an epoch integer into a Date
+ * @param value
+ * @returns {Date}
+ */
+export function transformEpochIntegerToDate(value) {
+	return transformLocalDateToDate(LocalDate.ofEpochDay(value));
+}
+
+/**
+ * Transforms a LocalDate into an epoch integer
+ * @param value
+ * @returns {*}
+ */
+export function transformLocalDateToEpochInteger(value) {
+	return value.toEpochDay();
+}
+
+/**
+ * Transforms a Date to an epoch integer
+ * @param value
+ * @returns {*}
+ */
+export function transformDateToEpochInteger(value) {
+	return transformDateToLocalDate(value).toEpochDay();
+}
+
+/* == Array or Anything Transforms == */
 
 /**
  * Transforms a moment or array of moments to JS Dates
@@ -111,15 +160,6 @@ export function transformLocalDatesToEpochInteger(obj) {
 		}, {});
 	}
 	return obj;
-}
-
-/**
- * Transforms an epoch integer into a LocalDate
- * @param value
- * @returns {JSJoda.LocalDate}
- */
-export function transformEpochIntegerToLocalDate(value) {
-	return LocalDate.ofEpochDay(value);
 }
 
 /**
