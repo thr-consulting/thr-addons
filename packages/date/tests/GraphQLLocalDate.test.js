@@ -21,7 +21,7 @@ const schema = makeExecutableSchema({typeDefs, resolvers});
 
 expect.addSnapshotSerializer({
 	test: v => v instanceof LocalDate,
-	print: v => `${v.toEpochDay().toString()} ${v.toString()}`,
+	print: v => `${v.toString()}`,
 });
 
 describe('LocalDate GraphQL', () => {
