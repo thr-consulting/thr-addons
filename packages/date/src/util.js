@@ -210,7 +210,7 @@ export function transformObjectsToLocalDates(obj) {
 /**
  * Formats a date to a predefined style
  * @method formatDate
- * @param {Date|moment|LocalDate} obj - The date or moment object or LocalDate object
+ * @param {Date|moment|LocalDate|number} obj - The date or moment object or LocalDate object
  * @param {string} [type=short] options.type - short, medium, or long
  * @param {bool} [time=false] options.time - If true, displays the time
  * @param {bool} [date=true] options.date - If true, displays the date
@@ -219,9 +219,10 @@ export function transformObjectsToLocalDates(obj) {
  */
 export function formatDate(obj, {type: type = 'short', time: time = false, date: date = true, format} = {type: 'short'}) {
 	let m = obj;
+	if (isInteger(m)) m = transformEpochIntegerToDate(m);
 	if (m instanceof LocalDate) m = transformLocalDateToMoment(m);
 	if (m instanceof Date) m = moment(m);
-	if (!moment.isMoment(m)) throw new Error('formatDate requires a Date, LocalDate or Moment object to be passed as the first parameter.');
+	if (!moment.isMoment(m)) throw new Error('formatDate requires a Date, LocalDate, Moment or number (EpochDays) to be passed as the first parameter.');
 	let dateFormat;
 	let timeFormat;
 	switch (type || 'short') {
