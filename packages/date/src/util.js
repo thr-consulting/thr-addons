@@ -2,7 +2,7 @@ import momentLocalizer from 'react-widgets-moment';
 import moment from 'moment';
 import transform from 'lodash/transform';
 import isArray from 'lodash/isArray';
-import isObject from 'lodash/isObject';
+import isPlainObject from 'lodash/isPlainObject';
 import isInteger from 'lodash/isInteger';
 import map from 'lodash/map';
 import isDate from 'lodash/isDate';
@@ -118,7 +118,7 @@ export function transformMomentsToDate(obj) {
 	if (isArray(obj)) {
 		return map(obj, v => transformMomentsToDate(v));
 	}
-	if (isObject(obj)) {
+	if (isPlainObject(obj)) {
 		return transform(obj, (result, value, key) => {
 			result[key] = transformMomentsToDate(value); // eslint-disable-line no-param-reassign
 		}, {});
@@ -136,7 +136,7 @@ export function transformDatesToMoment(obj) {
 	if (isArray(obj)) {
 		return map(obj, v => transformDatesToMoment(v));
 	}
-	if (isObject(obj)) {
+	if (isPlainObject(obj)) {
 		return transform(obj, (result, value, key) => {
 			result[key] = transformDatesToMoment(value); // eslint-disable-line no-param-reassign
 		}, {});
@@ -154,7 +154,7 @@ export function transformLocalDatesToEpochInteger(obj) {
 	if (isArray(obj)) {
 		return map(obj, v => transformLocalDatesToEpochInteger(v));
 	}
-	if (isObject(obj)) {
+	if (isPlainObject(obj)) {
 		return transform(obj, (result, value, key) => {
 			result[key] = transformLocalDatesToEpochInteger(value); // eslint-disable-line no-param-reassign
 		}, {});
@@ -178,7 +178,7 @@ export function mapEpochIntegerToLocalDates(obj, paths, curPath = []) {
 	if (isArray(obj)) {
 		return map(obj, v => mapEpochIntegerToLocalDates(v, paths, [...curPath]));
 	}
-	if (isObject(obj)) {
+	if (isPlainObject(obj)) {
 		return transform(obj, (result, value, key) => {
 			result[key] = mapEpochIntegerToLocalDates(value, paths, [...curPath, key]); // eslint-disable-line no-param-reassign
 		}, {});
@@ -196,7 +196,7 @@ export function transformObjectsToLocalDates(obj) {
 	if (isArray(obj)) {
 		return map(obj, v => transformObjectsToLocalDates(v));
 	}
-	if (isObject(obj)) {
+	if (isPlainObject(obj)) {
 		if (obj._year && obj._month && obj._day) return LocalDate.of(obj._year, obj._month, obj._day); // eslint-disable-line no-underscore-dangle
 		return transform(obj, (result, value, key) => {
 			result[key] = transformObjectsToLocalDates(value); // eslint-disable-line no-param-reassign

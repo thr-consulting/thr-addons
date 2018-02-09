@@ -198,10 +198,12 @@ describe('Date transforms', () => {
 			field1: LocalDate.ofEpochDay(17400),
 			field2: [LocalDate.ofEpochDay(13000), LocalDate.ofEpochDay(1)],
 			field3: '2017-06-23',
+			field4: new Date(2017, 5, 23, 6, 0, 0),
 		});
 		expect(val.field1).toBeInstanceOf(LocalDate);
 		expect(val.field2[0]).toBeInstanceOf(LocalDate);
 		expect(val.field3).toBeInstanceOf(LocalDate);
+		expect(val.field4).toBeInstanceOf(Date);
 		expect(val).toMatchSnapshot();
 	});
 });
