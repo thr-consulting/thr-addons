@@ -1,6 +1,6 @@
 {
   "name": "@thx/date",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Date controls and utils",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
