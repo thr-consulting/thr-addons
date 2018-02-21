@@ -1,6 +1,6 @@
 {
   "name": "@thx/tschemas",
-  "version": "3.0.10",
+  "version": "4.0.0",
   "description": "Useful yup schema shortcuts",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
