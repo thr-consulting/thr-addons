@@ -31,9 +31,8 @@
     "escape-string-regexp": "^1.0.5",
     "js-joda": "^1.6.2",
     "js-money": "^0.6.3",
-    "lodash": "^4.17.4",
-    "moment": "^2.19.1",
+    "moment": "^2.20.1",
     "social-insurance-number": "^0.0.2",
-    "yup": "^0.23.0"
+    "yup": "^0.24.1"
   }
 }

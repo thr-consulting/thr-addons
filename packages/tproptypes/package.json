@@ -28,18 +28,17 @@
     "docs:explain": "jsdoc -X -c jsdoc.json"
   },
   "devDependencies": {
-    "enzyme": "^3.1.1",
-    "enzyme-adapter-react-15": "^1.0.5",
-    "enzyme-to-json": "^3.2.1",
-    "react": "^15.6.2",
-    "react-dom": "^15.6.2",
-    "react-test-renderer": "^15.6.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2"
   },
   "dependencies": {
     "js-joda": "^1.6.2",
     "js-money": "^0.6.3",
-    "lodash": "^4.17.4",
     "prop-types": "^15.6.0"
   },
   "jest": {

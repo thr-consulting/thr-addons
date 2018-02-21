@@ -34,30 +34,29 @@
   },
   "devDependencies": {
     "babel-loader": "^7.1.1",
-    "babel-plugin-flow-react-proptypes": "^8.0.0",
+    "babel-plugin-flow-react-proptypes": "^18.0.0",
     "cpy-cli": "^1.0.1",
-    "css-loader": "^0.28.4",
-    "enzyme": "^3.1.1",
-    "enzyme-adapter-react-15": "^1.0.5",
-    "enzyme-to-json": "^3.2.1",
+    "css-loader": "^0.28.9",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "identity-obj-proxy": "^3.0.0",
-    "react": "^15.6.2",
-    "react-dom": "^15.6.2",
-    "react-test-renderer": "^15.6.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2",
-    "semantic-ui-react": "^0.76.0",
-    "style-loader": "^0.19.0",
-    "webpack": "^3.8.1"
+    "semantic-ui-react": "^0.78.2",
+    "style-loader": "^0.20.2",
+    "webpack": "^3.11.0"
   },
   "peerDependencies": {
-    "react": "^15.6.0",
-    "react-dom": "^15.6.0",
-    "semantic-ui-react": "^0.76.0"
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "semantic-ui-react": "^0.78.0"
   },
   "dependencies": {
     "debug": "^3.1.0",
-    "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react-dock": "^0.2.4"
   },
