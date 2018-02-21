@@ -7,7 +7,7 @@ import isInteger from 'lodash/isInteger';
 import map from 'lodash/map';
 import isDate from 'lodash/isDate';
 import isString from 'lodash/isString';
-import {LocalDate} from 'js-joda';
+import {LocalDate, nativeJs} from 'js-joda';
 import indexOf from 'lodash/indexOf';
 
 /*
@@ -203,6 +203,9 @@ export function transformObjectsToLocalDates(obj) {
 		}, {});
 	}
 	if (isString(obj) && localDateRegEx.test(obj)) return LocalDate.parse(obj);
+	if (isDate(obj)) {
+		return LocalDate.from(nativeJs(obj));
+	}
 	return obj;
 }
 

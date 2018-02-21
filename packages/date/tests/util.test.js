@@ -203,7 +203,7 @@ describe('Date transforms', () => {
 		expect(val.field1).toBeInstanceOf(LocalDate);
 		expect(val.field2[0]).toBeInstanceOf(LocalDate);
 		expect(val.field3).toBeInstanceOf(LocalDate);
-		expect(val.field4).toBeInstanceOf(Date);
+		expect(val.field4).toBeInstanceOf(LocalDate);
 		expect(val).toMatchSnapshot();
 	});
 });
