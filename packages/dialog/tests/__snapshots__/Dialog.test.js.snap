@@ -29,7 +29,6 @@ exports[`DialogButtons should render multiple children with a DialogButtons inst
     </div>
   </Container>
   <DialogButtons
-    container={true}
     key=".2"
   />
 </Segment>
