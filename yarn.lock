@@ -245,13 +245,9 @@ apollo-link@^1.1.0:
     apollo-utilities "^1.0.0"
     zen-observable "^0.8.0"
 
-apollo-utilities@^1.0.0:
+apollo-utilities@^1.0.0, apollo-utilities@^1.0.1:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.8.tgz#74d797d38953d2ba35e16f880326e2abcbc8b016"
-
-apollo-utilities@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.1.tgz#34b4df0bd6ed71d0afaa7c62489173dca5d07e92"
 
 append-transform@^0.4.0:
   version "0.4.0"
