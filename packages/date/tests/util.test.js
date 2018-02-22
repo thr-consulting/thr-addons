@@ -2,7 +2,6 @@
 import {LocalDate} from 'js-joda';
 import moment from 'moment';
 import {
-	dateInit,
 	transformDateToLocalDate,
 	transformLocalDateToDate,
 	transformMomentToLocalDate,
@@ -19,8 +18,6 @@ import {
 	formatDate,
 } from '../src/util';
 
-jest.mock('react-widgets-moment');
-
 expect.addSnapshotSerializer({
 	test: v => moment.isMoment(v),
 	print: v => v.toISOString(),
@@ -28,14 +25,6 @@ expect.addSnapshotSerializer({
 expect.addSnapshotSerializer({
 	test: v => Object.prototype.toString.call(v) === '[object Date]',
 	print: v => v.toJSON(),
-});
-
-describe('Date initialization', () => {
-	it('should call the moment localizer', () => {
-		const momentLocalizer = require('react-widgets-moment');
-		dateInit();
-		expect(momentLocalizer.mock.calls.length).toBe(1);
-	});
 });
 
 describe('Date transforms', () => {

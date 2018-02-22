@@ -1,4 +1,3 @@
-import momentLocalizer from 'react-widgets-moment';
 import moment from 'moment';
 import transform from 'lodash/transform';
 import isArray from 'lodash/isArray';
@@ -20,13 +19,6 @@ import indexOf from 'lodash/indexOf';
 	Moment                    x         -
 	EpochInteger    x         x                     -
  */
-
-/**
- * Initializes the date-time pickers
- */
-export function dateInit() {
-	momentLocalizer();
-}
 
 /**
  * Transforms a JS Date to a LocalDate

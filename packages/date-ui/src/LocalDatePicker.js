@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import DTPicker from 'react-widgets/lib/DateTimePicker';
 import omit from 'lodash/omit';
 import {LocalDate} from 'js-joda';
-import {transformLocalDateToDate, transformDateToLocalDate} from './util';
+import {transformLocalDateToDate, transformDateToLocalDate} from '@thx/date';
 
 type Props = {
 	width: string,

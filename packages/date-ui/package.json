@@ -1,0 +1,82 @@
+{
+  "name": "@thx/date-ui",
+  "version": "4.0.1",
+  "description": "Date controls",
+  "main": "lib/index.js",
+  "author": "Mike Kornelson <mike@durbn.net>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thr-consulting/thr-addons.git"
+  },
+  "keywords": [
+    "react",
+    "controls",
+    "date",
+    "moment"
+  ],
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "npm run clean:lib && npm run clean:dist && npm run build:lib && npm run build:dist && npm run assets:dist",
+    "build:lib": "babel src --out-dir lib",
+    "build:dist": "NODE_ENV=production webpack",
+    "clean:lib": "rimraf ./lib/*",
+    "clean:dist": "rimraf ./dist/*",
+    "assets:dist": "rimraf ./dist/*.js && cpy dist/* lib/",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage && cat coverage/lcov.info | coverbadge -o coverage/coverage.svg",
+    "flow": "flow",
+    "lint": "eslint *.js src",
+    "docs": "jsdoc -c jsdoc.json",
+    "docs:md": "jsdoc2md -c jsdoc.json -f src/*.js > docs/README.md",
+    "docs:explain": "jsdoc -X -c jsdoc.json"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.1",
+    "babel-plugin-flow-react-proptypes": "^18.0.0",
+    "cpy-cli": "^1.0.1",
+    "css-loader": "^0.28.9",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.9",
+    "identity-obj-proxy": "^3.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-formal": "^0.25.4",
+    "react-test-renderer": "^16.2.0",
+    "rimraf": "^2.6.2",
+    "semantic-ui-react": "^0.78.2",
+    "style-loader": "^0.20.2",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.11.0"
+  },
+  "peerDependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "semantic-ui-react": "^0.78.0"
+  },
+  "dependencies": {
+    "@thx/date": "^4.0.1",
+    "debug": "^3.1.0",
+    "js-joda": "^1.6.2",
+    "moment": "^2.20.1",
+    "prop-types": "^15.6.0",
+    "react-widgets": "^4.2.0",
+    "react-widgets-moment": "^4.0.7"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/tests/setupTests.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/__mocks__/fileMock.js",
+      "\\.(css)$": "identity-obj-proxy"
+    }
+  }
+}

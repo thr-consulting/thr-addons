@@ -1,10 +1,10 @@
-# utils
+# controls
 
-Date utils
+Date controls
 
 ## Install
 ```
-yarn add @thx/date
+yarn add @thx/date-ui
 ```
 
 ## Documentation
