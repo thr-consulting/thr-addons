@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
   "license": "MIT",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/thr-consulting/thr-addons.git"
