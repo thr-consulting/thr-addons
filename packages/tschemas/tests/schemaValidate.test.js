@@ -1,4 +1,4 @@
-import yup from 'yup';
+import {object, number, string} from 'yup';
 import TSchemas from '../src/index';
 
 const obj = {
@@ -6,9 +6,9 @@ const obj = {
 	astring: 'hello world',
 };
 
-const schema = yup.object({
-	anumber: yup.number().required(),
-	astring: yup.string().required(),
+const schema = object({
+	anumber: number().required(),
+	astring: string().required(),
 });
 
 it('should validate', async () => {

@@ -28,23 +28,24 @@
     "docs:explain": "jsdoc -X -c jsdoc.json"
   },
   "devDependencies": {
-    "babel-plugin-flow-react-proptypes": "^18.0.0",
+    "babel-plugin-flow-react-proptypes": "^24.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
+    "jest-mock-random": "^1.0.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-test-renderer": "^16.2.0",
-    "redux": "^3.7.2",
+    "redux": "^4.0.0",
     "rimraf": "^2.6.2",
-    "semantic-ui-react": "^0.78.2"
+    "semantic-ui-react": "^0.80.0"
   },
   "peerDependencies": {
     "react": "^16.2.0",
     "react-redux": "^5.0.0",
-    "redux": "^3.7.0",
-    "semantic-ui-react": "^0.78.2"
+    "redux": "^4.0.0",
+    "semantic-ui-react": "0.x"
   },
   "dependencies": {
     "immutable": "^3.8.2",

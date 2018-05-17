@@ -38,11 +38,11 @@
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2",
-    "semantic-ui-react": "^0.78.2"
+    "semantic-ui-react": "^0.80.0"
   },
   "peerDependencies": {
     "react": "^16.2.0",
-    "semantic-ui-react": "^0.78.0"
+    "semantic-ui-react": "0.x"
   },
   "dependencies": {
     "@thx/tproptypes": "^4.0.0",

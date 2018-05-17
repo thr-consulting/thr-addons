@@ -1,7 +1,7 @@
 {
-  "name": "@thx/notifications",
-  "version": "4.0.0",
-  "description": "Notifications Addon that displays growl-like messages.",
+  "name": "@thx/mongoloader",
+  "version": "5.0.0",
+  "description": "Mongo DataLoader class",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
   "license": "MIT",
@@ -10,10 +10,8 @@
     "url": "https://github.com/thr-consulting/thr-addons.git"
   },
   "keywords": [
-    "react",
-    "controls",
-    "notifications",
-    "growl"
+    "dataloader",
+    "mongo"
   ],
   "scripts": {
     "prepublish": "npm run build",
@@ -25,31 +23,19 @@
     "test:coverage": "jest --coverage && cat coverage/lcov.info | coverbadge -o coverage/coverage.svg",
     "flow": "flow",
     "lint": "eslint *.js src",
-    "docs": "jsdoc -c jsdoc.json",
+    "docs": "jsdoc -m grouped -g grouped -c jsdoc.json",
     "docs:md": "jsdoc2md -c jsdoc.json -f src/*.js > docs/README.md",
     "docs:explain": "jsdoc -X -c jsdoc.json"
   },
   "devDependencies": {
-    "babel-plugin-flow-react-proptypes": "^24.0.0",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "enzyme-to-json": "^3.3.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-test-renderer": "^16.2.0"
+    "mongodb-memory-server": "^1.7.3",
+    "mongodb": "^3.1.0-beta4"
   },
   "peerDependencies": {
-    "react": "^16.2.0"
+    "mongodb": "^3.1.0-beta4"
   },
   "dependencies": {
-    "react-notification-system": "^0.2.16"
-  },
-  "jest": {
-    "setupFiles": [
-      "<rootDir>/tests/setupTests.js"
-    ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ]
+    "debug": "^3.1.0",
+    "dataloader": "^1.4.0"
   }
 }

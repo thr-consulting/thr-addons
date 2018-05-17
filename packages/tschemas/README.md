@@ -10,10 +10,10 @@ yarn add @thx/tschemas
 ## Usage
 
 ```
-import yup from 'yup';
+import {shape} from 'yup';
 import {localDate} from '@thx/tschemas';
 
-const schema = yup.shape({
+const schema = shape({
   myDate: localDate().required(),
 });
 ```
