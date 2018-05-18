@@ -1,27 +1,32 @@
 import {GraphQLError} from 'graphql/error';
 import {GraphQLScalarType} from 'graphql';
-import isObject from 'lodash/isObject';
-import isEmpty from 'lodash/isEmpty';
-import {makeMoney} from '@thx/money/server';
+import {Kind} from 'graphql/language';
+import isString from 'lodash/isString';
+import Money from 'js-money';
+import {makeMoney} from '../util';
+
+expect.addSnapshotSerializer({
+	test: v => Object.prototype.toString.call(v) === '[object Object]',
+	print: v => JSON.stringify(v),
+});
 
 const GraphQLMoney = new GraphQLScalarType({
-	name: 'MoneyObj',
-	description: 'MoneyObj',
+	name: 'Money',
+	description: 'JS-Money object',
 	// Parses variable values (JSON => JSON)
 	parseValue(value) {
-		if (isEmpty(value) || !isObject(value)) return makeMoney({amount: 0, currency: 'CAD'});
+		if (isString(value)) return makeMoney(Number(value));
 		return makeMoney(value);
 	},
 	// Called when the value is being sent to the client
 	serialize(value) {
-		if (isEmpty(value) || !isObject(value)) return makeMoney({amount: 0, currency: 'CAD'});
-		if (isObject(value)) return makeMoney(value);
+		if (value instanceof Money) return value;
 		throw new GraphQLError('Trying to serialize a non-primitive');
 	},
 	// Parses GraphQL language AST into the value. (AST => JSON)
 	parseLiteral(ast) {
-		if (isEmpty(ast.value) || !isObject(ast.value)) return makeMoney({amount: 0, currency: 'CAD'});
-		return makeMoney(ast.value);
+		if (ast.kind === Kind.FLOAT || ast.kind === Kind.INT || ast.kind === Kind.STRING) return makeMoney(Number(ast.value));
+		throw new GraphQLError(`Cannot convert literal ${ast.value} into Money.`);
 	},
 });
 
