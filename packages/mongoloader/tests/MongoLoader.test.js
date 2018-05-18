@@ -4,6 +4,8 @@ import {MongoClient} from 'mongodb';
 import MongoLoader from '../src/MongoLoader';
 import testData from './TestData';
 
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
+
 let mongod;
 let mongoConn;
 let db;
