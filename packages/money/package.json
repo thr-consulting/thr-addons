@@ -1,6 +1,6 @@
 {
   "name": "@thx/money",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "Money addons",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
@@ -50,7 +50,7 @@
     "semantic-ui-react": "0.x"
   },
   "dependencies": {
-    "@thx/tproptypes": "^6.0.0",
+    "@thx/tproptypes": "^6.0.1",
     "accounting": "^0.4.1",
     "debug": "^3.1.0",
     "inputmask": "^3.3.11",
