@@ -1,6 +1,6 @@
-# controls
+# utils
 
-Date controls and utils
+Date utils
 
 ## Install
 ```

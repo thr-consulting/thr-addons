@@ -1,6 +1,6 @@
 // @flow
 
-import yup, {mixed} from 'yup';
+import {mixed, number} from 'yup';
 import momentjs from 'moment';
 import {LocalDate} from 'js-joda';
 import isNull from 'lodash/isNull';
@@ -29,7 +29,7 @@ export const moment = () => new MomentSchema();
 /**
  * Validates a LocalDateNumber
  */
-export const localDateNumber = () => yup.number();
+export const localDateNumber = () => number();
 
 /**
  * Validates a LocalDate

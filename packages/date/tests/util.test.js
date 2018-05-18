@@ -2,21 +2,21 @@
 import {LocalDate} from 'js-joda';
 import moment from 'moment';
 import {
-	dateInit,
 	transformDateToLocalDate,
 	transformLocalDateToDate,
 	transformMomentToLocalDate,
 	transformLocalDateToMoment,
 	transformMomentsToDate,
 	transformDatesToMoment,
+	transformEpochIntegerToDate,
+	transformLocalDateToEpochInteger,
+	transformDateToEpochInteger,
 	transformLocalDatesToEpochInteger,
 	transformEpochIntegerToLocalDate,
 	mapEpochIntegerToLocalDates,
 	transformObjectsToLocalDates,
 	formatDate,
 } from '../src/util';
-
-jest.mock('react-widgets-moment');
 
 expect.addSnapshotSerializer({
 	test: v => moment.isMoment(v),
@@ -25,14 +25,6 @@ expect.addSnapshotSerializer({
 expect.addSnapshotSerializer({
 	test: v => Object.prototype.toString.call(v) === '[object Date]',
 	print: v => v.toJSON(),
-});
-
-describe('Date initialization', () => {
-	it('should call the moment localizer', () => {
-		const momentLocalizer = require('react-widgets-moment');
-		dateInit();
-		expect(momentLocalizer.mock.calls.length).toBe(1);
-	});
 });
 
 describe('Date transforms', () => {
@@ -152,6 +144,24 @@ describe('Date transforms', () => {
 		expect(val.year()).toBe(2017);
 	});
 
+	it('should transform an epoch integer into a JS Date', () => {
+		const val = transformEpochIntegerToDate(17400);
+		expect(val).toBeInstanceOf(Date);
+		expect(val.getDate()).toBe(22);
+		expect(val.getMonth()).toBe(7);
+		expect(val.getFullYear()).toBe(2017);
+	});
+
+	it('should transform a LocalDate into an epoch integer', () => {
+		const val = transformLocalDateToEpochInteger(LocalDate.ofEpochDay(17400));
+		expect(val).toBe(17400);
+	});
+
+	it('should transform a JS Date into an epoch integer', () => {
+		const val = transformDateToEpochInteger(new Date(2017, 5, 23, 6, 0, 0));
+		expect(val).toBe(17340);
+	});
+
 	it('should map epoch integers into LocalDates', () => {
 		const src1 = {
 			field1: 17400,
@@ -176,9 +186,13 @@ describe('Date transforms', () => {
 		const val = transformObjectsToLocalDates({
 			field1: LocalDate.ofEpochDay(17400),
 			field2: [LocalDate.ofEpochDay(13000), LocalDate.ofEpochDay(1)],
+			field3: '2017-06-23',
+			field4: new Date(2017, 5, 23, 6, 0, 0),
 		});
 		expect(val.field1).toBeInstanceOf(LocalDate);
 		expect(val.field2[0]).toBeInstanceOf(LocalDate);
+		expect(val.field3).toBeInstanceOf(LocalDate);
+		expect(val.field4).toBeInstanceOf(LocalDate);
 		expect(val).toMatchSnapshot();
 	});
 });
@@ -194,5 +208,14 @@ describe('Formatting', () => {
 	});
 	it('should use a custom date format', () => {
 		expect(formatDate(moment([2017, 5, 23, 6, 0, 0]), {format: 'MMMM_D_YYYY_h_mm_a'})).toMatchSnapshot();
+	});
+	it('should format an integer (epoch days)', () => {
+		expect(formatDate(17400)).toMatchSnapshot();
+	});
+	it('should format a LocalDate', () => {
+		expect(formatDate(LocalDate.ofEpochDay(17400))).toMatchSnapshot();
+	});
+	it('should format a JS Date', () => {
+		expect(formatDate(new Date(2017, 5, 23, 6, 0, 0))).toMatchSnapshot();
 	});
 });

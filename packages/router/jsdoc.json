@@ -22,20 +22,6 @@
     "outputSourceFiles": true,
     "linenums": true
   },
-  "babel": {
-    "extensions": [
-      "js"
-    ],
-    "presets": [
-	    "env",
-      "react",
-	    "flow"
-    ],
-    "plugins": [
-      "transform-class-properties",
-      "transform-object-rest-spread"
-    ]
-  },
   "opts": {
     "template": "../../node_modules/ink-docstrap/template",
     "recurse": true,

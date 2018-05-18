@@ -8,7 +8,7 @@ import SForm from './SForm';
 import MaskedInput from './MaskedInput';
 
 type Props = {
-	value: boolean,
+	value?: boolean,
 	onChange?: Function,
 };
 

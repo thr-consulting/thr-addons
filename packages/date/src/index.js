@@ -1,9 +1,7 @@
 // @flow
 
-import DateTimePicker from './DateTimePicker';
-import LocalDatePicker from './LocalDatePicker';
-import MonthSelect from './MonthSelect';
-import LocalMonthSelect from './LocalMonthSelect';
+import GraphQLLocalDate from './graphql/GraphQLLocalDate';
+import GraphQLMoment from './graphql/GraphQLMoment';
 import {
 	formatDate,
 	transformDatesToMoment,
@@ -12,19 +10,16 @@ import {
 	transformLocalDateToDate,
 	transformLocalDateToMoment,
 	transformMomentToLocalDate,
+	transformEpochIntegerToDate,
+	transformLocalDateToEpochInteger,
+	transformDateToEpochInteger,
 	transformLocalDatesToEpochInteger,
 	transformEpochIntegerToLocalDate,
 	mapEpochIntegerToLocalDates,
 	transformObjectsToLocalDates,
-	dateInit,
 } from './util';
 
 export {
-	DateTimePicker,
-	LocalDatePicker,
-	MonthSelect,
-	LocalMonthSelect,
-	dateInit,
 	formatDate,
 	transformMomentsToDate,
 	transformDatesToMoment,
@@ -32,8 +27,13 @@ export {
 	transformLocalDateToDate,
 	transformLocalDateToMoment,
 	transformMomentToLocalDate,
+	transformEpochIntegerToDate,
+	transformLocalDateToEpochInteger,
+	transformDateToEpochInteger,
 	transformLocalDatesToEpochInteger,
 	transformEpochIntegerToLocalDate,
 	mapEpochIntegerToLocalDates,
 	transformObjectsToLocalDates,
+	GraphQLLocalDate,
+	GraphQLMoment,
 };

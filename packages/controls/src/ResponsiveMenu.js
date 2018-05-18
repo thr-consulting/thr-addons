@@ -9,7 +9,7 @@ import ResponsiveMenuDropdown from './ResponsiveMenuDropdown';
 
 type Props = {
 	children: ChildrenArray<*>,
-	mobileWidth: number,
+	mobileWidth?: number,
 };
 
 /**

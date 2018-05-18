@@ -1,9 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MaskedInput should render without throwing an error 1`] = `
-<Input
-  type="text"
+<MaskedInput
+  mask={
+    Object {
+      "autoUnmask": true,
+      "mask": "99-999-99",
+      "showMaskOnHover": false,
+    }
+  }
+  onChange={null}
+  value={null}
 >
-  <input />
-</Input>
+  <Input
+    type="text"
+  >
+    <div
+      className="ui input"
+    >
+      <input
+        key=".0"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+  </Input>
+</MaskedInput>
 `;

@@ -25,7 +25,7 @@ const monthOptions = [
 type Props = {
 	onChange?: Function,
 	value?: Date,
-	year: number,
+	year?: number,
 };
 
 type ValueOption = {

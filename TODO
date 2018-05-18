@@ -1,0 +1,5 @@
+Things/Questions to clean up:
+
+* Move jest mocks to root dir
+* Move enzyme adapter setup to root dir
+* Move .flowconfig to single root file?

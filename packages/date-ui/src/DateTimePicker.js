@@ -2,7 +2,6 @@
 
 import React from 'react';
 import DTPicker from 'react-widgets/lib/DateTimePicker';
-import './dateTimePicker.css';
 
 type Props = {
 	width?: string,

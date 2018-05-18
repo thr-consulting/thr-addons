@@ -4,8 +4,9 @@
     "packages/*"
   ],
   "hoist": true,
-  "version": "3.0.0",
+  "version": "5.0.1",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "concurrency": 4
+  "concurrency": 4,
+  "registry": "https://registry.npmjs.org/"
 }

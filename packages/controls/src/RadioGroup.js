@@ -8,9 +8,9 @@ import {Form} from 'semantic-ui-react';
 const d = debug('thx:controls:RadioGroup');
 
 type Props = {
-	children: ChildrenArray<*>,
-	onChange: (value: boolean | number | string | Object) => {},
-	value: | boolean | number | string | Object,
+	children?: ChildrenArray<*>,
+	onChange?: (value: boolean | number | string | Object) => {},
+	value?: | boolean | number | string | Object,
 };
 
 /**
