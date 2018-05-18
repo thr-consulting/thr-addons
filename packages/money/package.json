@@ -38,10 +38,15 @@
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2",
-    "semantic-ui-react": "^0.80.0"
+    "semantic-ui-react": "^0.80.0",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.8.0",
+    "graphql-tools": "^3.0.1"
   },
   "peerDependencies": {
     "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "graphql": "^0.13.0",
     "semantic-ui-react": "0.x"
   },
   "dependencies": {

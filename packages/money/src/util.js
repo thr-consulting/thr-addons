@@ -12,11 +12,11 @@ import map from 'lodash/map';
  * @param {string} currency - If converting a decimal, specifies the currency to use.
  * @return {Money}
  */
-export function makeMoney(objOrDecimal, currency = 'CAD') {
-	if (!objOrDecimal) return new Money(0, Money.CAD);
-	if (isNumber(objOrDecimal)) return Money.fromDecimal(objOrDecimal, currency);
+export function makeMoney(objOrDecimal, currency = Money.CAD) {
+	if (!objOrDecimal) return new Money(0, currency);
+	if (isNumber(objOrDecimal)) return Money.fromDecimal(objOrDecimal, currency, 'round');
 	if (objOrDecimal.amount && objOrDecimal.currency) return new Money(objOrDecimal.amount, objOrDecimal.currency);
-	return new Money(0, Money.CAD);
+	throw new Error(`Can't convert value to Money: ${objOrDecimal}.`);
 }
 
 /**
