@@ -1,6 +1,6 @@
 {
   "name": "@thx/money",
-  "version": "4.0.0",
+  "version": "6.0.0",
   "description": "Money addons",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
@@ -34,23 +34,23 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.8.0",
+    "graphql-tools": "^3.0.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2",
-    "semantic-ui-react": "^0.80.0",
-    "graphql": "^0.13.2",
-    "graphql-tag": "^2.8.0",
-    "graphql-tools": "^3.0.1"
+    "semantic-ui-react": "^0.80.0"
   },
   "peerDependencies": {
+    "graphql": "^0.13.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "graphql": "^0.13.0",
     "semantic-ui-react": "0.x"
   },
   "dependencies": {
-    "@thx/tproptypes": "^4.0.0",
+    "@thx/tproptypes": "^6.0.0",
     "accounting": "^0.4.1",
     "debug": "^3.1.0",
     "inputmask": "^3.3.11",

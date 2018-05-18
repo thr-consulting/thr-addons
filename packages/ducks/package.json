@@ -1,6 +1,6 @@
 {
   "name": "@thx/ducks",
-  "version": "4.0.0",
+  "version": "6.0.0",
   "description": "Helpers for Redux ducks layout",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",

@@ -1,6 +1,6 @@
 {
   "name": "@thx/mongoloader",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "Mongo DataLoader class",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
@@ -28,14 +28,14 @@
     "docs:explain": "jsdoc -X -c jsdoc.json"
   },
   "devDependencies": {
-    "mongodb-memory-server": "^1.7.3",
-    "mongodb": "^3.1.0-beta4"
+    "mongodb": "^3.1.0-beta4",
+    "mongodb-memory-server": "^1.7.3"
   },
   "peerDependencies": {
     "mongodb": "^3.1.0-beta4"
   },
   "dependencies": {
-    "debug": "^3.1.0",
-    "dataloader": "^1.4.0"
+    "dataloader": "^1.4.0",
+    "debug": "^3.1.0"
   }
 }
