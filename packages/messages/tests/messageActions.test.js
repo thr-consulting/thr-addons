@@ -1,3 +1,4 @@
+import {mockRandom} from 'jest-mock-random';
 import {
 	addMessage,
 	addSuccessMessage,
@@ -7,9 +8,7 @@ import {
 	clearMessages,
 } from '../src/messagesActions';
 
-const mockMath = Object.create(global.Math);
-mockMath.random = () => 0.6920730585883441;
-global.Math = mockMath;
+mockRandom([0.1, 0.2]);
 
 const message = {
 	id: 'myid',

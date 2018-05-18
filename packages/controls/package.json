@@ -29,22 +29,22 @@
     "docs:explain": "jsdoc -X -c jsdoc.json"
   },
   "devDependencies": {
-    "babel-plugin-flow-react-proptypes": "^18.0.0",
+    "babel-plugin-flow-react-proptypes": "^24.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-formal": "^0.25.4",
+    "react-formal": "0.25.4",
     "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2",
-    "semantic-ui-react": "^0.78.2"
+    "semantic-ui-react": "^0.80.0"
   },
   "peerDependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-formal": "^0.25.4",
-    "semantic-ui-react": "^0.78.0"
+    "react-formal": "0.25.4",
+    "semantic-ui-react": "0.x"
   },
   "dependencies": {
     "@thx/tschemas": "^4.0.0",

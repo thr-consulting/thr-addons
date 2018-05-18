@@ -33,6 +33,6 @@
     "js-money": "^0.6.3",
     "moment": "^2.20.1",
     "social-insurance-number": "^0.0.2",
-    "yup": "^0.24.1"
+    "yup": "^0.25.1"
   }
 }

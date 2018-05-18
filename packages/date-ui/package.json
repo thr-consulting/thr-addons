@@ -34,8 +34,8 @@
     "docs:explain": "jsdoc -X -c jsdoc.json"
   },
   "devDependencies": {
-    "babel-loader": "^7.1.1",
-    "babel-plugin-flow-react-proptypes": "^18.0.0",
+    "babel-loader": "^8.0.0-beta.2",
+    "babel-plugin-flow-react-proptypes": "^24.0.0",
     "cpy-cli": "^1.0.1",
     "css-loader": "^0.28.9",
     "enzyme": "^3.3.0",
@@ -46,18 +46,18 @@
     "identity-obj-proxy": "^3.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-formal": "^0.25.4",
+    "react-formal": "0.25.4",
     "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2",
-    "semantic-ui-react": "^0.78.2",
-    "style-loader": "^0.20.2",
-    "url-loader": "^0.6.2",
-    "webpack": "^3.11.0"
+    "semantic-ui-react": "^0.80.0",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^3.12.0"
   },
   "peerDependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "semantic-ui-react": "^0.78.0"
+    "semantic-ui-react": "0.x"
   },
   "dependencies": {
     "@thx/date": "^5.0.0",

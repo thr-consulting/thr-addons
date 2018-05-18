@@ -22,15 +22,6 @@
     "outputSourceFiles": true,
     "linenums": true
   },
-  "babel": {
-    "extensions": [
-      "js"
-    ],
-    "presets": [
-      ["jason", {"debug": false}],
-	    "flow"
-    ]
-  },
   "opts": {
     "template": "../../node_modules/ink-docstrap/template",
     "recurse": true,

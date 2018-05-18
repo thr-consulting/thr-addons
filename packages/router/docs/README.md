@@ -2,7 +2,8 @@
 
 <dl>
 <dt><a href="#RouteDirector">RouteDirector</a></dt>
-<dd></dd>
+<dd><p>RouteDirector - Component that manages multiple root routes, layouts, and permissions</p>
+</dd>
 </dl>
 
 ## Functions
@@ -19,12 +20,9 @@
 <a name="RouteDirector"></a>
 
 ## RouteDirector
-**Kind**: global class  
-<a name="new_RouteDirector_new"></a>
-
-### new RouteDirector()
 RouteDirector - Component that manages multiple root routes, layouts, and permissions
 
+**Kind**: global class  
 <a name="checkPermissions"></a>
 
 ## checkPermissions(auth, needPermissions) ⇒ <code>boolean</code>
