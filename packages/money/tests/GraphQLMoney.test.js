@@ -5,6 +5,11 @@ import {makeExecutableSchema} from 'graphql-tools';
 import GraphQLMoney from '../src/graphql/GraphQLMoney';
 import {makeMoney} from '../src/util';
 
+expect.addSnapshotSerializer({
+	test: v => Object.prototype.toString.call(v) === '[object Object]',
+	print: v => JSON.stringify(v),
+});
+
 const typeDefs = gql`
 	scalar Money
 	type Query {

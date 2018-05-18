@@ -5,11 +5,6 @@ import isString from 'lodash/isString';
 import Money from 'js-money';
 import {makeMoney} from '../util';
 
-expect.addSnapshotSerializer({
-	test: v => Object.prototype.toString.call(v) === '[object Object]',
-	print: v => JSON.stringify(v),
-});
-
 const GraphQLMoney = new GraphQLScalarType({
 	name: 'Money',
 	description: 'JS-Money object',
