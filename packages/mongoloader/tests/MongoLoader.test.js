@@ -11,6 +11,7 @@ let mongoConn;
 let db;
 let mockColl;
 let ml;
+let mlWithErrors;
 
 // Context
 const ctx = {
@@ -35,6 +36,10 @@ beforeAll(async () => {
 	testData.forEach(v => coll.insertOne(v));
 
 	ml = new MongoLoader(db, ctx, 'test');
+
+	mlWithErrors = new MongoLoader(db, ctx, 'test', {
+		errorFunc: id => new Error(`Document not found: ${id}`),
+	});
 
 	mockColl = ml._collection;
 	mock(mockColl, ['find']);
@@ -135,13 +140,36 @@ describe('MongoLoader', () => {
 		ml.clearAll();
 	});
 
-	it('should throw an error when a key doesn\'t exist', async () => {
+	it('should return undefined when a key doesn\'t exist', async () => {
+		const doc = await ml.load('this_id_is_not_in_the_database');
+		expect(doc).toBeUndefined();
+		ml.clearAll();
+	});
+
+	it('should return undefined for keys that don\'t exist', async () => {
+		const [a, b] = await ml.loadMany(['this_id_is_not_in_the_database', 'a304d4c6-12c4-4d80-b2b7-5fa8dcc3df5d']);
+		expect(a).toBeUndefined();
+		expect(b).toMatchSnapshot();
+		ml.clearAll();
+	});
+
+	it('should throw an error when a key doesn\'t exist, if configured to', async () => {
 		expect.assertions(1);
 		try {
-			await ml.load('this_id_is_not_in_the_database');
+			await mlWithErrors.load('this_id_is_not_in_the_database');
 		} catch (e) {
 			expect(e).toMatchSnapshot();
 		}
-		ml.clearAll();
+		mlWithErrors.clearAll();
+	});
+
+	it('should throw an error when some keys don\'t exist, if configured to', async () => {
+		expect.assertions(1);
+		try {
+			await mlWithErrors.loadMany(['this_id_is_not_in_the_database', 'a304d4c6-12c4-4d80-b2b7-5fa8dcc3df5d']);
+		} catch (e) {
+			expect(e).toMatchSnapshot();
+		}
+		mlWithErrors.clearAll();
 	});
 });
