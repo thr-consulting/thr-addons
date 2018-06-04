@@ -45,35 +45,40 @@ export default class MongoLoader {
 		// property (prop) of a document and value is a document.
 		const docsMap = new Map();
 		docs.forEach(doc => docsMap.set(get(doc, prop), doc));
+
+		return keys.map(key => docsMap.get(key) || error(key));
+
 		// Loop through the keys and for each one retrieve proper document. For not
 		// existing documents generate an error.
-		return keys.map(key => docsMap.get(key) || new Error(error(key)));
+		// return keys.map(key => docsMap.get(key) || new Error(error(key)));
 	}
 
 	/**
 	 * Return a function that finds Mongo records based off of a certain key. Ensures correct order and primes the
 	 * other dataloaders as well.
 	 * @param key The dataloader key which corresponds to the document property
+	 * @param errorFunc
 	 * @returns {function(*=)}
 	 * @private
 	 */
-	_findBy = key => async keys => {
+	_findBy = (key, errorFunc = () => undefined) => async keys => {
 		d(`Fetching from ${this._collectionName}: ${keys}`);
+
+		const docsI = await this._collection.find({[key]: {$in: keys}}).toArray();
 
 		// Fetch the documents from Mongo and ensure the same order as keys
 		const docs = MongoLoader.ensureOrder({
-			docs: await this._collection.find({[key]: {$in: keys}}).toArray(),
+			docs: docsI,
 			keys,
 			prop: key,
-			error: id => `Document not found in collection: ${this._collectionName}. Id: ${id}.`,
+			error: errorFunc,
 		});
 
 		// For each other dataloader, prime with returned documents
 		Object.keys(this._dataloaders).forEach(dataloader => {
 			if (key === dataloader) return; // Don't prime current dataloader
 			docs.forEach(doc => {
-				if (doc instanceof Error) throw doc;
-				this._dataloaders[dataloader].prime(doc[dataloader], doc);
+				if (doc && !(doc instanceof Error)) this._dataloaders[dataloader].prime(doc[dataloader], doc);
 			});
 		});
 
@@ -86,7 +91,7 @@ export default class MongoLoader {
 	 * @param options Dataloader options
 	 */
 	createLoader = (key, options) => {
-		this._dataloaders[key] = new DataLoader(this._findBy(key), options);
+		this._dataloaders[key] = new DataLoader(this._findBy(key, options ? options.errorFunc : undefined), options);
 	};
 
 	/**
