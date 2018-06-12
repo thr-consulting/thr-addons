@@ -11,6 +11,13 @@ Object {
 }
 `;
 
+exports[`Make Money should make a Money from a string 1`] = `
+Object {
+  "amount": 532,
+  "currency": "CAD",
+}
+`;
+
 exports[`Make Money should make a Money from an object 1`] = `
 Object {
   "amount": 500,
@@ -31,6 +38,8 @@ Object {
   "currency": "CAD",
 }
 `;
+
+exports[`Make Money should throw an error if something wrong is passed to it 1`] = `"Can't convert value to Money: [object Object]."`;
 
 exports[`Transforms should transform objects to Money 1`] = `
 Object {
