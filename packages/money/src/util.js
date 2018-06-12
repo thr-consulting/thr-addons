@@ -5,17 +5,20 @@ import isNumber from 'lodash/isNumber';
 import isArray from 'lodash/isArray';
 import isObject from 'lodash/isObject';
 import map from 'lodash/map';
+import isString from 'lodash/isString';
+import has from 'lodash/has';
 
 /**
  * Creates a Money object out of a plain Object or decimal. Defaults null to $0 CAD.
- * @param {Object|decimal} objOrDecimal - The object or decimal to convert to Money.
- * @param {string} currency - If converting a decimal, specifies the currency to use.
+ * @param {Object|number|string} objOrDecimal - The object or decimal to convert to Money.
+ * @param {string} currency - If converting a decimal, null, or string, specifies the currency to use.
  * @return {Money}
  */
 export function makeMoney(objOrDecimal, currency = Money.CAD) {
 	if (!objOrDecimal) return new Money(0, currency);
 	if (isNumber(objOrDecimal)) return Money.fromDecimal(objOrDecimal, currency, 'round');
-	if (objOrDecimal.amount && objOrDecimal.currency) return new Money(objOrDecimal.amount, objOrDecimal.currency);
+	if (isObject(objOrDecimal) && has(objOrDecimal, 'amount') && has(objOrDecimal, 'currency')) return new Money(objOrDecimal.amount, objOrDecimal.currency);
+	if (isString(objOrDecimal)) return Money.fromDecimal(parseFloat(objOrDecimal), currency, 'round');
 	throw new Error(`Can't convert value to Money: ${objOrDecimal}.`);
 }
 
