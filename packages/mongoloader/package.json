@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "mongodb": "^3.1.0-beta4",
-    "mongodb-memory-server": "^1.7.3"
+    "mongodb-memory-server": "^1.8.0"
   },
   "peerDependencies": {
     "mongodb": "^3.1.0-beta4"

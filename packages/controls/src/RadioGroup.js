@@ -9,7 +9,8 @@ const d = debug('thx:controls:RadioGroup');
 
 type Props = {
 	children?: ChildrenArray<*>,
-	onChange?: (value: boolean | number | string | Object) => {},
+	onChange?: (value: boolean | number | string | Object) => void,
+	onBlur?: () => void,
 	value?: | boolean | number | string | Object,
 };
 
@@ -24,6 +25,7 @@ export default class RadioGroup extends Component<Props> {
 	static defaultProps = {
 		children: null,
 		onChange: null,
+		onBlur: null,
 		value: null,
 	};
 
@@ -32,13 +34,18 @@ export default class RadioGroup extends Component<Props> {
 	handleChange = (e: Event, {value}: {value: any}) => {
 		d('Value changed to:', value);
 		if (this.props.onChange) this.props.onChange(value);
-	}
+	};
+
+	handleBlur = a => {
+		console.log(a.target, a.currentTarget);
+		if (this.props.onBlur) this.props.onBlur();
+	};
 
 	render() {
 		const {children, value, onChange, ...rest} = this.props;
 
 		return (
-			<Form.Group {...rest}>
+			<Form.Group {...rest} onBlur={this.handleBlur}>
 				{Children.map(children, child => {
 					if (child.type.name === 'FormRadio' || child.type.name === 'Radio') {
 						return React.cloneElement(child, {

@@ -1,23 +1,28 @@
 #!/bin/bash
 
-mapfile -t arr < <(lerna exec npm outdated)
-upgrades=("$(tput setaf 14)Package $(tput setaf 26)Dependency $(tput setaf 5)Have $(tput setaf 11)Wanted$(tput sgr0)" "$(tput setaf 14)------- $(tput setaf 26)---------- $(tput setaf 5)---- $(tput setaf 11)------$(tput sgr0)")
+mapfile -t arr < <(yarn outdated)
+#upgrades=("$(tput setaf 14)Package $(tput setaf 26)Dependency $(tput setaf 5)Have $(tput setaf 11)Wanted$(tput sgr0)" "$(tput setaf 14)------- $(tput setaf 26)---------- $(tput setaf 5)---- $(tput setaf 11)------$(tput sgr0)")
 
 for dep in "${arr[@]}"
 do
-  depName=$(echo ${dep} | awk '{print $1}')
-  latest=$(echo ${dep} | awk '{print $3}')
-  wanted=$(echo ${dep} | awk '{print $4}')
-  pkg=$(echo ${dep} | awk '{print $5}')
+#  depName=$(echo ${dep} | awk '{print $1}')
+#  latest=$(echo ${dep} | awk '{print $3}')
+#  wanted=$(echo ${dep} | awk '{print $4}')
+#  pkg=$(echo ${dep} | awk '{print $5}')
 
-  if [ "$pkg" != "Location" ]; then
-    if [ "$wanted" != "$latest" ]; then
+#  if [ "$pkg" != "Location" ]; then
+#    if [ "$wanted" != "$latest" ]; then
 
-      nu="$(tput setaf 14)${pkg} $(tput setaf 26)${depName} $(tput setaf 5)${latest} $(tput setaf 11)${wanted}$(tput sgr0)"
-      upgrades+=("$nu")
-    fi
-  fi
+#      nu="$(tput setaf 14)${pkg} $(tput setaf 26)${depName} $(tput setaf 5)${latest} $(tput setaf 11)${wanted}$(tput sgr0)"
+#      upgrades+=("$nu")
+#    fi
+#  fi
+
+      upgrades+=("$arr[@]")
 done
 
-upg=$(printf "%s\n" "${upgrades[@]}")
-echo "$upg" | column -t
+#upg=$(printf "%s\n" "${upgrades[@]}")
+#echo "$upg" | column -t
+
+
+echo "$upgrades"

@@ -26,30 +26,38 @@
     "lint": "eslint *.js src",
     "docs": "jsdoc -c jsdoc.json",
     "docs:md": "jsdoc2md -c jsdoc.json -f src/*.js > docs/README.md",
-    "docs:explain": "jsdoc -X -c jsdoc.json"
+    "docs:explain": "jsdoc -X -c jsdoc.json",
+    "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "devDependencies": {
-    "babel-plugin-flow-react-proptypes": "^24.0.0",
+    "@dump247/storybook-state": "^1.5.0",
+    "@storybook/react": "^3.4.7",
+    "@storybook/addon-actions": "^3.4.7",
+    "@storybook/addon-console": "^1.0.4",
+    "@storybook/addon-knobs": "^3.4.7",
+    "@storybook/addon-storyshots": "^3.4.7",
+    "babel-plugin-flow-react-proptypes": "^24.0.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "react-formal": "0.25.4",
-    "react-test-renderer": "^16.2.0",
+    "react-test-renderer": "^16.4.0",
     "rimraf": "^2.6.2",
-    "semantic-ui-react": "^0.80.0"
+    "semantic-ui-react": "^0.81.1"
   },
   "peerDependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "react-formal": "0.25.4",
-    "semantic-ui-react": "0.x"
+    "semantic-ui-react": "^0.x"
   },
   "dependencies": {
     "@thx/tschemas": "^6.0.1",
     "debug": "^3.1.0",
-    "inputmask": "^3.3.11",
+    "formik": "^0.11.11",
+    "inputmask": "^4.0.0",
     "prop-types": "^15.6.0",
     "react-input-message": "^0.15.1",
     "react-responsive": "^4.0.4",

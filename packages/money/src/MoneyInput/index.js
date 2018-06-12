@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 import {Input, Icon} from 'semantic-ui-react';
 import Money from 'js-money';
 import TPropTypes from '@thx/tproptypes';
-import debug from 'debug';
+// import debug from 'debug';
 import moneyInputMask from './moneyInputMask';
 
-const d = debug('money:MoneyInput');
+// const d = debug('money:MoneyInput');
 
 function moneyFromProps(value) {
-	d(`moneyFromProps(${value})`);
 	let money;
 	if (value) {
 		if (value.toDecimal) {
@@ -38,6 +37,7 @@ export default class MoneyInput extends Component {
 	static propTypes = {
 		value: TPropTypes.money,
 		onChange: PropTypes.func,
+		onBlur: PropTypes.func,
 		onDetailsClick: PropTypes.func,
 		detailsIcon: PropTypes.string,
 		placeholder: PropTypes.string,
@@ -78,10 +78,10 @@ export default class MoneyInput extends Component {
 		const money = Money.fromDecimal(value, this.state.money.currency);
 		this.setState({money});
 		if (this.props.onChange) this.props.onChange(money);
-	}
+	};
 
 	render() {
-		const {onDetailsClick, placeholder, detailsIcon, locked} = this.props;
+		const {onDetailsClick, placeholder, detailsIcon, locked, onBlur} = this.props;
 
 		const detailsButton = onDetailsClick ? (
 			<Icon
@@ -96,7 +96,7 @@ export default class MoneyInput extends Component {
 
 		return (
 			<Input placeholder={placeholder} icon={!!onDetailsClick}>
-				<input type="text" ref={r => (this._input = r)} readOnly={locked ? 'readonly' : null}/>
+				<input type="text" ref={r => (this._input = r)} readOnly={locked ? 'readonly' : null} onBlur={onBlur}/>
 				{detailsButton}
 			</Input>
 		);

@@ -10,6 +10,7 @@ import FieldMap from './FieldMap';
 import RadioGroup from './RadioGroup';
 import MaskedInput from './MaskedInput';
 import SinEntry from './SinEntry';
+import TForm from './TForm';
 
 export {
 	SForm,
@@ -20,4 +21,5 @@ export {
 	SubmitButton,
 	MaskedInput,
 	SinEntry,
+	TForm,
 };

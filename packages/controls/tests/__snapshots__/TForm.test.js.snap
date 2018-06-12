@@ -1,0 +1,222 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TForm should render with errors 1`] = `
+<TForm
+  errors={
+    Object {
+      "graphQLErrors": Array [
+        Object {
+          "message": "There is an error.",
+        },
+      ],
+    }
+  }
+  loading={false}
+  numFields={1}
+  onSubmit={[Function]}
+  render={[Function]}
+  validate={[Function]}
+>
+  <Formik
+    enableReinitialize={false}
+    errors={
+      Object {
+        "graphQLErrors": Array [
+          Object {
+            "message": "There is an error.",
+          },
+        ],
+      }
+    }
+    isInitialValid={false}
+    loading={false}
+    onSubmit={[Function]}
+    render={[Function]}
+    validate={[Function]}
+    validateOnBlur={true}
+    validateOnChange={true}
+  >
+    <Form
+      as="form"
+      error={true}
+      onSubmit={[Function]}
+      warning={false}
+    >
+      <form
+        className="ui error form"
+        onSubmit={[Function]}
+      >
+        <FormField
+          error={false}
+        >
+          <div
+            className="field"
+          >
+            <label>
+              Text
+            </label>
+            <input
+              name="text"
+              onBlur={[Function]}
+              onChange={[Function]}
+            />
+          </div>
+        </FormField>
+        <Message
+          error={true}
+        >
+          <div
+            className="ui error message"
+          >
+            <MessageHeader>
+              <div
+                className="header"
+              >
+                Error
+              </div>
+            </MessageHeader>
+            <p
+              key="There is an error."
+            >
+              There is an error.
+            </p>
+          </div>
+        </Message>
+      </form>
+    </Form>
+  </Formik>
+</TForm>
+`;
+
+exports[`TForm should render with warnings 1`] = `
+<TForm
+  loading={false}
+  numFields={1}
+  onSubmit={[Function]}
+  render={[Function]}
+  validate={[Function]}
+>
+  <Formik
+    enableReinitialize={false}
+    isInitialValid={false}
+    loading={false}
+    onSubmit={[Function]}
+    render={[Function]}
+    validate={[Function]}
+    validateOnBlur={true}
+    validateOnChange={true}
+  >
+    <Form
+      as="form"
+      error={false}
+      onSubmit={[Function]}
+      warning={true}
+    >
+      <form
+        className="ui warning form"
+        onSubmit={[Function]}
+      >
+        <FormField
+          error={true}
+        >
+          <div
+            className="error field"
+          >
+            <label>
+              Text
+            </label>
+            <input
+              name="text"
+              onBlur={[Function]}
+              onChange={[Function]}
+            />
+          </div>
+        </FormField>
+        <Message
+          warning={true}
+        >
+          <div
+            className="ui warning message"
+          >
+            <MessageHeader>
+              <div
+                className="header"
+              >
+                Please check the following fields:
+              </div>
+            </MessageHeader>
+            <ul>
+              <li
+                key="text"
+              >
+                There is a problem with this field.
+              </li>
+            </ul>
+          </div>
+        </Message>
+      </form>
+    </Form>
+  </Formik>
+</TForm>
+`;
+
+exports[`TForm should render without throwing an error 1`] = `
+<TForm
+  initialValues={
+    Object {
+      "text": "Hello World!",
+    }
+  }
+  loading={false}
+  numFields={1}
+  onSubmit={[Function]}
+  render={[Function]}
+  validate={[Function]}
+>
+  <Formik
+    enableReinitialize={false}
+    initialValues={
+      Object {
+        "text": "Hello World!",
+      }
+    }
+    isInitialValid={false}
+    loading={false}
+    onSubmit={[Function]}
+    render={[Function]}
+    validate={[Function]}
+    validateOnBlur={true}
+    validateOnChange={true}
+  >
+    <Form
+      as="form"
+      error={false}
+      onSubmit={[Function]}
+      warning={false}
+    >
+      <form
+        className="ui form"
+        onSubmit={[Function]}
+      >
+        <FormField
+          error={false}
+        >
+          <div
+            className="field"
+          >
+            <label>
+              Text
+            </label>
+            <input
+              name="text"
+              onBlur={[Function]}
+              onChange={[Function]}
+              value="Hello World!"
+            />
+          </div>
+        </FormField>
+      </form>
+    </Form>
+  </Formik>
+</TForm>
+`;

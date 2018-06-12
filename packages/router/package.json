@@ -29,32 +29,32 @@
     "docs:explain": "jsdoc -X -c jsdoc.json"
   },
   "devDependencies": {
-    "babel-plugin-flow-react-proptypes": "^24.0.0",
-    "cpy-cli": "^1.0.1",
+    "babel-plugin-flow-react-proptypes": "^24.0.1",
+    "cpy-cli": "^2.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",
-    "react-router-dom": "^4.1.2",
-    "react-test-renderer": "^16.2.0",
+    "react-router-dom": "^4.3.1",
+    "react-test-renderer": "^16.4.0",
     "redux": "^4.0.0",
-    "semantic-ui-react": "^0.80.0"
+    "semantic-ui-react": "^0.81.1"
   },
   "peerDependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "react-redux": "^5.0.0",
     "react-router-dom": "^4.1.0",
     "redux": "^4.0.0",
-    "semantic-ui-react": "0.x"
+    "semantic-ui-react": "^0.x"
   },
   "dependencies": {
     "debug": "^3.1.0",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.0",
-    "styled-components": "^3.1.6"
+    "styled-components": "^3.3.2"
   },
   "jest": {
     "setupFiles": [

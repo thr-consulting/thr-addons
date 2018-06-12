@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots MaskedInput default 1`] = `
+<Grid>
+  <GridRow>
+    <GridColumn
+      width={4}
+    >
+      <Form
+        as="form"
+      >
+        <FormField>
+          <label>
+            Masked Input
+          </label>
+          <MaskedInput
+            mask={
+              Object {
+                "mask": "A9A-9A9",
+              }
+            }
+            onBlur={[Function]}
+            onChange={[Function]}
+            value={null}
+          />
+        </FormField>
+      </Form>
+    </GridColumn>
+  </GridRow>
+</Grid>
+`;
+
+exports[`Storyshots TForm default 1`] = `
+<div
+  className="ui grid"
+>
+  <GridRow>
+    <GridColumn
+      width={4}
+    >
+      <TForm
+        initialValues={
+          Object {
+            "text": "fdafa",
+          }
+        }
+        onSubmit={[Function]}
+        render={[Function]}
+      />
+    </GridColumn>
+  </GridRow>
+</div>
+`;
