@@ -25,10 +25,21 @@ describe('Make Money', () => {
 		expect(ret).toBeInstanceOf(Money);
 	});
 
+	it('should make a Money from a string', () => {
+		const ret = makeMoney('5.32');
+		expect(ret).toMatchSnapshot();
+		expect(ret).toBeInstanceOf(Money);
+	});
+
 	it('should make a Money with currency specified', () => {
 		const ret = makeMoney(6.32, 'USD');
 		expect(ret).toMatchSnapshot();
 		expect(ret).toBeInstanceOf(Money);
+	});
+
+	it('should throw an error if something wrong is passed to it', () => {
+		const a = () => makeMoney({something: 7.23});
+		expect(a).toThrowErrorMatchingSnapshot();
 	});
 });
 
