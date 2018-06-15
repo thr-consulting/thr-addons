@@ -27,6 +27,6 @@
     "verbose": false,
     "debug": false,
     "readme": "README.md",
-    "destination": "docs/web"
+    "destination": "docs"
   }
 }

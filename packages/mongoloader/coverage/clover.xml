@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1529098561938" clover="3.2.0">
-  <project timestamp="1529098561938" name="All files">
+<coverage generated="1529099613978" clover="3.2.0">
+  <project timestamp="1529099613978" name="All files">
     <metrics statements="49" coveredstatements="32" conditionals="17" coveredconditionals="16" methods="37" coveredmethods="20" elements="103" coveredelements="68" complexity="0" loc="49" ncloc="49" packages="1" files="1" classes="1">
       <file name="MongoLoader.js" path="/home/mike/dev/thr-addons/packages/mongoloader/src/MongoLoader.js">
         <metrics statements="49" coveredstatements="32" conditionals="17" coveredconditionals="16" methods="37" coveredmethods="20"/>
