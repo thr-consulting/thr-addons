@@ -1,4 +1,6 @@
-# messages
+# @thx/messages
+
+![](coverage/coverage.svg)
 
 Displays banner messages in the page.
 

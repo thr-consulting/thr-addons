@@ -77,6 +77,8 @@ type Props = {
  * @property {inputmaskPropTypes} [mask=null] - The mask object specified at {@link https://github.com/RobinHerbots/jquery.inputmask|here}.
  */
 export default class MaskedInput extends Component<Props> {
+	static displayName = 'MaskedInput';
+
 	static defaultProps = {
 		value: null,
 		onChange: null,

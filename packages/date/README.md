@@ -1,6 +1,8 @@
-# utils
+# @thx/utils
 
-Date utils
+![](coverage/coverage.svg)
+
+Date utilities
 
 ## Install
 ```

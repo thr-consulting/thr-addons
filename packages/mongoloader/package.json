@@ -23,8 +23,8 @@
     "test:coverage": "jest --coverage && cat coverage/lcov.info | coverbadge -o coverage/coverage.svg",
     "flow": "flow",
     "lint": "eslint *.js src",
-    "docs": "jsdoc -m grouped -g grouped -c jsdoc.json",
-    "docs:md": "jsdoc2md -c jsdoc.json -f src/*.js > docs/README.md",
+    "docs": "jsdoc -c jsdoc.json",
+    "docs:md": "jsdoc2md -c jsdoc.json --source \" \" --separators -g table --plugin dmd-clear > docs/README.md",
     "docs:explain": "jsdoc -X -c jsdoc.json"
   },
   "devDependencies": {

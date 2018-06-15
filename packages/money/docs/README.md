@@ -1,55 +1,65 @@
-## Classes
+## 
 
-<dl>
-<dt><a href="#MoneyInput">MoneyInput</a></dt>
-<dd><p>A masked money input. Defaults to CAD funds.</p>
-</dd>
-<dt><a href="#MoneyInput">MoneyInput</a></dt>
-<dd><p>A masked money input. Defaults to CAD funds.</p>
-</dd>
-</dl>
+<table>
+  <thead>
+    <tr>
+      <th>Global</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td><a href="#MoneyInput">MoneyInput</a></td>
+    <td><p>A masked money input. Defaults to CAD funds.</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#MoneyInputMask">MoneyInputMask</a></td>
+    <td><p>A masked money input. Defaults to CAD funds.</p>
+</td>
+    </tr>
+</tbody>
+</table>
 
-## Functions
+## 
 
-<dl>
-<dt><a href="#getCountryCode">getCountryCode(currency)</a> ⇒ <code>string</code></dt>
-<dd><p>Returns a country code from a currency. Not 100% accurate as some currencies are used in multiple countries.</p>
-</dd>
-<dt><a href="#makeMoney">makeMoney(objOrDecimal, currency)</a> ⇒ <code>Money</code></dt>
-<dd><p>Creates a Money object out of a plain Object or decimal. Defaults null to $0 CAD.</p>
-</dd>
-<dt><a href="#roundTo">roundTo(value, decimals)</a> ⇒ <code>number</code></dt>
-<dd><p>Rounds a decimal value to a certain number of decimal digits.</p>
-</dd>
-<dt><a href="#formatMoney">formatMoney(money, symbol)</a> ⇒ <code>string</code></dt>
-<dd><p>Formats a Money value to a nice string.</p>
-</dd>
-<dt><a href="#transformObjectsToMoney">transformObjectsToMoney(obj)</a> ⇒ <code>*</code></dt>
-<dd><p>Transforms anything that has Money style objects into Money.</p>
-</dd>
-<dt><a href="#getCountryCode">getCountryCode(currency)</a> ⇒ <code>string</code></dt>
-<dd><p>Returns a country code from a currency. Not 100% accurate as some currencies are used in multiple countries.</p>
-</dd>
-<dt><a href="#makeMoney">makeMoney(objOrDecimal, currency)</a> ⇒ <code>Money</code></dt>
-<dd><p>Creates a Money object out of a plain Object or decimal. Defaults null to $0 CAD.</p>
-</dd>
-<dt><a href="#roundTo">roundTo(value, decimals)</a> ⇒ <code>number</code></dt>
-<dd><p>Rounds a decimal value to a certain number of decimal digits.</p>
-</dd>
-<dt><a href="#formatMoney">formatMoney(money, symbol)</a> ⇒ <code>string</code></dt>
-<dd><p>Formats a Money value to a nice string.</p>
-</dd>
-<dt><a href="#transformObjectsToMoney">transformObjectsToMoney(obj)</a> ⇒ <code>*</code></dt>
-<dd><p>Transforms anything that has Money style objects into Money.</p>
-</dd>
-</dl>
+<table>
+  <thead>
+    <tr>
+      <th>Global</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td><a href="#getCountryCode">getCountryCode(currency)</a> ⇒ <code>string</code></td>
+    <td><p>Returns a country code from a currency. Not 100% accurate as some currencies are used in multiple countries.</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#makeMoney">makeMoney(objOrDecimal, currency)</a> ⇒ <code>Money</code></td>
+    <td><p>Creates a Money object out of a plain Object or decimal. Defaults null to $0 CAD.</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#roundTo">roundTo(value, decimals)</a> ⇒ <code>number</code></td>
+    <td><p>Rounds a decimal value to a certain number of decimal digits.</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#formatMoney">formatMoney(money, symbol)</a> ⇒ <code>string</code></td>
+    <td><p>Formats a Money value to a nice string.</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#transformObjectsToMoney">transformObjectsToMoney(obj)</a> ⇒ <code>*</code></td>
+    <td><p>Transforms anything that has Money style objects into Money.</p>
+</td>
+    </tr>
+</tbody>
+</table>
 
 <a name="MoneyInput"></a>
 
 ## MoneyInput
-A masked money input. Defaults to CAD funds.
-
-**Kind**: global class  
 **Properties**
 
 | Name | Type | Default | Description |
@@ -61,12 +71,14 @@ A masked money input. Defaults to CAD funds.
 | placeholder | <code>string</code> |  | The placeholder text to display. |
 | [locked] | <code>bool</code> | <code>false</code> | If true, cannot edit the amount. |
 
-<a name="MoneyInput"></a>
-
-## MoneyInput
 A masked money input. Defaults to CAD funds.
 
-**Kind**: global class  
+
+* * *
+
+<a name="MoneyInputMask"></a>
+
+## MoneyInputMask
 **Properties**
 
 | Name | Type | Default | Description |
@@ -78,125 +90,79 @@ A masked money input. Defaults to CAD funds.
 | placeholder | <code>string</code> |  | The placeholder text to display. |
 | [locked] | <code>bool</code> | <code>false</code> | If true, cannot edit the amount. |
 
+A masked money input. Defaults to CAD funds.
+
+
+* * *
+
 <a name="getCountryCode"></a>
 
-## getCountryCode(currency) ⇒ <code>string</code>
-Returns a country code from a currency. Not 100% accurate as some currencies are used in multiple countries.
-
-**Kind**: global function  
-**Returns**: <code>string</code> - The country code.  
+## getCountryCode(currency)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | currency | <code>string</code> | The currency code. |
 
+Returns a country code from a currency. Not 100% accurate as some currencies are used in multiple countries.
+
+**Returns**: <code>string</code> - The country code.  
+
+* * *
+
 <a name="makeMoney"></a>
 
-## makeMoney(objOrDecimal, currency) ⇒ <code>Money</code>
+## makeMoney(objOrDecimal, currency)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| objOrDecimal | <code>Object</code> \| <code>number</code> \| <code>string</code> | The object or decimal to convert to Money. |
+| currency | <code>string</code> | If converting a decimal, null, or string, specifies the currency to use. |
+
 Creates a Money object out of a plain Object or decimal. Defaults null to $0 CAD.
 
-**Kind**: global function  
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| objOrDecimal | <code>Object</code> \| <code>decimal</code> |  | The object or decimal to convert to Money. |
-| currency | <code>string</code> | <code>&quot;CAD&quot;</code> | If converting a decimal, specifies the currency to use. |
+* * *
 
 <a name="roundTo"></a>
 
-## roundTo(value, decimals) ⇒ <code>number</code>
-Rounds a decimal value to a certain number of decimal digits.
-
-**Kind**: global function  
-**Returns**: <code>number</code> - - The rounded number.  
+## roundTo(value, decimals)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | value | <code>number</code> | A number to round. |
 | decimals | <code>number</code> | The number of decimal digits to round to. |
 
-<a name="formatMoney"></a>
-
-## formatMoney(money, symbol) ⇒ <code>string</code>
-Formats a Money value to a nice string.
-
-**Kind**: global function  
-**Returns**: <code>string</code> - The formatted Money string  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| money | <code>Money</code> |  | The Money value |
-| symbol | <code>bool</code> | <code>false</code> | If true displays the proper currency symbol |
-
-<a name="transformObjectsToMoney"></a>
-
-## transformObjectsToMoney(obj) ⇒ <code>\*</code>
-Transforms anything that has Money style objects into Money.
-
-**Kind**: global function  
-
-| Param |
-| --- |
-| obj | 
-
-<a name="getCountryCode"></a>
-
-## getCountryCode(currency) ⇒ <code>string</code>
-Returns a country code from a currency. Not 100% accurate as some currencies are used in multiple countries.
-
-**Kind**: global function  
-**Returns**: <code>string</code> - The country code.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| currency | <code>string</code> | The currency code. |
-
-<a name="makeMoney"></a>
-
-## makeMoney(objOrDecimal, currency) ⇒ <code>Money</code>
-Creates a Money object out of a plain Object or decimal. Defaults null to $0 CAD.
-
-**Kind**: global function  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| objOrDecimal | <code>Object</code> \| <code>decimal</code> |  | The object or decimal to convert to Money. |
-| currency | <code>string</code> | <code>&quot;CAD&quot;</code> | If converting a decimal, specifies the currency to use. |
-
-<a name="roundTo"></a>
-
-## roundTo(value, decimals) ⇒ <code>number</code>
 Rounds a decimal value to a certain number of decimal digits.
 
-**Kind**: global function  
 **Returns**: <code>number</code> - - The rounded number.  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>number</code> | A number to round. |
-| decimals | <code>number</code> | The number of decimal digits to round to. |
+* * *
 
 <a name="formatMoney"></a>
 
-## formatMoney(money, symbol) ⇒ <code>string</code>
-Formats a Money value to a nice string.
-
-**Kind**: global function  
-**Returns**: <code>string</code> - The formatted Money string  
+## formatMoney(money, symbol)
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | money | <code>Money</code> |  | The Money value |
 | symbol | <code>bool</code> | <code>false</code> | If true displays the proper currency symbol |
 
+Formats a Money value to a nice string.
+
+**Returns**: <code>string</code> - The formatted Money string  
+
+* * *
+
 <a name="transformObjectsToMoney"></a>
 
-## transformObjectsToMoney(obj) ⇒ <code>\*</code>
-Transforms anything that has Money style objects into Money.
-
-**Kind**: global function  
+## transformObjectsToMoney(obj)
 
 | Param |
 | --- |
 | obj | 
+
+Transforms anything that has Money style objects into Money.
+
+
+* * *
 

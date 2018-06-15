@@ -6,13 +6,27 @@ import {Formik} from 'formik';
 import {Message} from 'semantic-ui-react';
 
 type Props = {
+	/** Render prop just like Formik's with additional arguments passed */
 	render: any,
+	/** The number of fields in the form. TForm can't automatically get this number. */
 	numFields: number,
+	/** Used to pass in any GraphQL errors. */
 	errors?: any,
+	/** Called when the form submits. */
 	onSubmit: data => void,
 };
 
+/**
+ * Extends Formik to provide Semantic UI error and warning messages and field errors.
+ * @class
+ * @property {function} render - Render prop just like Formik's with additional arguments passed
+ * @property {number} numFields - The number of fields in the form. TForm can't automatically get this number.
+ * @property errors - Used to pass in any GraphQL errors.
+ * @property {function} onSubmit - Called when the form submits.
+ */
 export default class TForm extends Component<Props> {
+	static displayName = 'TForm';
+
 	props: Props;
 
 	renderForm = args => {

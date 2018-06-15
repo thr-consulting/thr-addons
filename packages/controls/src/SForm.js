@@ -23,6 +23,7 @@ type State = {
 /**
  * Renders a React Formal form using SemanticUI.
  * @class
+ * @deprecated SForm is no longer being used. Use TForm instead.
  * @property {boolean} [showSummary=false] - If true, displays the summary above the form children.
  * @property {Components[]} children - Child React elements.
  * @property {string[]} otherErrors - An array of error strings passed to the SFormSummary.

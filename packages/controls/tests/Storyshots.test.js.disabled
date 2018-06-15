@@ -1,3 +1,6 @@
+/*
+Disabled until https://github.com/storybooks/storybook/pull/3745 is merged and released.
+
 import initStoryshots from '@storybook/addon-storyshots';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
@@ -8,3 +11,4 @@ const shallowSnapshot = ({story, context}) => {
 initStoryshots({
 	test: shallowSnapshot,
 });
+*/

@@ -1,15 +1,20 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {storiesOf} from '@storybook/react';
+import {withInfo} from '@storybook/addon-info';
 import {action} from '@storybook/addon-actions';
-import {Grid, Form} from 'semantic-ui-react';
+import {Container, Form} from 'semantic-ui-react';
 import TForm from '../src/TForm';
+
+const stories = storiesOf('TForm', module);
+
+stories.addDecorator(withInfo);
 
 function renderForm({handleChange, handleSubmit, values}) {
 	return (
 		<Form>
-			<Form.Field>
-				<label>Money</label>
+			<Form.Field width={6}>
+				<label>Enter some text</label>
 				<input name="text" value={values.text} onChange={handleChange}/>
 			</Form.Field>
 			<Form.Button onClick={handleSubmit}>Submit</Form.Button>
@@ -17,18 +22,44 @@ function renderForm({handleChange, handleSubmit, values}) {
 	);
 }
 
-const stories = storiesOf('TForm', module);
+const storyFn = () => (
+	<Container>
+		<TForm
+			initialValues={{text: ''}}
+			render={renderForm}
+			onSubmit={action('onSubmit')}
+		/>
+	</Container>
+);
 
-stories.add('default', () => (
-	<Grid>
-		<Grid.Row>
-			<Grid.Column width={4}>
-				<TForm
-					initialValues={{text: 'fdafa'}}
-					render={renderForm}
-					onSubmit={action('onSubmit')}
-				/>
-			</Grid.Column>
-		</Grid.Row>
-	</Grid>
-));
+const text = `
+Extends Formik to provide Semantic UI error and warning messages and field errors. Use TForm exactly like Formik.
+
+This is the render prop function called by TForm:
+
+\`\`\`
+function renderForm({handleChange, handleSubmit, values}) {
+	return (
+		<Form>
+			<Form.Field width={6}>
+				<label>Enter some text</label>
+				<input name="text" value={values.text} onChange={handleChange}/>
+			</Form.Field>
+			<Form.Button onClick={handleSubmit}>Submit</Form.Button>
+		</Form>
+	);
+}
+\`\`\`
+`;
+
+stories.add(
+	'default',
+	storyFn,
+	{
+		info: {
+			inline: true,
+			text,
+			propTablesExclude: [Form, Form.Field, Container],
+		},
+	},
+);

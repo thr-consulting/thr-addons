@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RadioGroup should render without throwing an error 1`] = `
-<FormGroup>
+<FormGroup
+  onBlur={null}
+>
   <FormRadio
     as={[Function]}
     checked={false}

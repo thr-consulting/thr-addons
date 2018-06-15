@@ -1,4 +1,6 @@
-# tproptypes
+# @thx/tproptypes
+
+![](coverage/coverage.svg)
 
 Useful React PropType shortcuts
 

@@ -9,10 +9,18 @@
     "pkgupgrade": "lerna exec ../../tools/pkgupgrade.js",
     "build": "lerna run build --stream",
     "test": "lerna run test --stream --concurrency 1",
+    "test:coverage": "lerna run test:coverage",
     "lint": "lerna run lint",
     "clean": "lerna clean",
     "bootstrap": "lerna bootstrap && npm run build",
-    "pkghash": "./tools/pkghash"
+    "pkghash": "./tools/pkghash",
+    "docs:storybook": "lerna run docs:storybook",
+    "docs": "lerna run docs",
+    "docs:md": "lerna run docs:md",
+    "full:docs:md": "jsdoc2md -c jsdoc.json --source \" \" --separators -g table --plugin dmd-clear > docs/README.md",
+    "full:docs": "jsdoc -c jsdoc.json",
+    "validate": "npm ls",
+    "ready:commit": "yarn test:coverage && yarn docs && yarn docs:md && yarn docs:storybook && yarn full:docs && yarn full:docs:md"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0-beta.44",
@@ -24,10 +32,18 @@
     "@babel/preset-flow": "7.0.0-beta.44",
     "@babel/preset-react": "7.0.0-beta.44",
     "@babel/register": "7.0.0-beta.44",
+    "@storybook/react": "^4.0.0-alpha.9",
+    "@storybook/addon-actions": "^4.0.0-alpha.9",
+    "@storybook/addon-console": "^1.0.4",
+    "@storybook/addon-info": "^4.0.0-alpha.9",
+    "@storybook/addon-knobs": "^4.0.0-alpha.9",
+    "@storybook/addon-storyshots": "^4.0.0-alpha.9",
+    "@thx/storybook-state": "^1.5.0-thx.4",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.3",
     "babel-jest": "^23.0.1",
     "coverbadge": "^0.5.5",
+    "dmd-clear": "^0.1.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-babel": "^5.1.0",
@@ -43,9 +59,14 @@
     "jsdoc-babel": "0.4.0",
     "jsdoc-to-markdown": "^4.0.1",
     "lerna": "^2.11.0",
+    "precommit-hook-eslint": "^3.0.0",
     "semver": "^5.5.0"
   },
   "dependencies": {
     "lodash": "^4.17.10"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
 }
