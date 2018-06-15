@@ -1,4 +1,6 @@
-# tschemas
+# @thx/tschemas
+
+![](coverage/coverage.svg)
 
 Useful yup schema shortcuts
 

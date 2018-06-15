@@ -1,4 +1,6 @@
-# money
+# @thx/money
+
+![](coverage/coverage.svg)
 
 Money addons
 

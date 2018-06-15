@@ -1,4 +1,6 @@
-# mongoloader
+# @thx/mongoloader
+
+![](coverage/coverage.svg)
 
 MongoLoader is a class that uses Facebook's DataLoader to access Mongo. Supports batching and caching.
 

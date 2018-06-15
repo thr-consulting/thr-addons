@@ -14,6 +14,7 @@ type Props = {
 /**
  * A SemanticUI field with error markings.
  * @class
+ * @deprecated SForm is no longer being used. Use TForm instead.
  * @property {string} for - The React Formal Form.Field name.
  * @property {Component[]} children - React children elements.
  * @property {string} className - Additional class names applied to the field div.

@@ -1,4 +1,6 @@
-# notifications
+# @thx/notifications
+
+![](coverage/coverage.svg)
 
 Notifications Addon that displays growl-like messages.
 

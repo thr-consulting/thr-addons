@@ -2,14 +2,15 @@
 
 import React, {Component, Children} from 'react';
 import type {ChildrenArray} from 'react';
-import debug from 'debug';
 import {Form} from 'semantic-ui-react';
 
-const d = debug('thx:controls:RadioGroup');
-
 type Props = {
+	/** Any components but handles Radio components specially. */
 	children?: ChildrenArray<*>,
-	onChange?: (value: boolean | number | string | Object) => {},
+	/** Called when one of the Radio boxes is selected. */
+	onChange?: (value: boolean | number | string | Object) => void,
+	onBlur?: () => void,
+	/** This value will select the correct Radio component with the matching value */
 	value?: | boolean | number | string | Object,
 };
 
@@ -21,24 +22,26 @@ type Props = {
  * @property {bool|number|string|Object} value - The currently selected radio item
  */
 export default class RadioGroup extends Component<Props> {
+	static displayName = 'RadioGroup';
+
 	static defaultProps = {
 		children: null,
 		onChange: null,
+		onBlur: null,
 		value: null,
 	};
 
 	props: Props;
 
 	handleChange = (e: Event, {value}: {value: any}) => {
-		d('Value changed to:', value);
 		if (this.props.onChange) this.props.onChange(value);
-	}
+	};
 
 	render() {
-		const {children, value, onChange, ...rest} = this.props;
+		const {children, value, onChange, onBlur, ...rest} = this.props;
 
 		return (
-			<Form.Group {...rest}>
+			<Form.Group {...rest} onBlur={onBlur}>
 				{Children.map(children, child => {
 					if (child.type.name === 'FormRadio' || child.type.name === 'Radio') {
 						return React.cloneElement(child, {

@@ -12,6 +12,7 @@ type Props = {
 /**
  * Displays a message indicating any errors with the form. Include inside a SForm to automatically read the form's errors.
  * @class
+ * @deprecated SForm is no longer being used. Use TForm instead.
  * @property {string[]} otherErrors - An array of additional errors strings to display.
  */
 export default function SFormSummary(props: Props) {

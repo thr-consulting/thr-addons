@@ -1,6 +1,8 @@
-# controls
+# @thx/controls
 
-A collection of form components designed with SemanticUI. They all adhere to React Formal's policy of having a value prop and an onChange() prop.
+![](coverage/coverage.svg)
+
+A collection of form components designed with Semantic UI. They all adhere to the policy of having a value prop and an onChange() prop.
 
 ## Install
 ```

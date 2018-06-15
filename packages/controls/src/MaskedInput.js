@@ -13,6 +13,7 @@ import Inputmask from 'inputmask';
 type Props = {
 	value?: string,
 	onChange?: (data: string) => {},
+	onBlur?: () => {},
 	mask?: {
 		placeholder?: string,
 		optionalmarker?: {
@@ -76,6 +77,8 @@ type Props = {
  * @property {inputmaskPropTypes} [mask=null] - The mask object specified at {@link https://github.com/RobinHerbots/jquery.inputmask|here}.
  */
 export default class MaskedInput extends Component<Props> {
+	static displayName = 'MaskedInput';
+
 	static defaultProps = {
 		value: null,
 		onChange: null,
@@ -113,21 +116,21 @@ export default class MaskedInput extends Component<Props> {
 
 	handleComplete = (ev: Object) => {
 		if (this.props.onChange) this.props.onChange(ev.target.value);
-	}
+	};
 
 	handleCleared = () => {
 		if (this.props.onChange) this.props.onChange('');
-	}
+	};
 
 	handleIncomplete = (ev: Object) => {
 		if (this.props.onChange) this.props.onChange(ev.target.value);
-	}
+	};
 
 	render() {
-		const {value, onChange, mask, ...rest} = this.props;
+		const {value, onChange, onBlur, mask, ...rest} = this.props;
 		return (
-			<Input {...rest}>
-				<input ref={r => (this._input = r)}/>
+			<Input {...rest} >
+				<input ref={r => (this._input = r)} onBlur={onBlur}/>
 			</Input>
 		);
 	}

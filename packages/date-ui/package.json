@@ -30,13 +30,13 @@
     "flow": "flow",
     "lint": "eslint *.js src",
     "docs": "jsdoc -c jsdoc.json",
-    "docs:md": "jsdoc2md -c jsdoc.json -f src/*.js > docs/README.md",
+    "docs:md": "jsdoc2md -c jsdoc.json --source \" \" --separators -g table --plugin dmd-clear > docs/README.md",
     "docs:explain": "jsdoc -X -c jsdoc.json"
   },
   "devDependencies": {
     "babel-loader": "^8.0.0-beta.2",
-    "babel-plugin-flow-react-proptypes": "^24.0.0",
-    "cpy-cli": "^1.0.1",
+    "babel-plugin-flow-react-proptypes": "^24.0.1",
+    "cpy-cli": "^2.0.0",
     "css-loader": "^0.28.9",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -44,29 +44,29 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.9",
     "identity-obj-proxy": "^3.0.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "react-formal": "0.25.4",
-    "react-test-renderer": "^16.2.0",
+    "react-test-renderer": "^16.4.0",
     "rimraf": "^2.6.2",
-    "semantic-ui-react": "^0.80.0",
+    "semantic-ui-react": "^0.81.1",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
     "webpack": "^3.12.0"
   },
   "peerDependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "semantic-ui-react": "0.x"
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "semantic-ui-react": "^0.x"
   },
   "dependencies": {
     "@thx/date": "^6.0.1",
     "debug": "^3.1.0",
     "js-joda": "^1.6.2",
-    "moment": "^2.20.1",
+    "moment": "^2.22.2",
     "prop-types": "^15.6.0",
-    "react-widgets": "^4.2.0",
-    "react-widgets-moment": "^4.0.7"
+    "react-widgets": "^4.3.2",
+    "react-widgets-moment": "^4.0.15"
   },
   "jest": {
     "setupFiles": [

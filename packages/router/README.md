@@ -1,4 +1,6 @@
-# router
+# @thx/router
+
+![](coverage/coverage.svg)
 
 React router enhancements.
 

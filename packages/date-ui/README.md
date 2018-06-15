@@ -1,4 +1,6 @@
-# controls
+# @thx/controls
+
+![](coverage/coverage.svg)
 
 Date controls
 

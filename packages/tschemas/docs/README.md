@@ -1,166 +1,193 @@
+## 
+
+<table>
+  <thead>
+    <tr>
+      <th>Global</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td><a href="#MomentSchema">MomentSchema</a></td>
+    <td><p>Validates a Moment.</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#MoneySchema">MoneySchema</a></td>
+    <td><p>Validates a Money (from js-money).</p>
+</td>
+    </tr>
+</tbody>
+</table>
 
 ## 
 
-* [MomentSchema](#MomentSchema)
-* [MoneySchema](#MoneySchema)
-* [MomentSchema](#MomentSchema)
-* [MoneySchema](#MoneySchema)
+<table>
+  <thead>
+    <tr>
+      <th>Global</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td><a href="#moment">moment</a></td>
+    <td><p>Validates a LocalDateNumber</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#localDateNumber">localDateNumber</a></td>
+    <td><p>Validates a LocalDate</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#email">email</a></td>
+    <td><p>Validates a password. Required string, min length 6 chars.</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#password">password</a></td>
+    <td><p>Validates a second password.</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#passwordSecond">passwordSecond</a></td>
+    <td><p>Validates an address object.</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#address">address</a></td>
+    <td><p>Validates a phone number.</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#phone">phone</a></td>
+    <td><p>Validates a Canadian SIN.</p>
+</td>
+    </tr>
+</tbody>
+</table>
 
 ## 
 
-* [moment](#moment)
-* [localDateNumber](#localDateNumber)
-* [email](#email)
-* [password](#password)
-* [passwordSecond](#passwordSecond)
-* [address](#address)
-* [phone](#phone)
-* [moment](#moment)
-* [localDateNumber](#localDateNumber)
-* [email](#email)
-* [password](#password)
-* [passwordSecond](#passwordSecond)
-* [address](#address)
-* [phone](#phone)
+<table>
+  <thead>
+    <tr>
+      <th>Global</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td><a href="#schemaValidate">schemaValidate(schema, obj, validateOptions)</a> ⇒ <code>object</code></td>
+    <td><p>Validates a schema on the server. This function is for use on the server only!
+Returns null if validation passed. Returns a yup ValidationError if it fails.
+Does not include the object as &#39;value&#39;.</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#email">email()</a></td>
+    <td><p>Validates email addresses.</p>
+</td>
+    </tr>
+</tbody>
+</table>
 
 ## 
 
-* [schemaValidate(schema, obj, validateOptions)](#schemaValidate) ⇒ <code>object</code>
-* [email()](#email)
-* [schemaValidate(schema, obj, validateOptions)](#schemaValidate) ⇒ <code>object</code>
-* [email()](#email)
-
-## 
-
-* [YupSchema](#YupSchema) : <code>Object</code>
-* [YupSchema](#YupSchema) : <code>Object</code>
+<table>
+  <thead>
+    <tr>
+      <th>Global</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td><a href="#YupSchema">YupSchema</a> : <code>Object</code></td>
+    <td><p>Generic Yup Schema</p>
+</td>
+    </tr>
+</tbody>
+</table>
 
 <a name="MomentSchema"></a>
 
 ## MomentSchema
 Validates a Moment.
 
-**Kind**: global class  
+
+* * *
+
 <a name="MoneySchema"></a>
 
 ## MoneySchema
 Validates a Money (from js-money).
 
-**Kind**: global class  
-<a name="MomentSchema"></a>
 
-## MomentSchema
-Validates a Moment.
+* * *
 
-**Kind**: global class  
-<a name="MoneySchema"></a>
-
-## MoneySchema
-Validates a Money (from js-money).
-
-**Kind**: global class  
 <a name="moment"></a>
 
 ## moment
 Validates a LocalDateNumber
 
-**Kind**: global variable  
+
+* * *
+
 <a name="localDateNumber"></a>
 
 ## localDateNumber
 Validates a LocalDate
 
-**Kind**: global variable  
+
+* * *
+
 <a name="email"></a>
 
 ## email
 Validates a password. Required string, min length 6 chars.
 
-**Kind**: global variable  
+
+* * *
+
 <a name="password"></a>
 
 ## password
-Validates a second password.
-
-**Kind**: global variable  
 
 | Param |
 | --- |
 | passwordField | 
+
+Validates a second password.
+
+
+* * *
 
 <a name="passwordSecond"></a>
 
 ## passwordSecond
 Validates an address object.
 
-**Kind**: global variable  
+
+* * *
+
 <a name="address"></a>
 
 ## address
 Validates a phone number.
 
-**Kind**: global variable  
+
+* * *
+
 <a name="phone"></a>
 
 ## phone
 Validates a Canadian SIN.
 
-**Kind**: global variable  
-<a name="moment"></a>
 
-## moment
-Validates a LocalDateNumber
+* * *
 
-**Kind**: global variable  
-<a name="localDateNumber"></a>
-
-## localDateNumber
-Validates a LocalDate
-
-**Kind**: global variable  
-<a name="email"></a>
-
-## email
-Validates a password. Required string, min length 6 chars.
-
-**Kind**: global variable  
-<a name="password"></a>
-
-## password
-Validates a second password.
-
-**Kind**: global variable  
-
-| Param |
-| --- |
-| passwordField | 
-
-<a name="passwordSecond"></a>
-
-## passwordSecond
-Validates an address object.
-
-**Kind**: global variable  
-<a name="address"></a>
-
-## address
-Validates a phone number.
-
-**Kind**: global variable  
-<a name="phone"></a>
-
-## phone
-Validates a Canadian SIN.
-
-**Kind**: global variable  
 <a name="schemaValidate"></a>
 
-## schemaValidate(schema, obj, validateOptions) ⇒ <code>object</code>
-Validates a schema on the server. This function is for use on the server only!
-Returns null if validation passed. Returns a yup ValidationError if it fails.
-Does not include the object as 'value'.
-
-**Kind**: global function  
+## schemaValidate(schema, obj, validateOptions)
 **Tag**: Server  
 
 | Param | Type | Description |
@@ -169,43 +196,26 @@ Does not include the object as 'value'.
 | obj | <code>object</code> | The object to validate. |
 | validateOptions |  | Custom yup validate options. |
 
-<a name="email"></a>
-
-## email()
-Validates email addresses.
-
-**Kind**: global function  
-<a name="schemaValidate"></a>
-
-## schemaValidate(schema, obj, validateOptions) ⇒ <code>object</code>
 Validates a schema on the server. This function is for use on the server only!
 Returns null if validation passed. Returns a yup ValidationError if it fails.
 Does not include the object as 'value'.
 
-**Kind**: global function  
-**Tag**: Server  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| schema | [<code>YupSchema</code>](#YupSchema) | The schema to validate against. |
-| obj | <code>object</code> | The object to validate. |
-| validateOptions |  | Custom yup validate options. |
+* * *
 
 <a name="email"></a>
 
 ## email()
 Validates email addresses.
 
-**Kind**: global function  
+
+* * *
+
 <a name="YupSchema"></a>
 
-## YupSchema : <code>Object</code>
+## YupSchema
 Generic Yup Schema
 
-**Kind**: global typedef  
-<a name="YupSchema"></a>
 
-## YupSchema : <code>Object</code>
-Generic Yup Schema
+* * *
 
-**Kind**: global typedef  

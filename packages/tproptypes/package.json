@@ -24,16 +24,16 @@
     "flow": "flow",
     "lint": "eslint *.js src",
     "docs": "jsdoc -c jsdoc.json",
-    "docs:md": "jsdoc2md -m grouped -g grouped -c jsdoc.json -f src/*.js > docs/README.md",
+    "docs:md": "jsdoc2md -c jsdoc.json --source \" \" --separators -g table --plugin dmd-clear > docs/README.md",
     "docs:explain": "jsdoc -X -c jsdoc.json"
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-test-renderer": "^16.2.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-test-renderer": "^16.4.0",
     "rimraf": "^2.6.2"
   },
   "dependencies": {

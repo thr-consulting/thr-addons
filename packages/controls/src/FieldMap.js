@@ -26,3 +26,5 @@ export default function FieldMap({value, as, asValue, onChange, ...rest}: Props)
 
 	return React.createElement(as, props);
 }
+
+FieldMap.displayName = 'FieldMap';

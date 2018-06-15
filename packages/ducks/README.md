@@ -1,4 +1,6 @@
-# ducks
+# @thx/ducks
+
+![](coverage/coverage.svg)
 
 Helpers for Redux ducks layout
 

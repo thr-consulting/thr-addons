@@ -28,6 +28,6 @@
     "verbose": false,
     "debug": false,
     "readme": "README.md",
-    "destination": "docs"
+    "destination": "docs/web"
   }
 }
