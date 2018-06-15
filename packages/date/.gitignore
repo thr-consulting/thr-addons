@@ -1,7 +1,4 @@
 node_modules
 dist
 lib
-coverage
-docs/*
-!docs/README.md
 server.js
