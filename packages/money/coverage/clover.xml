@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1529098567028" clover="3.2.0">
+  <project timestamp="1529098567028" name="All files">
+    <metrics statements="53" coveredstatements="32" conditionals="52" coveredconditionals="34" methods="17" coveredmethods="11" elements="122" coveredelements="77" complexity="0" loc="53" ncloc="53" packages="4" files="6" classes="6">
+      <package name="src">
+        <metrics statements="17" coveredstatements="16" conditionals="25" coveredconditionals="23" methods="7" coveredmethods="7"/>
+        <file name="currencyCountry.js" path="/home/mike/dev/thr-addons/packages/money/src/currencyCountry.js">
+          <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="130" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="131" count="1" type="stmt"/>
+        </file>
+        <file name="util.js" path="/home/mike/dev/thr-addons/packages/money/src/util.js">
+          <metrics statements="14" coveredstatements="13" conditionals="23" coveredconditionals="22" methods="6" coveredmethods="6"/>
+          <line num="18" count="20" type="cond" truecount="2" falsecount="0"/>
+          <line num="19" count="17" type="cond" truecount="2" falsecount="0"/>
+          <line num="20" count="5" type="cond" truecount="5" falsecount="0"/>
+          <line num="21" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="22" count="2" type="stmt"/>
+          <line num="32" count="4" type="stmt"/>
+          <line num="42" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="51" count="4" type="cond" truecount="2" falsecount="0"/>
+          <line num="52" count="1" type="stmt"/>
+          <line num="54" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="55" count="3" type="cond" truecount="4" falsecount="0"/>
+          <line num="56" count="1" type="stmt"/>
+          <line num="57" count="2" type="stmt"/>
+          <line num="60" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.MoneyInput">
+        <metrics statements="28" coveredstatements="10" conditionals="18" coveredconditionals="4" methods="10" coveredmethods="4"/>
+        <file name="index.js" path="/home/mike/dev/thr-addons/packages/money/src/MoneyInput/index.js">
+          <metrics statements="23" coveredstatements="10" conditionals="18" coveredconditionals="4" methods="7" coveredmethods="4"/>
+          <line num="14" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="53" count="1" type="stmt"/>
+          <line num="54" count="1" type="stmt"/>
+          <line num="55" count="1" type="stmt"/>
+          <line num="59" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="60" count="0" type="stmt"/>
+          <line num="61" count="0" type="stmt"/>
+          <line num="70" count="0" type="stmt"/>
+          <line num="71" count="0" type="stmt"/>
+          <line num="72" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="73" count="0" type="stmt"/>
+          <line num="78" count="0" type="stmt"/>
+          <line num="79" count="0" type="stmt"/>
+          <line num="80" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="84" count="1" type="stmt"/>
+          <line num="86" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="97" count="1" type="stmt"/>
+          <line num="99" count="0" type="cond" truecount="1" falsecount="1"/>
+        </file>
+        <file name="moneyInputMask.js" path="/home/mike/dev/thr-addons/packages/money/src/MoneyInput/moneyInputMask.js">
+          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="29" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.graphql">
+        <metrics statements="7" coveredstatements="5" conditionals="9" coveredconditionals="7" methods="0" coveredmethods="0"/>
+        <file name="GraphQLMoney.js" path="/home/mike/dev/thr-addons/packages/money/src/graphql/GraphQLMoney.js">
+          <metrics statements="7" coveredstatements="5" conditionals="9" coveredconditionals="7" methods="0" coveredmethods="0"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="13" count="5" type="cond" truecount="2" falsecount="0"/>
+          <line num="14" count="4" type="stmt"/>
+          <line num="18" count="7" type="cond" truecount="1" falsecount="1"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="23" count="6" type="cond" truecount="4" falsecount="1"/>
+          <line num="24" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="tests">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="setupTests.js" path="/home/mike/dev/thr-addons/packages/money/tests/setupTests.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="4" count="4" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>
