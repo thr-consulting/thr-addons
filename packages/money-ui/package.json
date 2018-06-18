@@ -3,6 +3,7 @@
   "version": "7.1.1",
   "description": "Money controls",
   "main": "lib/index.js",
+  "private": false,
   "author": "Mike Kornelson <mike@durbn.net>",
   "license": "MIT",
   "repository": {
