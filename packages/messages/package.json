@@ -1,6 +1,6 @@
 {
   "name": "@thx/messages",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "description": "Displays banner messages in the page.",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",

@@ -1,6 +1,6 @@
 {
   "name": "@thx/date-ui",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "description": "Date controls",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
@@ -60,7 +60,7 @@
     "semantic-ui-react": "^0.x"
   },
   "dependencies": {
-    "@thx/date": "^7.1.0",
+    "@thx/date": "^7.1.1",
     "debug": "^3.1.0",
     "js-joda": "^1.6.2",
     "moment": "^2.22.2",
