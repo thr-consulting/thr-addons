@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoneyInputMask should render without throwing an error 1`] = `
+<t
+  guide={false}
+  mask={[Function]}
+  onChange={[Function]}
+  render={[Function]}
+  value=""
+/>
+`;

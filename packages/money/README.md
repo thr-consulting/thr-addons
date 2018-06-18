@@ -2,7 +2,7 @@
 
 ![](coverage/coverage.svg)
 
-Money addons
+Money utils
 
 ## Install
 ```

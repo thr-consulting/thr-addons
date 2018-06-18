@@ -10,8 +10,6 @@
     "url": "https://github.com/thr-consulting/thr-addons.git"
   },
   "keywords": [
-    "react",
-    "controls",
     "date",
     "moment"
   ],
@@ -32,7 +30,8 @@
   "devDependencies": {
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
-    "graphql-tools": "^3.0.2"
+    "graphql-tools": "^3.0.2",
+    "rimraf": "^2.6.2"
   },
   "peerDependencies": {
     "graphql": "^0.13.0"

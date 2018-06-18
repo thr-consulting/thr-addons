@@ -1,0 +1,13 @@
+[ignore]
+<PROJECT_ROOT>/node_modules/radium/.*
+
+[include]
+
+[libs]
+
+[options]
+module.name_mapper.extension='less' -> '<PROJECT_ROOT>/flow/less.js.flow'
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+
+[lints]
