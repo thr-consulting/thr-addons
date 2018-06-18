@@ -1,6 +1,6 @@
 {
   "name": "@thx/mongoloader",
-  "version": "7.0.1",
+  "version": "7.1.0",
   "description": "Mongo DataLoader class",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
