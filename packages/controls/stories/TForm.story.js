@@ -5,6 +5,7 @@ import {withInfo} from '@storybook/addon-info';
 import {action} from '@storybook/addon-actions';
 import {Container, Form} from 'semantic-ui-react';
 import TForm from '../src/TForm';
+import MaskedInput from '../src/MaskedInput';
 
 const stories = storiesOf('TForm', module);
 
@@ -16,6 +17,10 @@ function renderForm({handleChange, handleSubmit, values}) {
 			<Form.Field width={6}>
 				<label>Enter some text</label>
 				<input name="text" value={values.text} onChange={handleChange}/>
+			</Form.Field>
+			<Form.Field width={6}>
+				<label>Custom input</label>
+				<MaskedInput name="masked" value={values.masked} onChange={handleChange('masked')}/>
 			</Form.Field>
 			<Form.Button onClick={handleSubmit}>Submit</Form.Button>
 		</Form>
