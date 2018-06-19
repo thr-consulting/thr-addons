@@ -1,6 +1,6 @@
 {
   "name": "@thx/money-ui",
-  "version": "7.1.1",
+  "version": "7.1.2",
   "description": "Money controls",
   "main": "lib/index.js",
   "private": false,
