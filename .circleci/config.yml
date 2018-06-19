@@ -17,7 +17,7 @@ jobs:
           - v1-dependencies-{{ checksum ".packages-hash" }}
           - v1-dependencies-
 
-      - run: npm install lerna
+      - run: yarn global add lerna
       - run: yarn lerna bootstrap
 
       - save_cache:
