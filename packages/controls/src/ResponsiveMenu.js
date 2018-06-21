@@ -1,14 +1,16 @@
 // @flow
 
-import React, {Children} from 'react';
+import React from 'react';
 import type {ChildrenArray} from 'react';
 import MediaQuery from 'react-responsive';
 import {Menu} from 'semantic-ui-react';
 import ResponsiveMenuItem from './ResponsiveMenuItem';
 import ResponsiveMenuDropdown from './ResponsiveMenuDropdown';
+import {ResponsiveMenuContext} from './ResponsiveMenuContext';
 
 type Props = {
 	children: ChildrenArray<*>,
+	/** The number of pixels wide the mobile screen should be. */
 	mobileWidth?: number,
 };
 
@@ -24,16 +26,18 @@ export default function ResponsiveMenu({mobileWidth, children, ...rest}: Props) 
 	return (
 		<div>
 			<MediaQuery query={minQuery}>
-				<Menu {...rest}>
-					{children}
-				</Menu>
+				<ResponsiveMenuContext.Provider value={{isMobile: false}}>
+					<Menu {...rest}>
+						{children}
+					</Menu>
+				</ResponsiveMenuContext.Provider>
 			</MediaQuery>
 			<MediaQuery query={maxQuery}>
-				<Menu icon {...rest}>
-					{Children.map(children, el => React.cloneElement(el, {
-						isMobile: true,
-					}))}
-				</Menu>
+				<ResponsiveMenuContext.Provider value={{isMobile: true}}>
+					<Menu icon {...rest}>
+						{children}
+					</Menu>
+				</ResponsiveMenuContext.Provider>
 			</MediaQuery>
 		</div>
 	);

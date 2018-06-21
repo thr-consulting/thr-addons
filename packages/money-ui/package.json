@@ -33,8 +33,6 @@
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "devDependencies": {
-    "@storybook/addon-console": "^1.0.4",
-    "@storybook/react": "^3.4.7",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
@@ -51,6 +49,7 @@
   },
   "dependencies": {
     "@thx/tproptypes": "^7.1.1",
+    "@thx/money": "^7.1.2",
     "debug": "^3.1.0",
     "inputmask": "^3.3.11",
     "js-money": "^0.6.3",
