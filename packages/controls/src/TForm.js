@@ -2,6 +2,7 @@
 
 import React, {Component} from 'react';
 import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
 import {Formik} from 'formik';
 import {Message} from 'semantic-ui-react';
 
@@ -30,7 +31,7 @@ export default class TForm extends Component<Props> {
 	props: Props;
 
 	renderForm = args => {
-		const {errors: warnings, touched} = args;
+		const {errors: warnings, touched, handleChange, setFieldValue, ...rest} = args;
 		const {errors, numFields, render} = this.props;
 
 		return render({
@@ -68,7 +69,19 @@ export default class TForm extends Component<Props> {
 			fieldError(fieldName) {
 				return !!(touched[fieldName] && warnings[fieldName]);
 			},
-			...args,
+			handleChange(evOrName) {
+				if (evOrName.nativeEvent) return handleChange(evOrName);
+				if (isString(evOrName)) {
+					return val => {
+						setFieldValue(evOrName, val);
+					};
+				}
+				throw new Error('TForm expects handleChange to receive a SyntheticEvent or a string value of the field name');
+			},
+			errors: warnings,
+			touched,
+			setFieldValue,
+			...rest,
 		});
 	};
 
