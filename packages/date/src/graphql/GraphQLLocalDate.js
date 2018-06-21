@@ -1,7 +1,7 @@
 import {LocalDate} from 'js-joda';
 import {GraphQLError} from 'graphql/error';
 import {Kind} from 'graphql/language';
-import {GraphQLScalarType} from 'graphql';
+import {GraphQLScalarType} from 'graphql/type';
 import isString from 'lodash/isString';
 import isInteger from 'lodash/isInteger';
 

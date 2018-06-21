@@ -28,12 +28,22 @@ expect.addSnapshotSerializer({
 });
 
 describe('Date transforms', () => {
+	it('should transform a null LocalDate to Date properly', () => {
+		const val = transformDateToLocalDate();
+		expect(val).toBeNull();
+	});
+
 	it('should transform a JS date to a LocalDate', () => {
 		const val = transformDateToLocalDate(new Date(2017, 5, 23, 6, 0, 0));
 		expect(val).toBeInstanceOf(LocalDate);
 		expect(val.dayOfMonth()).toBe(23);
 		expect(val.monthValue()).toBe(6);
 		expect(val.year()).toBe(2017);
+	});
+
+	it('should transform a null Date to LocalDate properly', () => {
+		const val = transformLocalDateToDate();
+		expect(val).toBeNull();
 	});
 
 	it('should transform a LocalDate to a Date', () => {
@@ -44,12 +54,22 @@ describe('Date transforms', () => {
 		expect(val.getFullYear()).toBe(2017);
 	});
 
+	it('should transform a null Moment to LocalDate properly', () => {
+		const val = transformMomentToLocalDate();
+		expect(val).toBeNull();
+	});
+
 	it('should transform a Moment to a LocalDate', () => {
 		const val = transformMomentToLocalDate(moment([2017, 5, 23, 6, 0, 0]));
 		expect(val).toBeInstanceOf(LocalDate);
 		expect(val.dayOfMonth()).toBe(23);
 		expect(val.monthValue()).toBe(6);
 		expect(val.year()).toBe(2017);
+	});
+
+	it('should transform a null LocalDate to Moment properly', () => {
+		const val = transformLocalDateToMoment();
+		expect(val).toBeNull();
 	});
 
 	it('should transform a LocalDate to a Moment', () => {

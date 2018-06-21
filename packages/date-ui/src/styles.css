@@ -1,18 +1,18 @@
 @import "../../../node_modules/react-widgets/dist/css/react-widgets.css";
 
-.rw-datetimepicker > input {
+:global(.rw-datetimepicker) > input {
 	border: none !important;
 }
 
-.rw-datetimepicker .rw-calendar-grid.rw-nav-view .rw-btn {
+:global(.rw-datetimepicker) :global(.rw-calendar-grid.rw-nav-view) :global(.rw-btn) {
 	padding: 0 !important;
 }
 
-.dateTimePickerAutoWidth {
+:global(.dateTimePickerAutoWidth) {
 	width: auto;
 	display: inline-flex;
 }
 
-.dateTimePickerAutoWidth > input {
+:global(.dateTimePickerAutoWidth) > input {
 	width: auto;
 }

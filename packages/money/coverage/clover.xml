@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1529354705599" clover="3.2.0">
-  <project timestamp="1529354705599" name="All files">
-    <metrics statements="24" coveredstatements="21" conditionals="34" coveredconditionals="30" methods="7" coveredmethods="7" elements="65" coveredelements="58" complexity="0" loc="24" ncloc="24" packages="2" files="3" classes="3">
+<coverage generated="1529614543032" clover="3.2.0">
+  <project timestamp="1529614543033" name="All files">
+    <metrics statements="26" coveredstatements="23" conditionals="38" coveredconditionals="33" methods="7" coveredmethods="7" elements="71" coveredelements="63" complexity="0" loc="26" ncloc="26" packages="2" files="3" classes="3">
       <package name="src">
-        <metrics statements="17" coveredstatements="16" conditionals="25" coveredconditionals="23" methods="7" coveredmethods="7"/>
+        <metrics statements="19" coveredstatements="18" conditionals="29" coveredconditionals="26" methods="7" coveredmethods="7"/>
         <file name="currencyCountry.js" path="/home/mike/dev/thr-addons/packages/money/src/currencyCountry.js">
           <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
           <line num="3" count="1" type="stmt"/>
@@ -11,21 +11,23 @@
           <line num="131" count="1" type="stmt"/>
         </file>
         <file name="util.js" path="/home/mike/dev/thr-addons/packages/money/src/util.js">
-          <metrics statements="14" coveredstatements="13" conditionals="23" coveredconditionals="22" methods="6" coveredmethods="6"/>
+          <metrics statements="16" coveredstatements="15" conditionals="27" coveredconditionals="25" methods="6" coveredmethods="6"/>
           <line num="18" count="20" type="cond" truecount="2" falsecount="0"/>
-          <line num="19" count="17" type="cond" truecount="2" falsecount="0"/>
-          <line num="20" count="5" type="cond" truecount="5" falsecount="0"/>
-          <line num="21" count="3" type="cond" truecount="2" falsecount="0"/>
-          <line num="22" count="2" type="stmt"/>
-          <line num="32" count="4" type="stmt"/>
-          <line num="42" count="2" type="cond" truecount="2" falsecount="0"/>
-          <line num="51" count="4" type="cond" truecount="2" falsecount="0"/>
-          <line num="52" count="1" type="stmt"/>
-          <line num="54" count="3" type="cond" truecount="1" falsecount="1"/>
-          <line num="55" count="3" type="cond" truecount="4" falsecount="0"/>
-          <line num="56" count="1" type="stmt"/>
-          <line num="57" count="2" type="stmt"/>
-          <line num="60" count="0" type="stmt"/>
+          <line num="19" count="19" type="cond" truecount="2" falsecount="0"/>
+          <line num="20" count="16" type="cond" truecount="2" falsecount="0"/>
+          <line num="21" count="4" type="cond" truecount="5" falsecount="0"/>
+          <line num="22" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="23" count="2" type="stmt"/>
+          <line num="33" count="4" type="stmt"/>
+          <line num="43" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="44" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="53" count="4" type="cond" truecount="2" falsecount="0"/>
+          <line num="54" count="1" type="stmt"/>
+          <line num="56" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="57" count="3" type="cond" truecount="4" falsecount="0"/>
+          <line num="58" count="1" type="stmt"/>
+          <line num="59" count="2" type="stmt"/>
+          <line num="62" count="0" type="stmt"/>
         </file>
       </package>
       <package name="src.graphql">

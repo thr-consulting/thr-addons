@@ -15,6 +15,7 @@ import has from 'lodash/has';
  * @return {Money}
  */
 export function makeMoney(objOrDecimal, currency = Money.CAD) {
+	if (objOrDecimal instanceof Money) return objOrDecimal;
 	if (!objOrDecimal) return new Money(0, currency);
 	if (isNumber(objOrDecimal)) return Money.fromDecimal(objOrDecimal, currency, 'round');
 	if (isObject(objOrDecimal) && has(objOrDecimal, 'amount') && has(objOrDecimal, 'currency')) return new Money(objOrDecimal.amount, objOrDecimal.currency);
@@ -39,6 +40,7 @@ export function roundTo(value, decimals) {
  * @return {string} The formatted Money string
  */
 export function formatMoney(money, symbol = false) {
+	if (!money) return '';
 	return accounting.formatMoney(money.toDecimal(), symbol ? Money[money.currency].symbol_native : '', Money[money.currency].decimal_digits);
 }
 

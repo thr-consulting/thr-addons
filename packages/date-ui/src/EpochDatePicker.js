@@ -7,16 +7,16 @@ import {LocalDate} from 'js-joda';
 import {transformEpochIntegerToDate, transformDateToEpochInteger} from '@thx/date';
 
 type Props = {
-	width: string,
-	value: number,
-	defaultValue: number,
-	onChange: Function,
-	onSelect: Function,
-	min: LocalDate,
-	max: LocalDate,
-	currentDate: number,
-	defaultCurrentDate: number,
-	onCurrentDateChange: Function,
+	width?: string,
+	value?: number,
+	defaultValue?: number,
+	onChange?: Function,
+	onSelect?: Function,
+	min?: LocalDate,
+	max?: LocalDate,
+	currentDate?: number,
+	defaultCurrentDate?: number,
+	onCurrentDateChange?: Function,
 };
 
 /**

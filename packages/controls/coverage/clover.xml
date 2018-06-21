@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1529354712166" clover="3.2.0">
-  <project timestamp="1529354712166" name="All files">
-    <metrics statements="53" coveredstatements="40" conditionals="36" coveredconditionals="13" methods="21" coveredmethods="14" elements="110" coveredelements="67" complexity="0" loc="53" ncloc="53" packages="2" files="8" classes="8">
+<coverage generated="1529613850739" clover="3.2.0">
+  <project timestamp="1529613850740" name="All files">
+    <metrics statements="54" coveredstatements="40" conditionals="37" coveredconditionals="13" methods="21" coveredmethods="13" elements="112" coveredelements="66" complexity="0" loc="54" ncloc="54" packages="2" files="9" classes="9">
       <package name="src">
-        <metrics statements="52" coveredstatements="39" conditionals="36" coveredconditionals="13" methods="21" coveredmethods="14"/>
+        <metrics statements="53" coveredstatements="39" conditionals="37" coveredconditionals="13" methods="21" coveredmethods="13"/>
         <file name="FieldMap.js" path="/home/mike/dev/thr-addons/packages/controls/src/FieldMap.js">
           <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
           <line num="21" count="2" type="stmt"/>
@@ -39,25 +39,29 @@
           <line num="52" count="0" type="stmt"/>
         </file>
         <file name="ResponsiveMenu.js" path="/home/mike/dev/thr-addons/packages/controls/src/ResponsiveMenu.js">
-          <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-          <line num="22" count="1" type="stmt"/>
-          <line num="23" count="1" type="stmt"/>
+          <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
           <line num="24" count="1" type="stmt"/>
-          <line num="33" count="2" type="stmt"/>
-          <line num="42" count="1" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
           <line num="46" count="1" type="stmt"/>
-          <line num="47" count="1" type="stmt"/>
+          <line num="50" count="1" type="stmt"/>
+          <line num="51" count="1" type="stmt"/>
+        </file>
+        <file name="ResponsiveMenuContext.js" path="/home/mike/dev/thr-addons/packages/controls/src/ResponsiveMenuContext.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
         </file>
         <file name="ResponsiveMenuDropdown.js" path="/home/mike/dev/thr-addons/packages/controls/src/ResponsiveMenuDropdown.js">
-          <metrics statements="3" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
-          <line num="15" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="26" count="1" type="stmt"/>
+          <metrics statements="2" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
         </file>
         <file name="ResponsiveMenuItem.js" path="/home/mike/dev/thr-addons/packages/controls/src/ResponsiveMenuItem.js">
-          <metrics statements="2" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-          <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="14" count="0" type="stmt"/>
+          <metrics statements="3" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="20" count="0" type="cond" truecount="0" falsecount="3"/>
+          <line num="21" count="0" type="stmt"/>
         </file>
         <file name="TForm.js" path="/home/mike/dev/thr-addons/packages/controls/src/TForm.js">
           <metrics statements="15" coveredstatements="15" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>

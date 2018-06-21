@@ -7,16 +7,16 @@ import {LocalDate} from 'js-joda';
 import {transformLocalDateToDate, transformDateToLocalDate} from '@thx/date';
 
 type Props = {
-	width: string,
-	value: LocalDate,
-	defaultValue: LocalDate,
-	onChange: Function,
-	onSelect: Function,
-	min: LocalDate,
-	max: LocalDate,
-	currentDate: LocalDate,
-	defaultCurrentDate: LocalDate,
-	onCurrentDateChange: Function,
+	width?: string,
+	value?: LocalDate,
+	defaultValue?: LocalDate,
+	onChange?: Function,
+	onSelect?: Function,
+	min?: LocalDate,
+	max?: LocalDate,
+	currentDate?: LocalDate,
+	defaultCurrentDate?: LocalDate,
+	onCurrentDateChange?: Function,
 };
 
 /**
@@ -38,15 +38,15 @@ export default class LocalDatePicker extends Component<Props> {
 
 	handleChange = (date: Date) => {
 		if (this.props.onChange) this.props.onChange(date ? transformDateToLocalDate(date) : null);
-	}
+	};
 
 	handleSelect = (date: Date) => {
 		if (this.props.onSelect) this.props.onSelect(date ? transformDateToLocalDate(date) : null);
-	}
+	};
 
 	handleCurrentDateChange = (date: Date) => {
 		if (this.props.onCurrentDateChange) this.props.onCurrentDateChange(date ? transformDateToLocalDate(date) : null);
-	}
+	};
 
 	render() {
 		const {

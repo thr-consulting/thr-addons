@@ -28,11 +28,12 @@
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | value | <code>Money</code> |  | The money value. |
+| [currency] | <code>string</code> | <code>&quot;CAD&quot;</code> | The currency if the value is set to null. |
 | onChange | <code>onChange</code> |  | Called when the value changes. |
 | onDetailsClick | <code>function</code> |  | Called when the details button is clicked. |
 | [detailsIcon] | <code>string</code> | <code>&quot;server&quot;</code> | The Semantic UI icon to display on the details button. |
-| placeholder | <code>string</code> |  | The placeholder text to display. |
 | [locked] | <code>bool</code> | <code>false</code> | If true, cannot edit the amount. |
+| onBlur | <code>function</code> |  | Called when the focus is lost. |
 
 A masked money input. Defaults to CAD funds.
 

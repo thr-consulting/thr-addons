@@ -26,6 +26,7 @@ import indexOf from 'lodash/indexOf';
  * @returns {LocalDate}
  */
 export function transformDateToLocalDate(date) {
+	if (!date) return null;
 	return LocalDate.of(date.getFullYear(), date.getMonth() + 1, date.getDate());
 }
 
@@ -35,6 +36,7 @@ export function transformDateToLocalDate(date) {
  * @returns {Date}
  */
 export function transformLocalDateToDate(localDate) {
+	if (!localDate) return null;
 	return new Date(localDate.year(), localDate.monthValue() - 1, localDate.dayOfMonth());
 }
 
@@ -44,6 +46,7 @@ export function transformLocalDateToDate(localDate) {
  * @returns {LocalDate}
  */
 export function transformMomentToLocalDate(obj) {
+	if (!obj) return null;
 	return LocalDate.of(obj.year(), obj.month() + 1, obj.date());
 }
 
@@ -53,6 +56,7 @@ export function transformMomentToLocalDate(obj) {
  * @returns {*|moment.Moment}
  */
 export function transformLocalDateToMoment(localDate) {
+	if (!localDate) return null;
 	return moment({
 		year: localDate.year(),
 		month: localDate.monthValue() - 1,
@@ -66,6 +70,7 @@ export function transformLocalDateToMoment(localDate) {
  * @returns {JSJoda.LocalDate}
  */
 export function transformEpochIntegerToLocalDate(value) {
+	if (!value) return null;
 	return LocalDate.ofEpochDay(value);
 }
 
@@ -75,6 +80,7 @@ export function transformEpochIntegerToLocalDate(value) {
  * @returns {Date}
  */
 export function transformEpochIntegerToDate(value) {
+	if (!value) return null;
 	return transformLocalDateToDate(LocalDate.ofEpochDay(value));
 }
 
@@ -84,6 +90,7 @@ export function transformEpochIntegerToDate(value) {
  * @returns {*}
  */
 export function transformLocalDateToEpochInteger(value) {
+	if (!value) return null;
 	return value.toEpochDay();
 }
 
@@ -93,6 +100,7 @@ export function transformLocalDateToEpochInteger(value) {
  * @returns {*}
  */
 export function transformDateToEpochInteger(value) {
+	if (!value) return null;
 	return transformDateToLocalDate(value).toEpochDay();
 }
 
@@ -213,6 +221,7 @@ export function transformObjectsToLocalDates(obj) {
  * @return {string} The formatted date/time
  */
 export function formatDate(obj, {type: type = 'short', time: time = false, date: date = true, format} = {type: 'short'}) {
+	if (!obj) return '';
 	let m = obj;
 	if (isInteger(m)) m = transformEpochIntegerToDate(m);
 	if (m instanceof LocalDate) m = transformLocalDateToMoment(m);

@@ -31,7 +31,9 @@
     "lint": "eslint *.js src",
     "docs": "jsdoc -c jsdoc.json",
     "docs:md": "jsdoc2md -c jsdoc.json --source \" \" --separators -g table --plugin dmd-clear > docs/README.md",
-    "docs:explain": "jsdoc -X -c jsdoc.json"
+    "docs:explain": "jsdoc -X -c jsdoc.json",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "docs:storybook": "build-storybook -c .storybook -o docs/storybook"
   },
   "devDependencies": {
     "babel-loader": "^8.0.0-beta.2",
@@ -61,10 +63,12 @@
   },
   "dependencies": {
     "@thx/date": "^7.1.1",
+    "@thx/controls": "^7.1.2",
     "debug": "^3.1.0",
     "js-joda": "^1.6.2",
     "moment": "^2.22.2",
     "prop-types": "^15.6.0",
+    "react-datepicker": "^1.5.0",
     "react-widgets": "^4.3.2",
     "react-widgets-moment": "^4.0.15"
   },
