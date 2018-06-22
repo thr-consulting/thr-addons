@@ -4,7 +4,7 @@ import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 import {withState, Store} from '@thx/storybook-state';
 import {Container, Form, Input} from 'semantic-ui-react';
-import 'react-datepicker/dist/react-datepicker.css';
+import '../src/styles.css';
 import DatePicker from '../src/DatePicker';
 
 const stories = storiesOf('DatePicker.LocalDate', module);
