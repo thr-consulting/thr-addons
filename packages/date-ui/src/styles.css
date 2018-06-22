@@ -1,4 +1,5 @@
 @import "../../../node_modules/react-widgets/dist/css/react-widgets.css";
+@import "../../../node_modules/react-datepicker/dist/react-datepicker.css";
 
 :global(.rw-datetimepicker) > input {
 	border: none !important;
@@ -15,4 +16,12 @@
 
 :global(.dateTimePickerAutoWidth) > input {
 	width: auto;
+}
+
+:global(.react-datepicker-wrapper) {
+	display: inline;
+}
+
+:global(.react-datepicker__input-container) {
+	display: inline;
 }

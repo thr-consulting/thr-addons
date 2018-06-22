@@ -7,7 +7,6 @@ import {LocalDate} from 'js-joda';
 import {MaskedInput} from '@thx/controls';
 import moment from 'moment';
 import {transformMomentToLocalDate, transformLocalDateToMoment} from '@thx/date';
-import './styles.css';
 
 type Props = {
 	value?: LocalDate,

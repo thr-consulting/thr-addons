@@ -3,23 +3,6 @@ module.exports = {
 		rules: [
 			{
 				test: /\.css$/,
-				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'style-loader',
-					},
-					{
-						loader: 'css-loader',
-						options: {
-							modules: true,
-							localIdentName: '[path][name]__[local]--[hash:base64:5]',
-						},
-					},
-				],
-			},
-			{
-				test: /\.css$/,
-				include: /node_modules/,
 				use: [
 					{
 						loader: 'style-loader',
