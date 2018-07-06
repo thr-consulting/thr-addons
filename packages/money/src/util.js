@@ -54,7 +54,7 @@ export function transformObjectsToMoney(obj) {
 		return map(obj, v => transformObjectsToMoney(v));
 	}
 	if (isObject(obj)) {
-		if (obj.amount && obj.currency) return new Money(obj.amount, obj.currency);
+		if (has(obj, 'amount') && has(obj, 'currency')) return new Money(obj.amount, obj.currency);
 		return transform(obj, (result, value, key) => {
 			result[key] = transformObjectsToMoney(value); // eslint-disable-line no-param-reassign
 		}, {});

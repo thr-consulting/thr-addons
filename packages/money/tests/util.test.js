@@ -81,4 +81,14 @@ describe('Transforms', () => {
 		expect(val.field2[0]).toBeInstanceOf(Money);
 		expect(val).toMatchSnapshot();
 	});
+
+	it('should transform objects of zero value to Money', () => {
+		const val = transformObjectsToMoney({
+			field1: {amount: 0, currency: 'CAD'},
+			field2: [{amount: 500, currency: 'CAD'}],
+		});
+		expect(val.field1).toBeInstanceOf(Money);
+		expect(val.field2[0]).toBeInstanceOf(Money);
+		expect(val).toMatchSnapshot();
+	});
 });
