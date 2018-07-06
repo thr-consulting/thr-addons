@@ -1,6 +1,6 @@
 {
   "name": "@thx/money-ui",
-  "version": "7.1.3",
+  "version": "7.1.5",
   "description": "Money controls",
   "main": "lib/index.js",
   "private": false,
@@ -48,7 +48,7 @@
     "semantic-ui-react": "^0.x"
   },
   "dependencies": {
-    "@thx/money": "^7.1.3",
+    "@thx/money": "^7.1.5",
     "@thx/tproptypes": "^7.1.1",
     "debug": "^3.1.0",
     "inputmask": "^3.3.11",
