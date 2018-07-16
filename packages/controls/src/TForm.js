@@ -15,6 +15,8 @@ type Props = {
 	errors?: any,
 	/** Called when the form submits. */
 	onSubmit: data => void,
+	/** Called when the TForm is mounted so you can get access to the submitForm function. */
+	getSubmitFn: fn => void,
 };
 
 /**
@@ -24,15 +26,22 @@ type Props = {
  * @property {number} numFields - The number of fields in the form. TForm can't automatically get this number.
  * @property errors - Used to pass in any GraphQL errors.
  * @property {function} onSubmit - Called when the form submits.
+ * @property {function} getSubmitFn - Called when the TForm is mounted so you can get access to the submitForm function.
  */
 export default class TForm extends Component<Props> {
 	static displayName = 'TForm';
 
+	componentDidMount() {
+		if (this.props.getSubmitFn) this.props.getSubmitFn(this._submitForm);
+	}
+
 	props: Props;
 
 	renderForm = args => {
-		const {errors: warnings, touched, handleChange, setFieldValue, ...rest} = args;
+		const {errors: warnings, touched, handleChange, setFieldValue, submitForm, ...rest} = args;
 		const {errors, numFields, render} = this.props;
+
+		this._submitForm = submitForm;
 
 		return render({
 			renderErrors() {
@@ -81,6 +90,7 @@ export default class TForm extends Component<Props> {
 			errors: warnings,
 			touched,
 			setFieldValue,
+			submitForm,
 			...rest,
 		});
 	};

@@ -3,7 +3,7 @@ import React from 'react';
 import {storiesOf} from '@storybook/react';
 import {withInfo} from '@storybook/addon-info';
 import {action} from '@storybook/addon-actions';
-import {Container, Form} from 'semantic-ui-react';
+import {Container, Form, Button} from 'semantic-ui-react';
 import TForm from '../src/TForm';
 import MaskedInput from '../src/MaskedInput';
 
@@ -37,6 +37,34 @@ const storyFn = () => (
 	</Container>
 );
 
+class Outside extends React.Component {
+	getSubmitFn = fn => {
+		this._formSubmit = fn;
+	};
+
+	handleOutsideSubmit = () => {
+		this._formSubmit();
+	};
+
+	render() {
+		return (
+			<Container>
+				<TForm
+					initialValues={{text: ''}}
+					render={renderForm}
+					onSubmit={action('onSubmit')}
+					getSubmitFn={this.getSubmitFn}
+				/>
+				<Button onClick={this.handleOutsideSubmit}>Outside Submit</Button>
+			</Container>
+		);
+	}
+}
+
+const outsideFn = () => (
+	<Outside/>
+);
+
 const text = `
 Extends Formik to provide Semantic UI error and warning messages and field errors. Use TForm exactly like Formik.
 
@@ -60,6 +88,18 @@ function renderForm({handleChange, handleSubmit, values}) {
 stories.add(
 	'default',
 	storyFn,
+	{
+		info: {
+			inline: true,
+			text,
+			propTablesExclude: [Form, Form.Field, Container],
+		},
+	},
+);
+
+stories.add(
+	'outsideSubmit',
+	outsideFn,
 	{
 		info: {
 			inline: true,
