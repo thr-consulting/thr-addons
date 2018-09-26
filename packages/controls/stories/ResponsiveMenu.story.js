@@ -1,7 +1,7 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 import {withInfo} from '@storybook/addon-info';
-import ResponsiveMenu from '../src/ResponsiveMenu';
+import ResponsiveMenu from '../src/menu/ResponsiveMenu';
 
 const stories = storiesOf('ResponsiveMenu', module);
 

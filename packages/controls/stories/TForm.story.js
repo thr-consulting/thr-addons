@@ -4,8 +4,8 @@ import {storiesOf} from '@storybook/react';
 import {withInfo} from '@storybook/addon-info';
 import {action} from '@storybook/addon-actions';
 import {Container, Form, Button} from 'semantic-ui-react';
-import TForm from '../src/TForm';
-import MaskedInput from '../src/MaskedInput';
+import TForm from '../src/form/TForm';
+import MaskedInput from '../src/inputs/MaskedInput';
 
 const stories = storiesOf('TForm', module);
 

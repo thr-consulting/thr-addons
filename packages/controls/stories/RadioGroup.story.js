@@ -4,7 +4,7 @@ import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 import {withState, Store} from '@thx/storybook-state';
 import {Container, Form} from 'semantic-ui-react';
-import RadioGroup from '../src/RadioGroup';
+import RadioGroup from '../src/inputs/RadioGroup';
 
 const stories = storiesOf('RadioGroup', module);
 

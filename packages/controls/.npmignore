@@ -9,3 +9,5 @@ tests/
 .npmignore
 jsdoc.globals.js
 jsdoc.json
+webpack.config.babel.js
+dist/

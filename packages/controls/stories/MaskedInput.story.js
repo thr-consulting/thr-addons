@@ -4,7 +4,7 @@ import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 import {withKnobs, boolean, object} from '@storybook/addon-knobs';
 import {Container, Form} from 'semantic-ui-react';
-import MaskedInput from '../src/MaskedInput';
+import MaskedInput from '../src/inputs/MaskedInput';
 
 const stories = storiesOf('MaskedInput', module);
 
