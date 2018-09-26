@@ -26,6 +26,10 @@ import LocalMonthSelect from './date/LocalMonthSelect';
 import DatePicker from './date/DatePicker';
 import {dateInit} from './date/util';
 
+// Money
+import MoneyInput from './money/MoneyInput';
+import MoneyInputMask from './money/MoneyInputMask';
+
 export {
 	// Inputs
 	RadioGroup,
@@ -50,4 +54,8 @@ export {
 	LocalMonthSelect,
 	dateInit,
 	DatePicker,
+
+	// Money
+	MoneyInput,
+	MoneyInputMask,
 };
