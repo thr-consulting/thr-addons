@@ -1,11 +1,12 @@
 {
 	"presets": [
-		["@babel/preset-env", {"targets": {"node": "current"}}],
-		"@babel/preset-react",
-		"@babel/preset-flow"
+		["@imperium/babel-preset-imperium", {"react": true, "forceModules": true}]
 	],
-	"plugins": [
-		"@babel/plugin-proposal-object-rest-spread",
-		"@babel/plugin-proposal-class-properties"
-	]
+	"env": {
+		"test": {
+			"presets": [
+				["@imperium/babel-preset-imperium", {"react": true, "forceModules": true}]
+			]
+		}
+	}
 }

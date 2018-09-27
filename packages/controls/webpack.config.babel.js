@@ -1,24 +1,27 @@
-import path from 'path';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 	entry: {
 		styles: './src/date/styles.css',
 	},
+	mode: process.env.NODE_ENV,
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: '[name].js',
-		library: 'date',
+		// filename: '[name].js',
+		// library: 'date',
 		libraryTarget: 'umd',
 	},
 	module: {
 		rules: [
 			{
 				test: /\.css$/,
-				use: ExtractTextPlugin.extract({
-					fallback: 'style-loader',
-					use: ['css-loader'],
-				}),
+				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+					},
+					'css-loader',
+				],
 			},
 			{
 				test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)(\?[a-z0-9=.]+)?$/,
@@ -27,10 +30,9 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new ExtractTextPlugin({
+		new MiniCssExtractPlugin({
 			filename: '[name].css',
-			disable: false,
-			allChunks: true,
+			chunkFilename: '[id].css',
 		}),
 	],
 };

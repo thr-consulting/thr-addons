@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LocalDatePicker should render without throwing an error 1`] = `
+exports[`EpochDatePicker should render without throwing an error 1`] = `
 <Uncontrolled(DateTimePicker)
   time={false}
 />

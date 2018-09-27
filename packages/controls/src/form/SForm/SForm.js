@@ -30,6 +30,7 @@ type State = {
  */
 export default class SForm extends Component<Props, State> {
 	static Field = SField;
+
 	static Summary = SFormSummary;
 
 	static defaultProps = {
@@ -40,12 +41,12 @@ export default class SForm extends Component<Props, State> {
 		error: false,
 	};
 
-	props: Props;
-
 	handleError = (e: Event) => {
 		this.setState({error: !isEmpty(e)});
 		if (this.props.onError) this.props.onError(e);
-	}
+	};
+
+	props: Props;
 
 	// submit() {
 	// 	if (this._form) this._form.submit();

@@ -45,8 +45,6 @@ export default class MonthSelect extends Component<Props> {
 		year: new Date().getFullYear(),
 	};
 
-	props: Props;
-
 	handleChange = (e: SyntheticEvent<*>, value: ValueOption) => {
 		d('Month changed to:', value.value, e);
 		if (this.props.onChange) {
@@ -60,7 +58,9 @@ export default class MonthSelect extends Component<Props> {
 				this.props.onChange(null);
 			}
 		}
-	}
+	};
+
+	props: Props;
 
 	render() {
 		const {value} = this.props;

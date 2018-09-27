@@ -45,8 +45,6 @@ export default class LocalMonthSelect extends Component<Props> {
 		year: LocalDate.now().year(),
 	};
 
-	props: Props;
-
 	handleChange = (e: SyntheticEvent<*>, value: ValueOption) => {
 		d('Month changed to:', value.value, e);
 		if (this.props.onChange) {
@@ -57,7 +55,9 @@ export default class LocalMonthSelect extends Component<Props> {
 				this.props.onChange(null);
 			}
 		}
-	}
+	};
+
+	props: Props;
 
 	render() {
 		const {value} = this.props;

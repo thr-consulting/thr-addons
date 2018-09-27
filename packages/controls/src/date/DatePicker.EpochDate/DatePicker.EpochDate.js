@@ -6,7 +6,6 @@ import {transformLocalDateToEpochInteger, transformEpochIntegerToLocalDate} from
 import {LocalDate} from 'js-joda';
 import DatePickerLocalDate from '../DatePicker.LocalDate';
 
-
 type Props = {
 	value?: number,
 	onChange?: number => void,
@@ -19,11 +18,11 @@ type Props = {
  * @property onChange
  */
 export default class DatePickerEpochDate extends Component<Props> {
-	props: Props;
-
 	handleChange = (localDate: LocalDate) => {
 		if (this.props.onChange) this.props.onChange(transformLocalDateToEpochInteger(localDate));
 	};
+
+	props: Props;
 
 	render() {
 		const {

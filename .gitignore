@@ -1,7 +1,13 @@
 package-lock.json
 lerna-debug.log
 .idea
-packages/**/yarn-error.log
 packages/**/npm-debug.log
 packages/**/yarn.lock
-node_modules
+node_modules/
+.vscode/
+build
+.DS_Store
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+lib

@@ -28,8 +28,6 @@ export default class DatePickerLocalDate extends Component<Props> {
 		this._mask = this._dateFormat.replace(/[^\\\-/.]/g, '9');
 	}
 
-	props: Props;
-
 	handleChange = (momentValue?: Moment) => {
 		if (this.props.onChange) this.props.onChange(transformMomentToLocalDate(momentValue));
 	};
@@ -38,6 +36,8 @@ export default class DatePickerLocalDate extends Component<Props> {
 		this.handleChange(data ? moment(data, this._dateFormat) : null);
 		if (this.props.onChangeRaw) this.props.onChangeRaw(data);
 	};
+
+	props: Props;
 
 	render() {
 		const {

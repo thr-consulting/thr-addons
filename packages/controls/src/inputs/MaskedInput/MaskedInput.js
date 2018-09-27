@@ -111,9 +111,6 @@ export default class MaskedInput extends Component<Props> {
 		}
 	}
 
-	props: Props;
-	_input: ?HTMLInputElement;
-
 	handleComplete = (ev: Object) => {
 		if (this.props.onChange) this.props.onChange(ev.target.value);
 	};
@@ -125,6 +122,10 @@ export default class MaskedInput extends Component<Props> {
 	handleIncomplete = (ev: Object) => {
 		if (this.props.onChange) this.props.onChange(ev.target.value);
 	};
+
+	props: Props;
+
+	_input: ?HTMLInputElement;
 
 	render() {
 		const {value, onChange, onBlur, mask, ...rest} = this.props;

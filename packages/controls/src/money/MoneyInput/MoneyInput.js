@@ -84,8 +84,6 @@ export default class MoneyInput extends Component<Props> {
 		delete this._input;
 	}
 
-	props: Props;
-
 	handleChange = value => {
 		d(`handleChange: ${value}`);
 		if (this.props.onChange) {
@@ -110,6 +108,8 @@ export default class MoneyInput extends Component<Props> {
 			/>
 		);
 	};
+
+	props: Props;
 
 	render() {
 		const {value, onChange, onBlur, onDetailsClick, detailsIcon, locked, ...rest} = this.props;

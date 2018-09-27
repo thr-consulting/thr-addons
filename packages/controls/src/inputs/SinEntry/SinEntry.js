@@ -41,8 +41,6 @@ export default class SinEntry extends Component<Props, State> {
 		showEditor: false,
 	};
 
-	props: Props;
-
 	handleEdit = () => {
 		this.setState({showEditor: true});
 	};
@@ -87,6 +85,8 @@ export default class SinEntry extends Component<Props, State> {
 			</Input>
 		</Form.Field>
 	);
+
+	props: Props;
 
 	render() {
 		if (this.state.showEditor) {

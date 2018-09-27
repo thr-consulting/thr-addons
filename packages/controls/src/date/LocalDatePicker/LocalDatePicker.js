@@ -34,8 +34,6 @@ type Props = {
  * @property onCurrentDateChange
  */
 export default class LocalDatePicker extends Component<Props> {
-	props: Props;
-
 	handleChange = (date: Date) => {
 		if (this.props.onChange) this.props.onChange(date ? transformDateToLocalDate(date) : null);
 	};
@@ -47,6 +45,8 @@ export default class LocalDatePicker extends Component<Props> {
 	handleCurrentDateChange = (date: Date) => {
 		if (this.props.onCurrentDateChange) this.props.onCurrentDateChange(date ? transformDateToLocalDate(date) : null);
 	};
+
+	props: Props;
 
 	render() {
 		const {
@@ -86,11 +86,13 @@ export default class LocalDatePicker extends Component<Props> {
 		if (onChange) newProps.onChange = this.handleChange;
 		if (onSelect) newProps.onSelect = this.handleSelect;
 
-		return (<DTPicker
-			{...newProps}
-			time={false}
-			className={extraClasses}
-			{...omit(rest, ['time'])}
-		/>);
+		return (
+			<DTPicker
+				{...newProps}
+				time={false}
+				className={extraClasses}
+				{...omit(rest, ['time'])}
+			/>
+		);
 	}
 }

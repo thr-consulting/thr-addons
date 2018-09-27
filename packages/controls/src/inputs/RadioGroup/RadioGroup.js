@@ -31,11 +31,11 @@ export default class RadioGroup extends Component<Props> {
 		value: null,
 	};
 
-	props: Props;
-
 	handleChange = (e: Event, {value}: {value: any}) => {
 		if (this.props.onChange) this.props.onChange(value);
 	};
+
+	props: Props;
 
 	render() {
 		const {children, value, onChange, onBlur, ...rest} = this.props;
