@@ -1,0 +1,57 @@
+{
+  "name": "@thx/dialog",
+  "version": "7.1.1",
+  "description": "Dialog Addon that slides up from the bottom of the screen",
+  "main": "lib/index.js",
+  "author": "Mike Kornelson <mike@durbn.net>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thr-consulting/thr-addons.git"
+  },
+  "keywords": [
+    "react",
+    "controls",
+    "dialog",
+    "dock"
+  ],
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "npm run clean:lib && npm run clean:dist && npm run build:lib && npm run build:dist && npm run assets:dist",
+    "build:lib": "NODE_ENV=production babel src --out-dir lib",
+    "build:dist": "NODE_ENV=production webpack",
+    "clean:lib": "rimraf ./lib/*",
+    "clean:dist": "rimraf ./dist/*",
+    "assets:dist": "rimraf ./dist/*.js && cpy dist/* lib/",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage && cat coverage/lcov.info | coverbadge -o coverage/coverage.svg",
+    "flow": "flow",
+    "lint": "eslint *.js src",
+    "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
+    "docs:md": "NODE_ENV=development jsdoc2md -c jsdoc.json --source \" \" --separators -g table --plugin dmd-clear > docs/README.md",
+    "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
+  },
+  "peerDependencies": {
+    "react": "^16.x",
+    "react-dom": "^16.x",
+    "semantic-ui-react": "^0.x"
+  },
+  "dependencies": {
+    "debug": "^4.0.1",
+    "prop-types": "^15.6.2",
+    "react-dock": "^0.2.4"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/tests/setupTests.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
+  }
+}

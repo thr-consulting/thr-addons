@@ -1,0 +1,12 @@
+{
+	"presets": [
+		["@imperium/babel-preset-imperium", {"react": true, "forceModules": true}]
+	],
+	"env": {
+		"test": {
+			"presets": [
+				["@imperium/babel-preset-imperium", {"react": true, "forceModules": true}]
+			]
+		}
+	}
+}

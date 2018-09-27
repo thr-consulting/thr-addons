@@ -49,9 +49,13 @@
     "enzyme-to-json": "^3.3.4",
     "react-test-renderer": "^16.5.2",
     "identity-obj-proxy": "^3.0.0",
+    "jest-mock-random": "^1.0.2",
 
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "react-router-dom": "^4.3.1",
 
     "semantic-ui-react": "^0.82.5",
     "react-formal": "0.25.4",
@@ -61,6 +65,9 @@
     "lerna": "^3.4.0",
     "cpy-cli": "^2.0.0",
     "precommit-hook-eslint": "^3.0.0",
+
+    "mongodb": "^3.1.6",
+    "mongodb-memory-server": "^2.3.0",
 
     "babel-loader": "^8.0.2",
     "style-loader": "^0.23.0",
