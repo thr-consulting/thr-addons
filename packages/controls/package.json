@@ -1,6 +1,6 @@
 {
   "name": "@thx/controls",
-  "version": "7.1.6",
+  "version": "8.0.0",
   "description": "A collection of components designed with SemanticUI.",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
@@ -40,25 +40,25 @@
     "semantic-ui-react": "^0.x"
   },
   "dependencies": {
-    "@thx/money": "^7.1.7",
-    "@thx/tproptypes": "^7.1.1",
-    "@thx/date": "^7.1.3",
-    "@thx/tschemas": "^7.1.1",
+    "@thx/date": "^8.0.0",
+    "@thx/money": "^8.0.0",
+    "@thx/tproptypes": "^8.0.0",
+    "@thx/tschemas": "^8.0.0",
     "debug": "^4.0.1",
     "formik": "^1.3.0",
     "inputmask": "^4.0.0",
-    "js-money": "^0.6.3",
     "js-joda": "^1.9.2",
+    "js-money": "^0.6.3",
     "moment": "^2.22.2",
     "prop-types": "^15.6.0",
     "react-datepicker": "^1.5.0",
-    "react-widgets": "^4.3.2",
-    "react-widgets-moment": "^4.0.15",
     "react-input-message": "^0.15.1",
     "react-responsive": "^5.0.0",
     "react-text-mask": "^5.4.1",
-    "text-mask-addons": "^3.7.2",
-    "string-hash": "^1.1.3"
+    "react-widgets": "^4.3.2",
+    "react-widgets-moment": "^4.0.15",
+    "string-hash": "^1.1.3",
+    "text-mask-addons": "^3.7.2"
   },
   "jest": {
     "setupFiles": [
