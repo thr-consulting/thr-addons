@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "debug": "^4.0.1",
-    "js-joda": "^1.9.1",
+    "js-joda": "^1.9.2",
     "moment": "^2.22.2"
   }
 }

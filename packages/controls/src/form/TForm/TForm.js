@@ -60,7 +60,7 @@ export default class TForm extends Component<Props> {
 				if (isEmpty(warnings)) return null;
 				return (
 					<Message warning>
-						<Message.Header>Please check the following fields:</Message.Header>
+						<Message.Header>Some fields are not complete:</Message.Header>
 						<ul>
 							{Object.keys(warnings).map(warning => (
 								<li key={warning}>{warnings[warning]}</li>

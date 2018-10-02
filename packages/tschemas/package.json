@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "escape-string-regexp": "^1.0.5",
-    "js-joda": "^1.9.1",
+    "js-joda": "^1.9.2",
     "js-money": "^0.6.3",
     "moment": "^2.22.2",
     "social-insurance-number": "^0.0.2",

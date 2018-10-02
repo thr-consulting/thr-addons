@@ -28,7 +28,7 @@
     "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
   },
   "dependencies": {
-    "js-joda": "^1.9.1",
+    "js-joda": "^1.9.2",
     "js-money": "^0.6.3",
     "prop-types": "^15.6.2"
   },

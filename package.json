@@ -28,19 +28,19 @@
   },
   "devDependencies": {
     "@imperium/babel-preset-imperium": "^0.0.2",
-    "@babel/core": "^7.1.0",
-    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.2",
+    "@babel/cli": "^7.1.2",
     "babel-core": "^7.0.0-bridge.0",
     "@babel/register": "^7.0.0",
 
     "@imperium/eslint-config-imperium": "^0.0.2",
-    "eslint": "^5.6.0",
+    "eslint": "^5.6.1",
 
     "graphql": "^0.13.2",
-    "graphql-tag": "^2.9.2",
+    "graphql-tag": "^2.10.0",
     "graphql-tools": "^4.0.0",
 
-    "flow-bin": "^0.81.0",
+    "flow-bin": "^0.82.0",
 
     "jest": "^23.6.0",
     "babel-jest": "^23.6.0",
@@ -67,16 +67,16 @@
     "precommit-hook-eslint": "^3.0.0",
 
     "mongodb": "^3.1.6",
-    "mongodb-memory-server": "^2.3.0",
+    "mongodb-memory-server": "^2.4.2",
 
-    "babel-loader": "^8.0.2",
+    "babel-loader": "^8.0.4",
     "style-loader": "^0.23.0",
     "url-loader": "^1.1.1",
-    "css-loader": "^0.28.9",
+    "css-loader": "^1.0.0",
     "mini-css-extract-plugin": "^0.4.3",
-    "file-loader": "^1.1.9",
+    "file-loader": "^2.0.0",
     "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.1",
+    "webpack-cli": "^3.1.2",
 
     "jsdoc": "^3.5.5",
     "jsdoc-babel": "^0.5.0",
