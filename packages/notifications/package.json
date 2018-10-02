@@ -18,31 +18,22 @@
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm run clean:lib && npm run build:lib",
-    "build:lib": "babel src --out-dir lib",
+    "build:lib": "NODE_ENV=production babel src --out-dir lib",
     "clean:lib": "rimraf ./lib/*",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage && cat coverage/lcov.info | coverbadge -o coverage/coverage.svg",
     "flow": "flow",
     "lint": "eslint *.js src",
-    "docs": "jsdoc -c jsdoc.json",
-    "docs:md": "jsdoc2md -c jsdoc.json --source \" \" --separators -g table --plugin dmd-clear > docs/README.md",
-    "docs:explain": "jsdoc -X -c jsdoc.json"
-  },
-  "devDependencies": {
-    "babel-plugin-flow-react-proptypes": "^24.0.1",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "enzyme-to-json": "^3.3.1",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-test-renderer": "^16.4.0"
+    "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
+    "docs:md": "NODE_ENV=development jsdoc2md -c jsdoc.json --source \" \" --separators -g table --plugin dmd-clear > docs/README.md",
+    "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
   },
   "peerDependencies": {
-    "react": "^16.4.0"
+    "react": "^16.x"
   },
   "dependencies": {
-    "react-notification-system": "^0.2.16"
+    "react-notification-system": "^0.2.17"
   },
   "jest": {
     "setupFiles": [

@@ -1,2 +1,3 @@
+/* eslint-disable */
 // @flow
 declare export default { [key: string]: string }

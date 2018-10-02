@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {Map} from 'immutable';
-import {MessagesComponent} from '../src/Messages';
+import {MessagesComponent} from '../src/Messages/Messages';
 
 const messages = new Map({
 	default: {

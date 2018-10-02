@@ -4,7 +4,7 @@ import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 import {withState, Store} from '@thx/storybook-state';
 import {Form, Container} from 'semantic-ui-react';
-import SinEntry from '../src/SinEntry';
+import SinEntry from '../src/inputs/SinEntry';
 
 const stories = storiesOf('SinEntry', module);
 

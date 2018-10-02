@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1529354704013" clover="3.2.0">
-  <project timestamp="1529354704014" name="All files">
-    <metrics statements="25" coveredstatements="23" conditionals="21" coveredconditionals="14" methods="9" coveredmethods="8" elements="55" coveredelements="45" complexity="0" loc="25" ncloc="25" packages="2" files="4" classes="4">
-      <package name="src">
-        <metrics statements="24" coveredstatements="22" conditionals="21" coveredconditionals="14" methods="9" coveredmethods="8"/>
-        <file name="Dialog.js" path="/home/mike/dev/thr-addons/packages/dialog/src/Dialog.js">
+<coverage generated="1538080977654" clover="3.2.0">
+  <project timestamp="1538080977654" name="All files">
+    <metrics statements="25" coveredstatements="23" conditionals="21" coveredconditionals="14" methods="9" coveredmethods="8" elements="55" coveredelements="45" complexity="0" loc="25" ncloc="25" packages="4" files="7" classes="7">
+      <package name="src.Dialog">
+        <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <file name="Dialog.js" path="/home/mike/dev/thr-addons/packages/dialog/src/Dialog/Dialog.js">
           <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
           <line num="17" count="3" type="cond" truecount="2" falsecount="0"/>
           <line num="18" count="1" type="stmt"/>
@@ -13,7 +13,13 @@
           <line num="30" count="1" type="stmt"/>
           <line num="33" count="2" type="stmt"/>
         </file>
-        <file name="DialogButtons.js" path="/home/mike/dev/thr-addons/packages/dialog/src/DialogButtons.js">
+        <file name="index.js" path="/home/mike/dev/thr-addons/packages/dialog/src/Dialog/index.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+      </package>
+      <package name="src.DialogButtons">
+        <metrics statements="6" coveredstatements="6" conditionals="10" coveredconditionals="5" methods="1" coveredmethods="1"/>
+        <file name="DialogButtons.js" path="/home/mike/dev/thr-addons/packages/dialog/src/DialogButtons/DialogButtons.js">
           <metrics statements="6" coveredstatements="6" conditionals="10" coveredconditionals="5" methods="1" coveredmethods="1"/>
           <line num="26" count="1" type="cond" truecount="1" falsecount="1"/>
           <line num="27" count="1" type="cond" truecount="1" falsecount="1"/>
@@ -22,7 +28,13 @@
           <line num="32" count="1" type="cond" truecount="1" falsecount="1"/>
           <line num="46" count="1" type="stmt"/>
         </file>
-        <file name="DialogSystem.js" path="/home/mike/dev/thr-addons/packages/dialog/src/DialogSystem.js">
+        <file name="index.js" path="/home/mike/dev/thr-addons/packages/dialog/src/DialogButtons/index.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+      </package>
+      <package name="src.DialogSystem">
+        <metrics statements="12" coveredstatements="10" conditionals="7" coveredconditionals="5" methods="7" coveredmethods="6"/>
+        <file name="DialogSystem.js" path="/home/mike/dev/thr-addons/packages/dialog/src/DialogSystem/DialogSystem.js">
           <metrics statements="12" coveredstatements="10" conditionals="7" coveredconditionals="5" methods="7" coveredmethods="6"/>
           <line num="10" count="1" type="stmt"/>
           <line num="42" count="2" type="stmt"/>
@@ -32,10 +44,13 @@
           <line num="59" count="1" type="stmt"/>
           <line num="61" count="1" type="cond" truecount="1" falsecount="1"/>
           <line num="62" count="0" type="stmt"/>
-          <line num="81" count="1" type="stmt"/>
-          <line num="90" count="0" type="stmt"/>
-          <line num="97" count="3" type="stmt"/>
-          <line num="108" count="3" type="stmt"/>
+          <line num="78" count="1" type="stmt"/>
+          <line num="87" count="0" type="stmt"/>
+          <line num="98" count="3" type="stmt"/>
+          <line num="109" count="3" type="stmt"/>
+        </file>
+        <file name="index.js" path="/home/mike/dev/thr-addons/packages/dialog/src/DialogSystem/index.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         </file>
       </package>
       <package name="tests">

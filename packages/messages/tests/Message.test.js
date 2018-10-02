@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {MessageComponent} from '../src/Message';
+import {MessageComponent} from '../src/Message/Message';
 
 const message = {
 	id: 'myid',

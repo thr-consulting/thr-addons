@@ -1,6 +1,6 @@
 // @flow
 
-/* eslint-disable react/no-children-prop */
+/* eslint-disable react/no-children-prop, react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Route, Redirect} from 'react-router-dom';

@@ -1,5 +1,6 @@
 // @flow
 
+/* eslint-disable react/forbid-prop-types */
 import React, {Component} from 'react';
 import type {Element} from 'react';
 import PropTypes from 'prop-types';
@@ -43,13 +44,13 @@ export default class RouteDirector extends Component<Props> {
 		if (this.props.onRouteChange) this.props.onRouteChange();
 	}
 
-	props: Props;
-
 	doRender = (props: any, route: RouteType) => {
 		d(`Rendering route: ${route.path}`);
 		// $FlowFixMe
 		return <route.layout route={route} {...props}/>;
 	};
+
+	props: Props;
 
 	render() {
 		d('Rendering RouteDirector');

@@ -4,8 +4,8 @@ import {storiesOf} from '@storybook/react';
 import {withInfo} from '@storybook/addon-info';
 import {action} from '@storybook/addon-actions';
 import {Container, Form, Button} from 'semantic-ui-react';
-import TForm from '../src/TForm';
-import MaskedInput from '../src/MaskedInput';
+import TForm from '../src/form/TForm';
+import MaskedInput from '../src/inputs/MaskedInput';
 
 const stories = storiesOf('TForm', module);
 
@@ -27,12 +27,52 @@ function renderForm({handleChange, handleSubmit, values}) {
 	);
 }
 
+function renderWarningForm({values, handleChange, handleBlur, handleSubmit, renderErrors, renderWarnings, hasErrors, hasWarnings, fieldError}) {
+	return (
+		<Form onSubmit={handleSubmit} error={hasErrors()} warning={hasWarnings()}>
+			<Form.Field error={fieldError('text')}>
+				<label>This must contain text</label>
+				<input
+					name="text"
+					value={values.text}
+					onChange={handleChange}
+					onBlur={handleBlur}
+				/>
+			</Form.Field>
+			<Form.Button type="submit" onClick={handleSubmit}>Submit</Form.Button>
+			{renderErrors()}
+			{renderWarnings()}
+		</Form>
+	);
+}
+
+function validate(values, props) {
+	let warnings = {};
+	if (!values.text) {
+		warnings.text = 'There is a problem with the text field.';
+	}
+	return warnings;
+}
+
 const storyFn = () => (
 	<Container>
 		<TForm
 			initialValues={{text: ''}}
 			render={renderForm}
 			onSubmit={action('onSubmit')}
+		/>
+	</Container>
+);
+
+const warningStoryFn = () => (
+	<Container>
+		<TForm
+			validate={validate}
+			render={renderWarningForm}
+			loading={false}
+			onSubmit={action('onSubmit')}
+			numFields={1}
+			initialValues={{text: ''}}
 		/>
 	</Container>
 );
@@ -85,15 +125,17 @@ function renderForm({handleChange, handleSubmit, values}) {
 \`\`\`
 `;
 
+const info = {
+	inline: true,
+	text,
+	propTablesExclude: [Form, Form.Field, Container],
+};
+
 stories.add(
 	'default',
 	storyFn,
 	{
-		info: {
-			inline: true,
-			text,
-			propTablesExclude: [Form, Form.Field, Container],
-		},
+		info,
 	},
 );
 
@@ -101,10 +143,14 @@ stories.add(
 	'outsideSubmit',
 	outsideFn,
 	{
-		info: {
-			inline: true,
-			text,
-			propTablesExclude: [Form, Form.Field, Container],
-		},
+		info,
 	},
+);
+
+stories.add(
+	'warnings',
+	warningStoryFn,
+	{
+		info,
+	}
 );

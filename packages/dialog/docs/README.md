@@ -81,3 +81,18 @@ Wrap your app with a DialogSystem instance to make dialogs available. You only n
 
 * * *
 
+<a name="DialogSystem.showDialog"></a>
+
+### *DialogSystem*.showDialog(component, options)
+**Tag**: Context  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| component | <code>Element</code> | The Dialog component to display. |
+| options | <code>object</code> | Custom React Dock props. |
+
+Shows a dialog. This method is available via the React Context.
+
+
+* * *
+

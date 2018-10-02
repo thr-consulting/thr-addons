@@ -1,33 +1,35 @@
-import path from 'path';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 	entry: {
-		dialogButtons: './src/dialogButtons.css',
-		dialogSystem: './src/dialogSystem.css',
+		dialogButtons: './src/DialogButtons/dialogButtons.css',
+		dialogSystem: './src/DialogSystem/dialogSystem.css',
 	},
+	mode: process.env.NODE_ENV,
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: '[name].js',
-		library: 'dialog',
+		// filename: '[name].js',
+		// library: 'dialog',
 		libraryTarget: 'umd',
 	},
 	module: {
 		rules: [
 			{
 				test: /.css$/,
-				use: ExtractTextPlugin.extract({
-					fallback: 'style-loader',
-					use: ['css-loader'],
-				}),
+				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+					},
+					'css-loader',
+				],
 			},
 		],
 	},
 	plugins: [
-		new ExtractTextPlugin({
+		new MiniCssExtractPlugin({
 			filename: '[name].css',
-			disable: false,
-			allChunks: true,
+			chunkFilename: '[id].css',
 		}),
 	],
 };

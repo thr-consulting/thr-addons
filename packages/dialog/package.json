@@ -18,7 +18,7 @@
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm run clean:lib && npm run clean:dist && npm run build:lib && npm run build:dist && npm run assets:dist",
-    "build:lib": "babel src --out-dir lib",
+    "build:lib": "NODE_ENV=production babel src --out-dir lib",
     "build:dist": "NODE_ENV=production webpack",
     "clean:lib": "rimraf ./lib/*",
     "clean:dist": "rimraf ./dist/*",
@@ -28,36 +28,18 @@
     "test:coverage": "jest --coverage && cat coverage/lcov.info | coverbadge -o coverage/coverage.svg",
     "flow": "flow",
     "lint": "eslint *.js src",
-    "docs": "jsdoc -c jsdoc.json",
-    "docs:md": "jsdoc2md -c jsdoc.json --source \" \" --separators -g table --plugin dmd-clear > docs/README.md",
-    "docs:explain": "jsdoc -X -c jsdoc.json"
-  },
-  "devDependencies": {
-    "babel-loader": "^8.0.0-beta.2",
-    "babel-plugin-flow-react-proptypes": "^24.0.1",
-    "cpy-cli": "^2.0.0",
-    "css-loader": "^0.28.9",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "enzyme-to-json": "^3.3.1",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "identity-obj-proxy": "^3.0.0",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-test-renderer": "^16.4.0",
-    "rimraf": "^2.6.2",
-    "semantic-ui-react": "^0.81.1",
-    "style-loader": "^0.21.0",
-    "webpack": "^3.12.0"
+    "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
+    "docs:md": "NODE_ENV=development jsdoc2md -c jsdoc.json --source \" \" --separators -g table --plugin dmd-clear > docs/README.md",
+    "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
   },
   "peerDependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "react": "^16.x",
+    "react-dom": "^16.x",
     "semantic-ui-react": "^0.x"
   },
   "dependencies": {
-    "debug": "^3.1.0",
-    "prop-types": "^15.6.0",
+    "debug": "^4.0.1",
+    "prop-types": "^15.6.2",
     "react-dock": "^0.2.4"
   },
   "jest": {
