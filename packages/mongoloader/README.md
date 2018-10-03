@@ -1,6 +1,9 @@
-# @thx/mongoloader
+---
+sidebar_label: Mongoloader
+title: Mongoloader
+---
 
-![](coverage/coverage.svg)
+[![](/mongoloader/controls.svg)](/coverage/mongoloader/lcov-report/index.html)
 
 MongoLoader is a class that uses Facebook's DataLoader to access Mongo. Supports batching and caching.
 
@@ -8,7 +11,3 @@ MongoLoader is a class that uses Facebook's DataLoader to access Mongo. Supports
 ```
 yarn add @thx/mongoloader
 ```
-
-## Documentation
-
-You can find API documentation [here](/docs).

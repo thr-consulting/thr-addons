@@ -1,6 +1,9 @@
-# @thx/router
+---
+sidebar_label: Router
+title: Router
+---
 
-![](coverage/coverage.svg)
+[![](/coverage/router.svg)](/coverage/router/lcov-report/index.html)
 
 React router enhancements.
 
@@ -8,7 +11,3 @@ React router enhancements.
 ```
 yarn add @thx/router
 ```
-
-## Documentation
-
-You can find API documentation [here](/docs).

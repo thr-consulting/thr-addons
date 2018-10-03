@@ -1,6 +1,9 @@
-# @thx/dialog
+---
+sidebar_label: Dialog
+title: Dialog
+---
 
-![](coverage/coverage.svg)
+[![](/coverage/dialog.svg)](/coverage/dialog/lcov-report/index.html)
 
 Dialog Addon that slides up from the bottom of the screen
 
@@ -8,7 +11,3 @@ Dialog Addon that slides up from the bottom of the screen
 ```
 yarn add @thx/dialog
 ```
-
-## Documentation
-
-You can find API documentation [here](/docs).

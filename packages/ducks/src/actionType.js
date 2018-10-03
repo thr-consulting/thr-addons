@@ -1,3 +1,8 @@
+/**
+ * Action Type
+ * @param prefix
+ * @return {{}}
+ */
 export const actionType = prefix => new Proxy({}, {
 	get: (target, name) => `${prefix}_${name}`,
 });
