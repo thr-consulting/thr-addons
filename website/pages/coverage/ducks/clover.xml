@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1538603884414" clover="3.2.0">
-  <project timestamp="1538603884414" name="All files">
+<coverage generated="1538663605971" clover="3.2.0">
+  <project timestamp="1538663605971" name="All files">
     <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6" elements="12" coveredelements="12" complexity="0" loc="6" ncloc="6" packages="1" files="2" classes="2">
       <file name="actionType.js" path="/home/mike/dev/thr-addons/packages/ducks/src/actionType.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>

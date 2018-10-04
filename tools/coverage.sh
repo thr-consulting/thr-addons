@@ -13,3 +13,5 @@ find $COVERAGE_PAGES/$1/lcov-report -type f -print0 | xargs -0 sed -i 's/src="[.
 find $COVERAGE_PAGES/$1/lcov-report -type f -print0 | xargs -0 sed -i 's/src="[./]*sorter\.js"/src="\/lcov\/sorter\.js"/g'
 find $COVERAGE_PAGES/$1/lcov-report -type f -print0 | xargs -0 sed -i 's/[./]*sort-arrow-sprite\.png/\/lcov\/sort-arrow-sprite\.png/g'
 
+find $COVERAGE_PAGES -name "*.js" -type f -delete
+find $COVERAGE_PAGES -name "*.css" -type f -delete
