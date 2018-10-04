@@ -1,6 +1,9 @@
-# @thx/money
+---
+sidebar_label: Money
+title: Money
+---
 
-![](coverage/coverage.svg)
+[![](/coverage/money.svg)](/coverage/money/lcov-report/index.html)
 
 Money utils
 
@@ -8,7 +11,3 @@ Money utils
 ```
 yarn add @thx/money
 ```
-
-## Documentation
-
-You can find API documentation [here](/docs).

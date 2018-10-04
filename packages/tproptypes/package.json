@@ -20,11 +20,11 @@
     "clean:lib": "rimraf ./lib/*",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage && cat coverage/lcov.info | coverbadge -o coverage/coverage.svg",
+    "test:coverage": "../../tools/coverage.sh tproptypes",
     "flow": "flow",
-    "lint": "eslint *.js src",
+    "lint": "eslint src --ext .js",
     "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
-    "docs:md": "NODE_ENV=development jsdoc2md -c jsdoc.json --source \" \" --separators -g table --plugin dmd-clear > docs/README.md",
+    "docs:md": "../../tools/jsdocmd.sh tproptypes",
     "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
   },
   "dependencies": {

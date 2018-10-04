@@ -1,6 +1,9 @@
-# @thx/utils
+---
+sidebar_label: Date
+title: Date
+---
 
-![](coverage/coverage.svg)
+[![](/coverage/date.svg)](/coverage/date/lcov-report/index.html)
 
 Date utilities
 
@@ -8,7 +11,3 @@ Date utilities
 ```
 yarn add @thx/date
 ```
-
-## Documentation
-
-You can find API documentation [here](/docs).

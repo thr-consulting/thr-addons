@@ -1,6 +1,9 @@
-# @thx/tproptypes
+---
+sidebar_label: TPropTypes
+title: TPropTypes
+---
 
-![](coverage/coverage.svg)
+![](/coverage/tproptypes.svg)
 
 Useful React PropType shortcuts
 
@@ -8,7 +11,3 @@ Useful React PropType shortcuts
 ```
 yarn add @thx/tproptypes
 ```
-
-## Documentation
-
-You can find API documentation [here](/docs).

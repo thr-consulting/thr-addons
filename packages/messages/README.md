@@ -1,6 +1,9 @@
-# @thx/messages
+---
+sidebar_label: Messages
+title: Messages
+---
 
-![](coverage/coverage.svg)
+[![](/coverage/messages.svg)](/coverage/messages/lcov-report/index.html)
 
 Displays banner messages in the page.
 
@@ -8,7 +11,3 @@ Displays banner messages in the page.
 ```
 yarn add @thx/messages
 ```
-
-## Documentation
-
-You can find API documentation [here](/docs).

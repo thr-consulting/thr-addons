@@ -1,6 +1,9 @@
-# @thx/notifications
+---
+sidebar_label: Notifications
+title: Notifications
+---
 
-![](coverage/coverage.svg)
+[![](/notifications/controls.svg)](/coverage/notifications/lcov-report/index.html)
 
 Notifications Addon that displays growl-like messages.
 
@@ -8,7 +11,3 @@ Notifications Addon that displays growl-like messages.
 ```
 yarn add @thx/notifications
 ```
-
-## Documentation
-
-You can find API documentation [here](/docs).

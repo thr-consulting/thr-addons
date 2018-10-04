@@ -1,14 +1,13 @@
-# @thx/ducks
+---
+sidebar_label: Ducks
+title: Ducks
+---
 
-![](coverage/coverage.svg)
+[![](/coverage/ducks.svg)](/coverage/ducks/lcov-report/index.html)
 
-Helpers for Redux ducks layout
+Helpers for Redux
 
 ## Install
 ```
 yarn install @thx/ducks
 ```
-
-## Documentation
-
-You can find API documentation [here](/docs).
