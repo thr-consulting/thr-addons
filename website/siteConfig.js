@@ -23,8 +23,8 @@ const users = [
 const siteConfig = {
   title: 'THR Addons', // Title for your website.
   tagline: 'Custom Code and Components',
-  url: 'https://github.com/thr-consulting/thr-addons', // Your website URL
-  baseUrl: '/', // Base URL for your project */
+  url: 'https://thr-consulting.github.io', // Your website URL
+  baseUrl: '/thr-addons/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
