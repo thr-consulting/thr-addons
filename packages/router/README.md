@@ -3,7 +3,7 @@ sidebar_label: Router
 title: Router
 ---
 
-[![](/coverage/router.svg)](/coverage/router/lcov-report/index.html)
+[![](assets/coverage/router/coverage.svg)](assets/coverage/router/index.html)
 
 React router enhancements.
 

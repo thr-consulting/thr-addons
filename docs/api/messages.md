@@ -3,7 +3,7 @@ sidebar_label: Messages
 title: Messages
 ---
 
-[![](/coverage/messages.svg)](/coverage/messages/lcov-report/index.html)
+[![](assets/coverage/messages/coverage.svg)](assets/coverage/messages/index.html)
 
 Displays banner messages in the page.
 

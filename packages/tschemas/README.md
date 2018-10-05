@@ -3,7 +3,7 @@ sidebar_label: TSchemas
 title: TSchemas
 ---
 
-[![](/coverage/tschemas.svg)](/coverage/tschemas/lcov-report/index.html)
+[![](assets/coverage/tschemas/coverage.svg)](assets/coverage/tschemas/index.html)
 
 Useful yup schema shortcuts
 

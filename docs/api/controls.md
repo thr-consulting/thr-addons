@@ -3,7 +3,7 @@ sidebar_label: Controls
 title: Controls
 ---
 
-[![](/coverage/controls.svg)](/coverage/controls/lcov-report/index.html)
+[![](assets/coverage/controls/coverage.svg)](assets/coverage/controls/index.html)
 
 A collection of form components designed with Semantic UI. They all adhere to the policy of having a value prop and an onChange() prop.
 
@@ -11,6 +11,10 @@ A collection of form components designed with Semantic UI. They all adhere to th
 ```
 yarn add @thx/controls
 ```
+
+## Storybook
+
+You can view these components in action in [Storybook](assets/storybook/controls/frame.html).
 <a name="DatePickerEpochDate"></a>
 
 ## DatePickerEpochDate

@@ -3,7 +3,7 @@ sidebar_label: Mongoloader
 title: Mongoloader
 ---
 
-[![](/mongoloader/controls.svg)](/coverage/mongoloader/lcov-report/index.html)
+[![](assets/coverage/mongoloader/coverage.svg)](assets/coverage/mongoloader/index.html)
 
 MongoLoader is a class that uses Facebook's DataLoader to access Mongo. Supports batching and caching.
 

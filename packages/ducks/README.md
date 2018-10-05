@@ -3,7 +3,7 @@ sidebar_label: Ducks
 title: Ducks
 ---
 
-[![](/coverage/ducks.svg)](/coverage/ducks/lcov-report/index.html)
+[![](assets/coverage/ducks/coverage.svg)](assets/coverage/ducks/index.html)
 
 Helpers for Redux
 

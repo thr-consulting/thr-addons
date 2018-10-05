@@ -31,7 +31,7 @@
     "docs:md": "../../tools/jsdocmd.sh controls",
     "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "docs:storybook": "build-storybook -c .storybook -o docs/storybook"
+    "docs:storybook": "../../tools/storybook.sh controls"
   },
   "peerDependencies": {
     "react": "^16.x",

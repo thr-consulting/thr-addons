@@ -3,7 +3,7 @@ sidebar_label: Money
 title: Money
 ---
 
-[![](/coverage/money.svg)](/coverage/money/lcov-report/index.html)
+[![](assets/coverage/money/coverage.svg)](assets/coverage/money/index.html)
 
 Money utils
 

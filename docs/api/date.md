@@ -3,7 +3,7 @@ sidebar_label: Date
 title: Date
 ---
 
-[![](/coverage/date.svg)](/coverage/date/lcov-report/index.html)
+[![](assets/coverage/date/coverage.svg)](assets/coverage/date/index.html)
 
 Date utilities
 

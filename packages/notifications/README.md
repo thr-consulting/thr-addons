@@ -3,7 +3,7 @@ sidebar_label: Notifications
 title: Notifications
 ---
 
-[![](/notifications/controls.svg)](/coverage/notifications/lcov-report/index.html)
+[![](assets/coverage/notifications/coverage.svg)](assets/coverage/notifications/index.html)
 
 Notifications Addon that displays growl-like messages.
 

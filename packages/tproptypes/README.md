@@ -3,7 +3,7 @@ sidebar_label: TPropTypes
 title: TPropTypes
 ---
 
-![](/coverage/tproptypes.svg)
+[![](assets/coverage/tproptypes/coverage.svg)](assets/coverage/tproptypes/index.html)
 
 Useful React PropType shortcuts
 
