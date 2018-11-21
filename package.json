@@ -34,11 +34,11 @@
     "@imperium/eslint-config-imperium": "^0.0.2",
     "eslint": "^5.6.1",
 
-    "graphql": "^0.13.2",
+    "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "graphql-tools": "^4.0.0",
 
-    "flow-bin": "^0.82.0",
+    "flow-bin": "^0.86.0",
 
     "jest": "^23.6.0",
     "babel-jest": "^23.6.0",
@@ -55,8 +55,8 @@
     "redux": "^4.0.0",
     "react-router-dom": "^4.3.1",
 
-    "semantic-ui-react": "^0.82.5",
-    "react-formal": "0.25.4",
+    "semantic-ui-react": "^0.83.0",
+    "react-formal": "0.28.5",
 
     "semver": "^5.5.1",
     "rimraf": "^2.6.2",
@@ -92,7 +92,7 @@
     "@thx/storybook-state": "^1.5.0-thx.4"
   },
   "optionalDependencies": {
-    "fsevents": "1.2.4"
+    "fsevents": "2.0.1"
   },
   "pre-commit": [
     "lint",

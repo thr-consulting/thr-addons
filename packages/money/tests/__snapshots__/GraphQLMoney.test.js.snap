@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Money GraphQL should fail when an invalid variable is passed 1`] = `{"errors":[{"message":"Variable \\"$val\\" got invalid value {\\"something\\":\\"else\\"}; Expected type Money; Can't convert value to Money: [object Object].","locations":[{"line":1,"column":13}]}]}`;
+exports[`Money GraphQL should fail when an invalid variable is passed 1`] = `{"errors":[{"message":"Variable \\"$val\\" got invalid value { something: \\"else\\" }; Expected type Money; Can't convert value to Money: [object Object].","locations":[{"line":1,"column":13}]}]}`;
 
 exports[`Money GraphQL should validate literal float value 1`] = `{"data":{"money":{"amount":456,"currency":"CAD"}}}`;
 
