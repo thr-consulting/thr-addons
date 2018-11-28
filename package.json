@@ -38,7 +38,7 @@
     "graphql-tag": "^2.10.0",
     "graphql-tools": "^4.0.0",
 
-    "flow-bin": "^0.86.0",
+    "flow-bin": "^0.87.0",
 
     "jest": "^23.6.0",
     "babel-jest": "^23.6.0",
