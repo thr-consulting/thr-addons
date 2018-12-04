@@ -284,6 +284,91 @@ Groups React Semantic UI Radio elements into a single group
 
 * * *
 
+<a name="_default"></a>
+
+## _default
+Manages a connection to the Scriptel Omniscript server.
+
+
+* [_default](#_default)
+
+    * [.serverConnected(msg, socket)](#_default+serverConnected)
+
+    * [.deviceConnected(socket)](#_default+deviceConnected)
+
+
+
+* * *
+
+<a name="_default+serverConnected"></a>
+
+### *_default*.serverConnected(msg, socket)
+
+| Param |
+| --- |
+| msg | 
+| socket | 
+
+Called when connected to the server.
+
+
+* * *
+
+<a name="_default+deviceConnected"></a>
+
+### *_default*.deviceConnected(socket)
+
+| Param |
+| --- |
+| socket | 
+
+Called when connected to the device.
+
+
+* * *
+
+<a name="ScriptelInput"></a>
+
+## ScriptelInput
+A signature enter and display control.
+
+
+* [ScriptelInput](#ScriptelInput)
+
+    * [.renderSignature()](#ScriptelInput+renderSignature)
+
+    * [.renderEntering()](#ScriptelInput+renderEntering)
+
+    * [.renderBlank()](#ScriptelInput+renderBlank)
+
+
+
+* * *
+
+<a name="ScriptelInput+renderSignature"></a>
+
+### *scriptelInput*.renderSignature()
+Renders the signature image and a clear button.
+
+
+* * *
+
+<a name="ScriptelInput+renderEntering"></a>
+
+### *scriptelInput*.renderEntering()
+Renders a cancel button.
+
+
+* * *
+
+<a name="ScriptelInput+renderBlank"></a>
+
+### *scriptelInput*.renderBlank()
+Renders an enter button.
+
+
+* * *
+
 <a name="SinEntry"></a>
 
 ## SinEntry
@@ -366,6 +451,20 @@ A masked money input. Defaults to CAD funds.
 
 ## dateInit()
 Initializes the date-time pickers
+
+
+* * *
+
+<a name="withScriptel"></a>
+
+## withScriptel(WrappedComponent)
+
+| Param |
+| --- |
+| WrappedComponent | 
+
+A HoC that provides a connection to a Scriptel Omniscript device.
+You can only have a single connection open at a time.
 
 
 * * *
