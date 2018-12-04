@@ -13,6 +13,7 @@ import RadioGroup from './inputs/RadioGroup';
 import SForm from './form/SForm';
 import FieldMap from './form/FieldMap';
 import TForm from './form/TForm';
+import ScriptelInput from './inputs/ScriptelInput';
 
 // Menu
 import ResponsiveMenu from './menu/ResponsiveMenu';
@@ -42,6 +43,7 @@ export {
 	FieldMap,
 	Field,
 	TForm,
+	ScriptelInput,
 
 	// Menu
 	ResponsiveMenu,

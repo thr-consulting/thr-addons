@@ -57,7 +57,6 @@ export default class LocalMonthSelect extends Component<Props> {
 		}
 	};
 
-	props: Props;
 
 	render() {
 		const {value} = this.props;

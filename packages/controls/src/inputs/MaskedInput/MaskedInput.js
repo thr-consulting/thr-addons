@@ -123,7 +123,6 @@ export default class MaskedInput extends Component<Props> {
 		if (this.props.onChange) this.props.onChange(ev.target.value);
 	};
 
-	props: Props;
 
 	_input: ?HTMLInputElement;
 

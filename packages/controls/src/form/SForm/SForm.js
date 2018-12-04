@@ -46,7 +46,6 @@ export default class SForm extends Component<Props, State> {
 		if (this.props.onError) this.props.onError(e);
 	};
 
-	props: Props;
 
 	// submit() {
 	// 	if (this._form) this._form.submit();

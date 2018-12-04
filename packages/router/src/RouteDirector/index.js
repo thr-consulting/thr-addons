@@ -50,7 +50,6 @@ export default class RouteDirector extends Component<Props> {
 		return <route.layout route={route} {...props}/>;
 	};
 
-	props: Props;
 
 	render() {
 		d('Rendering RouteDirector');

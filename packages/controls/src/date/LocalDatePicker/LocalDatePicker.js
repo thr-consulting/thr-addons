@@ -46,7 +46,6 @@ export default class LocalDatePicker extends Component<Props> {
 		if (this.props.onCurrentDateChange) this.props.onCurrentDateChange(date ? transformDateToLocalDate(date) : null);
 	};
 
-	props: Props;
 
 	render() {
 		const {

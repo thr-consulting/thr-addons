@@ -35,7 +35,6 @@ export default class TForm extends Component<Props> {
 		if (this.props.getSubmitFn) this.props.getSubmitFn(this._submitForm);
 	}
 
-	props: Props;
 
 	renderForm = args => {
 		const {errors: warnings, touched, handleChange, setFieldValue, submitForm, ...rest} = args;

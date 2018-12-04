@@ -86,7 +86,6 @@ export default class SinEntry extends Component<Props, State> {
 		</Form.Field>
 	);
 
-	props: Props;
 
 	render() {
 		if (this.state.showEditor) {

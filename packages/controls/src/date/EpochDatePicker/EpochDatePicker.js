@@ -46,7 +46,6 @@ export default class EpochDatePicker extends Component<Props> {
 		if (this.props.onCurrentDateChange) this.props.onCurrentDateChange(date ? transformDateToEpochInteger(date) : null);
 	};
 
-	props: Props;
 
 	render() {
 		const {

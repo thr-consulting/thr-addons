@@ -14,7 +14,6 @@ export default class NotificationSystem extends Component<Props> {
 		registerNotificationSystem(this._notify);
 	}
 
-	props: Props;
 
 	_notify: ?HTMLElement;
 
