@@ -90,7 +90,6 @@ export default class DialogSystem extends Component<Props, State> {
 		});
 	};
 
-	props: Props;
 
 	_contentNode: ?HTMLElement;
 

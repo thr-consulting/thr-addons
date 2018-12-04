@@ -60,7 +60,6 @@ export default class MonthSelect extends Component<Props> {
 		}
 	};
 
-	props: Props;
 
 	render() {
 		const {value} = this.props;

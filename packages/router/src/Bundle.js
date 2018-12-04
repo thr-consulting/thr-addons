@@ -22,7 +22,6 @@ export default class Bundle extends Component<Props, State> {
 		}
 	}
 
-	props: Props;
 
 	load(props: Props) {
 		this.setState({

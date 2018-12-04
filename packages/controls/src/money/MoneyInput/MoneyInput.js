@@ -109,7 +109,6 @@ export default class MoneyInput extends Component<Props> {
 		);
 	};
 
-	props: Props;
 
 	render() {
 		const {value, onChange, onBlur, onDetailsClick, detailsIcon, locked, ...rest} = this.props;

@@ -37,8 +37,6 @@ export default class DatePickerLocalDate extends Component<Props> {
 		if (this.props.onChangeRaw) this.props.onChangeRaw(data);
 	};
 
-	props: Props;
-
 	render() {
 		const {
 			value,

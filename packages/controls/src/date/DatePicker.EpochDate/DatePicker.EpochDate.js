@@ -22,8 +22,6 @@ export default class DatePickerEpochDate extends Component<Props> {
 		if (this.props.onChange) this.props.onChange(transformLocalDateToEpochInteger(localDate));
 	};
 
-	props: Props;
-
 	render() {
 		const {
 			value,
