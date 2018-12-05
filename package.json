@@ -68,7 +68,7 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-formal": "0.28.5",
-    "react-redux": "^5.0.7",
+    "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-test-renderer": "^16.5.2",
     "redux": "^4.0.0",
