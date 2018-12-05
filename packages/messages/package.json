@@ -29,7 +29,7 @@
   },
   "peerDependencies": {
     "react": "^16.x",
-    "react-redux": "^5.x",
+    "react-redux": "^6.0.0",
     "redux": "^4.x",
     "semantic-ui-react": "^0.x"
   },
