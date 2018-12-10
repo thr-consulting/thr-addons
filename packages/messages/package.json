@@ -31,7 +31,7 @@
     "react": "^16.x",
     "react-redux": "^5.x",
     "redux": "^4.x",
-    "semantic-ui-react": "^0.x"
+    "semantic-ui-react": "^0.84.0"
   },
   "dependencies": {
     "immutable": "^3.8.2",
