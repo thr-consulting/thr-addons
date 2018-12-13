@@ -22,7 +22,7 @@
     "build:dist": "NODE_ENV=production webpack",
     "clean:lib": "rimraf ./lib/*",
     "clean:dist": "rimraf ./dist/*",
-    "assets:dist": "rimraf ./dist/*.js && cpy dist/* lib/",
+    "assets:dist": "rimraf ./dist/*.js && cpy dist/dialogButtons.css lib/DialogButtons && cpy dist/dialogSystem.css lib/DialogSystem",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "../../tools/coverage.sh dialog",
