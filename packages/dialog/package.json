@@ -1,6 +1,6 @@
 {
   "name": "@thx/dialog",
-  "version": "8.1.0",
+  "version": "8.1.1",
   "description": "Dialog Addon that slides up from the bottom of the screen",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
