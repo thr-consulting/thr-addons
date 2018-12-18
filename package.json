@@ -61,7 +61,7 @@
     "jsdoc-babel": "^0.5.0",
     "jsdoc-to-markdown": "^4.0.1",
     "lerna": "^3.4.0",
-    "mini-css-extract-plugin": "^0.4.3",
+    "mini-css-extract-plugin": "^0.5.0",
     "mongodb": "^3.1.6",
     "mongodb-memory-server": "^2.4.2",
     "precommit-hook-eslint": "^3.0.0",
