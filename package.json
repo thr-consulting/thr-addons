@@ -42,7 +42,7 @@
     "babel-loader": "^8.0.4",
     "coverbadge": "^0.5.5",
     "cpy-cli": "^2.0.0",
-    "css-loader": "^1.0.0",
+    "css-loader": "^2.0.0",
     "dmd-clear": "^0.1.2",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
