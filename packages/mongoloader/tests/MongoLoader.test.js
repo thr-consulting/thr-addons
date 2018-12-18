@@ -1,14 +1,11 @@
 /* eslint-disable global-require, no-underscore-dangle */
-import MongodbMemoryServer from 'mongodb-memory-server';
-import {MongoClient} from 'mongodb';
 import MongoLoader from '../src/MongoLoader';
 import testData from './TestData';
+import {mongoSetup, mongoTeardown} from './mongo';
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
+jest.setTimeout(60000);
 
-let mongod;
-let mongoConn;
-let db;
+let mongo;
 let mockColl;
 let ml;
 let mlWithErrors;
@@ -25,19 +22,14 @@ function mock(obj, fns) {
 }
 
 beforeAll(async () => {
-	mongod = new MongodbMemoryServer();
-	const port = await mongod.getPort();
-	const dbName = await mongod.getDbName();
-	mongoConn = await MongoClient.connect(`mongodb://localhost:${port}`, {
-		useNewUrlParser: true,
-	});
-	db = await mongoConn.db(dbName);
-	const coll = await db.collection('test');
+	mongo = await mongoSetup();
+
+	const coll = await mongo.db.collection('test');
 	testData.forEach(v => coll.insertOne(v));
 
-	ml = new MongoLoader(db, ctx, 'test');
+	ml = new MongoLoader(mongo.db, ctx, 'test');
 
-	mlWithErrors = new MongoLoader(db, ctx, 'test', {
+	mlWithErrors = new MongoLoader(mongo.db, ctx, 'test', {
 		errorFunc: id => new Error(`Document not found: ${id}`),
 	});
 
@@ -46,8 +38,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-	await mongoConn.close();
-	mongod.stop();
+	await mongoTeardown(mongo);
 });
 
 describe('MongoLoader', () => {
