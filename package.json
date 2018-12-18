@@ -29,7 +29,7 @@
     "@babel/core": "^7.1.2",
     "@babel/register": "^7.0.0",
     "@imperium/babel-preset-imperium": "^0.0.2",
-    "@imperium/eslint-config-imperium": "^0.0.2",
+    "@imperium/eslint-config-imperium": "^0.1.0",
     "@storybook/addon-actions": "^4.0.0-alpha.23",
     "@storybook/addon-console": "^1.0.4",
     "@storybook/addon-info": "^4.0.0-alpha.23",
