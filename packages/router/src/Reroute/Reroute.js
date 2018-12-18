@@ -5,8 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Route, Redirect} from 'react-router-dom';
 import debug from 'debug';
-import checkPermissions from './checkPermissions';
-import Unauthorized from './components/Unauthorized';
+import Unauthorized from '../components/Unauthorized';
 
 const d = debug('thx:router:Reroute');
 
@@ -17,12 +16,15 @@ type Props = {
 	permissions?: string | string[],
 	redirect?: boolean,
 	path: string,
+	checkPermissions?: () => {},
 };
 
-export default function Reroute({component, render, children, permissions, redirect, ...rest}: Props, context: any) {
+export default function Reroute({component, render, children, permissions, redirect, checkPermissions, ...rest}: Props, context: any) {
+	// Get auth from Redux state
 	const auth = context.store.getState().get('auth');
 	const isAuthenticated = !!auth.get('userId'); // Whether the user is logged in or not
-	const isAuthorized = permissions ? checkPermissions(auth, permissions) : true;
+	// If permissions aren't passed in, or a checkPermissions function isn't passed in, continue as a fully authorized user
+	const isAuthorized = (permissions && checkPermissions) ? checkPermissions(auth, permissions) : true;
 
 	d(`Permissions required: ${String(permissions)}, isAuthenticated: ${isAuthenticated}, isAuthorized: ${String(isAuthorized)}, willRedirect: ${String(redirect)}, Path: ${rest.path}`);
 
