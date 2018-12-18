@@ -1,6 +1,6 @@
 {
   "name": "@thx/controls",
-  "version": "8.1.0",
+  "version": "9.0.0",
   "description": "A collection of components designed with SemanticUI.",
   "main": "lib/index.js",
   "author": "Mike Kornelson <mike@durbn.net>",
@@ -40,10 +40,10 @@
     "semantic-ui-react": "^0.x"
   },
   "dependencies": {
-    "@thx/date": "^8.1.0",
-    "@thx/money": "^8.1.0",
-    "@thx/tproptypes": "^8.1.0",
-    "@thx/tschemas": "^8.1.0",
+    "@thx/date": "^9.0.0",
+    "@thx/money": "^9.0.0",
+    "@thx/tproptypes": "^9.0.0",
+    "@thx/tschemas": "^9.0.0",
     "debug": "^4.0.1",
     "formik": "^1.3.0",
     "inputmask": "^4.0.0",
