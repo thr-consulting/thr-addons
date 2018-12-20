@@ -48,7 +48,7 @@
     "enzyme-adapter-react-16": "^1.5.0",
     "enzyme-to-json": "^3.3.4",
     "eslint": "^5.6.1",
-    "file-loader": "^2.0.0",
+    "file-loader": "^3.0.0",
     "flow-bin": "^0.88.0",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
