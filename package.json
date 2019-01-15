@@ -50,7 +50,7 @@
     "eslint": "^5.6.1",
     "file-loader": "^2.0.0",
     "flow-bin": "^0.88.0",
-    "graphql": "^14.0.2",
+    "graphql": "^14.1.0",
     "graphql-tag": "^2.10.0",
     "graphql-tools": "^4.0.0",
     "identity-obj-proxy": "^3.0.0",
