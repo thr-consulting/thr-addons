@@ -28,7 +28,7 @@
     "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
   },
   "peerDependencies": {
-    "graphql": "^0.13.0"
+    "graphql": "^14.1.0"
   },
   "dependencies": {
     "debug": "^4.0.1",
