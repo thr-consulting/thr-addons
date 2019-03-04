@@ -28,7 +28,7 @@ type Props = {
 		layout?: Element<*>,
 	},
 	onRouteChange?: () => {},
-	checkPermissions?: () => {},
+	AuthContext: any,
 };
 
 /**
@@ -62,7 +62,14 @@ export default class RouteDirector extends Component<Props> {
 				{this.props.routes.map(route => {
 					// Apply default route options and then apply specific route options
 					const routeProps = Object.assign({}, defaultRouteProps, route);
-					return <Reroute key={routeProps.path} render={props => this.doRender(props, routeProps)} checkPermissions={this.props.checkPermissions} {...routeProps}/>;
+					return (
+						<Reroute
+							key={routeProps.path}
+							render={props => this.doRender(props, routeProps)}
+							AuthContext={this.props.AuthContext}
+							{...routeProps}
+						/>
+					);
 				})}
 			</SwitchWithError>
 		);
