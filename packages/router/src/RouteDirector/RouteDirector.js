@@ -28,7 +28,7 @@ type Props = {
 		layout?: Element<*>,
 	},
 	onRouteChange?: () => {},
-	AuthContext: any,
+	AuthContext?: any,
 };
 
 /**

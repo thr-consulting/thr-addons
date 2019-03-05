@@ -19,6 +19,15 @@ type Props = {
 };
 
 export default function Reroute({component, render, children, permissions, redirect, AuthContext, ...rest}: Props) {
+	// If an AuthContext is not supplied, we ignore permissions.
+	if (!AuthContext) {
+		d('No AuthContext provided, ignoring permissions');
+		if (component) return <Route {...rest} component={component}/>;
+		if (render) return <Route {...rest} render={render}/>;
+		if (children) return <Route {...rest} children={children}/>;
+		return null;
+	}
+
 	return (
 		<AuthContext.Consumer>
 			{({checkPermissions}) => {
