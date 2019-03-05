@@ -32,7 +32,7 @@
     "@imperium/eslint-config-imperium": "^0.0.2",
     "@storybook/addon-actions": "^5.0.0",
     "@storybook/addon-console": "^1.0.4",
-    "@storybook/addon-info": "^4.0.0-alpha.23",
+    "@storybook/addon-info": "^5.0.0",
     "@storybook/addon-knobs": "^4.0.0-alpha.23",
     "@storybook/addon-storyshots": "^4.0.0-alpha.23",
     "@storybook/react": "^4.0.0-alpha.23",
