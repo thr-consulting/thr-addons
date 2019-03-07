@@ -5,6 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Route, Redirect} from 'react-router-dom';
 import debug from 'debug';
+import {parse, stringify} from 'query-string';
 import Unauthorized from '../components/Unauthorized';
 
 const d = debug('thx:router:Reroute');
@@ -41,20 +42,26 @@ export default function Reroute({component, render, children, permissions, redir
 						<Route
 							{...rest}
 							render={props => {
+								// Render component if logged in and have permissions.
 								if (isAuthenticated && isAuthorized) {
 									if (component) return <Route {...rest} component={component}/>;
 									if (render) return <Route {...rest} render={render}/>;
 									if (children) return <Route {...rest} children={children}/>;
 									return null;
-								} // Render component if logged in and have permissions.
-								if (isAuthenticated && !isAuthorized) return <Unauthorized/>; // Render unauthorized if logged in but no permissions.
-								// eslint-disable-next-line react/prop-types
-								const from = props.location.pathname === '/signin' ? null : props.location;
+								}
+
+								// Render unauthorized if logged in but no permissions.
+								if (isAuthenticated && !isAuthorized) return <Unauthorized/>;
+
+								// Render nothing if we already display the login
+								const currentQuery = parse(props.location.search);
+								if (currentQuery[AuthContext.logInRouteKey]) return null;
+
 								return (
 									<Redirect
 										to={{
-											pathname: '/signin',
-											state: {from},
+											pathname: props.location.pathname,
+											search: stringify({...currentQuery, [AuthContext.logInRouteKey]: true}),
 										}}
 									/>
 								);
