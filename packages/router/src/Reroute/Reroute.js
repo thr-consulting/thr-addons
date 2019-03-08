@@ -17,71 +17,68 @@ type Props = {
 	permissions?: string | string[],
 	redirect?: boolean,
 	path: string,
+	AuthContextConsumer?: any,
 };
 
-export default function Reroute({component, render, children, permissions, redirect, AuthContext, ...rest}: Props) {
+export default function Reroute({component, render, children, permissions, redirect, checkPermissions, ...rest}: Props) {
 	// If an AuthContext is not supplied, we ignore permissions.
-	if (!AuthContext) {
-		d('No AuthContext provided, ignoring permissions');
+	if (!checkPermissions) {
+		d('No way to check permissions provided, ignoring permissions');
 		if (component) return <Route {...rest} component={component}/>;
 		if (render) return <Route {...rest} render={render}/>;
 		if (children) return <Route {...rest} children={children}/>;
 		return null;
 	}
 
-	return (
-		<AuthContext.Consumer>
-			{({checkPermissions}) => {
-				const {isAuthenticated, isAuthorized} = checkPermissions(permissions);
+	const {isAuthenticated, isAuthorized} = checkPermissions(permissions);
 
-				d(`Permissions required: ${String(permissions)}, isAuthenticated: ${isAuthenticated}, isAuthorized: ${String(isAuthorized)}, willRedirect: ${String(redirect)}, Path: ${rest.path}`);
+	d(`Permissions required: ${String(permissions)}, isAuthenticated: ${isAuthenticated}, isAuthorized: ${String(isAuthorized)}, willRedirect: ${String(redirect)}, Path: ${rest.path}`);
 
-				// If redirect is true
-				if (redirect) {
+	// If redirect is true
+	if (redirect) {
+		return (
+			<Route
+				{...rest}
+				render={props => {
+					// Render component if logged in and have permissions.
+					if (isAuthenticated && isAuthorized) {
+						if (component) return <Route {...rest} component={component}/>;
+						if (render) return <Route {...rest} render={render}/>;
+						if (children) return <Route {...rest} children={children}/>;
+						return null;
+					}
+
+					// Render unauthorized if logged in but no permissions.
+					if (isAuthenticated && !isAuthorized) return <Unauthorized/>;
+
+					// Render nothing if we already display the login
+					const currentQuery = parse(props.location.search);
+					if (currentQuery.login) {
+						return null; // This is what's displayed underneath the login screen
+					}
+
 					return (
-						<Route
-							{...rest}
-							render={props => {
-								// Render component if logged in and have permissions.
-								if (isAuthenticated && isAuthorized) {
-									if (component) return <Route {...rest} component={component}/>;
-									if (render) return <Route {...rest} render={render}/>;
-									if (children) return <Route {...rest} children={children}/>;
-									return null;
-								}
-
-								// Render unauthorized if logged in but no permissions.
-								if (isAuthenticated && !isAuthorized) return <Unauthorized/>;
-
-								// Render nothing if we already display the login
-								const currentQuery = parse(props.location.search);
-								if (currentQuery[AuthContext.logInRouteKey]) return null;
-
-								return (
-									<Redirect
-										to={{
-											pathname: props.location.pathname,
-											search: stringify({...currentQuery, [AuthContext.logInRouteKey]: true}),
-										}}
-									/>
-								);
+						<Redirect
+							to={{
+								pathname: props.location.pathname,
+								search: stringify({...currentQuery, login: true}),
 							}}
 						/>
 					);
-				}
+				}}
+			/>
+		);
+	}
 
-				// Not redirecting, just render null if not logged in or not authorized
-				if (permissions && isAuthenticated && isAuthorized && component) return <Route {...rest} component={component}/>;
-				if (permissions && isAuthenticated && isAuthorized && render) return <Route {...rest} render={render}/>;
-				if (permissions && isAuthenticated && isAuthorized && children) return <Route {...rest} children={children}/>;
-				if (permissions) return <Unauthorized/>;
-				if (component) return <Route {...rest} component={component}/>;
-				if (render) return <Route {...rest} render={render}/>;
-				if (children) return <Route {...rest} children={children}/>;
-				return null;
-			}}
-		</AuthContext.Consumer>
-	);
+	// Not redirecting, just render null if not logged in or not authorized
+	if (permissions && isAuthenticated && isAuthorized && component) return <Route {...rest} component={component}/>;
+	if (permissions && isAuthenticated && isAuthorized && render) return <Route {...rest} render={render}/>;
+	if (permissions && isAuthenticated && isAuthorized && children) return <Route {...rest} children={children}/>;
+	if (permissions) return <Unauthorized/>;
+	if (component) return <Route {...rest} component={component}/>;
+	if (render) return <Route {...rest} render={render}/>;
+	if (children) return <Route {...rest} children={children}/>;
+	return null;
 }
 
 Reroute.contextTypes = {
@@ -100,5 +97,5 @@ Reroute.propTypes = {
 		PropTypes.string,
 		PropTypes.arrayOf(PropTypes.string),
 	]),
-	AuthContext: PropTypes.any,
+	checkPermissions: PropTypes.func.isRequired,
 };
