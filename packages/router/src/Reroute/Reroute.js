@@ -5,6 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Route, Redirect} from 'react-router-dom';
 import debug from 'debug';
+import {parse, stringify} from 'query-string';
 import Unauthorized from '../components/Unauthorized';
 
 const d = debug('thx:router:Reroute');
@@ -16,15 +17,20 @@ type Props = {
 	permissions?: string | string[],
 	redirect?: boolean,
 	path: string,
-	checkPermissions?: () => {},
+	AuthContextConsumer?: any,
 };
 
-export default function Reroute({component, render, children, permissions, redirect, checkPermissions, ...rest}: Props, context: any) {
-	// Get auth from Redux state
-	const auth = context.store.getState().get('auth');
-	const isAuthenticated = !!auth.get('userId'); // Whether the user is logged in or not
-	// If permissions aren't passed in, or a checkPermissions function isn't passed in, continue as a fully authorized user
-	const isAuthorized = (permissions && checkPermissions) ? checkPermissions(auth, permissions) : true;
+export default function Reroute({component, render, children, permissions, redirect, checkPermissions, ...rest}: Props) {
+	// If an AuthContext is not supplied, we ignore permissions.
+	if (!checkPermissions) {
+		d('No way to check permissions provided, ignoring permissions');
+		if (component) return <Route {...rest} component={component}/>;
+		if (render) return <Route {...rest} render={render}/>;
+		if (children) return <Route {...rest} children={children}/>;
+		return null;
+	}
+
+	const {isAuthenticated, isAuthorized} = checkPermissions(permissions);
 
 	d(`Permissions required: ${String(permissions)}, isAuthenticated: ${isAuthenticated}, isAuthorized: ${String(isAuthorized)}, willRedirect: ${String(redirect)}, Path: ${rest.path}`);
 
@@ -34,20 +40,28 @@ export default function Reroute({component, render, children, permissions, redir
 			<Route
 				{...rest}
 				render={props => {
+					// Render component if logged in and have permissions.
 					if (isAuthenticated && isAuthorized) {
 						if (component) return <Route {...rest} component={component}/>;
 						if (render) return <Route {...rest} render={render}/>;
 						if (children) return <Route {...rest} children={children}/>;
 						return null;
-					} // Render component if logged in and have permissions.
-					if (isAuthenticated && !isAuthorized) return <Unauthorized/>; // Render unauthorized if logged in but no permissions.
-					// eslint-disable-next-line react/prop-types
-					const from = props.location.pathname === '/signin' ? null : props.location;
+					}
+
+					// Render unauthorized if logged in but no permissions.
+					if (isAuthenticated && !isAuthorized) return <Unauthorized/>;
+
+					// Render nothing if we already display the login
+					const currentQuery = parse(props.location.search);
+					if (currentQuery.login) {
+						return null; // This is what's displayed underneath the login screen
+					}
+
 					return (
 						<Redirect
 							to={{
-								pathname: '/signin',
-								state: {from},
+								pathname: props.location.pathname,
+								search: stringify({...currentQuery, login: true}),
 							}}
 						/>
 					);
@@ -83,4 +97,5 @@ Reroute.propTypes = {
 		PropTypes.string,
 		PropTypes.arrayOf(PropTypes.string),
 	]),
+	checkPermissions: PropTypes.func.isRequired,
 };

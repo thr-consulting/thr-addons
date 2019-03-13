@@ -31,16 +31,14 @@
   "peerDependencies": {
     "react": "^16.x",
     "react-dom": "^16.x",
-    "react-redux": "^5.x",
     "react-router-dom": "^4.x",
-    "redux": "^4.x",
     "semantic-ui-react": "^0.x"
   },
   "dependencies": {
     "debug": "^4.0.1",
-    "immutable": "^3.8.2",
     "prop-types": "^15.6.2",
-    "styled-components": "^4.1.1"
+    "styled-components": "^4.1.1",
+    "query-string": "^6.3.0"
   },
   "jest": {
     "setupFiles": [

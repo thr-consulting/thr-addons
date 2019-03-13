@@ -4,13 +4,11 @@
  * */
 
 // Inputs
-import {Field, Button as SubmitButton} from 'react-formal';
 import MaskedInput from './inputs/MaskedInput';
 import SinEntry from './inputs/SinEntry';
 import RadioGroup from './inputs/RadioGroup';
 
 // Form
-import SForm from './form/SForm';
 import FieldMap from './form/FieldMap';
 import TForm from './form/TForm';
 import ScriptelInput from './inputs/ScriptelInput';
@@ -34,14 +32,11 @@ import MoneyInputMask from './money/MoneyInputMask';
 export {
 	// Inputs
 	RadioGroup,
-	SubmitButton,
 	MaskedInput,
 	SinEntry,
 
 	// Form
-	SForm,
 	FieldMap,
-	Field,
 	TForm,
 	ScriptelInput,
 
