@@ -33,6 +33,10 @@ type Props = {
 	AuthContextConsumer?: any,
 };
 
+function NoAuthContextConsumer({children}) {
+	return children({checkPermissions: null});
+}
+
 /**
  * RouteDirector - Component that manages multiple root routes, layouts, and permissions.
  * @class
@@ -71,8 +75,10 @@ class RouteDirector extends Component<Props> {
 
 		const currentQuery = parse(search);
 
+		const AuthContextConsumerComponent = AuthContextConsumer || NoAuthContextConsumer;
+
 		return (
-			<AuthContextConsumer>
+			<AuthContextConsumerComponent>
 				{({checkPermissions}) => (
 					<div>
 						<SwitchWithError>
@@ -102,7 +108,7 @@ class RouteDirector extends Component<Props> {
 						}
 					</div>
 				)}
-			</AuthContextConsumer>
+			</AuthContextConsumerComponent>
 		);
 	}
 }

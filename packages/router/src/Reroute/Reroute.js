@@ -2,7 +2,6 @@
 
 /* eslint-disable react/no-children-prop, react/forbid-prop-types */
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Route, Redirect} from 'react-router-dom';
 import debug from 'debug';
 import {parse, stringify} from 'query-string';
@@ -16,8 +15,7 @@ type Props = {
 	children?: any,
 	permissions?: string | string[],
 	redirect?: boolean,
-	path: string,
-	AuthContextConsumer?: any,
+	checkPermissions?: () => {}
 };
 
 export default function Reroute({component, render, children, permissions, redirect, checkPermissions, ...rest}: Props) {
@@ -80,22 +78,3 @@ export default function Reroute({component, render, children, permissions, redir
 	if (children) return <Route {...rest} children={children}/>;
 	return null;
 }
-
-Reroute.contextTypes = {
-	store: PropTypes.object,
-};
-
-Reroute.propTypes = {
-	redirect: PropTypes.bool,
-	component: PropTypes.oneOfType([
-		PropTypes.func,
-		PropTypes.string,
-	]),
-	render: PropTypes.func,
-	children: PropTypes.func,
-	permissions: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.arrayOf(PropTypes.string),
-	]),
-	checkPermissions: PropTypes.func.isRequired,
-};
