@@ -31,7 +31,7 @@
   "peerDependencies": {
     "react": "^16.x",
     "react-dom": "^16.x",
-    "react-router-dom": "^4.x",
+    "react-router-dom": "^5.0.0",
     "semantic-ui-react": "^0.x"
   },
   "dependencies": {
