@@ -15,6 +15,10 @@
     "../../node_modules/jsdoc-babel",
     "../../jsdoc.globals.js"
   ],
+  "babel": {
+    "presets": [["@imperium/babel-preset-imperium", {"react": true, "forceModules": true}]],
+    "babelrc": false
+  },
   "templates": {
     "cleverLinks": false,
     "monospaceLinks": false,

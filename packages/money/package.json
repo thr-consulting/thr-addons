@@ -2,7 +2,7 @@
   "name": "@thx/money",
   "version": "9.0.0",
   "description": "Money utils",
-  "main": "lib/index.js",
+  "main": "lib/money.js",
   "author": "Mike Kornelson <mike@durbn.net>",
   "license": "MIT",
   "repository": {
@@ -17,23 +17,33 @@
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm run clean:lib && npm run build:lib",
-    "build:lib": "NODE_ENV=production babel src --out-dir lib",
+    "build:lib": "NODE_ENV=production webpack",
     "clean:lib": "rimraf ./lib/*",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "../../tools/coverage.sh money",
     "flow": "flow",
-    "lint": "eslint src --ext .js",
+    "lint": "eslint --cache 'src/**/*.js' 'webpack.config.js'",
     "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
     "docs:md": "../../tools/jsdocmd.sh money",
     "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
   },
   "peerDependencies": {
-    "graphql": "^0.13.x"
+    "graphql": "^14.x"
   },
   "dependencies": {
     "accounting": "^0.4.1",
-    "debug": "^4.0.1",
-    "js-money": "^0.6.3"
+    "debug": "^4.1.1",
+    "graphql": "^14.1.1",
+    "js-money": "^0.6.3",
+    "lodash": "^4.17.11"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/../../tests/setupTests.js"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/../../tools/jest-transformer.js"
+    }
   }
 }

@@ -1,5 +1,4 @@
 coverage/
-deprecated/
 docs/
 node_modules/
 src/
@@ -7,5 +6,6 @@ tests/
 .flowconfig
 .gitignore
 .npmignore
-jsdoc.globals.js
 jsdoc.json
+webpack.config.js
+.eslintcache
