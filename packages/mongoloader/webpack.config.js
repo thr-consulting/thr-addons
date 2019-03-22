@@ -11,6 +11,7 @@ module.exports = {
 		library: 'mongoloader',
 		libraryTarget: 'umd',
 		umdNamedDefine: true,
+		globalObject: 'this',
 	},
 	externals: [
 		nodeExternals({modulesDir: path.join('..', '..', 'node_modules')}),

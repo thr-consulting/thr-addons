@@ -6,9 +6,9 @@ module.exports = {
 	devtool: 'source-map',
 	entry: './src/index.js',
 	output: {
-		filename: 'date.js',
+		filename: 'tschemas.js',
 		path: path.resolve(__dirname, 'lib'),
-		library: 'date',
+		library: 'tschemas',
 		libraryTarget: 'umd',
 		umdNamedDefine: true,
 		globalObject: 'this',
