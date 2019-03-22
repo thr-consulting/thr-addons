@@ -1,6 +1,6 @@
 {
   "name": "@thx/controls",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "description": "A collection of components designed with SemanticUI.",
   "main": "lib/controls.js",
   "author": "Mike Kornelson <mike@durbn.net>",
@@ -36,9 +36,9 @@
     "semantic-ui-react": "^0.x"
   },
   "dependencies": {
-    "@thx/date": "^10.0.0",
-    "@thx/money": "^10.0.0",
-    "@thx/tschemas": "^10.0.0",
+    "@thx/date": "^10.0.1",
+    "@thx/money": "^10.0.1",
+    "@thx/tschemas": "^10.0.1",
     "debug": "^4.1.1",
     "formik": "^1.5.1",
     "inputmask": "^4.0.6",
