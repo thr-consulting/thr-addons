@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Input, Icon} from 'semantic-ui-react';
 import Money from 'js-money';
-import TPropTypes from '@thx/tproptypes';
 import TextMask from 'react-text-mask';
 import {createNumberMask} from 'text-mask-addons';
 import isNaN from 'lodash/isNaN';
@@ -23,7 +22,7 @@ const d = debug('money:MoneyInputMask');
  */
 export default class MoneyInputMask extends Component {
 	static propTypes = {
-		value: TPropTypes.money,
+		value: PropTypes.instanceOf(Money),
 		onChange: PropTypes.func,
 		onBlur: PropTypes.func,
 		onDetailsClick: PropTypes.func,

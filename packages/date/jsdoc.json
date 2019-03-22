@@ -32,6 +32,6 @@
     "verbose": false,
     "debug": false,
     "readme": "README.md",
-    "destination": "docs/jsdoc"
+    "destination": "../../docs/assets/jsdoc/date"
   }
 }

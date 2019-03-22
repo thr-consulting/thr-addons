@@ -12,7 +12,7 @@
   "scripts": {
     "lerna": "lerna",
     "build": "lerna run build --stream",
-    "test": "lerna run test --stream --concurrency 1",
+    "test": "lerna run test --stream",
     "test:coverage": "lerna run test:coverage",
     "lint": "lerna run lint",
     "clean": "lerna clean",
@@ -30,16 +30,15 @@
     "@imperium/babel-preset-imperium": "^1.0.0",
     "@imperium/dev-deps": "^1.0.0",
     "@imperium/eslint-config-imperium": "^1.0.0",
+    "@thx/storybook-state": "^1.5.0-thx.4",
     "eslint": "^5.15.3",
-    "identity-obj-proxy": "^3.0.0",
-    "jest-mock-random": "^1.0.2",
+    "graphql": "^14.1.1",
     "lerna": "^3.13.1",
-    "mongodb": "^3.1.13",
+    "mongodb": "^3.2.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "4.3.1",
-    "semantic-ui-react": "^0.86.0",
-    "semver": "^5.5.1"
+    "semantic-ui-react": "^0.86.0"
   },
   "optionalDependencies": {
     "fsevents": "2.0.1"

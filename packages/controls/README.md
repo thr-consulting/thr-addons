@@ -12,6 +12,12 @@ A collection of form components designed with Semantic UI. They all adhere to th
 yarn add @thx/controls
 ```
 
+## Usage
+```js
+import {DatePicker} from '@thx/controls';
+import '@thx/controls/lib/controls.css';
+```
+
 ## Storybook
 
 You can view these components in action in [Storybook](assets/storybook/controls/frame.html).

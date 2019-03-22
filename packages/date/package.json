@@ -32,7 +32,6 @@
   },
   "dependencies": {
     "debug": "^4.1.1",
-    "graphql": "^14.1.1",
     "js-joda": "^1.9.3",
     "lodash": "^4.17.11",
     "moment": "^2.24.0"
