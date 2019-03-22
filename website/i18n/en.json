@@ -13,18 +13,6 @@
         "title": "Date",
         "sidebar_label": "Date"
       },
-      "api/dialog": {
-        "title": "Dialog",
-        "sidebar_label": "Dialog"
-      },
-      "api/ducks": {
-        "title": "Ducks",
-        "sidebar_label": "Ducks"
-      },
-      "api/messages": {
-        "title": "Messages",
-        "sidebar_label": "Messages"
-      },
       "api/money": {
         "title": "Money",
         "sidebar_label": "Money"
@@ -36,14 +24,6 @@
       "api/notifications": {
         "title": "Notifications",
         "sidebar_label": "Notifications"
-      },
-      "api/router": {
-        "title": "Router",
-        "sidebar_label": "Router"
-      },
-      "api/tproptypes": {
-        "title": "TPropTypes",
-        "sidebar_label": "TPropTypes"
       },
       "api/tschemas": {
         "title": "TSchemas",

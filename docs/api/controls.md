@@ -12,6 +12,12 @@ A collection of form components designed with Semantic UI. They all adhere to th
 yarn add @thx/controls
 ```
 
+## Usage
+```js
+import {DatePicker} from '@thx/controls';
+import '@thx/controls/lib/controls.css';
+```
+
 ## Storybook
 
 You can view these components in action in [Storybook](assets/storybook/controls/frame.html).
@@ -189,24 +195,6 @@ Maps onChange handler parameters from (event, data) to just (data).
 
 ### new SField()
 A SemanticUI field with error markings.
-
-
-* * *
-
-<a name="SForm"></a>
-
-## ~~SForm~~
-***Deprecated***
-
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| [showSummary] | <code>boolean</code> | <code>false</code> | If true, displays the summary above the form children. |
-| children | <code>Array.&lt;Components&gt;</code> |  | Child React elements. |
-| otherErrors | <code>Array.&lt;string&gt;</code> |  | An array of error strings passed to the SFormSummary. |
-
-Renders a React Formal form using SemanticUI.
 
 
 * * *

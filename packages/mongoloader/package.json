@@ -2,7 +2,7 @@
   "name": "@thx/mongoloader",
   "version": "9.0.0",
   "description": "Mongo DataLoader class",
-  "main": "lib/index.js",
+  "main": "lib/mongoloader.js",
   "author": "Mike Kornelson <mike@durbn.net>",
   "license": "MIT",
   "repository": {
@@ -16,13 +16,13 @@
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm run clean:lib && npm run build:lib",
-    "build:lib": "NODE_ENV=production babel src --out-dir lib",
+    "build:lib": "NODE_ENV=production webpack",
     "clean:lib": "rimraf ./lib/*",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "../../tools/coverage.sh mongoloader",
     "flow": "flow",
-    "lint": "eslint src --ext .js",
+    "lint": "eslint --cache 'src/**/*.js' 'webpack.config.js'",
     "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
     "docs:md": "../../tools/jsdocmd.sh mongoloader",
     "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
@@ -32,6 +32,15 @@
   },
   "dependencies": {
     "dataloader": "^1.4.0",
-    "debug": "^4.0.1"
+    "debug": "^4.1.1",
+    "lodash": "^4.17.11"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/../../tests/setupTests.js"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/../../tools/jest-transformer.js"
+    }
   }
 }

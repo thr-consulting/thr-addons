@@ -3,14 +3,8 @@
     "Modules": [
       "api/controls",
       "api/date",
-      "api/dialog",
-      "api/ducks",
-      "api/messages",
       "api/money",
       "api/mongoloader",
-      "api/notifications",
-      "api/router",
-      "api/tproptypes",
       "api/tschemas"
     ]
   },

@@ -13,8 +13,12 @@
   },
   "plugins": [
     "../../node_modules/jsdoc-babel",
-    "../../jsdoc.globals.js"
+    "../../tools/jsdoc.globals.js"
   ],
+  "babel": {
+    "presets": [["@imperium/babel-preset-imperium", {"react": true, "forceModules": true}]],
+    "babelrc": false
+  },
   "templates": {
     "cleverLinks": false,
     "monospaceLinks": false,
@@ -28,6 +32,6 @@
     "verbose": false,
     "debug": false,
     "readme": "README.md",
-    "destination": "docs"
+    "destination": "../../docs/assets/jsdoc/money"
   }
 }

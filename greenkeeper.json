@@ -5,16 +5,10 @@
         "package.json",
         "packages/controls/package.json",
         "packages/date/package.json",
-        "packages/dialog/package.json",
-        "packages/ducks/package.json",
-        "packages/messages/package.json",
         "packages/money/package.json",
         "packages/mongoloader/package.json",
         "packages/notifications/package.json",
-        "packages/router/package.json",
-        "packages/tproptypes/package.json",
-        "packages/tschemas/package.json",
-        "website/package.json"
+        "packages/tschemas/package.json"
       ]
     }
   }
