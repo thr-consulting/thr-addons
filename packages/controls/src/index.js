@@ -12,6 +12,8 @@ import RadioGroup from './inputs/RadioGroup';
 import FieldMap from './form/FieldMap';
 import TForm from './form/TForm';
 import ScriptelInput from './inputs/ScriptelInput';
+import Scriptel from './inputs/Scriptel/Scriptel';
+import withScriptel from './inputs/Scriptel/withScriptel';
 
 // Menu
 import ResponsiveMenu from './menu/ResponsiveMenu';
@@ -39,6 +41,8 @@ export {
 	FieldMap,
 	TForm,
 	ScriptelInput,
+	Scriptel,
+	withScriptel,
 
 	// Menu
 	ResponsiveMenu,

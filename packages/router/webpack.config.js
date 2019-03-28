@@ -6,7 +6,7 @@ module.exports = {
 	mode: process.env.NODE_ENV,
 	devtool: 'source-map',
 	entry: {
-		controls: './src/index.js',
+		router: './src/index.js',
 	},
 	output: {
 		filename: '[name].js',
