@@ -22,7 +22,7 @@
     "docs": "lerna run docs",
     "docs:md": "lerna run docs:md",
     "validate": "npm ls",
-    "ready:commit": "yarn test:coverage && yarn docs && yarn docs:md && yarn docs:storybook && yarn full:docs && yarn full:docs:md"
+    "ready:commit": "yarn test:coverage && yarn docs && yarn docs:md && yarn docs:storybook"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
