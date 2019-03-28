@@ -1,6 +1,6 @@
 {
   "name": "@thx/router",
-  "version": "10.0.1",
+  "version": "10.0.0",
   "description": "A collection of components for router and layout",
   "main": "lib/router.js",
   "author": "Mike Kornelson <mike@durbn.net>",
