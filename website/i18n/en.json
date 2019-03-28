@@ -25,6 +25,10 @@
         "title": "Notifications",
         "sidebar_label": "Notifications"
       },
+      "api/router": {
+        "title": "Router",
+        "sidebar_label": "Router"
+      },
       "api/tschemas": {
         "title": "TSchemas",
         "sidebar_label": "TSchemas"
