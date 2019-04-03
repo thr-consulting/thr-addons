@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import DatePicker from 'react-datepicker';
 import {LocalDate} from 'js-joda';
 import moment from 'moment';
-import {transformMomentToLocalDate, transformLocalDateToMoment} from '@thx/date';
+import {transformLocalDateToDate, transformDateToLocalDate} from '@thx/date';
 import MaskedInput from '../../inputs/MaskedInput';
 
 type Props = {
@@ -28,8 +28,8 @@ export default class DatePickerLocalDate extends Component<Props> {
 		this._mask = this._dateFormat.replace(/[^\\\-/.]/g, '9');
 	}
 
-	handleChange = (momentValue?: Moment) => {
-		if (this.props.onChange) this.props.onChange(transformMomentToLocalDate(momentValue));
+	handleChange = (dateValue?: Date) => {
+		if (this.props.onChange) this.props.onChange(transformDateToLocalDate(dateValue));
 	};
 
 	handleRawChange = data => {
@@ -62,7 +62,7 @@ export default class DatePickerLocalDate extends Component<Props> {
 		} = this.props;
 
 		const newProps = {...rest};
-		newProps.selected = transformLocalDateToMoment(value);
+		newProps.selected = transformLocalDateToDate(value);
 		if (onChange) newProps.onChange = this.handleChange;
 		newProps.onChangeRaw = this.handleRawChange;
 

@@ -52,6 +52,8 @@ Object {
 }
 `;
 
+exports[`Formatting should format PM to pm 1`] = `"June_23_2017_1_00_pm"`;
+
 exports[`Formatting should format a JS Date 1`] = `"6/23/2017"`;
 
 exports[`Formatting should format a LocalDate 1`] = `"8/22/2017"`;
@@ -67,3 +69,7 @@ exports[`Formatting should format with options 2`] = `"Jun 23, 2017 6:00 am"`;
 exports[`Formatting should format with options 3`] = `"June 23, 2017 6:00 am"`;
 
 exports[`Formatting should use a custom date format 1`] = `"June_23_2017_6_00_am"`;
+
+exports[`Formatting should format PM to pm 1`] = `"June_23_2017_1_00_pm"`;
+
+exports[`Formatting should return empty string if first param is empty 1`] = `""`;

@@ -22,7 +22,7 @@ const storyFn = ({parameters: {state: {store}}}) => ( // eslint-disable-line rea
 						store.set({value});
 						action('onChange')(value);
 					}}
-					value={store.state.value}
+					selected={store.state.value}
 					onBlur={action('onBlur')}
 					placeholderText="Enter the date"
 					onChangeRaw={action('onChangeRaw')}

@@ -6,8 +6,10 @@ import isInteger from 'lodash/isInteger';
 import map from 'lodash/map';
 import isDate from 'lodash/isDate';
 import isString from 'lodash/isString';
-import {LocalDate, nativeJs} from 'js-joda';
 import indexOf from 'lodash/indexOf';
+import {LocalDate, nativeJs, DateTimeFormatter} from 'js-joda';
+import 'js-joda-timezone';
+import {Locale} from '@js-joda/locale_en-us';
 
 /*
 	Simple Transforms
@@ -213,33 +215,32 @@ export function transformObjectsToLocalDates(obj) {
 /**
  * Formats a date to a predefined style
  * @method formatDate
- * @param {Date|moment|LocalDate|number} obj - The date or moment object or LocalDate object
+ * @param {Date|LocalDate|number} obj - The date or LocalDate object
  * @param {string} [type=short] options.type - short, medium, or long
  * @param {bool} [time=false] options.time - If true, displays the time
  * @param {bool} [date=true] options.date - If true, displays the date
  * @param {string} [format=null] options.format - If specified, overrides with a moment.format() string
  * @return {string} The formatted date/time
  */
-export function formatDate(obj, {type: type = 'short', time: time = false, date: date = true, format} = {type: 'short'}) {
+export function formatDate(obj, {type: type = 'short', time: time = false, date: date = true, format: givenFormat} = {type: 'short'}) {
 	if (!obj) return '';
 	let m = obj;
-	if (isInteger(m)) m = transformEpochIntegerToDate(m);
-	if (m instanceof LocalDate) m = transformLocalDateToMoment(m);
-	if (m instanceof Date) m = moment(m);
-	if (!moment.isMoment(m)) throw new Error('formatDate requires a Date, LocalDate, Moment or number (EpochDays) to be passed as the first parameter.');
+	if (isInteger(m)) m = transformEpochIntegerToLocalDate(m);
+	if (m instanceof Date) m = transformDateToLocalDate(m);
+	if (moment.isMoment(m)) throw new Error('formatDate requires a Date, LocalDate, or number (EpochDays) to be passed as the first parameter. You passed it a Moment');
 	let dateFormat;
 	let timeFormat;
 	switch (type || 'short') {
 		case 'short':
-			dateFormat = 'M/D/YYYY';
+			dateFormat = 'M/d/YYYY';
 			timeFormat = 'h:mm a';
 			break;
 		case 'medium':
-			dateFormat = 'MMM D, YYYY';
+			dateFormat = 'MMM d, YYYY';
 			timeFormat = 'h:mm a';
 			break;
 		case 'long':
-			dateFormat = 'MMMM D, YYYY';
+			dateFormat = 'MMMM d, YYYY';
 			timeFormat = 'h:mm a';
 			break;
 		default:
@@ -248,5 +249,11 @@ export function formatDate(obj, {type: type = 'short', time: time = false, date:
 	if (time === true) {
 		formatString = `${formatString} ${timeFormat}`;
 	}
-	return m.format(format || formatString);
+	return (
+		m.format(
+			DateTimeFormatter
+				.ofPattern(givenFormat || formatString)
+				.withLocale(Locale.ENGLISH)
+		).replace(/AM$|PM$/, x => x.toLowerCase())
+	);
 }
