@@ -21,7 +21,6 @@ import ResponsiveMenu from './menu/ResponsiveMenu';
 // Date
 import DateTimePicker from './date/DateTimePicker';
 import LocalDatePicker from './date/LocalDatePicker';
-import EpochDatePicker from './date/EpochDatePicker';
 import MonthSelect from './date/MonthSelect';
 import LocalMonthSelect from './date/LocalMonthSelect';
 import DatePicker from './date/DatePicker';
@@ -50,7 +49,6 @@ export {
 	// Date
 	DateTimePicker,
 	LocalDatePicker,
-	EpochDatePicker,
 	MonthSelect,
 	LocalMonthSelect,
 	dateInit,
