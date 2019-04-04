@@ -4,31 +4,31 @@ import {Kind} from 'graphql/language';
 import {GraphQLScalarType} from 'graphql/type';
 import isString from 'lodash/isString';
 import isInteger from 'lodash/isInteger';
-
-function toEpochDay(value) {
-	if (isInteger(value)) return value;
-	if (isString(value)) return LocalDate.parse(value).toEpochDay();
-	if (value instanceof LocalDate) return value.toEpochDay();
-	throw new GraphQLError('Not a valid LocalDate.');
-}
+import {transformObjectsToLocalDates} from '../util';
 
 const GraphQLLocalDate = new GraphQLScalarType({
 	name: 'LocalDate',
 	description: 'JS-Joda LocalDate',
-	// Parses variable values (JSON => JSON)
+	// Parses variable values (JSON => JSON) (value from client)
 	parseValue(value) {
-		return toEpochDay(value);
+		if (isInteger(value)) return LocalDate.ofEpochDay(value);
+		if (isString(value)) return LocalDate.parse(value);
+		if (value instanceof LocalDate) return value;
+		if (value instanceof Object) return transformObjectsToLocalDates(value);
+		throw new GraphQLError('Trying to parse a non-LocalDate');
 	},
-	// Called when the value is being sent to the client
+	// Called when the value is being sent to the client (value sent to the client)
 	serialize(value) {
 		if (isInteger(value)) return value;
-		if (isString(value)) return parseInt(value, 10);
+		if (isString(value)) return LocalDate.parse(value).toEpochDay();
+		if (value instanceof LocalDate) return value.toEpochDay();
+		if (value instanceof Object) return transformObjectsToLocalDates(value).toEpochDay();
 		throw new GraphQLError('Trying to serialize a non-primitive');
 	},
 	// Parses GraphQL language AST into the value. (AST => JSON)
 	parseLiteral(ast) {
-		if (ast.kind === Kind.INT) return ast.value;
-		if (ast.kind === Kind.STRING) return LocalDate.parse(ast.value).toEpochDay();
+		if (ast.kind === Kind.INT) return LocalDate.ofEpochDay(parseInt(ast.value, 10));
+		if (ast.kind === Kind.STRING) return LocalDate.parse(ast.value);
 		throw new GraphQLError(`Cannot convert literal ${ast.value} into LocalDate.`);
 	},
 });
