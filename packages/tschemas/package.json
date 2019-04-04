@@ -34,5 +34,13 @@
     "moment": "^2.24.0",
     "social-insurance-number": "^0.0.2",
     "yup": "^0.27.0"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/../../tests/setupTests.js"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/../../tools/jest-transformer.js"
+    }
   }
 }

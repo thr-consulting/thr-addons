@@ -8,6 +8,7 @@ module.exports = {
 	output: {
 		filename: 'mongoloader.js',
 		path: path.resolve(__dirname, 'lib'),
+		target: 'node',
 		library: 'mongoloader',
 		libraryTarget: 'umd',
 		umdNamedDefine: true,
