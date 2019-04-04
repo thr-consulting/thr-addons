@@ -4,6 +4,7 @@ const nodeExternals = require('webpack-node-externals');
 module.exports = {
 	mode: process.env.NODE_ENV,
 	devtool: 'source-map',
+	target: 'node',
 	entry: './src/index.js',
 	output: {
 		filename: 'date.js',
