@@ -28,7 +28,7 @@
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
     "@imperium/babel-preset-imperium": "^1.0.0",
-    "@imperium/dev-deps": "^1.0.0",
+    "@imperium/dev-deps": "^2.0.0",
     "@imperium/eslint-config-imperium": "^1.0.0",
     "@thx/storybook-state": "^1.5.0-thx.4",
     "eslint": "^5.15.3",
