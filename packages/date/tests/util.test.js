@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import {LocalDate} from 'js-joda';
+import {LocalDate, LocalDateTime, ZoneOffset} from 'js-joda';
 import moment from 'moment';
 import {
 	transformDateToLocalDate,
@@ -227,7 +227,7 @@ describe('Formatting', () => {
 		expect(formatDate(moment([2017, 5, 23, 6, 0, 0]), {type: 'long', time: true, date: true})).toMatchSnapshot();
 	});
 	it('should use a custom date format', () => {
-		expect(formatDate(moment([2017, 5, 23, 6, 0, 0]), {format: 'MMMM_D_YYYY_h_mm_a'})).toMatchSnapshot();
+		expect(formatDate(moment([2017, 5, 23, 6, 0, 0]), {format: 'MMMM_d_yyyy_h_mm_a'})).toMatchSnapshot();
 	});
 	it('should format an integer (epoch days)', () => {
 		expect(formatDate(17400)).toMatchSnapshot();
@@ -237,5 +237,8 @@ describe('Formatting', () => {
 	});
 	it('should format a JS Date', () => {
 		expect(formatDate(new Date(2017, 5, 23, 6, 0, 0))).toMatchSnapshot();
+	});
+	it('should format a LocalDateTime', () => {
+		expect(formatDate(LocalDateTime.ofEpochSecond(1740, ZoneOffset.UTC))).toMatchSnapshot();
 	});
 });

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1553809322184" clover="3.2.0">
-  <project timestamp="1553809322184" name="All files">
-    <metrics statements="182" coveredstatements="101" conditionals="180" coveredconditionals="51" methods="58" coveredmethods="27" elements="420" coveredelements="179" complexity="0" loc="182" ncloc="182" packages="16" files="31" classes="31"/>
+<coverage generated="1554317743761" clover="3.2.0">
+  <project timestamp="1554317743761" name="All files">
+    <metrics statements="159" coveredstatements="82" conditionals="136" coveredconditionals="35" methods="54" coveredmethods="26" elements="349" coveredelements="143" complexity="0" loc="159" ncloc="159" packages="15" files="29" classes="29"/>
     <package name="date">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="util.js" path="/home/mike/dev/thr-addons/packages/controls/src/date/util.js">
+      <file name="util.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/date/util.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="7" count="1" type="stmt"/>
       </file>
     </package>
     <package name="date.DateTimePicker">
       <metrics statements="5" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
-      <file name="DateTimePicker.js" path="/home/mike/dev/thr-addons/packages/controls/src/date/DateTimePicker/DateTimePicker.js">
+      <file name="DateTimePicker.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/date/DateTimePicker/DateTimePicker.js">
         <metrics statements="5" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="20" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="21" count="0" type="stmt"/>
@@ -19,45 +19,13 @@
         <line num="24" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
       </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/date/DateTimePicker/index.js">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-    </package>
-    <package name="date.EpochDatePicker">
-      <metrics statements="23" coveredstatements="19" conditionals="44" coveredconditionals="16" methods="4" coveredmethods="1"/>
-      <file name="EpochDatePicker.js" path="/home/mike/dev/thr-addons/packages/controls/src/date/EpochDatePicker/EpochDatePicker.js">
-        <metrics statements="23" coveredstatements="19" conditionals="44" coveredconditionals="16" methods="4" coveredmethods="1"/>
-        <line num="38" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="42" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="46" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="63" count="1" type="stmt"/>
-        <line num="66" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="70" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="71" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="72" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="73" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="74" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="75" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="77" count="1" type="stmt"/>
-        <line num="78" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="79" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="80" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="81" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="82" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="83" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="84" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="85" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="86" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="88" count="1" type="stmt"/>
-      </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/date/EpochDatePicker/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/date/DateTimePicker/index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="date.LocalDatePicker">
       <metrics statements="23" coveredstatements="19" conditionals="44" coveredconditionals="16" methods="4" coveredmethods="1"/>
-      <file name="LocalDatePicker.js" path="/home/mike/dev/thr-addons/packages/controls/src/date/LocalDatePicker/LocalDatePicker.js">
+      <file name="LocalDatePicker.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/date/LocalDatePicker/LocalDatePicker.js">
         <metrics statements="23" coveredstatements="19" conditionals="44" coveredconditionals="16" methods="4" coveredmethods="1"/>
         <line num="38" count="0" type="cond" truecount="0" falsecount="4"/>
         <line num="42" count="0" type="cond" truecount="0" falsecount="4"/>
@@ -83,13 +51,13 @@
         <line num="86" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="88" count="1" type="stmt"/>
       </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/date/LocalDatePicker/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/date/LocalDatePicker/index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="date.LocalMonthSelect">
       <metrics statements="9" coveredstatements="4" conditionals="6" coveredconditionals="1" methods="2" coveredmethods="1"/>
-      <file name="LocalMonthSelect.js" path="/home/mike/dev/thr-addons/packages/controls/src/date/LocalMonthSelect/LocalMonthSelect.js">
+      <file name="LocalMonthSelect.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/date/LocalMonthSelect/LocalMonthSelect.js">
         <metrics statements="9" coveredstatements="4" conditionals="6" coveredconditionals="1" methods="2" coveredmethods="1"/>
         <line num="8" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
@@ -101,13 +69,13 @@
         <line num="62" count="1" type="stmt"/>
         <line num="64" count="1" type="stmt"/>
       </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/date/LocalMonthSelect/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/date/LocalMonthSelect/index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="date.MonthSelect">
       <metrics statements="9" coveredstatements="4" conditionals="6" coveredconditionals="1" methods="2" coveredmethods="1"/>
-      <file name="MonthSelect.js" path="/home/mike/dev/thr-addons/packages/controls/src/date/MonthSelect/MonthSelect.js">
+      <file name="MonthSelect.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/date/MonthSelect/MonthSelect.js">
         <metrics statements="9" coveredstatements="4" conditionals="6" coveredconditionals="1" methods="2" coveredmethods="1"/>
         <line num="8" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
@@ -119,13 +87,13 @@
         <line num="65" count="1" type="stmt"/>
         <line num="67" count="1" type="stmt"/>
       </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/date/MonthSelect/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/date/MonthSelect/index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="form.FieldMap">
       <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="FieldMap.js" path="/home/mike/dev/thr-addons/packages/controls/src/form/FieldMap/FieldMap.js">
+      <file name="FieldMap.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/form/FieldMap/FieldMap.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="21" count="2" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
@@ -133,13 +101,13 @@
         <line num="27" count="2" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
       </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/form/FieldMap/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/form/FieldMap/index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="form.TForm">
       <metrics statements="22" coveredstatements="15" conditionals="14" coveredconditionals="6" methods="12" coveredmethods="9"/>
-      <file name="TForm.js" path="/home/mike/dev/thr-addons/packages/controls/src/form/TForm/TForm.js">
+      <file name="TForm.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/form/TForm/TForm.js">
         <metrics statements="22" coveredstatements="15" conditionals="14" coveredconditionals="6" methods="12" coveredmethods="9"/>
         <line num="35" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="40" count="2" type="stmt"/>
@@ -164,13 +132,13 @@
         <line num="98" count="2" type="stmt"/>
         <line num="99" count="2" type="stmt"/>
       </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/form/TForm/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/form/TForm/index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="inputs.MaskedInput">
       <metrics statements="14" coveredstatements="6" conditionals="18" coveredconditionals="2" methods="7" coveredmethods="3"/>
-      <file name="MaskedInput.js" path="/home/mike/dev/thr-addons/packages/controls/src/inputs/MaskedInput/MaskedInput.js">
+      <file name="MaskedInput.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/inputs/MaskedInput/MaskedInput.js">
         <metrics statements="14" coveredstatements="6" conditionals="18" coveredconditionals="2" methods="7" coveredmethods="3"/>
         <line num="89" count="1" type="cond" truecount="2" falsecount="2"/>
         <line num="90" count="1" type="stmt"/>
@@ -187,13 +155,13 @@
         <line num="131" count="1" type="stmt"/>
         <line num="133" count="1" type="stmt"/>
       </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/inputs/MaskedInput/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/inputs/MaskedInput/index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="inputs.RadioGroup">
       <metrics statements="6" coveredstatements="4" conditionals="6" coveredconditionals="2" methods="3" coveredmethods="2"/>
-      <file name="RadioGroup.js" path="/home/mike/dev/thr-addons/packages/controls/src/inputs/RadioGroup/RadioGroup.js">
+      <file name="RadioGroup.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/inputs/RadioGroup/RadioGroup.js">
         <metrics statements="6" coveredstatements="4" conditionals="6" coveredconditionals="2" methods="3" coveredmethods="2"/>
         <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="40" count="1" type="stmt"/>
@@ -202,13 +170,13 @@
         <line num="46" count="2" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
       </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/inputs/RadioGroup/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/inputs/RadioGroup/index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="menu.ResponsiveMenu">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="ResponsiveMenu.js" path="/home/mike/dev/thr-addons/packages/controls/src/menu/ResponsiveMenu/ResponsiveMenu.js">
+      <file name="ResponsiveMenu.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/menu/ResponsiveMenu/ResponsiveMenu.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="24" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
@@ -217,47 +185,47 @@
         <line num="50" count="1" type="stmt"/>
         <line num="51" count="1" type="stmt"/>
       </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/menu/ResponsiveMenu/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/menu/ResponsiveMenu/index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="menu.ResponsiveMenuContext">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="ResponsiveMenuContext.js" path="/home/mike/dev/thr-addons/packages/controls/src/menu/ResponsiveMenuContext/ResponsiveMenuContext.js">
+      <file name="ResponsiveMenuContext.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/menu/ResponsiveMenuContext/ResponsiveMenuContext.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
       </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/menu/ResponsiveMenuContext/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/menu/ResponsiveMenuContext/index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="menu.ResponsiveMenuDropdown">
       <metrics statements="2" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="ResponsiveMenuDropdown.js" path="/home/mike/dev/thr-addons/packages/controls/src/menu/ResponsiveMenuDropdown/ResponsiveMenuDropdown.js">
+      <file name="ResponsiveMenuDropdown.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/menu/ResponsiveMenuDropdown/ResponsiveMenuDropdown.js">
         <metrics statements="2" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="17" count="0" type="stmt"/>
         <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/menu/ResponsiveMenuDropdown/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/menu/ResponsiveMenuDropdown/index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="menu.ResponsiveMenuItem">
       <metrics statements="3" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="ResponsiveMenuItem.js" path="/home/mike/dev/thr-addons/packages/controls/src/menu/ResponsiveMenuItem/ResponsiveMenuItem.js">
+      <file name="ResponsiveMenuItem.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/menu/ResponsiveMenuItem/ResponsiveMenuItem.js">
         <metrics statements="3" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="17" count="0" type="stmt"/>
         <line num="20" count="0" type="cond" truecount="0" falsecount="3"/>
         <line num="21" count="0" type="stmt"/>
       </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/menu/ResponsiveMenuItem/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/menu/ResponsiveMenuItem/index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="money.MoneyInput">
       <metrics statements="38" coveredstatements="8" conditionals="23" coveredconditionals="5" methods="11" coveredmethods="3"/>
-      <file name="MoneyInput.js" path="/home/mike/dev/thr-addons/packages/controls/src/money/MoneyInput/MoneyInput.js">
+      <file name="MoneyInput.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/money/MoneyInput/MoneyInput.js">
         <metrics statements="33" coveredstatements="8" conditionals="23" coveredconditionals="5" methods="8" coveredmethods="3"/>
         <line num="11" count="1" type="stmt"/>
         <line num="41" count="1" type="stmt"/>
@@ -293,10 +261,10 @@
         <line num="117" count="1" type="stmt"/>
         <line num="119" count="0" type="cond" truecount="1" falsecount="1"/>
       </file>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/money/MoneyInput/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/money/MoneyInput/index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
-      <file name="moneyInputMask.js" path="/home/mike/dev/thr-addons/packages/controls/src/money/MoneyInput/moneyInputMask.js">
+      <file name="moneyInputMask.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/money/MoneyInput/moneyInputMask.js">
         <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
@@ -307,7 +275,7 @@
     </package>
     <package name="money.MoneyInputMask">
       <metrics statements="14" coveredstatements="4" conditionals="12" coveredconditionals="1" methods="4" coveredmethods="1"/>
-      <file name="index.js" path="/home/mike/dev/thr-addons/packages/controls/src/money/MoneyInputMask/index.js">
+      <file name="index.js" path="/home/jonathan/Desktop/thr-addons/packages/controls/src/money/MoneyInputMask/index.js">
         <metrics statements="14" coveredstatements="4" conditionals="12" coveredconditionals="1" methods="4" coveredmethods="1"/>
         <line num="11" count="1" type="stmt"/>
         <line num="35" count="0" type="stmt"/>

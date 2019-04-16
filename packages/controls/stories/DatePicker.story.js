@@ -4,7 +4,7 @@ import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 import {withState, Store} from '@thx/storybook-state';
 import {Container, Form} from 'semantic-ui-react';
-import '../src/date/styles.css';
+import '../src/date/DatePicker/styles.css';
 import DatePicker from '../src/date/DatePicker';
 
 const stories = storiesOf('DatePicker', module);
@@ -22,7 +22,7 @@ const storyFn = ({parameters: {state: {store}}}) => ( // eslint-disable-line rea
 						store.set({value});
 						action('onChange')(value);
 					}}
-					value={store.state.value}
+					selected={store.state.value}
 					onBlur={action('onBlur')}
 					placeholderText="Enter the date"
 					onChangeRaw={action('onChangeRaw')}
