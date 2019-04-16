@@ -1,5 +1,3 @@
-// @flow
-
 /* eslint-disable react/no-children-prop, react/forbid-prop-types */
 import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
@@ -9,20 +7,20 @@ import Unauthorized from '../Unauthorized';
 
 const d = debug('imperium:core:Reroute');
 
-type Props = {
-	component?: any,
-	render?: any,
-	children?: any,
-	permissions?: string | string[],
-	redirect?: boolean,
-	checkPermissions?: () => {},
-	location: {
-		search: string,
-		pathname: string,
-	},
-};
+// type Props = {
+// 	component?: any,
+// 	render?: any,
+// 	children?: any,
+// 	permissions?: string | string[],
+// 	redirect?: boolean,
+// 	checkPermissions?: () => {},
+// 	location: {
+// 		search: string,
+// 		pathname: string,
+// 	},
+// };
 
-export default function Reroute({component, render, children, permissions, redirect, checkPermissions, ...rest}: Props) {
+export default function Reroute({component, render, children, permissions, redirect, checkPermissions, ...rest}) {
 	// If an AuthContext is not supplied, we ignore permissions.
 	if (!checkPermissions) {
 		d('No way to check permissions provided, ignoring permissions');

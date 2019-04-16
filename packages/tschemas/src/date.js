@@ -1,5 +1,3 @@
-// @flow
-
 import {mixed, number} from 'yup';
 import momentjs from 'moment';
 import {LocalDate} from 'js-joda';
@@ -20,7 +18,7 @@ class MomentSchema extends mixed {
 		});
 	}
 
-	_typeCheck(v: Object) {
+	_typeCheck(v) {
 		return momentjs.isMoment(v) && v.isValid();
 	}
 }
@@ -49,7 +47,7 @@ class LocalDateSchema extends mixed {
 		});
 	}
 
-	_typeCheck(v: Object) {
+	_typeCheck(v) {
 		return v instanceof LocalDate;
 	}
 }

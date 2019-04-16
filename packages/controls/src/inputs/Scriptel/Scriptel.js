@@ -1,4 +1,3 @@
-// @flow
 /* globals WebSocket: true */
 
 import React, {Component} from 'react';
@@ -8,19 +7,19 @@ import {ScriptelContext} from './ScriptelContext';
 
 const d = debug('thx:Scriptel');
 
-type Props = {
-	omniscript?: string,
-	imageType?: string,
-	scale?: number,
-	crop?: boolean,
-	penStyle?: string,
-	children: any,
-};
+// type Props = {
+// 	omniscript?: string,
+// 	imageType?: string,
+// 	scale?: number,
+// 	crop?: boolean,
+// 	penStyle?: string,
+// 	children: any,
+// };
 
 /**
  * Manages a connection to the Scriptel Omniscript server.
  */
-export default class extends Component<Props> {
+export default class extends Component {
 	constructor(props) {
 		super(props);
 		this._renderers = [];

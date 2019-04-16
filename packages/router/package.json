@@ -22,8 +22,7 @@
     "TURNEDOFFtest": "jest",
     "TURNEDOFFtest:watch": "jest --watch",
     "TURNEDOFFtest:coverage": "../../tools/coverage.sh router",
-    "flow": "flow",
-    "lint": "eslint --cache 'src/**/*.js' 'webpack.config.js'",
+    "lint": "eslint --cache --ext js,ts,tsx src",
     "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
     "docs:md": "../../tools/jsdocmd.sh router",
     "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
@@ -48,7 +47,7 @@
       "<rootDir>/../../tests/setupTests.js"
     ],
     "transform": {
-      "^.+\\.js$": "<rootDir>/../../tools/jest-transformer.js"
+      "^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transformer.js"
     },
     "snapshotSerializers": [
       "enzyme-to-json/serializer"

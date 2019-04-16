@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-// @flow
 
 import debug from 'debug';
 import React, {Component} from 'react';
@@ -10,16 +9,16 @@ import moneyInputMask from './moneyInputMask';
 
 const d = debug('money:MoneyInput');
 
-type Props = {
-	value?: Money,
-	onChange?: Money => void,
-	currency?: string,
-	onBlur?: () => void,
-	onDetailsClick?: () => void,
-	detailsIcon?: string,
-	locked?: boolean,
-	wholeNumber?: boolean,
-};
+// type Props = {
+// 	value?: Money,
+// 	onChange?: Money => void,
+// 	currency?: string,
+// 	onBlur?: () => void,
+// 	onDetailsClick?: () => void,
+// 	detailsIcon?: string,
+// 	locked?: boolean,
+// 	wholeNumber?: boolean,
+// };
 
 /**
  * A masked money input. Defaults to CAD funds.
@@ -33,7 +32,7 @@ type Props = {
  * @property {function} onBlur - Called when the focus is lost.
  * @property {bool} [wholeNumber=false] - If true, Then decimals will be zero.
  */
-export default class MoneyInput extends Component<Props> {
+export default class MoneyInput extends Component {
 	static defaultProps = {
 		detailsIcon: 'server',
 		locked: false,
@@ -62,7 +61,11 @@ export default class MoneyInput extends Component<Props> {
 			}
 
 			// Set the input text to be the initial value prop
-			this.props.wholeNumber ? this._input.value = roundTo(makeMoney(value).toDecimal(), 0) : this._input.value = makeMoney(value).toDecimal();
+			if (this.props.wholeNumber) {
+				this._input.value = roundTo(makeMoney(value).toDecimal(), 0);
+			} else {
+				this._input.value = makeMoney(value).toDecimal();
+			}
 
 			moneyInputMask({
 				element: this._input,
@@ -79,7 +82,11 @@ export default class MoneyInput extends Component<Props> {
 			const prevMoney = prevProps.value;
 			d(`componentDidUpdate: ${prevMoney} > ${money} | ${iv}`);
 
-			this.props.wholeNumber ? this._input.value = roundTo(money.toDecimal(), 0) : this._input.value = money.toDecimal();
+			if (this.props.wholeNumber) {
+				this._input.value = roundTo(money.toDecimal(), 0);
+			} else {
+				this._input.value = money.toDecimal();
+			}
 		}
 	}
 

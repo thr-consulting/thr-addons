@@ -1,5 +1,3 @@
-// @flow
-
 import GraphQLLocalDate from './graphql/GraphQLLocalDate';
 import GraphQLMoment from './graphql/GraphQLMoment';
 import {

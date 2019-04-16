@@ -1,5 +1,3 @@
-// @flow
-
 import React, {Component} from 'react';
 import {Input} from 'semantic-ui-react';
 import 'inputmask/dist/inputmask/inputmask.numeric.extensions';
@@ -10,63 +8,63 @@ import Inputmask from 'inputmask';
  * @typedef {Object} inputmaskPropTypes
  */
 
-type Props = {
-	value?: string,
-	onChange?: (data: string) => {},
-	onBlur?: () => {},
-	mask?: {
-		placeholder?: string,
-		optionalmarker?: {
-			start: string,
-			end: string,
-		},
-		quantifiermarker?: {
-			start: string,
-			end: string,
-		},
-		groupmarker?: {
-			start: string,
-			end: string,
-		},
-		alternatormarker?: string,
-		escapeChar?: string,
-		mask: string,
-		repeat?: number,
-		greedy?: boolean,
-		autoUnmask?: boolean,
-		removeMaskOnSubmit?: boolean,
-		clearMaskOnLostFocus?: boolean,
-		insertMode?: boolean,
-		clearIncomplete?: boolean,
-		alias?: string,
-		onKeyDown?: (event: any, buffer: any, caretPos: number, opts?: Object) => {},
-		onBeforeMask?: (initialValue: string, opts?: Object) => string,
-		onBeforePaste?: (pastedValue: string, opts?: Object) => string,
-		onBeforeWrite?: (event: any, buffer: any, caretPos: number, opts?: Object) => Object,
-		onUnMask?: (maskedValue: string, unmaskedValue: string) => string,
-		showMaskOnFocus?: boolean,
-		showMaskOnHover?: boolean,
-		onKeyValidation?: (key: any, result: any) => {},
-		numericInput?: boolean,
-		rightAlign?: boolean,
-		undoOnEscape?: boolean,
-		radixPoint?: string,
-		groupSeparator?: string,
-		keepStatic?: boolean,
-		positionCaretOnTab?: boolean,
-		tabThrough?: boolean,
-		isComplete?: (buffer: any, opts?: Object) => boolean,
-		canClearPosition?: (maskset: any, position: number, lastValidPosition: number, opts?: Object) => boolean,
-		postValidation?: (buffer: any, currentResult: any, opts?: any) => boolean | Object,
-		preValidation?: (buffer: any, pos: number, char: any, isSelection: boolean, opts?: Object) => boolean | Object,
-		staticDefinitionSymbol?: string,
-		nullable?: boolean,
-		positionCaretOnClick?: string,
-		casing?: string,
-		inputmode?: string,
-		colorMask?: string,
-	}
-};
+// type Props = {
+// 	value?: string,
+// 	onChange?: (data: string) => {},
+// 	onBlur?: () => {},
+// 	mask?: {
+// 		placeholder?: string,
+// 		optionalmarker?: {
+// 			start: string,
+// 			end: string,
+// 		},
+// 		quantifiermarker?: {
+// 			start: string,
+// 			end: string,
+// 		},
+// 		groupmarker?: {
+// 			start: string,
+// 			end: string,
+// 		},
+// 		alternatormarker?: string,
+// 		escapeChar?: string,
+// 		mask: string,
+// 		repeat?: number,
+// 		greedy?: boolean,
+// 		autoUnmask?: boolean,
+// 		removeMaskOnSubmit?: boolean,
+// 		clearMaskOnLostFocus?: boolean,
+// 		insertMode?: boolean,
+// 		clearIncomplete?: boolean,
+// 		alias?: string,
+// 		onKeyDown?: (event: any, buffer: any, caretPos: number, opts?: Object) => {},
+// 		onBeforeMask?: (initialValue: string, opts?: Object) => string,
+// 		onBeforePaste?: (pastedValue: string, opts?: Object) => string,
+// 		onBeforeWrite?: (event: any, buffer: any, caretPos: number, opts?: Object) => Object,
+// 		onUnMask?: (maskedValue: string, unmaskedValue: string) => string,
+// 		showMaskOnFocus?: boolean,
+// 		showMaskOnHover?: boolean,
+// 		onKeyValidation?: (key: any, result: any) => {},
+// 		numericInput?: boolean,
+// 		rightAlign?: boolean,
+// 		undoOnEscape?: boolean,
+// 		radixPoint?: string,
+// 		groupSeparator?: string,
+// 		keepStatic?: boolean,
+// 		positionCaretOnTab?: boolean,
+// 		tabThrough?: boolean,
+// 		isComplete?: (buffer: any, opts?: Object) => boolean,
+// 		canClearPosition?: (maskset: any, position: number, lastValidPosition: number, opts?: Object) => boolean,
+// 		postValidation?: (buffer: any, currentResult: any, opts?: any) => boolean | Object,
+// 		preValidation?: (buffer: any, pos: number, char: any, isSelection: boolean, opts?: Object) => boolean | Object,
+// 		staticDefinitionSymbol?: string,
+// 		nullable?: boolean,
+// 		positionCaretOnClick?: string,
+// 		casing?: string,
+// 		inputmode?: string,
+// 		colorMask?: string,
+// 	}
+// };
 
 /**
  * Displays a masked input form. Warning: this component uses jquery for masking so it renders quite slow. Do not use
@@ -76,7 +74,7 @@ type Props = {
  * @property {onChange} [onChange=null] - Called when the value changes.
  * @property {inputmaskPropTypes} [mask=null] - The mask object specified at {@link https://github.com/RobinHerbots/jquery.inputmask|here}.
  */
-export default class MaskedInput extends Component<Props> {
+export default class MaskedInput extends Component {
 	static displayName = 'MaskedInput';
 
 	static defaultProps = {
@@ -96,7 +94,7 @@ export default class MaskedInput extends Component<Props> {
 		im.mask(this._input);
 	}
 
-	componentDidUpdate(prevProps: Object) {
+	componentDidUpdate(prevProps) {
 		if (prevProps.value !== this.props.value && this._input) {
 			this._input.value = this.props.value || '';
 		}
@@ -111,7 +109,7 @@ export default class MaskedInput extends Component<Props> {
 		}
 	}
 
-	handleComplete = (ev: Object) => {
+	handleComplete = ev => {
 		if (this.props.onChange) this.props.onChange(ev.target.value);
 	};
 
@@ -119,12 +117,9 @@ export default class MaskedInput extends Component<Props> {
 		if (this.props.onChange) this.props.onChange('');
 	};
 
-	handleIncomplete = (ev: Object) => {
+	handleIncomplete = ev => {
 		if (this.props.onChange) this.props.onChange(ev.target.value);
 	};
-
-
-	_input: ?HTMLInputElement;
 
 	render() {
 		const {value, onChange, onBlur, mask, ...rest} = this.props;

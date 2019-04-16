@@ -1,5 +1,3 @@
-// @flow
-
 import getCountryCode from './currencyCountry';
 import GraphQLMoney from './graphql/GraphQLMoney';
 import {makeMoney, formatMoney, roundTo, transformObjectsToMoney} from './util';

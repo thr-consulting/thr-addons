@@ -21,8 +21,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "../../tools/coverage.sh tschemas",
-    "flow": "flow",
-    "lint": "eslint --cache 'src/**/*.js' 'webpack.config.js'",
+    "lint": "eslint --cache --ext js,ts,tsx src",
     "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
     "docs:md": "../../tools/jsdocmd.sh tschemas",
     "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
@@ -40,7 +39,7 @@
       "<rootDir>/../../tests/setupTests.js"
     ],
     "transform": {
-      "^.+\\.js$": "<rootDir>/../../tools/jest-transformer.js"
+      "^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transformer.js"
     }
   }
 }

@@ -1,5 +1,3 @@
-// @flow
-
 import React, {Component} from 'react';
 import {Button, Icon, Input, Form} from 'semantic-ui-react';
 import isEmpty from 'lodash/isEmpty';
@@ -7,19 +5,19 @@ import TSchemas from '@thx/tschemas';
 import TForm from '../../form/TForm';
 import MaskedInput from '../MaskedInput';
 
-type Props = {
-	/** Just the boolean value if a SIN exists or not */
-	value?: boolean,
-	/** Only returns boolean if the SIN is entered properly or not */
-	onChange?: (value: boolean) => void,
-	/** Called with the actual SIN text value */
-	onSinChange?: (value: string) => void,
-	onBlur?: () => void,
-};
-
-type State = {
-	showEditor: boolean,
-};
+// type Props = {
+// 	/** Just the boolean value if a SIN exists or not */
+// 	value?: boolean,
+// 	/** Only returns boolean if the SIN is entered properly or not */
+// 	onChange?: (value: boolean) => void,
+// 	/** Called with the actual SIN text value */
+// 	onSinChange?: (value: string) => void,
+// 	onBlur?: () => void,
+// };
+//
+// type State = {
+// 	showEditor: boolean,
+// };
 
 /**
  * A SIN entry control. The main value is a boolean to show whether the SIN has been entered or not. This way the actual information doesn't pass into the client.
@@ -30,7 +28,7 @@ type State = {
  * @property {function} onSinChange
  * @property {function} onBlur
  */
-export default class SinEntry extends Component<Props, State> {
+export default class SinEntry extends Component {
 	static displayName = 'SinEntry';
 
 	static defaultProps = {
