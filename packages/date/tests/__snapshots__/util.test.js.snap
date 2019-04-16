@@ -56,6 +56,8 @@ exports[`Formatting should format a JS Date 1`] = `"6/23/2017"`;
 
 exports[`Formatting should format a LocalDate 1`] = `"8/22/2017"`;
 
+exports[`Formatting should format a LocalDateTime 1`] = `"1/1/1970"`;
+
 exports[`Formatting should format an integer (epoch days) 1`] = `"8/22/2017"`;
 
 exports[`Formatting should format with defaults 1`] = `"6/23/2017"`;

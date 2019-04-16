@@ -6,8 +6,10 @@ import isInteger from 'lodash/isInteger';
 import map from 'lodash/map';
 import isDate from 'lodash/isDate';
 import isString from 'lodash/isString';
-import {LocalDate, nativeJs} from 'js-joda';
 import indexOf from 'lodash/indexOf';
+import 'js-joda-timezone';
+import {Locale} from '@js-joda/locale_en-us';
+import {LocalDate, LocalTime, LocalDateTime, ZonedDateTime, nativeJs, DateTimeFormatter} from 'js-joda';
 
 /*
 	Simple Transforms
@@ -31,8 +33,18 @@ export function transformDateToLocalDate(date) {
 }
 
 /**
+ * Transforms a JS Date to a LocalDateTime
+ * @param {Date} date
+ * @returns {LocalDateTime}
+ */
+export function transformDateToLocalDateTime(date) {
+	if (!date) return null;
+	return LocalDate.from(nativeJs(date));
+}
+
+/**
  * Transforms a LocalDate to a JS Date
- * @param localDate
+ * @param {LocalDate} localDate
  * @returns {Date}
  */
 export function transformLocalDateToDate(localDate) {
@@ -42,12 +54,22 @@ export function transformLocalDateToDate(localDate) {
 
 /**
  * Transforms a Moment to a LocalDate
- * @param obj
+ * @param {moment.Moment} obj
  * @returns {LocalDate}
  */
 export function transformMomentToLocalDate(obj) {
 	if (!obj) return null;
 	return LocalDate.of(obj.year(), obj.month() + 1, obj.date());
+}
+
+/**
+ * Transforms a Moment to a LocalDateTime
+ * @param {moment.Moment} obj
+ * @returns {LocalDateTime}
+ */
+export function transformMomentToLocalDateTime(obj) {
+	if (!obj) return null;
+	return LocalDateTime.from(nativeJs(obj));
 }
 
 /**
@@ -209,11 +231,10 @@ export function transformObjectsToLocalDates(obj) {
 	return obj;
 }
 
-
 /**
  * Formats a date to a predefined style
  * @method formatDate
- * @param {Date|moment|LocalDate|number} obj - The date or moment object or LocalDate object
+ * @param {Date|LocalDate|number|moment} obj - The Date, LocalDate, LocalTime, LocalDateTime, ZonedDateTime, integer (epoch days), or moment
  * @param {string} [type=short] options.type - short, medium, or long
  * @param {bool} [time=false] options.time - If true, displays the time
  * @param {bool} [date=true] options.date - If true, displays the date
@@ -223,30 +244,45 @@ export function transformObjectsToLocalDates(obj) {
 export function formatDate(obj, {type: type = 'short', time: time = false, date: date = true, format} = {type: 'short'}) {
 	if (!obj) return '';
 	let m = obj;
-	if (isInteger(m)) m = transformEpochIntegerToDate(m);
-	if (m instanceof LocalDate) m = transformLocalDateToMoment(m);
-	if (m instanceof Date) m = moment(m);
-	if (!moment.isMoment(m)) throw new Error('formatDate requires a Date, LocalDate, Moment or number (EpochDays) to be passed as the first parameter.');
+	if (isInteger(m)) m = transformEpochIntegerToLocalDate(m);
+	if (m instanceof Date) m = transformDateToLocalDateTime(m);
+	if (moment.isMoment(m)) m = transformMomentToLocalDateTime(m);
+	if (
+		!((m instanceof LocalDate)
+		|| (m instanceof LocalTime)
+		|| (m instanceof LocalDateTime)
+		|| (m instanceof ZonedDateTime))
+	) {
+		throw new Error('formatDate requires a Date, LocalDate, LocalTime, LocalDateTime, ZonedDateTime, integer (epoch days) or Moment to be passed as the first parameter.');
+	}
+
 	let dateFormat;
 	let timeFormat;
 	switch (type || 'short') {
 		case 'short':
-			dateFormat = 'M/D/YYYY';
+			dateFormat = 'M/d/yyyy';
 			timeFormat = 'h:mm a';
 			break;
 		case 'medium':
-			dateFormat = 'MMM D, YYYY';
+			dateFormat = 'MMM d, yyyy';
 			timeFormat = 'h:mm a';
 			break;
 		case 'long':
-			dateFormat = 'MMMM D, YYYY';
+			dateFormat = 'MMMM d, yyyy';
 			timeFormat = 'h:mm a';
 			break;
 		default:
 	}
+
+	if (m instanceof LocalDate) timeFormat = '';
+	if (m instanceof LocalTime) dateFormat = '';
+
 	let formatString = (date === false) ? '' : dateFormat;
 	if (time === true) {
 		formatString = `${formatString} ${timeFormat}`;
 	}
-	return m.format(format || formatString);
+
+	const formatter = DateTimeFormatter.ofPattern(format || formatString).withLocale(Locale.ENGLISH);
+
+	return m.format(formatter).replace(/AM|PM/, x => x.toLowerCase());
 }
