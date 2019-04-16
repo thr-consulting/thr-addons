@@ -19,12 +19,8 @@ import withScriptel from './inputs/Scriptel/withScriptel';
 import ResponsiveMenu from './menu/ResponsiveMenu';
 
 // Date
-import DateTimePicker from './date/DateTimePicker';
-import LocalDatePicker from './date/LocalDatePicker';
-import MonthSelect from './date/MonthSelect';
 import LocalMonthSelect from './date/LocalMonthSelect';
 import DatePicker from './date/DatePicker';
-import {dateInit} from './date/util';
 
 // Money
 import MoneyInput from './money/MoneyInput';
@@ -47,11 +43,7 @@ export {
 	ResponsiveMenu,
 
 	// Date
-	DateTimePicker,
-	LocalDatePicker,
-	MonthSelect,
 	LocalMonthSelect,
-	dateInit,
 	DatePicker,
 
 	// Money

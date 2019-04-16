@@ -3,9 +3,9 @@ import {storiesOf} from '@storybook/react';
 import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 import {withState, Store} from '@thx/storybook-state';
-import {Container, Form} from 'semantic-ui-react';
-import '../src/date/styles.css';
+import {Container, Form, Input} from 'semantic-ui-react';
 import DatePicker from '../src/date/DatePicker';
+import '../../../node_modules/react-datepicker/dist/react-datepicker.min.css';
 
 const stories = storiesOf('DatePicker.LocalDate', module);
 
@@ -28,6 +28,10 @@ const storyFn = ({parameters: {state: {store}}}) => ( // eslint-disable-line rea
 					onChangeRaw={action('onChangeRaw')}
 					todayButton="Today"
 				/>
+			</Form.Field>
+			<Form.Field width={6}>
+				<label>Input</label>
+				<Input/>
 			</Form.Field>
 		</Form>
 	</Container>

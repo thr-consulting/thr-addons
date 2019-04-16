@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import {LocalDate, LocalDateTime} from 'js-joda';
+import {LocalDate, LocalDateTime, ZoneOffset} from 'js-joda';
 import moment from 'moment';
 import {
 	transformDateToLocalDate,
@@ -219,19 +219,15 @@ describe('Date transforms', () => {
 
 describe('Formatting', () => {
 	it('should format with defaults', () => {
-		expect(formatDate(LocalDateTime.of(2017, 6, 23, 6, 0, 0))).toMatchSnapshot();
-		// changed moment([2017, 5, 23, 6, 0, 0]) to LocalDateTime.of(2017, 6, 23, 6, 0, 0)
+		expect(formatDate(moment([2017, 5, 23, 6, 0, 0]))).toMatchSnapshot();
 	});
 	it('should format with options', () => {
-		expect(formatDate(LocalDateTime.of(2017, 6, 23, 6, 0, 0), {type: 'short', time: true, date: true})).toMatchSnapshot();
-		expect(formatDate(LocalDateTime.of(2017, 6, 23, 6, 0, 0), {type: 'medium', time: true, date: true})).toMatchSnapshot();
-		expect(formatDate(LocalDateTime.of(2017, 6, 23, 6, 0, 0), {type: 'long', time: true, date: true})).toMatchSnapshot();
+		expect(formatDate(moment([2017, 5, 23, 6, 0, 0]), {type: 'short', time: true, date: true})).toMatchSnapshot();
+		expect(formatDate(moment([2017, 5, 23, 6, 0, 0]), {type: 'medium', time: true, date: true})).toMatchSnapshot();
+		expect(formatDate(moment([2017, 5, 23, 6, 0, 0]), {type: 'long', time: true, date: true})).toMatchSnapshot();
 	});
 	it('should use a custom date format', () => {
-		expect(formatDate(LocalDateTime.of(2017, 6, 23, 6, 0, 0), {format: 'MMMM_d_YYYY_h_mm_a'})).toMatchSnapshot();
-	});
-	it('should format PM to pm', () => {
-		expect(formatDate(LocalDateTime.of(2017, 6, 23, 13, 0, 0), {format: 'MMMM_d_YYYY_h_mm_a'})).toMatchSnapshot();
+		expect(formatDate(moment([2017, 5, 23, 6, 0, 0]), {format: 'MMMM_d_yyyy_h_mm_a'})).toMatchSnapshot();
 	});
 	it('should format an integer (epoch days)', () => {
 		expect(formatDate(17400)).toMatchSnapshot();
@@ -242,7 +238,7 @@ describe('Formatting', () => {
 	it('should format a JS Date', () => {
 		expect(formatDate(new Date(2017, 5, 23, 6, 0, 0))).toMatchSnapshot();
 	});
-	it('should return empty string if first param is empty', () => {
-		expect(formatDate()).toMatchSnapshot();
+	it('should format a LocalDateTime', () => {
+		expect(formatDate(LocalDateTime.ofEpochSecond(1740, ZoneOffset.UTC))).toMatchSnapshot();
 	});
 });
