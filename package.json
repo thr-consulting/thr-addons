@@ -43,7 +43,7 @@
     "jest": "^24.7.1",
     "jsdoc-babel": "^0.5.0",
     "jsdoc-to-markdown": "^4.0.1",
-    "lerna": "^3.13.1",
+    "lerna": "^3.13.3",
     "mongodb": "^3.2.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
@@ -56,6 +56,6 @@
     "webpack-node-externals": "^1.7.2"
   },
   "optionalDependencies": {
-    "fsevents": "2.0.1"
+    "fsevents": "2.0.6"
   }
 }
