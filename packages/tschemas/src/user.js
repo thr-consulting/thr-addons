@@ -1,5 +1,3 @@
-// @flow
-
 import {string, object} from 'yup';
 import SIN from 'social-insurance-number';
 import escapeRegExp from 'escape-string-regexp';
@@ -24,7 +22,7 @@ export const password = () => string()
  * Validates a second password.
  * @param passwordField
  */
-export const passwordSecond = (passwordField: string) => string().when(passwordField, v => {
+export const passwordSecond = passwordField => string().when(passwordField, v => {
 	if (!v) return string().required('Please confirm your password');
 	return string().matches(new RegExp(`^${escapeRegExp(v)}$`), 'Passwords must match');
 });

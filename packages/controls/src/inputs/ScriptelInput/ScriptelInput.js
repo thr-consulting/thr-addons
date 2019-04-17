@@ -1,5 +1,3 @@
-// @flow
-
 import React, {Component} from 'react';
 import {Button, Image} from 'semantic-ui-react';
 import debug from 'debug';
@@ -7,19 +5,19 @@ import {ScriptelContext} from '../Scriptel/ScriptelContext';
 
 const d = debug('thx:ScriptelInput');
 
-type Props = {
-	value?: Object,
-	onChange?: () => {},
-};
-
-type State = {
-	entering: boolean,
-};
+// type Props = {
+// 	value?: Object,
+// 	onChange?: () => {},
+// };
+//
+// type State = {
+// 	entering: boolean,
+// };
 
 /**
  * A signature enter and display control.
  */
-export default class ScriptelInput extends Component<Props, State> {
+export default class ScriptelInput extends Component {
 	static contextType = ScriptelContext;
 
 	static defaultProps = {

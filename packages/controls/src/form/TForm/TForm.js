@@ -1,23 +1,21 @@
-// @flow
-
 import React, {Component} from 'react';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 import {Formik} from 'formik';
 import {Message} from 'semantic-ui-react';
 
-type Props = {
-	/** Render prop just like Formik's with additional arguments passed */
-	render: any,
-	/** The number of fields in the form. TForm can't automatically get this number. */
-	numFields: number,
-	/** Used to pass in any GraphQL errors. */
-	errors?: any,
-	/** Called when the form submits. */
-	onSubmit: data => void,
-	/** Called when the TForm is mounted so you can get access to the submitForm function. */
-	getSubmitFn: fn => void,
-};
+// type Props = {
+// 	/** Render prop just like Formik's with additional arguments passed */
+// 	render: any,
+// 	/** The number of fields in the form. TForm can't automatically get this number. */
+// 	numFields: number,
+// 	/** Used to pass in any GraphQL errors. */
+// 	errors?: any,
+// 	/** Called when the form submits. */
+// 	onSubmit: data => void,
+// 	/** Called when the TForm is mounted so you can get access to the submitForm function. */
+// 	getSubmitFn: fn => void,
+// };
 
 /**
  * Extends Formik to provide Semantic UI error and warning messages and field errors.
@@ -28,13 +26,12 @@ type Props = {
  * @property {function} onSubmit - Called when the form submits.
  * @property {function} getSubmitFn - Called when the TForm is mounted so you can get access to the submitForm function.
  */
-export default class TForm extends Component<Props> {
+export default class TForm extends Component {
 	static displayName = 'TForm';
 
 	componentDidMount() {
 		if (this.props.getSubmitFn) this.props.getSubmitFn(this._submitForm);
 	}
-
 
 	renderForm = args => {
 		const {errors: warnings, touched, handleChange, setFieldValue, submitForm, ...rest} = args;

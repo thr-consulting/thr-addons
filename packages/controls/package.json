@@ -22,8 +22,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "../../tools/coverage.sh controls",
-    "flow": "flow",
-    "lint": "eslint --cache 'src/**/*.js' 'webpack.config.js'",
+    "lint": "eslint --cache --ext js,ts,tsx src",
     "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
     "docs:md": "../../tools/jsdocmd.sh controls",
     "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json",
@@ -44,6 +43,7 @@
     "inputmask": "^4.0.6",
     "js-joda": "^1.9.3",
     "js-money": "^0.6.3",
+    "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react-datepicker": "^2.2.0",
@@ -54,21 +54,22 @@
     "text-mask-addons": "^3.7.2"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^5.0.8",
+    "@storybook/addon-actions": "^5.0.9",
     "@storybook/addon-console": "^1.1.0",
-    "@storybook/addon-info": "^5.0.8",
-    "@storybook/addon-knobs": "^5.0.8",
-    "@storybook/addon-storyshots": "^5.0.8",
-    "@storybook/react": "^5.0.8",
-    "identity-obj-proxy": "^3.0.0",
-    "mini-css-extract-plugin": "^0.5.0"
+    "@storybook/addon-info": "^5.0.9",
+    "@storybook/addon-knobs": "^5.0.9",
+    "@storybook/addon-storyshots": "^5.0.9",
+    "@storybook/react": "^5.0.9",
+    "@types/react": "^16.8.13",
+    "mini-css-extract-plugin": "^0.6.0",
+    "webpack-cli": "^3.3.0"
   },
   "jest": {
     "setupFiles": [
       "<rootDir>/../../tests/setupTests.js"
     ],
     "transform": {
-      "^.+\\.js$": "<rootDir>/../../tools/jest-transformer.js"
+      "^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transformer.js"
     },
     "snapshotSerializers": [
       "enzyme-to-json/serializer"

@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-// @flow
-
 import React, {Component} from 'react';
 import DatePicker from 'react-datepicker';
 import {LocalDate} from 'js-joda';
@@ -8,11 +5,11 @@ import isNumber from 'lodash/isNumber';
 import {transformLocalDateToDate, transformDateToLocalDate} from '@thx/date';
 import MaskedInput from '../../inputs/MaskedInput';
 
-type Props = {
+interface Props {
 	value?: LocalDate,
-	onChange?: LocalDate => void,
+	onChange?: (LocalDate) => void,
 	onChangeRaw?: () => void,
-};
+}
 
 /**
  * Let's you pick a LocalDate. No time parts are recorded.
@@ -30,7 +27,6 @@ export default class DatePickerLocalDate extends Component<Props> {
 		const {
 			value,
 			onChange,
-
 			action,
 			actionPosition,
 			as,
@@ -76,7 +72,3 @@ export default class DatePickerLocalDate extends Component<Props> {
 		);
 	}
 }
-
-/*
-customInput={<MaskedInput {...inputProps} mask={{mask: this._mask}}/>}
- */

@@ -21,8 +21,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "../../tools/coverage.sh date",
-    "flow": "flow",
-    "lint": "eslint --cache 'src/**/*.js' 'webpack.config.js'",
+    "lint": "eslint --cache --ext js,ts,tsx src",
     "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
     "docs:md": "../../tools/jsdocmd.sh date",
     "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
@@ -40,14 +39,15 @@
   },
   "devDependencies": {
     "graphql-tag": "^2.10.1",
-    "graphql-tools": "^4.0.4"
+    "graphql-tools": "^4.0.4",
+    "webpack-cli": "^3.3.0"
   },
   "jest": {
     "setupFiles": [
       "<rootDir>/../../tests/setupTests.js"
     ],
     "transform": {
-      "^.+\\.js$": "<rootDir>/../../tools/jest-transformer.js"
+      "^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transformer.js"
     }
   }
 }

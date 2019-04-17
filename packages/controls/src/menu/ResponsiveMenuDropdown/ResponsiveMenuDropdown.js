@@ -1,19 +1,16 @@
-// @flow
-
 import React from 'react';
-import type {ChildrenArray} from 'react';
 import {Dropdown} from 'semantic-ui-react';
 import {ResponsiveMenuContext, ResponsiveMenuDropdownContext} from '../ResponsiveMenuContext';
 
-type Props = {
-	children?: ChildrenArray<*>,
-	/** A Semantic UI icon name. If in mobile mode, will show the supplied icon, otherwise it will show an arrow. */
-	icon?: string,
-	/** The text label to show on the menu. */
-	text?: string,
-};
+// type Props = {
+// 	children?: ChildrenArray<*>,
+// 	/** A Semantic UI icon name. If in mobile mode, will show the supplied icon, otherwise it will show an arrow. */
+// 	icon?: string,
+// 	/** The text label to show on the menu. */
+// 	text?: string,
+// };
 
-export default function ResponsiveMenuDropdown({children, icon, text}: Props) {
+export default function ResponsiveMenuDropdown({children, icon, text}) {
 	return (
 		<ResponsiveMenuContext.Consumer>
 			{({isMobile}) => (

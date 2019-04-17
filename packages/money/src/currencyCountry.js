@@ -1,5 +1,3 @@
-// @flow
-
 const currencyCountryMap = {
 	USD: 'US',
 	CAD: 'CA',
@@ -126,7 +124,7 @@ const currencyCountryMap = {
  * @param {string} currency - The currency code.
  * @return {string} The country code.
  */
-export default function getCountryCode(currency: string) {
+export default function getCountryCode(currency) {
 	if (!currencyCountryMap[currency]) return '';
 	return currencyCountryMap[currency].toLowerCase();
 }

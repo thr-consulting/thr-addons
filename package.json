@@ -25,22 +25,37 @@
     "ready:commit": "yarn test:coverage && yarn docs && yarn docs:md && yarn docs:storybook"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
-    "@imperium/babel-preset-imperium": "^1.0.0",
-    "@imperium/dev-deps": "^1.0.0",
-    "@imperium/eslint-config-imperium": "^1.0.0",
+    "@imperium/babel-preset-imperium": "^2.0.0",
+    "@imperium/eslint-config-imperium": "^2.0.0",
     "@thx/storybook-state": "^1.5.0-thx.4",
+    "babel-jest": "^24.5.0",
+    "babel-loader": "^8.0.5",
+    "coverbadge": "^0.5.5",
+    "css-loader": "^2.1.1",
+    "dmd-clear": "^0.1.2",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "enzyme-to-json": "^3.3.5",
     "eslint": "^5.15.3",
     "graphql": "^14.1.1",
-    "lerna": "^3.13.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.7.1",
+    "jsdoc-babel": "^0.5.0",
+    "jsdoc-to-markdown": "^4.0.1",
+    "lerna": "^3.13.3",
     "mongodb": "^3.2.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "4.3.1",
-    "semantic-ui-react": "^0.86.0"
+    "rimraf": "^2.6.3",
+    "semantic-ui-react": "^0.86.0",
+    "style-loader": "^0.23.1",
+    "typescript": "^3.4.3",
+    "webpack": "^4.30.0",
+    "webpack-node-externals": "^1.7.2"
   },
   "optionalDependencies": {
-    "fsevents": "2.0.1"
+    "fsevents": "2.0.6"
   }
 }

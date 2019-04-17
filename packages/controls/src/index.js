@@ -9,7 +9,6 @@ import SinEntry from './inputs/SinEntry';
 import RadioGroup from './inputs/RadioGroup';
 
 // Form
-import FieldMap from './form/FieldMap';
 import TForm from './form/TForm';
 import ScriptelInput from './inputs/ScriptelInput';
 import Scriptel from './inputs/Scriptel/Scriptel';
@@ -33,7 +32,6 @@ export {
 	SinEntry,
 
 	// Form
-	FieldMap,
 	TForm,
 	ScriptelInput,
 	Scriptel,
