@@ -40,6 +40,7 @@
   "devDependencies": {
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.4",
+    "webpack": "^4.30.0",
     "webpack-cli": "^3.3.0"
   },
   "jest": {
