@@ -18,7 +18,7 @@ type Props = {
 	onDetailsClick?: () => void,
 	detailsIcon?: string,
 	locked?: boolean,
-	wholeNumber?: boolean,
+	wholenumber?: boolean,
 };
 
 /**
@@ -31,7 +31,7 @@ type Props = {
  * @property {string} [detailsIcon=server] - The Semantic UI icon to display on the details button.
  * @property {bool} [locked=false] - If true, cannot edit the amount.
  * @property {function} onBlur - Called when the focus is lost.
- * @property {bool} [wholeNumber=false] - If true, Then decimals will be zero.
+ * @property {bool} [wholenumber=false] - If true, Then decimals will be zero.
  */
 export default class MoneyInput extends Component<Props> {
 	static defaultProps = {
@@ -62,7 +62,7 @@ export default class MoneyInput extends Component<Props> {
 			}
 
 			// Set the input text to be the initial value prop
-			this.props.wholeNumber ? this._input.value = roundTo(makeMoney(value).toDecimal(), 0) : this._input.value = makeMoney(value).toDecimal();
+			this.props.wholenumber ? this._input.value = roundTo(makeMoney(value).toDecimal(), 0) : this._input.value = makeMoney(value).toDecimal();
 
 			moneyInputMask({
 				element: this._input,
@@ -79,7 +79,7 @@ export default class MoneyInput extends Component<Props> {
 			const prevMoney = prevProps.value;
 			d(`componentDidUpdate: ${prevMoney} > ${money} | ${iv}`);
 
-			this.props.wholeNumber ? this._input.value = roundTo(money.toDecimal(), 0) : this._input.value = money.toDecimal();
+			this.props.wholenumber ? this._input.value = roundTo(money.toDecimal(), 0) : this._input.value = money.toDecimal();
 		}
 	}
 
@@ -90,8 +90,8 @@ export default class MoneyInput extends Component<Props> {
 	handleChange = value => {
 		d(`handleChange: ${value}`);
 		if (this.props.onChange) {
-			const {currency, wholeNumber} = this.props;
-			const money = makeMoney(wholeNumber ? roundTo(value, 0) : value, currency || 'CAD');
+			const {currency, wholenumber} = this.props;
+			const money = makeMoney(wholenumber ? roundTo(value, 0) : value, currency || 'CAD');
 			this.props.onChange(money);
 		}
 	};
