@@ -4,7 +4,6 @@ import DatePicker from 'react-datepicker';
 import {LocalDate} from 'js-joda';
 import isNumber from 'lodash/isNumber';
 import {transformLocalDateToDate, transformDateToLocalDate} from '@thx/date';
-import {Button} from 'semantic-ui-react';
 import MaskedInput from '../../inputs/MaskedInput';
 
 const d = debug('thx.controls.DatePicker.LocalDate');
@@ -15,14 +14,17 @@ interface Props {
 	onChangeRaw?: () => void,
 }
 
-function MaskedDateInput({onChange: inputOnChange, ...inputRest}) {
-	return (
-		<MaskedInput
-			mask={{mask: '99/99/9999'}}
-			onChange={inputValue => inputOnChange({target: {value: inputValue}})}
-			{...inputRest}
-		/>
-	);
+class MaskedDateInput extends Component {
+	render() {
+		const {onChange, ...inputRest} = this.props;
+		return (
+			<MaskedInput
+				mask={{mask: '99/99/9999'}}
+				onChange={inputValue => onChange({target: {value: inputValue}})}
+				{...inputRest}
+			/>
+		);
+	}
 }
 
 /**
@@ -96,6 +98,7 @@ export default class DatePickerLocalDate extends Component<Props> {
 
 		return (
 			<DatePicker
+				{...newProps}
 				customInput={<MaskedDateInput {...inputProps}/>}
 			/>
 		);
