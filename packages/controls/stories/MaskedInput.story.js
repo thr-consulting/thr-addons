@@ -25,6 +25,7 @@ const storyFn = () => (
 					onChange={action('onChange')}
 					onBlur={action('onBlur')}
 					fluid={boolean('fluid', false)}
+					type="string"
 				/>
 			</Form.Field>
 		</Form>
