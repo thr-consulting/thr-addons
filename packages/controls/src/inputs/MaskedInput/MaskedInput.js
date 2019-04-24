@@ -73,7 +73,6 @@ import Inputmask from 'inputmask';
  * @property {string|number} [value=null] - The value to display
  * @property {onChange} [onChange=null] - Called when the value changes.
  * @property {inputmaskPropTypes} [mask=null] - The mask object specified at {@link https://github.com/RobinHerbots/jquery.inputmask|here}.
- * @property {type} - The type of the value that will be returned.
  */
 export default class MaskedInput extends Component {
 	static displayName = 'MaskedInput';
@@ -111,7 +110,7 @@ export default class MaskedInput extends Component {
 	}
 
 	handleComplete = ev => {
-		if (this.props.onChange) this.handleChange(ev);
+		if (this.props.onChange) this.props.onChange(ev.target.value);
 	};
 
 	handleCleared = () => {
@@ -119,26 +118,11 @@ export default class MaskedInput extends Component {
 	};
 
 	handleIncomplete = ev => {
-		if (this.props.onChange) this.handleChange(ev);
-	};
-
-	handleChange = ev => {
-		const {type, onChange} = this.props;
-
-		switch (true) {
-			case type === 'number':
-				onChange(parseInt(ev.target.value, 10));
-				break;
-			case typeof type === 'function':
-				onChange(type(ev.target.value));
-				break;
-			default:
-				onChange(ev.target.value);
-		}
+		if (this.props.onChange) this.props.onChange(ev.target.value);
 	};
 
 	render() {
-		const {value, onChange, onBlur, mask, type, ...rest} = this.props;
+		const {value, onChange, onBlur, mask, ...rest} = this.props;
 		return (
 			<Input {...rest} >
 				<input ref={r => (this._input = r)} onBlur={onBlur}/>
