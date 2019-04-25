@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
+import debug from 'debug';
 import DatePicker from 'react-datepicker';
 import {LocalDate} from 'js-joda';
 import isNumber from 'lodash/isNumber';
 import {transformLocalDateToDate, transformDateToLocalDate} from '@thx/date';
-import MaskedInput from '../../inputs/MaskedInput';
+import MaskedDateInput from './MaskedDateInput';
+
+const d = debug('thx.controls.DatePicker.LocalDate');
 
 interface Props {
-	value?: LocalDate,
+	value?: LocalDate | number,
 	onChange?: (LocalDate) => void,
 	onChangeRaw?: () => void,
 }
@@ -19,7 +22,7 @@ interface Props {
  */
 export default class DatePickerLocalDate extends Component<Props> {
 	handleChange = (dateValue?: Date) => {
-		// console.log('change', transformDateToLocalDate(dateValue));
+		d(dateValue, transformDateToLocalDate(dateValue));
 		if (this.props.onChange) this.props.onChange(transformDateToLocalDate(dateValue));
 	};
 
@@ -51,24 +54,47 @@ export default class DatePickerLocalDate extends Component<Props> {
 		if (!value) {
 			newProps.selected = null;
 		} else if (isNumber(value)) {
-			newProps.selected = transformLocalDateToDate(LocalDate.ofEpochDay(value));
+			newProps.selected = transformLocalDateToDate(LocalDate.ofEpochDay(value as number));
 		} else if (value instanceof LocalDate) {
 			newProps.selected = transformLocalDateToDate(value);
 		} else {
 			throw new Error('Value must be null, epoch integer or a LocalDate');
 		}
 
+		d('datepicker selected will be: ', newProps.selected);
+
 		if (onChange) newProps.onChange = this.handleChange;
 
 		const inputProps = {
-			action, actionPosition, as, disabled, error, fluid, focus, icon, iconPosition, inverted, label, labelPosition, loading, size, transparent,
+			action,
+			actionPosition,
+			as,
+			disabled,
+			error,
+			fluid,
+			focus,
+			icon,
+			iconPosition,
+			inverted,
+			label,
+			labelPosition,
+			loading,
+			size,
+			transparent,
 		};
 
 		return (
 			<DatePicker
-				customInput={<MaskedInput {...inputProps} mask={{mask: '99/99/9999'}}/>}
 				{...newProps}
+				customInput={<MaskedDateInput {...inputProps}/>}
 			/>
 		);
 	}
 }
+
+/*
+<MaskedInput {...inputProps} mask={{mask: '99/99/9999'}} onChange={a => {
+						d('Custom input:', a);
+					}}
+					/>
+ */
