@@ -1,5 +1,3 @@
-// @flow
-
 import omit from 'lodash/omit';
 import debug from 'debug';
 
@@ -16,7 +14,7 @@ const d = debug('thx:tschemas:schemaValidate');
  * @param validateOptions - Custom yup validate options.
  * @returns {object}
  */
-export default async function schemaValidate(schema: any, obj: any, validateOptions: Object) {
+export default async function schemaValidate(schema, obj, validateOptions) {
 	try {
 		await schema.validate(obj, validateOptions || {strict: true});
 		return null;

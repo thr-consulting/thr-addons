@@ -1,5 +1,3 @@
-// @flow
-
 import React, {Component} from 'react';
 import {Select} from 'semantic-ui-react';
 import {LocalDate} from 'js-joda';
@@ -22,16 +20,16 @@ const monthOptions = [
 	{text: 'December', value: 12},
 ];
 
-type Props = {
+interface Props {
 	onChange?: Function,
 	value?: LocalDate,
 	year?: number,
-};
+}
 
-type ValueOption = {
+interface ValueOption {
 	text: string,
 	value: number,
-};
+}
 
 /**
  * Month select dropdown
@@ -45,18 +43,16 @@ export default class LocalMonthSelect extends Component<Props> {
 		year: LocalDate.now().year(),
 	};
 
-	handleChange = (e: SyntheticEvent<*>, value: ValueOption) => {
+	handleChange = (e, value: ValueOption) => {
 		d('Month changed to:', value.value, e);
 		if (this.props.onChange) {
 			if (value !== '') {
-				// $FlowFixMe
 				this.props.onChange(LocalDate.of(this.props.year, parseInt(value.value, 10), 1));
 			} else {
 				this.props.onChange(null);
 			}
 		}
 	};
-
 
 	render() {
 		const {value} = this.props;

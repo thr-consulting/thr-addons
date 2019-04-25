@@ -4,7 +4,10 @@ import {Kind} from 'graphql/language';
 import {GraphQLScalarType} from 'graphql/type';
 import isString from 'lodash/isString';
 import isInteger from 'lodash/isInteger';
+import debug from 'debug';
 import {transformObjectsToLocalDates} from '../util';
+
+const d = debug('thx.date.graphQLLocalDate');
 
 const GraphQLLocalDate = new GraphQLScalarType({
 	name: 'LocalDate',

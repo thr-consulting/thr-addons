@@ -9,7 +9,6 @@ import SinEntry from './inputs/SinEntry';
 import RadioGroup from './inputs/RadioGroup';
 
 // Form
-import FieldMap from './form/FieldMap';
 import TForm from './form/TForm';
 import ScriptelInput from './inputs/ScriptelInput';
 import Scriptel from './inputs/Scriptel/Scriptel';
@@ -19,13 +18,8 @@ import withScriptel from './inputs/Scriptel/withScriptel';
 import ResponsiveMenu from './menu/ResponsiveMenu';
 
 // Date
-import DateTimePicker from './date/DateTimePicker';
-import LocalDatePicker from './date/LocalDatePicker';
-import EpochDatePicker from './date/EpochDatePicker';
-import MonthSelect from './date/MonthSelect';
 import LocalMonthSelect from './date/LocalMonthSelect';
 import DatePicker from './date/DatePicker';
-import {dateInit} from './date/util';
 
 // Money
 import MoneyInput from './money/MoneyInput';
@@ -38,7 +32,6 @@ export {
 	SinEntry,
 
 	// Form
-	FieldMap,
 	TForm,
 	ScriptelInput,
 	Scriptel,
@@ -48,12 +41,7 @@ export {
 	ResponsiveMenu,
 
 	// Date
-	DateTimePicker,
-	LocalDatePicker,
-	EpochDatePicker,
-	MonthSelect,
 	LocalMonthSelect,
-	dateInit,
 	DatePicker,
 
 	// Money

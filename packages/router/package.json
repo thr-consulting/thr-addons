@@ -1,6 +1,6 @@
 {
   "name": "@thx/router",
-  "version": "10.0.0",
+  "version": "10.1.0",
   "description": "A collection of components for router and layout",
   "main": "lib/router.js",
   "author": "Mike Kornelson <mike@durbn.net>",
@@ -22,8 +22,7 @@
     "TURNEDOFFtest": "jest",
     "TURNEDOFFtest:watch": "jest --watch",
     "TURNEDOFFtest:coverage": "../../tools/coverage.sh router",
-    "flow": "flow",
-    "lint": "eslint --cache 'src/**/*.js' 'webpack.config.js'",
+    "lint": "eslint --cache --ext js,ts,tsx src",
     "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
     "docs:md": "../../tools/jsdocmd.sh router",
     "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
@@ -41,14 +40,16 @@
   },
   "devDependencies": {
     "identity-obj-proxy": "^3.0.0",
-    "mini-css-extract-plugin": "^0.5.0"
+    "mini-css-extract-plugin": "^0.6.0",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0"
   },
   "jest": {
     "setupFiles": [
       "<rootDir>/../../tests/setupTests.js"
     ],
     "transform": {
-      "^.+\\.js$": "<rootDir>/../../tools/jest-transformer.js"
+      "^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transformer.js"
     },
     "snapshotSerializers": [
       "enzyme-to-json/serializer"

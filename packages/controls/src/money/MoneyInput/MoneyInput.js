@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-// @flow
 
 import debug from 'debug';
 import React, {Component} from 'react';
@@ -32,8 +31,7 @@ type Props = {
  * @property {bool} [locked=false] - If true, cannot edit the amount.
  * @property {function} onBlur - Called when the focus is lost.
  * @property {bool} [wholenumber=false] - If true, Then decimals will be zero.
- */
-export default class MoneyInput extends Component<Props> {
+export default class MoneyInput extends Component {
 	static defaultProps = {
 		detailsIcon: 'server',
 		locked: false,

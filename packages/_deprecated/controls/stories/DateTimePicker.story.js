@@ -6,7 +6,7 @@ import {withKnobs, boolean, text} from '@storybook/addon-knobs';
 import {Container, Form} from 'semantic-ui-react';
 import DateTimePicker from '../src/date/DateTimePicker';
 import {dateInit} from '../src/date/util';
-import '../src/date/styles.css';
+import '../src/date/DatePicker/styles.css';
 
 dateInit();
 

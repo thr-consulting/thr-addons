@@ -1,6 +1,6 @@
 {
   "name": "@thx/tschemas",
-  "version": "10.0.1",
+  "version": "10.1.0",
   "description": "Useful yup schema shortcuts",
   "main": "lib/tschemas.js",
   "author": "Mike Kornelson <mike@durbn.net>",
@@ -21,18 +21,17 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "../../tools/coverage.sh tschemas",
-    "flow": "flow",
-    "lint": "eslint --cache 'src/**/*.js' 'webpack.config.js'",
+    "lint": "eslint --cache --ext js,ts,tsx src",
     "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
     "docs:md": "../../tools/jsdocmd.sh tschemas",
     "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
   },
   "dependencies": {
-    "escape-string-regexp": "^1.0.5",
+    "escape-string-regexp": "^2.0.0",
     "js-joda": "^1.9.3",
     "js-money": "^0.6.3",
     "moment": "^2.24.0",
-    "social-insurance-number": "^0.0.2",
+    "social-insurance-number": "^0.0.4",
     "yup": "^0.27.0"
   },
   "jest": {
@@ -40,7 +39,7 @@
       "<rootDir>/../../tests/setupTests.js"
     ],
     "transform": {
-      "^.+\\.js$": "<rootDir>/../../tools/jest-transformer.js"
+      "^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transformer.js"
     }
   }
 }

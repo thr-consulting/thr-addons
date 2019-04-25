@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`FieldMap should render without throwing an error 1`] = `
-<Input
-  onChange={[Function]}
-  type="text"
-  value="a"
-/>
-`;

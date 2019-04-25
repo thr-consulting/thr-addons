@@ -1,18 +1,15 @@
-// @flow
-
 import React, {Component, Children} from 'react';
-import type {ChildrenArray} from 'react';
 import {Form} from 'semantic-ui-react';
 
-type Props = {
-	/** Any components but handles Radio components specially. */
-	children?: ChildrenArray<*>,
-	/** Called when one of the Radio boxes is selected. */
-	onChange?: (value: boolean | number | string | Object) => void,
-	onBlur?: () => void,
-	/** This value will select the correct Radio component with the matching value */
-	value?: | boolean | number | string | Object,
-};
+// type Props = {
+// 	/** Any components but handles Radio components specially. */
+// 	children?: ChildrenArray<*>,
+// 	/** Called when one of the Radio boxes is selected. */
+// 	onChange?: (value: boolean | number | string | Object) => void,
+// 	onBlur?: () => void,
+// 	/** This value will select the correct Radio component with the matching value */
+// 	value?: | boolean | number | string | Object,
+// };
 
 /**
  * Groups React Semantic UI Radio elements into a single group
@@ -21,7 +18,7 @@ type Props = {
  * @property {onChange} onChange - Standard onChange handler
  * @property {bool|number|string|Object} value - The currently selected radio item
  */
-export default class RadioGroup extends Component<Props> {
+export default class RadioGroup extends Component {
 	static displayName = 'RadioGroup';
 
 	static defaultProps = {
@@ -31,7 +28,7 @@ export default class RadioGroup extends Component<Props> {
 		value: null,
 	};
 
-	handleChange = (e: Event, {value}: {value: any}) => {
+	handleChange = (e, {value}) => {
 		if (this.props.onChange) this.props.onChange(value);
 	};
 

@@ -1,5 +1,3 @@
-// @flow
-
 import {mixed} from 'yup';
 import Money from 'js-money';
 import isNull from 'lodash/isNull';
@@ -20,7 +18,7 @@ class MoneySchema extends mixed {
 		});
 	}
 
-	_typeCheck(v: Object) {
+	_typeCheck(v) {
 		return v instanceof Money;
 	}
 }

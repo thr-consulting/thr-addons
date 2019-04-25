@@ -20,17 +20,20 @@ module.exports = {
 	optimization: {
 		minimize: process.env.NODE_ENV === 'production',
 	},
+	resolve: {
+		extensions: ['.js', '.mjs', '.ts', '.tsx'],
+	},
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
+				test: /\.[tj]sx?$/,
 				exclude: '/node_modules/',
 				use: [
 					{
 						loader: 'babel-loader',
 						options: {
 							babelrc: false,
-							presets: [['@imperium/babel-preset-imperium']],
+							presets: [['@imperium/babel-preset-imperium', {typescript: true}]],
 						},
 					},
 				],

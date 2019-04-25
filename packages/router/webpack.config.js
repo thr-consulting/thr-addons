@@ -21,6 +21,9 @@ module.exports = {
 	optimization: {
 		minimize: process.env.NODE_ENV === 'production',
 	},
+	resolve: {
+		extensions: ['.js', '.mjs', '.ts', '.tsx'],
+	},
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
@@ -43,14 +46,14 @@ module.exports = {
 				use: [{loader: 'url-loader', query: {limit: 30000}}],
 			},
 			{
-				test: /\.js$/,
+				test: /\.[tj]sx?$/,
 				exclude: '/node_modules/',
 				use: [
 					{
 						loader: 'babel-loader',
 						options: {
 							babelrc: false,
-							presets: [['@imperium/babel-preset-imperium', {react: true}]],
+							presets: [['@imperium/babel-preset-imperium', {client: true, typescript: true}]],
 						},
 					},
 				],

@@ -1,43 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {storiesOf} from '@storybook/react';
 import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
-import {withState, Store} from '@thx/storybook-state';
 import {Container, Form} from 'semantic-ui-react';
-import '../src/date/styles.css';
+import '../src/date/DatePicker/styles.css';
 import DatePicker from '../src/date/DatePicker';
 
 const stories = storiesOf('DatePicker', module);
 
 stories.addDecorator(withInfo);
-stories.addDecorator(withState);
 
-const storyFn = ({parameters: {state: {store}}}) => ( // eslint-disable-line react/prop-types
-	<Container>
-		<Form>
-			<Form.Field width={6}>
-				<label>Select a day</label>
-				<DatePicker
-					onChange={value => {
-						store.set({value});
-						action('onChange')(value);
-					}}
-					value={store.state.value}
-					onBlur={action('onBlur')}
-					placeholderText="Enter the date"
-					onChangeRaw={action('onChangeRaw')}
-					todayButton="Today"
-				/>
-			</Form.Field>
-		</Form>
-	</Container>
-);
+const StoryFn = () => {
+	const [value, setValue] = useState();
+
+	return (
+		<Container>
+			<Form>
+				<Form.Field width={6}>
+					<label>Select a day</label>
+					<DatePicker
+						onChange={a => {
+							setValue(a);
+						}}
+						selected={value}
+						onBlur={action('onBlur')}
+						placeholderText="Enter the date"
+						todayButton="Today"
+					/>
+				</Form.Field>
+			</Form>
+		</Container>
+	);
+};
 
 stories.add(
 	'default',
-	storyFn,
+	() => <StoryFn/>,
 	{
-		state: {store: new Store({value: null})},
 		info: {
 			inline: true,
 			text: 'A date picker that uses a Moment. (react-datepicker style)',
