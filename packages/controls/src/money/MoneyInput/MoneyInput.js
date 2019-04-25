@@ -1,24 +1,22 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-
 import debug from 'debug';
 import React, {Component} from 'react';
 import {Input, Icon} from 'semantic-ui-react';
-import Money from 'js-money';
 import {makeMoney, roundTo} from '@thx/money';
 import moneyInputMask from './moneyInputMask';
 
 const d = debug('money:MoneyInput');
 
-type Props = {
-	value?: Money,
-	onChange?: Money => void,
-	currency?: string,
-	onBlur?: () => void,
-	onDetailsClick?: () => void,
-	detailsIcon?: string,
-	locked?: boolean,
-	wholenumber?: boolean,
-};
+// type Props = {
+// 	value?: Money,
+// 	onChange?: Money => void,
+// 	currency?: string,
+// 	onBlur?: () => void,
+// 	onDetailsClick?: () => void,
+// 	detailsIcon?: string,
+// 	locked?: boolean,
+// 	wholenumber?: boolean,
+// };
 
 /**
  * A masked money input. Defaults to CAD funds.
@@ -31,6 +29,7 @@ type Props = {
  * @property {bool} [locked=false] - If true, cannot edit the amount.
  * @property {function} onBlur - Called when the focus is lost.
  * @property {bool} [wholenumber=false] - If true, Then decimals will be zero.
+ * */
 export default class MoneyInput extends Component {
 	static defaultProps = {
 		detailsIcon: 'server',
@@ -60,7 +59,7 @@ export default class MoneyInput extends Component {
 			}
 
 			// Set the input text to be the initial value prop
-			this.props.wholenumber ? this._input.value = roundTo(makeMoney(value).toDecimal(), 0) : this._input.value = makeMoney(value).toDecimal();
+			this._input.value = this.props.wholenumber ? roundTo(makeMoney(value).toDecimal(), 0) : makeMoney(value).toDecimal();
 
 			moneyInputMask({
 				element: this._input,
@@ -77,7 +76,7 @@ export default class MoneyInput extends Component {
 			const prevMoney = prevProps.value;
 			d(`componentDidUpdate: ${prevMoney} > ${money} | ${iv}`);
 
-			this.props.wholenumber ? this._input.value = roundTo(money.toDecimal(), 0) : this._input.value = money.toDecimal();
+			this._input.value = this.props.wholenumber ? roundTo(money.toDecimal(), 0) : money.toDecimal();
 		}
 	}
 
