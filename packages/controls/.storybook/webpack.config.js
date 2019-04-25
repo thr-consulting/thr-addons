@@ -6,6 +6,19 @@ module.exports = async ({config, mode}) => {
 	);
 
 	config.module.rules.push({
+		test: /\.(ts|tsx)$/,
+		use: [
+			{
+				loader: 'babel-loader',
+				options: {
+					babelrc: false,
+					presets: [['@imperium/babel-preset-imperium', {client: true, typescript: true}]],
+				},
+			},
+		],
+	});
+	config.resolve.extensions.push('.ts', '.tsx');
+	config.module.rules.push({
 		test: /\.css$/,
 		use: [
 			{loader: 'style-loader'},
