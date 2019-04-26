@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Input} from 'semantic-ui-react';
+import isFunction from 'lodash/isFunction';
 import 'inputmask/dist/inputmask/inputmask.numeric.extensions';
 import Inputmask from 'inputmask';
 
@@ -66,6 +67,20 @@ import Inputmask from 'inputmask';
 // 	}
 // };
 
+function getConvertFunction(type) {
+	if (isFunction(type)) return type;
+	switch (type) {
+		case 'number':
+			return str => {
+				if (!str || str === '') return 0;
+				return parseInt(str, 10);
+			};
+		case 'string':
+		default:
+			return str => str;
+	}
+}
+
 /**
  * Displays a masked input form. Warning: this component uses jquery for masking so it renders quite slow. Do not use
  * hundreds of these on one screen at the same time.
@@ -73,6 +88,7 @@ import Inputmask from 'inputmask';
  * @property {string|number} [value=null] - The value to display
  * @property {onChange} [onChange=null] - Called when the value changes.
  * @property {inputmaskPropTypes} [mask=null] - The mask object specified at {@link https://github.com/RobinHerbots/jquery.inputmask|here}.
+ * @property {type} - The type of the value that will be returned.
  */
 export default class MaskedInput extends Component {
 	static displayName = 'MaskedInput';
@@ -110,19 +126,25 @@ export default class MaskedInput extends Component {
 	}
 
 	handleComplete = ev => {
-		if (this.props.onChange) this.props.onChange(ev.target.value);
+		if (this.props.onChange) {
+			this.props.onChange(getConvertFunction(this.props.type)(ev.target.value));
+		}
 	};
 
 	handleCleared = () => {
-		if (this.props.onChange) this.props.onChange('');
+		if (this.props.onChange) {
+			this.props.onChange(getConvertFunction(this.props.type)(''));
+		}
 	};
 
 	handleIncomplete = ev => {
-		if (this.props.onChange) this.props.onChange(ev.target.value);
+		if (this.props.onChange) {
+			this.props.onChange(getConvertFunction(this.props.type)(ev.target.value));
+		}
 	};
 
 	render() {
-		const {value, onChange, onBlur, mask, ...rest} = this.props;
+		const {value, onChange, onBlur, mask, type, ...rest} = this.props;
 		return (
 			<Input {...rest} >
 				<input ref={r => (this._input = r)} onBlur={onBlur}/>
