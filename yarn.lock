@@ -1090,8 +1090,10 @@
   resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
   integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
-"@imperium/babel-preset-imperium@file:.yalc/@imperium/babel-preset-imperium":
-  version "2.0.0-c4347b05"
+"@imperium/babel-preset-imperium@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@imperium/babel-preset-imperium/-/babel-preset-imperium-2.0.0.tgz#faab37dfe2b2e34d168dc63868fcc1aaf9197a5a"
+  integrity sha512-vdllcrBSfJGahEzxuHcGpFbI+K6dPkTJGt+NvuOM0C7rlcppWzmyp15BA+jFR8OMZlR71yxiTleMqcd7G3E8dg==
   dependencies:
     "@babel/core" "^7.4.0"
     "@babel/plugin-proposal-class-properties" "^7.4.0"
@@ -1105,24 +1107,27 @@
     "@babel/plugin-transform-regenerator" "^7.4.0"
     "@babel/plugin-transform-runtime" "^7.4.0"
     "@babel/preset-env" "^7.4.1"
+    "@babel/preset-flow" "^7.0.0"
     "@babel/preset-react" "^7.0.0"
     "@babel/preset-typescript" "^7.3.3"
+    babel-plugin-flow-react-proptypes "^25.0.0"
     babel-plugin-inline-import "^3.0.0"
     babel-plugin-macros "^2.5.0"
     babel-plugin-transform-dynamic-import "^2.1.0"
     babel-plugin-transform-react-remove-prop-types "^0.4.24"
 
-"@imperium/eslint-config-imperium@file:.yalc/@imperium/eslint-config-imperium":
-  version "2.0.0-77067c52"
+"@imperium/eslint-config-imperium@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@imperium/eslint-config-imperium/-/eslint-config-imperium-2.0.0.tgz#7b17738b5ac8713db91b8cb17b70c61c4cadab95"
+  integrity sha512-E02aPe+U+1wwjbA+Odzn8CEEx+PYNMBzHXiMvwKAwikjBBPSzeb7pMuh5rGf6HFUUKOr66wUpsIsF213kSGTdg==
   dependencies:
-    "@typescript-eslint/eslint-plugin" "^1.7.0"
-    "@typescript-eslint/parser" "^1.7.0"
+    "@typescript-eslint/eslint-plugin" "^1.6.0"
     babel-eslint "^10.0.1"
     eslint-config-airbnb "^17.0.0"
-    eslint-config-airbnb-typescript "^3.0.0"
+    eslint-config-airbnb-typescript "^1.1.0"
     eslint-plugin-babel "^5.3.0"
-    eslint-plugin-import "^2.17.2"
-    eslint-plugin-jest "^22.5.1"
+    eslint-plugin-import "^2.14.0"
+    eslint-plugin-jest "^22.4.1"
     eslint-plugin-jsx-a11y "^6.1.1"
     eslint-plugin-react "^7.11.1"
     eslint-plugin-react-hooks "^1.6.0"
@@ -2540,7 +2545,7 @@
   resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-12.0.12.tgz#45dd1d0638e8c8f153e87d296907659296873916"
   integrity sha512-SOhuU4wNBxhhTHxYaiG5NY4HBhDIDnJF60GU+2LqHAdKKer86//e4yg69aENCtQ04n0ovz+tq2YPME5t5yp4pw==
 
-"@typescript-eslint/eslint-plugin@^1.7.0":
+"@typescript-eslint/eslint-plugin@^1.6.0":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-1.7.0.tgz#570e45dc84fb97852e363f1e00f47e604a0b8bcc"
   integrity sha512-NUSz1aTlIzzTjFFVFyzrbo8oFjHg3K/M9MzYByqbMCxeFdErhLAcGITVfXzSz+Yvp5OOpMu3HkIttB0NyKl54Q==
@@ -2552,7 +2557,7 @@
     requireindex "^1.2.0"
     tsutils "^3.7.0"
 
-"@typescript-eslint/parser@1.7.0", "@typescript-eslint/parser@^1.7.0":
+"@typescript-eslint/parser@1.7.0":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-1.7.0.tgz#c3ea0d158349ceefbb6da95b5b09924b75357851"
   integrity sha512-1QFKxs2V940372srm12ovSE683afqc1jB6zF/f8iKhgLz1yoSjYeGHipasao33VXKI+0a/ob9okeogGdKGvvlg==
@@ -3381,6 +3386,15 @@ babel-plugin-emotion@^9.2.11:
     mkdirp "^0.5.1"
     source-map "^0.5.7"
     touch "^2.0.1"
+
+babel-plugin-flow-react-proptypes@^25.0.0:
+  version "25.1.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-flow-react-proptypes/-/babel-plugin-flow-react-proptypes-25.1.0.tgz#864eeef3b3a3958953a9b014ed0bdc96fffa694c"
+  integrity sha512-zFR5vlrPiXQzmE6f/QR4P2ivaykRuNDH9D72L3fm1vYrgE+nvvOV/mQzFvgSnjVKJSfot+YONwLtqM/iMVnkLA==
+  dependencies:
+    "@babel/template" "^7.2.2"
+    "@babel/traverse" "^7.0.0"
+    "@babel/types" "^7.3.0"
 
 babel-plugin-inline-import@^3.0.0:
   version "3.0.0"
@@ -5845,10 +5859,10 @@ eslint-config-airbnb-base@^13.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
-eslint-config-airbnb-typescript@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-airbnb-typescript/-/eslint-config-airbnb-typescript-3.0.0.tgz#5176af082142f4887c96994768c0b7aa9d6338ea"
-  integrity sha512-Q4Xfgfsj3gRQJARcM3skQL7SDSqRc47Z9iAwjyrv94RWHLgvarlpc0fqLeVuEUMBqdmx8OVRLqBZqVJpBnO3cQ==
+eslint-config-airbnb-typescript@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-airbnb-typescript/-/eslint-config-airbnb-typescript-1.2.0.tgz#755f8d14be819b833cce794bd7bee6832ccc1984"
+  integrity sha512-ONYw1dNPMwQknB7nmrKQ39SjaWux70ywT5ddCi9jziSf5+THIxDBnL0HRdVeoflmNuoXuW6Z3oaD+tzRiiU+Ig==
   dependencies:
     eslint-config-airbnb "^17.1.0"
     eslint-config-airbnb-base "^13.1.0"
@@ -5885,7 +5899,7 @@ eslint-plugin-babel@^5.3.0:
   dependencies:
     eslint-rule-composer "^0.3.0"
 
-eslint-plugin-import@^2.17.2:
+eslint-plugin-import@^2.14.0:
   version "2.17.2"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.17.2.tgz#d227d5c6dc67eca71eb590d2bb62fb38d86e9fcb"
   integrity sha512-m+cSVxM7oLsIpmwNn2WXTJoReOF9f/CtLMo7qOVmKd1KntBy0hEcuNZ3erTmWjx+DxRO0Zcrm5KwAvI9wHcV5g==
@@ -5902,7 +5916,7 @@ eslint-plugin-import@^2.17.2:
     read-pkg-up "^2.0.0"
     resolve "^1.10.0"
 
-eslint-plugin-jest@^22.5.1:
+eslint-plugin-jest@^22.4.1:
   version "22.5.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.5.1.tgz#a31dfe9f9513c6af7c17ece4c65535a1370f060b"
   integrity sha512-c3WjZR/HBoi4GedJRwo2OGHa8Pzo1EbSVwQ2HFzJ+4t2OoYM7Alx646EH/aaxZ+9eGcPiq0FT0UGkRuFFx2FHg==
@@ -9667,7 +9681,7 @@ mongodb-memory-server-core@5.1.0:
   optionalDependencies:
     mongodb ">=3.0.0"
 
-mongodb-memory-server@^5.1.0:
+mongodb-memory-server@^5.0.4:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/mongodb-memory-server/-/mongodb-memory-server-5.1.0.tgz#6861b1929bea040c25b25a006241a9c5cec88827"
   integrity sha512-CN4fjt90fi6A3PSJIx6xYxIRqpxF1rJoz4BcJv6LmGyRAOAvCbr3SqRbfXJMS26wTDyHylXtW32PhdykDohogA==
@@ -13984,7 +13998,7 @@ webidl-conversions@^4.0.2:
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
   integrity sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==
 
-webpack-cli@^3.3.1:
+webpack-cli@^3.3.0, webpack-cli@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.1.tgz#98b0499c7138ba9ece8898bd99c4f007db59909d"
   integrity sha512-c2inFU7SM0IttEgF7fK6AaUsbBnORRzminvbyRKS+NlbQHVZdCtzKBlavRL5359bFsywXGRAItA5di/IruC8mg==
