@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Input} from 'semantic-ui-react';
+import isFunction from 'lodash/isFunction';
 import 'inputmask/dist/inputmask/inputmask.numeric.extensions';
 import Inputmask from 'inputmask';
 
@@ -66,6 +67,20 @@ import Inputmask from 'inputmask';
 // 	}
 // };
 
+function getConvertFunction(type) {
+	if (isFunction(type)) return type;
+	switch (type) {
+		case 'number':
+			return str => {
+				if (!str || str === '') return 0;
+				return parseInt(str, 10);
+			};
+		case 'string':
+		default:
+			return str => str;
+	}
+}
+
 /**
  * Displays a masked input form. Warning: this component uses jquery for masking so it renders quite slow. Do not use
  * hundreds of these on one screen at the same time.
@@ -111,29 +126,20 @@ export default class MaskedInput extends Component {
 	}
 
 	handleComplete = ev => {
-		if (this.props.onChange) this.handleChange(ev);
+		if (this.props.onChange) {
+			this.props.onChange(getConvertFunction(this.props.type)(ev.target.value));
+		}
 	};
 
 	handleCleared = () => {
-		if (this.props.onChange) this.props.onChange('');
+		if (this.props.onChange) {
+			this.props.onChange(getConvertFunction(this.props.type)(''));
+		}
 	};
 
 	handleIncomplete = ev => {
-		if (this.props.onChange) this.handleChange(ev);
-	};
-
-	handleChange = ev => {
-		const {type, onChange} = this.props;
-
-		switch (true) {
-			case type === 'number':
-				onChange(parseInt(ev.target.value, 10));
-				break;
-			case typeof type === 'function':
-				onChange(type(ev.target.value));
-				break;
-			default:
-				onChange(ev.target.value);
+		if (this.props.onChange) {
+			this.props.onChange(getConvertFunction(this.props.type)(ev.target.value));
 		}
 	};
 
