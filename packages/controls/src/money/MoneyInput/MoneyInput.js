@@ -1,9 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-
 import debug from 'debug';
 import React, {Component} from 'react';
 import {Input, Icon} from 'semantic-ui-react';
-import Money from 'js-money';
 import {makeMoney, roundTo} from '@thx/money';
 import moneyInputMask from './moneyInputMask';
 
@@ -17,7 +15,7 @@ const d = debug('money:MoneyInput');
 // 	onDetailsClick?: () => void,
 // 	detailsIcon?: string,
 // 	locked?: boolean,
-// 	wholeNumber?: boolean,
+// 	wholenumber?: boolean,
 // };
 
 /**
@@ -30,8 +28,8 @@ const d = debug('money:MoneyInput');
  * @property {string} [detailsIcon=server] - The Semantic UI icon to display on the details button.
  * @property {bool} [locked=false] - If true, cannot edit the amount.
  * @property {function} onBlur - Called when the focus is lost.
- * @property {bool} [wholeNumber=false] - If true, Then decimals will be zero.
- */
+ * @property {bool} [wholenumber=false] - If true, Then decimals will be zero.
+ * */
 export default class MoneyInput extends Component {
 	static defaultProps = {
 		detailsIcon: 'server',
@@ -61,11 +59,7 @@ export default class MoneyInput extends Component {
 			}
 
 			// Set the input text to be the initial value prop
-			if (this.props.wholeNumber) {
-				this._input.value = roundTo(makeMoney(value).toDecimal(), 0);
-			} else {
-				this._input.value = makeMoney(value).toDecimal();
-			}
+			this._input.value = this.props.wholenumber ? roundTo(makeMoney(value).toDecimal(), 0) : makeMoney(value).toDecimal();
 
 			moneyInputMask({
 				element: this._input,
@@ -82,11 +76,7 @@ export default class MoneyInput extends Component {
 			const prevMoney = prevProps.value;
 			d(`componentDidUpdate: ${prevMoney} > ${money} | ${iv}`);
 
-			if (this.props.wholeNumber) {
-				this._input.value = roundTo(money.toDecimal(), 0);
-			} else {
-				this._input.value = money.toDecimal();
-			}
+			this._input.value = this.props.wholenumber ? roundTo(money.toDecimal(), 0) : money.toDecimal();
 		}
 	}
 
@@ -97,8 +87,8 @@ export default class MoneyInput extends Component {
 	handleChange = value => {
 		d(`handleChange: ${value}`);
 		if (this.props.onChange) {
-			const {currency, wholeNumber} = this.props;
-			const money = makeMoney(wholeNumber ? roundTo(value, 0) : value, currency || 'CAD');
+			const {currency, wholenumber} = this.props;
+			const money = makeMoney(wholenumber ? roundTo(value, 0) : value, currency || 'CAD');
 			this.props.onChange(money);
 		}
 	};
