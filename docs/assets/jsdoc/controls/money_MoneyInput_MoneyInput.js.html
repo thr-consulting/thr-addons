@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="-_default.html">_default</a></li><li><a href="DatePickerEpochDate.html">DatePickerEpochDate</a></li><li><a href="DatePickerLocalDate.html">DatePickerLocalDate</a></li><li><a href="DateTimePicker.html">DateTimePicker</a></li><li><a href="EpochDatePicker.html">EpochDatePicker</a></li><li><a href="FieldMap.html">FieldMap</a></li><li><a href="LocalDatePicker.html">LocalDatePicker</a></li><li><a href="LocalMonthSelect.html">LocalMonthSelect</a></li><li><a href="MaskedInput.html">MaskedInput</a></li><li><a href="MoneyInput.html">MoneyInput</a></li><li><a href="MoneyInputMask.html">MoneyInputMask</a></li><li><a href="MonthSelect.html">MonthSelect</a></li><li><a href="RadioGroup.html">RadioGroup</a></li><li><a href="ResponsiveMenu.html">ResponsiveMenu</a></li><li><a href="ScriptelInput.html">ScriptelInput</a></li><li><a href="SField.html">SField</a></li><li><a href="SFormSummary.html">SFormSummary</a></li><li><a href="SinEntry.html">SinEntry</a></li><li><a href="TForm.html">TForm</a></li>
+					<li><a href="-_default.html">_default</a></li><li><a href="DatePickerLocalDate.html">DatePickerLocalDate</a></li><li><a href="LocalMonthSelect.html">LocalMonthSelect</a></li><li><a href="MaskedInput.html">MaskedInput</a></li><li><a href="MoneyInput.html">MoneyInput</a></li><li><a href="MoneyInputMask.html">MoneyInputMask</a></li><li><a href="RadioGroup.html">RadioGroup</a></li><li><a href="ResponsiveMenu.html">ResponsiveMenu</a></li><li><a href="ScriptelInput.html">ScriptelInput</a></li><li><a href="SinEntry.html">SinEntry</a></li><li><a href="TForm.html">TForm</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#dateInit">dateInit</a></li><li><a href="global.html#withScriptel">withScriptel</a></li>
+					<li><a href="global.html#withScriptel">withScriptel</a></li>
 				</ul>
 			</li>
 			
@@ -78,26 +78,24 @@
     <article>
         <pre
             class="sunlight-highlight-javascript linenums">/* eslint-disable jsx-a11y/no-static-element-interactions */
-// @flow
-
 import debug from 'debug';
 import React, {Component} from 'react';
 import {Input, Icon} from 'semantic-ui-react';
-import Money from 'js-money';
-import {makeMoney} from '@thx/money';
+import {makeMoney, roundTo} from '@thx/money';
 import moneyInputMask from './moneyInputMask';
 
 const d = debug('money:MoneyInput');
 
-type Props = {
-	value?: Money,
-	onChange?: Money => void,
-	currency?: string,
-	onBlur?: () => void,
-	onDetailsClick?: () => void,
-	detailsIcon?: string,
-	locked?: boolean,
-};
+// type Props = {
+// 	value?: Money,
+// 	onChange?: Money => void,
+// 	currency?: string,
+// 	onBlur?: () => void,
+// 	onDetailsClick?: () => void,
+// 	detailsIcon?: string,
+// 	locked?: boolean,
+// 	wholenumber?: boolean,
+// };
 
 /**
  * A masked money input. Defaults to CAD funds.
@@ -109,8 +107,9 @@ type Props = {
  * @property {string} [detailsIcon=server] - The Semantic UI icon to display on the details button.
  * @property {bool} [locked=false] - If true, cannot edit the amount.
  * @property {function} onBlur - Called when the focus is lost.
- */
-export default class MoneyInput extends Component&lt;Props> {
+ * @property {bool} [wholenumber=false] - If true, Then decimals will be zero.
+ * */
+export default class MoneyInput extends Component {
 	static defaultProps = {
 		detailsIcon: 'server',
 		locked: false,
@@ -139,7 +138,7 @@ export default class MoneyInput extends Component&lt;Props> {
 			}
 
 			// Set the input text to be the initial value prop
-			this._input.value = makeMoney(value).toDecimal();
+			this._input.value = this.props.wholenumber ? roundTo(makeMoney(value).toDecimal(), 0) : makeMoney(value).toDecimal();
 
 			moneyInputMask({
 				element: this._input,
@@ -155,7 +154,8 @@ export default class MoneyInput extends Component&lt;Props> {
 		if (!money.equals(iv)) {
 			const prevMoney = prevProps.value;
 			d(`componentDidUpdate: ${prevMoney} > ${money} | ${iv}`);
-			this._input.value = money.toDecimal();
+
+			this._input.value = this.props.wholenumber ? roundTo(money.toDecimal(), 0) : money.toDecimal();
 		}
 	}
 
@@ -166,8 +166,8 @@ export default class MoneyInput extends Component&lt;Props> {
 	handleChange = value => {
 		d(`handleChange: ${value}`);
 		if (this.props.onChange) {
-			const {currency} = this.props;
-			const money = makeMoney(value, currency || 'CAD');
+			const {currency, wholenumber} = this.props;
+			const money = makeMoney(wholenumber ? roundTo(value, 0) : value, currency || 'CAD');
 			this.props.onChange(money);
 		}
 	};
@@ -242,7 +242,7 @@ export default class MoneyInput extends Component&lt;Props> {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2019-03-28T16:42:07-05:00
+		on 2019-04-26T13:53:52-05:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -25,9 +25,9 @@
         <span class='fraction'>8/33</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">21.74% </span>
+        <span class="strong">17.24% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>5/23</span>
+        <span class='fraction'>5/29</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">37.5% </span>
@@ -177,9 +177,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -210,11 +207,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -223,23 +215,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -247,7 +226,28 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -295,26 +295,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable jsx-a11y/no-static-element-interactions */
-// @flow
-&nbsp;
 import debug from 'debug';
 import React, {Component} from 'react';
 import {Input, Icon} from 'semantic-ui-react';
-import Money from 'js-money';
-import {makeMoney} from '@thx/money';
+import {makeMoney, roundTo} from '@thx/money';
 import moneyInputMask from './moneyInputMask';
 &nbsp;
 const d = debug('money:MoneyInput');
 &nbsp;
-type Props = {
-	value?: Money,
-	onChange?: Money =&gt; void,
-	currency?: string,
-	onBlur?: () =&gt; void,
-	onDetailsClick?: () =&gt; void,
-	detailsIcon?: string,
-	locked?: boolean,
-};
+// type Props = {
+// 	value?: Money,
+// 	onChange?: Money =&gt; void,
+// 	currency?: string,
+// 	onBlur?: () =&gt; void,
+// 	onDetailsClick?: () =&gt; void,
+// 	detailsIcon?: string,
+// 	locked?: boolean,
+// 	wholenumber?: boolean,
+// };
 &nbsp;
 /**
  * A masked money input. Defaults to CAD funds.
@@ -326,8 +324,9 @@ type Props = {
  * @property {string} [detailsIcon=server] - The Semantic UI icon to display on the details button.
  * @property {bool} [locked=false] - If true, cannot edit the amount.
  * @property {function} onBlur - Called when the focus is lost.
- */
-export default class MoneyInput extends Component&lt;Props&gt; {
+ * @property {bool} [wholenumber=false] - If true, Then decimals will be zero.
+ * */
+export default class MoneyInput extends Component {
 	static defaultProps = {
 		detailsIcon: 'server',
 		locked: false,
@@ -356,7 +355,7 @@ export default class MoneyInput extends Component&lt;Props&gt; {
 			}
 &nbsp;
 			// Set the input text to be the initial value prop
-<span class="cstat-no" title="statement not covered" >			this._input.value = makeMoney(value).toDecimal();</span>
+<span class="cstat-no" title="statement not covered" >			this._input.value = this.props.wholenumber ? roundTo(makeMoney(value).toDecimal(), 0) : makeMoney(value).toDecimal();</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >			moneyInputMask({</span>
 				element: this._input,
@@ -372,7 +371,8 @@ export default class MoneyInput extends Component&lt;Props&gt; {
 <span class="cstat-no" title="statement not covered" >		if (!money.equals(iv)) {</span>
 			const prevMoney = <span class="cstat-no" title="statement not covered" >prevProps.value;</span>
 <span class="cstat-no" title="statement not covered" >			d(`componentDidUpdate: ${prevMoney} &gt; ${money} | ${iv}`);</span>
-<span class="cstat-no" title="statement not covered" >			this._input.value = money.toDecimal();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			this._input.value = this.props.wholenumber ? roundTo(money.toDecimal(), 0) : money.toDecimal();</span>
 		}
 	}
 &nbsp;
@@ -383,8 +383,8 @@ export default class MoneyInput extends Component&lt;Props&gt; {
 	handleChange = <span class="fstat-no" title="function not covered" >va</span>lue =&gt; {
 <span class="cstat-no" title="statement not covered" >		d(`handleChange: ${value}`);</span>
 <span class="cstat-no" title="statement not covered" >		if (this.props.onChange) {</span>
-			const {currency} = <span class="cstat-no" title="statement not covered" >this.props;</span>
-			const money = <span class="cstat-no" title="statement not covered" >makeMoney(value, currency || 'CAD');</span>
+			const {currency, wholenumber} = <span class="cstat-no" title="statement not covered" >this.props;</span>
+			const money = <span class="cstat-no" title="statement not covered" >makeMoney(wholenumber ? roundTo(value, 0) : value, currency || 'CAD');</span>
 <span class="cstat-no" title="statement not covered" >			this.props.onChange(money);</span>
 		}
 	};
@@ -424,7 +424,7 @@ export default class MoneyInput extends Component&lt;Props&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Apr 02 2019 09:37:53 GMT-0500 (CDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Apr 26 2019 13:53:47 GMT-0500 (CDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

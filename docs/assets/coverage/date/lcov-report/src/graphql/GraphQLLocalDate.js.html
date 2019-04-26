@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">84.21% </span>
+        <span class="strong">64% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>16/19</span>
+        <span class='fraction'>16/25</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">78.57% </span>
+        <span class="strong">55% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>11/14</span>
+        <span class='fraction'>11/20</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/12</span>
+        <span class='fraction'>10/15</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -82,10 +82,21 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -94,19 +105,14 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,31 +130,34 @@ import {Kind} from 'graphql/language';
 import {GraphQLScalarType} from 'graphql/type';
 import isString from 'lodash/isString';
 import isInteger from 'lodash/isInteger';
+import debug from 'debug';
+import {transformObjectsToLocalDates} from '../util';
 &nbsp;
-function toEpochDay(value) {
-	if (isInteger(value)) return value;
-	if (isString(value)) return LocalDate.parse(value).toEpochDay();
-	<span class="missing-if-branch" title="else path not taken" >E</span>if (value instanceof LocalDate) return value.toEpochDay();
-<span class="cstat-no" title="statement not covered" >	throw new GraphQLError('Not a valid LocalDate.');</span>
-}
+const d = debug('thx.date.graphQLLocalDate');
 &nbsp;
 const GraphQLLocalDate = new GraphQLScalarType({
 	name: 'LocalDate',
 	description: 'JS-Joda LocalDate',
-	// Parses variable values (JSON =&gt; JSON)
+	// Parses variable values (JSON =&gt; JSON) (value from client)
 	parseValue(value) {
-		return toEpochDay(value);
+		if (isInteger(value)) return LocalDate.ofEpochDay(value);
+		if (isString(value)) return LocalDate.parse(value);
+		<span class="missing-if-branch" title="else path not taken" >E</span>if (value instanceof LocalDate) return value;
+<span class="cstat-no" title="statement not covered" >		if (value instanceof Object) <span class="cstat-no" title="statement not covered" >return transformObjectsToLocalDates(value);</span></span>
+<span class="cstat-no" title="statement not covered" >		throw new GraphQLError('Trying to parse a non-LocalDate');</span>
 	},
-	// Called when the value is being sent to the client
+	// Called when the value is being sent to the client (value sent to the client)
 	serialize(value) {
-		if (isInteger(value)) return value;
-		<span class="missing-if-branch" title="else path not taken" >E</span>if (isString(value)) return parseInt(value, 10);
+		<span class="missing-if-branch" title="if path not taken" >I</span>if (isInteger(value)) <span class="cstat-no" title="statement not covered" >return value;</span>
+		<span class="missing-if-branch" title="if path not taken" >I</span>if (isString(value)) <span class="cstat-no" title="statement not covered" >return LocalDate.parse(value).toEpochDay();</span>
+		<span class="missing-if-branch" title="else path not taken" >E</span>if (value instanceof LocalDate) return value.toEpochDay();
+<span class="cstat-no" title="statement not covered" >		if (value instanceof Object) <span class="cstat-no" title="statement not covered" >return transformObjectsToLocalDates(value).toEpochDay();</span></span>
 <span class="cstat-no" title="statement not covered" >		throw new GraphQLError('Trying to serialize a non-primitive');</span>
 	},
 	// Parses GraphQL language AST into the value. (AST =&gt; JSON)
 	parseLiteral(ast) {
-		if (ast.kind === Kind.INT) return ast.value;
-		<span class="missing-if-branch" title="else path not taken" >E</span>if (ast.kind === Kind.STRING) return LocalDate.parse(ast.value).toEpochDay();
+		if (ast.kind === Kind.INT) return LocalDate.ofEpochDay(parseInt(ast.value, 10));
+		<span class="missing-if-branch" title="else path not taken" >E</span>if (ast.kind === Kind.STRING) return LocalDate.parse(ast.value);
 <span class="cstat-no" title="statement not covered" >		throw new GraphQLError(`Cannot convert literal ${ast.value} into LocalDate.`);</span>
 	},
 });
@@ -160,7 +169,7 @@ export default GraphQLLocalDate;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Apr 03 2019 17:11:17 GMT-0500 (CDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Apr 26 2019 13:53:25 GMT-0500 (CDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

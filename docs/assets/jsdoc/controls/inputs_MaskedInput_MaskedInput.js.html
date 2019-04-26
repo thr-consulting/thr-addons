@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="-_default.html">_default</a></li><li><a href="DatePickerEpochDate.html">DatePickerEpochDate</a></li><li><a href="DatePickerLocalDate.html">DatePickerLocalDate</a></li><li><a href="DateTimePicker.html">DateTimePicker</a></li><li><a href="EpochDatePicker.html">EpochDatePicker</a></li><li><a href="FieldMap.html">FieldMap</a></li><li><a href="LocalDatePicker.html">LocalDatePicker</a></li><li><a href="LocalMonthSelect.html">LocalMonthSelect</a></li><li><a href="MaskedInput.html">MaskedInput</a></li><li><a href="MoneyInput.html">MoneyInput</a></li><li><a href="MoneyInputMask.html">MoneyInputMask</a></li><li><a href="MonthSelect.html">MonthSelect</a></li><li><a href="RadioGroup.html">RadioGroup</a></li><li><a href="ResponsiveMenu.html">ResponsiveMenu</a></li><li><a href="ScriptelInput.html">ScriptelInput</a></li><li><a href="SField.html">SField</a></li><li><a href="SFormSummary.html">SFormSummary</a></li><li><a href="SinEntry.html">SinEntry</a></li><li><a href="TForm.html">TForm</a></li>
+					<li><a href="-_default.html">_default</a></li><li><a href="DatePickerLocalDate.html">DatePickerLocalDate</a></li><li><a href="LocalMonthSelect.html">LocalMonthSelect</a></li><li><a href="MaskedInput.html">MaskedInput</a></li><li><a href="MoneyInput.html">MoneyInput</a></li><li><a href="MoneyInputMask.html">MoneyInputMask</a></li><li><a href="RadioGroup.html">RadioGroup</a></li><li><a href="ResponsiveMenu.html">ResponsiveMenu</a></li><li><a href="ScriptelInput.html">ScriptelInput</a></li><li><a href="SinEntry.html">SinEntry</a></li><li><a href="TForm.html">TForm</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#dateInit">dateInit</a></li><li><a href="global.html#withScriptel">withScriptel</a></li>
+					<li><a href="global.html#withScriptel">withScriptel</a></li>
 				</ul>
 			</li>
 			
@@ -77,10 +77,9 @@
 <section>
     <article>
         <pre
-            class="sunlight-highlight-javascript linenums">// @flow
-
-import React, {Component} from 'react';
+            class="sunlight-highlight-javascript linenums">import React, {Component} from 'react';
 import {Input} from 'semantic-ui-react';
+import isFunction from 'lodash/isFunction';
 import 'inputmask/dist/inputmask/inputmask.numeric.extensions';
 import Inputmask from 'inputmask';
 
@@ -89,63 +88,77 @@ import Inputmask from 'inputmask';
  * @typedef {Object} inputmaskPropTypes
  */
 
-type Props = {
-	value?: string,
-	onChange?: (data: string) => {},
-	onBlur?: () => {},
-	mask?: {
-		placeholder?: string,
-		optionalmarker?: {
-			start: string,
-			end: string,
-		},
-		quantifiermarker?: {
-			start: string,
-			end: string,
-		},
-		groupmarker?: {
-			start: string,
-			end: string,
-		},
-		alternatormarker?: string,
-		escapeChar?: string,
-		mask: string,
-		repeat?: number,
-		greedy?: boolean,
-		autoUnmask?: boolean,
-		removeMaskOnSubmit?: boolean,
-		clearMaskOnLostFocus?: boolean,
-		insertMode?: boolean,
-		clearIncomplete?: boolean,
-		alias?: string,
-		onKeyDown?: (event: any, buffer: any, caretPos: number, opts?: Object) => {},
-		onBeforeMask?: (initialValue: string, opts?: Object) => string,
-		onBeforePaste?: (pastedValue: string, opts?: Object) => string,
-		onBeforeWrite?: (event: any, buffer: any, caretPos: number, opts?: Object) => Object,
-		onUnMask?: (maskedValue: string, unmaskedValue: string) => string,
-		showMaskOnFocus?: boolean,
-		showMaskOnHover?: boolean,
-		onKeyValidation?: (key: any, result: any) => {},
-		numericInput?: boolean,
-		rightAlign?: boolean,
-		undoOnEscape?: boolean,
-		radixPoint?: string,
-		groupSeparator?: string,
-		keepStatic?: boolean,
-		positionCaretOnTab?: boolean,
-		tabThrough?: boolean,
-		isComplete?: (buffer: any, opts?: Object) => boolean,
-		canClearPosition?: (maskset: any, position: number, lastValidPosition: number, opts?: Object) => boolean,
-		postValidation?: (buffer: any, currentResult: any, opts?: any) => boolean | Object,
-		preValidation?: (buffer: any, pos: number, char: any, isSelection: boolean, opts?: Object) => boolean | Object,
-		staticDefinitionSymbol?: string,
-		nullable?: boolean,
-		positionCaretOnClick?: string,
-		casing?: string,
-		inputmode?: string,
-		colorMask?: string,
+// type Props = {
+// 	value?: string,
+// 	onChange?: (data: string) => {},
+// 	onBlur?: () => {},
+// 	mask?: {
+// 		placeholder?: string,
+// 		optionalmarker?: {
+// 			start: string,
+// 			end: string,
+// 		},
+// 		quantifiermarker?: {
+// 			start: string,
+// 			end: string,
+// 		},
+// 		groupmarker?: {
+// 			start: string,
+// 			end: string,
+// 		},
+// 		alternatormarker?: string,
+// 		escapeChar?: string,
+// 		mask: string,
+// 		repeat?: number,
+// 		greedy?: boolean,
+// 		autoUnmask?: boolean,
+// 		removeMaskOnSubmit?: boolean,
+// 		clearMaskOnLostFocus?: boolean,
+// 		insertMode?: boolean,
+// 		clearIncomplete?: boolean,
+// 		alias?: string,
+// 		onKeyDown?: (event: any, buffer: any, caretPos: number, opts?: Object) => {},
+// 		onBeforeMask?: (initialValue: string, opts?: Object) => string,
+// 		onBeforePaste?: (pastedValue: string, opts?: Object) => string,
+// 		onBeforeWrite?: (event: any, buffer: any, caretPos: number, opts?: Object) => Object,
+// 		onUnMask?: (maskedValue: string, unmaskedValue: string) => string,
+// 		showMaskOnFocus?: boolean,
+// 		showMaskOnHover?: boolean,
+// 		onKeyValidation?: (key: any, result: any) => {},
+// 		numericInput?: boolean,
+// 		rightAlign?: boolean,
+// 		undoOnEscape?: boolean,
+// 		radixPoint?: string,
+// 		groupSeparator?: string,
+// 		keepStatic?: boolean,
+// 		positionCaretOnTab?: boolean,
+// 		tabThrough?: boolean,
+// 		isComplete?: (buffer: any, opts?: Object) => boolean,
+// 		canClearPosition?: (maskset: any, position: number, lastValidPosition: number, opts?: Object) => boolean,
+// 		postValidation?: (buffer: any, currentResult: any, opts?: any) => boolean | Object,
+// 		preValidation?: (buffer: any, pos: number, char: any, isSelection: boolean, opts?: Object) => boolean | Object,
+// 		staticDefinitionSymbol?: string,
+// 		nullable?: boolean,
+// 		positionCaretOnClick?: string,
+// 		casing?: string,
+// 		inputmode?: string,
+// 		colorMask?: string,
+// 	}
+// };
+
+function getConvertFunction(type) {
+	if (isFunction(type)) return type;
+	switch (type) {
+		case 'number':
+			return str => {
+				if (!str || str === '') return 0;
+				return parseInt(str, 10);
+			};
+		case 'string':
+		default:
+			return str => str;
 	}
-};
+}
 
 /**
  * Displays a masked input form. Warning: this component uses jquery for masking so it renders quite slow. Do not use
@@ -154,8 +167,9 @@ type Props = {
  * @property {string|number} [value=null] - The value to display
  * @property {onChange} [onChange=null] - Called when the value changes.
  * @property {inputmaskPropTypes} [mask=null] - The mask object specified at {@link https://github.com/RobinHerbots/jquery.inputmask|here}.
+ * @property {type} - The type of the value that will be returned.
  */
-export default class MaskedInput extends Component&lt;Props> {
+export default class MaskedInput extends Component {
 	static displayName = 'MaskedInput';
 
 	static defaultProps = {
@@ -175,7 +189,7 @@ export default class MaskedInput extends Component&lt;Props> {
 		im.mask(this._input);
 	}
 
-	componentDidUpdate(prevProps: Object) {
+	componentDidUpdate(prevProps) {
 		if (prevProps.value !== this.props.value &amp;&amp; this._input) {
 			this._input.value = this.props.value || '';
 		}
@@ -190,23 +204,26 @@ export default class MaskedInput extends Component&lt;Props> {
 		}
 	}
 
-	handleComplete = (ev: Object) => {
-		if (this.props.onChange) this.props.onChange(ev.target.value);
+	handleComplete = ev => {
+		if (this.props.onChange) {
+			this.props.onChange(getConvertFunction(this.props.type)(ev.target.value));
+		}
 	};
 
 	handleCleared = () => {
-		if (this.props.onChange) this.props.onChange('');
+		if (this.props.onChange) {
+			this.props.onChange(getConvertFunction(this.props.type)(''));
+		}
 	};
 
-	handleIncomplete = (ev: Object) => {
-		if (this.props.onChange) this.props.onChange(ev.target.value);
+	handleIncomplete = ev => {
+		if (this.props.onChange) {
+			this.props.onChange(getConvertFunction(this.props.type)(ev.target.value));
+		}
 	};
-
-
-	_input: ?HTMLInputElement;
 
 	render() {
-		const {value, onChange, onBlur, mask, ...rest} = this.props;
+		const {value, onChange, onBlur, mask, type, ...rest} = this.props;
 		return (
 			&lt;Input {...rest} >
 				&lt;input ref={r => (this._input = r)} onBlur={onBlur}/>
@@ -255,7 +272,7 @@ export default class MaskedInput extends Component&lt;Props> {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2019-03-28T16:42:07-05:00
+		on 2019-04-26T13:53:52-05:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

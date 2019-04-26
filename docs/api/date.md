@@ -24,13 +24,26 @@ Transforms a JS Date to a LocalDate
 
 * * *
 
+<a name="transformDateToLocalDateTime"></a>
+
+## transformDateToLocalDateTime(date)
+
+| Param | Type |
+| --- | --- |
+| date | <code>Date</code> | 
+
+Transforms a JS Date to a LocalDateTime
+
+
+* * *
+
 <a name="transformLocalDateToDate"></a>
 
 ## transformLocalDateToDate(localDate)
 
-| Param |
-| --- |
-| localDate | 
+| Param | Type |
+| --- | --- |
+| localDate | <code>LocalDate</code> | 
 
 Transforms a LocalDate to a JS Date
 
@@ -41,11 +54,24 @@ Transforms a LocalDate to a JS Date
 
 ## transformMomentToLocalDate(obj)
 
-| Param |
-| --- |
-| obj | 
+| Param | Type |
+| --- | --- |
+| obj | <code>moment.Moment</code> | 
 
 Transforms a Moment to a LocalDate
+
+
+* * *
+
+<a name="transformMomentToLocalDateTime"></a>
+
+## transformMomentToLocalDateTime(obj)
+
+| Param | Type |
+| --- | --- |
+| obj | <code>moment.Moment</code> | 
+
+Transforms a Moment to a LocalDateTime
 
 
 * * *
@@ -189,7 +215,7 @@ Transforms anything that has LocalDate style objects into LocalDates.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| obj | <code>Date</code> \| <code>moment</code> \| <code>LocalDate</code> \| <code>number</code> |  | The date or moment object or LocalDate object |
+| obj | <code>Date</code> \| <code>LocalDate</code> \| <code>number</code> \| <code>moment</code> |  | The Date, LocalDate, LocalTime, LocalDateTime, ZonedDateTime, integer (epoch days), or moment |
 | [type] | <code>string</code> | <code>&quot;short&quot;</code> | options.type - short, medium, or long |
 | [time] | <code>bool</code> | <code>false</code> | options.time - If true, displays the time |
 | [date] | <code>bool</code> | <code>true</code> | options.date - If true, displays the date |
