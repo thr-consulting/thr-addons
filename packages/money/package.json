@@ -1,6 +1,6 @@
 {
   "name": "@thx/money",
-  "version": "10.1.0",
+  "version": "10.1.1",
   "description": "Money utils",
   "main": "lib/money.js",
   "author": "Mike Kornelson <mike@durbn.net>",
