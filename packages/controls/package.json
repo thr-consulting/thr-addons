@@ -32,7 +32,7 @@
   "peerDependencies": {
     "react": "^16.x",
     "react-dom": "^16.x",
-    "semantic-ui-react": "^0.x"
+    "semantic-ui-react": "^0.87.0"
   },
   "dependencies": {
     "@thx/date": "^10.1.1",
