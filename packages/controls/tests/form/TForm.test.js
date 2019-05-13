@@ -74,7 +74,7 @@ describe('TForm', () => {
 				render={renderForm}
 				loading={false}
 				onSubmit={fakeSubmit}
-				errors={{graphQLErrors: [{message: 'There is an error.'}]}}
+				errors={{graphQLErrors: [{message: 'There is an error.'}], message: 'GraphQL error: There is an error'}}
 			/>
 		);
 		expect(wrapper).toMatchSnapshot();

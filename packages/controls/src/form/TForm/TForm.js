@@ -40,18 +40,37 @@ export default class TForm extends Component {
 		return render({
 			renderWarnings() {
 				// we want the error to be displayed once a field has an error AND has been touched.
+
 				const warningArray = [];
+				let errorArray = [];
+				let errorHeader;
+				let errorMessage;
+
+				// adds the relevant warnings to the warnings array.
 				Object.keys(warnings).forEach(warning => {
 					if (touched[warning] && warnings[warning]) warningArray.push({message: warnings[warning]});
 				});
 
-				if (isEmpty(warningArray) && !errors) return null;
+				if (isEmpty(warningArray)) {
+					if (!errors) return null;
+
+					// if there are errors and the error has a message then create the the array to loop over.
+					if (errors.message) {
+						if (!isEmpty(errors.graphQLErrors)) errorArray = errors.graphQLErrors;
+						else if (isEmpty(errors.graphQLErrors) && isEmpty(warningArray)) {
+							errorMessage = errors.message.slice(errors.message.indexOf(': ') + 1);
+							errorArray.push({message: errorMessage});
+						}
+						errorHeader = errors.message.slice(0, errors.message.indexOf(': '));
+					}
+				}
+
 				return (
 					<Message warning={!isEmpty(warningArray)} error={!!errors}>
-						<Message.Header>{!isEmpty(warningArray) ? 'Some fields are not complete:' : 'Graphql Error:'}</Message.Header>
+						<Message.Header>{!isEmpty(warningArray) ? 'Some fields are not complete:' : `${errorHeader}:`}</Message.Header>
 						{/* Put it in a segment to make sure the errorMessage isn't to big when there are a lot of errors */}
 						<Segment style={{overflow: 'auto', maxHeight: 100}}>
-							{(!isEmpty(warningArray) ? warningArray : errors.graphQLErrors).map(warning => <div key={warning.message}>{warning.message}</div>)}
+							{(!isEmpty(warningArray) ? warningArray : errorArray).map(warning => <div key={warning.message}>{warning.message}</div>)}
 						</Segment>
 					</Message>
 				);

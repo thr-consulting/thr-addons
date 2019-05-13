@@ -9,6 +9,7 @@ exports[`TForm should render with errors 1`] = `
           "message": "There is an error.",
         },
       ],
+      "message": "GraphQL error: There is an error",
     }
   }
   loading={false}
@@ -25,6 +26,7 @@ exports[`TForm should render with errors 1`] = `
             "message": "There is an error.",
           },
         ],
+        "message": "GraphQL error: There is an error",
       }
     }
     isInitialValid={false}
@@ -72,7 +74,7 @@ exports[`TForm should render with errors 1`] = `
               <div
                 className="header"
               >
-                Graphql Error:
+                GraphQL error:
               </div>
             </MessageHeader>
             <Segment
