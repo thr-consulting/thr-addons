@@ -27,7 +27,7 @@ function renderForm({handleChange, handleSubmit, values}) {
 	);
 }
 
-function renderWarningForm({values, handleChange, handleBlur, handleSubmit, renderErrors, renderWarnings, hasErrors, hasWarnings, fieldError}) {
+function renderWarningForm({values, handleChange, handleBlur, handleSubmit, renderWarnings, hasErrors, hasWarnings, fieldError}) {
 	return (
 		<Form onSubmit={handleSubmit} error={hasErrors()} warning={hasWarnings()}>
 			<Form.Field error={fieldError('text')}>
@@ -39,18 +39,25 @@ function renderWarningForm({values, handleChange, handleBlur, handleSubmit, rend
 					onBlur={handleBlur}
 				/>
 			</Form.Field>
+			<Form.Field error={fieldError('moretext')}>
+				<label>This must contain more text</label>
+				<input
+					name="moretext"
+					value={values.moretext}
+					onChange={handleChange}
+					onBlur={handleBlur}
+				/>
+			</Form.Field>
 			<Form.Button type="submit" onClick={handleSubmit}>Submit</Form.Button>
-			{renderErrors()}
 			{renderWarnings()}
 		</Form>
 	);
 }
 
 function validate(values, props) {
-	let warnings = {};
-	if (!values.text) {
-		warnings.text = 'There is a problem with the text field.';
-	}
+	const warnings = {};
+	if (!values.text) warnings.text = 'There is a problem with the text field.';
+	if (!values.moretext) warnings.moretext = 'There is a problem with the more text field.';
 	return warnings;
 }
 
@@ -71,8 +78,7 @@ const warningStoryFn = () => (
 			render={renderWarningForm}
 			loading={false}
 			onSubmit={action('onSubmit')}
-			numFields={1}
-			initialValues={{text: ''}}
+			initialValues={{text: '', moretext: ''}}
 		/>
 	</Container>
 );

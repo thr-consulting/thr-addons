@@ -12,7 +12,6 @@ exports[`TForm should render with errors 1`] = `
     }
   }
   loading={false}
-  numFields={1}
   onSubmit={[Function]}
   render={[Function]}
   validate={[Function]}
@@ -64,6 +63,7 @@ exports[`TForm should render with errors 1`] = `
         </FormField>
         <Message
           error={true}
+          warning={false}
         >
           <div
             className="ui error message"
@@ -72,14 +72,33 @@ exports[`TForm should render with errors 1`] = `
               <div
                 className="header"
               >
-                Error
+                Graphql Error:
               </div>
             </MessageHeader>
-            <p
-              key="There is an error."
+            <Segment
+              style={
+                Object {
+                  "maxHeight": 100,
+                  "overflow": "auto",
+                }
+              }
             >
-              There is an error.
-            </p>
+              <div
+                className="ui segment"
+                style={
+                  Object {
+                    "maxHeight": 100,
+                    "overflow": "auto",
+                  }
+                }
+              >
+                <div
+                  key="There is an error."
+                >
+                  There is an error.
+                </div>
+              </div>
+            </Segment>
           </div>
         </Message>
       </form>
@@ -96,7 +115,6 @@ exports[`TForm should render without throwing an error 1`] = `
     }
   }
   loading={false}
-  numFields={1}
   onSubmit={[Function]}
   render={[Function]}
   validate={[Function]}
