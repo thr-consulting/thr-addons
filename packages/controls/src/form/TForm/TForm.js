@@ -94,9 +94,9 @@ export default class TForm extends Component {
 	};
 
 	render() {
-		const {render, numFields, ...rest} = this.props;
+		const {render, numFields, enableReinitialize = true, ...rest} = this.props;
 		return (
-			<Formik render={this.renderForm} {...rest}/>
+			<Formik enableReinitialize={enableReinitialize} render={this.renderForm} {...rest}/>
 		);
 	}
 }
