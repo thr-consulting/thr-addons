@@ -7,6 +7,7 @@
 import MaskedInput from './inputs/MaskedInput';
 import SinEntry from './inputs/SinEntry';
 import RadioGroup from './inputs/RadioGroup';
+import MonthDayDropdown from './inputs/MonthDayDropdown';
 
 // Form
 import TForm from './form/TForm';
@@ -30,6 +31,7 @@ export {
 	RadioGroup,
 	MaskedInput,
 	SinEntry,
+	MonthDayDropdown,
 
 	// Form
 	TForm,
