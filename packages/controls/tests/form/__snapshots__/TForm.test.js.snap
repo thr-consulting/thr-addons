@@ -18,7 +18,7 @@ exports[`TForm should render with errors 1`] = `
   validate={[Function]}
 >
   <Formik
-    enableReinitialize={false}
+    enableReinitialize={true}
     errors={
       Object {
         "graphQLErrors": Array [
@@ -102,7 +102,7 @@ exports[`TForm should render without throwing an error 1`] = `
   validate={[Function]}
 >
   <Formik
-    enableReinitialize={false}
+    enableReinitialize={true}
     initialValues={
       Object {
         "text": "Hello World!",
