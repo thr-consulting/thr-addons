@@ -2,7 +2,6 @@
   "name": "@thx/extras",
   "version": "10.2.0",
   "description": "Extra utils",
-  "main": "lib/extras.js",
   "author": "Mike Kornelson <mike@durbn.net>",
   "license": "MIT",
   "repository": {
@@ -16,7 +15,8 @@
   "files": [
     "client.js",
     "server.js",
-    "mongooseTypes.js"
+    "mongooseTypes.js",
+    "lib"
   ],
   "scripts": {
     "prepublish": "npm run build",
