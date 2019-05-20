@@ -9,7 +9,7 @@ module.exports = {
 	entry: './src/server/index.ts',
 	output: {
 		filename: 'server.js',
-		path: path.resolve(__dirname, 'lib'),
+		path: path.resolve(__dirname),
 		library: 'extrasserver',
 		libraryTarget: 'umd',
 		umdNamedDefine: true,

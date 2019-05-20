@@ -9,7 +9,7 @@ module.exports = {
 	entry: './src/server/index.ts',
 	output: {
 		filename: 'mongooseTypes.js',
-		path: path.resolve(__dirname, 'lib'),
+		path: path.resolve(__dirname),
 		library: 'extrasmongoosetypes',
 		libraryTarget: 'umd',
 		umdNamedDefine: true,

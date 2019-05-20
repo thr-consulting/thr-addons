@@ -9,4 +9,6 @@ tests/
 jsdoc.json
 webpack.server.config.js
 webpack.client.config.js
+webpack.server.mongoose.config.js
 .eslintcache
+tsconfig.json

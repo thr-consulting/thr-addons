@@ -9,7 +9,7 @@ module.exports = {
 	entry: './src/client/index.ts',
 	output: {
 		filename: 'client.js',
-		path: path.resolve(__dirname, 'lib'),
+		path: path.resolve(__dirname),
 		library: 'extrasclient',
 		libraryTarget: 'umd',
 		umdNamedDefine: true,
