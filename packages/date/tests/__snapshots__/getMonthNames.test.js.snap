@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getMonthNames should return an array of 12 month names 1`] = `
+Array [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+]
+`;
+
+exports[`getMonthNames should return an array of first 6 month names 1`] = `
+Array [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+]
+`;
+
+exports[`getMonthNames should return an array of twelve months of current year 1`] = `
+Array [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+]
+`;
+
+exports[`getMonthNames should return an empty array 1`] = `Array []`;

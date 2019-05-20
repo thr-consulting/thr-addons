@@ -45,6 +45,7 @@
     "js-money": "^0.6.3",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
+    "number-to-date-month-name": "^1.0.2",
     "prop-types": "^15.7.2",
     "react-datepicker": "^2.5.0",
     "react-input-message": "^0.15.1",
