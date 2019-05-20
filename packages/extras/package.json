@@ -1,6 +1,6 @@
 {
   "name": "@thx/extras",
-  "version": "10.0.0",
+  "version": "10.2.0",
   "description": "Extra utils",
   "main": "lib/extras.js",
   "author": "Mike Kornelson <mike@durbn.net>",
@@ -41,7 +41,7 @@
     "react-apollo": "^2.x"
   },
   "dependencies": {
-    "@thx/date": "^10.1.1",
+    "@thx/date": "^10.2.0",
     "@thx/money": "^10.1.1",
     "colors": "^1.3.3",
     "dataloader": "^1.4.0",
