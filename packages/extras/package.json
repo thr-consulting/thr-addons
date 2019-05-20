@@ -15,8 +15,7 @@
   "files": [
     "client.js",
     "server.js",
-    "mongooseTypes.js",
-    "lib"
+    "mongooseTypes.js"
   ],
   "scripts": {
     "prepublish": "npm run build",
