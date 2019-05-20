@@ -20,6 +20,7 @@ import {Message, Segment} from 'semantic-ui-react';
  * @class
  * @property {function} render - Render prop just like Formik's with additional arguments passed
  * @property {number} numFields - The number of fields in the form. TForm can't automatically get this number.
+ * @property {boolean} loading - Passes the loading state through to the child component.
  * @property errors - Used to pass in any GraphQL errors.
  * @property {function} onSubmit - Called when the form submits.
  * @property {function} getSubmitFn - Called when the TForm is mounted so you can get access to the submitForm function.
@@ -33,7 +34,7 @@ export default class TForm extends Component {
 
 	renderForm = args => {
 		const {errors: warnings, touched, handleChange, setFieldValue, submitForm, ...rest} = args;
-		const {errors, render} = this.props;
+		const {errors, render, loading} = this.props;
 
 		this._submitForm = submitForm;
 
@@ -99,14 +100,15 @@ export default class TForm extends Component {
 			touched,
 			setFieldValue,
 			submitForm,
+			loading,
 			...rest,
 		});
 	};
 
 	render() {
-		const {render, ...rest} = this.props;
+		const {render, enableReinitialize = true, ...rest} = this.props;
 		return (
-			<Formik render={this.renderForm} {...rest}/>
+			<Formik enableReinitialize={enableReinitialize} render={this.renderForm} {...rest}/>
 		);
 	}
 }
