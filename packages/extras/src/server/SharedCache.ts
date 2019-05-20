@@ -22,8 +22,8 @@ export default class SharedCache {
 	 * @param prefix
 	 * @param expire
 	 */
-	constructor({prefix, expire}: {prefix: string, expire: number}) {
-		if (process.env.DISABLE_REDIS) {
+	constructor({prefix, expire}: {prefix?: string, expire?: number}) {
+		if (process.env.DISABLE_REDIS === 'true') {
 			this._redis = null;
 		} else {
 			this._redis = new Redis({
@@ -31,8 +31,14 @@ export default class SharedCache {
 				host: process.env.REDIS_HOST || '127.0.0.1',
 			});
 		}
-		this._expire = process.env.REDIS_EXPIRE || expire || null;
-		this._prefix = prefix || null;
+		if (process.env.REDIS_EXPIRE) {
+			this._expire = parseInt(process.env.REDIS_EXPIRE || '0', 10);
+		} else if (expire) {
+			this._expire = expire;
+		} else {
+			this._expire = null;
+		}
+		this._prefix = prefix || '';
 	}
 
 	_redis: Redis.Redis | null;
@@ -46,7 +52,7 @@ export default class SharedCache {
 	 * @param expire
 	 * @return {Promise<*>}
 	 */
-	async set(key: string, data: any, expire: number) {
+	async set(key: string, data: any, expire?: number) {
 		if (!this._redis) return data;
 
 		const multi = this._redis.multi();
@@ -99,18 +105,22 @@ export default class SharedCache {
 	 */
 	clearAll() {
 		return new Promise((resolve, reject) => {
-			const stream = this._redis.scanStream({match: `${this._prefix}:*`});
-			stream.on('data', keys => {
-				if (keys.length) {
-					const pipeline = this._redis.pipeline();
-					keys.forEach(key => {
-						pipeline.del(key);
-					});
-					pipeline.exec();
-				}
-			});
-			stream.on('error', reject);
-			stream.on('end', resolve);
+			if (!this._redis) {
+				resolve();
+			} else {
+				const stream = this._redis.scanStream({match: `${this._prefix}:*`});
+				stream.on('data', keys => {
+					if (keys.length) {
+						const pipeline = this._redis.pipeline();
+						keys.forEach(key => {
+							pipeline.del(key);
+						});
+						pipeline.exec();
+					}
+				});
+				stream.on('error', reject);
+				stream.on('end', resolve);
+			}
 		});
 	}
 }
