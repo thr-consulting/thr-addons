@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#mapEpochIntegerToLocalDates">mapEpochIntegerToLocalDates</a></li><li><a href="global.html#transformDatesToMoment">transformDatesToMoment</a></li><li><a href="global.html#transformDateToEpochInteger">transformDateToEpochInteger</a></li><li><a href="global.html#transformDateToLocalDate">transformDateToLocalDate</a></li><li><a href="global.html#transformDateToLocalDateTime">transformDateToLocalDateTime</a></li><li><a href="global.html#transformEpochIntegerToDate">transformEpochIntegerToDate</a></li><li><a href="global.html#transformEpochIntegerToLocalDate">transformEpochIntegerToLocalDate</a></li><li><a href="global.html#transformLocalDatesToEpochInteger">transformLocalDatesToEpochInteger</a></li><li><a href="global.html#transformLocalDateToDate">transformLocalDateToDate</a></li><li><a href="global.html#transformLocalDateToEpochInteger">transformLocalDateToEpochInteger</a></li><li><a href="global.html#transformLocalDateToMoment">transformLocalDateToMoment</a></li><li><a href="global.html#transformMomentsToDate">transformMomentsToDate</a></li><li><a href="global.html#transformMomentToLocalDate">transformMomentToLocalDate</a></li><li><a href="global.html#transformMomentToLocalDateTime">transformMomentToLocalDateTime</a></li><li><a href="global.html#transformObjectsToLocalDates">transformObjectsToLocalDates</a></li>
+					<li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#getMonthNames">getMonthNames</a></li><li><a href="global.html#getNumberofDaysInMonth">getNumberofDaysInMonth</a></li><li><a href="global.html#mapEpochIntegerToLocalDates">mapEpochIntegerToLocalDates</a></li><li><a href="global.html#transformDatesToMoment">transformDatesToMoment</a></li><li><a href="global.html#transformDateToEpochInteger">transformDateToEpochInteger</a></li><li><a href="global.html#transformDateToLocalDate">transformDateToLocalDate</a></li><li><a href="global.html#transformDateToLocalDateTime">transformDateToLocalDateTime</a></li><li><a href="global.html#transformEpochIntegerToDate">transformEpochIntegerToDate</a></li><li><a href="global.html#transformEpochIntegerToLocalDate">transformEpochIntegerToLocalDate</a></li><li><a href="global.html#transformLocalDatesToEpochInteger">transformLocalDatesToEpochInteger</a></li><li><a href="global.html#transformLocalDateToDate">transformLocalDateToDate</a></li><li><a href="global.html#transformLocalDateToEpochInteger">transformLocalDateToEpochInteger</a></li><li><a href="global.html#transformLocalDateToMoment">transformLocalDateToMoment</a></li><li><a href="global.html#transformMomentsToDate">transformMomentsToDate</a></li><li><a href="global.html#transformMomentToLocalDate">transformMomentToLocalDate</a></li><li><a href="global.html#transformMomentToLocalDateTime">transformMomentToLocalDateTime</a></li><li><a href="global.html#transformObjectsToLocalDates">transformObjectsToLocalDates</a></li>
 				</ul>
 			</li>
 			
@@ -485,6 +485,354 @@
 
 
         
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getMonthNames"><span class="type-signature"></span>getMonthNames(year:, limitToCurrentMonth)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Returns an array of month name strings up to the current month.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>year:</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">, The year to get the months for.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>limitToCurrentMonth</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">= false: , If set to true returns all the months for the current year.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="getMonthNames.ts.html">getMonthNames.ts</a>,
+				 <a href="getMonthNames.ts.html#sunlight-1-line-6">line 6</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getNumberofDaysInMonth"><span class="type-signature"></span>getNumberofDaysInMonth(month:, limitToCurrentDay, asArray)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Returns the number of days in a given month.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>month:</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">, The number of the month to get where January = 1.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>limitToCurrentDay</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">= false: , If set to true, returns number of days up to current day.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>asArray</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">= false: , If set to true, returns array of days.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="getNumberOfDaysInMonth.ts.html">getNumberOfDaysInMonth.ts</a>,
+				 <a href="getNumberOfDaysInMonth.ts.html#sunlight-1-line-7">line 7</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 </dd>
@@ -2896,7 +3244,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2019-04-26T13:53:50-05:00
+		on 2019-05-19T23:16:05-05:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

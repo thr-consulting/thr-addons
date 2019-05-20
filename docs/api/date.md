@@ -11,6 +11,35 @@ Date utilities
 ```
 yarn add @thx/date
 ```
+<a name="getMonthNames"></a>
+
+## getMonthNames(year:, limitToCurrentMonth)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| year: | <code>number</code> | , The year to get the months for. |
+| limitToCurrentMonth | <code>boolean</code> | = false: , If set to true returns all the months for the current year. |
+
+Returns an array of month name strings up to the current month.
+
+
+* * *
+
+<a name="getNumberofDaysInMonth"></a>
+
+## getNumberofDaysInMonth(month:, limitToCurrentDay, asArray)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| month: | <code>number</code> | , The number of the month to get where January = 1. |
+| limitToCurrentDay | <code>boolean</code> | = false: , If set to true, returns number of days up to current day. |
+| asArray | <code>boolean</code> | = false: , If set to true, returns array of days. |
+
+Returns the number of days in a given month.
+
+
+* * *
+
 <a name="transformDateToLocalDate"></a>
 
 ## transformDateToLocalDate(date)

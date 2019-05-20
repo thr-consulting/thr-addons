@@ -17,7 +17,7 @@
   ],
   "babel": {
     "extensions": ["ts", "tsx", "js"],
-    "presets": [["@imperium/babel-preset-imperium", {"react": true, "forceModules": true}]],
+    "presets": [["@imperium/babel-preset-imperium", {"react": true, "forceModules": true, "typescript": true}]],
     "babelrc": false
   },
   "templates": {

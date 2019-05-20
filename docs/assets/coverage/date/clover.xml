@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1556304805120" clover="3.2.0">
-  <project timestamp="1556304805120" name="All files">
-    <metrics statements="112" coveredstatements="99" conditionals="128" coveredconditionals="95" methods="34" coveredmethods="33" elements="274" coveredelements="227" complexity="0" loc="112" ncloc="112" packages="2" files="3" classes="3"/>
+<coverage generated="1558325757577" clover="3.2.0">
+  <project timestamp="1558325757577" name="All files">
+    <metrics statements="126" coveredstatements="113" conditionals="146" coveredconditionals="113" methods="36" coveredmethods="35" elements="308" coveredelements="261" complexity="0" loc="126" ncloc="126" packages="2" files="6" classes="6"/>
     <package name="src">
-      <metrics statements="87" coveredstatements="81" conditionals="98" coveredconditionals="76" methods="27" coveredmethods="26"/>
-      <file name="util.js" path="/home/mike/dev/thr-addons/packages/date/src/util.js">
+      <metrics statements="101" coveredstatements="95" conditionals="116" coveredconditionals="94" methods="29" coveredmethods="28"/>
+      <file name="getMonthNames.ts" path="/home/darkadept/dev/thr-addons/packages/date/src/getMonthNames.ts">
+        <metrics statements="8" coveredstatements="8" conditionals="10" coveredconditionals="10" methods="1" coveredmethods="1"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="30" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="34" count="2" type="stmt"/>
+      </file>
+      <file name="getNumberOfDaysInMonth.ts" path="/home/darkadept/dev/thr-addons/packages/date/src/getNumberOfDaysInMonth.ts">
+        <metrics statements="6" coveredstatements="6" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
+        <line num="14" count="6" type="cond" truecount="4" falsecount="0"/>
+        <line num="18" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="22" count="35" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+      </file>
+      <file name="index.js" path="/home/darkadept/dev/thr-addons/packages/date/src/index.js">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="util.js" path="/home/darkadept/dev/thr-addons/packages/date/src/util.js">
         <metrics statements="87" coveredstatements="81" conditionals="98" coveredconditionals="76" methods="27" coveredmethods="26"/>
         <line num="31" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="32" count="2" type="stmt"/>
@@ -58,7 +81,7 @@
         <line num="204" count="6" type="stmt"/>
         <line num="205" count="14" type="stmt"/>
         <line num="208" count="0" type="stmt"/>
-        <line num="211" count="2" type="stmt"/>
+        <line num="211" count="4" type="stmt"/>
         <line num="218" count="7" type="cond" truecount="2" falsecount="0"/>
         <line num="219" count="2" type="stmt"/>
         <line num="221" count="6" type="cond" truecount="2" falsecount="0"/>
@@ -97,10 +120,10 @@
     </package>
     <package name="src.graphql">
       <metrics statements="25" coveredstatements="18" conditionals="30" coveredconditionals="19" methods="7" coveredmethods="7"/>
-      <file name="GraphQLLocalDate.js" path="/home/mike/dev/thr-addons/packages/date/src/graphql/GraphQLLocalDate.js">
+      <file name="GraphQLLocalDate.js" path="/home/darkadept/dev/thr-addons/packages/date/src/graphql/GraphQLLocalDate.js">
         <metrics statements="15" coveredstatements="10" conditionals="20" coveredconditionals="11" methods="3" coveredmethods="3"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
         <line num="17" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="18" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="19" count="1" type="cond" truecount="1" falsecount="1"/>
@@ -115,13 +138,13 @@
         <line num="34" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="35" count="0" type="stmt"/>
       </file>
-      <file name="GraphQLMoment.js" path="/home/mike/dev/thr-addons/packages/date/src/graphql/GraphQLMoment.js">
+      <file name="GraphQLMoment.js" path="/home/darkadept/dev/thr-addons/packages/date/src/graphql/GraphQLMoment.js">
         <metrics statements="10" coveredstatements="8" conditionals="10" coveredconditionals="8" methods="4" coveredmethods="4"/>
         <line num="9" count="8" type="cond" truecount="2" falsecount="0"/>
         <line num="10" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="11" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="12" count="0" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
         <line num="19" count="3" type="stmt"/>
         <line num="22" count="5" type="stmt"/>
         <line num="25" count="4" type="cond" truecount="2" falsecount="0"/>
