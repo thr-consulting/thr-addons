@@ -1,5 +1,7 @@
 import GraphQLLocalDate from './graphql/GraphQLLocalDate';
 import GraphQLMoment from './graphql/GraphQLMoment';
+import getMonthNames from './getMonthNames';
+import getNumberOfDaysInMonth from './getNumberOfDaysInMonth';
 import {
 	formatDate,
 	transformDatesToMoment,
@@ -34,4 +36,6 @@ export {
 	transformObjectsToLocalDates,
 	GraphQLLocalDate,
 	GraphQLMoment,
+	getMonthNames,
+	getNumberOfDaysInMonth,
 };
