@@ -4,7 +4,7 @@ import {mount} from 'enzyme';
 import {Form} from 'semantic-ui-react';
 import TForm from '../../src/form/TForm';
 
-function renderForm({values, handleChange, handleBlur, handleSubmit, renderErrors, renderWarnings, hasErrors, hasWarnings, fieldError}) {
+function renderForm({values, handleChange, handleBlur, handleSubmit, renderWarnings, hasErrors, hasWarnings, fieldError}) {
 	return (
 		<Form onSubmit={handleSubmit} error={hasErrors()} warning={hasWarnings()}>
 			<Form.Field error={fieldError('text')}>
@@ -16,17 +16,16 @@ function renderForm({values, handleChange, handleBlur, handleSubmit, renderError
 					onBlur={handleBlur}
 				/>
 			</Form.Field>
-			{renderErrors()}
 			{renderWarnings()}
 		</Form>
 	);
 }
 
 function validate(values, props) {
-	let warnings = {};
-	//if (!values.text) {
-		warnings.text = 'There is a problem with the text field.';
-	//}
+	const warnings = {};
+	// if (!values.text) {
+	warnings.text = 'There is a problem with the text field.';
+	// }
 	return warnings;
 }
 
@@ -43,7 +42,6 @@ describe('TForm', () => {
 				initialValues={{text: 'Hello World!'}}
 				loading={false}
 				onSubmit={fakeSubmit}
-				numFields={1}
 			/>
 		)).toMatchSnapshot();
 	});
@@ -76,8 +74,7 @@ describe('TForm', () => {
 				render={renderForm}
 				loading={false}
 				onSubmit={fakeSubmit}
-				numFields={1}
-				errors={{graphQLErrors: [{message: 'There is an error.'}]}}
+				errors={{graphQLErrors: [{message: 'There is an error.'}], message: 'GraphQL error: There is an error'}}
 			/>
 		);
 		expect(wrapper).toMatchSnapshot();

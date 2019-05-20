@@ -2,13 +2,11 @@ import React, {Component} from 'react';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 import {Formik} from 'formik';
-import {Message} from 'semantic-ui-react';
+import {Message, Segment} from 'semantic-ui-react';
 
 // type Props = {
 // 	/** Render prop just like Formik's with additional arguments passed */
 // 	render: any,
-// 	/** The number of fields in the form. TForm can't automatically get this number. */
-// 	numFields: number,
 // 	/** Used to pass in any GraphQL errors. */
 // 	errors?: any,
 // 	/** Called when the form submits. */
@@ -36,33 +34,45 @@ export default class TForm extends Component {
 
 	renderForm = args => {
 		const {errors: warnings, touched, handleChange, setFieldValue, submitForm, ...rest} = args;
-		const {errors, numFields, render, loading} = this.props;
+		const {errors, render, loading} = this.props;
 
 		this._submitForm = submitForm;
 
 		return render({
-			renderErrors() {
-				if (!errors) return null;
-				const {graphQLErrors} = errors;
-				return (
-					<Message error>
-						<Message.Header>Error</Message.Header>
-						{graphQLErrors.map(err => (
-							<p key={err.message}>{err.message}</p>
-						))}
-					</Message>
-				);
-			},
 			renderWarnings() {
-				if (isEmpty(warnings)) return null;
+				// we want the error to be displayed once a field has an error AND has been touched.
+
+				const warningArray = [];
+				let errorArray = [];
+				let errorHeader;
+				let errorMessage;
+
+				// adds the relevant warnings to the warnings array.
+				Object.keys(warnings).forEach(warning => {
+					if (touched[warning] && warnings[warning]) warningArray.push({message: warnings[warning]});
+				});
+
+				if (isEmpty(warningArray)) {
+					if (!errors) return null;
+
+					// if there are errors and the error has a message then create the the array to loop over.
+					if (errors.message) {
+						if (!isEmpty(errors.graphQLErrors)) errorArray = errors.graphQLErrors;
+						else if (isEmpty(errors.graphQLErrors) && isEmpty(warningArray)) {
+							errorMessage = errors.message.slice(errors.message.indexOf(': ') + 1);
+							errorArray.push({message: errorMessage});
+						}
+						errorHeader = errors.message.slice(0, errors.message.indexOf(': '));
+					}
+				}
+
 				return (
-					<Message warning>
-						<Message.Header>Some fields are not complete:</Message.Header>
-						<ul>
-							{Object.keys(warnings).map(warning => (
-								<li key={warning}>{warnings[warning]}</li>
-							))}
-						</ul>
+					<Message warning={!isEmpty(warningArray)} error={!!errors}>
+						<Message.Header>{!isEmpty(warningArray) ? 'Some fields are not complete:' : `${errorHeader}:`}</Message.Header>
+						{/* Put it in a segment to make sure the errorMessage isn't to big when there are a lot of errors */}
+						<Segment style={{overflow: 'auto', maxHeight: 100}}>
+							{(!isEmpty(warningArray) ? warningArray : errorArray).map(warning => <div key={warning.message}>{warning.message}</div>)}
+						</Segment>
 					</Message>
 				);
 			},
@@ -70,7 +80,9 @@ export default class TForm extends Component {
 				return !!errors;
 			},
 			hasWarnings() {
-				return Object.keys(touched).length === numFields && !isEmpty(warnings);
+				// the old way checks to make sure all fields have been touched, but I think we want to show once there are any warnings...
+				// return Object.keys(touched).length === numFields && !isEmpty(warnings); // this is the old way.
+				return !isEmpty(warnings);
 			},
 			fieldError(fieldName) {
 				return !!(touched[fieldName] && warnings[fieldName]);
@@ -94,7 +106,7 @@ export default class TForm extends Component {
 	};
 
 	render() {
-		const {render, numFields, enableReinitialize = true, ...rest} = this.props;
+		const {render, enableReinitialize = true, ...rest} = this.props;
 		return (
 			<Formik enableReinitialize={enableReinitialize} render={this.renderForm} {...rest}/>
 		);
