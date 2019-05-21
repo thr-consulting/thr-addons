@@ -6,7 +6,6 @@ import mongoose from 'mongoose';
 import isInteger from 'lodash/isInteger';
 import isUndefined from 'lodash/isUndefined';
 import isNull from 'lodash/isNull';
-import './types.d';
 
 const d = debug('app.lib.mongooseTypes');
 
