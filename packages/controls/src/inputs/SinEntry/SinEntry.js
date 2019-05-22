@@ -93,7 +93,6 @@ export default class SinEntry extends Component {
 					render={this.renderForm}
 					onSubmit={this.handleSubmit}
 					validationSchema={TSchemas.sin()}
-					numFields={1}
 				/>
 			);
 		}
