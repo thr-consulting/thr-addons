@@ -6,7 +6,7 @@ module.exports = {
 	mode: process.env.NODE_ENV,
 	devtool: 'source-map',
 	target: 'node',
-	entry: './src/server/index.ts',
+	entry: './src/server/mongooseTypes/index.ts',
 	output: {
 		filename: 'mongooseTypes.js',
 		path: path.resolve(__dirname),
@@ -19,7 +19,7 @@ module.exports = {
 		nodeExternals({modulesDir: path.join('..', '..', 'node_modules')}),
 	],
 	optimization: {
-		minimize: process.env.NODE_ENV === 'production',
+		minimize: false, // process.env.NODE_ENV === 'production',
 	},
 	resolve: {
 		extensions: ['.js', '.mjs', '.ts', '.tsx'],
