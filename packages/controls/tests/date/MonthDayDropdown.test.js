@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import MonthDayDropdown from '../../src/inputs/MonthDayDropdown';
+import MonthDayDropdown from '../../src/date/MonthDayDropdown';
 
 describe('MaskedInput', () => {
 	it('should render without throwing an error', () => {

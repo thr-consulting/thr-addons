@@ -14,14 +14,14 @@ const d = debug('app.lib.mongooseTypes');
 if (!LD.prototype.toBSON) {
 	// @ts-ignore
 	LD.prototype.toBSON = function() {
-		d('toBSON', this);
+		// d('toBSON', this);
 		return transformLocalDateToEpochInteger(this);
 	};
 }
 
 class LocalDate extends mongoose.SchemaType {
 	cast(val: any) {
-		d('Cast:', val);
+		// d('Cast:', val);
 		if (val instanceof LD) return val;
 		if (isInteger(val)) return transformEpochIntegerToLocalDate(val);
 		if (isNull(val)) return null;
@@ -33,7 +33,7 @@ class LocalDate extends mongoose.SchemaType {
 
 class Money extends mongoose.SchemaType {
 	cast(val: any) {
-		d('Cast:', val);
+		// d('Cast:', val);
 		if (isNull(val)) return null;
 		if (isUndefined(val)) return undefined;
 		return makeMoney(val);

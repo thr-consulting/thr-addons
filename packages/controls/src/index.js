@@ -7,7 +7,6 @@
 import MaskedInput from './inputs/MaskedInput';
 import SinEntry from './inputs/SinEntry';
 import RadioGroup from './inputs/RadioGroup';
-import MonthDayDropdown from './inputs/MonthDayDropdown';
 
 // Form
 import TForm from './form/TForm';
@@ -21,6 +20,8 @@ import ResponsiveMenu from './menu/ResponsiveMenu';
 // Date
 import LocalMonthSelect from './date/LocalMonthSelect';
 import DatePicker from './date/DatePicker';
+import MonthDayDropdown from './date/MonthDayDropdown';
+import YearSelect from './date/YearSelect';
 
 // Money
 import MoneyInput from './money/MoneyInput';
@@ -31,7 +32,6 @@ export {
 	RadioGroup,
 	MaskedInput,
 	SinEntry,
-	MonthDayDropdown,
 
 	// Form
 	TForm,
@@ -45,6 +45,8 @@ export {
 	// Date
 	LocalMonthSelect,
 	DatePicker,
+	MonthDayDropdown,
+	YearSelect,
 
 	// Money
 	MoneyInput,
