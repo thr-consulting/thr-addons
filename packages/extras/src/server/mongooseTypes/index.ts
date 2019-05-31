@@ -20,6 +20,18 @@ if (!LD.prototype.toBSON) {
 }
 
 class LocalDate extends mongoose.SchemaType {
+	constructor(...params) {
+		super(...params);
+
+		this.$conditionalHandlers = {
+			...mongoose.SchemaType.prototype.$conditionalHandlers,
+			$gt: this.handleSingle,
+			$gte: this.handleSingle,
+			$lt: this.handleSingle,
+			$lte: this.handleSingle,
+		};
+	}
+
 	cast(val: any) {
 		d('Cast:', val);
 		if (val instanceof LD) return val;
@@ -28,6 +40,10 @@ class LocalDate extends mongoose.SchemaType {
 		if (isUndefined(val)) return undefined;
 
 		throw new Error(`SchemaType LocalDate: ${val} is not a LocalDate (or null, undefined)`);
+	}
+
+	handleSingle(val) {
+		return this.cast(val);
 	}
 }
 
