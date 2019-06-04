@@ -5,3 +5,7 @@ export {default as CounterStream} from './CounterStream';
 export {default as log, configureLog, waitForLogger, logError} from './log';
 export {readableSpy, writableSpy} from './streamSpy';
 export {default as SharedCache} from './SharedCache';
+export {default as unzipper} from './unzipper';
+export {default as TimeoutCounter} from './TimeoutCounter';
+export {default as FileCleaner} from './FileCleaner';
+export {default as FileTypeReadStream} from './FileTypeReadStream';
