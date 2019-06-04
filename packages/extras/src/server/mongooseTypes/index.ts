@@ -9,19 +9,35 @@ import isNull from 'lodash/isNull';
 
 const d = debug('app.lib.mongooseTypes');
 
-// Add .toBSON to LocalDate if not defined
-// @ts-ignore
-if (!LD.prototype.toBSON) {
+function toBSON(): number {
 	// @ts-ignore
-	LD.prototype.toBSON = function() {
-		d('toBSON', this);
-		return transformLocalDateToEpochInteger(this);
-	};
+	// @ts-ignore
+	return transformLocalDateToEpochInteger(this);
 }
 
+// Add .toBSON to LocalDate if not defined
+// @ts-ignore
+if (!LD.prototype.toBSON) { LD.prototype.toBSON = toBSON; }
+
 class LocalDate extends mongoose.SchemaType {
+	$conditionalHandlers: object;
+
+	constructor(...params) {
+		// @ts-ignore
+		super(...params);
+
+		this.$conditionalHandlers = {
+		// @ts-ignore
+			...mongoose.SchemaType.prototype.$conditionalHandlers,
+			$gt: this.cast,
+			$gte: this.cast,
+			$lt: this.cast,
+			$lte: this.cast,
+		};
+	}
+
 	cast(val: any) {
-		d('Cast:', val);
+		// d('Cast:', val);
 		if (val instanceof LD) return val;
 		if (isInteger(val)) return transformEpochIntegerToLocalDate(val);
 		if (isNull(val)) return null;
@@ -32,8 +48,24 @@ class LocalDate extends mongoose.SchemaType {
 }
 
 class Money extends mongoose.SchemaType {
+	$conditionalHandlers: object;
+
+	constructor(...params) {
+		// @ts-ignore
+		super(...params);
+
+		this.$conditionalHandlers = {
+			// @ts-ignore
+			...mongoose.SchemaType.prototype.$conditionalHandlers,
+			$gt: this.cast,
+			$gte: this.cast,
+			$lt: this.cast,
+			$lte: this.cast,
+		};
+	}
+
 	cast(val: any) {
-		d('Cast:', val);
+		// d('Cast:', val);
 		if (isNull(val)) return null;
 		if (isUndefined(val)) return undefined;
 		return makeMoney(val);
