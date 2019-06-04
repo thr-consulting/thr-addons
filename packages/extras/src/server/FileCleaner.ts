@@ -45,23 +45,21 @@ export default class FileCleaner {
 		// Make sure the array of files are unique
 		this._files = uniq(this._files);
 
-		await Promise.all(this._files.map(filename => {
-			return new Promise((resolve, reject) => {
-				fs.access(filename, isMissing => {
-					if (!isMissing) {
-						fs.unlink(filename, err => {
-							if (err) {
-								reject(err);
-							} else {
-								resolve();
-							}
-						});
-					} else {
-						resolve();
-					}
-				});
+		await Promise.all(this._files.map(filename => new Promise((resolve, reject) => {
+			fs.access(filename, isMissing => {
+				if (!isMissing) {
+					fs.unlink(filename, err => {
+						if (err) {
+							reject(err);
+						} else {
+							resolve();
+						}
+					});
+				} else {
+					resolve();
+				}
 			});
-		}));
+		})));
 		this._files = [];
 	}
 
