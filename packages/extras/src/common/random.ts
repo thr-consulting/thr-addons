@@ -1,4 +1,6 @@
 import {randomBytes, pseudoRandomBytes} from 'crypto';
+import {formatDate} from '@thx/date';
+import {ZonedDateTime} from 'js-joda';
 
 const letters = 'abcdefghijklmnopqrstuvwxyz';
 const alphanumeric = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -36,4 +38,13 @@ export function randomLetters(length: number = 1): string {
 		code += randomLetterCharacter();
 	}
 	return code;
+}
+
+export function randomFilename({id, ext, random}: {id?: string, ext?: string, random?: number} = {}) {
+	const dateStr = formatDate(ZonedDateTime.now(), {format: 'yyyyMMdd-HHmmssZ'});
+	const idStr = id ? `${id}-` : '';
+	const rndStr = (random || 8) > 0 ? `-${randomAlphanumeric(random || 8)}` : '';
+	const extStr = ext ? `.${ext}` : '';
+
+	return `${idStr}${dateStr}${rndStr}${extStr}`;
 }
