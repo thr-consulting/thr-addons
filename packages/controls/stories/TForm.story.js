@@ -27,14 +27,14 @@ function renderForm({handleChange, handleSubmit, values}) {
 	);
 }
 
-function renderWarningForm({values, handleChange, handleBlur, handleSubmit, renderWarnings, hasErrors, hasWarnings, fieldError}) {
+function renderWarningForm({isValid, values, handleChange, handleBlur, handleSubmit, renderWarnings, hasErrors, hasWarnings, fieldError}) {
 	return (
 		<Form onSubmit={handleSubmit} error={hasErrors()} warning={hasWarnings()}>
 			<Form.Field error={fieldError('text')}>
 				<label>This must contain text</label>
 				<input
 					name="text"
-					value={values.text}
+					value={values.text || ''}
 					onChange={handleChange}
 					onBlur={handleBlur}
 				/>
@@ -43,12 +43,12 @@ function renderWarningForm({values, handleChange, handleBlur, handleSubmit, rend
 				<label>This must contain more text</label>
 				<input
 					name="moretext"
-					value={values.moretext}
+					value={values.moretext || ''}
 					onChange={handleChange}
 					onBlur={handleBlur}
 				/>
 			</Form.Field>
-			<Form.Button type="submit" onClick={handleSubmit}>Submit</Form.Button>
+			<Form.Button disabled={!isValid} type="submit" onClick={handleSubmit}>Submit</Form.Button>
 			{renderWarnings()}
 		</Form>
 	);
@@ -78,7 +78,7 @@ const warningStoryFn = () => (
 			render={renderWarningForm}
 			loading={false}
 			onSubmit={action('onSubmit')}
-			initialValues={{text: '', moretext: ''}}
+			initialValues={{}}
 		/>
 	</Container>
 );
