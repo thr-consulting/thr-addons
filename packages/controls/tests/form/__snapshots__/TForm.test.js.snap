@@ -37,56 +37,96 @@ exports[`TForm should render with errors 1`] = `
     validateOnBlur={true}
     validateOnChange={true}
   >
-    <Form
-      as="form"
-      error={true}
-      onSubmit={[Function]}
-      warning={false}
+    <RenderForm
+      dirty={false}
+      errors={Object {}}
+      handleBlur={[Function]}
+      handleChange={[Function]}
+      handleReset={[Function]}
+      handleSubmit={[Function]}
+      initialValues={Object {}}
+      isSubmitting={false}
+      isValid={false}
+      isValidating={false}
+      registerField={[Function]}
+      resetForm={[Function]}
+      setError={[Function]}
+      setErrors={[Function]}
+      setFieldError={[Function]}
+      setFieldTouched={[Function]}
+      setFieldValue={[Function]}
+      setFormikState={[Function]}
+      setStatus={[Function]}
+      setSubmitting={[Function]}
+      setTouched={[Function]}
+      setValues={[Function]}
+      submitCount={0}
+      submitForm={[Function]}
+      tFormProps={
+        Object {
+          "errors": Object {
+            "graphQLErrors": Array [
+              Object {
+                "message": "There is an error.",
+              },
+            ],
+            "message": "GraphQL error: There is an error",
+          },
+          "loading": false,
+          "onSubmit": [Function],
+          "render": [Function],
+          "validate": [Function],
+        }
+      }
+      touched={Object {}}
+      unregisterField={[Function]}
+      validateField={[Function]}
+      validateForm={[Function]}
+      validateOnBlur={true}
+      validateOnChange={true}
+      values={Object {}}
     >
-      <form
-        className="ui error form"
+      <Form
+        as="form"
+        error={true}
         onSubmit={[Function]}
+        warning={false}
       >
-        <FormField
-          error={false}
+        <form
+          className="ui error form"
+          onSubmit={[Function]}
         >
-          <div
-            className="field"
+          <FormField
+            error={false}
           >
-            <label>
-              Text
-            </label>
-            <input
-              name="text"
-              onBlur={[Function]}
-              onChange={[Function]}
-            />
-          </div>
-        </FormField>
-        <Message
-          error={true}
-          warning={false}
-        >
-          <div
-            className="ui error message"
-          >
-            <MessageHeader>
-              <div
-                className="header"
-              >
-                GraphQL error:
-              </div>
-            </MessageHeader>
-            <Segment
-              style={
-                Object {
-                  "maxHeight": 100,
-                  "overflow": "auto",
-                }
-              }
+            <div
+              className="field"
             >
-              <div
-                className="ui segment"
+              <label>
+                Text
+              </label>
+              <input
+                name="text"
+                onBlur={[Function]}
+                onChange={[Function]}
+              />
+            </div>
+          </FormField>
+          <Message
+            error={true}
+            warning={false}
+          >
+            <div
+              className="ui error message"
+            >
+              <MessageHeader>
+                <div
+                  className="header"
+                >
+                  GraphQL error:
+                </div>
+              </MessageHeader>
+              <Segment
                 style={
                   Object {
                     "maxHeight": 100,
@@ -95,16 +135,26 @@ exports[`TForm should render with errors 1`] = `
                 }
               >
                 <div
-                  key="There is an error."
+                  className="ui segment"
+                  style={
+                    Object {
+                      "maxHeight": 100,
+                      "overflow": "auto",
+                    }
+                  }
                 >
-                  There is an error.
+                  <div
+                    key="There is an error."
+                  >
+                    There is an error.
+                  </div>
                 </div>
-              </div>
-            </Segment>
-          </div>
-        </Message>
-      </form>
-    </Form>
+              </Segment>
+            </div>
+          </Message>
+        </form>
+      </Form>
+    </RenderForm>
   </Formik>
 </TForm>
 `;
@@ -136,35 +186,88 @@ exports[`TForm should render without throwing an error 1`] = `
     validateOnBlur={true}
     validateOnChange={true}
   >
-    <Form
-      as="form"
-      error={false}
-      onSubmit={[Function]}
-      warning={false}
+    <RenderForm
+      dirty={false}
+      errors={Object {}}
+      handleBlur={[Function]}
+      handleChange={[Function]}
+      handleReset={[Function]}
+      handleSubmit={[Function]}
+      initialValues={
+        Object {
+          "text": "Hello World!",
+        }
+      }
+      isSubmitting={false}
+      isValid={false}
+      isValidating={false}
+      registerField={[Function]}
+      resetForm={[Function]}
+      setError={[Function]}
+      setErrors={[Function]}
+      setFieldError={[Function]}
+      setFieldTouched={[Function]}
+      setFieldValue={[Function]}
+      setFormikState={[Function]}
+      setStatus={[Function]}
+      setSubmitting={[Function]}
+      setTouched={[Function]}
+      setValues={[Function]}
+      submitCount={0}
+      submitForm={[Function]}
+      tFormProps={
+        Object {
+          "initialValues": Object {
+            "text": "Hello World!",
+          },
+          "loading": false,
+          "onSubmit": [Function],
+          "render": [Function],
+          "validate": [Function],
+        }
+      }
+      touched={Object {}}
+      unregisterField={[Function]}
+      validateField={[Function]}
+      validateForm={[Function]}
+      validateOnBlur={true}
+      validateOnChange={true}
+      values={
+        Object {
+          "text": "Hello World!",
+        }
+      }
     >
-      <form
-        className="ui form"
+      <Form
+        as="form"
+        error={false}
         onSubmit={[Function]}
+        warning={false}
       >
-        <FormField
-          error={false}
+        <form
+          className="ui form"
+          onSubmit={[Function]}
         >
-          <div
-            className="field"
+          <FormField
+            error={false}
           >
-            <label>
-              Text
-            </label>
-            <input
-              name="text"
-              onBlur={[Function]}
-              onChange={[Function]}
-              value="Hello World!"
-            />
-          </div>
-        </FormField>
-      </form>
-    </Form>
+            <div
+              className="field"
+            >
+              <label>
+                Text
+              </label>
+              <input
+                name="text"
+                onBlur={[Function]}
+                onChange={[Function]}
+                value="Hello World!"
+              />
+            </div>
+          </FormField>
+        </form>
+      </Form>
+    </RenderForm>
   </Formik>
 </TForm>
 `;
