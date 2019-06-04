@@ -1,4 +1,5 @@
 import moment from 'moment';
+import debug from 'debug';
 import transform from 'lodash/transform';
 import isArray from 'lodash/isArray';
 import isPlainObject from 'lodash/isPlainObject';
@@ -10,6 +11,8 @@ import indexOf from 'lodash/indexOf';
 import 'js-joda-timezone';
 import {Locale} from '@js-joda/locale_en-us';
 import {LocalDate, LocalTime, LocalDateTime, ZonedDateTime, nativeJs, DateTimeFormatter} from 'js-joda';
+
+const d = debug('thx.date.util');
 
 /*
 	Simple Transforms
@@ -39,7 +42,7 @@ export function transformDateToLocalDate(date) {
  */
 export function transformDateToLocalDateTime(date) {
 	if (!date) return null;
-	return LocalDate.from(nativeJs(date));
+	return LocalDateTime.from(nativeJs(date));
 }
 
 /**
