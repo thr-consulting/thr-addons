@@ -11,7 +11,6 @@ const d = debug('app.lib.mongooseTypes');
 
 function toBSON(): number {
 	// @ts-ignore
-	d('toBSON', this);
 	// @ts-ignore
 	return transformLocalDateToEpochInteger(this);
 }
@@ -38,7 +37,7 @@ class LocalDate extends mongoose.SchemaType {
 	}
 
 	cast(val: any) {
-		d('Cast:', val);
+		// d('Cast:', val);
 		if (val instanceof LD) return val;
 		if (isInteger(val)) return transformEpochIntegerToLocalDate(val);
 		if (isNull(val)) return null;
@@ -66,7 +65,7 @@ class Money extends mongoose.SchemaType {
 	}
 
 	cast(val: any) {
-		d('Cast:', val);
+		// d('Cast:', val);
 		if (isNull(val)) return null;
 		if (isUndefined(val)) return undefined;
 		return makeMoney(val);
