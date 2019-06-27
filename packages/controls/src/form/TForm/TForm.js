@@ -40,13 +40,13 @@ function RenderForm(args) {
 
 			// adds the relevant warnings to the warnings array.
 			Object.keys(warnings).forEach(warning => {
-				if (touched[warning]) {
-					if (isArray(warnings[warning])) {
-						warnings[warning].forEach(obj => {
-							mapKeys(obj, (val, key) => warningArray.push({message: val.replace(/^\S+/, key)}));
+				if (isArray(warnings[warning])) {
+					warnings[warning].forEach(obj => {
+						mapKeys(obj, (val, key) => {
+							if (touched[key]) warningArray.push({message: val.replace(/^\S+/, key)});
 						});
-					} else if (warnings[warning]) warningArray.push({message: warnings[warning]});
-				}
+					});
+				} else if (touched[warning] && warnings[warning]) warningArray.push({message: warnings[warning]});
 			});
 
 			if (isEmpty(warningArray)) {
@@ -83,6 +83,8 @@ function RenderForm(args) {
 		},
 		fieldError(fieldName) {
 			// I'm not sure of the proper implementation of this.
+			// I'm Passing in an array to find the proper error item from the object array.
+			// Using it in /home/jonathan/Desktop/thr4New/src/lib/AddDynamicFormInput.tsx line 67
 			if (isArray(fieldName)) {
 				const hasWarning = warnings[fieldName[0]] && warnings[fieldName[0]][fieldName[1]] && !!warnings[fieldName[0]][fieldName[1]][fieldName[2]];
 				const isTouched = touched[fieldName[2]];
