@@ -7,6 +7,7 @@
 import MaskedInput from './inputs/MaskedInput';
 import SinEntry from './inputs/SinEntry';
 import RadioGroup from './inputs/RadioGroup';
+import AddDynamicFormInput from './inputs/AddDynamicFormInput';
 
 // Form
 import TForm from './form/TForm';
@@ -32,6 +33,7 @@ export {
 	RadioGroup,
 	MaskedInput,
 	SinEntry,
+	AddDynamicFormInput,
 
 	// Form
 	TForm,
