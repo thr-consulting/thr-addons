@@ -1,0 +1,353 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MaskedInput should render without throwing an error 1`] = `
+<TForm
+  render={[Function]}
+>
+  <Formik
+    enableReinitialize={true}
+    isInitialValid={false}
+    render={[Function]}
+    validateOnBlur={true}
+    validateOnChange={true}
+  >
+    <RenderForm
+      dirty={false}
+      errors={Object {}}
+      handleBlur={[Function]}
+      handleChange={[Function]}
+      handleReset={[Function]}
+      handleSubmit={[Function]}
+      initialValues={Object {}}
+      isSubmitting={false}
+      isValid={false}
+      isValidating={false}
+      registerField={[Function]}
+      resetForm={[Function]}
+      setError={[Function]}
+      setErrors={[Function]}
+      setFieldError={[Function]}
+      setFieldTouched={[Function]}
+      setFieldValue={[Function]}
+      setFormikState={[Function]}
+      setStatus={[Function]}
+      setSubmitting={[Function]}
+      setTouched={[Function]}
+      setValues={[Function]}
+      submitCount={0}
+      submitForm={[Function]}
+      tFormProps={
+        Object {
+          "render": [Function],
+        }
+      }
+      touched={Object {}}
+      unregisterField={[Function]}
+      validateField={[Function]}
+      validateForm={[Function]}
+      validateOnBlur={true}
+      validateOnChange={true}
+      values={Object {}}
+    >
+      <AddDynamicFormInput
+        fieldError={[Function]}
+        label="Name(s) of account holder(s):"
+        name="addDynamicFormInputs"
+        onBlur={[Function]}
+        setFieldValue={[Function]}
+      >
+        <FormikConnect(FieldArrayInner)
+          name="addDynamicFormInputs"
+          render={[Function]}
+        >
+          <FieldArrayInner
+            formik={
+              Object {
+                "dirty": false,
+                "errors": Object {},
+                "handleBlur": [Function],
+                "handleChange": [Function],
+                "handleReset": [Function],
+                "handleSubmit": [Function],
+                "initialValues": Object {},
+                "isSubmitting": false,
+                "isValid": false,
+                "isValidating": false,
+                "registerField": [Function],
+                "resetForm": [Function],
+                "setError": [Function],
+                "setErrors": [Function],
+                "setFieldError": [Function],
+                "setFieldTouched": [Function],
+                "setFieldValue": [Function],
+                "setFormikState": [Function],
+                "setStatus": [Function],
+                "setSubmitting": [Function],
+                "setTouched": [Function],
+                "setValues": [Function],
+                "status": undefined,
+                "submitCount": 0,
+                "submitForm": [Function],
+                "touched": Object {},
+                "unregisterField": [Function],
+                "validate": undefined,
+                "validateField": [Function],
+                "validateForm": [Function],
+                "validateOnBlur": true,
+                "validateOnChange": true,
+                "validationSchema": undefined,
+                "values": Object {},
+              }
+            }
+            name="addDynamicFormInputs"
+            render={[Function]}
+            validateOnChange={true}
+          >
+            <Grid
+              columns={3}
+              key="0"
+              stackable={true}
+            >
+              <div
+                className="ui stackable three column grid"
+              >
+                <GridRow>
+                  <div
+                    className="row"
+                  >
+                    <GridColumn>
+                      <div
+                        className="column"
+                      >
+                        <FormInput
+                          as={[Function]}
+                          control={[Function]}
+                          style={
+                            Object {
+                              "marginTop": 25,
+                            }
+                          }
+                        >
+                          <FormField
+                            control={[Function]}
+                            style={
+                              Object {
+                                "marginTop": 25,
+                              }
+                            }
+                          >
+                            <div
+                              className="field"
+                            >
+                              <Input
+                                style={
+                                  Object {
+                                    "marginTop": 25,
+                                  }
+                                }
+                                type="text"
+                              >
+                                <div
+                                  className="ui input"
+                                  style={
+                                    Object {
+                                      "marginTop": 25,
+                                    }
+                                  }
+                                >
+                                  <Label
+                                    fluid="true"
+                                    key=".0"
+                                    size="large"
+                                  >
+                                    <div
+                                      className="ui large label"
+                                      fluid="true"
+                                      onClick={[Function]}
+                                    >
+                                      Name(s) of account holder(s):
+                                    </div>
+                                  </Label>
+                                  <Button
+                                    as="button"
+                                    color="green"
+                                    key=".1"
+                                    onClick={[Function]}
+                                    type="button"
+                                  >
+                                    <Ref
+                                      innerRef={
+                                        Object {
+                                          "current": <button
+                                            class="ui green button"
+                                            type="button"
+                                          >
+                                            Add
+                                          </button>,
+                                        }
+                                      }
+                                    >
+                                      <RefFindNode
+                                        innerRef={
+                                          Object {
+                                            "current": <button
+                                              class="ui green button"
+                                              type="button"
+                                            >
+                                              Add
+                                            </button>,
+                                          }
+                                        }
+                                      >
+                                        <button
+                                          className="ui green button"
+                                          onClick={[Function]}
+                                          type="button"
+                                        >
+                                          Add
+                                        </button>
+                                      </RefFindNode>
+                                    </Ref>
+                                  </Button>
+                                </div>
+                              </Input>
+                            </div>
+                          </FormField>
+                        </FormInput>
+                      </div>
+                    </GridColumn>
+                    <GridColumn
+                      key="addDynamicFormInputs/.0"
+                    >
+                      <div
+                        className="column"
+                      >
+                        <FormInput
+                          action={null}
+                          as={[Function]}
+                          control={[Function]}
+                          error={false}
+                          index={0}
+                          label="First Name"
+                          name="firstName"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          value=""
+                        >
+                          <FormField
+                            action={null}
+                            control={[Function]}
+                            error={false}
+                            index={0}
+                            label="First Name"
+                            name="firstName"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            value=""
+                          >
+                            <div
+                              className="field"
+                            >
+                              <label>
+                                First Name
+                              </label>
+                              <Input
+                                action={null}
+                                index={0}
+                                name="firstName"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                type="text"
+                                value=""
+                              >
+                                <div
+                                  className="ui input"
+                                  index={0}
+                                >
+                                  <input
+                                    name="firstName"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                              </Input>
+                            </div>
+                          </FormField>
+                        </FormInput>
+                      </div>
+                    </GridColumn>
+                    <GridColumn
+                      key="addDynamicFormInputs/.1"
+                    >
+                      <div
+                        className="column"
+                      >
+                        <FormInput
+                          action={null}
+                          as={[Function]}
+                          control={[Function]}
+                          error={false}
+                          index={0}
+                          label="Last Name"
+                          name="lastName"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          value=""
+                        >
+                          <FormField
+                            action={null}
+                            control={[Function]}
+                            error={false}
+                            index={0}
+                            label="Last Name"
+                            name="lastName"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            value=""
+                          >
+                            <div
+                              className="field"
+                            >
+                              <label>
+                                Last Name
+                              </label>
+                              <Input
+                                action={null}
+                                index={0}
+                                name="lastName"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                type="text"
+                                value=""
+                              >
+                                <div
+                                  className="ui input"
+                                  index={0}
+                                >
+                                  <input
+                                    name="lastName"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                              </Input>
+                            </div>
+                          </FormField>
+                        </FormInput>
+                      </div>
+                    </GridColumn>
+                  </div>
+                </GridRow>
+              </div>
+            </Grid>
+          </FieldArrayInner>
+        </FormikConnect(FieldArrayInner)>
+      </AddDynamicFormInput>
+    </RenderForm>
+  </Formik>
+</TForm>
+`;

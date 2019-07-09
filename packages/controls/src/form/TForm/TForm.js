@@ -1,6 +1,7 @@
-import React, {Component, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
+import isArray from 'lodash/isArray';
 import {Formik} from 'formik';
 import {Message, Segment} from 'semantic-ui-react';
 
@@ -38,7 +39,13 @@ function RenderForm(args) {
 
 			// adds the relevant warnings to the warnings array.
 			Object.keys(warnings).forEach(warning => {
-				if (touched[warning] && warnings[warning]) warningArray.push({message: warnings[warning]});
+				if (isArray(warnings[warning])) {
+					warnings[warning].forEach(obj => {
+						Object.keys(obj).forEach(key => {
+							if (touched[key]) warningArray.push({message: obj[key].replace(/^\S+/, key)});
+						});
+					});
+				} else if (touched[warning] && warnings[warning]) warningArray.push({message: warnings[warning]});
 			});
 
 			if (isEmpty(warningArray)) {
@@ -60,7 +67,9 @@ function RenderForm(args) {
 					<Message.Header>{!isEmpty(warningArray) ? 'Some fields are not complete:' : `${errorHeader}:`}</Message.Header>
 					{/* Put it in a segment to make sure the errorMessage isn't to big when there are a lot of errors */}
 					<Segment style={{overflow: 'auto', maxHeight: 100}}>
-						{(!isEmpty(warningArray) ? warningArray : errorArray).map(warning => <div key={warning.message}>{warning.message}</div>)}
+						{(!isEmpty(warningArray)
+							? warningArray
+							: errorArray).map((warning, index) => <div key={warning.message.concat(index)}>{warning.message}</div>)}
 					</Segment>
 				</Message>
 			);
@@ -74,7 +83,12 @@ function RenderForm(args) {
 			return !isEmpty(warnings);
 		},
 		fieldError(fieldName) {
-			return !!(touched[fieldName] && warnings[fieldName]);
+			if (isArray(fieldName)) {
+				const hasWarning = warnings[fieldName[0]] && warnings[fieldName[0]][fieldName[1]] && !!warnings[fieldName[0]][fieldName[1]][fieldName[2]];
+				const isTouched = touched[fieldName[2]];
+				return !!(isTouched && hasWarning);
+			}
+			return !!(touched[fieldName] && !!warnings[fieldName]);
 		},
 		handleChange(evOrName) {
 			if (evOrName.nativeEvent) return handleChange(evOrName);

@@ -144,7 +144,7 @@ exports[`TForm should render with errors 1`] = `
                   }
                 >
                   <div
-                    key="There is an error."
+                    key="There is an error.0"
                   >
                     There is an error.
                   </div>
