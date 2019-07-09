@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="-_default.html">_default</a></li><li><a href="DatePickerLocalDate.html">DatePickerLocalDate</a></li><li><a href="LocalMonthSelect.html">LocalMonthSelect</a></li><li><a href="MaskedInput.html">MaskedInput</a></li><li><a href="MoneyInput.html">MoneyInput</a></li><li><a href="MoneyInputMask.html">MoneyInputMask</a></li><li><a href="MonthDayDropdown.html">MonthDayDropdown</a></li><li><a href="RadioGroup.html">RadioGroup</a></li><li><a href="ResponsiveMenu.html">ResponsiveMenu</a></li><li><a href="ScriptelInput.html">ScriptelInput</a></li><li><a href="SinEntry.html">SinEntry</a></li><li><a href="TForm.html">TForm</a></li>
+					<li><a href="-_default.html">_default</a></li><li><a href="AddDynamicFormInput.html">AddDynamicFormInput</a></li><li><a href="DatePickerLocalDate.html">DatePickerLocalDate</a></li><li><a href="LocalMonthSelect.html">LocalMonthSelect</a></li><li><a href="MaskedInput.html">MaskedInput</a></li><li><a href="MoneyInput.html">MoneyInput</a></li><li><a href="MoneyInputMask.html">MoneyInputMask</a></li><li><a href="MonthDayDropdown.html">MonthDayDropdown</a></li><li><a href="RadioGroup.html">RadioGroup</a></li><li><a href="ResponsiveMenu.html">ResponsiveMenu</a></li><li><a href="ScriptelInput.html">ScriptelInput</a></li><li><a href="SinEntry.html">SinEntry</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#withScriptel">withScriptel</a></li>
+					<li><a href="global.html#TForm">TForm</a></li><li><a href="global.html#withScriptel">withScriptel</a></li>
 				</ul>
 			</li>
 			
@@ -77,9 +77,10 @@
 <section>
     <article>
         <pre
-            class="sunlight-highlight-javascript linenums">import React, {Component} from 'react';
+            class="sunlight-highlight-javascript linenums">import React, {useEffect} from 'react';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
+import isArray from 'lodash/isArray';
 import {Formik} from 'formik';
 import {Message, Segment} from 'semantic-ui-react';
 
@@ -94,9 +95,102 @@ import {Message, Segment} from 'semantic-ui-react';
 // 	getSubmitFn: fn => void,
 // };
 
+function RenderForm(args) {
+	const {tFormProps, errors: warnings, touched, handleChange, setFieldValue, submitForm, isValid, ...rest} = args;
+	const {errors, render, loading, onValidate, getSubmitFn} = tFormProps;
+
+	useEffect(() => {
+		if (onValidate) onValidate(isValid);
+	}, [isValid]);
+
+	useEffect(() => {
+		if (getSubmitFn) getSubmitFn(submitForm);
+	}, [submitForm]);
+
+	return render({
+		renderWarnings() {
+			// we want the error to be displayed once a field has an error AND has been touched.
+
+			const warningArray = [];
+			let errorArray = [];
+			let errorHeader;
+			let errorMessage;
+
+			// adds the relevant warnings to the warnings array.
+			Object.keys(warnings).forEach(warning => {
+				if (isArray(warnings[warning])) {
+					warnings[warning].forEach(obj => {
+						Object.keys(obj).forEach(key => {
+							if (touched[key]) warningArray.push({message: obj[key].replace(/^\S+/, key)});
+						});
+					});
+				} else if (touched[warning] &amp;&amp; warnings[warning]) warningArray.push({message: warnings[warning]});
+			});
+
+			if (isEmpty(warningArray)) {
+				if (!errors) return null;
+
+				// if there are errors and the error has a message then create the the array to loop over.
+				if (errors.message) {
+					if (!isEmpty(errors.graphQLErrors)) errorArray = errors.graphQLErrors;
+					else if (isEmpty(errors.graphQLErrors) &amp;&amp; isEmpty(warningArray)) {
+						errorMessage = errors.message.slice(errors.message.indexOf(': ') + 1);
+						errorArray.push({message: errorMessage});
+					}
+					errorHeader = errors.message.slice(0, errors.message.indexOf(': '));
+				}
+			}
+
+			return (
+				&lt;Message warning={!isEmpty(warningArray)} error={!!errors}>
+					&lt;Message.Header>{!isEmpty(warningArray) ? 'Some fields are not complete:' : `${errorHeader}:`}&lt;/Message.Header>
+					{/* Put it in a segment to make sure the errorMessage isn't to big when there are a lot of errors */}
+					&lt;Segment style={{overflow: 'auto', maxHeight: 100}}>
+						{(!isEmpty(warningArray)
+							? warningArray
+							: errorArray).map((warning, index) => &lt;div key={warning.message.concat(index)}>{warning.message}&lt;/div>)}
+					&lt;/Segment>
+				&lt;/Message>
+			);
+		},
+		hasErrors() {
+			return !!errors;
+		},
+		hasWarnings() {
+			// the old way checks to make sure all fields have been touched, but I think we want to show once there are any warnings...
+			// return Object.keys(touched).length === numFields &amp;&amp; !isEmpty(warnings); // this is the old way.
+			return !isEmpty(warnings);
+		},
+		fieldError(fieldName) {
+			if (isArray(fieldName)) {
+				const hasWarning = warnings[fieldName[0]] &amp;&amp; warnings[fieldName[0]][fieldName[1]] &amp;&amp; !!warnings[fieldName[0]][fieldName[1]][fieldName[2]];
+				const isTouched = touched[fieldName[2]];
+				return !!(isTouched &amp;&amp; hasWarning);
+			}
+			return !!(touched[fieldName] &amp;&amp; !!warnings[fieldName]);
+		},
+		handleChange(evOrName) {
+			if (evOrName.nativeEvent) return handleChange(evOrName);
+			if (isString(evOrName)) {
+				return val => {
+					setFieldValue(evOrName, val);
+				};
+			}
+			throw new Error('TForm expects handleChange to receive a SyntheticEvent or a string value of the field name');
+		},
+		errors: warnings,
+		touched,
+		setFieldValue,
+		submitForm,
+		loading,
+		isValid,
+		...rest,
+	});
+}
+
 /**
  * Extends Formik to provide Semantic UI error and warning messages and field errors.
- * @class
+ * @function
  * @property {function} render - Render prop just like Formik's with additional arguments passed
  * @property {number} numFields - The number of fields in the form. TForm can't automatically get this number.
  * @property {boolean} loading - Passes the loading state through to the child component.
@@ -104,92 +198,11 @@ import {Message, Segment} from 'semantic-ui-react';
  * @property {function} onSubmit - Called when the form submits.
  * @property {function} getSubmitFn - Called when the TForm is mounted so you can get access to the submitForm function.
  */
-export default class TForm extends Component {
-	static displayName = 'TForm';
-
-	componentDidMount() {
-		if (this.props.getSubmitFn) this.props.getSubmitFn(this._submitForm);
-	}
-
-	renderForm = args => {
-		const {errors: warnings, touched, handleChange, setFieldValue, submitForm, ...rest} = args;
-		const {errors, render, loading} = this.props;
-
-		this._submitForm = submitForm;
-
-		return render({
-			renderWarnings() {
-				// we want the error to be displayed once a field has an error AND has been touched.
-
-				const warningArray = [];
-				let errorArray = [];
-				let errorHeader;
-				let errorMessage;
-
-				// adds the relevant warnings to the warnings array.
-				Object.keys(warnings).forEach(warning => {
-					if (touched[warning] &amp;&amp; warnings[warning]) warningArray.push({message: warnings[warning]});
-				});
-
-				if (isEmpty(warningArray)) {
-					if (!errors) return null;
-
-					// if there are errors and the error has a message then create the the array to loop over.
-					if (errors.message) {
-						if (!isEmpty(errors.graphQLErrors)) errorArray = errors.graphQLErrors;
-						else if (isEmpty(errors.graphQLErrors) &amp;&amp; isEmpty(warningArray)) {
-							errorMessage = errors.message.slice(errors.message.indexOf(': ') + 1);
-							errorArray.push({message: errorMessage});
-						}
-						errorHeader = errors.message.slice(0, errors.message.indexOf(': '));
-					}
-				}
-
-				return (
-					&lt;Message warning={!isEmpty(warningArray)} error={!!errors}>
-						&lt;Message.Header>{!isEmpty(warningArray) ? 'Some fields are not complete:' : `${errorHeader}:`}&lt;/Message.Header>
-						{/* Put it in a segment to make sure the errorMessage isn't to big when there are a lot of errors */}
-						&lt;Segment style={{overflow: 'auto', maxHeight: 100}}>
-							{(!isEmpty(warningArray) ? warningArray : errorArray).map(warning => &lt;div key={warning.message}>{warning.message}&lt;/div>)}
-						&lt;/Segment>
-					&lt;/Message>
-				);
-			},
-			hasErrors() {
-				return !!errors;
-			},
-			hasWarnings() {
-				// the old way checks to make sure all fields have been touched, but I think we want to show once there are any warnings...
-				// return Object.keys(touched).length === numFields &amp;&amp; !isEmpty(warnings); // this is the old way.
-				return !isEmpty(warnings);
-			},
-			fieldError(fieldName) {
-				return !!(touched[fieldName] &amp;&amp; warnings[fieldName]);
-			},
-			handleChange(evOrName) {
-				if (evOrName.nativeEvent) return handleChange(evOrName);
-				if (isString(evOrName)) {
-					return val => {
-						setFieldValue(evOrName, val);
-					};
-				}
-				throw new Error('TForm expects handleChange to receive a SyntheticEvent or a string value of the field name');
-			},
-			errors: warnings,
-			touched,
-			setFieldValue,
-			submitForm,
-			loading,
-			...rest,
-		});
-	};
-
-	render() {
-		const {render, enableReinitialize = true, ...rest} = this.props;
-		return (
-			&lt;Formik enableReinitialize={enableReinitialize} render={this.renderForm} {...rest}/>
-		);
-	}
+export default function TForm(props) {
+	const {render, enableReinitialize = true, ...rest} = props;
+	return (
+		&lt;Formik enableReinitialize={enableReinitialize} render={renderProps => &lt;RenderForm {...renderProps} tFormProps={props}/>} {...rest}/>
+	);
 }
 </pre>
     </article>
@@ -230,9 +243,9 @@ export default class TForm extends Component {
 
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a>
 	
-		on 2019-05-19T23:16:08-05:00
+		on 2019-07-09T09:30:54-05:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

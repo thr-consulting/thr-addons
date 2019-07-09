@@ -1,5 +1,5 @@
 TN:
-SF:/home/darkadept/dev/thr-addons/packages/tschemas/src/date.js
+SF:/home/mike/dev/thr-addons/packages/tschemas/src/date.js
 FN:10,(anonymous_0)
 FN:13,(anonymous_1)
 FN:21,(anonymous_2)
@@ -58,7 +58,7 @@ BRF:15
 BRH:13
 end_of_record
 TN:
-SF:/home/darkadept/dev/thr-addons/packages/tschemas/src/index.js
+SF:/home/mike/dev/thr-addons/packages/tschemas/src/index.js
 FNF:0
 FNH:0
 LF:0
@@ -67,7 +67,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/darkadept/dev/thr-addons/packages/tschemas/src/money.js
+SF:/home/mike/dev/thr-addons/packages/tschemas/src/money.js
 FN:9,(anonymous_0)
 FN:12,(anonymous_1)
 FN:21,(anonymous_2)
@@ -100,7 +100,7 @@ BRF:8
 BRH:8
 end_of_record
 TN:
-SF:/home/darkadept/dev/thr-addons/packages/tschemas/src/schemaValidate.js
+SF:/home/mike/dev/thr-addons/packages/tschemas/src/schemaValidate.js
 FN:17,schemaValidate
 FNF:1
 FNH:1
@@ -119,7 +119,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:/home/darkadept/dev/thr-addons/packages/tschemas/src/user.js
+SF:/home/mike/dev/thr-addons/packages/tschemas/src/user.js
 FN:8,(anonymous_0)
 FN:17,(anonymous_1)
 FN:25,(anonymous_2)

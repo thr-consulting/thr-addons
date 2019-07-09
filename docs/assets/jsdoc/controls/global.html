@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="-_default.html">_default</a></li><li><a href="DatePickerLocalDate.html">DatePickerLocalDate</a></li><li><a href="LocalMonthSelect.html">LocalMonthSelect</a></li><li><a href="MaskedInput.html">MaskedInput</a></li><li><a href="MoneyInput.html">MoneyInput</a></li><li><a href="MoneyInputMask.html">MoneyInputMask</a></li><li><a href="MonthDayDropdown.html">MonthDayDropdown</a></li><li><a href="RadioGroup.html">RadioGroup</a></li><li><a href="ResponsiveMenu.html">ResponsiveMenu</a></li><li><a href="ScriptelInput.html">ScriptelInput</a></li><li><a href="SinEntry.html">SinEntry</a></li><li><a href="TForm.html">TForm</a></li>
+					<li><a href="-_default.html">_default</a></li><li><a href="AddDynamicFormInput.html">AddDynamicFormInput</a></li><li><a href="DatePickerLocalDate.html">DatePickerLocalDate</a></li><li><a href="LocalMonthSelect.html">LocalMonthSelect</a></li><li><a href="MaskedInput.html">MaskedInput</a></li><li><a href="MoneyInput.html">MoneyInput</a></li><li><a href="MoneyInputMask.html">MoneyInputMask</a></li><li><a href="MonthDayDropdown.html">MonthDayDropdown</a></li><li><a href="RadioGroup.html">RadioGroup</a></li><li><a href="ResponsiveMenu.html">ResponsiveMenu</a></li><li><a href="ScriptelInput.html">ScriptelInput</a></li><li><a href="SinEntry.html">SinEntry</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#withScriptel">withScriptel</a></li>
+					<li><a href="global.html#TForm">TForm</a></li><li><a href="global.html#withScriptel">withScriptel</a></li>
 				</ul>
 			</li>
 			
@@ -150,6 +150,261 @@
         <h3 class="subsection-title">Methods</h3>
 
         <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="TForm"><span class="type-signature"></span>TForm()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Extends Formik to provide Semantic UI error and warning messages and field errors.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>render</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Render prop just like Formik's with additional arguments passed</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>numFields</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The number of fields in the form. TForm can't automatically get this number.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>loading</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Passes the loading state through to the child component.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>errors</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Used to pass in any GraphQL errors.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onSubmit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Called when the form submits.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>getSubmitFn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Called when the TForm is mounted so you can get access to the submitForm function.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="form_TForm_TForm.js.html">form/TForm/TForm.js</a>,
+				 <a href="form_TForm_TForm.js.html#sunlight-1-line-112">line 112</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
             
 <hr>
 <dt>
@@ -435,9 +690,9 @@ You can only have a single connection open at a time.
 
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a>
 	
-		on 2019-05-19T23:16:08-05:00
+		on 2019-07-09T09:30:54-05:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
