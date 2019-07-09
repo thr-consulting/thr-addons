@@ -41,9 +41,11 @@ function RenderForm(args) {
 			Object.keys(warnings).forEach(warning => {
 				if (isArray(warnings[warning])) {
 					warnings[warning].forEach(obj => {
-						Object.keys(obj).forEach(key => {
-							if (touched[key]) warningArray.push({message: obj[key].replace(/^\S+/, key)});
-						});
+						if (obj) {
+							Object.keys(obj).forEach(key => {
+								if (touched[key]) warningArray.push({message: obj[key].replace(/^\S+/, key)});
+							});
+						}
 					});
 				} else if (touched[warning] && warnings[warning]) warningArray.push({message: warnings[warning]});
 			});
