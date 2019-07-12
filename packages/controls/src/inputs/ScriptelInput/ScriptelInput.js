@@ -131,7 +131,7 @@ export default class ScriptelInput extends Component {
 		if (entering) {
 			return this.renderEntering();
 		}
-		if (value) {
+		if (value && value.data) {
 			return this.renderSignature();
 		}
 		return this.renderBlank();
