@@ -17,7 +17,7 @@ import {Message, Segment} from 'semantic-ui-react';
 // };
 
 function RenderForm(args) {
-	const {tFormProps, errors: warnings, touched, handleChange, setFieldValue, submitForm, isValid, ...rest} = args;
+	const {tFormProps, errors: warnings, touched, handleChange, setFieldValue, submitForm, isValid, submitCount, ...rest} = args;
 	const {errors, render, loading, onValidate, getSubmitFn} = tFormProps;
 
 	useEffect(() => {
@@ -43,11 +43,11 @@ function RenderForm(args) {
 					warnings[warning].forEach(obj => {
 						if (obj) {
 							Object.keys(obj).forEach(key => {
-								if (touched[key]) warningArray.push({message: obj[key].replace(/^\S+/, key)});
+								if (touched[key] || submitCount > 0) warningArray.push({message: obj[key].replace(/^\S+/, key)});
 							});
 						}
 					});
-				} else if (touched[warning] && warnings[warning]) warningArray.push({message: warnings[warning]});
+				} else if ((touched[warning] || submitCount > 0) && warnings[warning]) warningArray.push({message: warnings[warning]});
 			});
 
 			if (isEmpty(warningArray)) {
@@ -90,7 +90,7 @@ function RenderForm(args) {
 				const isTouched = touched[fieldName[2]];
 				return !!(isTouched && hasWarning);
 			}
-			return !!(touched[fieldName] && !!warnings[fieldName]);
+			return !!((touched[fieldName] || submitCount > 0) && !!warnings[fieldName]);
 		},
 		handleChange(evOrName) {
 			if (evOrName.nativeEvent) return handleChange(evOrName);
@@ -124,6 +124,10 @@ function RenderForm(args) {
 export default function TForm(props) {
 	const {render, enableReinitialize = true, ...rest} = props;
 	return (
-		<Formik enableReinitialize={enableReinitialize} render={renderProps => <RenderForm {...renderProps} tFormProps={props}/>} {...rest}/>
+		<Formik
+			enableReinitialize={enableReinitialize}
+			render={renderProps => <RenderForm {...renderProps} tFormProps={props}/>}
+			{...rest}
+		/>
 	);
 }
