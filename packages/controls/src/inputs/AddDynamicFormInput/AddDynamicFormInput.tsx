@@ -25,8 +25,8 @@ interface Props {
  */
 export default function AddDynamicFormInput(props: Props) {
 	const handleChange = (e, child): void => {
-		const {name, value, index} = child;
-		props.setFieldValue(`${props.name}[${index}][${name}]`, value);
+		const {name, value} = child;
+		props.setFieldValue(name, value);
 	};
 
 	const renderAddButton = (index, label, arrayHelpers) => (
@@ -58,13 +58,16 @@ export default function AddDynamicFormInput(props: Props) {
 							? {icon: 'delete', color: 'red', onClick: () => arrayHelpers.remove(rowIndex)}
 							: null;
 
+						const n = `${name}.${rowIndex.toString()}.${childName}`;
+
 						const childElement = (
 							cloneElement(Child, {
+								name: n,
+								index: rowIndex,
+								error: fieldError(n),
 								action: deleteAction,
 								onChange: handleChange,
-								index: rowIndex,
 								value: arrayObj[childProps.name] || '',
-								error: fieldError([name, rowIndex.toString(), childName]),
 								onBlur,
 								...rest,
 							}));

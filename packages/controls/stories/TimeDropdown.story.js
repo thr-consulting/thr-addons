@@ -2,10 +2,10 @@ import React from 'react';
 import {storiesOf} from '@storybook/react';
 import {withInfo} from '@storybook/addon-info';
 import {Container, Form} from 'semantic-ui-react';
-import MonthDayDropdown from '../src/date/MonthDayDropdown';
+import TimeDropdown from '../src/date/TimeDropdown';
 import TForm from '../src/form/TForm';
 
-const stories = storiesOf('MonthDayDropdown', module);
+const stories = storiesOf('TimeDropdown', module);
 
 stories.addDecorator(withInfo);
 
@@ -13,13 +13,15 @@ const storyFn = () => (
 	<Container>
 		<Form width={6}>
 			<Form.Field>
-				<label>Month/DayPicker</label>
+				<label>Time Picker</label>
 				<TForm
 					render={props => (
-						<MonthDayDropdown
+						<TimeDropdown
+							name="time"
 							setFieldValue={props.setFieldValue}
-							values={props.values.date}
-							fieldName="date"
+							values={props.values.time}
+							fieldError={props.fieldError}
+							onBlur={props.handleBlur}
 						/>
 					)}
 				/>
@@ -34,7 +36,7 @@ stories.add(
 	{
 		info: {
 			inline: true,
-			text: 'A month and day picker dropdown. Returns the selected month and day.',
+			text: 'A time picker dropdown. Returns the selected time of the day.',
 			propTablesExclude: [Form, Form.Field, Container],
 		},
 	},
