@@ -155,23 +155,10 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                                     }
                                   }
                                 >
-                                  <Label
-                                    fluid="true"
-                                    key=".0"
-                                    size="large"
-                                  >
-                                    <div
-                                      className="ui large label"
-                                      fluid="true"
-                                      onClick={[Function]}
-                                    >
-                                      Name(s) of account holder(s):
-                                    </div>
-                                  </Label>
                                   <Button
                                     as="button"
                                     color="green"
-                                    key=".1"
+                                    key=".0"
                                     onClick={[Function]}
                                     type="button"
                                   >
@@ -209,6 +196,19 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                                       </RefFindNode>
                                     </Ref>
                                   </Button>
+                                  <Label
+                                    fluid="true"
+                                    key=".1"
+                                    size="large"
+                                  >
+                                    <div
+                                      className="ui large label"
+                                      fluid="true"
+                                      onClick={[Function]}
+                                    >
+                                      Name(s) of account holder(s):
+                                    </div>
+                                  </Label>
                                 </div>
                               </Input>
                             </div>
@@ -223,25 +223,19 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                         className="column"
                       >
                         <FormInput
-                          action={null}
                           as={[Function]}
                           control={[Function]}
                           error={false}
-                          index={0}
                           label="First Name"
-                          name="firstName"
-                          onBlur={[Function]}
+                          name="addDynamicFormInputs.0.firstName"
                           onChange={[Function]}
                           value=""
                         >
                           <FormField
-                            action={null}
                             control={[Function]}
                             error={false}
-                            index={0}
                             label="First Name"
-                            name="firstName"
-                            onBlur={[Function]}
+                            name="addDynamicFormInputs.0.firstName"
                             onChange={[Function]}
                             value=""
                           >
@@ -252,21 +246,16 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                                 First Name
                               </label>
                               <Input
-                                action={null}
-                                index={0}
-                                name="firstName"
-                                onBlur={[Function]}
+                                name="addDynamicFormInputs.0.firstName"
                                 onChange={[Function]}
                                 type="text"
                                 value=""
                               >
                                 <div
                                   className="ui input"
-                                  index={0}
                                 >
                                   <input
-                                    name="firstName"
-                                    onBlur={[Function]}
+                                    name="addDynamicFormInputs.0.firstName"
                                     onChange={[Function]}
                                     type="text"
                                     value=""
@@ -285,25 +274,19 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                         className="column"
                       >
                         <FormInput
-                          action={null}
                           as={[Function]}
                           control={[Function]}
                           error={false}
-                          index={0}
                           label="Last Name"
-                          name="lastName"
-                          onBlur={[Function]}
+                          name="addDynamicFormInputs.0.lastName"
                           onChange={[Function]}
                           value=""
                         >
                           <FormField
-                            action={null}
                             control={[Function]}
                             error={false}
-                            index={0}
                             label="Last Name"
-                            name="lastName"
-                            onBlur={[Function]}
+                            name="addDynamicFormInputs.0.lastName"
                             onChange={[Function]}
                             value=""
                           >
@@ -314,21 +297,16 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                                 Last Name
                               </label>
                               <Input
-                                action={null}
-                                index={0}
-                                name="lastName"
-                                onBlur={[Function]}
+                                name="addDynamicFormInputs.0.lastName"
                                 onChange={[Function]}
                                 type="text"
                                 value=""
                               >
                                 <div
                                   className="ui input"
-                                  index={0}
                                 >
                                   <input
-                                    name="lastName"
-                                    onBlur={[Function]}
+                                    name="addDynamicFormInputs.0.lastName"
                                     onChange={[Function]}
                                     type="text"
                                     value=""
