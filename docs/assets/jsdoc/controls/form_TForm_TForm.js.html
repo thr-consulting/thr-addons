@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="-_default.html">_default</a></li><li><a href="AddDynamicFormInput.html">AddDynamicFormInput</a></li><li><a href="DatePickerLocalDate.html">DatePickerLocalDate</a></li><li><a href="LocalMonthSelect.html">LocalMonthSelect</a></li><li><a href="MaskedInput.html">MaskedInput</a></li><li><a href="MoneyInput.html">MoneyInput</a></li><li><a href="MoneyInputMask.html">MoneyInputMask</a></li><li><a href="MonthDayDropdown.html">MonthDayDropdown</a></li><li><a href="RadioGroup.html">RadioGroup</a></li><li><a href="ResponsiveMenu.html">ResponsiveMenu</a></li><li><a href="ScriptelInput.html">ScriptelInput</a></li><li><a href="SinEntry.html">SinEntry</a></li>
+					<li><a href="-_default.html">_default</a></li><li><a href="AddDynamicFormInput.html">AddDynamicFormInput</a></li><li><a href="DatePickerLocalDate.html">DatePickerLocalDate</a></li><li><a href="LocalMonthSelect.html">LocalMonthSelect</a></li><li><a href="MaskedInput.html">MaskedInput</a></li><li><a href="MoneyInput.html">MoneyInput</a></li><li><a href="MoneyInputMask.html">MoneyInputMask</a></li><li><a href="MonthDayDropdown.html">MonthDayDropdown</a></li><li><a href="RadioGroup.html">RadioGroup</a></li><li><a href="ResponsiveMenu.html">ResponsiveMenu</a></li><li><a href="ScriptelInput.html">ScriptelInput</a></li><li><a href="SinEntry.html">SinEntry</a></li><li><a href="TimeDropdown.html">TimeDropdown</a></li>
 				</ul>
 			</li>
 			
@@ -78,9 +78,10 @@
     <article>
         <pre
             class="sunlight-highlight-javascript linenums">import React, {useEffect} from 'react';
+import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
-import isArray from 'lodash/isArray';
+import property from 'lodash/property';
 import {Formik} from 'formik';
 import {Message, Segment} from 'semantic-ui-react';
 
@@ -96,7 +97,7 @@ import {Message, Segment} from 'semantic-ui-react';
 // };
 
 function RenderForm(args) {
-	const {tFormProps, errors: warnings, touched, handleChange, setFieldValue, submitForm, isValid, ...rest} = args;
+	const {tFormProps, errors: warnings, touched, handleChange, setFieldValue, submitForm, isValid, submitCount, ...rest} = args;
 	const {errors, render, loading, onValidate, getSubmitFn} = tFormProps;
 
 	useEffect(() => {
@@ -107,24 +108,25 @@ function RenderForm(args) {
 		if (getSubmitFn) getSubmitFn(submitForm);
 	}, [submitForm]);
 
+	// This is a recursive function that returns all the errors for fields that have errors and have also been touched.
+	function getWarnings(key, tchd = touched, wrngs = warnings, index = 0) {
+		const w = wrngs[key];
+		const t = tchd[key];
+		if (!w) return [];
+		if (typeof w === 'string') return (typeof t === 'boolean' &amp;&amp; t) ? [{message: w}] : [];
+		return map(Object.keys(w), k => getWarnings(k, t, w, index + 1)).flat();
+	}
+
 	return render({
 		renderWarnings() {
-			// we want the error to be displayed once a field has an error AND has been touched.
-
 			const warningArray = [];
 			let errorArray = [];
 			let errorHeader;
 			let errorMessage;
 
 			// adds the relevant warnings to the warnings array.
-			Object.keys(warnings).forEach(warning => {
-				if (isArray(warnings[warning])) {
-					warnings[warning].forEach(obj => {
-						Object.keys(obj).forEach(key => {
-							if (touched[key]) warningArray.push({message: obj[key].replace(/^\S+/, key)});
-						});
-					});
-				} else if (touched[warning] &amp;&amp; warnings[warning]) warningArray.push({message: warnings[warning]});
+			Object.keys(warnings).forEach(key => {
+				warningArray.push(...getWarnings(key));
 			});
 
 			if (isEmpty(warningArray)) {
@@ -162,12 +164,7 @@ function RenderForm(args) {
 			return !isEmpty(warnings);
 		},
 		fieldError(fieldName) {
-			if (isArray(fieldName)) {
-				const hasWarning = warnings[fieldName[0]] &amp;&amp; warnings[fieldName[0]][fieldName[1]] &amp;&amp; !!warnings[fieldName[0]][fieldName[1]][fieldName[2]];
-				const isTouched = touched[fieldName[2]];
-				return !!(isTouched &amp;&amp; hasWarning);
-			}
-			return !!(touched[fieldName] &amp;&amp; !!warnings[fieldName]);
+			return !!(property(fieldName)(touched) || submitCount > 0) &amp;&amp; !!property(fieldName)(warnings);
 		},
 		handleChange(evOrName) {
 			if (evOrName.nativeEvent) return handleChange(evOrName);
@@ -201,7 +198,11 @@ function RenderForm(args) {
 export default function TForm(props) {
 	const {render, enableReinitialize = true, ...rest} = props;
 	return (
-		&lt;Formik enableReinitialize={enableReinitialize} render={renderProps => &lt;RenderForm {...renderProps} tFormProps={props}/>} {...rest}/>
+		&lt;Formik
+			enableReinitialize={enableReinitialize}
+			render={renderProps => &lt;RenderForm {...renderProps} tFormProps={props}/>}
+			{...rest}
+		/>
 	);
 }
 </pre>
@@ -245,7 +246,7 @@ export default function TForm(props) {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a>
 	
-		on 2019-07-09T09:30:54-05:00
+		on 2019-08-07T11:21:06-05:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
