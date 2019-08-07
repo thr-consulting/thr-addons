@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
+import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
-import isArray from 'lodash/isArray';
+import property from 'lodash/property';
 import {Formik} from 'formik';
 import {Message, Segment} from 'semantic-ui-react';
 
@@ -28,26 +29,25 @@ function RenderForm(args) {
 		if (getSubmitFn) getSubmitFn(submitForm);
 	}, [submitForm]);
 
+	// This is a recursive function that returns all the errors for fields that have errors and have also been touched.
+	function getWarnings(key, tchd = touched, wrngs = warnings, index = 0) {
+		const w = wrngs[key];
+		const t = tchd[key];
+		if (!w) return [];
+		if (typeof w === 'string') return (typeof t === 'boolean' && t) ? [{message: w}] : [];
+		return map(Object.keys(w), k => getWarnings(k, t, w, index + 1)).flat();
+	}
+
 	return render({
 		renderWarnings() {
-			// we want the error to be displayed once a field has an error AND has been touched.
-
 			const warningArray = [];
 			let errorArray = [];
 			let errorHeader;
 			let errorMessage;
 
 			// adds the relevant warnings to the warnings array.
-			Object.keys(warnings).forEach(warning => {
-				if (isArray(warnings[warning])) {
-					warnings[warning].forEach(obj => {
-						if (obj) {
-							Object.keys(obj).forEach(key => {
-								if (touched[key] || submitCount > 0) warningArray.push({message: obj[key].replace(/^\S+/, key)});
-							});
-						}
-					});
-				} else if ((touched[warning] || submitCount > 0) && warnings[warning]) warningArray.push({message: warnings[warning]});
+			Object.keys(warnings).forEach(key => {
+				warningArray.push(...getWarnings(key));
 			});
 
 			if (isEmpty(warningArray)) {
@@ -85,12 +85,7 @@ function RenderForm(args) {
 			return !isEmpty(warnings);
 		},
 		fieldError(fieldName) {
-			if (isArray(fieldName)) {
-				const hasWarning = warnings[fieldName[0]] && warnings[fieldName[0]][fieldName[1]] && !!warnings[fieldName[0]][fieldName[1]][fieldName[2]];
-				const isTouched = touched[fieldName[2]];
-				return !!(isTouched && hasWarning);
-			}
-			return !!((touched[fieldName] || submitCount > 0) && !!warnings[fieldName]);
+			return !!(property(fieldName)(touched) || submitCount > 0) && !!property(fieldName)(warnings);
 		},
 		handleChange(evOrName) {
 			if (evOrName.nativeEvent) return handleChange(evOrName);

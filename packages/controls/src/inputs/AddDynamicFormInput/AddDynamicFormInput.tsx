@@ -68,6 +68,7 @@ export default function AddDynamicFormInput(props: Props) {
 					<Grid.Column>
 						{rowIndex < 1 ? renderAddButton(label, arrayHelpers) : renderRemoveButton(rowIndex, arrayHelpers)}
 					</Grid.Column>
+
 					{Children.map(children, (Child: ReactElement) => {
 						if (Child.type !== FormInput) return <Form.Input label="Invalid Input Provided" placeholder="Must be a Form.Input" error/>;
 						return (<Grid.Column key={name}>{renderChild(Child, rowIndex, arrayHelpers, arrayObj)}</Grid.Column>);
