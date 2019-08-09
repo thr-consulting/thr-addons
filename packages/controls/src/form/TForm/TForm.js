@@ -34,7 +34,7 @@ function RenderForm(args) {
 		const w = wrngs[key];
 		const t = tchd[key];
 		if (!w) return [];
-		if (typeof w === 'string') return (typeof t === 'boolean' && t) ? [{message: w}] : [];
+		if (typeof w === 'string') return ((typeof t === 'boolean' && t) || submitCount > 0) ? [{message: w}] : [];
 		return map(Object.keys(w), k => getWarnings(k, t, w, index + 1)).flat();
 	}
 
