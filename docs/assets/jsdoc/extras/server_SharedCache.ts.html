@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Documentation Source: server/SharedCache.ts</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.lumen.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Documentation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="FileCleaner.html">FileCleaner</a></li><li><a href="FileTypeReadStream.html">FileTypeReadStream</a></li><li><a href="SharedCache.html">SharedCache</a></li><li><a href="TimeoutCounter.html">TimeoutCounter</a></li><li><a href="ZipReader.html">ZipReader</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#copyFile">copyFile</a></li><li><a href="global.html#fileExists">fileExists</a></li><li><a href="global.html#isDoc">isDoc</a></li><li><a href="global.html#isImage">isImage</a></li><li><a href="global.html#isMimetypeSupported">isMimetypeSupported</a></li><li><a href="global.html#isPdf">isPdf</a></li><li><a href="global.html#isZip">isZip</a></li><li><a href="global.html#mkdirp">mkdirp</a></li><li><a href="global.html#readFile">readFile</a></li><li><a href="global.html#rmFile">rmFile</a></li><li><a href="global.html#rmFiles">rmFiles</a></li><li><a href="global.html#streamsToTmpFiles">streamsToTmpFiles</a></li><li><a href="global.html#streamToTmp">streamToTmp</a></li><li><a href="global.html#unzipper">unzipper</a></li><li><a href="global.html#writeFile">writeFile</a></li><li><a href="global.html#writeStream">writeStream</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: server/SharedCache.ts</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">import {promisify} from 'util';
+
+/* eslint-disable no-underscore-dangle */
+function getRedisKey(prefix: string, key: string): string {
+	return prefix ? `${prefix}:${key}` : key;
+}
+
+function toString(value: any): string {
+	if (value === null) return '';
+	if (typeof value === 'object') return JSON.stringify(value);
+	return value;
+}
+
+function parse(value: string): {} | null {
+	if (value === '' || value === null) return null;
+	return JSON.parse(value);
+}
+
+export default class SharedCache {
+	/**
+	 * Constructs a new SharedCache
+	 * @param redis
+	 * @param prefix
+	 * @param expire
+	 */
+	constructor({redis, prefix, expire}: {redis?: any, prefix?: string, expire?: number}) {
+		if (redis) {
+			this._redis = {
+				get: promisify(redis.get).bind(redis),
+				set: promisify(redis.set).bind(redis),
+				exists: promisify(redis.exists).bind(redis),
+				del: promisify(redis.del).bind(redis),
+				scan: promisify(redis.scan).bind(redis),
+			};
+		}
+
+		if (expire) {
+			this._expire = expire;
+		} else {
+			this._expire = null;
+		}
+		this._prefix = prefix || '';
+	}
+
+	_redis: any | null;
+	_expire: number | null;
+	_prefix: string;
+
+	/**
+	 * Sets a key value pair with optional expiry (in seconds).
+	 * @param key
+	 * @param data
+	 * @param expire
+	 * @return {Promise&lt;*>}
+	 */
+	async set(key: string, data: any, expire?: number) {
+		if (!this._redis) return data;
+
+		if (this._expire || expire) {
+			await this._redis.set(getRedisKey(this._prefix, key), toString(data), 'EX', expire || this._expire);
+		} else {
+			await this._redis.set(getRedisKey(this._prefix, key), toString(data));
+		}
+
+		return data;
+	}
+
+	/**
+	 * Gets the value of a key. Returns null if the key does not exist.
+	 * @param key
+	 * @return {Promise&lt;*>} The value or null.
+	 */
+	async get(key) {
+		if (!this._redis) return null;
+
+		return parse(await this._redis.get(getRedisKey(this._prefix, key)));
+	}
+
+	/**
+	 * Checks if the key exists in the store.
+	 * @param key
+	 * @return {Promise&lt;boolean>} Returns true if the key is found, otherwise false.
+	 */
+	async exists(key) {
+		if (!this._redis) return false;
+
+		return !!await this._redis.exists(getRedisKey(this._prefix, key));
+	}
+
+	/**
+	 * Removes a key from the store
+	 * @param key
+	 * @return {Promise&lt;boolean>} True if they key exists and is cleared, otherwise false
+	 */
+	async clear(key) {
+		if (!this._redis) return false;
+		return !!await this._redis.del(getRedisKey(this._prefix, key));
+	}
+}
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a>
+	
+		on 2019-08-14T10:35:14-05:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

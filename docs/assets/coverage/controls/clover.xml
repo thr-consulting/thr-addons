@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1565194860141" clover="3.2.0">
-  <project timestamp="1565194860142" name="All files">
-    <metrics statements="217" coveredstatements="117" conditionals="185" coveredconditionals="66" methods="78" coveredmethods="35" elements="480" coveredelements="218" complexity="0" loc="217" ncloc="217" packages="14" files="28" classes="28"/>
+<coverage generated="1565796897368" clover="3.2.0">
+  <project timestamp="1565796897368" name="All files">
+    <metrics statements="217" coveredstatements="117" conditionals="186" coveredconditionals="66" methods="78" coveredmethods="35" elements="481" coveredelements="218" complexity="0" loc="217" ncloc="217" packages="14" files="28" classes="28"/>
     <package name="date.LocalMonthSelect">
       <metrics statements="11" coveredstatements="6" conditionals="6" coveredconditionals="1" methods="2" coveredmethods="1"/>
       <file name="LocalMonthSelect.tsx" path="/home/mike/dev/thr-addons/packages/controls/src/date/LocalMonthSelect/LocalMonthSelect.tsx">
@@ -88,9 +88,9 @@
       </file>
     </package>
     <package name="form.TForm">
-      <metrics statements="37" coveredstatements="23" conditionals="40" coveredconditionals="13" methods="15" coveredmethods="10"/>
+      <metrics statements="37" coveredstatements="23" conditionals="41" coveredconditionals="13" methods="15" coveredmethods="10"/>
       <file name="TForm.js" path="/home/mike/dev/thr-addons/packages/controls/src/form/TForm/TForm.js">
-        <metrics statements="37" coveredstatements="23" conditionals="40" coveredconditionals="13" methods="15" coveredmethods="10"/>
+        <metrics statements="37" coveredstatements="23" conditionals="41" coveredconditionals="13" methods="15" coveredmethods="10"/>
         <line num="21" count="3" type="stmt"/>
         <line num="22" count="3" type="stmt"/>
         <line num="24" count="3" type="stmt"/>
@@ -100,7 +100,7 @@
         <line num="34" count="0" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
         <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="37" count="0" type="cond" truecount="0" falsecount="6"/>
+        <line num="37" count="0" type="cond" truecount="0" falsecount="7"/>
         <line num="38" count="0" type="stmt"/>
         <line num="41" count="3" type="stmt"/>
         <line num="43" count="2" type="stmt"/>

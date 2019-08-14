@@ -104,7 +104,7 @@ the mimetype.
 
 * [SharedCache](#SharedCache)
 
-    * [new SharedCache(prefix, expire)](#new_SharedCache_new)
+    * [new SharedCache(redis, prefix, expire)](#new_SharedCache_new)
 
     * [.set(key, data, expire)](#SharedCache+set)
 
@@ -114,18 +114,17 @@ the mimetype.
 
     * [.clear(key)](#SharedCache+clear)
 
-    * [.clearAll()](#SharedCache+clearAll)
-
 
 
 * * *
 
 <a name="new_SharedCache_new"></a>
 
-### new SharedCache(prefix, expire)
+### new SharedCache(redis, prefix, expire)
 
 | Param |
 | --- |
+| redis | 
 | prefix | 
 | expire | 
 
@@ -188,14 +187,6 @@ Checks if the key exists in the store.
 Removes a key from the store
 
 **Returns**: <code>Promise.&lt;boolean&gt;</code> - True if they key exists and is cleared, otherwise false  
-
-* * *
-
-<a name="SharedCache+clearAll"></a>
-
-### *sharedCache*.clearAll()
-Clears all keys from the current prefix.
-
 
 * * *
 
@@ -271,6 +262,206 @@ Cancel the timeout counter and reset it.
 | filename | 
 
 Used to read zip files from any FS like system.
+
+
+* * *
+
+<a name="isPdf"></a>
+
+## isPdf(mimetype)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| mimetype | <code>string</code> | The mimetype |
+
+Returns true if the mimetype is a PDF
+
+
+* * *
+
+<a name="isDoc"></a>
+
+## isDoc(mimetype)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| mimetype | <code>string</code> | The mimetype |
+
+Returns true if the mimetype is a document. (doc, docx, odt, ods, xlsx, etc)
+
+
+* * *
+
+<a name="isZip"></a>
+
+## isZip(mimetype)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| mimetype | <code>string</code> | The mimetype |
+
+Returns true if mimetype is a zip file. Does not include 7z, rar, etc.
+
+
+* * *
+
+<a name="isImage"></a>
+
+## isImage(mimetype)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| mimetype | <code>string</code> | The mimetype |
+
+Returns true if the mimetype is an image
+
+
+* * *
+
+<a name="isMimetypeSupported"></a>
+
+## isMimetypeSupported(mimetype)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| mimetype | <code>string</code> | The mimetype |
+
+Returns true if we support the mimetype
+
+
+* * *
+
+<a name="readFile"></a>
+
+## readFile(thePath)
+
+| Param |
+| --- |
+| thePath | 
+
+Promise version of readFile
+
+
+* * *
+
+<a name="writeFile"></a>
+
+## writeFile(thePath, theBuffer)
+
+| Param |
+| --- |
+| thePath | 
+| theBuffer | 
+
+Promise version of writeFile
+
+
+* * *
+
+<a name="copyFile"></a>
+
+## copyFile(from, to)
+
+| Param |
+| --- |
+| from | 
+| to | 
+
+Copies a source file to a destination.
+
+
+* * *
+
+<a name="mkdirp"></a>
+
+## mkdirp(thepath)
+
+| Param |
+| --- |
+| thepath | 
+
+Creates a directory path
+
+
+* * *
+
+<a name="fileExists"></a>
+
+## fileExists(thePath)
+
+| Param | Type |
+| --- | --- |
+| thePath | <code>string</code> | 
+
+Checks if a file exists
+
+
+* * *
+
+<a name="rmFile"></a>
+
+## rmFile(thePath)
+
+| Param |
+| --- |
+| thePath | 
+
+Promise version of unlink
+
+
+* * *
+
+<a name="rmFiles"></a>
+
+## rmFiles(files)
+
+| Param |
+| --- |
+| files | 
+
+Removes multiple files
+
+
+* * *
+
+<a name="writeStream"></a>
+
+## writeStream(fname, iStream)
+
+| Param |
+| --- |
+| fname | 
+| iStream | 
+
+Promise version of file writer that writes a stream
+
+
+* * *
+
+<a name="streamToTmp"></a>
+
+## streamToTmp(iStream, tmpFolder)
+
+| Param |
+| --- |
+| iStream | 
+| tmpFolder | 
+
+Streams to a random filename in a tmp folder
+
+
+* * *
+
+<a name="streamsToTmpFiles"></a>
+
+## streamsToTmpFiles(iStreams, tmpFolder)
+
+| Param |
+| --- |
+| iStreams | 
+| tmpFolder | 
+
+Streams multiple streams to tmp files
 
 
 * * *
