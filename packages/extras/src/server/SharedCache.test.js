@@ -1,14 +1,18 @@
+import redis from 'redis';
 import SharedCache from './SharedCache';
 
-const cache = new SharedCache({prefix: 'SCTest'});
+const client = redis.createClient(6379, '127.0.0.1');
+
+const cache = new SharedCache({redis: client, prefix: 'SCTest'});
 const data = {some: 'data'};
 
-beforeAll(async () => {
-	await cache.clearAll();
-});
-
 afterAll(async () => {
-	await cache.clearAll();
+	await new Promise(resolve => {
+		client.quit(() => {
+			resolve();
+		});
+	});
+	await new Promise(resolve => setImmediate(resolve));
 });
 
 describe('SharedCache', () => {
@@ -22,6 +26,7 @@ describe('SharedCache', () => {
 		expect(await cache.exists(key)).toBe(true);
 		expect(ret).toEqual(data);
 		expect(val).toEqual(data);
+		await cache.clear(key);
 	});
 
 	it('should delete a key', async () => {
@@ -32,16 +37,6 @@ describe('SharedCache', () => {
 		expect(await cache.exists(key)).toBe(true);
 		expect(await cache.clear(key)).toBe(true);
 		expect(await cache.exists(key)).toBe(false);
-	});
-
-	it('should clear all keys', async () => {
-		await cache.set('key1', data);
-		await cache.set('key2', data);
-		expect(await cache.exists('key1')).toBe(true);
-		expect(await cache.exists('key2')).toBe(true);
-		await cache.clearAll();
-		expect(await cache.exists('key1')).toBe(false);
-		expect(await cache.exists('key2')).toBe(false);
 	});
 
 	it('should expire a key', async () => {

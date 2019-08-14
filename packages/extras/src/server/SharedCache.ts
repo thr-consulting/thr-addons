@@ -1,6 +1,6 @@
-/* eslint-disable no-underscore-dangle */
-import Redis from 'ioredis';
+import {promisify} from 'util';
 
+/* eslint-disable no-underscore-dangle */
 function getRedisKey(prefix: string, key: string): string {
 	return prefix ? `${prefix}:${key}` : key;
 }
@@ -19,21 +19,22 @@ function parse(value: string): {} | null {
 export default class SharedCache {
 	/**
 	 * Constructs a new SharedCache
+	 * @param redis
 	 * @param prefix
 	 * @param expire
 	 */
-	constructor({prefix, expire}: {prefix?: string, expire?: number}) {
-		if (process.env.DISABLE_REDIS === 'true') {
-			this._redis = null;
-		} else {
-			this._redis = new Redis({
-				port: parseInt(process.env.REDIS_PORT || '6379', 10),
-				host: process.env.REDIS_HOST || '127.0.0.1',
-			});
+	constructor({redis, prefix, expire}: {redis?: any, prefix?: string, expire?: number}) {
+		if (redis) {
+			this._redis = {
+				get: promisify(redis.get).bind(redis),
+				set: promisify(redis.set).bind(redis),
+				exists: promisify(redis.exists).bind(redis),
+				del: promisify(redis.del).bind(redis),
+				scan: promisify(redis.scan).bind(redis),
+			};
 		}
-		if (process.env.REDIS_EXPIRE) {
-			this._expire = parseInt(process.env.REDIS_EXPIRE || '0', 10);
-		} else if (expire) {
+
+		if (expire) {
 			this._expire = expire;
 		} else {
 			this._expire = null;
@@ -41,7 +42,7 @@ export default class SharedCache {
 		this._prefix = prefix || '';
 	}
 
-	_redis: Redis.Redis | null;
+	_redis: any | null;
 	_expire: number | null;
 	_prefix: string;
 
@@ -55,16 +56,13 @@ export default class SharedCache {
 	async set(key: string, data: any, expire?: number) {
 		if (!this._redis) return data;
 
-		const multi = this._redis.multi();
-		multi.set(getRedisKey(this._prefix, key), toString(data));
-		if (this._expire || expire) multi.expire(getRedisKey(this._prefix, key), expire || this._expire);
+		if (this._expire || expire) {
+			await this._redis.set(getRedisKey(this._prefix, key), toString(data), 'EX', expire || this._expire);
+		} else {
+			await this._redis.set(getRedisKey(this._prefix, key), toString(data));
+		}
 
-		return new Promise((resolve, reject) => {
-			multi.exec(error => {
-				if (error) reject(error);
-				else resolve(data);
-			});
-		});
+		return data;
 	}
 
 	/**
@@ -97,30 +95,5 @@ export default class SharedCache {
 	async clear(key) {
 		if (!this._redis) return false;
 		return !!await this._redis.del(getRedisKey(this._prefix, key));
-	}
-
-	/**
-	 * Clears all keys from the current prefix.
-	 * @return {Promise<any>}
-	 */
-	clearAll() {
-		return new Promise((resolve, reject) => {
-			if (!this._redis) {
-				resolve();
-			} else {
-				const stream = this._redis.scanStream({match: `${this._prefix}:*`});
-				stream.on('data', keys => {
-					if (keys.length) {
-						const pipeline = this._redis.pipeline();
-						keys.forEach(key => {
-							pipeline.del(key);
-						});
-						pipeline.exec();
-					}
-				});
-				stream.on('error', reject);
-				stream.on('end', resolve);
-			}
-		});
 	}
 }
