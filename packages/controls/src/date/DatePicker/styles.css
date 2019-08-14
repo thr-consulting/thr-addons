@@ -16,6 +16,7 @@
 }
 
 :global(.react-datepicker-wrapper) {
+	width: 100%;
 	display: inline !important;
 }
 
