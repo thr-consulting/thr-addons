@@ -1,13 +1,19 @@
-import fs from 'fs';
+import debug from 'debug';
 import uniq from 'lodash/uniq';
 import pull from 'lodash/pull';
+import {FileLocationInterface} from './fileLocation/FileLocationInterface';
+import {rmFiles} from './fsStuff';
+
+const d = debug('thx.extras.FileCleaner');
 
 /** Class that records written files and cleans up after */
 export default class FileCleaner {
 	_files: string[];
+	_fileLocation: FileLocationInterface | undefined;
 
-	constructor() {
+	constructor(fileLocation?: FileLocationInterface) {
 		this._files = [];
+		this._fileLocation = fileLocation;
 	}
 
 	/**
@@ -44,22 +50,11 @@ export default class FileCleaner {
 	async removeFiles() {
 		// Make sure the array of files are unique
 		this._files = uniq(this._files);
-
-		await Promise.all(this._files.map(filename => new Promise((resolve, reject) => {
-			fs.access(filename, isMissing => {
-				if (!isMissing) {
-					fs.unlink(filename, err => {
-						if (err) {
-							reject(err);
-						} else {
-							resolve();
-						}
-					});
-				} else {
-					resolve();
-				}
-			});
-		})));
+		if (this._fileLocation) {
+			await Promise.all(this._files.map(filename => this._fileLocation.deleteObject(filename)));
+		} else {
+			await rmFiles(this._files);
+		}
 		this._files = [];
 	}
 
