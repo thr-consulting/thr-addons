@@ -1,5 +1,5 @@
 import React, {Component, Children} from 'react';
-import {Form} from 'semantic-ui-react';
+import {Form, Radio, FormRadio} from 'semantic-ui-react';
 
 // type Props = {
 // 	/** Any components but handles Radio components specially. */
@@ -39,7 +39,7 @@ export default class RadioGroup extends Component {
 		return (
 			<Form.Group {...rest} onBlur={onBlur}>
 				{Children.map(children, child => {
-					if (child.type.name === 'FormRadio' || child.type.name === 'Radio') {
+					if (child.type === FormRadio || child.type === Radio || child.type === Form.Radio) {
 						return React.cloneElement(child, {
 							onChange: this.handleChange,
 							checked: value === child.props.value,
