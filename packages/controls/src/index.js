@@ -24,6 +24,7 @@ import DatePicker from './date/DatePicker';
 import MonthDayDropdown from './date/MonthDayDropdown';
 import YearSelect from './date/YearSelect';
 import TimeDropdown from './date/TimeDropdown';
+import MonthYearDropdown from './date/MonthYearDropdown';
 
 // Money
 import MoneyInput from './money/MoneyInput';
@@ -51,6 +52,7 @@ export {
 	MonthDayDropdown,
 	YearSelect,
 	TimeDropdown,
+	MonthYearDropdown,
 
 	// Money
 	MoneyInput,
