@@ -69,6 +69,25 @@ Month select dropdown
 
 * * *
 
+<a name="MonthYearDropdown"></a>
+
+## MonthYearDropdown
+
+* * *
+
+<a name="new_MonthYearDropdown_new"></a>
+
+### new MonthYearDropdown(props)
+
+| Param |
+| --- |
+| props | 
+
+MonthYearDropdown
+
+
+* * *
+
 <a name="TimeDropdown"></a>
 
 ## TimeDropdown

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1566576849062" clover="3.2.0">
-  <project timestamp="1566576849062" name="All files">
+<coverage generated="1567002737957" clover="3.2.0">
+  <project timestamp="1567002737958" name="All files">
     <metrics statements="40" coveredstatements="37" conditionals="27" coveredconditionals="23" methods="22" coveredmethods="19" elements="89" coveredelements="79" complexity="0" loc="40" ncloc="40" packages="1" files="5" classes="5"/>
     <file name="date.js" path="/home/mike/dev/thr-addons/packages/tschemas/src/date.js">
       <metrics statements="17" coveredstatements="16" conditionals="15" coveredconditionals="13" methods="9" coveredmethods="8"/>
