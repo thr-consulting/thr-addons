@@ -1,6 +1,6 @@
 {
   "name": "@thx/controls",
-  "version": "11.3.3",
+  "version": "11.3.4",
   "description": "A collection of components designed with SemanticUI.",
   "main": "lib/controls.js",
   "author": "Mike Kornelson <mike@durbn.net>",
