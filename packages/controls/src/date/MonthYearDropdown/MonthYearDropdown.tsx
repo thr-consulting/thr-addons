@@ -18,8 +18,7 @@ interface Props {
  * @constructor
  */
 export default function MonthYearDropdown(props: Props) {
-	const thisYear = new Date().getFullYear();
-	const {value, setFieldValue, name, minYear = 1970, maxYear = thisYear, numeric = false} = props;
+	const {value, setFieldValue, name, minYear = 1970, maxYear = new Date().getFullYear(), numeric = false} = props;
 	const hasMonth = !!value && !!value.month;
 	const hasYear = !!value && !!value.year;
 
