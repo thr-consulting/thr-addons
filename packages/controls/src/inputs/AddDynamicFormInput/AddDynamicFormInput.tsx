@@ -1,21 +1,20 @@
-import {Label, Grid, Button, Form, FormInput} from 'semantic-ui-react';
+import {Grid, Button, Form, FormInput} from 'semantic-ui-react';
 import React, {Children, cloneElement, ReactElement} from 'react';
 import debug from 'debug';
 import {FieldArray} from 'formik';
 import isEmpty from 'lodash/isEmpty';
-import {SemanticWIDTHS} from 'semantic-ui-react/dist/commonjs/generic';
 
-const d = debug('AddDynamicFormInputs');
+const d = debug('thx.controls.inputs.AddDynamicFormInputs');
 
 interface Props {
-	values: object[],
-	setFieldValue: (position: string, value: {}) => void,
 	name: string,
-	label: string,
-	disableAddButton?: boolean,
+	values: object[],
 	children: ReactElement[],
-	fieldError: (name: string | string[]) => boolean,
-	handleBlur: (e: any) => void,
+	setFieldValue: (position: string, value: {}) => void,
+	buttonLabel?: string,
+	disableAddButton?: boolean,
+	fieldError?: (name: string | string[]) => boolean,
+	handleBlur?: (e: any) => void,
 }
 
 /**
@@ -24,10 +23,20 @@ interface Props {
  * @constructor
  */
 export default function AddDynamicFormInput(props: Props) {
-	const renderAddButton = (label, arrayHelpers) => (
+	const renderAddButton = (label = 'Add', arrayHelpers) => (
 		<Form.Input style={{marginTop: 25}}>
-			<Button color="green" disabled={props.disableAddButton} onClick={() => arrayHelpers.push({})} type="button">Add</Button>
-			<Label fluid="true" size="large">{label}</Label>
+			<Button
+				color="green"
+				disabled={props.disableAddButton}
+				onClick={() => {
+					// There are no objects in the arrayHelpers form values on initial load, so we have to add two objects on
+					// the first AddButton click.
+					if (isEmpty(arrayHelpers.form.values)) arrayHelpers.push({});
+					arrayHelpers.push({});
+				}}
+				type="button"
+			>{label}
+			</Button>
 		</Form.Input>
 	);
 
@@ -38,40 +47,36 @@ export default function AddDynamicFormInput(props: Props) {
 	);
 
 	const renderChild = (Child, rowIndex, arrayHelpers, arrayObj, cName = null) => {
-		const {name, fieldError, handleBlur} = props;
-		const {onChange, value, error, children, name: childName, ...rest} = Child.props; // eslint-disable-line
-		const n = `${name}.${rowIndex.toString()}.${childName || cName}`;
-		const p = (children) ? {
-			name: childName,
-			error: fieldError(n),
-			children: renderChild(children[0] || children, rowIndex, arrayHelpers, arrayObj, childName),
-			...rest,
-		} : {
-			name: n,
-			onBlur: handleBlur,
-			error: fieldError(n),
-			onChange: (arg1, arg2) => props.setFieldValue(n, arg2 ? arg2.value : arg1),
-			value: arrayObj[childName || cName] || '',
-			...rest,
-		};
+		const {name, fieldError, handleBlur} = props; // these are the AddDynamicFormInput props.
+		const {children, ...rest} = Child.props; // eslint-disable-line
+		const n = `${name}.${rowIndex.toString()}.${Child.props.name || cName}`;
+
+		const handleChange = Child.props.onChange || ((arg1, arg2) => props.setFieldValue(n, arg2 ? arg2.value : arg1));
+		const value = Child.props.value || arrayObj[Child.props.name || cName] || '';
+		const error = fieldError ? fieldError(n) : false;
+
+		const p = (children)
+			? {children: Children.map(children, child => renderChild(child, rowIndex, arrayHelpers, arrayObj, Child.props.name)), error, ...rest}
+			: {value, error, name: n, onBlur: handleBlur, onChange: handleChange, ...rest};
 
 		return (cloneElement(Child, p));
 	};
 
 	const renderGrid = (arrayHelpers, arrayObj = {}, rowIndex = 0) => {
-		const {children, label = 'label', name} = props;
+		const {children, buttonLabel, name} = props; // these are the AddDynamicFormInput props.
 		if (!children) throw new Error('There are no children defined for the AddDynamicFormInput component');
 
 		return (
-			<Grid stackable columns={children.length + 1 as SemanticWIDTHS} key={rowIndex}>
+			<Grid stackable columns="equal" key={rowIndex}>
 				<Grid.Row>
 					<Grid.Column>
-						{rowIndex < 1 ? renderAddButton(label, arrayHelpers) : renderRemoveButton(rowIndex, arrayHelpers)}
+						{rowIndex < 1 ? renderAddButton(buttonLabel, arrayHelpers) : renderRemoveButton(rowIndex, arrayHelpers)}
 					</Grid.Column>
 
-					{Children.map(children, (Child: ReactElement) => {
-						if (Child.type !== FormInput) return <Form.Input label="Invalid Input Provided" placeholder="Must be a Form.Input" error/>;
-						return (<Grid.Column key={name}>{renderChild(Child, rowIndex, arrayHelpers, arrayObj)}</Grid.Column>);
+					{Children.map(children, (Child: ReactElement, index) => {
+						const key = name.concat(index.toString()).concat(rowIndex.toString());
+						if (Child.type !== FormInput) return <Form.Input key={key} label="Invalid Input Provided" placeholder="Must be a Form.Input" error/>;
+						return (<Grid.Column key={key}>{renderChild(Child, rowIndex, arrayHelpers, arrayObj)}</Grid.Column>);
 					})}
 				</Grid.Row>
 			</Grid>

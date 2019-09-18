@@ -333,6 +333,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
       selectOnNavigation={true}
       value={2019}
       wrapSelection={true}
+      year={2019}
     >
       <Ref
         innerRef={
@@ -342,6 +343,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
               class="ui basic button scrolling dropdown"
               role="listbox"
               tabindex="0"
+              year="2019"
             >
               <div
                 aria-live="polite"
@@ -1019,6 +1021,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                 class="ui basic button scrolling dropdown"
                 role="listbox"
                 tabindex="0"
+                year="2019"
               >
                 <div
                   aria-live="polite"
@@ -1698,6 +1701,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
             onMouseDown={[Function]}
             role="listbox"
             tabIndex={0}
+            year={2019}
           >
             <div
               aria-live="polite"

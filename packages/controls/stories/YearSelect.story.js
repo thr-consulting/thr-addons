@@ -19,7 +19,7 @@ const storyFn = () => (
 						<YearSelect
 							maxYear="2025"
 							minYear={2000}
-							year={props.values.year}
+							value={props.values.year}
 							onChange={year => props.setFieldValue('year', year)}
 						/>
 					)}
