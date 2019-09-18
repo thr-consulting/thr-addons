@@ -2,9 +2,9 @@
 
 exports[`MaskedInput should render with string values without throwing an error 1`] = `
 <MonthYearDropdown
-  fieldName="test"
+  name="test"
   setFieldValue={[Function]}
-  values={
+  value={
     Object {
       "month": "01",
       "year": "09",
@@ -3698,9 +3698,9 @@ exports[`MaskedInput should render with string values without throwing an error 
 
 exports[`MaskedInput should render without throwing an error 1`] = `
 <MonthYearDropdown
-  fieldName="test"
+  name="test"
   setFieldValue={[Function]}
-  values={
+  value={
     Object {
       "month": 1,
       "year": 8,
@@ -7394,9 +7394,9 @@ exports[`MaskedInput should render without throwing an error 1`] = `
 
 exports[`MaskedInput should render without values without throwing an error 1`] = `
 <MonthYearDropdown
-  fieldName="test"
+  name="test"
   setFieldValue={[Function]}
-  values={Object {}}
+  value={Object {}}
 >
   <Menu
     compact={true}
