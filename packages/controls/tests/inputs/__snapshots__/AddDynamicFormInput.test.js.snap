@@ -104,12 +104,12 @@ exports[`MaskedInput should render without throwing an error 1`] = `
             validateOnChange={true}
           >
             <Grid
-              columns={3}
+              columns="equal"
               key="0"
               stackable={true}
             >
               <div
-                className="ui stackable three column grid"
+                className="ui stackable equal width grid"
               >
                 <GridRow>
                   <div
@@ -196,19 +196,6 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                                       </RefFindNode>
                                     </Ref>
                                   </Button>
-                                  <Label
-                                    fluid="true"
-                                    key=".1"
-                                    size="large"
-                                  >
-                                    <div
-                                      className="ui large label"
-                                      fluid="true"
-                                      onClick={[Function]}
-                                    >
-                                      Name(s) of account holder(s):
-                                    </div>
-                                  </Label>
                                 </div>
                               </Input>
                             </div>
@@ -217,7 +204,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                       </div>
                     </GridColumn>
                     <GridColumn
-                      key="addDynamicFormInputs/.0"
+                      key="addDynamicFormInputs00/.0"
                     >
                       <div
                         className="column"
@@ -227,7 +214,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                           control={[Function]}
                           error={false}
                           label="First Name"
-                          name="addDynamicFormInputs.0.firstName"
+                          name="firstName"
                           onChange={[Function]}
                           value=""
                         >
@@ -235,7 +222,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                             control={[Function]}
                             error={false}
                             label="First Name"
-                            name="addDynamicFormInputs.0.firstName"
+                            name="firstName"
                             onChange={[Function]}
                             value=""
                           >
@@ -246,7 +233,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                                 First Name
                               </label>
                               <Input
-                                name="addDynamicFormInputs.0.firstName"
+                                name="firstName"
                                 onChange={[Function]}
                                 type="text"
                                 value=""
@@ -255,7 +242,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                                   className="ui input"
                                 >
                                   <input
-                                    name="addDynamicFormInputs.0.firstName"
+                                    name="firstName"
                                     onChange={[Function]}
                                     type="text"
                                     value=""
@@ -268,7 +255,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                       </div>
                     </GridColumn>
                     <GridColumn
-                      key="addDynamicFormInputs/.1"
+                      key="addDynamicFormInputs10/.1"
                     >
                       <div
                         className="column"
@@ -278,7 +265,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                           control={[Function]}
                           error={false}
                           label="Last Name"
-                          name="addDynamicFormInputs.0.lastName"
+                          name="lastName"
                           onChange={[Function]}
                           value=""
                         >
@@ -286,7 +273,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                             control={[Function]}
                             error={false}
                             label="Last Name"
-                            name="addDynamicFormInputs.0.lastName"
+                            name="lastName"
                             onChange={[Function]}
                             value=""
                           >
@@ -297,7 +284,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                                 Last Name
                               </label>
                               <Input
-                                name="addDynamicFormInputs.0.lastName"
+                                name="lastName"
                                 onChange={[Function]}
                                 type="text"
                                 value=""
@@ -306,7 +293,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                                   className="ui input"
                                 >
                                   <input
-                                    name="addDynamicFormInputs.0.lastName"
+                                    name="lastName"
                                     onChange={[Function]}
                                     type="text"
                                     value=""
