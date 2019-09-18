@@ -4,9 +4,9 @@ import numberToName from 'number-to-date-month-name';
 import {getMonthNames} from '../../../../date/src';
 
 interface Props {
-	values: {month: number | string, year: number | string},
+	value: {month: number | string, year: number | string},
 	setFieldValue: (key: string, value: string | number) => {},
-	fieldName: string,
+	name: string,
 	minYear?: number,
 	maxYear?: number,
 	numeric?: boolean,
@@ -18,10 +18,9 @@ interface Props {
  * @constructor
  */
 export default function MonthYearDropdown(props: Props) {
-	const thisYear = new Date().getFullYear();
-	const {values, setFieldValue, fieldName, minYear = 1970, maxYear = thisYear, numeric = false} = props;
-	const hasMonth = !!values && !!values.month;
-	const hasYear = !!values && !!values.year;
+	const {value, setFieldValue, name, minYear = 1970, maxYear = new Date().getFullYear(), numeric = false} = props;
+	const hasMonth = !!value && !!value.month;
+	const hasYear = !!value && !!value.year;
 
 	const getOptions = () => {
 		const array: {value: string, text: string, key: string}[] = [];
@@ -34,8 +33,8 @@ export default function MonthYearDropdown(props: Props) {
 
 	let month = 'Month';
 	let year = 'Year';
-	if (hasYear) year = numeric ? values.year.toString().slice(2) : values.year.toString();
-	if (hasMonth) month = numeric ? values.month.toString().padStart(2, '0') : numberToName.toMonth(values && values.month);
+	if (hasYear) year = numeric ? value.year.toString().slice(2) : value.year.toString();
+	if (hasMonth) month = numeric ? value.month.toString().padStart(2, '0') : numberToName.toMonth(value && value.month);
 
 	return (
 		<Menu compact>
@@ -44,7 +43,7 @@ export default function MonthYearDropdown(props: Props) {
 					{getMonthNames({}).map((item, index) => (
 						<Dropdown.Item
 							key={item}
-							onClick={() => setFieldValue(`${fieldName}.month`, index + 1)}
+							onClick={() => setFieldValue(`${name}.month`, index + 1)}
 						>{numeric ? (index + 1).toString().padStart(2, '0') : item}
 						</Dropdown.Item>
 					))}
@@ -56,7 +55,7 @@ export default function MonthYearDropdown(props: Props) {
 				text={year}
 				className="link item"
 				options={getOptions()}
-				onChange={(c, p) => setFieldValue(`${fieldName}.year`, parseInt(p.value as string, 10))}
+				onChange={(c, p) => setFieldValue(`${name}.year`, parseInt(p.value as string, 10))}
 			/>
 		</Menu>
 	);
