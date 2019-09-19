@@ -33,7 +33,7 @@ export default function MonthYearDropdown(props: Props) {
 
 	let month = 'Month';
 	let year = 'Year';
-	if (hasYear) year = numeric ? value.year.toString().slice(2) : value.year.toString();
+	if (hasYear) year = numeric ? value.year.toString().padStart(2, '0') : value.year.toString();
 	if (hasMonth) month = numeric ? value.month.toString().padStart(2, '0') : numberToName.toMonth(value && value.month);
 
 	return (
