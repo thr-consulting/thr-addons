@@ -17,10 +17,11 @@ const storyFn = () => (
 				<TForm
 					render={props => (
 						<YearSelect
-							maxYear="2025"
+							name="year"
+							maxYear="2020"
 							minYear={2000}
 							value={props.values.year}
-							onChange={year => props.setFieldValue('year', year)}
+							onChange={props.handleChange}
 						/>
 					)}
 				/>

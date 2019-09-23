@@ -5,7 +5,7 @@ import {getMonthNames} from '../../../../date/src';
 
 interface Props {
 	value: {month: number | string, year: number | string},
-	setFieldValue: (key: string, value: string | number) => {},
+	setFieldValue: (name: string, value: string | number) => {},
 	name: string,
 	minYear?: number,
 	maxYear?: number,

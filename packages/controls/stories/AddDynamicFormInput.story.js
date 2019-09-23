@@ -41,7 +41,7 @@ stories.add(
 	{
 		info: {
 			inline: true,
-			text: 'Dynamically adds or removes Form.Inputs',
+			text: 'Dynamically adds or removes a given list of Form.Inputs',
 			propTablesExclude: [Form, Form.Field, Container],
 		},
 	},
@@ -58,8 +58,10 @@ const testFn = () => (
 					fieldError={fieldError}
 					handleBlur={handleBlur}
 					setFieldValue={setFieldValue}
+					columnCount={3}
 				>
 					<Form.Input
+						fluid
 						label="Name"
 						name="firstName"
 						placeholder="Name"
@@ -75,7 +77,10 @@ const testFn = () => (
 						placeholder="Office"
 					/>
 					<Form.Input label="Year" name="date">
-						<YearSelect name="date" placeholder="2019"/>
+						<YearSelect
+							name="date"
+							placeholder="2019"
+						/>
 					</Form.Input>
 					<Form.Input label="Date">
 						<DatePicker.LocalDate

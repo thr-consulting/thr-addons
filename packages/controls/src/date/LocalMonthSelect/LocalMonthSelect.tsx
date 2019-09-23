@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, SyntheticEvent} from 'react';
 import {Select} from 'semantic-ui-react';
 import {LocalDate} from 'js-joda';
 import debug from 'debug';
@@ -6,29 +6,26 @@ import debug from 'debug';
 const d = debug('thx:controls:date:LocalMonthSelect');
 
 const monthOptions = [
-	{text: 'January', value: 1},
-	{text: 'February', value: 2},
-	{text: 'March', value: 3},
-	{text: 'April', value: 4},
-	{text: 'May', value: 5},
-	{text: 'June', value: 6},
-	{text: 'July', value: 7},
-	{text: 'August', value: 8},
-	{text: 'September', value: 9},
-	{text: 'October', value: 10},
-	{text: 'November', value: 11},
-	{text: 'December', value: 12},
+	{text: 'January', value: 1, key: 1},
+	{text: 'February', value: 2, key: 2},
+	{text: 'March', value: 3, key: 3},
+	{text: 'April', value: 4, key: 4},
+	{text: 'May', value: 5, key: 5},
+	{text: 'June', value: 6, key: 6},
+	{text: 'July', value: 7, key: 7},
+	{text: 'August', value: 8, key: 8},
+	{text: 'September', value: 9, key: 9},
+	{text: 'October', value: 10, key: 10},
+	{text: 'November', value: 11, key: 11},
+	{text: 'December', value: 12, key: 12},
 ];
 
 interface Props {
+	name: string,
 	onChange?: Function,
 	value?: LocalDate,
 	year?: number,
-}
-
-interface ValueOption {
-	text: string,
-	value: number,
+	label?: string,
 }
 
 /**
@@ -39,26 +36,24 @@ interface ValueOption {
  * @property {number} [year=Current Year] - The year to use when selecting a date.
  */
 export default class LocalMonthSelect extends Component<Props> {
-	static defaultProps = {
-		year: LocalDate.now().year(),
-	};
-
-	handleChange = (e, value: ValueOption) => {
-		d('Month changed to:', value.value, e);
+	handleChange = (e: SyntheticEvent<HTMLElement>, value) => {
+		const year = this.props.year || LocalDate.now().year();
 		if (this.props.onChange) {
-			if (value !== '') {
-				this.props.onChange(LocalDate.of(this.props.year, parseInt(value.value, 10), 1));
-			} else {
-				this.props.onChange(null);
-			}
+			this.props.onChange(this.props.name)(value ? LocalDate.of(year, value.value, 1) : null);
 		}
 	};
 
 	render() {
-		const {value} = this.props;
+		const {value, onChange, ...rest} = this.props;
 
 		return (
-			<Select placeholder="Select Month" options={monthOptions} value={value ? value.monthValue() : ''} onChange={this.handleChange}/>
+			<Select
+				placeholder="Select Month"
+				options={monthOptions}
+				value={value ? value.monthValue() : ''}
+				onChange={this.handleChange}
+				{...rest}
+			/>
 		);
 	}
 }
