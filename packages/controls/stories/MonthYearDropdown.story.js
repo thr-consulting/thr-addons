@@ -49,8 +49,8 @@ const storyNumericFn = () => (
 					render={props => (
 						<MonthYearDropdown
 							setFieldValue={props.setFieldValue}
-							values={props.values.date}
-							fieldName="date"
+							value={props.values.date}
+							name="date"
 							numeric
 						/>
 					)}

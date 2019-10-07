@@ -1,9 +1,9 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 import {Container, Form} from 'semantic-ui-react';
 import LocalMonthSelect from '../src/date/LocalMonthSelect';
+import TForm from '../src/form/TForm/TForm';
 
 const stories = storiesOf('LocalMonthSelect', module);
 
@@ -11,14 +11,15 @@ stories.addDecorator(withInfo);
 
 const storyFn = () => (
 	<Container>
-		<Form width={6}>
-			<Form.Field>
-				<label>Date/Time Picker</label>
+		<TForm
+			render={({values, handleChange}) => (
 				<LocalMonthSelect
-					onChange={action('onChange')}
+					name="month"
+					value={values.month}
+					onChange={handleChange}
 				/>
-			</Form.Field>
-		</Form>
+			)}
+		/>
 	</Container>
 );
 

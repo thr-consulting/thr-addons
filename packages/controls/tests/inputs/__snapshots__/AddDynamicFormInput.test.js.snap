@@ -104,12 +104,12 @@ exports[`MaskedInput should render without throwing an error 1`] = `
             validateOnChange={true}
           >
             <Grid
-              columns="equal"
+              columns={3}
               key="0"
               stackable={true}
             >
               <div
-                className="ui stackable equal width grid"
+                className="ui stackable three column grid"
               >
                 <GridRow>
                   <div
@@ -124,7 +124,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                           control={[Function]}
                           style={
                             Object {
-                              "marginTop": 25,
+                              "marginTop": 22,
                             }
                           }
                         >
@@ -132,7 +132,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                             control={[Function]}
                             style={
                               Object {
-                                "marginTop": 25,
+                                "marginTop": 22,
                               }
                             }
                           >
@@ -142,7 +142,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                               <Input
                                 style={
                                   Object {
-                                    "marginTop": 25,
+                                    "marginTop": 22,
                                   }
                                 }
                                 type="text"
@@ -151,7 +151,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                                   className="ui input"
                                   style={
                                     Object {
-                                      "marginTop": 25,
+                                      "marginTop": 22,
                                     }
                                   }
                                 >
