@@ -1,11 +1,11 @@
-import React from 'react';
-import {Menu, Dropdown} from 'semantic-ui-react';
+import React, {KeyboardEvent} from 'react';
+import {Menu, Dropdown, DropdownProps} from 'semantic-ui-react';
 
 interface Props {
 	name: string,
 	values: {hour?: number, minute?: number, ampm?: string},
-	onBlur: (e: any) => void,
-	setFieldValue: (name: string, value?: any) => void,
+	onBlur: (e: KeyboardEvent<HTMLElement>, data: DropdownProps) => void,
+	setFieldValue: (name: string, value?: number | string) => void,
 	fieldError: (name: string) => boolean,
 }
 
@@ -19,17 +19,24 @@ export default function TimeDropdown(props: Props) {
 	const hours = Array.from(Array(12).keys());
 	const minutes = Array.from(Array(60).keys());
 	const hasHour = !!values && !!values.hour;
-	// @ts-ignore
-	const hasMinute = !!values && values.minute !== null && (values.minute > -1);
+	const hasMinute = !!values && values.minute && (values.minute > -1);
 	const hasAmPm = !!values && values.ampm;
+	let minuteText;
+	let hourText;
+
+	// if I use hasMinute I get ts errors, that's why I have duplicate code here.
+	if (values && values.minute && (values.minute > -1)) {
+		minuteText = (values.minute < 10) ? values.minute.toString().padStart(2, '0') : values.minute.toString();
+	}
+	if (values && values.hour) hourText = values.hour.toString();
+	else hourText = 'Hour';
 
 	return (
 		<Menu compact>
 			<Dropdown
 				id={`${[name]}.hour`}
 				scrolling
-				// @ts-ignore
-				text={hasHour ? values.hour.toString() : 'Hour'}
+				text={hourText}
 				icon=""
 				className="link item"
 				onBlur={handleBlur}
@@ -46,8 +53,7 @@ export default function TimeDropdown(props: Props) {
 			<Dropdown
 				id={`${[name]}.minute`}
 				scrolling
-				// @ts-ignore
-				text={hasMinute ? (values.minute < 10) ? '0'.concat(values.minute.toString()) : values.minute.toString() : 'minute'}// eslint-disable-line no-nested-ternary
+				text={minuteText}
 				icon=""
 				className="link item"
 				onBlur={handleBlur}
@@ -56,10 +62,10 @@ export default function TimeDropdown(props: Props) {
 			>
 				<Dropdown.Menu key="minute">
 					{hasHour ? minutes.map(item => {
-						const minute = (item < 10) ? '0'.concat((item).toString()) : item;
+						const min = (item < 10) ? item.toString().padStart(2, '0') : item;
 						return (
 							<Dropdown.Item key={item} onClick={() => setFieldValue(`${[name]}.minute`, item)}>
-								{minute}
+								{min}
 							</Dropdown.Item>
 						);
 					}) : null}
