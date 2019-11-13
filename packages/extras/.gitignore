@@ -1,7 +1,2 @@
 node_modules
-server.js
-mongooseTypes.js
-client.js
-server.js.map
-mongooseTypes.js.map
-client.js.map
+lib

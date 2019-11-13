@@ -18,12 +18,12 @@
     "mongooseTypes.js"
   ],
   "scripts": {
-    "prepublish": "npm run build",
-    "build": "npm run clean && npm run build:server && npm run build:mongoosetypes && npm run build:client",
-    "build:server": "NODE_ENV=production webpack --config webpack.server.config.js",
-    "build:mongoosetypes": "NODE_ENV=production webpack --config webpack.server.mongoose.config.js",
-    "build:client": "NODE_ENV=production webpack --config webpack.client.config.js",
-    "clean": "rimraf ./lib/*",
+    "prepublish": "yarn run build",
+    "build": "yarn clean && yarn build:client && yarn build:server && yarn build:mongoosetypes",
+    "build:client": "NODE_ENV=production webpack --config webpack/client.js && NODE_ENV=development webpack --config webpack/client.js",
+    "build:server": "NODE_ENV=production webpack --config webpack/server.js && NODE_ENV=development webpack --config webpack/server.js",
+    "build:mongoosetypes": "NODE_ENV=production webpack --config webpack/mongoosetypes.js && NODE_ENV=development webpack --config webpack/mongoosetypes.js",
+    "clean": "rimraf lib",
     "DISABLEDtest": "jest",
     "DISABLEDtest:watch": "jest --watch",
     "DISABLEDtest:coverage": "../../tools/coverage.sh extras",
@@ -32,12 +32,6 @@
     "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
     "docs:md": "../../tools/jsdocmd.sh extras",
     "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json"
-  },
-  "peerDependencies": {
-    "graphql": "^14.x",
-    "mongoose": "^5.x",
-    "react": "^16.x",
-    "react-apollo": "^2.x"
   },
   "dependencies": {
     "@thx/date": "^10.3.0",
@@ -53,16 +47,33 @@
     "lodash": "^4.17.11",
     "memfs": "^2.15.4",
     "mime-types": "^2.1.24",
+    "mongoose": "^5.7.6",
     "winston": "^3.2.1",
     "winston-gelf": "^1.7.0",
     "yauzl": "^2.10.0"
   },
   "devDependencies": {
-    "@types/mongoose": "^5.3.26",
+    "@babel/core": "^7.4.0",
+    "@types/mongoose": "^5.5.23",
+    "apollo-client": "^2.5.1",
+    "babel-jest": "^24.5.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "enzyme-to-json": "^3.3.5",
+    "graphql": "^14.1.1",
+    "jest": "^24.7.1",
+    "jsdoc-to-markdown": "^5.0.0",
+    "lerna": "^3.13.4",
+    "mongodb": "^3.2.1",
+    "react": "^16.8.4",
+    "react-apollo": "^2.5.5",
+    "react-dom": "^16.8.4",
+    "react-router-dom": "^5.0.0",
     "redis": "^2.8.0",
     "rimraf": "^2.6.3",
+    "semantic-ui-react": "^0.87.1",
+    "typescript": "^3.4.5",
     "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1"
+    "webpack-cli": "^3.3.9"
   },
   "jest": {
     "setupFiles": [

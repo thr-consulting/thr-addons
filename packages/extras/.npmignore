@@ -7,8 +7,6 @@ tests/
 .gitignore
 .npmignore
 jsdoc.json
-webpack.server.config.js
-webpack.client.config.js
-webpack.server.mongoose.config.js
+webpack
 .eslintcache
 tsconfig.json
