@@ -1,11 +1,13 @@
+import ContainerLayout from './ContainerLayout';
+import FullWidthLayout from './FullWidthLayout';
+import SimpleLayout from './SimpleLayout';
 import Reroute from './Reroute';
 import SwitchWithError from './SwitchWithError';
-import RouteDirector from './RouteDirector';
-import lazy from './lazy';
 
 export {
+	ContainerLayout,
+	FullWidthLayout,
+	SimpleLayout,
 	Reroute,
 	SwitchWithError,
-	RouteDirector,
-	lazy,
 };

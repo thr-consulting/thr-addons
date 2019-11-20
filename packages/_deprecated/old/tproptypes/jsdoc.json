@@ -8,18 +8,13 @@
   },
   "source": {
     "include": "src",
-    "includePattern": ".+\\.[tj]s(doc|x)?$",
+    "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"
   },
   "plugins": [
     "../../node_modules/jsdoc-babel",
-    "../../tools/jsdoc.globals.js"
+    "../../jsdoc.globals.js"
   ],
-  "babel": {
-    "extensions": ["ts", "tsx", "js"],
-    "presets": [["@imperium/babel-preset-imperium", {"react": true, "forceModules": true}]],
-    "babelrc": false
-  },
   "templates": {
     "cleverLinks": false,
     "monospaceLinks": false,
@@ -33,6 +28,6 @@
     "verbose": false,
     "debug": false,
     "readme": "README.md",
-    "destination": "../../docs/assets/jsdoc/router"
+    "destination": "docs"
   }
 }

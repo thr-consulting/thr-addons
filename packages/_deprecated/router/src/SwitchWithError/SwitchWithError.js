@@ -1,15 +1,12 @@
-// @flow
-
 import React from 'react';
-import type {ChildrenArray} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import NotFound from '../components/NotFound';
+import NotFound from '../NotFound';
 
-type Props = {
-	children: ChildrenArray<*>,
-};
+// type Props = {
+// 	children: ChildrenArray<*>,
+// };
 
-export default function SwitchWithError(props: Props) {
+export default function SwitchWithError(props) {
 	return (
 		<Switch>
 			{props.children}

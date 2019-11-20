@@ -1,6 +1,6 @@
 interface GetMonthNameParams {
-	year?: number;
-	limitToCurrentMonth?: boolean;
+	year?: number,
+	limitToCurrentMonth?: boolean,
 }
 
 /**
@@ -29,9 +29,7 @@ export default function getMonthNames({year, limitToCurrentMonth = true}: GetMon
 
 	if (year) {
 		if (year > currentYear) return [];
-		if (year === currentYear && limitToCurrentMonth) {
-			return array.slice(0, currentMonth + 1);
-		}
+		if ((year === currentYear) && limitToCurrentMonth) { return array.slice(0, currentMonth + 1); }
 	}
 	return array;
 }
