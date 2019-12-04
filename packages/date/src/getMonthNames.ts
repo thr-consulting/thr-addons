@@ -8,7 +8,7 @@ interface GetMonthNameParams {
  * @param year: {number}, The year to get the months for.
  * @param limitToCurrentMonth = false: {boolean}, If set to true returns all the months for the current year.
  */
-export default function getMonthNames({year, limitToCurrentMonth = true}: GetMonthNameParams = {}): string[] {
+export default function getMonthNames({year, limitToCurrentMonth = true}: GetMonthNameParams): string[] {
 	const array = [
 		'January',
 		'February',

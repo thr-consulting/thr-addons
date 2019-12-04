@@ -2,7 +2,7 @@ import React from 'react';
 import {Icon, Button, Dropdown, Input} from 'semantic-ui-react';
 import debug from 'debug';
 
-const d = debug('thx.controls.date.YearSelect');
+const d = debug('thx.controls.date.YearNavigator');
 
 interface Props {
 	name: string,
@@ -14,7 +14,7 @@ interface Props {
 	fieldError? : () => boolean,
 }
 
-export default function YearSelect(props: Props): JSX.Element {
+export default function YearNavigator(props: Props): JSX.Element {
 	const thisYear = new Date().getFullYear();
 	const {value, minYear = 1970, maxYear = thisYear, onChange = () => {}, name, fieldError, ...rest} = props;
 	let numValue = thisYear;
@@ -31,7 +31,6 @@ export default function YearSelect(props: Props): JSX.Element {
 
 	const handleChange = (val: number | string) => {
 		const v = parseInt(val as string, 10);
-		// (arg1, arg2) => props.setFieldValue(n, arg2 ? arg2.value : arg1)
 		return onChange.name === 'handleChange' ? onChange(`${name}`)(v) : onChange(v);
 	};
 

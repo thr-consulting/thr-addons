@@ -1,0 +1,1005 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MaskedInput should render without throwing an error 1`] = `
+<LocalMonthNavigator
+  name="month"
+  onChange={[Function]}
+>
+  <Input
+    type="text"
+  >
+    <div
+      className="ui input"
+    >
+      <Button
+        as="button"
+        basic={true}
+        color="green"
+        disabled={false}
+        icon={true}
+        key=".0"
+        onClick={[Function]}
+      >
+        <Ref
+          innerRef={
+            Object {
+              "current": <button
+                class="ui green basic icon button"
+              >
+                <i
+                  aria-hidden="true"
+                  class="arrow left icon"
+                />
+              </button>,
+            }
+          }
+        >
+          <RefFindNode
+            innerRef={
+              Object {
+                "current": <button
+                  class="ui green basic icon button"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="arrow left icon"
+                  />
+                </button>,
+              }
+            }
+          >
+            <button
+              className="ui green basic icon button"
+              onClick={[Function]}
+            >
+              <Icon
+                as="i"
+                name="arrow left"
+              >
+                <i
+                  aria-hidden="true"
+                  className="arrow left icon"
+                  onClick={[Function]}
+                />
+              </Icon>
+            </button>
+          </RefFindNode>
+        </Ref>
+      </Button>
+      <Dropdown
+        additionLabel="Add "
+        additionPosition="top"
+        basic={true}
+        button={true}
+        closeOnBlur={true}
+        deburr={false}
+        error={false}
+        icon={<div />}
+        key=".1"
+        minCharacters={1}
+        name="month"
+        noResultsMessage="No results found."
+        onChange={[Function]}
+        openOnFocus={true}
+        options={
+          Array [
+            Object {
+              "key": 1,
+              "text": "January",
+              "value": 1,
+            },
+            Object {
+              "key": 2,
+              "text": "February",
+              "value": 2,
+            },
+            Object {
+              "key": 3,
+              "text": "March",
+              "value": 3,
+            },
+            Object {
+              "key": 4,
+              "text": "April",
+              "value": 4,
+            },
+            Object {
+              "key": 5,
+              "text": "May",
+              "value": 5,
+            },
+            Object {
+              "key": 6,
+              "text": "June",
+              "value": 6,
+            },
+            Object {
+              "key": 7,
+              "text": "July",
+              "value": 7,
+            },
+            Object {
+              "key": 8,
+              "text": "August",
+              "value": 8,
+            },
+            Object {
+              "key": 9,
+              "text": "September",
+              "value": 9,
+            },
+            Object {
+              "key": 10,
+              "text": "October",
+              "value": 10,
+            },
+            Object {
+              "key": 11,
+              "text": "November",
+              "value": 11,
+            },
+            Object {
+              "key": 12,
+              "text": "December",
+              "value": 12,
+            },
+          ]
+        }
+        renderLabel={[Function]}
+        scrolling={true}
+        searchInput="text"
+        selectOnBlur={true}
+        selectOnNavigation={true}
+        value={12}
+        wrapSelection={true}
+      >
+        <Ref
+          innerRef={
+            Object {
+              "current": <div
+                aria-expanded="false"
+                class="ui basic button scrolling dropdown"
+                name="month"
+                role="listbox"
+                tabindex="0"
+              >
+                <div
+                  aria-live="polite"
+                  class="text"
+                  role="alert"
+                >
+                  December
+                </div>
+                <div
+                  class=""
+                />
+                <div
+                  class="menu transition"
+                >
+                  <div
+                    aria-checked="false"
+                    aria-selected="false"
+                    class="item"
+                    role="option"
+                    style="pointer-events: all;"
+                  >
+                    <span
+                      class="text"
+                    >
+                      January
+                    </span>
+                  </div>
+                  <div
+                    aria-checked="false"
+                    aria-selected="false"
+                    class="item"
+                    role="option"
+                    style="pointer-events: all;"
+                  >
+                    <span
+                      class="text"
+                    >
+                      February
+                    </span>
+                  </div>
+                  <div
+                    aria-checked="false"
+                    aria-selected="false"
+                    class="item"
+                    role="option"
+                    style="pointer-events: all;"
+                  >
+                    <span
+                      class="text"
+                    >
+                      March
+                    </span>
+                  </div>
+                  <div
+                    aria-checked="false"
+                    aria-selected="false"
+                    class="item"
+                    role="option"
+                    style="pointer-events: all;"
+                  >
+                    <span
+                      class="text"
+                    >
+                      April
+                    </span>
+                  </div>
+                  <div
+                    aria-checked="false"
+                    aria-selected="false"
+                    class="item"
+                    role="option"
+                    style="pointer-events: all;"
+                  >
+                    <span
+                      class="text"
+                    >
+                      May
+                    </span>
+                  </div>
+                  <div
+                    aria-checked="false"
+                    aria-selected="false"
+                    class="item"
+                    role="option"
+                    style="pointer-events: all;"
+                  >
+                    <span
+                      class="text"
+                    >
+                      June
+                    </span>
+                  </div>
+                  <div
+                    aria-checked="false"
+                    aria-selected="false"
+                    class="item"
+                    role="option"
+                    style="pointer-events: all;"
+                  >
+                    <span
+                      class="text"
+                    >
+                      July
+                    </span>
+                  </div>
+                  <div
+                    aria-checked="false"
+                    aria-selected="false"
+                    class="item"
+                    role="option"
+                    style="pointer-events: all;"
+                  >
+                    <span
+                      class="text"
+                    >
+                      August
+                    </span>
+                  </div>
+                  <div
+                    aria-checked="false"
+                    aria-selected="false"
+                    class="item"
+                    role="option"
+                    style="pointer-events: all;"
+                  >
+                    <span
+                      class="text"
+                    >
+                      September
+                    </span>
+                  </div>
+                  <div
+                    aria-checked="false"
+                    aria-selected="false"
+                    class="item"
+                    role="option"
+                    style="pointer-events: all;"
+                  >
+                    <span
+                      class="text"
+                    >
+                      October
+                    </span>
+                  </div>
+                  <div
+                    aria-checked="false"
+                    aria-selected="false"
+                    class="item"
+                    role="option"
+                    style="pointer-events: all;"
+                  >
+                    <span
+                      class="text"
+                    >
+                      November
+                    </span>
+                  </div>
+                  <div
+                    aria-checked="true"
+                    aria-selected="true"
+                    class="active selected item"
+                    role="option"
+                    style="pointer-events: all;"
+                  >
+                    <span
+                      class="text"
+                    >
+                      December
+                    </span>
+                  </div>
+                </div>
+              </div>,
+            }
+          }
+        >
+          <RefFindNode
+            innerRef={
+              Object {
+                "current": <div
+                  aria-expanded="false"
+                  class="ui basic button scrolling dropdown"
+                  name="month"
+                  role="listbox"
+                  tabindex="0"
+                >
+                  <div
+                    aria-live="polite"
+                    class="text"
+                    role="alert"
+                  >
+                    December
+                  </div>
+                  <div
+                    class=""
+                  />
+                  <div
+                    class="menu transition"
+                  >
+                    <div
+                      aria-checked="false"
+                      aria-selected="false"
+                      class="item"
+                      role="option"
+                      style="pointer-events: all;"
+                    >
+                      <span
+                        class="text"
+                      >
+                        January
+                      </span>
+                    </div>
+                    <div
+                      aria-checked="false"
+                      aria-selected="false"
+                      class="item"
+                      role="option"
+                      style="pointer-events: all;"
+                    >
+                      <span
+                        class="text"
+                      >
+                        February
+                      </span>
+                    </div>
+                    <div
+                      aria-checked="false"
+                      aria-selected="false"
+                      class="item"
+                      role="option"
+                      style="pointer-events: all;"
+                    >
+                      <span
+                        class="text"
+                      >
+                        March
+                      </span>
+                    </div>
+                    <div
+                      aria-checked="false"
+                      aria-selected="false"
+                      class="item"
+                      role="option"
+                      style="pointer-events: all;"
+                    >
+                      <span
+                        class="text"
+                      >
+                        April
+                      </span>
+                    </div>
+                    <div
+                      aria-checked="false"
+                      aria-selected="false"
+                      class="item"
+                      role="option"
+                      style="pointer-events: all;"
+                    >
+                      <span
+                        class="text"
+                      >
+                        May
+                      </span>
+                    </div>
+                    <div
+                      aria-checked="false"
+                      aria-selected="false"
+                      class="item"
+                      role="option"
+                      style="pointer-events: all;"
+                    >
+                      <span
+                        class="text"
+                      >
+                        June
+                      </span>
+                    </div>
+                    <div
+                      aria-checked="false"
+                      aria-selected="false"
+                      class="item"
+                      role="option"
+                      style="pointer-events: all;"
+                    >
+                      <span
+                        class="text"
+                      >
+                        July
+                      </span>
+                    </div>
+                    <div
+                      aria-checked="false"
+                      aria-selected="false"
+                      class="item"
+                      role="option"
+                      style="pointer-events: all;"
+                    >
+                      <span
+                        class="text"
+                      >
+                        August
+                      </span>
+                    </div>
+                    <div
+                      aria-checked="false"
+                      aria-selected="false"
+                      class="item"
+                      role="option"
+                      style="pointer-events: all;"
+                    >
+                      <span
+                        class="text"
+                      >
+                        September
+                      </span>
+                    </div>
+                    <div
+                      aria-checked="false"
+                      aria-selected="false"
+                      class="item"
+                      role="option"
+                      style="pointer-events: all;"
+                    >
+                      <span
+                        class="text"
+                      >
+                        October
+                      </span>
+                    </div>
+                    <div
+                      aria-checked="false"
+                      aria-selected="false"
+                      class="item"
+                      role="option"
+                      style="pointer-events: all;"
+                    >
+                      <span
+                        class="text"
+                      >
+                        November
+                      </span>
+                    </div>
+                    <div
+                      aria-checked="true"
+                      aria-selected="true"
+                      class="active selected item"
+                      role="option"
+                      style="pointer-events: all;"
+                    >
+                      <span
+                        class="text"
+                      >
+                        December
+                      </span>
+                    </div>
+                  </div>
+                </div>,
+              }
+            }
+          >
+            <div
+              aria-expanded={false}
+              className="ui basic button scrolling dropdown"
+              name="month"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseDown={[Function]}
+              role="listbox"
+              tabIndex={0}
+            >
+              <div
+                aria-live="polite"
+                className="text"
+                role="alert"
+              >
+                December
+              </div>
+              <div
+                className=""
+                onClick={[Function]}
+              />
+              <DropdownMenu>
+                <div
+                  className="menu transition"
+                >
+                  <DropdownItem
+                    active={false}
+                    key="1"
+                    onClick={[Function]}
+                    selected={false}
+                    style={
+                      Object {
+                        "pointerEvents": "all",
+                      }
+                    }
+                    text="January"
+                    value={1}
+                  >
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        January
+                      </span>
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem
+                    active={false}
+                    key="2"
+                    onClick={[Function]}
+                    selected={false}
+                    style={
+                      Object {
+                        "pointerEvents": "all",
+                      }
+                    }
+                    text="February"
+                    value={2}
+                  >
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        February
+                      </span>
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem
+                    active={false}
+                    key="3"
+                    onClick={[Function]}
+                    selected={false}
+                    style={
+                      Object {
+                        "pointerEvents": "all",
+                      }
+                    }
+                    text="March"
+                    value={3}
+                  >
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        March
+                      </span>
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem
+                    active={false}
+                    key="4"
+                    onClick={[Function]}
+                    selected={false}
+                    style={
+                      Object {
+                        "pointerEvents": "all",
+                      }
+                    }
+                    text="April"
+                    value={4}
+                  >
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        April
+                      </span>
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem
+                    active={false}
+                    key="5"
+                    onClick={[Function]}
+                    selected={false}
+                    style={
+                      Object {
+                        "pointerEvents": "all",
+                      }
+                    }
+                    text="May"
+                    value={5}
+                  >
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        May
+                      </span>
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem
+                    active={false}
+                    key="6"
+                    onClick={[Function]}
+                    selected={false}
+                    style={
+                      Object {
+                        "pointerEvents": "all",
+                      }
+                    }
+                    text="June"
+                    value={6}
+                  >
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        June
+                      </span>
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem
+                    active={false}
+                    key="7"
+                    onClick={[Function]}
+                    selected={false}
+                    style={
+                      Object {
+                        "pointerEvents": "all",
+                      }
+                    }
+                    text="July"
+                    value={7}
+                  >
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        July
+                      </span>
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem
+                    active={false}
+                    key="8"
+                    onClick={[Function]}
+                    selected={false}
+                    style={
+                      Object {
+                        "pointerEvents": "all",
+                      }
+                    }
+                    text="August"
+                    value={8}
+                  >
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        August
+                      </span>
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem
+                    active={false}
+                    key="9"
+                    onClick={[Function]}
+                    selected={false}
+                    style={
+                      Object {
+                        "pointerEvents": "all",
+                      }
+                    }
+                    text="September"
+                    value={9}
+                  >
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        September
+                      </span>
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem
+                    active={false}
+                    key="10"
+                    onClick={[Function]}
+                    selected={false}
+                    style={
+                      Object {
+                        "pointerEvents": "all",
+                      }
+                    }
+                    text="October"
+                    value={10}
+                  >
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        October
+                      </span>
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem
+                    active={false}
+                    key="11"
+                    onClick={[Function]}
+                    selected={false}
+                    style={
+                      Object {
+                        "pointerEvents": "all",
+                      }
+                    }
+                    text="November"
+                    value={11}
+                  >
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        November
+                      </span>
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem
+                    active={true}
+                    key="12"
+                    onClick={[Function]}
+                    selected={true}
+                    style={
+                      Object {
+                        "pointerEvents": "all",
+                      }
+                    }
+                    text="December"
+                    value={12}
+                  >
+                    <div
+                      aria-checked={true}
+                      aria-selected={true}
+                      className="active selected item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        December
+                      </span>
+                    </div>
+                  </DropdownItem>
+                </div>
+              </DropdownMenu>
+            </div>
+          </RefFindNode>
+        </Ref>
+      </Dropdown>
+      <Button
+        as="button"
+        basic={true}
+        color="green"
+        disabled={true}
+        icon={true}
+        key=".2"
+        onClick={[Function]}
+      >
+        <Ref
+          innerRef={
+            Object {
+              "current": <button
+                class="ui green basic icon disabled button"
+                disabled=""
+                tabindex="-1"
+              >
+                <i
+                  aria-hidden="true"
+                  class="arrow right icon"
+                />
+              </button>,
+            }
+          }
+        >
+          <RefFindNode
+            innerRef={
+              Object {
+                "current": <button
+                  class="ui green basic icon disabled button"
+                  disabled=""
+                  tabindex="-1"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="arrow right icon"
+                  />
+                </button>,
+              }
+            }
+          >
+            <button
+              className="ui green basic icon disabled button"
+              disabled={true}
+              onClick={[Function]}
+              tabIndex={-1}
+            >
+              <Icon
+                as="i"
+                name="arrow right"
+              >
+                <i
+                  aria-hidden="true"
+                  className="arrow right icon"
+                  onClick={[Function]}
+                />
+              </Icon>
+            </button>
+          </RefFindNode>
+        </Ref>
+      </Button>
+    </div>
+  </Input>
+</LocalMonthNavigator>
+`;
