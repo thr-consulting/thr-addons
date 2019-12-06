@@ -22,8 +22,10 @@ const storyFn = () => (
 							name="month"
 							maxDate={LocalDate.now().plusMonths(2)}
 							minDate={LocalDate.now().minusYears(2).minusMonths(4)}
-							value={props.values.month}
 							onChange={props.handleChange}
+							value={props.values.month}
+							dateFormat="MMM, Y"
+							showYearNavigator
 						/>
 					)}
 				/>

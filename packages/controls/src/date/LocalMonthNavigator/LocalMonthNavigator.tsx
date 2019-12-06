@@ -1,8 +1,9 @@
 import React from 'react';
-import {Icon, Button, Dropdown, Input} from 'semantic-ui-react';
 import debug from 'debug';
 import {months} from 'moment';
 import {LocalDate} from 'js-joda';
+import {formatDate} from '@thx/date';
+import {Icon, Button, Dropdown, Input} from 'semantic-ui-react';
 
 const d = debug('thx.controls.date.LocalMonthNavigator');
 
@@ -13,11 +14,13 @@ interface Props {
 	value?: LocalDate,
 	minDate?: LocalDate,
 	maxDate?: LocalDate,
+	dateFormat? : string,
 	fieldError? : () => boolean,
+	showYearNavigator? : boolean,
 }
 
 export default function LocalMonthNavigator(props: Props): JSX.Element {
-	const {value, onChange = () => {}, name, fieldError, maxDate, minDate, ...rest} = props;
+	const {value, onChange = () => {}, name, fieldError, maxDate, minDate, dateFormat, showYearNavigator, ...rest} = props;
 	const error = fieldError ? fieldError() : false;
 	const date = value || LocalDate.now();
 	const maximumDate = maxDate || LocalDate.now();
@@ -47,14 +50,31 @@ export default function LocalMonthNavigator(props: Props): JSX.Element {
 
 	return (
 		<Input {...rest}>
+			{showYearNavigator ? (
+				<Button
+					basic
+					icon
+					color={error ? 'red' : 'green'}
+					disabled={date.year() <= minimumDate.year()}
+					onClick={() => (
+						date.minusYears(1) < minimumDate
+							? handleChange(minimumDate)
+							: handleChange(date.minusYears(1))
+					)}
+					title="Previous Year"
+				>
+					<Icon name="angle double left"/>
+				</Button>
+			) : null}
 			<Button
 				basic
 				icon
 				color={error ? 'red' : 'green'}
 				disabled={date <= minimumDate}
 				onClick={() => handleChange(date.minusMonths(1))}
+				title="Previous Month"
 			>
-				<Icon name="arrow left"/>
+				<Icon name="angle left"/>
 			</Button>
 			<Dropdown
 				name={name}
@@ -66,6 +86,7 @@ export default function LocalMonthNavigator(props: Props): JSX.Element {
 				options={createDropdownOptions()}
 				onChange={(e, val: {value?: any}) => handleChange(date.withMonth(val.value))}
 				error={error}
+				text={formatDate(date, {format: dateFormat || 'MMMM'})}
 			/>
 			<Button
 				basic
@@ -73,9 +94,26 @@ export default function LocalMonthNavigator(props: Props): JSX.Element {
 				color={error ? 'red' : 'green'}
 				disabled={date >= maximumDate}
 				onClick={() => handleChange(date.plusMonths(1))}
+				title="Next Month"
 			>
-				<Icon name="arrow right"/>
+				<Icon name="angle right"/>
 			</Button>
+			{showYearNavigator ? (
+				<Button
+					basic
+					icon
+					color={error ? 'red' : 'green'}
+					disabled={date.year() >= maximumDate.year()}
+					onClick={() => (
+						(date.plusYears(1) > maximumDate)
+							? handleChange(maximumDate)
+							: handleChange(date.plusYears(1))
+					)}
+					title="Next Year"
+				>
+					<Icon name="angle double right"/>
+				</Button>
+			) : null}
 		</Input>
 	);
 }
