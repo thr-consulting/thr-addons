@@ -17,18 +17,20 @@ exports[`MaskedInput should render without throwing an error 1`] = `
         color="green"
         disabled={false}
         icon={true}
-        key=".0"
+        key=".1"
         onClick={[Function]}
+        title="Previous Month"
       >
         <Ref
           innerRef={
             Object {
               "current": <button
                 class="ui green basic icon button"
+                title="Previous Month"
               >
                 <i
                   aria-hidden="true"
-                  class="arrow left icon"
+                  class="angle left icon"
                 />
               </button>,
             }
@@ -39,10 +41,11 @@ exports[`MaskedInput should render without throwing an error 1`] = `
               Object {
                 "current": <button
                   class="ui green basic icon button"
+                  title="Previous Month"
                 >
                   <i
                     aria-hidden="true"
-                    class="arrow left icon"
+                    class="angle left icon"
                   />
                 </button>,
               }
@@ -51,14 +54,15 @@ exports[`MaskedInput should render without throwing an error 1`] = `
             <button
               className="ui green basic icon button"
               onClick={[Function]}
+              title="Previous Month"
             >
               <Icon
                 as="i"
-                name="arrow left"
+                name="angle left"
               >
                 <i
                   aria-hidden="true"
-                  className="arrow left icon"
+                  className="angle left icon"
                   onClick={[Function]}
                 />
               </Icon>
@@ -75,7 +79,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
         deburr={false}
         error={false}
         icon={<div />}
-        key=".1"
+        key=".2"
         minCharacters={1}
         name="month"
         noResultsMessage="No results found."
@@ -150,6 +154,7 @@ exports[`MaskedInput should render without throwing an error 1`] = `
         searchInput="text"
         selectOnBlur={true}
         selectOnNavigation={true}
+        text="December"
         value={12}
         wrapSelection={true}
       >
@@ -944,8 +949,9 @@ exports[`MaskedInput should render without throwing an error 1`] = `
         color="green"
         disabled={true}
         icon={true}
-        key=".2"
+        key=".3"
         onClick={[Function]}
+        title="Next Month"
       >
         <Ref
           innerRef={
@@ -954,10 +960,11 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                 class="ui green basic icon disabled button"
                 disabled=""
                 tabindex="-1"
+                title="Next Month"
               >
                 <i
                   aria-hidden="true"
-                  class="arrow right icon"
+                  class="angle right icon"
                 />
               </button>,
             }
@@ -970,10 +977,11 @@ exports[`MaskedInput should render without throwing an error 1`] = `
                   class="ui green basic icon disabled button"
                   disabled=""
                   tabindex="-1"
+                  title="Next Month"
                 >
                   <i
                     aria-hidden="true"
-                    class="arrow right icon"
+                    class="angle right icon"
                   />
                 </button>,
               }
@@ -984,14 +992,15 @@ exports[`MaskedInput should render without throwing an error 1`] = `
               disabled={true}
               onClick={[Function]}
               tabIndex={-1}
+              title="Next Month"
             >
               <Icon
                 as="i"
-                name="arrow right"
+                name="angle right"
               >
                 <i
                   aria-hidden="true"
-                  className="arrow right icon"
+                  className="angle right icon"
                   onClick={[Function]}
                 />
               </Icon>
