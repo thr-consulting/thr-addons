@@ -23,3 +23,7 @@
 :global(.react-datepicker__input-container) {
 	display: inline !important;
 }
+
+:global(.react-datepicker-popper) {
+	z-index: 3 !important;
+}
