@@ -19,17 +19,16 @@ export default function TimeDropdown(props: Props) {
 	const hours = Array.from(Array(12).keys());
 	const minutes = Array.from(Array(60).keys());
 	const hasHour = !!values && !!values.hour;
-	const hasMinute = !!values && values.minute && (values.minute > -1);
 	const hasAmPm = !!values && values.ampm;
-	let minuteText;
-	let hourText;
+	let hasMinute = false;
+	let minuteText = 'Minute';
+	let hourText = 'Hour';
 
-	// if I use hasMinute I get ts errors, that's why I have duplicate code here.
-	if (values && values.minute && (values.minute > -1)) {
+	if (values && values.minute !== undefined && values.minute >= 0) {
 		minuteText = (values.minute < 10) ? values.minute.toString().padStart(2, '0') : values.minute.toString();
+		hasMinute = true;
 	}
 	if (values && values.hour) hourText = values.hour.toString();
-	else hourText = 'Hour';
 
 	return (
 		<Menu compact>
