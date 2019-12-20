@@ -75,7 +75,7 @@ export function isJpg(mimetype): boolean {
  * @return {boolean}
  */
 export function isMimetypeSupported(mimetype): boolean {
-	return isPdf(mimetype) || isDoc(mimetype) || isImage(mimetype);
+	return isPdf(mimetype) || isImage(mimetype);
 }
 
 export function mimetypeFromFilename(filename) {
