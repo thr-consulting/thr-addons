@@ -1,9 +1,9 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import YearSelect from '../../src/date/YearSelect';
+import YearNavigator from '../../src/date/YearNavigator';
 
 describe('MaskedInput', () => {
 	it('should render without throwing an error', () => {
-		expect(mount(<YearSelect year={2019} onChange={() => {}}/>)).toMatchSnapshot();
+		expect(mount(<YearNavigator year={2019} onChange={() => {}}/>)).toMatchSnapshot();
 	});
 });

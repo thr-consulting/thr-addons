@@ -6,7 +6,7 @@ import {withKnobs} from '@storybook/addon-knobs';
 import {Container, Form} from 'semantic-ui-react';
 import AddDynamicFormInput from '../src/inputs/AddDynamicFormInput';
 import TForm from '../src/form/TForm/TForm';
-import {DatePicker, YearSelect} from '../src';
+import {DatePicker, YearNavigator} from '../src';
 
 const d = debug('thx.packages.controls.stories.AddDynamicFormInput');
 
@@ -77,7 +77,7 @@ const testFn = () => (
 						placeholder="Office"
 					/>
 					<Form.Input label="Year" name="date">
-						<YearSelect
+						<YearNavigator
 							name="date"
 							placeholder="2019"
 						/>

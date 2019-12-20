@@ -3,9 +3,9 @@ import {storiesOf} from '@storybook/react';
 import {withInfo} from '@storybook/addon-info';
 import {Container, Form} from 'semantic-ui-react';
 import TForm from '../src/form/TForm';
-import YearSelect from '../src/date/YearSelect';
+import YearNavigator from '../src/date/YearNavigator';
 
-const stories = storiesOf('YearSelect', module);
+const stories = storiesOf('YearNavigator', module);
 
 stories.addDecorator(withInfo);
 
@@ -13,10 +13,10 @@ const storyFn = () => (
 	<Container>
 		<Form width={6}>
 			<Form.Field>
-				<label>Year Select</label>
+				<label>Year Navigator</label>
 				<TForm
 					render={props => (
-						<YearSelect
+						<YearNavigator
 							name="year"
 							maxYear="2020"
 							minYear={2000}
@@ -36,7 +36,7 @@ stories.add(
 	{
 		info: {
 			inline: true,
-			text: 'A year select with a year dropdown. Returns the selected year.',
+			text: 'A year navigator with a year dropdown. Returns the selected year.',
 			propTablesExclude: [Form, Form.Field, Container],
 		},
 	},

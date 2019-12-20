@@ -22,7 +22,8 @@ import ResponsiveMenu from './menu/ResponsiveMenu';
 import LocalMonthSelect from './date/LocalMonthSelect';
 import DatePicker from './date/DatePicker';
 import MonthDayDropdown from './date/MonthDayDropdown';
-import YearSelect from './date/YearSelect';
+import YearNavigator from './date/YearNavigator';
+import LocalMonthNavigator from './date/LocalMonthNavigator';
 import TimeDropdown from './date/TimeDropdown';
 import MonthYearDropdown from './date/MonthYearDropdown';
 
@@ -50,7 +51,8 @@ export {
 	LocalMonthSelect,
 	DatePicker,
 	MonthDayDropdown,
-	YearSelect,
+	YearNavigator,
+	LocalMonthNavigator,
 	TimeDropdown,
 	MonthYearDropdown,
 
