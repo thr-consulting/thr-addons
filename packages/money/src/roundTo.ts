@@ -4,6 +4,6 @@
  * @param {number} decimals - The number of decimal digits to round to.
  * @return {number} - The rounded number.
  */
-export default function roundTo(value: number, decimals: number): number {
+export function roundTo(value: number, decimals: number): number {
 	return Number(`${Math.round(Number(`${value}e${decimals}`)).toString()}e-${decimals}`);
 }

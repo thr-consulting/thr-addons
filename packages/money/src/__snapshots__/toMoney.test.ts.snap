@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Convert to Money should accept a normal Money instance 1`] = `
+Object {
+  "amount": 100,
+  "currency": "CAD",
+}
+`;
+
+exports[`Convert to Money should make a Money from a decimal 1`] = `
+Object {
+  "amount": 532,
+  "currency": "CAD",
+}
+`;
+
+exports[`Convert to Money should make a Money from a string 1`] = `
+Object {
+  "amount": 532,
+  "currency": "CAD",
+}
+`;
+
+exports[`Convert to Money should make a Money from an object 1`] = `
+Object {
+  "amount": 500,
+  "currency": "USD",
+}
+`;
+
+exports[`Convert to Money should make a Money with currency specified 1`] = `
+Object {
+  "amount": 632,
+  "currency": "USD",
+}
+`;
+
+exports[`Convert to Money should return 0.00 canadian dollars by default 1`] = `
+Object {
+  "amount": 0,
+  "currency": "CAD",
+}
+`;
+
+exports[`Convert to Money should throw an error if something wrong is passed to it 1`] = `"Can't convert value to Money: [object Object]."`;

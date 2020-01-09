@@ -9,20 +9,21 @@ function isNumber(x: any): x is number {
 	return typeof x === 'number';
 }
 
-interface MoneyObject {
+export interface IMoneyObject {
 	currency: string;
 	amount: number;
 }
-function isMoney(x: any): x is Money {
+
+export function isMoney(x: any): x is Money {
 	return x instanceof Money;
 }
 
-function isMoneyObject(x: any): x is MoneyObject {
-	return (x as MoneyObject).amount !== undefined;
+export function isMoneyObject(x: any): x is IMoneyObject {
+	return (x as IMoneyObject).amount !== undefined;
 }
 
-export default function toMoney(
-	value: Money | undefined | null | number | string | MoneyObject,
+export function toMoney(
+	value: Money | undefined | null | number | string | IMoneyObject = null,
 	currency: Currencies.Currency = Money.CAD,
 ): Money {
 	if (isMoney(value)) return value;
