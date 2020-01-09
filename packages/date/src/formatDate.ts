@@ -1,39 +1,47 @@
-import moment, {Moment} from 'moment';
-import {DateTimeFormatter, LocalDate, LocalDateTime, LocalTime, ZonedDateTime} from '@js-joda/core';
+import {DateTimeFormatter, LocalDate, LocalDateTime, LocalTime, ZonedDateTime, ZoneId} from '@js-joda/core';
 // @ts-ignore
 import {Locale} from '@js-joda/locale_en-us';
-import isInteger from 'lodash/isInteger';
-import TransformEpochInt from './TransformEpochInt';
-import TransformDate from './TransformDate';
-import TransformMoment from './TransformMoment';
+import {toLocalDate, toLocalDateTime, ILocalDateLike, isLocalDateLike} from './conversion';
 
-interface FormatDateParams {
-	type: string;
-	time: boolean;
-	date: boolean;
+export enum FormatDateType {
+	short = 'short',
+	medium = 'medium',
+	long = 'long',
+}
+
+export interface FormatDateParams {
+	type?: FormatDateType;
+	time?: boolean;
+	date?: boolean;
 	format?: string;
 }
 
-// export function isInteger(x: any): x is number {
-// 	return isInteger(x);
-// }
-
 /**
- * Formats a date to a predefined style
- * @method formatDate
- * @param {Date|LocalDate|number|moment} obj - The Date, LocalDate, LocalTime, LocalDateTime, ZonedDateTime, integer (epoch days), or moment
+ * Formats a date to a string
+ * @param obj
  * @param params
- * @return {string} The formatted date/time
+ * @param zone
  */
-export default function formatDate(
-	obj: Date | LocalDate | number | Moment | string | LocalDateTime | LocalTime | ZonedDateTime | null | undefined,
-	params: FormatDateParams = {type: 'short', time: false, date: true},
+export function formatDate(
+	obj:
+		| ILocalDateLike
+		| Date
+		| LocalDate
+		| number
+		| string
+		| LocalDateTime
+		| LocalTime
+		| ZonedDateTime
+		| null
+		| undefined,
+	params: FormatDateParams = {type: FormatDateType.short, time: false, date: true},
+	zone: ZoneId = ZoneId.SYSTEM,
 ) {
 	let l: LocalDate | LocalDateTime | LocalTime | ZonedDateTime | undefined;
 	if (!obj) return '';
-	if (isInteger(obj)) l = TransformEpochInt.toLocalDate(obj as number);
-	if (obj instanceof Date) l = TransformDate.toLocalDate(obj);
-	if (moment.isMoment(obj)) l = TransformMoment.toLocalDate(obj);
+	if (typeof obj === 'number') l = toLocalDate(obj);
+	if (isLocalDateLike(obj)) l = toLocalDate(obj);
+	if (obj instanceof Date) l = toLocalDateTime(obj, zone);
 	if (obj instanceof LocalDate) l = obj;
 	if (obj instanceof LocalDateTime) l = obj;
 	if (obj instanceof LocalTime) l = obj;
@@ -43,15 +51,15 @@ export default function formatDate(
 	let dateFormat: string;
 	let timeFormat: string;
 	switch (params.type) {
-		case 'medium':
+		case FormatDateType.medium:
 			dateFormat = 'MMM d, yyyy';
 			timeFormat = 'h:mm a';
 			break;
-		case 'long':
+		case FormatDateType.long:
 			dateFormat = 'MMMM d, yyyy';
 			timeFormat = 'h:mm a';
 			break;
-		case 'short':
+		case FormatDateType.short:
 		default:
 			dateFormat = 'M/d/yyyy';
 			timeFormat = 'h:mm a';
