@@ -34,10 +34,7 @@
 		"prepublish": "yarn build && yarn ts"
 	},
 	"devDependencies": {
-		"webpack-cli": "^3.3.9",
-		"react": "^16.12.0",
-		"react-dom": "^16.12.0",
-		"semantic-ui-react": "^0.88.1"
+		"webpack-cli": "^3.3.9"
 	},
 	"peerDependencies": {
 		"react": "^16.x",

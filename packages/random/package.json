@@ -1,7 +1,7 @@
 {
-	"name": "@thx/date",
-	"version": "10.3.0",
-	"description": "Date utils",
+	"name": "@thx/random",
+	"version": "10.1.1",
+	"description": "Random Functions",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/thr-consulting/thr-addons.git"
@@ -41,10 +41,9 @@
 		"webpack-cli": "^3.3.9"
 	},
 	"dependencies": {
-		"@js-joda/core": "^2.0.0",
-		"@js-joda/locale_en-us": "^3.1.0",
-		"@js-joda/timezone": "^2.2.0",
-		"debug": "^4.1.1"
+		"debug": "^4.1.1",
+		"@thx/date": "^10.3.0",
+		"@js-joda/core": "^2.0.0"
 	},
 	"jest": {
 		"transform": {
@@ -53,7 +52,7 @@
 		"testPathIgnorePatterns": [
 			"/node_modules/"
 		],
-		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/date",
+		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/random",
 		"collectCoverageFrom": [
 			"<rootDir>/src/**/*.js",
 			"<rootDir>/src/**/*.ts"
