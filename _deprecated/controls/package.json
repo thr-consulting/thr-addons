@@ -1,6 +1,6 @@
 {
   "name": "@thx/controls",
-  "version": "11.4.0",
+  "version": "11.6.0",
   "description": "A collection of components designed with SemanticUI.",
   "main": "lib/controls.js",
   "author": "Mike Kornelson <mike@durbn.net>",
@@ -47,7 +47,7 @@
     "moment": "^2.24.0",
     "number-to-date-month-name": "^1.0.2",
     "prop-types": "^15.7.2",
-    "react-datepicker": "^2.5.0",
+    "react-datepicker": "^2.10.1",
     "react-responsive": "^6.1.1",
     "react-text-mask": "^5.4.1",
     "text-mask-addons": "^3.7.2"

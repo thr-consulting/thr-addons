@@ -1,6 +1,6 @@
 {
   "name": "@thx/extras",
-  "version": "10.4.0",
+  "version": "10.5.0",
   "description": "Extra utils",
   "author": "Mike Kornelson <mike@durbn.net>",
   "license": "MIT",
@@ -45,7 +45,7 @@
     "file-type": "^11.1.0",
     "js-joda": "^1.10.1",
     "lodash": "^4.17.11",
-    "memfs": "^2.15.4",
+    "memfs": "^3.0.1",
     "mime-types": "^2.1.24",
     "mongoose": "^5.7.6",
     "winston": "^3.2.1",

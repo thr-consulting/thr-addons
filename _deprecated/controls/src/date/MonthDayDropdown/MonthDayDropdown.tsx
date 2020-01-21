@@ -4,12 +4,11 @@ import numberToName from 'number-to-date-month-name';
 import {getMonthNames, getNumberOfDaysInMonth} from '../../../../date/src';
 
 interface Props {
-	value,
+	value: {month: string | number, day: string | number},
 	name: string,
 	numeric?: boolean,
 	setFieldValue: (name: string, value) => void,
 }
-
 
 /**
  *
@@ -24,7 +23,7 @@ export default function MonthDayDropdown(props: Props) {
 
 	let month = 'Month';
 	let day = 'Day';
-	if (hasDay) day = numeric ? value.day.toString().padStart(2, '0') : value.day.toString();
+	if (hasDay) day = value.day.toString().padStart(2, '0');
 	if (hasMonth) month = numeric ? value.month.toString().padStart(2, '0') : numberToName.toMonth(value && value.month);
 
 	return (
@@ -57,7 +56,7 @@ export default function MonthDayDropdown(props: Props) {
 						{hasMonth ? getNumberOfDaysInMonth({month: value.month, asArray: true}).map(item => (
 							<Dropdown.Item
 								key={item}
-								onClick={(e, r) => setFieldValue(`${[name]}.day`, r.children)}
+								onClick={() => setFieldValue(`${[name]}.day`, item)}
 							>
 								{item.toString().padStart(2, '0')}
 							</Dropdown.Item>

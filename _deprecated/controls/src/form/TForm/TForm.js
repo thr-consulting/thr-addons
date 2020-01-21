@@ -23,11 +23,11 @@ function RenderForm(args) {
 
 	useEffect(() => {
 		if (onValidate) onValidate(isValid);
-	}, [isValid]);
+	}, [isValid, onValidate]);
 
 	useEffect(() => {
 		if (getSubmitFn) getSubmitFn(submitForm);
-	}, [submitForm]);
+	}, [getSubmitFn, submitForm]);
 
 	// This is a recursive function that returns all the errors for fields that have errors and have also been touched.
 	function getWarnings(key, tchd = touched, wrngs = warnings, index = 0) {

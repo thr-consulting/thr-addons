@@ -2611,7 +2611,7 @@ exports[`MaskedInput should render without values without throwing an error 1`] 
         searchInput="text"
         selectOnBlur={true}
         selectOnNavigation={true}
-        text="minute"
+        text="Minute"
         wrapSelection={true}
       >
         <Ref
@@ -2630,7 +2630,7 @@ exports[`MaskedInput should render without values without throwing an error 1`] 
                   class="text"
                   role="alert"
                 >
-                  minute
+                  Minute
                 </div>
                 <i
                   aria-hidden="true"
@@ -2659,7 +2659,7 @@ exports[`MaskedInput should render without values without throwing an error 1`] 
                     class="text"
                     role="alert"
                   >
-                    minute
+                    Minute
                   </div>
                   <i
                     aria-hidden="true"
@@ -2690,7 +2690,7 @@ exports[`MaskedInput should render without values without throwing an error 1`] 
                 className="text"
                 role="alert"
               >
-                minute
+                Minute
               </div>
               <Icon
                 as="i"
