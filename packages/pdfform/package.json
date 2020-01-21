@@ -1,6 +1,6 @@
 {
 	"name": "@thx/pdfform",
-	"version": "10.1.1",
+	"version": "11.0.0-alpha.0",
 	"description": "PDF form filling library",
 	"repository": {
 		"type": "git",
@@ -43,10 +43,10 @@
 		"webpack-cli": "^3.3.9"
 	},
 	"dependencies": {
+		"@thx/random": "^11.0.0-alpha.0",
 		"debug": "^4.1.1",
 		"hummus": "^1.0.108",
-		"promise-sequential": "^1.1.1",
-		"@thx/random": "^10.1.1"
+		"promise-sequential": "^1.1.1"
 	},
 	"jest": {
 		"transform": {

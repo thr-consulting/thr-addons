@@ -1,6 +1,6 @@
 {
 	"name": "@thx/sha256",
-	"version": "10.1.1",
+	"version": "11.0.0-alpha.0",
 	"description": "SHA256 Hash Function",
 	"repository": {
 		"type": "git",

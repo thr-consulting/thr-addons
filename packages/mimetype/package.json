@@ -1,6 +1,6 @@
 {
 	"name": "@thx/mimetype",
-	"version": "10.1.1",
+	"version": "11.0.0-alpha.0",
 	"description": "Mimetype and file type utilities",
 	"repository": {
 		"type": "git",
@@ -42,8 +42,8 @@
 	},
 	"dependencies": {
 		"debug": "^4.1.1",
-		"mime-types": "^2.1.26",
-		"file-type": "^13.1.1"
+		"file-type": "^13.1.1",
+		"mime-types": "^2.1.26"
 	},
 	"jest": {
 		"transform": {

@@ -1,6 +1,6 @@
 {
 	"name": "@thx/file-location",
-	"version": "10.1.1",
+	"version": "11.0.0-alpha.0",
 	"description": "File function abstraction",
 	"repository": {
 		"type": "git",
@@ -43,11 +43,11 @@
 		"webpack-cli": "^3.3.9"
 	},
 	"dependencies": {
-		"debug": "^4.1.1",
-		"lodash": "^4.17.15",
 		"aws-sdk": "^2.608.0",
+		"debug": "^4.1.1",
 		"delete-empty": "^3.0.0",
-		"fs-extra": "^8.1.0"
+		"fs-extra": "^8.1.0",
+		"lodash": "^4.17.15"
 	},
 	"jest": {
 		"transform": {

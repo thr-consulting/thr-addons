@@ -1,6 +1,6 @@
 {
 	"name": "@thx/money",
-	"version": "10.1.1",
+	"version": "11.0.0-alpha.0",
 	"description": "Money utils",
 	"repository": {
 		"type": "git",
@@ -41,9 +41,9 @@
 		"webpack-cli": "^3.3.9"
 	},
 	"dependencies": {
+		"accounting": "^0.4.1",
 		"debug": "^4.1.1",
-		"js-money": "^0.6.3",
-		"accounting": "^0.4.1"
+		"js-money": "^0.6.3"
 	},
 	"jest": {
 		"transform": {

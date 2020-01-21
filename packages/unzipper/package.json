@@ -1,6 +1,6 @@
 {
 	"name": "@thx/unzipper",
-	"version": "10.1.1",
+	"version": "11.0.0-alpha.0",
 	"description": "Process files inside a ZIP file",
 	"repository": {
 		"type": "git",
