@@ -1,0 +1,25 @@
+:global(.rw-datetimepicker) > input {
+	border: none !important;
+}
+
+:global(.rw-datetimepicker) :global(.rw-calendar-grid.rw-nav-view) :global(.rw-btn) {
+	padding: 0 !important;
+}
+
+:global(.dateTimePickerAutoWidth) {
+	width: auto;
+	display: inline-flex;
+}
+
+:global(.dateTimePickerAutoWidth) > input {
+	width: auto;
+}
+
+:global(.react-datepicker-wrapper) {
+	width: 100%;
+	display: inline !important;
+}
+
+:global(.react-datepicker__input-container) {
+	display: inline !important;
+}

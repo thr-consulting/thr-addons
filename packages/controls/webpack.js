@@ -4,7 +4,7 @@ const {name} = require('./package.json');
 
 module.exports = commonWebpack({
 	isProduction: process.env.NODE_ENV === 'production',
-	isClient: false,
+	isClient: true,
 	name,
 	entry: './index.ts',
 	outputFile: 'index.js',

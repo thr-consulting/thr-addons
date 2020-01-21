@@ -31,7 +31,8 @@
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
 		"ts": "tsc",
 		"yalc:publish": "yalc publish --push",
-		"prepublish": "yarn build && yarn ts"
+		"prepublish": "yarn build && yarn ts",
+		"storybook": "start-storybook"
 	},
 	"devDependencies": {
 		"webpack-cli": "^3.3.9"
@@ -43,6 +44,9 @@
 	},
 	"dependencies": {
 		"debug": "^4.1.1",
-		"lodash": "^4.17.15"
+		"lodash": "^4.17.15",
+		"formik": "^2.1.2",
+		"flat": "^5.0.0",
+		"yup": "^0.28.0"
 	}
 }
