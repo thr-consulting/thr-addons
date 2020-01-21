@@ -22,7 +22,7 @@ export default class FileTypeReadStream extends Transform {
 			const bytesToGrab = Math.min(bytesNeeded, chunk.length);
 
 			this._buf = Buffer.concat([this._buf.slice(0, this._currentLoc), chunk.slice(0, bytesToGrab)]);
-			this._currentLoc = this._currentLoc + bytesToGrab;
+			this._currentLoc += bytesToGrab;
 		}
 		if (this._currentLoc >= minimumBytes) {
 			this.emit('ready', this._buf);

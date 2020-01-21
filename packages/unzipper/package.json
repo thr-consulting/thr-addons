@@ -42,7 +42,7 @@
 	},
 	"dependencies": {
 		"debug": "^4.1.1",
-		"memfs": "^3.0.3",
+		"memfs": "^3.0.4",
 		"yauzl": "^2.10.0"
 	},
 	"jest": {

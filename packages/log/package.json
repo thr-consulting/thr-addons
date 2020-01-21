@@ -31,11 +31,13 @@
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
 		"ts": "tsc",
-		"test": "jest",
-		"test:watch": "jest --watch",
-		"test:coverage": "../../tools/coverage.sh",
 		"yalc:publish": "yalc publish --push",
 		"prepublish": "yarn build && yarn ts"
+	},
+	"disabledScripts": {
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:coverage": "../../tools/coverage.sh"
 	},
 	"devDependencies": {
 		"webpack-cli": "^3.3.9"
