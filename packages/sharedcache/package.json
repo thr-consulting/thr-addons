@@ -1,6 +1,6 @@
 {
 	"name": "@thx/sharedcache",
-	"version": "11.0.0-alpha.0",
+	"version": "11.0.0-alpha.1",
 	"description": "Redis shared cache",
 	"repository": {
 		"type": "git",

@@ -1,6 +1,6 @@
 {
 	"name": "@thx/ordereddataloader",
-	"version": "11.0.0-alpha.0",
+	"version": "11.0.0-alpha.1",
 	"description": "Ordered DataLoader",
 	"repository": {
 		"type": "git",

@@ -1,6 +1,6 @@
 {
 	"name": "@thx/mongoose-types",
-	"version": "10.0.0",
+	"version": "11.0.0-alpha.0",
 	"description": "Mongoose Types",
 	"repository": {
 		"type": "git",
@@ -41,10 +41,10 @@
 	},
 	"dependencies": {
 		"@js-joda/core": "^2.0.0",
-		"@thx/money": "^11.0.0-alpha.0",
+		"@thx/money": "^11.0.0-alpha.1",
 		"debug": "^4.1.1",
-		"mongoose": "^5.8.9",
-		"lodash": "^4.17.15"
+		"lodash": "^4.17.15",
+		"mongoose": "^5.8.9"
 	},
 	"jest": {
 		"transform": {
