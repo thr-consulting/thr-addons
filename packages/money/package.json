@@ -37,9 +37,6 @@
 		"yalc:publish": "yalc publish --push",
 		"prepublish": "yarn build && yarn ts"
 	},
-	"devDependencies": {
-		"webpack-cli": "^3.3.9"
-	},
 	"dependencies": {
 		"accounting": "^0.4.1",
 		"debug": "^4.1.1",

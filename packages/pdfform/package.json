@@ -39,13 +39,11 @@
 		"test:watch": "jest --watch",
 		"test:coverage": "../../tools/coverage.sh"
 	},
-	"devDependencies": {
-		"webpack-cli": "^3.3.9"
-	},
 	"dependencies": {
 		"@thx/random": "^11.0.0-alpha.0",
 		"debug": "^4.1.1",
 		"hummus": "^1.0.108",
+		"lodash": "^4.17.15",
 		"promise-sequential": "^1.1.1"
 	},
 	"jest": {

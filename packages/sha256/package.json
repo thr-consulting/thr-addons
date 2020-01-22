@@ -37,9 +37,6 @@
 		"yalc:publish": "yalc publish --push",
 		"prepublish": "yarn build && yarn ts"
 	},
-	"devDependencies": {
-		"webpack-cli": "^3.3.9"
-	},
 	"jest": {
 		"transform": {
 			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"

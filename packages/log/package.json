@@ -39,9 +39,6 @@
 		"test:watch": "jest --watch",
 		"test:coverage": "../../tools/coverage.sh"
 	},
-	"devDependencies": {
-		"webpack-cli": "^3.3.9"
-	},
 	"dependencies": {
 		"colors": "^1.4.0",
 		"debug": "^4.1.1",
