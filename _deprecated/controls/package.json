@@ -1,84 +1,52 @@
 {
-  "name": "@thx/controls",
-  "version": "11.6.0",
-  "description": "A collection of components designed with SemanticUI.",
-  "main": "lib/controls.js",
-  "author": "Mike Kornelson <mike@durbn.net>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/thr-consulting/thr-addons.git"
-  },
-  "keywords": [
-    "react",
-    "controls",
-    "semantic-ui"
-  ],
-  "scripts": {
-    "prepublish": "npm run build",
-    "build": "npm run clean:lib && npm run build:lib",
-    "build:lib": "NODE_ENV=production webpack",
-    "clean:lib": "rimraf ./lib/*",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "../../tools/coverage.sh controls",
-    "lint": "eslint --cache --ext js,ts,tsx src",
-    "docs": "NODE_ENV=development jsdoc -c jsdoc.json",
-    "docs:md": "../../tools/jsdocmd.sh controls",
-    "docs:explain": "NODE_ENV=development jsdoc -X -c jsdoc.json",
-    "storybook": "start-storybook -p 9001 -c .storybook",
-    "docs:storybook": "../../tools/storybook.sh controls"
-  },
-  "peerDependencies": {
-    "react": "^16.x",
-    "react-dom": "^16.x",
-    "semantic-ui-react": "^0.x"
-  },
-  "dependencies": {
-    "@thx/date": "^10.3.0",
-    "@thx/money": "^10.1.1",
-    "@thx/tschemas": "^10.1.1",
-    "debug": "^4.1.1",
-    "formik": "^1.5.4",
-    "inputmask": "^4.0.8",
-    "js-joda": "^1.9.3",
-    "js-money": "^0.6.3",
-    "lodash": "^4.17.11",
-    "moment": "^2.24.0",
-    "number-to-date-month-name": "^1.0.2",
-    "prop-types": "^15.7.2",
-    "react-datepicker": "^2.10.1",
-    "react-responsive": "^6.1.1",
-    "react-text-mask": "^5.4.1",
-    "text-mask-addons": "^3.7.2"
-  },
-  "devDependencies": {
-    "@storybook/addon-actions": "^5.0.10",
-    "@storybook/addon-console": "^1.1.0",
-    "@storybook/addon-info": "^5.0.10",
-    "@storybook/addon-knobs": "^5.0.10",
-    "@storybook/addon-storyshots": "^5.0.10",
-    "@storybook/react": "^5.0.10",
-    "@types/react": "^16.8.14",
-    "mini-css-extract-plugin": "^0.7.0",
-    "rimraf": "^2.6.3",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1"
-  },
-  "jest": {
-    "setupFiles": [
-      "<rootDir>/../../tests/setupTests.js"
-    ],
-    "transform": {
-      "^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transformer.js"
-    },
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/__mocks__/fileMock.js",
-      "\\.(css)$": "identity-obj-proxy"
-    }
-  },
-  "gitHead": "7e4c5f587db721caec9e5945f7b5ca135a18dae6"
+	"name": "@thx/controls",
+	"version": "11.4.0",
+	"description": "A collection of components designed with SemanticUI.",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thr-consulting/thr-addons.git"
+	},
+	"license": "MIT",
+	"author": "Mike Kornelson <darkadept@durbn.net>",
+	"engines": {
+		"node": ">=12"
+	},
+	"bugs": {
+		"url": "https://github.com/thr-consulting/thr-addons/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"main": "index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist",
+		"index.js"
+	],
+	"scripts": {
+		"Xbuild": "yarn build:dev && yarn build:prod",
+		"Xbuild:dev": "NODE_ENV=development webpack --config webpack.js",
+		"Xbuild:prod": "NODE_ENV=production webpack --config webpack.js",
+		"Xlint": "eslint --cache --ext js,ts src",
+		"Xlint:fix": "eslint --cache --fix --ext js,ts src",
+		"Xts": "tsc",
+		"Xyalc:publish": "yalc publish --push",
+		"Xprepublish": "yarn build && yarn ts",
+		"Xstorybook": "start-storybook"
+	},
+	"devDependencies": {
+		"webpack-cli": "^3.3.9"
+	},
+	"peerDependencies": {
+		"react": "^16.x",
+		"react-dom": "^16.x",
+		"semantic-ui-react": "^0.x"
+	},
+	"dependencies": {
+		"debug": "^4.1.1",
+		"lodash": "^4.17.15",
+		"formik": "^2.1.2",
+		"flat": "^5.0.0",
+		"yup": "^0.28.0"
+	}
 }

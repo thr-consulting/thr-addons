@@ -1,11 +1,11 @@
-import React, {KeyboardEvent} from 'react';
-import {Menu, Dropdown, DropdownProps} from 'semantic-ui-react';
+import React from 'react';
+import {Menu, Dropdown} from 'semantic-ui-react';
 
 interface Props {
 	name: string,
 	values: {hour?: number, minute?: number, ampm?: string},
-	onBlur: (e: KeyboardEvent<HTMLElement>, data: DropdownProps) => void,
-	setFieldValue: (name: string, value?: number | string) => void,
+	onBlur: (e: any) => void,
+	setFieldValue: (name: string, value?: any) => void,
 	fieldError: (name: string) => boolean,
 }
 
@@ -19,23 +19,17 @@ export default function TimeDropdown(props: Props) {
 	const hours = Array.from(Array(12).keys());
 	const minutes = Array.from(Array(60).keys());
 	const hasHour = !!values && !!values.hour;
+	// @ts-ignore
+	const hasMinute = !!values && values.minute !== null && (values.minute > -1);
 	const hasAmPm = !!values && values.ampm;
-	let hasMinute = false;
-	let minuteText = 'Minute';
-	let hourText = 'Hour';
-
-	if (values && values.minute !== undefined && values.minute >= 0) {
-		minuteText = (values.minute < 10) ? values.minute.toString().padStart(2, '0') : values.minute.toString();
-		hasMinute = true;
-	}
-	if (values && values.hour) hourText = values.hour.toString();
 
 	return (
 		<Menu compact>
 			<Dropdown
 				id={`${[name]}.hour`}
 				scrolling
-				text={hourText}
+				// @ts-ignore
+				text={hasHour ? values.hour.toString() : 'Hour'}
 				icon=""
 				className="link item"
 				onBlur={handleBlur}
@@ -52,7 +46,8 @@ export default function TimeDropdown(props: Props) {
 			<Dropdown
 				id={`${[name]}.minute`}
 				scrolling
-				text={minuteText}
+				// @ts-ignore
+				text={hasMinute ? (values.minute < 10) ? '0'.concat(values.minute.toString()) : values.minute.toString() : 'minute'}// eslint-disable-line no-nested-ternary
 				icon=""
 				className="link item"
 				onBlur={handleBlur}
@@ -61,10 +56,10 @@ export default function TimeDropdown(props: Props) {
 			>
 				<Dropdown.Menu key="minute">
 					{hasHour ? minutes.map(item => {
-						const min = (item < 10) ? item.toString().padStart(2, '0') : item;
+						const minute = (item < 10) ? '0'.concat((item).toString()) : item;
 						return (
 							<Dropdown.Item key={item} onClick={() => setFieldValue(`${[name]}.minute`, item)}>
-								{min}
+								{minute}
 							</Dropdown.Item>
 						);
 					}) : null}

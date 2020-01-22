@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Image, Label} from 'semantic-ui-react';
+import {Button, Image} from 'semantic-ui-react';
 import debug from 'debug';
 import {ScriptelContext} from '../Scriptel/ScriptelContext';
 
@@ -111,7 +111,6 @@ export default class ScriptelInput extends Component {
 			<div>
 				<div>Enter a signature and click OK.</div>
 				<Button onClick={this.onCancelClick} color="black">Cancel</Button>
-				<Label as="a" basic onClick={() => this.context.calibrate()}>Calibrate</Label>
 			</div>
 		);
 	}

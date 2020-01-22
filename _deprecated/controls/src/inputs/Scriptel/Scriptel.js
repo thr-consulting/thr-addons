@@ -35,9 +35,6 @@ export default class extends Component {
 			render: msg => {
 				this._renderers.forEach(v => v(msg));
 			},
-			calibrate: () => {
-				this._socket.send(JSON.stringify({_class: 'ForceRecalibrate'}));
-			},
 		};
 	}
 
