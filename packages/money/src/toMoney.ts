@@ -19,7 +19,7 @@ export function isMoney(x: any): x is Money {
 }
 
 export function isMoneyObject(x: any): x is IMoneyObject {
-	return (x as IMoneyObject).amount !== undefined;
+	return (x as IMoneyObject).amount !== undefined && (x as IMoneyObject).currency !== undefined;
 }
 
 export function toMoney(

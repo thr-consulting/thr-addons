@@ -1,7 +1,7 @@
 {
-	"name": "@thx/file-location",
-	"version": "11.0.0-alpha.0",
-	"description": "File function abstraction",
+	"name": "@thx/mongoose-types",
+	"version": "10.0.0",
+	"description": "Mongoose Types",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/thr-consulting/thr-addons.git"
@@ -18,7 +18,7 @@
 		"access": "public"
 	},
 	"main": "index.js",
-	"types": "./dist/index.d.ts",
+	"types": "./index.d.ts",
 	"files": [
 		"dist",
 		"index.js"
@@ -31,19 +31,20 @@
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
 		"ts": "tsc",
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:coverage": "../../tools/coverage.sh",
 		"yalc:publish": "yalc publish --push",
 		"prepublish": "yarn build && yarn ts"
 	},
-	"disabledScripts": {
-		"test": "jest",
-		"test:watch": "jest --watch",
-		"test:coverage": "../../tools/coverage.sh"
+	"devDependencies": {
+		"webpack-cli": "^3.3.9"
 	},
 	"dependencies": {
-		"aws-sdk": "^2.608.0",
+		"@js-joda/core": "^2.0.0",
+		"@thx/money": "^11.0.0-alpha.0",
 		"debug": "^4.1.1",
-		"delete-empty": "^3.0.0",
-		"fs-extra": "^8.1.0",
+		"mongoose": "^5.8.9",
 		"lodash": "^4.17.15"
 	},
 	"jest": {
@@ -53,7 +54,7 @@
 		"testPathIgnorePatterns": [
 			"/node_modules/"
 		],
-		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/file-location",
+		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/mongoose-types",
 		"collectCoverageFrom": [
 			"<rootDir>/src/**/*.js",
 			"<rootDir>/src/**/*.ts"

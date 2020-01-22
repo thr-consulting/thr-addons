@@ -42,6 +42,7 @@
     "@types/fs-extra": "^8.0.1",
     "@types/flat": "^0.0.28",
     "@types/yup": "^0.26.27",
+    "@types/mongoose": "^5.5.42",
     "@storybook/react": "^5.3.8",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
@@ -64,7 +65,8 @@
     "stream-to-array": "^2.3.0",
     "timezone-mock": "^1.0.9",
     "typescript": "^3.7.5",
-    "webpack": "^4.41.5"
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "outdated": {
     "@thx/storybook-state": "^1.5.0-thx.4",
