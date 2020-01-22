@@ -24,15 +24,15 @@
 		"index.js"
 	],
 	"scripts": {
-		"build": "yarn build:dev && yarn build:prod",
-		"build:dev": "NODE_ENV=development webpack --config webpack.js",
-		"build:prod": "NODE_ENV=production webpack --config webpack.js",
-		"lint": "eslint --cache --ext js,ts src",
-		"lint:fix": "eslint --cache --fix --ext js,ts src",
-		"ts": "tsc",
-		"yalc:publish": "yalc publish --push",
-		"prepublish": "yarn build && yarn ts",
-		"storybook": "start-storybook"
+		"Xbuild": "yarn build:dev && yarn build:prod",
+		"Xbuild:dev": "NODE_ENV=development webpack --config webpack.js",
+		"Xbuild:prod": "NODE_ENV=production webpack --config webpack.js",
+		"Xlint": "eslint --cache --ext js,ts src",
+		"Xlint:fix": "eslint --cache --fix --ext js,ts src",
+		"Xts": "tsc",
+		"Xyalc:publish": "yalc publish --push",
+		"Xprepublish": "yarn build && yarn ts",
+		"Xstorybook": "start-storybook"
 	},
 	"devDependencies": {
 		"webpack-cli": "^3.3.9"
