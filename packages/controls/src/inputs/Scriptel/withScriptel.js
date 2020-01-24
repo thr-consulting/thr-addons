@@ -10,7 +10,7 @@ import Scriptel from './Scriptel';
 export default function withScriptel(WrappedComponent, opts) {
 	return props => (
 		<Scriptel options={opts}>
-			<WrappedComponent {...props}/>
+			<WrappedComponent {...props} />
 		</Scriptel>
 	);
 }

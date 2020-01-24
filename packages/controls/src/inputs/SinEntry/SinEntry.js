@@ -74,7 +74,7 @@ export default class SinEntry extends Component {
 					autoFocus
 				/>
 				<Button color="green" onClick={handleSubmit}>
-					<Icon name="checkmark"/>
+					<Icon name="checkmark" />
 					Save
 				</Button>
 				<Button color="red" onClick={this.handleCancel}>
@@ -83,7 +83,6 @@ export default class SinEntry extends Component {
 			</Input>
 		</Form.Field>
 	);
-
 
 	render() {
 		if (this.state.showEditor) {
@@ -100,18 +99,16 @@ export default class SinEntry extends Component {
 		if (this.props.value) {
 			return (
 				<Button.Group>
-					<Button
-						color="teal"
-						content="SIN Entered"
-						icon="checkmark"
-					/>
-					<Button color="grey" onClick={this.handleEdit}>Re-enter SIN</Button>
-					<Button.Or/>
+					<Button color="teal" content="SIN Entered" icon="checkmark" />
+					<Button color="grey" onClick={this.handleEdit}>
+						Re-enter SIN
+					</Button>
+					<Button.Or />
 					<Button onClick={this.handleClear}>Clear SIN</Button>
 				</Button.Group>
 			);
 		}
 
-		return (<Button onClick={this.handleEdit}>Enter SIN</Button>);
+		return <Button onClick={this.handleEdit}>Enter SIN</Button>;
 	}
 }

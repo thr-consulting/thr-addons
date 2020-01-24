@@ -32,7 +32,6 @@ export default class RadioGroup extends Component {
 		if (this.props.onChange) this.props.onChange(value);
 	};
 
-
 	render() {
 		const {children, value, onChange, onBlur, ...rest} = this.props;
 

@@ -49,7 +49,9 @@ export default class extends Component {
 		};
 		this._socket.onmessage = ev => {
 			const msg = JSON.parse(ev.data);
-			switch (msg._class) { // eslint-disable-line no-underscore-dangle
+			switch (
+				msg._class // eslint-disable-line no-underscore-dangle
+			) {
 				case 'ConnectionOpen':
 					this.serverConnected({msg, socket: this._socket});
 					break;
@@ -90,10 +92,12 @@ export default class extends Component {
 		if (msg.serverInfo.devices.length > 0) {
 			// Grab the first available device
 			const device = msg.serverInfo.devices[0];
-			socket.send(JSON.stringify({
-				_class: 'DeviceOpenRequest',
-				uuid: device.uuid,
-			}));
+			socket.send(
+				JSON.stringify({
+					_class: 'DeviceOpenRequest',
+					uuid: device.uuid,
+				}),
+			);
 		}
 	}
 
@@ -104,28 +108,27 @@ export default class extends Component {
 	deviceConnected({socket}) {
 		d('Device connected');
 		const {imageType, scale, crop, penStyle} = this.props;
-		socket.send(JSON.stringify({
-			_class: 'RenderSettingsUpdateRequest',
-			renderSettings:
-				{
+		socket.send(
+			JSON.stringify({
+				_class: 'RenderSettingsUpdateRequest',
+				renderSettings: {
 					_class: 'RenderSettings',
 					type: imageType || 'image/svg+xml', // image/png, image/svg+xml
 					scale: scale || 1,
 					crop: crop || false,
-					penStyle: penStyle ? {
-						renderFunction: penStyle,
-					} : {
-						renderFunction: 'PlainPenStyle', // PlainPenStyle, ChiselPenStyle, InkwellPenStyle
-					},
+					penStyle: penStyle
+						? {
+								renderFunction: penStyle,
+						  }
+						: {
+								renderFunction: 'PlainPenStyle', // PlainPenStyle, ChiselPenStyle, InkwellPenStyle
+						  },
 				},
-		}));
+			}),
+		);
 	}
 
 	render() {
-		return (
-			<ScriptelContext.Provider value={this.contextValue}>
-				{this.props.children}
-			</ScriptelContext.Provider>
-		);
+		return <ScriptelContext.Provider value={this.contextValue}>{this.props.children}</ScriptelContext.Provider>;
 	}
 }

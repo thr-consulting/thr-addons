@@ -24,9 +24,7 @@ export default function ResponsiveMenu({mobileWidth, children, ...rest}) {
 		<div>
 			<MediaQuery query={minQuery}>
 				<ResponsiveMenuContext.Provider value={{isMobile: false}}>
-					<Menu {...rest}>
-						{children}
-					</Menu>
+					<Menu {...rest}>{children}</Menu>
 				</ResponsiveMenuContext.Provider>
 			</MediaQuery>
 			<MediaQuery query={maxQuery}>

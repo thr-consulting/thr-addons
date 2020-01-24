@@ -18,7 +18,7 @@ export default function ResponsiveMenuItem({text, icon, menuComponent, ...rest})
 				const MenuComponent = mc || menuComponent || Menu.Item;
 				return (
 					<MenuComponent {...rest}>
-						<Icon name={icon}/>
+						<Icon name={icon} />
 						{text}
 					</MenuComponent>
 				);

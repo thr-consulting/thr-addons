@@ -59,7 +59,9 @@ export default class MoneyInput extends Component {
 			}
 
 			// Set the input text to be the initial value prop
-			this._input.value = this.props.wholenumber ? roundTo(makeMoney(value).toDecimal(), 0) : makeMoney(value).toDecimal();
+			this._input.value = this.props.wholenumber
+				? roundTo(makeMoney(value).toDecimal(), 0)
+				: makeMoney(value).toDecimal();
 
 			moneyInputMask({
 				element: this._input,
@@ -109,14 +111,13 @@ export default class MoneyInput extends Component {
 		);
 	};
 
-
 	render() {
 		const {value, onChange, onBlur, onDetailsClick, detailsIcon, locked, ...rest} = this.props;
 		d(`render: ${value}`);
 
 		return (
 			<Input icon={!!onDetailsClick} {...rest}>
-				<input type="text" ref={r => (this._input = r)} onBlur={onBlur} readOnly={locked ? 'readonly' : null}/>
+				<input type="text" ref={r => (this._input = r)} onBlur={onBlur} readOnly={locked ? 'readonly' : null} />
 				{onDetailsClick ? this.renderDetailsButton() : null}
 			</Input>
 		);

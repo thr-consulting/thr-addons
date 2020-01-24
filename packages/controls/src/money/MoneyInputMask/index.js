@@ -74,8 +74,13 @@ export default class MoneyInputMask extends Component {
 				render={(ref, props) => {
 					d(props);
 					return (
-						<Input onChange={props.onChange} onBlur={props.onBlur} placeholder={props.placeholder} icon={!!props.onDetailsClick}>
-							<input type="text" ref={ref} style={{textAlign: 'right'}} readOnly={props.locked ? 'readonly' : null}/>
+						<Input
+							onChange={props.onChange}
+							onBlur={props.onBlur}
+							placeholder={props.placeholder}
+							icon={!!props.onDetailsClick}
+						>
+							<input type="text" ref={ref} style={{textAlign: 'right'}} readOnly={props.locked ? 'readonly' : null} />
 							{props.onDetailsClick ? this.renderDetailsButton() : null}
 						</Input>
 					);

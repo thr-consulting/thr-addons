@@ -92,12 +92,10 @@ export default class ScriptelInput extends Component {
 		const {data} = this.props.value;
 		return (
 			<div>
-				<Image
-					size="medium"
-					src={data}
-					bordered
-				/>
-				<Button size="mini" compact onClick={this.onClearClick}>Reset</Button>
+				<Image size="medium" src={data} bordered />
+				<Button size="mini" compact onClick={this.onClearClick}>
+					Reset
+				</Button>
 			</div>
 		);
 	}
@@ -110,7 +108,9 @@ export default class ScriptelInput extends Component {
 		return (
 			<div>
 				<div>Enter a signature and click OK.</div>
-				<Button onClick={this.onCancelClick} color="black">Cancel</Button>
+				<Button onClick={this.onCancelClick} color="black">
+					Cancel
+				</Button>
 			</div>
 		);
 	}
@@ -120,9 +120,7 @@ export default class ScriptelInput extends Component {
 	 * @return {*}
 	 */
 	renderBlank() {
-		return (
-			<Button onClick={this.onEnterClick}>Enter Signature</Button>
-		);
+		return <Button onClick={this.onEnterClick}>Enter Signature</Button>;
 	}
 
 	render() {

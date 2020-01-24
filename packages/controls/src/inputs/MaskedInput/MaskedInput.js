@@ -146,8 +146,8 @@ export default class MaskedInput extends Component {
 	render() {
 		const {value, onChange, onBlur, mask, type, ...rest} = this.props;
 		return (
-			<Input {...rest} >
-				<input ref={r => (this._input = r)} onBlur={onBlur}/>
+			<Input {...rest}>
+				<input ref={r => (this._input = r)} onBlur={onBlur} />
 			</Input>
 		);
 	}
