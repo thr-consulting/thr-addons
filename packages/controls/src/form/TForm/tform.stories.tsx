@@ -60,7 +60,7 @@ const sampleGraphqlError = [
 	},
 ];
 
-export const WithTForm = () => {
+export const Main = () => {
 	const [vars, setVars] = useState({
 		graphqlError: 0,
 	});

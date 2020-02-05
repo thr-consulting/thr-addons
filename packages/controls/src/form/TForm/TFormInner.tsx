@@ -12,7 +12,7 @@ const isFunction = (obj: any): obj is Function => typeof obj === 'function';
 const isEmptyChildren = (children: any): boolean => React.Children.count(children) === 0;
 
 export interface TFormChildrenProps<Values> extends FormikProps<Values> {
-	renderWarnings: () => JSX.Element; // Returns a Message component displaying warnings and errors.
+	renderWarnings: () => JSX.Element | null; // Returns a Message component displaying warnings and errors.
 	hasErrors: boolean; // True if errors have been passed from parent but has not been marked as cleared
 	hasWarnings: boolean; // True if form validation warnings occur
 	fieldError: (fieldName: keyof Values) => boolean;
@@ -91,10 +91,13 @@ export function TFormInner<Values>(props: TFormInnerProps<Values>): JSX.Element 
 	let errorHeader = '';
 	if (tFormProps.error && tFormProps.error.message) {
 		if (tFormProps.error.graphQLErrors) {
-			errors = tFormProps.error.graphQLErrors.reduce((memo, v) => {
-				if (v.message) return [...memo, v.message];
-				return memo;
-			}, [] as string[]);
+			errors = tFormProps.error.graphQLErrors.reduce(
+				(memo, v) => {
+					if (v.message) return [...memo, v.message];
+					return memo;
+				},
+				[] as string[],
+			);
 		} else {
 			const errorMessage = tFormProps.error.message.slice(tFormProps.error.message.indexOf(': ') + 1);
 			errors.push(errorMessage);
