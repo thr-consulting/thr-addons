@@ -4,6 +4,7 @@ import {FormikProps, FormikErrors, FormikTouched} from 'formik';
 import {Message, Segment} from 'semantic-ui-react';
 import flatten from 'flat';
 import get from 'lodash/get';
+import property from 'lodash/property';
 import uniq from 'lodash/uniq';
 
 const d = debug('thx.controls.TFormInner');
@@ -15,7 +16,7 @@ export interface TFormChildrenProps<Values> extends FormikProps<Values> {
 	renderWarnings: () => JSX.Element | null; // Returns a Message component displaying warnings and errors.
 	hasErrors: boolean; // True if errors have been passed from parent but has not been marked as cleared
 	hasWarnings: boolean; // True if form validation warnings occur
-	fieldError: (fieldName: keyof Values) => boolean;
+	fieldError: (fieldName: keyof Values | string | number) => boolean; // todo : change this
 	loading?: boolean; // We just pass this variable from parent to child
 	errorMarkedCleared: boolean; // Errors have been marked as cleared
 	submitDisabled: boolean; // Semantic UI Convenience variable
@@ -91,13 +92,10 @@ export function TFormInner<Values>(props: TFormInnerProps<Values>): JSX.Element 
 	let errorHeader = '';
 	if (tFormProps.error && tFormProps.error.message) {
 		if (tFormProps.error.graphQLErrors) {
-			errors = tFormProps.error.graphQLErrors.reduce(
-				(memo, v) => {
-					if (v.message) return [...memo, v.message];
-					return memo;
-				},
-				[] as string[],
-			);
+			errors = tFormProps.error.graphQLErrors.reduce((memo, v) => {
+				if (v.message) return [...memo, v.message];
+				return memo;
+			}, [] as string[]);
 		} else {
 			const errorMessage = tFormProps.error.message.slice(tFormProps.error.message.indexOf(': ') + 1);
 			errors.push(errorMessage);
@@ -126,7 +124,10 @@ export function TFormInner<Values>(props: TFormInnerProps<Values>): JSX.Element 
 			);
 		},
 		fieldError(fieldName) {
-			return (formikProps.touched[fieldName] || formikProps.submitCount > 0) && !!formikProps.errors[fieldName];
+			return (
+				(property(fieldName)(formikProps.touched) || formikProps.submitCount > 0) &&
+				!!property(fieldName)(formikProps.errors)
+			);
 		},
 		handleChange(ev: ChangeEvent | string) {
 			if (typeof ev === 'string') {
