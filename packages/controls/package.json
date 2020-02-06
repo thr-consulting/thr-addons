@@ -43,6 +43,7 @@
 		"semantic-ui-react": "^0.x"
 	},
 	"dependencies": {
+		"@thx/money": "^11.0.0-alpha.1",
 		"debug": "^4.1.1",
 		"flat": "^5.0.0",
 		"formik": "^2.1.2",

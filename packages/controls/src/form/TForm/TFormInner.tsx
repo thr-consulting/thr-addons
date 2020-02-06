@@ -33,7 +33,6 @@ interface ApolloError {
 
 export interface TFormProps<Values> {
 	children?: ((props: TFormChildrenProps<Values>) => React.ReactNode) | React.ReactNode;
-	numFields?: number;
 	loading?: boolean;
 	error?: ApolloError; // Graphql errors
 	onValidate?: (isValid: boolean) => void;
@@ -41,7 +40,7 @@ export interface TFormProps<Values> {
 	onChange?: (values: Values) => void;
 }
 
-export interface TFormInnerProps<Values> {
+interface TFormInnerProps<Values> {
 	formikProps: FormikProps<Values>;
 	tFormProps: TFormProps<Values>;
 	children?: ((props: TFormChildrenProps<Values>) => React.ReactNode) | React.ReactNode;

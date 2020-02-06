@@ -1,2 +1,2 @@
 export {default} from './TForm';
-export {TFormProps, TFormChildrenProps, TFormInner, TFormInnerProps} from './TFormInner';
+export {TFormChildrenProps, TFormProps} from './TFormInner';

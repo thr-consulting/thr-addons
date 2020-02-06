@@ -28,7 +28,7 @@
 		"noImplicitAny": true // I don't think I really want this set to false
 	},
 	"include": [
-		"src/**/*"
+		"src/index.ts"
 	],
 	"exclude": [
 		"src/**/*.test.ts",

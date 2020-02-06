@@ -2,13 +2,19 @@ import 'inputmask/dist/inputmask/inputmask.numeric.extensions';
 import Inputmask from 'inputmask';
 import Money from 'js-money';
 
-export default function moneyInputMask({element, currency, onChange, onKeydown}) {
-	function onComplete(ev) {
-		onChange(ev.target.value);
+export interface MoneyInputMaskArgs {
+	element: HTMLInputElement;
+	currency: string;
+	onChange: (value: string) => void;
+}
+
+export function moneyInputMask({element, currency, onChange}: MoneyInputMaskArgs) {
+	function onComplete() {
+		onChange(element.current?.value);
 	}
 
 	function onCleared() {
-		onChange(0);
+		onChange('0');
 	}
 
 	const im = new Inputmask({
@@ -22,7 +28,6 @@ export default function moneyInputMask({element, currency, onChange, onKeydown})
 		autoUnmask: true,
 		oncomplete: onComplete,
 		oncleared: onCleared,
-		onKeyDown: onKeydown,
 	});
 	im.mask(element);
 

@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
-    "@imperium/babel-preset-imperium": "^4.0.0",
+    "@imperium/babel-preset-imperium": "file:.yalc/@imperium/babel-preset-imperium",
     "@imperium/eslint-config-imperium": "^4.0.1",
     "@imperium/prettier-config-imperium": "^4.0.0",
     "@imperium/util": "^4.0.0",
