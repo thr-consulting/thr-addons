@@ -1,1 +1,1 @@
-export {default} from './LocalMonthSelect';
+export {LocalMonthSelect, LocalMonthSelectProps} from './LocalMonthSelect';

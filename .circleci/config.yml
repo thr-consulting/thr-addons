@@ -12,12 +12,9 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      - run:
-          name: Generate pkghash
-          command: yarn pkghash
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum ".packages-hash" }}
+          - v1-dependencies-{{ checksum "yarn.lock" }}
           - v1-dependencies-
 
       - run: yarn global add lerna
@@ -26,7 +23,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum ".packages-hash" }}
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       - run: yarn build
       - run: yarn test
@@ -41,7 +38,7 @@ jobs:
       - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum ".packages-hash" }}
+            - v1-dependencies-{{ checksum "yarn.lock" }}
             - v1-dependencies-
       - run: npm install lerna
       - run: yarn lerna bootstrap

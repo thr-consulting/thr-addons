@@ -10,6 +10,10 @@ build
 yarn-debug.log*
 yarn-error.log*
 .eslintcache
-lib
 .yalc
 yalc.lock
+.idea/
+*.tgz
+npm-debug.log*
+.env
+yarn.lock

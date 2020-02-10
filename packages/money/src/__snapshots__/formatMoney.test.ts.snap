@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Formatting should add the currency symbol to the formatting 1`] = `"$0.00"`;
+
+exports[`Formatting should format a Money value 1`] = `"0.00"`;

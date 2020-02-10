@@ -1,9 +1,9 @@
-import React, {Component, SyntheticEvent} from 'react';
-import {Select} from 'semantic-ui-react';
-import {LocalDate} from 'js-joda';
 import debug from 'debug';
+import React from 'react';
+import {Select} from 'semantic-ui-react';
+import {LocalDate} from '@js-joda/core';
 
-const d = debug('thx:controls:date:LocalMonthSelect');
+const d = debug('thx.controls.LocalMonthSelect');
 
 const monthOptions = [
 	{text: 'January', value: 1, key: 1},
@@ -20,40 +20,32 @@ const monthOptions = [
 	{text: 'December', value: 12, key: 12},
 ];
 
-interface Props {
-	name: string,
-	onChange?: Function,
-	value?: LocalDate,
-	year?: number,
-	label?: string,
+export interface LocalMonthSelectProps {
+	onChange?: (value: LocalDate | null) => void;
+	value?: LocalDate | null;
+	year?: number;
 }
 
-/**
- * Month select dropdown
- * @class
- * @property {onChange} onChange - Called when the value changes.
- * @property {Date} value - The value in date form. Day is ignored.
- * @property {number} [year=Current Year] - The year to use when selecting a date.
- */
-export default class LocalMonthSelect extends Component<Props> {
-	handleChange = (e: SyntheticEvent<HTMLElement>, value) => {
-		const year = this.props.year || LocalDate.now().year();
-		if (this.props.onChange) {
-			this.props.onChange(this.props.name)(value ? LocalDate.of(year, value.value, 1) : null);
-		}
-	};
+export function LocalMonthSelect(props: LocalMonthSelectProps): JSX.Element {
+	const {value, onChange, year, ...rest} = props;
 
-	render() {
-		const {value, onChange, ...rest} = this.props;
+	const theYear = year || LocalDate.now().year();
 
-		return (
-			<Select
-				placeholder="Select Month"
-				options={monthOptions}
-				value={value ? value.monthValue() : ''}
-				onChange={this.handleChange}
-				{...rest}
-			/>
-		);
-	}
+	return (
+		<Select
+			placeholder="Select Month"
+			options={monthOptions}
+			value={value ? value.monthValue() : ''}
+			onChange={(ev, v) => {
+				if (onChange) {
+					if (typeof v.value === 'number') {
+						onChange(v ? LocalDate.of(theYear, v.value, 1) : null);
+					} else {
+						onChange(null);
+					}
+				}
+			}}
+			{...rest}
+		/>
+	);
 }

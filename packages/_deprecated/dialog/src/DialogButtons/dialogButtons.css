@@ -1,8 +1,0 @@
-.dialog_buttonWrapper {
-    display: flex !important;
-}
-
-.dialog_rightButtons {
-    text-align: right;
-    flex-grow: 1;
-}

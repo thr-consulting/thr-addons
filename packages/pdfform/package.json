@@ -1,0 +1,62 @@
+{
+	"name": "@thx/pdfform",
+	"version": "11.0.0-alpha.1",
+	"description": "PDF form filling library",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thr-consulting/thr-addons.git"
+	},
+	"license": "MIT",
+	"author": "Mike Kornelson <darkadept@durbn.net>",
+	"engines": {
+		"node": ">=12"
+	},
+	"bugs": {
+		"url": "https://github.com/thr-consulting/thr-addons/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"main": "index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist",
+		"index.js"
+	],
+	"scripts": {
+		"build": "yarn build:dev && yarn build:prod",
+		"build:dev": "NODE_ENV=development webpack --config webpack.js",
+		"build:prod": "NODE_ENV=production webpack --config webpack.js",
+		"clean": "rimraf ./dist",
+		"lint": "eslint --cache --ext js,ts src",
+		"lint:fix": "eslint --cache --fix --ext js,ts src",
+		"ts": "tsc",
+		"yalc:publish": "yalc publish --push",
+		"prepublish": "yarn build && yarn ts"
+	},
+	"disabledScripts": {
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:coverage": "../../tools/coverage.sh"
+	},
+	"dependencies": {
+		"@thx/random": "^11.0.0-alpha.1",
+		"debug": "^4.1.1",
+		"hummus": "^1.0.108",
+		"lodash": "^4.17.15",
+		"promise-sequential": "^1.1.1"
+	},
+	"jest": {
+		"transform": {
+			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
+		},
+		"testPathIgnorePatterns": [
+			"/node_modules/"
+		],
+		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/pdfform",
+		"collectCoverageFrom": [
+			"<rootDir>/src/**/*.js",
+			"<rootDir>/src/**/*.ts"
+		]
+	}
+}
