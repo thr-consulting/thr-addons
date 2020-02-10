@@ -10,7 +10,7 @@ export enum FormatDateType {
 }
 
 export interface FormatDateParams {
-	type?: FormatDateType;
+	type?: FormatDateType | 'short' | 'medium' | 'long';
 	time?: boolean;
 	date?: boolean;
 	format?: string;
