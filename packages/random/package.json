@@ -1,6 +1,6 @@
 {
 	"name": "@thx/random",
-	"version": "11.0.0-alpha.1",
+	"version": "11.0.0-alpha.2",
 	"description": "Random Functions",
 	"repository": {
 		"type": "git",
@@ -39,7 +39,7 @@
 	},
 	"dependencies": {
 		"@js-joda/core": "^2.0.0",
-		"@thx/date": "^11.0.0-alpha.1",
+		"@thx/date": "^11.0.0-alpha.2",
 		"debug": "^4.1.1"
 	},
 	"jest": {

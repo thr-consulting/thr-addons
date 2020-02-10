@@ -1,6 +1,6 @@
 {
 	"name": "@thx/controls",
-	"version": "11.4.0",
+	"version": "12.0.0-alpha.0",
 	"description": "A collection of components designed with SemanticUI.",
 	"repository": {
 		"type": "git",
@@ -43,8 +43,8 @@
 		"semantic-ui-react": "^0.x"
 	},
 	"dependencies": {
-		"@thx/date": "^11.0.0-alpha.1",
-		"@thx/money": "^11.0.0-alpha.1",
+		"@thx/date": "^11.0.0-alpha.2",
+		"@thx/money": "^11.0.0-alpha.2",
 		"debug": "^4.1.1",
 		"eventemitter3": "^4.0.0",
 		"flat": "^5.0.0",

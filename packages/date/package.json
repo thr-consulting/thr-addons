@@ -1,6 +1,6 @@
 {
 	"name": "@thx/date",
-	"version": "11.0.0-alpha.1",
+	"version": "11.0.0-alpha.2",
 	"description": "Date utils",
 	"repository": {
 		"type": "git",
