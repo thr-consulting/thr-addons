@@ -2,7 +2,7 @@ import debug from 'debug';
 import React, {useRef, useState} from 'react';
 import {Form, Container, Button, ButtonGroup, Segment} from 'semantic-ui-react';
 import {object, string, InferType} from 'yup';
-import TForm from './TForm';
+import {TForm} from './TForm';
 import {TFormChildrenProps} from './TFormInner';
 
 const d = debug('thx.controls.TForm.stories');

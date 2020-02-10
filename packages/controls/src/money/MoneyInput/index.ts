@@ -1,1 +1,1 @@
-export {MoneyInput} from './MoneyInput';
+export {MoneyInput, MoneyInputProps} from './MoneyInput';

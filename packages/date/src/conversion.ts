@@ -1,4 +1,4 @@
-import {LocalDate, LocalDateTime, nativeJs, ZonedDateTime, ZoneId} from '@js-joda/core';
+import {LocalDate, LocalDateTime, nativeJs, ZonedDateTime, ZoneId, LocalTime} from '@js-joda/core';
 
 /*
   Possible Date Types
@@ -10,6 +10,7 @@ import {LocalDate, LocalDateTime, nativeJs, ZonedDateTime, ZoneId} from '@js-jod
   ZonedDateTime - js-joda date with time and zone
   Date - javascript date with time (no zone)
   String - ISO8601 date string (without time, with time, with time and zone)
+  LocalTime - js-joda time (no zone)
  */
 
 export interface ILocalDateLike {
@@ -32,6 +33,7 @@ export function isLocalDateLike(date: any): date is ILocalDateLike {
 // const iso8601Regex = /^([+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24:?00)([.,]\d+(?!:))?)?(\17[0-5]\d([.,]\d+)?)?([zZ]|([+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/;
 const iso8601DateOnly = /^\d{4}-\d{2}-\d{2}$/;
 const iso8601ContainsZone = /(Z|[+-]\d{2}:\d{2})$/;
+const iso8601TimeOnly = /^\d{2}:\d{2}(:\d{2}(\.\d{1,9})?)?$/;
 
 export function toLocalDate(date: any, zone: ZoneId = ZoneId.SYSTEM): LocalDate {
 	if (date instanceof LocalDate) {
@@ -132,6 +134,9 @@ export function toDate(date: any): Date {
 			date.nano() / 1000000,
 		);
 	}
+	if (date instanceof LocalTime) {
+		return new Date(1970, 1, 1, date.hour(), date.minute(), date.second(), date.nano() / 1000000);
+	}
 	if (typeof date === 'number' || isLocalDateLike(date)) {
 		return toDate(toLocalDate(date));
 	}
@@ -139,4 +144,26 @@ export function toDate(date: any): Date {
 		return new Date(date);
 	}
 	throw new Error('Cannot convert value to Date');
+}
+
+export function toLocalTime(time: any, zone: ZoneId = ZoneId.SYSTEM): LocalTime {
+	if (time instanceof LocalTime) {
+		return time;
+	}
+	if (time instanceof LocalDateTime) {
+		return time.toLocalTime();
+	}
+	if (time instanceof ZonedDateTime) {
+		return time.toLocalTime();
+	}
+	if (time instanceof Date) {
+		return LocalTime.from(nativeJs(time, zone));
+	}
+	if (typeof time === 'string') {
+		if (iso8601TimeOnly.test(time)) {
+			return LocalTime.parse(time);
+		}
+		return toLocalDateTime(time, zone).toLocalTime();
+	}
+	throw new Error('Cannot convert value to LocalTime');
 }

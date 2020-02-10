@@ -1,1 +1,1 @@
-export {default} from './YearSelect';
+export {YearSelect, YearSelectProps} from './YearSelect';

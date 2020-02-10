@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 import {LocalDate, LocalDateTime, ZonedDateTime, ZoneId, ZoneOffset, Instant, LocalTime} from '@js-joda/core';
 import timezoneMock from 'timezone-mock';
-import {toEpochDay, toDate, toLocalDateTime, toLocalDate} from './conversion';
+import {toEpochDay, toDate, toLocalDateTime, toLocalDate, toLocalTime} from './conversion';
 
 function getDateVars() {
 	return {
@@ -24,6 +24,12 @@ function getDateVars() {
 		e23Date: new Date('1970-01-01T23:00:00.000'),
 		e23LocalDateTime: LocalDateTime.of(1970, 1, 1, 23, 0, 0, 0),
 		e23String: '1970-01-01T23:00:00.000',
+
+		// Local time
+		midnight: LocalTime.of(0, 0, 0, 0),
+		midnightStringA: '00:00',
+		midnightStringB: '00:00:00',
+		midnightStringC: '00:00:00.000000000',
 	};
 }
 
@@ -119,6 +125,19 @@ function testDateConversion() {
 	expect(toDate(vars.e23String)).toEqual(e23);
 }
 
+function testTimeConversion() {
+	const vars = getDateVars();
+	const midnight = LocalTime.of(0, 0, 0, 0);
+	expect(toLocalTime(vars.midnight)).toEqual(midnight);
+	expect(toLocalTime(vars.midnightStringA)).toEqual(midnight);
+	expect(toLocalTime(vars.midnightStringB)).toEqual(midnight);
+	expect(toLocalTime(vars.midnightStringC)).toEqual(midnight);
+	expect(toLocalTime(vars.epochString)).toEqual(midnight);
+	expect(toLocalTime(vars.epochLocalDateTime)).toEqual(midnight);
+	expect(toLocalTime(vars.epochZonedDateTime)).toEqual(midnight);
+	expect(toLocalTime(vars.epochDate, ZoneId.UTC)).toEqual(midnight);
+}
+
 describe('US/Pacific Date Conversion', () => {
 	timezoneMock.register('US/Pacific');
 	// console.log(getDateVars().localEpochDate.valueOf());
@@ -126,6 +145,7 @@ describe('US/Pacific Date Conversion', () => {
 	it('should convert to epoch day (US/Pacific)', testEpochDayConversion);
 	it('should convert to LocalDateTime (US/Pacific)', testLocalDateTimeConversion);
 	it('should convert to Date (US/Pacific)', testDateConversion);
+	it('should convert to LocalTime (US/Pacific)', testTimeConversion);
 	timezoneMock.unregister();
 });
 
@@ -136,6 +156,7 @@ describe('US/Eastern Date Conversion', () => {
 	it('should convert to epoch day (US/Eastern)', testEpochDayConversion);
 	it('should convert to LocalDateTime (US/Eastern)', testLocalDateTimeConversion);
 	it('should convert to Date (US/Eastern)', testDateConversion);
+	it('should convert to LocalTime (US/Eastern)', testTimeConversion);
 	timezoneMock.unregister();
 });
 
@@ -146,6 +167,7 @@ describe('Brazil/East Date Conversion', () => {
 	it('should convert to epoch day (Brazil/East)', testEpochDayConversion);
 	it('should convert to LocalDateTime (Brazil/East)', testLocalDateTimeConversion);
 	it('should convert to Date (Brazil/East)', testDateConversion);
+	it('should convert to LocalTime (Brazil/East)', testTimeConversion);
 	timezoneMock.unregister();
 });
 
@@ -156,6 +178,7 @@ describe('UTC Date Conversion', () => {
 	it('should convert to epoch day (UTC)', testEpochDayConversion);
 	it('should convert to LocalDateTime (UTC)', testLocalDateTimeConversion);
 	it('should convert to Date (UTC)', testDateConversion);
+	it('should convert to LocalTime (UTC)', testTimeConversion);
 	timezoneMock.unregister();
 });
 
@@ -166,6 +189,7 @@ describe('Europe/London Date Conversion', () => {
 	it('should convert to epoch day (Europe/London)', testEpochDayConversion);
 	it('should convert to LocalDateTime (Europe/London)', testLocalDateTimeConversion);
 	it('should convert to Date (Europe/London)', testDateConversion);
+	it('should convert to LocalTime (Europe/London)', testTimeConversion);
 	timezoneMock.unregister();
 });
 
@@ -177,5 +201,6 @@ describe('Conversion Errors', () => {
 		expect(() => toEpochDay(null)).toThrowError('Cannot convert value to epoch integer');
 		expect(() => toLocalDateTime(null)).toThrowError('Cannot convert value to LocalDateTime');
 		expect(() => toDate(null)).toThrowError('Cannot convert value to Date');
+		expect(() => toLocalTime(null)).toThrowError('Cannot convert value to LocalTime');
 	});
 });

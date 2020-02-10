@@ -1,4 +1,4 @@
-import {Instant, LocalDate, LocalDateTime, ZonedDateTime, ZoneId, ZoneOffset} from '@js-joda/core';
+import {Instant, LocalDate, LocalDateTime, ZonedDateTime, ZoneId, ZoneOffset, LocalTime} from '@js-joda/core';
 import {formatDate, FormatDateType} from './formatDate';
 
 expect.addSnapshotSerializer({
@@ -72,6 +72,10 @@ describe('Formatting', () => {
 
 	it('should format a falsy value', () => {
 		expect(formatDate(null)).toEqual('');
+	});
+
+	it('should format a LocalTime', () => {
+		expect(formatDate(LocalTime.of(0,  0, 0, 0), {time: true, date: false})).toMatchSnapshot();
 	});
 
 	// it('should throw an error when a bad value is passed in', () => {

@@ -9,7 +9,7 @@ import {toMoney, roundTo, Currencies} from '@thx/money';
 
 const d = debug('thx.controls.MoneyInput');
 
-interface MoneyInputProps {
+export interface MoneyInputProps {
 	onChange?: (value: Money) => void;
 	value?: Money;
 	currency?: Currencies.Currency; // Defaults to Money.CAD

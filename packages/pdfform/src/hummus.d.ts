@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file,import/export */
 declare module 'hummus' {
-	import EventEmitter from 'events';
+	import {EventEmitter} from 'events';
 
 	export class PDFWriter {
 		end(): void;

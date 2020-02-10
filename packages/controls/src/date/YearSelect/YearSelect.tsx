@@ -1,39 +1,26 @@
 import React from 'react';
-import {Icon, Button, Dropdown, Input} from 'semantic-ui-react';
+import {Icon, Button, Dropdown, Input, InputProps, DropdownItemProps} from 'semantic-ui-react';
 import debug from 'debug';
 
-const d = debug('thx.controls.date.YearSelect');
+const d = debug('thx.controls.YearSelect');
 
-interface Props {
-	name: string,
-	onChange?: Function,
-	handleBlur? : Function,
-	value?: number | string,
-	minYear?: number | string,
-	maxYear?: number | string,
-	fieldError? : () => boolean,
+export interface YearSelectProps {
+	onChange?: (value: number) => void;
+	onBlur?: () => void;
+	value: number;
+	minYear?: number; // Defaults to 1970
+	maxYear?: number; // Defaults to current year
+	error?: boolean; // Defaults to false
 }
 
-export default function YearSelect(props: Props): JSX.Element {
+export function YearSelect(props: YearSelectProps & Omit<InputProps, 'onChange'>) {
 	const thisYear = new Date().getFullYear();
-	const {value, minYear = 1970, maxYear = thisYear, onChange = () => {}, name, fieldError, ...rest} = props;
-	let numValue = thisYear;
-	const error = fieldError ? fieldError() : false;
-	if (value && typeof value !== 'string') numValue = value;
+	const {value, minYear = 1970, maxYear = thisYear, onChange, onBlur, error, ...rest} = props;
 
-	const getOptions = () => {
-		const array: {value: number, text: number, key: number}[] = [];
-		for (let i = parseInt(maxYear as string, 10); i >= minYear; i--) {
-			array.push({value: i, text: i, key: i});
-		}
-		return array;
-	};
-
-	const handleChange = (val: number | string) => {
-		const v = parseInt(val as string, 10);
-		// (arg1, arg2) => props.setFieldValue(n, arg2 ? arg2.value : arg1)
-		return onChange.name === 'handleChange' ? onChange(`${name}`)(v) : onChange(v);
-	};
+	const availableYears: DropdownItemProps[] = [];
+	for (let i = maxYear; i >= minYear; i--) {
+		availableYears.push({value: i, text: i.toString(), key: i});
+	}
 
 	return (
 		<Input {...rest}>
@@ -41,30 +28,38 @@ export default function YearSelect(props: Props): JSX.Element {
 				basic
 				icon
 				color={error ? 'red' : 'green'}
-				disabled={numValue === parseInt(minYear as string, 10)}
-				onClick={() => handleChange(numValue - 1)}
+				disabled={value <= minYear}
+				onClick={() => {
+					if (onChange) onChange(value - 1);
+				}}
+				onBlur={onBlur}
 			>
-				<Icon name="arrow left"/>
+				<Icon name="arrow left" />
 			</Button>
 			<Dropdown
-				name={name}
-				icon={<div/>}
+				icon={<div />}
 				button
 				basic
 				scrolling
-				value={numValue}
-				options={getOptions()}
-				onChange={(e, val) => handleChange(val.value as string)}
+				value={value}
+				options={availableYears}
+				onChange={(e, val) => {
+					if (typeof val.value === 'number' && onChange) onChange(val.value);
+				}}
 				error={error}
+				onBlur={onBlur}
 			/>
 			<Button
 				basic
 				icon
 				color={error ? 'red' : 'green'}
-				disabled={numValue === parseInt(maxYear as string, 10)}
-				onClick={() => handleChange(numValue + 1)}
+				disabled={value >= maxYear}
+				onClick={() => {
+					if (onChange) onChange(value + 1);
+				}}
+				onBlur={onBlur}
 			>
-				<Icon name="arrow right"/>
+				<Icon name="arrow right" />
 			</Button>
 		</Input>
 	);

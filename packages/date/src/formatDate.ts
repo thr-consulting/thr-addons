@@ -71,7 +71,7 @@ export function formatDate(
 
 	let formatString = !params.date ? '' : dateFormat;
 	if (params.time) {
-		formatString = `${formatString} ${timeFormat}`;
+		formatString = `${formatString} ${timeFormat}`.trim();
 	}
 
 	const formatter = DateTimeFormatter.ofPattern(params.format || formatString).withLocale(Locale.ENGLISH);
