@@ -22,10 +22,7 @@ export function isMoneyObject(x: any): x is IMoneyObject {
 	return (x as IMoneyObject).amount !== undefined && (x as IMoneyObject).currency !== undefined;
 }
 
-export function toMoney(
-	value: Money | undefined | null | number | string | IMoneyObject = null,
-	currency: Currencies.Currency = Money.CAD,
-): Money {
+export function toMoney(value: Money | undefined | null | number | string | IMoneyObject = null, currency: Currencies.Currency = Money.CAD): Money {
 	if (isMoney(value)) return value;
 	if (!value) return new Money(0, currency);
 	if (isNumber(value)) return Money.fromDecimal(value, currency, 'round');

@@ -9,20 +9,7 @@ interface GetMonthNameParams {
  * @param limitToCurrentMonth = false: {boolean}, If set to true returns all the months for the current year.
  */
 export function getMonthNames({year, limitToCurrentMonth = true}: GetMonthNameParams = {}): string[] {
-	const array = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December',
-	];
+	const array = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 	const date = new Date();
 	const currentYear = date.getFullYear();
 	const currentMonth = date.getMonth();

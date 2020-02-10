@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 
 const d = debug('thx.controls.inputs.AddDynamicFormInputs');
 
-interface Props<Values> {
+export interface AddDynamicFormInputProps<Values> {
 	name: string;
 	values: Values;
 	children: JSX.Element | JSX.Element[];
@@ -18,7 +18,7 @@ interface Props<Values> {
 	columnCount?: SemanticWIDTHSNUMBER;
 }
 
-export function AddDynamicFormInput<Values extends any[]>(props: Props<Values>) {
+export function AddDynamicFormInput<Values extends any[]>(props: AddDynamicFormInputProps<Values>) {
 	const {disableAddButton, children, buttonLabel, name, columnCount, fieldError, onBlur} = props;
 
 	const renderAddButton = (label = 'Add', arrayHelpers: FieldArrayRenderProps) => (

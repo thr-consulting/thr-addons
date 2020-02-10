@@ -11,10 +11,7 @@ interface GetMonthDaysParams {
  * @param asArray = false: {boolean}, If set to true, returns array of days.
  */
 export function getNumberOfDaysInMonth({month, limitToCurrentDay = false, asArray = false}: GetMonthDaysParams) {
-	const days =
-		limitToCurrentDay && month === new Date().getMonth() + 1
-			? new Date().getDate()
-			: new Date(2019, month, 0).getDate();
+	const days = limitToCurrentDay && month === new Date().getMonth() + 1 ? new Date().getDate() : new Date(2019, month, 0).getDate();
 
 	if (!asArray) return days;
 

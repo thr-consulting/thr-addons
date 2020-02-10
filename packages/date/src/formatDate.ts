@@ -23,17 +23,7 @@ export interface FormatDateParams {
  * @param zone
  */
 export function formatDate(
-	obj:
-		| ILocalDateLike
-		| Date
-		| LocalDate
-		| number
-		| string
-		| LocalDateTime
-		| LocalTime
-		| ZonedDateTime
-		| null
-		| undefined,
+	obj: ILocalDateLike | Date | LocalDate | number | string | LocalDateTime | LocalTime | ZonedDateTime | null | undefined,
 	params: FormatDateParams = {type: FormatDateType.short, time: false, date: true},
 	zone: ZoneId = ZoneId.SYSTEM,
 ) {

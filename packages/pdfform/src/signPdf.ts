@@ -26,11 +26,7 @@ export interface PDFSignature {
  * @param signature
  * @param tmpFolderPath - This is required because we need to save a temporary file
  */
-export async function signPdf(
-	pdfStream: Readable,
-	signature: PDFSignature[],
-	tmpFolderPath: string,
-): Promise<Readable> {
+export async function signPdf(pdfStream: Readable, signature: PDFSignature[], tmpFolderPath: string): Promise<Readable> {
 	if (!signature || signature.length < 1) throw new Error('The signatureLocationArray is empty');
 
 	const tempFilePath = path.resolve(tmpFolderPath, randomFilename({id: 'temporary', ext: 'pdf'}));
@@ -50,8 +46,7 @@ export async function signPdf(
 				location: {width = 400, height = 100, x = 1, y = 1, onPage = 1},
 			} = val;
 			const isPageNumDifferent = currentPage.toString() !== onPage.toString();
-			const isNextPageNumDifferent =
-				signature[index + 1] && signature[index + 1].location.onPage.toString() !== onPage.toString();
+			const isNextPageNumDifferent = signature[index + 1] && signature[index + 1].location.onPage.toString() !== onPage.toString();
 
 			// if the page is not the same as the previous one then we want to create a new pageModifier.
 			if (isPageNumDifferent) {

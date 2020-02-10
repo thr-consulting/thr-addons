@@ -1,1 +1,1 @@
-export {default} from './AddDynamicFormInput';
+export {AddDynamicFormInput, AddDynamicFormInputProps} from './AddDynamicFormInput';

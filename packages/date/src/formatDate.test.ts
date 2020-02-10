@@ -43,15 +43,9 @@ describe('Formatting', () => {
 	});
 	it('should format with options', () => {
 		const vars = getDateVars();
-		expect(
-			formatDate(vars.localEpochLocalDateTime, {type: FormatDateType.short, time: true, date: true}),
-		).toMatchSnapshot();
-		expect(
-			formatDate(vars.localEpochLocalDateTime, {type: FormatDateType.medium, time: true, date: true}),
-		).toMatchSnapshot();
-		expect(
-			formatDate(vars.localEpochLocalDateTime, {type: FormatDateType.long, time: true, date: true}),
-		).toMatchSnapshot();
+		expect(formatDate(vars.localEpochLocalDateTime, {type: FormatDateType.short, time: true, date: true})).toMatchSnapshot();
+		expect(formatDate(vars.localEpochLocalDateTime, {type: FormatDateType.medium, time: true, date: true})).toMatchSnapshot();
+		expect(formatDate(vars.localEpochLocalDateTime, {type: FormatDateType.long, time: true, date: true})).toMatchSnapshot();
 	});
 	it('should use a custom date format', () => {
 		const vars = getDateVars();
@@ -75,7 +69,7 @@ describe('Formatting', () => {
 	});
 
 	it('should format a LocalTime', () => {
-		expect(formatDate(LocalTime.of(0,  0, 0, 0), {time: true, date: false})).toMatchSnapshot();
+		expect(formatDate(LocalTime.of(0, 0, 0, 0), {time: true, date: false})).toMatchSnapshot();
 	});
 
 	// it('should throw an error when a bad value is passed in', () => {

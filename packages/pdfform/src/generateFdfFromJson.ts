@@ -6,10 +6,7 @@
 export default function generateFdfFromJson(data: {[key: string]: string}): Buffer {
 	const header = Buffer.from(`
             %FDF-1.2\n
-            ${String.fromCharCode(226) +
-							String.fromCharCode(227) +
-							String.fromCharCode(207) +
-							String.fromCharCode(211)}\n
+            ${String.fromCharCode(226) + String.fromCharCode(227) + String.fromCharCode(207) + String.fromCharCode(211)}\n
             1 0 obj\n
             <<\n
             /FDF\n

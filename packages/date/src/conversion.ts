@@ -77,13 +77,7 @@ export function toEpochDay(date: any, zone: ZoneId = ZoneId.SYSTEM): number {
 	if (date instanceof LocalDate) {
 		return date.toEpochDay();
 	}
-	if (
-		date instanceof LocalDateTime ||
-		date instanceof ZonedDateTime ||
-		date instanceof Date ||
-		isLocalDateLike(date) ||
-		typeof date === 'string'
-	) {
+	if (date instanceof LocalDateTime || date instanceof ZonedDateTime || date instanceof Date || isLocalDateLike(date) || typeof date === 'string') {
 		return toLocalDate(date, zone).toEpochDay();
 	}
 
@@ -124,15 +118,7 @@ export function toDate(date: any): Date {
 		return new Date(date.year(), date.monthValue() - 1, date.dayOfMonth());
 	}
 	if (date instanceof LocalDateTime) {
-		return new Date(
-			date.year(),
-			date.monthValue() - 1,
-			date.dayOfMonth(),
-			date.hour(),
-			date.minute(),
-			date.second(),
-			date.nano() / 1000000,
-		);
+		return new Date(date.year(), date.monthValue() - 1, date.dayOfMonth(), date.hour(), date.minute(), date.second(), date.nano() / 1000000);
 	}
 	if (date instanceof LocalTime) {
 		return new Date(1970, 1, 1, date.hour(), date.minute(), date.second(), date.nano() / 1000000);

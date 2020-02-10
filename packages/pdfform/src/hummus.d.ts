@@ -89,9 +89,5 @@ declare module 'hummus' {
 	}
 
 	export function createWriterToModify(inFilePath: string, inOptionsObject?: object): PDFWriter;
-	export function createWriterToModify(
-		ifSourceStream: PDFRStream,
-		inTargetStream: PDFWStream,
-		inOptionsObject?: object,
-	): PDFWriter;
+	export function createWriterToModify(ifSourceStream: PDFRStream, inTargetStream: PDFWStream, inOptionsObject?: object): PDFWriter;
 }

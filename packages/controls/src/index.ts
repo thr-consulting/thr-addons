@@ -15,6 +15,7 @@ export {MaskedInput, MaskedInputProps} from './inputs/MaskedInput';
 export {RadioGroup, RadioGroupProps} from './inputs/RadioGroup';
 export {Scriptel, ScriptelProps} from './inputs/Scriptel';
 export {ScriptelInput, ScriptelInputProps} from './inputs/ScriptelInput';
+export {AddDynamicFormInput, AddDynamicFormInputProps} from './inputs/AddDynamicFormInput';
 
 // Money
 export {MoneyInput, MoneyInputProps} from './money/MoneyInput';
