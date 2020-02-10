@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`SForm renders without error 1`] = `
-<div>
-  Something is rotten in the state of Denmark
-</div>
-`;

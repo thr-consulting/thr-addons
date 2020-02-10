@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Money renders without error 1`] = `
-<div>
-  500
-   
-  CAD
-</div>
-`;
