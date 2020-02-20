@@ -1,6 +1,6 @@
 {
 	"name": "@thx/file-location",
-	"version": "11.0.0-alpha.2",
+	"version": "11.0.0",
 	"description": "File function abstraction",
 	"repository": {
 		"type": "git",
