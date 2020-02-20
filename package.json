@@ -42,7 +42,7 @@
     "@types/lodash": "^4.14.149",
     "@types/mime-types": "^2.1.0",
     "@types/mongoose": "^5.5.42",
-    "@types/node": "^13.7.0",
+    "@types/node": "^12.7.0",
     "@types/react-datepicker": "^2.11.0",
     "@types/redis": "^2.8.14",
     "@types/yauzl": "^2.9.1",
