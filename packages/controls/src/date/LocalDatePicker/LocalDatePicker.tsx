@@ -23,6 +23,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 	const {
 		value,
 		onChange,
+		onBlur,
 		as,
 		action,
 		actionPosition,
@@ -72,8 +73,9 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 			onChange={date => {
 				if (onChange) onChange(date ? toLocalDate(date) : null);
 			}}
+			onBlur={onBlur}
 			// @ts-ignore
-			customInput={<MaskedDateInput {...inputProps} />}
+			customInput={<MaskedDateInput {...inputProps} onBlur={onBlur} />}
 		/>
 	);
 }

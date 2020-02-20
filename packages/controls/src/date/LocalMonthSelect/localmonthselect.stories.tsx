@@ -15,7 +15,7 @@ export const Main = () => {
 	return (
 		<Container>
 			<Segment basic>
-				<LocalMonthSelect value={value} onChange={v => setValue(v)} year={year} />
+				<LocalMonthSelect value={value} onChange={v => setValue(v)} year={year} onBlur={() => d('onBlur')} />
 				<Form.Field>
 					<label>Year:</label>
 					<Input value={year} onChange={v => setYear(parseInt(v.target.value || '0', 10))} />{' '}

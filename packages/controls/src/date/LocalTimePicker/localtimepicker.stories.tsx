@@ -24,6 +24,7 @@ export const Main = () => {
 						d(v);
 						setValue(v);
 					}}
+					onBlur={() => d('onBlur')}
 				/>
 			</Segment>
 			<Segment>

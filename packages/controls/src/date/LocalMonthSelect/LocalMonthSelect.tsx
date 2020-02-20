@@ -1,6 +1,6 @@
 import debug from 'debug';
 import React from 'react';
-import {Select} from 'semantic-ui-react';
+import {Select, SelectProps} from 'semantic-ui-react';
 import {LocalDate} from '@js-joda/core';
 
 const d = debug('thx.controls.LocalMonthSelect');
@@ -20,11 +20,13 @@ const monthOptions = [
 	{text: 'December', value: 12, key: 12},
 ];
 
-export interface LocalMonthSelectProps {
+interface ILocalMonthSelectProps {
 	onChange?: (value: LocalDate | null) => void;
 	value?: LocalDate | null;
 	year?: number;
 }
+
+export type LocalMonthSelectProps = ILocalMonthSelectProps & Omit<SelectProps, 'options'>;
 
 export function LocalMonthSelect(props: LocalMonthSelectProps): JSX.Element {
 	const {value, onChange, year, ...rest} = props;

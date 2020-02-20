@@ -15,10 +15,7 @@ export const WithDatePicker = () => {
 	return (
 		<Container>
 			<Segment basic>
-				<DatePicker
-					selected={value}
-					onChange={v => setValue(v)}
-				/>
+				<DatePicker selected={value} onChange={v => setValue(v)} onBlur={() => d('onBlur')} />
 			</Segment>
 		</Container>
 	);

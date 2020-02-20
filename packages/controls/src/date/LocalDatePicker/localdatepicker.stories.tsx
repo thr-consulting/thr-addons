@@ -1,6 +1,6 @@
 import debug from 'debug';
 import React, {useState} from 'react';
-import {Container, Segment} from 'semantic-ui-react';
+import {Container, Input, Segment} from 'semantic-ui-react';
 import {LocalDate} from '@js-joda/core';
 import {formatDate} from '@thx/date';
 import {LocalDatePicker} from './LocalDatePicker';
@@ -18,7 +18,8 @@ export const Main = () => {
 	return (
 		<Container>
 			<Segment basic>
-				<LocalDatePicker value={value} onChange={v => setValue(v)} />
+				<LocalDatePicker value={value} onChange={v => setValue(v)} onBlur={() => d('onBlur')} />
+				<Input/>
 			</Segment>
 			<Segment>
 				<p>Value is: {formatDate(value)}</p>
@@ -38,6 +39,7 @@ export const WithMaskedDateInput = () => {
 					onChange={v => {
 						setValue(v.target.value);
 					}}
+					onBlur={() => d('onBlur')}
 				/>
 			</Segment>
 		</Container>
