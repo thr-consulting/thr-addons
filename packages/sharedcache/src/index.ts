@@ -22,16 +22,22 @@ interface ISharedCacheConstructor {
 }
 
 interface IPromisifyRedisClient {
-	get: (name: string) => Promise<string>;
-	set: (name: string, val: string, arg3?: any, arg4?: any) => Promise<unknown>;
+	get: (key: string) => Promise<string>;
+	set: (key: string, val: string, arg3?: any, arg4?: any) => Promise<unknown>;
 	exists: (key: string) => Promise<number>;
 	del: (key: string) => Promise<number>;
+	hmget: (key: string, fields: string[]) => Promise<string[]>;
+	hget: (key: string, field: string) => Promise<string>;
+	hset: (key: string, field: string, value: string) => Promise<number>;
+	hdel: (key: string, fields: string) => Promise<number>;
+	expire: (key: string, seconds: number) => Promise<number>;
+	ttl: (key: string) => Promise<number>;
 	// scan: () => Promise<[string, string[]]>;
 }
 
 export default class SharedCache {
 	private redis: IPromisifyRedisClient;
-	private expire: number | null;
+	private _expire: number | null;
 	private prefix: string;
 
 	/**
@@ -46,13 +52,19 @@ export default class SharedCache {
 			set: promisify(redis.set).bind(redis),
 			exists: promisify(redis.exists).bind(redis),
 			del: promisify(redis.del).bind(redis),
+			hmget: promisify(redis.hmget).bind(redis),
+			hget: promisify(redis.hget).bind(redis),
+			hset: promisify(redis.hset).bind(redis),
+			hdel: promisify(redis.hdel).bind(redis),
+			expire: promisify(redis.expire).bind(redis),
+			ttl: promisify(redis.ttl).bind(redis),
 			// scan: promisify(redis.scan).bind(redis),
 		};
 
 		if (expire) {
-			this.expire = expire;
+			this._expire = expire;
 		} else {
-			this.expire = null;
+			this._expire = null;
 		}
 
 		this.prefix = prefix || '';
@@ -66,8 +78,8 @@ export default class SharedCache {
 	 * @return {Promise<*>}
 	 */
 	async set(key: string, data: any, expire?: number) {
-		if (this.expire || expire) {
-			await this.redis.set(getRedisKey(this.prefix, key), toString(data), 'EX', expire || this.expire);
+		if (this._expire || expire) {
+			await this.redis.set(getRedisKey(this.prefix, key), toString(data), 'EX', expire || this._expire);
 		} else {
 			await this.redis.set(getRedisKey(this.prefix, key), toString(data));
 		}
@@ -100,5 +112,50 @@ export default class SharedCache {
 	 */
 	async clear(key: string): Promise<boolean> {
 		return !!(await this.redis.del(getRedisKey(this.prefix, key)));
+	}
+
+	/**
+	 * Gets multiple keys from a hash key
+	 * @param key
+	 * @param fields
+	 */
+	async hmget(key: string, fields: string[]): Promise<any[]> {
+		return (await this.redis.hmget(getRedisKey(this.prefix, key), fields)).map(v => parse(v));
+	}
+
+	/**
+	 * Gets a single hash field value from a hash key
+	 * @param key
+	 * @param field
+	 */
+	async hget(key: string, field: string): Promise<any> {
+		return parse(await this.redis.hget(getRedisKey(this.prefix, key), field));
+	}
+
+	/**
+	 * Sets a single hash field value on a hash key
+	 * @param key
+	 * @param field
+	 * @param data
+	 */
+	async hset(key: string, field: string, data: any) {
+		await this.redis.hset(getRedisKey(this.prefix, key), field, toString(data));
+	}
+
+	/**
+	 * Deletes a single hash field from a hash key
+	 * @param key
+	 * @param field
+	 */
+	async hdel(key: string, field: string) {
+		await this.redis.hdel(getRedisKey(this.prefix, key), field);
+	}
+
+	async expire(key: string, seconds: number) {
+		await this.redis.expire(getRedisKey(this.prefix, key), seconds);
+	}
+
+	async ttl(key: string) {
+		return this.redis.ttl(getRedisKey(this.prefix, key));
 	}
 }

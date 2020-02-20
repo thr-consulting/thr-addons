@@ -15,6 +15,8 @@ const formValidation = object().shape({
 	nested: object().shape({
 		text: string().required('Nested text is required'),
 	}),
+	plainInput: string(),
+	customInput: string(),
 });
 
 // Infer typescript type from yup validation
@@ -43,6 +45,10 @@ function MyForm({
 				<label>Enter some nested text</label>
 				<input name="nested.text" value={values.nested.text} onChange={handleChange} onBlur={handleBlur} />
 			</Form.Field>
+			<Form.Field error={fieldError('plainInput')}>
+				<label>Plain input</label>
+				<input name="plainInput" value={values.plainInput} onChange={handleChange} onBlur={handleBlur} />
+			</Form.Field>
 			<Form.Button disabled={submitDisabled} type="submit" loading={isSubmitting}>
 				Submit
 			</Form.Button>
@@ -70,7 +76,7 @@ export const Main = () => {
 	return (
 		<Container>
 			<TForm<FormValidationType>
-				initialValues={{text: '', nested: {text: ''}}}
+				initialValues={{text: '', nested: {text: ''}, plainInput: '', customInput: ''}}
 				validationSchema={formValidation}
 				error={graphqlError}
 				getSubmitFn={sub => (formSubmitFn.current = sub)}
