@@ -5,13 +5,13 @@ import {Input, Icon, InputProps, SemanticICONS} from 'semantic-ui-react';
 import Money from 'js-money';
 import Inputmask from 'inputmask';
 import useDeepCompareEffect from 'use-deep-compare-effect';
-import {toMoney, roundTo, Currencies} from '@thx/money';
+import {toMoney, roundTo, Currencies, IMoneyObject} from '@thx/money';
 
 const d = debug('thx.controls.MoneyInput');
 
 export interface MoneyInputProps {
 	onChange?: (value: Money) => void;
-	value?: Money;
+	value?: Money | IMoneyObject;
 	currency?: Currencies.Currency; // Defaults to Money.CAD
 	onBlur?: () => void;
 	prefix?: string; // Defaults to currency symbol
@@ -23,19 +23,7 @@ export interface MoneyInputProps {
 }
 
 export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>) {
-	const {
-		value,
-		onChange,
-		currency,
-		onBlur,
-		showPrefix,
-		prefix,
-		locked,
-		onDetailsClicked,
-		detailsIcon,
-		wholeNumber,
-		...rest
-	} = props;
+	const {value, onChange, currency, onBlur, showPrefix, prefix, locked, onDetailsClicked, detailsIcon, wholeNumber, ...rest} = props;
 
 	const inputElement = useRef<HTMLInputElement | null>(null);
 	const maskInstance = useRef<Inputmask.Instance | null>(null);
@@ -88,13 +76,7 @@ export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>
 	}, [value, adjCurrency]);
 
 	const details = onDetailsClicked ? (
-		<Icon
-			name={detailsIcon || 'server'}
-			color={locked ? 'blue' : undefined}
-			title="Details"
-			onClick={onDetailsClicked}
-			link
-		/>
+		<Icon name={detailsIcon || 'server'} color={locked ? 'blue' : undefined} title="Details" onClick={onDetailsClicked} link />
 	) : null;
 
 	return (
