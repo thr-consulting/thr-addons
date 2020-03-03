@@ -27,6 +27,7 @@ export function YearSelect(props: YearSelectProps & Omit<InputProps, 'onChange'>
 			<Button
 				basic
 				icon
+				type="button"
 				color={error ? 'red' : 'green'}
 				disabled={value <= minYear}
 				onClick={() => {
@@ -52,6 +53,7 @@ export function YearSelect(props: YearSelectProps & Omit<InputProps, 'onChange'>
 			<Button
 				basic
 				icon
+				type="button"
 				color={error ? 'red' : 'green'}
 				disabled={value >= maxYear}
 				onClick={() => {
