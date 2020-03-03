@@ -27,7 +27,7 @@ export default class SpacesFileLocation implements FileLocationInterface {
 	}) {
 		// @ts-ignore
 		this._spaces = new AWS.S3({
-			endpoint: new AWS.Endpoint(endpoint),
+			endpoint,
 			accessKeyId: accessKey,
 			secretAccessKey: secret,
 		});

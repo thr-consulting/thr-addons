@@ -58,7 +58,7 @@ export function MaskedInput(props: MaskedInputProps & Omit<InputProps, 'onChange
 
 	// If we change the value prop we need to sync the DOM value to display the new value
 	useEffect(() => {
-		if (inputElement.current?.value !== value && value !== undefined) {
+		if (inputElement.current && inputElement.current?.value !== value && value !== undefined) {
 			d('Value is changing:', value);
 			inputElement.current.value = value;
 		}
