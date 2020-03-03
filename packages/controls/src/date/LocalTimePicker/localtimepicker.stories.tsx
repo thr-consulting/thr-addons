@@ -1,12 +1,15 @@
 import debug from 'debug';
 import React, {useState} from 'react';
-import {Container, Segment} from 'semantic-ui-react';
+import {Container, Form, Segment} from 'semantic-ui-react';
 import {LocalTime} from '@js-joda/core';
 import {formatDate} from '@thx/date';
+import {InferType, object} from 'yup';
 import {LocalTimePicker} from './LocalTimePicker';
 import {MaskedTimeInput} from './MaskedTimeInput';
+import {localTimeSchemaType} from '../../yupTypes';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../DatePicker/styles.css';
+import {TForm, TFormChildrenProps} from '../../form/TForm';
 
 const d = debug('thx.controls.LocalTimePicker.stories');
 
@@ -50,3 +53,28 @@ export const WithMaskedDateInput = () => {
 		</Container>
 	);
 };
+
+const formValidation = object().shape({
+	time: localTimeSchemaType().required(),
+});
+type FormValidationType = InferType<typeof formValidation>;
+
+export const withTForm = () => (
+	<Container>
+		<TForm<FormValidationType> initialValues={{time: null}} validationSchema={formValidation} onSubmit={() => {}}>
+			{(props: TFormChildrenProps<FormValidationType>) => {
+				const {values, handleSubmit, setFieldValue, handleBlur} = props;
+
+				return (
+					<Form onSubmit={handleSubmit}>
+						<Form.Field width={6}>
+							<label>Enter some value</label>
+							<LocalTimePicker name="time" value={values.time} onChange={v => setFieldValue('time', v)} onBlur={handleBlur} />
+						</Form.Field>
+						<Form.Button type="submit">Submit</Form.Button>
+					</Form>
+				);
+			}}
+		</TForm>
+	</Container>
+);

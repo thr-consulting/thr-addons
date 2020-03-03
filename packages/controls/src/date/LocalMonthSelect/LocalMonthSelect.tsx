@@ -24,12 +24,13 @@ interface ILocalMonthSelectProps {
 	onChange?: (value: LocalDate | null) => void;
 	value?: LocalDate | null;
 	year?: number;
+	handleBlur?: (event: any) => void;
 }
 
 export type LocalMonthSelectProps = ILocalMonthSelectProps & Omit<SelectProps, 'options'>;
 
 export function LocalMonthSelect(props: LocalMonthSelectProps): JSX.Element {
-	const {value, onChange, year, ...rest} = props;
+	const {value, onChange, year, handleBlur, ...rest} = props;
 
 	const theYear = year || LocalDate.now().year();
 
@@ -47,6 +48,7 @@ export function LocalMonthSelect(props: LocalMonthSelectProps): JSX.Element {
 					}
 				}
 			}}
+			onBlur={handleBlur}
 			{...rest}
 		/>
 	);

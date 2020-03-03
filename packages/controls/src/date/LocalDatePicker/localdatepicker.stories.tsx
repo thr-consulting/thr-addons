@@ -1,10 +1,13 @@
 import debug from 'debug';
 import React, {useState} from 'react';
-import {Container, Input, Segment} from 'semantic-ui-react';
+import {Container, Form, Input, Segment} from 'semantic-ui-react';
 import {LocalDate} from '@js-joda/core';
 import {formatDate} from '@thx/date';
+import {InferType, object} from 'yup';
 import {LocalDatePicker} from './LocalDatePicker';
 import {MaskedDateInput} from './MaskedDateInput';
+import {TForm, TFormChildrenProps} from '../../form/TForm';
+import {localDateSchemaType} from '../../yupTypes';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../DatePicker/styles.css';
 
@@ -19,7 +22,7 @@ export const Main = () => {
 		<Container>
 			<Segment basic>
 				<LocalDatePicker value={value} onChange={v => setValue(v)} onBlur={() => d('onBlur')} />
-				<Input/>
+				<Input />
 			</Segment>
 			<Segment>
 				<p>Value is: {formatDate(value)}</p>
@@ -45,3 +48,28 @@ export const WithMaskedDateInput = () => {
 		</Container>
 	);
 };
+
+const formValidation = object().shape({
+	date: localDateSchemaType().required(),
+});
+type FormValidationType = InferType<typeof formValidation>;
+
+export const withTForm = () => (
+	<Container>
+		<TForm<FormValidationType> initialValues={{date: null}} validationSchema={formValidation} onSubmit={() => {}}>
+			{(props: TFormChildrenProps<FormValidationType>) => {
+				const {values, handleSubmit, handleBlur, setFieldValue} = props;
+
+				return (
+					<Form onSubmit={handleSubmit}>
+						<Form.Field width={6}>
+							<label>Enter some value</label>
+							<LocalDatePicker name="date" value={values.date} onChange={v => setFieldValue('date', v)} onBlur={handleBlur} />
+						</Form.Field>
+						<Form.Button type="submit">Submit</Form.Button>
+					</Form>
+				);
+			}}
+		</TForm>
+	</Container>
+);

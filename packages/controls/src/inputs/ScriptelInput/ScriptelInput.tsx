@@ -2,16 +2,16 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Button, Image} from 'semantic-ui-react';
 import debug from 'debug';
 import {ScriptelContext} from '../Scriptel/ScriptelContext';
-import {ScriptelImageType} from '../Scriptel/scriptel/enums';
+import {ScriptelImageType} from '../Scriptel';
 
 const d = debug('thx.controls.ScriptelInput');
 
 export interface ScriptelInputProps {
 	value?: {
-		width: number;
-		height: number;
+		width?: number;
+		height?: number;
 		data: string;
-		type: ScriptelImageType;
+		type?: ScriptelImageType;
 	};
 	onChange?: (value?: {width: number; height: number; data: string; type: ScriptelImageType}) => void;
 }

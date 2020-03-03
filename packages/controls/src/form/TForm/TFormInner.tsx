@@ -123,21 +123,7 @@ export function TFormInner<Values>(props: TFormInnerProps<Values>): JSX.Element 
 			);
 		},
 		fieldError(fieldName) {
-			return (
-				(property(fieldName)(formikProps.touched) || formikProps.submitCount > 0) &&
-				!!property(fieldName)(formikProps.errors)
-			);
-		},
-		handleChange(ev: ChangeEvent | string) {
-			if (typeof ev === 'string') {
-				d(ev);
-				return (val: any) => {
-					d(ev, val);
-					formikProps.setFieldValue(ev, val);
-				};
-			}
-			if (ev.nativeEvent) return formikProps.handleChange(ev);
-			throw new Error('TForm expects handleChange to receive a SyntheticEvent or a string value of the field name');
+			return (property(fieldName)(formikProps.touched) || formikProps.submitCount > 0) && !!property(fieldName)(formikProps.errors);
 		},
 		handleSubmit(e?: React.FormEvent<HTMLFormElement>) {
 			setErrorCleared(false);

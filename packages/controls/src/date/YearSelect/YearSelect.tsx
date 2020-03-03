@@ -6,7 +6,7 @@ const d = debug('thx.controls.YearSelect');
 
 export interface YearSelectProps {
 	onChange?: (value: number) => void;
-	onBlur?: () => void;
+	onBlur?: (ev: any) => void;
 	value: number;
 	minYear?: number; // Defaults to 1970
 	maxYear?: number; // Defaults to current year

@@ -10,10 +10,11 @@ import {toMoney, roundTo, Currencies, IMoneyObject} from '@thx/money';
 const d = debug('thx.controls.MoneyInput');
 
 export interface MoneyInputProps {
+	name?: string;
 	onChange?: (value: Money) => void;
 	value?: Money | IMoneyObject;
 	currency?: Currencies.Currency; // Defaults to Money.CAD
-	onBlur?: () => void;
+	onBlur?: (ev: any) => void;
 	prefix?: string; // Defaults to currency symbol
 	showPrefix?: boolean; // Defaults to false
 	locked?: boolean; // Defaults to false
@@ -23,7 +24,7 @@ export interface MoneyInputProps {
 }
 
 export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>) {
-	const {value, onChange, currency, onBlur, showPrefix, prefix, locked, onDetailsClicked, detailsIcon, wholeNumber, ...rest} = props;
+	const {name, value, onChange, currency, onBlur, showPrefix, prefix, locked, onDetailsClicked, detailsIcon, wholeNumber, ...rest} = props;
 
 	const inputElement = useRef<HTMLInputElement | null>(null);
 	const maskInstance = useRef<Inputmask.Instance | null>(null);
@@ -81,7 +82,7 @@ export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>
 
 	return (
 		<Input icon={!!onDetailsClicked} {...rest}>
-			<input ref={inputElement} onBlur={onBlur} readOnly={locked} />
+			<input name={name} ref={inputElement} onBlur={onBlur} readOnly={locked} />
 			{details}
 		</Input>
 	);
