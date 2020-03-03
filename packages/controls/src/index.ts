@@ -18,3 +18,6 @@ export {ScriptelInput, ScriptelInputProps} from './inputs/ScriptelInput';
 
 // Money
 export {MoneyInput, MoneyInputProps} from './money/MoneyInput';
+
+// Yup Types
+export {localDateSchemaType, scriptelSchemaType, localTimeSchemaType, moneySchemaType} from './yupTypes';

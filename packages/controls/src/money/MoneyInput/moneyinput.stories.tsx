@@ -1,9 +1,12 @@
 import debug from 'debug';
 import React, {useState} from 'react';
 import Money from 'js-money';
-import {Form, Container, Button, Segment} from 'semantic-ui-react';
+import {Form, Container, Button, Segment, Radio} from 'semantic-ui-react';
 import {formatMoney} from '@thx/money';
+import {InferType, object} from 'yup';
 import {MoneyInput} from './MoneyInput';
+import {TForm, TFormChildrenProps} from '../../form/TForm';
+import {MoneySchemaType} from '../../yupTypes';
 
 const d = debug('thx.controls.MoneyInput.stories');
 
@@ -100,3 +103,28 @@ export const Main = () => {
 		</Container>
 	);
 };
+
+const formValidation = object().shape({
+	money: new MoneySchemaType().required(),
+});
+type FormValidationType = InferType<typeof formValidation>;
+
+export const withTForm = () => (
+	<Container>
+		<TForm<FormValidationType> initialValues={{money: ''}} validationSchema={formValidation} onSubmit={() => {}}>
+			{(props: TFormChildrenProps<FormValidationType>) => {
+				const {values, handleSubmit, handleBlur, setFieldValue} = props;
+
+				return (
+					<Form onSubmit={handleSubmit}>
+						<Form.Field width={6}>
+							<label>Enter some value</label>
+							<MoneyInput name="money" value={values.money} onChange={v => setFieldValue('money', v)} onBlur={handleBlur} />
+						</Form.Field>
+						<Form.Button type="submit">Submit</Form.Button>
+					</Form>
+				);
+			}}
+		</TForm>
+	</Container>
+);

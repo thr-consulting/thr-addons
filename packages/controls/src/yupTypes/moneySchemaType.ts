@@ -2,7 +2,7 @@ import {mixed} from 'yup';
 import Money from 'js-money';
 import {isMoneyObject, toMoney} from '@thx/money';
 
-export class MoneySchemaType extends mixed {
+class MoneySchemaType extends mixed {
 	constructor() {
 		super();
 
@@ -18,4 +18,8 @@ export class MoneySchemaType extends mixed {
 	_typeCheck(value: any) {
 		return value instanceof Money;
 	}
+}
+
+export function moneySchemaType() {
+	return new MoneySchemaType();
 }

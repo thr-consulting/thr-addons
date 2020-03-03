@@ -1,7 +1,7 @@
 import {mixed} from 'yup';
-import {LocalTime} from '@js-joda/core';
+import {LocalDate} from '@js-joda/core';
 
-export class LocalTimeSchemaType extends mixed {
+class LocalDateSchemaType extends mixed {
 	constructor() {
 		super();
 
@@ -14,6 +14,10 @@ export class LocalTimeSchemaType extends mixed {
 	}
 
 	_typeCheck(value: any) {
-		return value instanceof LocalTime;
+		return value instanceof LocalDate;
 	}
+}
+
+export function localDateSchemaType() {
+	return new LocalDateSchemaType();
 }

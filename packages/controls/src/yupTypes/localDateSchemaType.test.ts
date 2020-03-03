@@ -1,11 +1,11 @@
 import {object} from 'yup';
 import {LocalDate} from '@js-joda/core';
-import {LocalDateSchemaType} from './LocalDateSchemaType';
+import {localDateSchemaType} from './localDateSchemaType';
 
 describe('LocalDateSchemaType', () => {
 	it('should validate LocalDate', async () => {
 		const schema = object().shape({
-			date: new LocalDateSchemaType().required(),
+			date: localDateSchemaType().required(),
 		});
 
 		const result = await schema.isValid({
@@ -16,7 +16,7 @@ describe('LocalDateSchemaType', () => {
 
 	it('should fail validation', async () => {
 		const schema = object().shape({
-			date: new LocalDateSchemaType().required(),
+			date: localDateSchemaType().required(),
 		});
 
 		const result = await schema.isValid({

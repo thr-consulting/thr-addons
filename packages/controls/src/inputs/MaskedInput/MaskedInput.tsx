@@ -13,14 +13,15 @@ const d = debug('thx.controls.MaskedInput');
  */
 
 export interface MaskedInputProps {
+	name?: string;
 	value?: string;
 	onChange?: (value?: string) => void;
-	onBlur?: () => void;
+	onBlur?: (event: any) => void;
 	mask?: Inputmask.Options;
 }
 
 export function MaskedInput(props: MaskedInputProps & Omit<InputProps, 'onChange'>) {
-	const {value, onChange, onBlur, mask, ...rest} = props;
+	const {name, value, onChange, onBlur, mask, ...rest} = props;
 
 	const inputElement = useRef<HTMLInputElement | null>(null);
 	const maskInstance = useRef<Inputmask.Instance | null>(null);
@@ -65,7 +66,7 @@ export function MaskedInput(props: MaskedInputProps & Omit<InputProps, 'onChange
 
 	return (
 		<Input {...rest}>
-			<input ref={inputElement} onBlur={onBlur} />
+			<input name={name} ref={inputElement} onBlur={onBlur} />
 		</Input>
 	);
 }

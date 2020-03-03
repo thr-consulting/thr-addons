@@ -2,7 +2,10 @@ import debug from 'debug';
 import React, {useState} from 'react';
 import {Container, Input, Segment, Form} from 'semantic-ui-react';
 import {formatDate} from '@thx/date';
+import {InferType, object} from 'yup';
 import {LocalMonthSelect} from './LocalMonthSelect';
+import {localDateSchemaType} from '../../yupTypes';
+import {TForm, TFormChildrenProps} from '../../form/TForm';
 
 const d = debug('thx.controls.LocalMonthSelect.stories');
 
@@ -27,3 +30,28 @@ export const Main = () => {
 		</Container>
 	);
 };
+
+const formValidation = object().shape({
+	opt: localDateSchemaType().required(),
+});
+type FormValidationType = InferType<typeof formValidation>;
+
+export const withTForm = () => (
+	<Container>
+		<TForm<FormValidationType> initialValues={{opt: ''}} validationSchema={formValidation} onSubmit={() => {}}>
+			{(props: TFormChildrenProps<FormValidationType>) => {
+				const {values, handleSubmit, setFieldValue, setFieldTouched} = props;
+
+				return (
+					<Form onSubmit={handleSubmit}>
+						<Form.Field width={6}>
+							<label>Enter some value</label>
+							<LocalMonthSelect name="opt" value={values.opt} onChange={v => setFieldValue('opt', v)} onBlur={() => setFieldTouched('opt')} />
+						</Form.Field>
+						<Form.Button type="submit">Submit</Form.Button>
+					</Form>
+				);
+			}}
+		</TForm>
+	</Container>
+);

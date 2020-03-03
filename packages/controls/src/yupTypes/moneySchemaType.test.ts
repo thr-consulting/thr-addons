@@ -1,11 +1,11 @@
 import {object} from 'yup';
 import Money from 'js-money';
-import {MoneySchemaType} from './MoneySchemaType';
+import {moneySchemaType} from './moneySchemaType';
 
 describe('MoneySchemaType', () => {
 	it('should validate Money', async () => {
 		const schema = object().shape({
-			money: new MoneySchemaType().required(),
+			money: moneySchemaType().required(),
 		});
 
 		const result = await schema.isValid({
@@ -16,7 +16,7 @@ describe('MoneySchemaType', () => {
 
 	it('should fail validation', async () => {
 		const schema = object().shape({
-			money: new MoneySchemaType().required(),
+			money: moneySchemaType().required(),
 		});
 
 		const result = await schema.isValid({
@@ -27,7 +27,7 @@ describe('MoneySchemaType', () => {
 
 	it('should cast the data', () => {
 		const schema = object().shape({
-			moneyLike: new MoneySchemaType().required(),
+			moneyLike: moneySchemaType().required(),
 		});
 
 		const res = schema.cast({

@@ -1,7 +1,9 @@
 import debug from 'debug';
 import React, {useState} from 'react';
-import {Container, Segment} from 'semantic-ui-react';
+import {Container, Form, Segment} from 'semantic-ui-react';
+import {InferType, number, object} from 'yup';
 import {YearSelect} from './YearSelect';
+import {TForm, TFormChildrenProps} from '../../form/TForm';
 
 const d = debug('thx.controls.YearSelect.stories');
 
@@ -49,3 +51,28 @@ export const Main = () => {
 		</Container>
 	);
 };
+
+const formValidation = object().shape({
+	year: number().required(),
+});
+type FormValidationType = InferType<typeof formValidation>;
+
+export const withTForm = () => (
+	<Container>
+		<TForm<FormValidationType> initialValues={{year: 0}} validationSchema={formValidation} onSubmit={() => {}}>
+			{(props: TFormChildrenProps<FormValidationType>) => {
+				const {values, handleSubmit, setFieldValue, setFieldTouched} = props;
+
+				return (
+					<Form onSubmit={handleSubmit}>
+						<Form.Field width={6}>
+							<label>Enter some value</label>
+							<YearSelect value={values.year} onChange={v => setFieldValue('year', v)} onBlur={() => setFieldTouched('year')} />
+						</Form.Field>
+						<Form.Button type="submit">Submit</Form.Button>
+					</Form>
+				);
+			}}
+		</TForm>
+	</Container>
+);

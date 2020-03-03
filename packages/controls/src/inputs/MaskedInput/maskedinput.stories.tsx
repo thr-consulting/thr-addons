@@ -1,7 +1,9 @@
 import debug from 'debug';
 import React, {useState} from 'react';
 import {Form, Container, Button, Segment, Input} from 'semantic-ui-react';
+import {InferType, object, string} from 'yup';
 import {MaskedInput} from './MaskedInput';
+import {TForm, TFormChildrenProps} from '../../form/TForm';
 
 const d = debug('thx.controls.MaskedInput.stories');
 
@@ -71,3 +73,43 @@ export const Main = () => {
 		</Container>
 	);
 };
+
+const formValidation = object().shape({
+	text: string().required(),
+	masked: string().required(),
+});
+type FormValidationType = InferType<typeof formValidation>;
+
+export const withTForm = () => (
+	<Container>
+		<TForm<FormValidationType> initialValues={{text: '', masked: ''}} validationSchema={formValidation} onSubmit={() => {}}>
+			{(props: TFormChildrenProps<FormValidationType>) => {
+				const {values, handleSubmit, handleChange, handleBlur, setFieldValue} = props;
+
+				return (
+					<Form onSubmit={handleSubmit}>
+						<Form.Field width={6}>
+							<label>Enter some text</label>
+							<input name="text" value={values.text} onChange={handleChange} onBlur={handleBlur} />
+						</Form.Field>
+						<Form.Field width={6}>
+							<label>Enter some text</label>
+							<Form.Input name="text" value={values.text} onChange={handleChange} onBlur={handleBlur} />
+						</Form.Field>
+						<Form.Field width={6}>
+							<label>Enter some text</label>
+							<MaskedInput
+								name="text"
+								mask={{mask: '999-999'}}
+								value={values.text}
+								onChange={value => setFieldValue('text', value)}
+								onBlur={handleBlur}
+							/>
+						</Form.Field>
+						<Form.Button type="submit">Submit</Form.Button>
+					</Form>
+				);
+			}}
+		</TForm>
+	</Container>
+);
