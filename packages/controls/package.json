@@ -72,5 +72,6 @@
 			"<rootDir>/src/**/*.js",
 			"<rootDir>/src/**/*.ts"
 		]
-	}
+	},
+	"gitHead": "b7fd4722f916b99ce0c25fdfde7f65445343cb04"
 }

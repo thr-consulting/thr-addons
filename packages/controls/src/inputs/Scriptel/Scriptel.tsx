@@ -2,14 +2,14 @@ import React, {useEffect, useRef, useState} from 'react';
 import debug from 'debug';
 import {ScriptelContext} from './ScriptelContext';
 import {ScriptelSocket} from './scriptel';
-import {ScriptelImageType, ScriptelPenStyle} from './scriptel/enums';
+import {ScriptelPenStyle} from './scriptel/enums';
 import {RenderedImage} from './scriptel/messages';
 
 const d = debug('thx.controls.Scriptel');
 
 export interface ScriptelProps {
 	omniscriptUrl?: string; // Defaults to 'ws://localhost:8080'
-	imageType?: ScriptelImageType; // Defaults to 'image/svg+xml'.
+	imageType?: string; // Defaults to 'image/svg+xml'.
 	scale?: number; // Defaults to 1
 	crop?: boolean; // Defaults to false
 	penStyle?: ScriptelPenStyle; // Defaults to 'PlainPenStyle'
