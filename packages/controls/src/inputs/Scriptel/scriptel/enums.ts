@@ -1,8 +1,3 @@
-export enum ScriptelImageType {
-	Svg = 'image/svg+xml',
-	Png = 'image/png',
-}
-
 export enum ScriptelPenStyle {
 	Plain = 'PlainPenStyle',
 	Chisel = 'ChiselPenStyle',

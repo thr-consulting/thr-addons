@@ -2,9 +2,11 @@ import {object, number, string} from 'yup';
 
 export function scriptelSchemaType() {
 	return object().shape({
-		width: number(),
-		height: number(),
+		width: number().notRequired(),
+		height: number().notRequired(),
 		data: string().required(),
-		type: string().matches(/(image\/svg\+xml|image\/png)/),
+		type: string()
+			.oneOf(['image/svg+xml', 'image/png'])
+			.notRequired(),
 	});
 }
