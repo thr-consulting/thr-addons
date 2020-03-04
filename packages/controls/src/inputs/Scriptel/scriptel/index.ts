@@ -2,13 +2,13 @@
 import debug from 'debug';
 import EventEmitter from 'eventemitter3';
 import {ConnectionOpen, DeviceOpenResponse, Message, RenderedImage} from './messages';
-import {ScriptelImageType, ScriptelMessageClass, ScriptelPenStyle} from './enums';
+import {ScriptelMessageClass, ScriptelPenStyle} from './enums';
 
 const d = debug('thx.controls.Scriptel.API');
 
 export interface ScriptelSocketArgs {
 	omniscriptUrl?: string; // Defaults to 'ws://localhost:8080'
-	imageType?: ScriptelImageType; // Defaults to 'image/svg+xml'.
+	imageType?: string; // Defaults to 'image/svg+xml'.
 	scale?: number; // Defaults to 1
 	crop?: boolean; // Defaults to false
 	penStyle?: ScriptelPenStyle; // Defaults to 'PlainPenStyle'
@@ -37,7 +37,7 @@ function deviceConnected(msg: DeviceOpenResponse, socket: WebSocket, args: Scrip
 			_class: 'RenderSettingsUpdateRequest',
 			renderSettings: {
 				_class: 'RenderSettings',
-				type: imageType || ScriptelImageType.Svg,
+				type: imageType || 'image/svg+xml',
 				scale: scale || 1,
 				crop: crop || false,
 				penStyle: penStyle
