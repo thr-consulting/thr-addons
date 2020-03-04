@@ -1,5 +1,5 @@
 import {DeviceEndpoint, ScriptelDevice} from './classes';
-import {ScriptelImageType, ScriptelMessageClass} from './enums';
+import {ScriptelMessageClass} from './enums';
 
 export interface ConnectionOpen {
 	_class: ScriptelMessageClass.ConnectionOpen;
@@ -19,7 +19,7 @@ export interface RenderedImage {
 	_class: ScriptelMessageClass.RenderedImage;
 	data: string;
 	height: number;
-	type: ScriptelImageType;
+	type: string;
 	width: number;
 }
 
