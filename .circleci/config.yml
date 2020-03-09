@@ -26,37 +26,12 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       - run: yarn build
-      - run: yarn test
+      - run: yarn ts
       - run: yarn lint
-
-  publish:
-    docker:
-      - image: circleci/node:12.7
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
-            - v1-dependencies-
-      - run: npm install lerna
-      - run: yarn lerna bootstrap
-      - run: yarn build
+      - run: yarn test
 
 workflows:
   version: 2
-  build-and-publish:
+  build:
     jobs:
-      - build:
-          filters:
-            tags:
-              only: /^v.*/
-      - publish:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
+      - build

@@ -5,7 +5,7 @@ import {Input, Icon, InputProps, SemanticICONS} from 'semantic-ui-react';
 import Money from 'js-money';
 import Inputmask from 'inputmask';
 import useDeepCompareEffect from 'use-deep-compare-effect';
-import {toMoney, roundTo, Currencies, IMoneyObject} from '@thx/money';
+import {toMoney, roundTo, Currencies, IMoneyObject, isMoneyObject} from '@thx/money';
 
 const d = debug('thx.controls.MoneyInput');
 
@@ -67,12 +67,20 @@ export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>
 
 	// If we change the value prop we need to sync the DOM value to display the new value
 	useEffect(() => {
-		const adjValue = parseFloat(value?.toString() || '0').toString();
-		const adjInputElementValue = parseFloat(inputElement.current?.value || '0').toString();
-		const isZeroValue = parseFloat(value?.toString() || '0') === 0;
-		if (inputElement.current && adjValue !== adjInputElementValue && !isZeroValue) {
-			d('Value is changing:', adjValue, adjInputElementValue, isZeroValue);
-			inputElement.current.value = value?.toString() || '';
+		const inputValue = toMoney(inputElement.current?.value, adjCurrency);
+		if (value instanceof Money && inputElement.current) {
+			if (!inputValue.equals(value)) {
+				inputElement.current.value = value.toString();
+			}
+		} else if (isMoneyObject(value) && inputElement.current) {
+			const valueInMoney = toMoney(value);
+			if (!inputValue.equals(valueInMoney)) {
+				inputElement.current.value = valueInMoney.toString();
+			}
+		} else if ((value === undefined || value === null) && inputElement.current) {
+			inputElement.current.value = '';
+		} else {
+			throw new Error(`Value must be a Money instance or IMoneyObject: ${value} (${typeof value}`);
 		}
 	}, [value, adjCurrency]);
 
