@@ -6,7 +6,7 @@ import {formatMoney} from '@thx/money';
 import {InferType, object} from 'yup';
 import {MoneyInput} from './MoneyInput';
 import {TForm, TFormChildrenProps} from '../../form/TForm';
-import {MoneySchemaType} from '../../yupTypes';
+import {moneySchemaType} from '../../yupTypes';
 
 const d = debug('thx.controls.MoneyInput.stories');
 
@@ -105,13 +105,13 @@ export const Main = () => {
 };
 
 const formValidation = object().shape({
-	money: new MoneySchemaType().required(),
+	money: moneySchemaType().required(),
 });
 type FormValidationType = InferType<typeof formValidation>;
 
-export const withTForm = () => (
+export const WithTForm = () => (
 	<Container>
-		<TForm<FormValidationType> initialValues={{money: ''}} validationSchema={formValidation} onSubmit={() => {}}>
+		<TForm<FormValidationType> initialValues={{money: {amount: 0, currency: 'CAD'}}} validationSchema={formValidation} onSubmit={() => {}}>
 			{(props: TFormChildrenProps<FormValidationType>) => {
 				const {values, handleSubmit, handleBlur, setFieldValue} = props;
 
@@ -128,3 +128,26 @@ export const withTForm = () => (
 		</TForm>
 	</Container>
 );
+
+export const WithIMoneyObject = () => {
+	const [state, setState] = useState({amount: 506, currency: 'CAD'});
+
+	return (
+		<Container>
+			<Segment basic>
+				<Form>
+					<Form.Field inline width={6}>
+						<label>Not Money</label>
+						<MoneyInput
+							value={state}
+							onChange={v => {
+								d(v);
+								setState(v);
+							}}
+						/>
+					</Form.Field>
+				</Form>
+			</Segment>
+		</Container>
+	);
+};
