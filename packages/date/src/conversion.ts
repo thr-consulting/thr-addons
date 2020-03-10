@@ -30,6 +30,25 @@ export function isLocalDateLike(date: any): date is ILocalDateLike {
 	);
 }
 
+export interface ILocalTimeLike {
+	_hour: number;
+	_minute: number;
+	_second: number;
+	_nano: number;
+}
+
+export function isLocalTimeLike(time: any): time is ILocalTimeLike {
+	return (
+		time !== null &&
+		time !== undefined &&
+		typeof time === 'object' &&
+		typeof time._hour !== 'undefined' &&
+		typeof time._minute !== 'undefined' &&
+		typeof time._second !== 'undefined' &&
+		typeof time._nano !== 'undefined'
+	);
+}
+
 // const iso8601Regex = /^([+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24:?00)([.,]\d+(?!:))?)?(\17[0-5]\d([.,]\d+)?)?([zZ]|([+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/;
 const iso8601DateOnly = /^\d{4}-\d{2}-\d{2}$/;
 const iso8601ContainsZone = /(Z|[+-]\d{2}:\d{2})$/;
@@ -144,6 +163,10 @@ export function toLocalTime(time: any, zone: ZoneId = ZoneId.SYSTEM): LocalTime 
 	}
 	if (time instanceof Date) {
 		return LocalTime.from(nativeJs(time, zone));
+	}
+	if (isLocalTimeLike(time)) {
+		// eslint-disable-next-line no-underscore-dangle
+		return LocalTime.of(time._hour, time._minute, time._second, time._nano);
 	}
 	if (typeof time === 'string') {
 		if (iso8601TimeOnly.test(time)) {
