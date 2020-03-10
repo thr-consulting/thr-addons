@@ -151,3 +151,12 @@ export const WithIMoneyObject = () => {
 		</Container>
 	);
 };
+
+export const WithUndefinedValue = () => (
+	<Container>
+		<Form.Field width={6}>
+			<label>Enter some value</label>
+			<MoneyInput name="money" value={undefined} />
+		</Form.Field>
+	</Container>
+);
