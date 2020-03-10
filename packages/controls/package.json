@@ -47,7 +47,6 @@
   },
   "dependencies": {
     "@js-joda/core": "^2.0.0",
-    "@thx/controls": "file:.yalc/@thx/controls",
     "@thx/date": "^11.0.0",
     "@thx/money": "^11.0.1",
     "debug": "^4.1.1",
