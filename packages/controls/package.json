@@ -1,6 +1,6 @@
 {
   "name": "@thx/controls",
-  "version": "12.0.5",
+  "version": "12.0.6",
   "description": "A collection of components designed with SemanticUI.",
   "repository": {
     "type": "git",
@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@js-joda/core": "^2.0.0",
-    "@thx/date": "^11.0.0",
+    "@thx/date": "^11.0.1",
     "@thx/money": "^11.0.1",
     "debug": "^4.1.1",
     "eventemitter3": "^4.0.0",

@@ -1,6 +1,6 @@
 {
 	"name": "@thx/pdfform",
-	"version": "11.0.0",
+	"version": "11.0.1",
 	"description": "PDF form filling library",
 	"repository": {
 		"type": "git",
@@ -40,7 +40,7 @@
 		"test:coverage": "../../tools/coverage.sh"
 	},
 	"dependencies": {
-		"@thx/random": "^11.0.0",
+		"@thx/random": "^11.0.1",
 		"debug": "^4.1.1",
 		"hummus": "^1.0.108",
 		"lodash": "^4.17.15",
