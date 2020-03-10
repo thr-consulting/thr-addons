@@ -5,9 +5,7 @@ import {TFormInner, TFormProps} from './TFormInner';
 
 const d = debug('thx.controls.TForm');
 
-export function TForm<Values extends FormikValues = FormikValues>(
-	props: FormikConfig<Values> & TFormProps<Values>,
-) {
+export function TForm<Values extends FormikValues = FormikValues>(props: FormikConfig<Values> & TFormProps<Values>) {
 	return (
 		<Formik<Values> {...props}>
 			{formikProps => {

@@ -15,10 +15,7 @@ module.exports = {
 			resolve: webpackConfig.resolve,
 			plugins: compact(theirs.plugins),
 			module: {
-				rules: [
-					...webpackConfig.module.rules,
-					...compact(theirs.module.rules),
-				],
+				rules: [...webpackConfig.module.rules, ...compact(theirs.module.rules)],
 			},
 		};
 

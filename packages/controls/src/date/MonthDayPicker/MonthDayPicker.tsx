@@ -8,20 +8,7 @@ import {DatePicker} from '../DatePicker/index';
 
 const d = debug('thx.controls.MonthDayPicker');
 
-const months = [
-	'January',
-	'February',
-	'March',
-	'April',
-	'May',
-	'June',
-	'July',
-	'August',
-	'September',
-	'October',
-	'November',
-	'December',
-];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 interface MonthDayHeaderProps {
 	date: Date;
