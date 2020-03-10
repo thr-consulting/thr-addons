@@ -68,7 +68,9 @@ export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>
 	// If we change the value prop we need to sync the DOM value to display the new value
 	useEffect(() => {
 		const inputValue = toMoney(inputElement.current?.value, adjCurrency);
-		if (value instanceof Money && inputElement.current) {
+		if ((value === undefined || value === null) && inputElement.current) {
+			inputElement.current.value = '';
+		} else if (value instanceof Money && inputElement.current) {
 			if (!inputValue.equals(value)) {
 				inputElement.current.value = value.toString();
 			}
@@ -77,8 +79,6 @@ export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>
 			if (!inputValue.equals(valueInMoney)) {
 				inputElement.current.value = valueInMoney.toString();
 			}
-		} else if ((value === undefined || value === null) && inputElement.current) {
-			inputElement.current.value = '';
 		} else {
 			throw new Error(`Value must be a Money instance or IMoneyObject: ${value} (${typeof value}`);
 		}
