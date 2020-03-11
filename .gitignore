@@ -2,7 +2,6 @@ package-lock.json
 lerna-debug.log
 .idea
 packages/**/npm-debug.log
-packages/**/yarn.lock
 node_modules/
 .vscode/
 build
@@ -16,4 +15,3 @@ yalc.lock
 *.tgz
 npm-debug.log*
 .env
-yarn.lock
