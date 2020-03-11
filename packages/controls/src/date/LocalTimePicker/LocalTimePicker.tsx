@@ -43,7 +43,9 @@ export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
 		...rest
 	} = props;
 
-	const selected = value ? toDate(value) : null;
+	let selected;
+	if (typeof value === 'number') selected = toDate(LocalTime.ofSecondOfDay(value));
+	else selected = value ? toDate(value) : null;
 
 	const inputProps = {
 		as,
