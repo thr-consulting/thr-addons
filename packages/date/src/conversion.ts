@@ -168,6 +168,9 @@ export function toLocalTime(time: any, zone: ZoneId = ZoneId.SYSTEM): LocalTime 
 		// eslint-disable-next-line no-underscore-dangle
 		return LocalTime.of(time._hour, time._minute, time._second, time._nano);
 	}
+	if (typeof time === 'number') {
+		return LocalTime.ofSecondOfDay(time);
+	}
 	if (typeof time === 'string') {
 		if (iso8601TimeOnly.test(time)) {
 			return LocalTime.parse(time);
