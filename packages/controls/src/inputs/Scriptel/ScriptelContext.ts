@@ -1,5 +1,7 @@
-/* eslint-disable no-unused-vars,@typescript-eslint/no-unused-vars */
 import React, {MutableRefObject} from 'react';
 import {RenderedImage} from './scriptel/messages';
+import {ScriptelSocket} from './scriptel';
 
-export const ScriptelContext = React.createContext<RenderedImage | undefined>(undefined);
+export const ScriptelContext = React.createContext<
+	{socket: MutableRefObject<ScriptelSocket | undefined>; renderImage: RenderedImage | undefined} | undefined
+>(undefined);

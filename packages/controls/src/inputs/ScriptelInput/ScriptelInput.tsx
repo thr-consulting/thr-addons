@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Button, Image} from 'semantic-ui-react';
+import {Button, Image, Label} from 'semantic-ui-react';
 import debug from 'debug';
 import {InferType} from 'yup';
 import {ScriptelContext} from '../Scriptel/ScriptelContext';
@@ -24,12 +24,12 @@ export function ScriptelInput(props: ScriptelInputProps) {
 	useEffect(() => {
 		if (entering) {
 			setEntering(false);
-			if (onChange && ctx) {
+			if (onChange && ctx?.renderImage) {
 				onChange({
-					type: ctx.type,
-					width: ctx.width,
-					height: ctx.height,
-					data: ctx.data,
+					type: ctx.renderImage.type,
+					width: ctx.renderImage.width,
+					height: ctx.renderImage.height,
+					data: ctx.renderImage.data,
 				});
 			}
 			if (onChange && !ctx) {
@@ -45,6 +45,9 @@ export function ScriptelInput(props: ScriptelInputProps) {
 				<Button onClick={() => setEntering(false)} color="black">
 					Cancel
 				</Button>
+				<Label as="a" basic onClick={() => ctx?.socket.current?.calibrate()}>
+					Calibrate
+				</Label>
 			</div>
 		);
 	}

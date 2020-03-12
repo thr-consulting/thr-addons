@@ -16,8 +16,7 @@ export interface ScriptelProps {
 	children: JSX.Element | JSX.Element[];
 }
 
-export function Scriptel(props: ScriptelProps) {
-	const {omniscriptUrl, imageType, scale, crop, penStyle} = props;
+export function Scriptel({omniscriptUrl, imageType, scale, crop, penStyle, children}: ScriptelProps) {
 	const socket = useRef<ScriptelSocket>();
 	const [render, setRender] = useState<RenderedImage>();
 
@@ -42,5 +41,5 @@ export function Scriptel(props: ScriptelProps) {
 		};
 	}, [omniscriptUrl, imageType, scale, crop, penStyle]);
 
-	return <ScriptelContext.Provider value={render}>{props.children}</ScriptelContext.Provider>;
+	return <ScriptelContext.Provider value={{socket, renderImage: render}}>{children}</ScriptelContext.Provider>;
 }
