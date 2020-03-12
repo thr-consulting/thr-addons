@@ -1,1 +1,1 @@
-export {ScriptelInput, ScriptelInputProps} from './ScriptelInput';
+export {ScriptelInput, ScriptelInputProps, ScriptelSignature} from './ScriptelInput';

@@ -14,7 +14,7 @@ export {TFormProps, TFormChildrenProps, TForm} from './form/TForm';
 export {MaskedInput, MaskedInputProps} from './inputs/MaskedInput';
 export {RadioGroup, RadioGroupProps} from './inputs/RadioGroup';
 export {Scriptel, ScriptelProps, ScriptelMessageClass, ScriptelPenStyle, withScriptel} from './inputs/Scriptel';
-export {ScriptelInput, ScriptelInputProps} from './inputs/ScriptelInput';
+export {ScriptelInput, ScriptelInputProps, ScriptelSignature} from './inputs/ScriptelInput';
 
 // Money
 export {MoneyInput, MoneyInputProps} from './money/MoneyInput';

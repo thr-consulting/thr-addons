@@ -106,6 +106,11 @@ export class ScriptelSocket extends EventEmitter {
 		};
 	}
 
+	calibrate() {
+		d('calibrate');
+		this.socket.send(JSON.stringify({_class: 'ForceRecalibrate'}));
+	}
+
 	close() {
 		this.socket.close();
 	}
