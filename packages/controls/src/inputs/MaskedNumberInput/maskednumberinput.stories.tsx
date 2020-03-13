@@ -39,7 +39,7 @@ export const WithTypeNumber = () => {
 								<label>Enter number</label>
 								<MaskedNumberInput
 									name="masked"
-									mask={{mask: '9999-99'}}
+									mask={{mask: '99-99.99'}}
 									value={values.masked || undefined}
 									onChange={value => setFieldValue('masked', value)}
 									onBlur={handleBlur}

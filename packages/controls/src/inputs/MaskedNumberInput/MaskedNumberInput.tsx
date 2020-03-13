@@ -17,7 +17,7 @@ export function MaskedNumberInput(props: MaskedNumberInputProps) {
 	const {value, onChange, mask, ...rest} = props;
 
 	const handleChange = (val: string | undefined) => {
-		if (onChange) onChange(parseInt(val || '', 10));
+		if (onChange) onChange(parseFloat(val || ''));
 	};
 
 	return <MaskedInput onChange={handleChange} value={value?.toString()} {...rest} mask={{...mask, autoUnmask: true}} />;
