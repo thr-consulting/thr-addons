@@ -14,17 +14,22 @@ const d = debug('thx.controls.MaskedInput');
 
 export interface MaskedInputProps {
 	name?: string;
-	value?: string;
-	onChange?: (value?: string) => void;
+	value?: string | number;
+	onChange?: (value?: string | number) => void;
 	onBlur?: (event: any) => void;
 	mask?: Inputmask.Options;
 }
 
 export function MaskedInput(props: MaskedInputProps & Omit<InputProps, 'onChange'>) {
-	const {name, value, onChange, onBlur, mask, ...rest} = props;
+	const {name, value, onChange, onBlur, mask, type, ...rest} = props;
 
 	const inputElement = useRef<HTMLInputElement | null>(null);
 	const maskInstance = useRef<Inputmask.Instance | null>(null);
+
+	function parseValue(val: string | number | undefined) {
+		if (!val) return undefined;
+		return type === 'number' ? parseInt(val.toString(), 10) : val.toString();
+	}
 
 	useDeepCompareEffect(() => {
 		if (!inputElement.current) throw new Error('Could not get input element');
@@ -33,7 +38,7 @@ export function MaskedInput(props: MaskedInputProps & Omit<InputProps, 'onChange
 		maskInstance.current = new Inputmask({
 			...mask,
 			oncomplete() {
-				if (onChange) onChange(inputElement.current?.value);
+				if (onChange) onChange(parseValue(inputElement.current?.value));
 				if (mask?.oncomplete) mask.oncomplete();
 			},
 			oncleared() {
@@ -41,7 +46,7 @@ export function MaskedInput(props: MaskedInputProps & Omit<InputProps, 'onChange
 				if (mask?.oncleared) mask.oncleared();
 			},
 			onincomplete() {
-				if (onChange) onChange(inputElement.current?.value);
+				if (onChange) onChange(parseValue(inputElement.current?.value));
 				if (mask?.onincomplete) mask.onincomplete();
 			},
 		});
@@ -60,7 +65,7 @@ export function MaskedInput(props: MaskedInputProps & Omit<InputProps, 'onChange
 	useEffect(() => {
 		if (inputElement.current && inputElement.current?.value !== value && value !== undefined) {
 			d('Value is changing:', value);
-			inputElement.current.value = value;
+			inputElement.current.value = value.toString();
 		}
 	}, [value]);
 

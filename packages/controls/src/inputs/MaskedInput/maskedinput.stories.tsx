@@ -11,7 +11,7 @@ export default {title: 'MaskedInput'};
 
 export const Main = () => {
 	const [shown, setShown] = useState(true);
-	const [value, setValue] = useState();
+	const [value, setValue] = useState<string | number>();
 	const [mask, setMask] = useState('99-999-99');
 	const [maskTemp, setMaskTemp] = useState('99-999-99');
 
@@ -107,6 +107,46 @@ export const withTForm = () => (
 							/>
 						</Form.Field>
 						<Form.Button type="submit">Submit</Form.Button>
+					</Form>
+				);
+			}}
+		</TForm>
+	</Container>
+);
+
+const withTypeNumberFormValidation = object().shape({
+	masked: string().required(),
+});
+type withTypeNumberFormValidationType = InferType<typeof withTypeNumberFormValidation>;
+
+export const WithTypeNumber = () => (
+	<Container>
+		<TForm<withTypeNumberFormValidationType> initialValues={{masked: ''}} validationSchema={withTypeNumberFormValidation} onSubmit={() => {}}>
+			{({
+				values,
+				handleSubmit,
+				handleBlur,
+				setFieldValue,
+				renderWarnings,
+				hasWarnings,
+				hasErrors,
+			}: TFormChildrenProps<withTypeNumberFormValidationType>) => {
+				return (
+					<Form onSubmit={handleSubmit} error={hasErrors} warning={hasWarnings}>
+						<Form.Field width={6}>
+							<label>typeof text: {typeof values.masked}</label>
+							<label>Enter some text</label>
+							<MaskedInput
+								name="masked"
+								mask={{mask: '9999'}}
+								value={values.masked}
+								onChange={value => setFieldValue('masked', value)}
+								onBlur={handleBlur}
+								type="number"
+							/>
+						</Form.Field>
+						<Form.Button type="submit">Submit</Form.Button>
+						{renderWarnings()}
 					</Form>
 				);
 			}}
