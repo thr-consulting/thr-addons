@@ -3,7 +3,7 @@
  * @param data : Object, the object to convert
  * @returns {Buffer}
  */
-export default function generateFdfFromJson(data: {[key: string]: string}): Buffer {
+export default function generateFdfFromJson(data: {[key: string]: string | undefined}): Buffer {
 	const header = Buffer.from(`
             %FDF-1.2\n
             ${String.fromCharCode(226) + String.fromCharCode(227) + String.fromCharCode(207) + String.fromCharCode(211)}\n
@@ -24,7 +24,7 @@ export default function generateFdfFromJson(data: {[key: string]: string}): Buff
 			body = Buffer.concat([body, Buffer.from('<<\n/T (')]);
 			body = Buffer.concat([body, Buffer.from(prop, 'binary')]);
 			body = Buffer.concat([body, Buffer.from(')\n/V(')]);
-			body = Buffer.concat([body, Buffer.from(data[prop], 'binary')]);
+			body = Buffer.concat([body, Buffer.from(data[prop] || '', 'binary')]);
 			body = Buffer.concat([body, Buffer.from(')\n>>\n')]);
 		}
 	}
