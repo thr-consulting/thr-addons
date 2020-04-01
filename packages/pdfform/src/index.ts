@@ -1,2 +1,3 @@
 export {signPdf} from './signPdf';
-export {fillPdf} from './fillPdf';
+export {pdfForStream, pdfForBuffer, buildPdf} from './fillPdf';
+export {streamToBuffer} from './streamToBuffer';
