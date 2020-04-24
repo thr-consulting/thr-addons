@@ -1,6 +1,6 @@
 {
 	"name": "@thx/counter-stream",
-	"version": "11.0.0",
+	"version": "11.0.1",
 	"description": "Count number of bytes in a stream",
 	"repository": {
 		"type": "git",
