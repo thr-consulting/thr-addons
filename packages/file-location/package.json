@@ -40,10 +40,10 @@
 		"test:coverage": "../../tools/coverage.sh"
 	},
 	"dependencies": {
-		"aws-sdk": "^2.608.0",
+		"aws-sdk": "^2.662.0",
 		"debug": "^4.1.1",
 		"delete-empty": "^3.0.0",
-		"fs-extra": "^8.1.0",
+		"fs-extra": "^9.0.0",
 		"lodash": "^4.17.15"
 	},
 	"jest": {

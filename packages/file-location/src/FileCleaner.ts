@@ -1,7 +1,7 @@
 import debug from 'debug';
 import uniq from 'lodash/uniq';
 import pull from 'lodash/pull';
-import {FileLocationInterface} from './FileLocationInterface';
+import type {FileLocationInterface} from './FileLocationInterface';
 
 const d = debug('thx.file-location.FileCleaner');
 
@@ -48,7 +48,7 @@ export default class FileCleaner {
 	 * Removes files, first checking to make sure they exist
 	 */
 	async removeFiles() {
-		await Promise.all(this._files.map(filename => this._fileLocation.deleteObject(filename)));
+		await Promise.all(this._files.map((filename) => this._fileLocation.deleteObject(filename)));
 		this._files = [];
 	}
 

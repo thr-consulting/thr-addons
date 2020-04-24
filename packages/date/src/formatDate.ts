@@ -66,5 +66,5 @@ export function formatDate(
 
 	const formatter = DateTimeFormatter.ofPattern(params.format || formatString).withLocale(Locale.ENGLISH);
 
-	return l.format(formatter).replace(/AM|PM/, x => x.toLowerCase());
+	return l.format(formatter).replace(/AM|PM/, (x) => x.toLowerCase());
 }

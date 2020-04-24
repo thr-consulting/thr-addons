@@ -1,10 +1,10 @@
 import debug from 'debug';
-import {Readable} from 'stream';
+import type {Readable} from 'stream';
 import fs from 'fs';
 import path from 'path';
 import deleteEmpty from 'delete-empty';
 import {mkdirp, pathExists} from 'fs-extra';
-import {FileLocationInterface} from './FileLocationInterface';
+import type {FileLocationInterface} from './FileLocationInterface';
 
 const d = debug('thx.file-location.LocalFileLocation');
 
@@ -41,7 +41,7 @@ export default class LocalFileLocation implements FileLocationInterface {
 	async deleteObject(name: string): Promise<void> {
 		if (await this.objectExists(this.getFullName(name))) {
 			await new Promise((resolve, reject) => {
-				fs.unlink(this.getFullName(name), err => {
+				fs.unlink(this.getFullName(name), (err) => {
 					if (err) {
 						reject(err);
 					} else {

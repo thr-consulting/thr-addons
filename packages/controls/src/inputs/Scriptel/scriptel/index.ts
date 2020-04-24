@@ -1,7 +1,7 @@
 /* globals WebSocket: true */
 import debug from 'debug';
 import EventEmitter from 'eventemitter3';
-import {ConnectionOpen, DeviceOpenResponse, Message, RenderedImage} from './messages';
+import type {ConnectionOpen, DeviceOpenResponse, Message, RenderedImage} from './messages';
 import {ScriptelMessageClass, ScriptelPenStyle} from './enums';
 
 const d = debug('thx.controls.Scriptel.API');
@@ -76,7 +76,7 @@ export class ScriptelSocket extends EventEmitter {
 			d('Socket closed');
 		};
 
-		this.socket.onmessage = ev => {
+		this.socket.onmessage = (ev) => {
 			const msg = JSON.parse(ev.data) as Message;
 			if (!msg._class) return; // A message with no class.
 

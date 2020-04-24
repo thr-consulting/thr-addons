@@ -1,6 +1,6 @@
 import debug from 'debug';
-import React, {ChangeEvent, useState, useEffect} from 'react';
-import {FormikProps, FormikErrors, FormikTouched} from 'formik';
+import React, {useState, useEffect} from 'react';
+import type {FormikProps, FormikErrors, FormikTouched} from 'formik';
 import {Message, Segment} from 'semantic-ui-react';
 import flatten from 'flat';
 import get from 'lodash/get';

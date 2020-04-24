@@ -1,5 +1,5 @@
 import {RandomAccessReader} from 'yauzl';
-import {Volume} from 'memfs/lib/volume';
+import type {Volume} from 'memfs/lib/volume';
 
 export default class ZipReader extends RandomAccessReader {
 	private _fs: Volume;

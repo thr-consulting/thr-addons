@@ -208,7 +208,7 @@ describe('unzipper', () => {
 		readStream.push(null);
 
 		const callback: OnFileCallback = ({mimetype, filename, stream}): Promise<void> => {
-			return new Promise(resolve => {
+			return new Promise((resolve) => {
 				expect(mimetype).toBe(undefined);
 				expect(filename).toBe('sample.txt');
 
@@ -231,7 +231,7 @@ describe('unzipper', () => {
 		readStream.push(null);
 
 		const callback: OnFileCallback = ({mimetype, filename, stream}): Promise<void> => {
-			return new Promise(resolve => {
+			return new Promise((resolve) => {
 				expect(mimetype).toBe(undefined);
 				expect(filename).toBe('sample.txt');
 

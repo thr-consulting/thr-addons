@@ -39,8 +39,8 @@
 	},
 	"dependencies": {
 		"debug": "^4.1.1",
-		"file-type": "^13.1.1",
-		"mime-types": "^2.1.26"
+		"file-type": "^13.1.2",
+		"mime-types": "^2.1.27"
 	},
 	"jest": {
 		"transform": {

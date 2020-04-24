@@ -3,7 +3,7 @@ import {Readable, Writable} from 'stream';
 import FileTypeReadStream from './FileTypeReadStream';
 
 function onEvent(obj: EventEmitter, event: string) {
-	return new Promise(resolve => {
+	return new Promise((resolve) => {
 		obj.on(event, () => {
 			resolve();
 		});

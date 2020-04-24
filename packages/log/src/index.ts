@@ -21,7 +21,7 @@ function createConsoleLogger({appName}: {appName: string}) {
 			format.colorize(),
 			format.label({label: appName}),
 			format.timestamp(),
-			format.printf(info =>
+			format.printf((info) =>
 				compact([
 					colors.cyan(info.timestamp),
 					// @ts-ignore
@@ -44,7 +44,7 @@ function createFileLogger({appName, envFileName}: {appName: string; envFileName?
 		format: format.combine(
 			format.label({label: appName}),
 			format.timestamp(),
-			format.printf(info =>
+			format.printf((info) =>
 				compact([
 					info.timestamp,
 					`${info.label}[session]:`,
@@ -71,7 +71,7 @@ function createGelfLogger({
 	envGelfPort: number;
 	envNodeEnv?: string;
 }) {
-	const gelfFormat = winston.format(info => ({...info, ...{sessionId: 'session', groupId: info.groupId}}));
+	const gelfFormat = winston.format((info) => ({...info, ...{sessionId: 'session', groupId: info.groupId}}));
 	return new GelfTransport({
 		gelfPro: {
 			fields: {

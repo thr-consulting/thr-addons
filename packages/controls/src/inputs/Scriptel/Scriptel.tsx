@@ -2,8 +2,8 @@ import React, {useEffect, useRef, useState} from 'react';
 import debug from 'debug';
 import {ScriptelContext} from './ScriptelContext';
 import {ScriptelSocket} from './scriptel';
-import {ScriptelPenStyle} from './scriptel/enums';
-import {RenderedImage} from './scriptel/messages';
+import type {ScriptelPenStyle} from './scriptel/enums';
+import type {RenderedImage} from './scriptel/messages';
 
 const d = debug('thx.controls.Scriptel');
 

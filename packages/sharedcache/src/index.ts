@@ -1,5 +1,5 @@
 import {promisify} from 'util';
-import {RedisClient} from 'redis';
+import type {RedisClient} from 'redis';
 
 /* eslint-disable no-underscore-dangle */
 function getRedisKey(prefix: string, key: string): string {
@@ -120,7 +120,7 @@ export default class SharedCache {
 	 * @param fields
 	 */
 	async hmget(key: string, fields: string[]): Promise<any[]> {
-		return (await this.redis.hmget(getRedisKey(this.prefix, key), fields)).map(v => parse(v));
+		return (await this.redis.hmget(getRedisKey(this.prefix, key), fields)).map((v) => parse(v));
 	}
 
 	/**

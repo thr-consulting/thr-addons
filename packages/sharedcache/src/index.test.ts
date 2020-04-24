@@ -3,7 +3,7 @@ import redis from 'redis-mock';
 import SharedCache from './index';
 
 function timeout(seconds: number) {
-	return new Promise(resolve => {
+	return new Promise((resolve) => {
 		setTimeout(resolve, seconds * 1000);
 	});
 }

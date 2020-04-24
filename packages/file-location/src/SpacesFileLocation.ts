@@ -2,8 +2,8 @@ import debug from 'debug';
 import AWS from 'aws-sdk';
 import find from 'lodash/find';
 import path from 'path';
-import {Readable} from 'stream';
-import {FileLocationInterface} from './FileLocationInterface';
+import type {Readable} from 'stream';
+import type {FileLocationInterface} from './FileLocationInterface';
 
 const d = debug('thx.file-location.SpacesFileLocation');
 

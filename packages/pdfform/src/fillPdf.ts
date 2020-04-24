@@ -1,6 +1,6 @@
 // @ts-ignore
 import pdftk from 'node-pdftk';
-import {Readable} from 'stream';
+import type {Readable} from 'stream';
 import {spawn} from 'child_process';
 import generateFdfFromJson from './generateFdfFromJson';
 
@@ -31,11 +31,7 @@ export async function pdfForStream(sourcePdfFilename: string, data: {[key: strin
  * @param data
  */
 export function pdfForBuffer(sourcePdfFilename: string, data: {[key: string]: string | undefined}): Buffer {
-	return pdftk
-		.input(sourcePdfFilename)
-		.fillForm(data)
-		.flatten()
-		.output();
+	return pdftk.input(sourcePdfFilename).fillForm(data).flatten().output();
 }
 
 /**

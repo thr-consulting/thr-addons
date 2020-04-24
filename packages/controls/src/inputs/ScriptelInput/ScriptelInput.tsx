@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Button, Image, Label} from 'semantic-ui-react';
 import debug from 'debug';
-import {InferType} from 'yup';
+import type {InferType} from 'yup';
 import {ScriptelContext} from '../Scriptel/ScriptelContext';
 import {scriptelSchemaType} from '../../yupTypes';
 

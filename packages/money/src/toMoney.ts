@@ -1,5 +1,5 @@
 import Money from 'js-money';
-import Currencies from 'js-money/lib/currency';
+import type Currencies from 'js-money/lib/currency';
 
 function isString(x: any): x is string {
 	return typeof x === 'string';
