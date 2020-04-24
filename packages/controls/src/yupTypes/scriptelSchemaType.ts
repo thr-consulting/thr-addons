@@ -6,9 +6,7 @@ export function scriptelSchemaType() {
 			width: number().notRequired(),
 			height: number().notRequired(),
 			data: string().required(),
-			type: string()
-				.oneOf(['image/svg+xml', 'image/png'])
-				.notRequired(),
+			type: string().oneOf(['image/svg+xml', 'image/png']).notRequired(),
 		})
 		.default(undefined);
 }

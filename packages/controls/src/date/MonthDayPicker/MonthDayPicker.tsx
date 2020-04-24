@@ -1,7 +1,7 @@
 import React from 'react';
 import debug from 'debug';
-import {ReactDatePickerProps} from 'react-datepicker';
-import {LocalDate} from '@js-joda/core';
+import type {ReactDatePickerProps} from 'react-datepicker';
+import type {LocalDate} from '@js-joda/core';
 import {InputProps, Input} from 'semantic-ui-react';
 import {toDate, toLocalDate} from '@thx/date';
 import {DatePicker} from '../DatePicker/index';

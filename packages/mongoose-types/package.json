@@ -44,8 +44,10 @@
 		"@thx/date": "^11.1.0",
 		"@thx/money": "^11.0.1",
 		"debug": "^4.1.1",
-		"lodash": "^4.17.15",
-		"mongoose": "^5.8.9"
+		"lodash": "^4.17.15"
+	},
+	"devDependencies": {
+		"mongoose": "^5.x"
 	},
 	"jest": {
 		"transform": {

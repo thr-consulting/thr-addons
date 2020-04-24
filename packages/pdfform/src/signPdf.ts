@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {Readable} from 'stream';
+import type {Readable} from 'stream';
 import path from 'path';
 import {randomFilename} from '@thx/random';
 import {PDFWStreamForFile, createWriterToModify, PDFPageModifier} from 'hummus';
@@ -82,7 +82,7 @@ export async function signPdf(pdfStream: Readable, signature: PDFSignature[], tm
 	// if I don't have the on data event, then the on close event doesn't get called.
 	returnStream.on('data', () => {});
 	returnStream.on('close', () =>
-		fs.unlink(tempFilePath, err => {
+		fs.unlink(tempFilePath, (err) => {
 			if (err) throw new Error(err.message);
 		}),
 	);

@@ -2,13 +2,13 @@ import {Instant, LocalDate, LocalDateTime, ZonedDateTime, ZoneId, ZoneOffset, Lo
 import {formatDate, FormatDateType} from './formatDate';
 
 expect.addSnapshotSerializer({
-	test: v => v instanceof Date,
-	print: v => v.toJSON(),
+	test: (v) => v instanceof Date,
+	print: (v) => v.toJSON(),
 });
 
 expect.addSnapshotSerializer({
-	test: v => v instanceof LocalDate || v instanceof LocalDateTime || v instanceof ZonedDateTime,
-	print: v => v.toJSON(),
+	test: (v) => v instanceof LocalDate || v instanceof LocalDateTime || v instanceof ZonedDateTime,
+	print: (v) => v.toJSON(),
 });
 
 function getDateVars() {

@@ -13,10 +13,10 @@ export default function createSignatureObject(data: string): PDFSignature {
 		signature: {type: '', data: ''},
 		location: {width: 0, height: 0, x: 0, y: 0, onPage: 0},
 	};
-	data.split(',').forEach(current => {
+	data.split(',').forEach((current) => {
 		if (current.includes(' ')) {
 			const location = {location: {}};
-			current.split(' ').forEach(cur => {
+			current.split(' ').forEach((cur) => {
 				if (cur.includes('.')) {
 					merge(location.location, {[cur.split('.')[0]]: cur.split('.')[1]});
 				}

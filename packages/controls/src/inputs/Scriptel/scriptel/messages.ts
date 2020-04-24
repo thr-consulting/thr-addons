@@ -1,5 +1,5 @@
-import {DeviceEndpoint, ScriptelDevice} from './classes';
-import {ScriptelMessageClass} from './enums';
+import type {DeviceEndpoint, ScriptelDevice} from './classes';
+import type {ScriptelMessageClass} from './enums';
 
 export interface ConnectionOpen {
 	_class: ScriptelMessageClass.ConnectionOpen;

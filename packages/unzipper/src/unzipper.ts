@@ -1,5 +1,5 @@
 import debug from 'debug';
-import {Readable} from 'stream';
+import type {Readable} from 'stream';
 import {Volume} from 'memfs';
 import path from 'path';
 import yauzl from 'yauzl';
@@ -44,7 +44,7 @@ export default function unzipper(zipReadStream: Readable, onFile: OnFileCallback
 					zipfile.readEntry();
 
 					// Event: called when a folder or file is found in a zip file
-					zipfile.on('entry', entry => {
+					zipfile.on('entry', (entry) => {
 						if (/\/$/.test(entry.fileName)) {
 							// folder entry
 							zipfile.readEntry();

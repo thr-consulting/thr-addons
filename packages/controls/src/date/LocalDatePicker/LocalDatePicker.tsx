@@ -1,8 +1,8 @@
 import React from 'react';
 import debug from 'debug';
-import {ReactDatePickerProps} from 'react-datepicker';
-import {LocalDate} from '@js-joda/core';
-import {InputProps} from 'semantic-ui-react';
+import type {ReactDatePickerProps} from 'react-datepicker';
+import type {LocalDate} from '@js-joda/core';
+import type {InputProps} from 'semantic-ui-react';
 import {toDate, toLocalDate} from '@thx/date';
 import {MaskedDateInput} from './MaskedDateInput';
 import {DatePicker} from '../DatePicker/index';
@@ -70,7 +70,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		<DatePicker
 			{...rest}
 			selected={selected}
-			onChange={date => {
+			onChange={(date) => {
 				if (onChange) onChange(date ? toLocalDate(date) : null);
 			}}
 			onBlur={onBlur}
