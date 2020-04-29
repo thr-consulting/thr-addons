@@ -1,3 +1,4 @@
+import {LocalDate} from '@js-joda/core';
 import debug from 'debug';
 import React, {useState} from 'react';
 import {Container, Form, Segment} from 'semantic-ui-react';
@@ -11,7 +12,7 @@ const d = debug('thx.controls.MonthYearPicker.stories');
 export default {title: 'MonthYearPicker'};
 
 export const Main = () => {
-	const [value, setValue] = useState();
+	const [value, setValue] = useState<LocalDate>();
 
 	return (
 		<Container>
@@ -22,6 +23,7 @@ export const Main = () => {
 						d('Changed:', v);
 						setValue(v);
 					}}
+					minDate={LocalDate.now()}
 				/>
 			</Segment>
 		</Container>

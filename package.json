@@ -25,10 +25,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "@imperium/babel-preset-imperium": "^4.0.7",
-    "@imperium/eslint-config-imperium": "^4.0.7",
+    "@imperium/babel-preset-imperium": "^4.0.9",
+    "@imperium/eslint-config-imperium": "^4.0.8",
     "@imperium/prettier-config-imperium": "^4.0.4",
-    "@imperium/util": "^4.0.7",
+    "@imperium/util": "^4.0.8",
     "@storybook/react": "^5.3.18",
     "@types/accounting": "^0.4.1",
     "@types/debug": "^4.1.5",
