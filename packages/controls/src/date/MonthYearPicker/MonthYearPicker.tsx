@@ -1,6 +1,6 @@
 import React from 'react';
 import debug from 'debug';
-import {ReactDatePickerProps} from 'react-datepicker';
+import type {ReactDatePickerProps} from 'react-datepicker';
 import {LocalDate} from '@js-joda/core';
 import {InputProps, Input} from 'semantic-ui-react';
 import {toDate, toLocalDate} from '@thx/date';
@@ -72,7 +72,7 @@ export function MonthYearPicker(props: MonthYearPickerProps): JSX.Element {
 		<DatePicker
 			{...rest}
 			selected={selected}
-			onChange={date => {
+			onChange={(date) => {
 				if (onChange) onChange(date ? toLocalDate(date) : undefined);
 			}}
 			customInput={<Input {...inputProps} />}
