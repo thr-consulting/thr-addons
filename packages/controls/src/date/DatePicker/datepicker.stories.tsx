@@ -1,9 +1,8 @@
 import debug from 'debug';
 import React, {useState} from 'react';
-import {Container, Segment} from 'semantic-ui-react';
+import {Provider, Segment, themes} from '@fluentui/react-northstar';
 import {DatePicker} from './index';
 import 'react-datepicker/dist/react-datepicker.css';
-import './styles.css';
 
 const d = debug('thx.controls.DatePicker.stories');
 
@@ -13,10 +12,10 @@ export const WithDatePicker = () => {
 	const [value, setValue] = useState<Date | null>(new Date());
 
 	return (
-		<Container>
-			<Segment basic>
-				<DatePicker selected={value} onChange={v => setValue(v)} onBlur={() => d('onBlur')} />
+		<Provider theme={themes.teams}>
+			<Segment>
+				<DatePicker selected={value} onChange={(v) => setValue(v)} onBlur={() => d('onBlur')} />
 			</Segment>
-		</Container>
+		</Provider>
 	);
 };

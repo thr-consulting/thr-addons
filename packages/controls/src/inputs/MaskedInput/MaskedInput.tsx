@@ -1,6 +1,7 @@
 import debug from 'debug';
-import React, {useRef, useEffect} from 'react';
-import {Input, InputProps} from 'semantic-ui-react';
+import React, {useRef, useEffect, forwardRef, useState} from 'react';
+import {Input} from '@fluentui/react-northstar';
+import type {InputProps} from '@fluentui/react-northstar';
 import 'inputmask/dist/inputmask/inputmask.numeric.extensions';
 import Inputmask from 'inputmask';
 import useDeepCompareEffect from 'use-deep-compare-effect';
@@ -12,19 +13,19 @@ const d = debug('thx.controls.MaskedInput');
  * @typedef {Object} inputmaskPropTypes
  */
 
-export interface MaskedInputProps {
-	name?: string;
+interface CustomMaskedInputProps {
 	value?: string;
 	onChange?: (value?: string) => void;
-	onBlur?: (event: any) => void;
 	mask?: Inputmask.Options;
 }
+export type MaskedInputProps = CustomMaskedInputProps & Omit<InputProps, 'onChange' | 'value' | 'inputRef'>;
 
-export function MaskedInput(props: MaskedInputProps & Omit<InputProps, 'onChange'>) {
-	const {name, value, onChange, onBlur, mask, ...rest} = props;
+export function MaskedInput(props: MaskedInputProps) {
+	const {value, onChange, mask, ...rest} = props;
 
 	const inputElement = useRef<HTMLInputElement | null>(null);
 	const maskInstance = useRef<Inputmask.Instance | null>(null);
+	const [inputValue, setInputValue] = useState<string | undefined>();
 
 	useDeepCompareEffect(() => {
 		if (!inputElement.current) throw new Error('Could not get input element');
@@ -33,17 +34,22 @@ export function MaskedInput(props: MaskedInputProps & Omit<InputProps, 'onChange
 		maskInstance.current = new Inputmask({
 			...mask,
 			oncomplete() {
+				d(`Input complete: ${inputElement.current?.value}`);
 				if (onChange) onChange(inputElement.current?.value);
 				if (mask?.oncomplete) mask.oncomplete();
 			},
 			oncleared() {
+				d('Input cleared');
 				if (onChange) onChange();
 				if (mask?.oncleared) mask.oncleared();
 			},
-			onincomplete() {
-				if (onChange) onChange(inputElement.current?.value);
-				if (mask?.onincomplete) mask.onincomplete();
-			},
+			// This doesn't really make sense so i'm commenting it out - MK
+			// Why should the input fire onChange if the value is only half-entered in?
+			// onincomplete() {
+			// 	d(`Input incomplete: ${inputElement.current?.value}`);
+			// 	if (onChange) onChange(inputElement.current?.value);
+			// 	if (mask?.onincomplete) mask.onincomplete();
+			// },
 		});
 		maskInstance.current.mask(inputElement.current);
 
@@ -56,17 +62,13 @@ export function MaskedInput(props: MaskedInputProps & Omit<InputProps, 'onChange
 		};
 	}, [mask]);
 
-	// If we change the value prop we need to sync the DOM value to display the new value
+	// If we change the value prop we need to update the input value
 	useEffect(() => {
 		if (inputElement.current && inputElement.current?.value !== value && value !== undefined) {
 			d('Value is changing:', value);
-			inputElement.current.value = value;
+			setInputValue(value);
 		}
 	}, [value]);
 
-	return (
-		<Input {...rest}>
-			<input name={name} ref={inputElement} onBlur={onBlur} />
-		</Input>
-	);
+	return <Input {...rest} value={inputValue} onChange={(ev, v) => setInputValue(v?.value)} inputRef={inputElement} />;
 }

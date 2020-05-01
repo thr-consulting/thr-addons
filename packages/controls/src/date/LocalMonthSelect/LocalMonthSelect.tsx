@@ -1,54 +1,62 @@
 import debug from 'debug';
-import React from 'react';
-import {Select, SelectProps} from 'semantic-ui-react';
+import React, {useEffect, useState} from 'react';
+import {Dropdown, DropdownItemProps, DropdownProps} from '@fluentui/react-northstar';
 import {LocalDate} from '@js-joda/core';
 
 const d = debug('thx.controls.LocalMonthSelect');
 
-const monthOptions = [
-	{text: 'January', value: 1, key: 1},
-	{text: 'February', value: 2, key: 2},
-	{text: 'March', value: 3, key: 3},
-	{text: 'April', value: 4, key: 4},
-	{text: 'May', value: 5, key: 5},
-	{text: 'June', value: 6, key: 6},
-	{text: 'July', value: 7, key: 7},
-	{text: 'August', value: 8, key: 8},
-	{text: 'September', value: 9, key: 9},
-	{text: 'October', value: 10, key: 10},
-	{text: 'November', value: 11, key: 11},
-	{text: 'December', value: 12, key: 12},
+interface MyItems extends DropdownItemProps {
+	value: number;
+}
+
+const monthOptions: MyItems[] = [
+	{header: 'January', value: 1},
+	{header: 'February', value: 2},
+	{header: 'March', value: 3},
+	{header: 'April', value: 4},
+	{header: 'May', value: 5},
+	{header: 'June', value: 6},
+	{header: 'July', value: 7},
+	{header: 'August', value: 8},
+	{header: 'September', value: 9},
+	{header: 'October', value: 10},
+	{header: 'November', value: 11},
+	{header: 'December', value: 12},
 ];
 
-interface ILocalMonthSelectProps {
+interface CustomLocalMonthSelectProps {
 	onChange?: (value: LocalDate | null) => void;
 	value?: LocalDate | null;
 	year?: number;
-	handleBlur?: (event: any) => void;
 }
 
-export type LocalMonthSelectProps = ILocalMonthSelectProps & Omit<SelectProps, 'options'>;
+export type LocalMonthSelectProps = CustomLocalMonthSelectProps & Omit<DropdownProps, 'value' | 'onChange' | 'items' | 'placeholder'>;
 
 export function LocalMonthSelect(props: LocalMonthSelectProps): JSX.Element {
-	const {value, onChange, year, handleBlur, ...rest} = props;
+	const {value, onChange, year, ...rest} = props;
+	const [yearValue, setYearValue] = useState<number>(LocalDate.now().year());
 
-	const theYear = year || LocalDate.now().year();
+	useEffect(() => {
+		const theYear = year || LocalDate.now().year();
+		setYearValue(theYear);
+		if (onChange && value) onChange(LocalDate.of(theYear, value.monthValue(), 1));
+	}, [year]);
 
 	return (
-		<Select
+		// @ts-ignore
+		<Dropdown
 			placeholder="Select Month"
-			options={monthOptions}
-			value={value ? value.monthValue() : ''}
+			items={monthOptions}
+			value={value ? monthOptions[value.monthValue() - 1] : ''}
 			onChange={(ev, v) => {
 				if (onChange) {
-					if (typeof v.value === 'number') {
-						onChange(v ? LocalDate.of(theYear, v.value, 1) : null);
+					if (v.highlightedIndex !== undefined && v.highlightedIndex >= 0) {
+						onChange(LocalDate.of(yearValue, monthOptions[v.highlightedIndex || 0].value, 1));
 					} else {
 						onChange(null);
 					}
 				}
 			}}
-			onBlur={handleBlur}
 			{...rest}
 		/>
 	);

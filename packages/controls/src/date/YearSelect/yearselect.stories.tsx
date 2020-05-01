@@ -1,9 +1,9 @@
 import debug from 'debug';
 import React, {useState} from 'react';
-import {Container, Form, Segment} from 'semantic-ui-react';
-import {InferType, number, object} from 'yup';
+import {Flex, Provider, Segment, themes} from '@fluentui/react-northstar';
+// import {InferType, number, object} from 'yup';
 import {YearSelect} from './YearSelect';
-import {TForm, TFormChildrenProps} from '../../form/TForm';
+// import {TForm, TFormChildrenProps} from '../../form/TForm';
 
 const d = debug('thx.controls.YearSelect.stories');
 
@@ -15,64 +15,67 @@ export const Main = () => {
 	const [value3, setValue3] = useState(1990);
 
 	return (
-		<Container>
-			<Segment basic>
-				<div>
+		<Provider theme={themes.teams}>
+			<Flex column>
+				<Flex>
 					<YearSelect
 						value={value1}
-						onChange={v => {
+						onChange={(v) => {
 							setValue1(v);
 						}}
 						onBlur={() => {
-							d('Blur yearselect');
+							// d('Blur yearselect');
 						}}
 					/>
-				</div>
-				<div>
+					<Segment>{value1}</Segment>
+				</Flex>
+				<Flex>
 					<YearSelect
 						value={value2}
-						onChange={v => {
+						onChange={(v) => {
 							setValue2(v);
 						}}
 						error
 					/>
-				</div>
-				<div>
+					<Segment>{value2}</Segment>
+				</Flex>
+				<Flex>
 					<YearSelect
 						value={value3}
-						onChange={v => {
+						onChange={(v) => {
 							setValue3(v);
 						}}
 						minYear={1980}
 						maxYear={1990}
 					/>
-				</div>
-			</Segment>
-		</Container>
+					<Segment>{value3}</Segment>
+				</Flex>
+			</Flex>
+		</Provider>
 	);
 };
 
-const formValidation = object().shape({
-	year: number().required(),
-});
-type FormValidationType = InferType<typeof formValidation>;
-
-export const withTForm = () => (
-	<Container>
-		<TForm<FormValidationType> initialValues={{year: 0}} validationSchema={formValidation} onSubmit={() => {}}>
-			{(props: TFormChildrenProps<FormValidationType>) => {
-				const {values, handleSubmit, setFieldValue, setFieldTouched} = props;
-
-				return (
-					<Form onSubmit={handleSubmit}>
-						<Form.Field width={6}>
-							<label>Enter some value</label>
-							<YearSelect value={values.year} onChange={v => setFieldValue('year', v)} onBlur={() => setFieldTouched('year')} />
-						</Form.Field>
-						<Form.Button type="submit">Submit</Form.Button>
-					</Form>
-				);
-			}}
-		</TForm>
-	</Container>
-);
+// const formValidation = object().shape({
+// 	year: number().required(),
+// });
+// type FormValidationType = InferType<typeof formValidation>;
+//
+// export const withTForm = () => (
+// 	<Container>
+// 		<TForm<FormValidationType> initialValues={{year: 0}} validationSchema={formValidation} onSubmit={() => {}}>
+// 			{(props: TFormChildrenProps<FormValidationType>) => {
+// 				const {values, handleSubmit, setFieldValue, setFieldTouched} = props;
+//
+// 				return (
+// 					<Form onSubmit={handleSubmit}>
+// 						<Form.Field width={6}>
+// 							<label>Enter some value</label>
+// 							<YearSelect value={values.year} onChange={v => setFieldValue('year', v)} onBlur={() => setFieldTouched('year')} />
+// 						</Form.Field>
+// 						<Form.Button type="submit">Submit</Form.Button>
+// 					</Form>
+// 				);
+// 			}}
+// 		</TForm>
+// 	</Container>
+// );

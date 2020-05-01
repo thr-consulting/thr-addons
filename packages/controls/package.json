@@ -43,7 +43,8 @@
   "peerDependencies": {
     "react": "^16.x",
     "react-dom": "^16.x",
-    "semantic-ui-react": "^0.x"
+    "@fluentui/react-northstar": "^0.x",
+    "@fluentui/react-icons-northstar": "^0.x"
   },
   "dependencies": {
     "@js-joda/core": "^2.0.0",

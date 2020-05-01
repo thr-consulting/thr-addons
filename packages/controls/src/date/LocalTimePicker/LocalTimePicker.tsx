@@ -1,86 +1,41 @@
 import React from 'react';
 import debug from 'debug';
 import type {ReactDatePickerProps} from 'react-datepicker';
-import type {InputProps} from 'semantic-ui-react';
 import {LocalTime} from '@js-joda/core';
 import {toDate, toLocalTime} from '@thx/date';
 import {MaskedTimeInput} from './MaskedTimeInput';
+import type {MaskedTimeInputProps} from './MaskedTimeInput';
 import {DatePicker} from '../DatePicker/index';
 
 const d = debug('thx.controls.LocalTimePicker');
 
-interface ILocalTimePicker {
+export interface LocalTimePickerProps {
 	value?: LocalTime | number | null;
 	onChange?: (value: LocalTime | null) => void;
-	onChangeRaw?: () => void;
+	datePicker?: Omit<ReactDatePickerProps, 'onChange' | 'selected'>;
+	maskedTimeInput?: Omit<MaskedTimeInputProps, 'value' | 'onChange' | 'dateFormat'>;
 }
 
-type InputPropsOmitted = Omit<InputProps, 'onChange'>;
-type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange'>;
-export type LocalTimePickerProps = ILocalTimePicker & InputPropsOmitted & ReactDatePickerPropsOmitted;
-
-export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
-	const {
-		value,
-		onChange,
-		as,
-		action,
-		actionPosition,
-		className,
-		disabled,
-		error,
-		fluid,
-		focus,
-		icon,
-		iconPosition,
-		inverted,
-		label,
-		labelPosition,
-		loading,
-		size,
-		tabIndex,
-		transparent,
-		...rest
-	} = props;
+export function LocalTimePicker(props: LocalTimePickerProps) {
+	const {value, onChange, datePicker, maskedTimeInput} = props;
 
 	let selected;
 	if (typeof value === 'number') selected = toDate(LocalTime.ofSecondOfDay(value));
 	else selected = value ? toDate(value) : null;
 
-	const inputProps = {
-		as,
-		action,
-		actionPosition,
-		className,
-		disabled,
-		error,
-		fluid,
-		focus,
-		icon,
-		iconPosition,
-		inverted,
-		label,
-		labelPosition,
-		loading,
-		size,
-		tabIndex,
-		transparent,
-	};
-
 	return (
 		<DatePicker
-			{...rest}
+			{...datePicker}
 			selected={selected}
-			onChange={date => {
+			onChange={(date) => {
 				if (onChange) onChange(date ? toLocalTime(date) : null);
 			}}
-			showTimeSelect
-			showTimeSelectOnly
-			timeIntervals={15}
-			timeCaption="Time"
+			showTimeSelect={datePicker?.showTimeSelect === undefined ? true : datePicker.showTimeSelect}
+			showTimeSelectOnly={datePicker?.showTimeSelectOnly === undefined ? true : datePicker.showTimeSelectOnly}
+			timeIntervals={datePicker?.timeIntervals === undefined ? 15 : datePicker.timeIntervals}
+			timeCaption={datePicker?.timeCaption === undefined ? 'Time' : datePicker.timeCaption}
 			dateFormat="hh:mm aa"
-			// @ts-ignore
-			customInput={<MaskedTimeInput {...inputProps} />}
+			customInput={<MaskedTimeInput {...maskedTimeInput} />}
 		/>
 	);
 }

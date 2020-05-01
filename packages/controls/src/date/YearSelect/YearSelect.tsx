@@ -1,5 +1,7 @@
 import React from 'react';
-import {Icon, Button, Dropdown, Input, InputProps, DropdownItemProps} from 'semantic-ui-react';
+import {Button, Dropdown, Input} from '@fluentui/react-northstar';
+import {ArrowLeftIcon, ArrowRightIcon} from '@fluentui/react-icons-northstar';
+import type {InputProps, DropdownItemProps} from '@fluentui/react-northstar';
 import debug from 'debug';
 
 const d = debug('thx.controls.YearSelect');
@@ -19,14 +21,13 @@ export function YearSelect(props: YearSelectProps & Omit<InputProps, 'onChange'>
 
 	const availableYears: DropdownItemProps[] = [];
 	for (let i = maxYear; i >= minYear; i--) {
-		availableYears.push({value: i, text: i.toString(), key: i});
+		availableYears.push({value: i, header: i.toString(), key: i});
 	}
 
 	return (
-		<Input {...rest}>
+		<>
 			<Button
-				basic
-				icon
+				icon={<ArrowLeftIcon />}
 				type="button"
 				color={error ? 'red' : 'green'}
 				disabled={value <= minYear}
@@ -34,25 +35,20 @@ export function YearSelect(props: YearSelectProps & Omit<InputProps, 'onChange'>
 					if (onChange) onChange(value - 1);
 				}}
 				onBlur={onBlur}
-			>
-				<Icon name="arrow left" />
-			</Button>
+			/>
 			<Dropdown
-				icon={<div />}
-				button
-				basic
-				scrolling
+				inline
+				search
 				value={value}
-				options={availableYears}
+				items={availableYears}
 				onChange={(e, val) => {
 					if (typeof val.value === 'number' && onChange) onChange(val.value);
 				}}
-				error={error}
-				onBlur={onBlur}
+				// error={error}
+				// onBlur={onBlur}
 			/>
 			<Button
-				basic
-				icon
+				icon={<ArrowRightIcon />}
 				type="button"
 				color={error ? 'red' : 'green'}
 				disabled={value >= maxYear}
@@ -60,9 +56,11 @@ export function YearSelect(props: YearSelectProps & Omit<InputProps, 'onChange'>
 					if (onChange) onChange(value + 1);
 				}}
 				onBlur={onBlur}
-			>
-				<Icon name="arrow right" />
-			</Button>
-		</Input>
+			/>
+		</>
 	);
 }
+
+/*
+
+ */

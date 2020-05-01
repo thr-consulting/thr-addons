@@ -2,26 +2,14 @@ import React from 'react';
 import debug from 'debug';
 import type {ReactDatePickerProps} from 'react-datepicker';
 import type {LocalDate} from '@js-joda/core';
-import {InputProps, Input} from 'semantic-ui-react';
+import {Input} from '@fluentui/react-northstar';
+import type {InputProps} from '@fluentui/react-northstar';
 import {toDate, toLocalDate} from '@thx/date';
 import {DatePicker} from '../DatePicker/index';
 
 const d = debug('thx.controls.MonthDayPicker');
 
-const months = [
-	'January',
-	'February',
-	'March',
-	'April',
-	'May',
-	'June',
-	'July',
-	'August',
-	'September',
-	'October',
-	'November',
-	'December',
-];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 interface MonthDayHeaderProps {
 	date: Date;
@@ -63,70 +51,26 @@ function MonthDayHeader(props: MonthDayHeaderProps) {
 	);
 }
 
-interface IMonthDayPickerProps {
+export interface MonthDayPickerProps {
 	value?: LocalDate | number | null;
 	onChange?: (value: LocalDate | null) => void;
-	onChangeRaw?: () => void;
+	input?: Omit<InputProps, 'value' | 'onChange'>;
+	datePicker?: Omit<ReactDatePickerProps, 'selected' | 'onChange' | 'dateFormat' | 'renderCustomHeader' | 'customInput'>;
 }
 
-type InputPropsOmitted = Omit<InputProps, 'onChange'>;
-type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange'>;
-export type MonthDayPickerProps = IMonthDayPickerProps & InputPropsOmitted & ReactDatePickerPropsOmitted;
-
 export function MonthDayPicker(props: MonthDayPickerProps): JSX.Element {
-	const {
-		value,
-		onChange,
-		as,
-		action,
-		actionPosition,
-		className,
-		disabled,
-		error,
-		fluid,
-		focus,
-		icon,
-		iconPosition,
-		inverted,
-		label,
-		labelPosition,
-		loading,
-		size,
-		tabIndex,
-		transparent,
-		...rest
-	} = props;
+	const {value, onChange, input, datePicker} = props;
 
 	const selected = value ? toDate(value) : null;
 
-	const inputProps = {
-		as,
-		action,
-		actionPosition,
-		className,
-		disabled,
-		error,
-		fluid,
-		focus,
-		icon,
-		iconPosition,
-		inverted,
-		label,
-		labelPosition,
-		loading,
-		size,
-		tabIndex,
-		transparent,
-	};
-
 	return (
 		<DatePicker
-			{...rest}
+			{...datePicker}
 			selected={selected}
-			onChange={date => {
+			onChange={(date) => {
 				if (onChange) onChange(date ? toLocalDate(date) : null);
 			}}
-			customInput={<Input {...inputProps} />}
+			customInput={<Input {...input} />}
 			renderCustomHeader={MonthDayHeader}
 			dateFormat="MMMM d"
 		/>
