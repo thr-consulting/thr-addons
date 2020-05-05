@@ -24,7 +24,7 @@ export interface FormatDateParams {
  */
 export function formatDate(
 	obj: ILocalDateLike | Date | LocalDate | number | string | LocalDateTime | LocalTime | ZonedDateTime | null | undefined,
-	params: FormatDateParams = {type: FormatDateType.short, time: false, date: true},
+	{type = FormatDateType.short, time = false, date = true, format}: FormatDateParams = {type: FormatDateType.short, time: false, date: true},
 	zone: ZoneId = ZoneId.SYSTEM,
 ) {
 	let l: LocalDate | LocalDateTime | LocalTime | ZonedDateTime | undefined;
@@ -40,7 +40,7 @@ export function formatDate(
 
 	let dateFormat: string;
 	let timeFormat: string;
-	switch (params.type) {
+	switch (type) {
 		case FormatDateType.medium:
 			dateFormat = 'MMM d, yyyy';
 			timeFormat = 'h:mm a';
@@ -59,12 +59,12 @@ export function formatDate(
 	if (l instanceof LocalDate) timeFormat = '';
 	if (l instanceof LocalTime) dateFormat = '';
 
-	let formatString = !params.date ? '' : dateFormat;
-	if (params.time) {
+	let formatString = !date ? '' : dateFormat;
+	if (time) {
 		formatString = `${formatString} ${timeFormat}`.trim();
 	}
 
-	const formatter = DateTimeFormatter.ofPattern(params.format || formatString).withLocale(Locale.ENGLISH);
+	const formatter = DateTimeFormatter.ofPattern(format || formatString).withLocale(Locale.ENGLISH);
 
 	return l.format(formatter).replace(/AM|PM/, (x) => x.toLowerCase());
 }

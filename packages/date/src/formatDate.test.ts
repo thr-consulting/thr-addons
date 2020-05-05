@@ -47,6 +47,19 @@ describe('Formatting', () => {
 		expect(formatDate(vars.localEpochLocalDateTime, {type: FormatDateType.medium, time: true, date: true})).toMatchSnapshot();
 		expect(formatDate(vars.localEpochLocalDateTime, {type: FormatDateType.long, time: true, date: true})).toMatchSnapshot();
 	});
+	it('should format with individual options', () => {
+		const vars = getDateVars();
+		expect(formatDate(vars.localEpochLocalDateTime, {type: FormatDateType.short})).toMatchSnapshot();
+		expect(formatDate(vars.localEpochLocalDateTime, {type: FormatDateType.medium})).toMatchSnapshot();
+		expect(formatDate(vars.localEpochLocalDateTime, {type: FormatDateType.long})).toMatchSnapshot();
+
+		expect(formatDate(vars.localEpochLocalDateTime, {time: true})).toMatchSnapshot();
+		expect(formatDate(vars.localEpochLocalDateTime, {time: false})).toMatchSnapshot();
+
+		expect(formatDate(vars.localEpochLocalDateTime, {date: true})).toMatchSnapshot();
+		expect(formatDate(vars.localEpochLocalDateTime, {date: false, time: true})).toMatchSnapshot();
+		expect(formatDate(vars.localEpochLocalDateTime, {date: false, time: false})).toMatchSnapshot();
+	});
 	it('should use a custom date format', () => {
 		const vars = getDateVars();
 		expect(formatDate(vars.localEpochLocalDateTime, {format: 'MMMM_d_yyyy_h_mm_a'})).toMatchSnapshot();
