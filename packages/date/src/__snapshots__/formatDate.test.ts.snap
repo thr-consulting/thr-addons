@@ -14,6 +14,22 @@ exports[`Formatting should format with defaults 1`] = `"1/1/1970"`;
 
 exports[`Formatting should format with defaults 2`] = `"1/1/1970"`;
 
+exports[`Formatting should format with individual options 1`] = `"1/1/1970"`;
+
+exports[`Formatting should format with individual options 2`] = `"Jan 1, 1970"`;
+
+exports[`Formatting should format with individual options 3`] = `"January 1, 1970"`;
+
+exports[`Formatting should format with individual options 4`] = `"1/1/1970 12:00 am"`;
+
+exports[`Formatting should format with individual options 5`] = `"1/1/1970"`;
+
+exports[`Formatting should format with individual options 6`] = `"1/1/1970"`;
+
+exports[`Formatting should format with individual options 7`] = `"12:00 am"`;
+
+exports[`Formatting should format with individual options 8`] = `""`;
+
 exports[`Formatting should format with options 1`] = `"1/1/1970 12:00 am"`;
 
 exports[`Formatting should format with options 2`] = `"Jan 1, 1970 12:00 am"`;
