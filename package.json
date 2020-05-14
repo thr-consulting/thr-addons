@@ -24,7 +24,7 @@
     "docs:md": "lerna run docs:md"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.9.6",
     "@imperium/babel-preset-imperium": "^4.0.9",
     "@imperium/eslint-config-imperium": "^4.0.8",
     "@imperium/prettier-config-imperium": "^4.0.4",
