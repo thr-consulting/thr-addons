@@ -40,10 +40,11 @@ jobs:
         run: |
           yarn test
 
+      - name: Run build
+        run: |
+          yarn build
+
       - name: Run typescript
         run: |
           yarn ts
 
-      - name: Run build
-        run: |
-          yarn build
