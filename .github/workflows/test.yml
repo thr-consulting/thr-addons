@@ -36,13 +36,13 @@ jobs:
         run: |
           yarn lint
 
-      - name: Run tests
-        run: |
-          yarn test
-
       - name: Run build
         run: |
           yarn build
+
+      - name: Run tests
+        run: |
+          yarn test
 
       - name: Run typescript
         run: |
