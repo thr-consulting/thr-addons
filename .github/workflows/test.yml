@@ -36,6 +36,10 @@ jobs:
         run: |
           yarn lint
 
+      - name: Run build
+        run: |
+          yarn build
+
       - name: Run tests
         run: |
           yarn test
@@ -44,6 +48,3 @@ jobs:
         run: |
           yarn ts
 
-      - name: Run build
-        run: |
-          yarn build
