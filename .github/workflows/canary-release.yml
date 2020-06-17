@@ -11,11 +11,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
 
       - name: Setup node 12.7
         uses: actions/setup-node@v2-beta
         with:
           node-version: "12.7"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Restore lerna node_modules
         uses: actions/cache@v2
@@ -36,13 +39,13 @@ jobs:
         run: |
           yarn build
 
-      - name: NPM Registry Login
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-
       - name: Publish canary
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPMRC: ${{ github.workspace }}
         run: |
-          yarn lerna publish patch -c --preid alpha --yes
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > "$NPMRC/.npmrc"
+          yarn lerna publish patch -c --preid alpha
 
       - name: Notify discord
         run: |
