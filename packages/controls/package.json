@@ -46,7 +46,7 @@
     "semantic-ui-react": "^0.x"
   },
   "dependencies": {
-    "@js-joda/core": "^2.0.0",
+    "@js-joda/core": "^3.0.0",
     "@thx/date": "^11.1.1",
     "@thx/money": "^11.0.2",
     "debug": "^4.1.1",
@@ -56,9 +56,9 @@
     "inputmask": "^4.0.9",
     "js-money": "^0.6.3",
     "lodash": "^4.17.15",
-    "react-datepicker": "^2.14.1",
+    "react-datepicker": "^3.1.3",
     "use-deep-compare-effect": "^1.3.1",
-    "yup": "^0.28.4"
+    "yup": "^0.29.2"
   },
   "jest": {
     "transform": {
