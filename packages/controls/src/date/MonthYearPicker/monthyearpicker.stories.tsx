@@ -1,3 +1,4 @@
+import {LocalDate} from '@js-joda/core';
 import debug from 'debug';
 import React, {useState} from 'react';
 import {Provider, Segment, themes} from '@fluentui/react-northstar';
@@ -23,6 +24,7 @@ export const Main = () => {
 						d('Changed:', v);
 						setValue(v);
 					}}
+					minDate={LocalDate.now()}
 				/>
 			</Segment>
 		</Provider>
