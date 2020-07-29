@@ -8,5 +8,6 @@ export function scriptelSchemaType() {
 			data: string().required(),
 			type: string().oneOf(['image/svg+xml', 'image/png']).notRequired(),
 		})
+		.required()
 		.default(undefined);
 }

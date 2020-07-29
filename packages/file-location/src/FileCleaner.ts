@@ -48,7 +48,7 @@ export default class FileCleaner {
 	 * Removes files, first checking to make sure they exist
 	 */
 	async removeFiles() {
-		await Promise.all(this._files.map((filename) => this._fileLocation.deleteObject(filename)));
+		await Promise.all(this._files.map(filename => this._fileLocation.deleteObject(filename)));
 		this._files = [];
 	}
 
