@@ -75,7 +75,7 @@ declare module 'hummus' {
 			  };
 	}
 
-	export type XObject = {};
+	export type XObject = Record<string, unknown>;
 
 	export class PDFPageContentContext {
 		constructor();
@@ -88,6 +88,6 @@ declare module 'hummus' {
 		doXObject(xObject: XObject): PDFPageContentContext;
 	}
 
-	export function createWriterToModify(inFilePath: string, inOptionsObject?: object): PDFWriter;
-	export function createWriterToModify(ifSourceStream: PDFRStream, inTargetStream: PDFWStream, inOptionsObject?: object): PDFWriter;
+	export function createWriterToModify(inFilePath: string, inOptionsObject?: Record<string, unknown>): PDFWriter;
+	export function createWriterToModify(ifSourceStream: PDFRStream, inTargetStream: PDFWStream, inOptionsObject?: Record<string, unknown>): PDFWriter;
 }

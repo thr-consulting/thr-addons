@@ -1,5 +1,5 @@
 import {fromBuffer, FileTypeResult, minimumBytes} from 'file-type';
-import {Transform} from 'stream';
+import {Transform, TransformOptions} from 'stream';
 
 /**
  * @class
@@ -10,7 +10,7 @@ export default class FileTypeReadStream extends Transform {
 	private _buf: Buffer;
 	private _currentLoc: number;
 
-	constructor(opts?: {}) {
+	constructor(opts?: TransformOptions) {
 		super(opts);
 		this._buf = Buffer.alloc(minimumBytes);
 		this._currentLoc = 0;

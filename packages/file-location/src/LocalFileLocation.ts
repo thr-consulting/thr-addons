@@ -41,7 +41,7 @@ export default class LocalFileLocation implements FileLocationInterface {
 	async deleteObject(name: string): Promise<void> {
 		if (await this.objectExists(this.getFullName(name))) {
 			await new Promise((resolve, reject) => {
-				fs.unlink(this.getFullName(name), (err) => {
+				fs.unlink(this.getFullName(name), err => {
 					if (err) {
 						reject(err);
 					} else {
