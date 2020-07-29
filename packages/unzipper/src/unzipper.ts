@@ -44,14 +44,15 @@ export default function unzipper(zipReadStream: Readable, onFile: OnFileCallback
 					zipfile.readEntry();
 
 					// Event: called when a folder or file is found in a zip file
-					zipfile.on('entry', (entry) => {
+					zipfile.on('entry', entry => {
 						if (/\/$/.test(entry.fileName)) {
 							// folder entry
 							zipfile.readEntry();
 						} else {
 							// file entry
 							zipfile.openReadStream(entry, (zerr, zipEntryFileReadStream) => {
-								if (zerr || !zipEntryFileReadStream) throw zerr;
+								if (zerr) throw zerr;
+								if (!zipEntryFileReadStream) throw new Error(`Error opening read stream from zipped file: ${entry.fileName}`);
 								d(`> Reading file in zip: ${entry.fileName}`);
 
 								onFile({

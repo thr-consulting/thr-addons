@@ -76,7 +76,7 @@ export class ScriptelSocket extends EventEmitter {
 			d('Socket closed');
 		};
 
-		this.socket.onmessage = (ev) => {
+		this.socket.onmessage = ev => {
 			const msg = JSON.parse(ev.data) as Message;
 			if (!msg._class) return; // A message with no class.
 

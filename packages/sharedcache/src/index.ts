@@ -11,7 +11,8 @@ function toString(value: any): string {
 	return JSON.stringify(value);
 }
 
-function parse(value: string): {} | null {
+function parse(value: string | null): Record<string, unknown> | null {
+	if (!value) return null;
 	return JSON.parse(value);
 }
 
@@ -22,7 +23,7 @@ interface ISharedCacheConstructor {
 }
 
 interface IPromisifyRedisClient {
-	get: (key: string) => Promise<string>;
+	get: (key: string) => Promise<string | null>;
 	set: (key: string, val: string, arg3?: any, arg4?: any) => Promise<unknown>;
 	exists: (key: string) => Promise<number>;
 	del: (key: string) => Promise<number>;
@@ -54,6 +55,7 @@ export default class SharedCache {
 			del: promisify(redis.del).bind(redis),
 			hmget: promisify(redis.hmget).bind(redis),
 			hget: promisify(redis.hget).bind(redis),
+			// @ts-ignore
 			hset: promisify(redis.hset).bind(redis),
 			hdel: promisify(redis.hdel).bind(redis),
 			expire: promisify(redis.expire).bind(redis),
@@ -120,7 +122,7 @@ export default class SharedCache {
 	 * @param fields
 	 */
 	async hmget(key: string, fields: string[]): Promise<any[]> {
-		return (await this.redis.hmget(getRedisKey(this.prefix, key), fields)).map((v) => parse(v));
+		return (await this.redis.hmget(getRedisKey(this.prefix, key), fields)).map(v => parse(v));
 	}
 
 	/**

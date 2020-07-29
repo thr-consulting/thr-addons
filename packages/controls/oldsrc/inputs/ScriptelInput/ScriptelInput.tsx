@@ -25,12 +25,14 @@ export function ScriptelInput(props: ScriptelInputProps) {
 		if (entering) {
 			setEntering(false);
 			if (onChange && ctx?.renderImage) {
-				onChange({
-					type: ctx.renderImage.type,
-					width: ctx.renderImage.width,
-					height: ctx.renderImage.height,
-					data: ctx.renderImage.data,
-				});
+				if (ctx.renderImage.type === 'image/svg+xml' || ctx.renderImage.type === 'image/png') {
+					onChange({
+						type: ctx.renderImage.type,
+						width: ctx.renderImage.width,
+						height: ctx.renderImage.height,
+						data: ctx.renderImage.data,
+					});
+				}
 			}
 			if (onChange && !ctx) {
 				onChange();
