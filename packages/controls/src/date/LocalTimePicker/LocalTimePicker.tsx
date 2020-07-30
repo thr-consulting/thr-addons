@@ -27,7 +27,7 @@ export function LocalTimePicker(props: LocalTimePickerProps) {
 		<DatePicker
 			{...datePicker}
 			selected={selected}
-			onChange={(date) => {
+			onChange={date => {
 				if (onChange) onChange(date ? toLocalTime(date) : null);
 			}}
 			showTimeSelect={datePicker?.showTimeSelect === undefined ? true : datePicker.showTimeSelect}

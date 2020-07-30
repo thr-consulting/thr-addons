@@ -24,7 +24,7 @@ export function LocalDatePicker(props: LocalDatePickerProps) {
 		<DatePicker
 			{...datePicker}
 			selected={selected}
-			onChange={(date) => {
+			onChange={date => {
 				d(`DatePicker onChange: ${date}`);
 				if (onChange) onChange(date ? toLocalDate(date) : null);
 			}}

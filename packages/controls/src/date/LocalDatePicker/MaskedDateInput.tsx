@@ -17,7 +17,7 @@ function MaskedDateInputInner(props: MaskedDateInputProps, ref: any) {
 	return (
 		<MaskedInput
 			mask={{alias: 'datetime', inputFormat: 'mm/dd/yyyy'}}
-			onChange={(value) => {
+			onChange={value => {
 				d(`MaskedInput onChange: ${value}`);
 				if (onChange) onChange({target: {value: value || ''}});
 			}}

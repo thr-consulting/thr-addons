@@ -67,7 +67,7 @@ export function MonthDayPicker(props: MonthDayPickerProps): JSX.Element {
 		<DatePicker
 			{...datePicker}
 			selected={selected}
-			onChange={(date) => {
+			onChange={date => {
 				if (onChange) onChange(date ? toLocalDate(date) : null);
 			}}
 			customInput={<Input {...input} />}

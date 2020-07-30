@@ -18,7 +18,7 @@ export const Main = () => {
 			<Segment>
 				<MonthDayPicker
 					value={value}
-					onChange={(v) => {
+					onChange={v => {
 						d('Changed:', v);
 						setValue(v);
 					}}

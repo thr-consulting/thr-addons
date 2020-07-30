@@ -8,7 +8,7 @@ import {DatePicker} from '../DatePicker/index';
 
 const d = debug('thx.controls.MonthYearPicker');
 
-interface MonthYearPickerProps {
+export interface MonthYearPickerProps {
 	value?: LocalDate | number | null;
 	onChange?: (value: LocalDate | null) => void;
 	datePicker?: Omit<ReactDatePickerProps, 'selected' | 'onChange' | 'dateFormat' | 'showMonthYearPicker' | 'customInput'>;

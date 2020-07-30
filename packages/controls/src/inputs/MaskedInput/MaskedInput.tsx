@@ -70,5 +70,6 @@ export function MaskedInput(props: MaskedInputProps) {
 		}
 	}, [value]);
 
+	// @ts-ignore
 	return <Input {...rest} value={inputValue} onChange={(ev, v) => setInputValue(v?.value)} inputRef={inputElement} />;
 }

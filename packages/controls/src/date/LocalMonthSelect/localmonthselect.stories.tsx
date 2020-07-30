@@ -25,7 +25,7 @@ export const Main = () => {
 					control={
 						<LocalMonthSelect
 							value={value}
-							onChange={(v) => {
+							onChange={v => {
 								d(`onChange: ${v}`);
 								setValue(v);
 							}}

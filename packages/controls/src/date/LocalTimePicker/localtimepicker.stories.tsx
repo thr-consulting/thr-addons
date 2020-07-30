@@ -23,7 +23,7 @@ export const Main = () => {
 				<Segment>
 					<LocalTimePicker
 						value={value}
-						onChange={(v) => {
+						onChange={v => {
 							d(v);
 							setValue(v);
 						}}
@@ -45,7 +45,7 @@ export const WithMaskedDateInput = () => {
 			<Segment>
 				<MaskedTimeInput
 					value={value}
-					onChange={(v) => {
+					onChange={v => {
 						setValue(v.target.value);
 					}}
 				/>
