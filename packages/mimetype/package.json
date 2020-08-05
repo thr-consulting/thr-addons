@@ -42,6 +42,11 @@
 		"file-type": "^13.1.2",
 		"mime-types": "^2.1.27"
 	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "../../tsconfig.json"
+		}
+	},
 	"jest": {
 		"transform": {
 			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"

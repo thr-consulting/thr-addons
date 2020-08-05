@@ -47,6 +47,11 @@
 		"winston": "^3.2.1",
 		"winston-gelf": "^1.7.0"
 	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "../../tsconfig.json"
+		}
+	},
 	"jest": {
 		"transform": {
 			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"

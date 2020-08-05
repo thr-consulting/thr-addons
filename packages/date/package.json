@@ -43,6 +43,11 @@
 		"@js-joda/timezone": "^2.3.0",
 		"debug": "^4.1.1"
 	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "../../tsconfig.json"
+		}
+	},
 	"jest": {
 		"transform": {
 			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"

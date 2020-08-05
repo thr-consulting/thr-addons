@@ -46,8 +46,10 @@
 		"debug": "^4.1.1",
 		"lodash": "^4.17.15"
 	},
-	"devDependencies": {
-		"mongoose": "^5.x"
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "../../tsconfig.json"
+		}
 	},
 	"jest": {
 		"transform": {

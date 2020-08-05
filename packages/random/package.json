@@ -37,6 +37,11 @@
 		"yalc:publish": "yalc publish --push",
 		"prepublish": "yarn build && yarn ts"
 	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "../../tsconfig.json"
+		}
+	},
 	"dependencies": {
 		"@js-joda/core": "^3.0.0",
 		"@thx/date": "^11.1.2",
