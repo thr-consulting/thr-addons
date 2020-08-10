@@ -30,9 +30,7 @@
 		"clean": "rimraf ./dist",
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
-		"ts": "tsc",
-		"yalc:publish": "yalc publish --push",
-		"prepublish": "yarn build && yarn ts"
+		"ts": "tsc"
 	},
 	"disabledScripts": {
 		"test": "jest",
@@ -46,6 +44,11 @@
 		"lodash": "^4.17.15",
 		"winston": "^3.2.1",
 		"winston-gelf": "^1.7.0"
+	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "../../tsconfig.json"
+		}
 	},
 	"jest": {
 		"transform": {

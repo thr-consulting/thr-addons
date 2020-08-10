@@ -33,15 +33,18 @@
 		"ts": "tsc",
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"test:coverage": "../../tools/coverage.sh",
-		"yalc:publish": "yalc publish --push",
-		"prepublish": "yarn build && yarn ts"
+		"test:coverage": "../../tools/coverage.sh"
 	},
 	"dependencies": {
 		"debug": "^4.1.1"
 	},
 	"peerDependencies": {
 		"redis": "^3.x"
+	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "../../tsconfig.json"
+		}
 	},
 	"jest": {
 		"transform": {

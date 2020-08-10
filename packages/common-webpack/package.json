@@ -1,33 +1,27 @@
 {
-	"name": "@thx/money",
-	"version": "11.0.2",
-	"description": "Money utils",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/thr-consulting/thr-addons.git"
-	},
+	"name": "@thx/common-webpack",
+	"version": "5.0.0",
+	"description": "Common webpack configuration",
+	"repository": "darkadept/thr-addons",
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
 	"engines": {
 		"node": ">=12"
 	},
 	"bugs": {
-		"url": "https://github.com/thr-consulting/thr-addons/issues"
+		"url": "https://github.com/darkadept/thr-addons/issues"
 	},
 	"publishConfig": {
 		"access": "public"
 	},
-	"main": "index.js",
-	"types": "./dist/index.d.ts",
+	"types": "dist/index.d.ts",
+	"main": "dist/index.js",
 	"files": [
-		"dist",
-		"index.js"
+		"dist"
 	],
 	"scripts": {
-		"build": "yarn build:dev && yarn build:prod",
-		"build:dev": "NODE_ENV=development webpack --config webpack.js",
-		"build:prod": "NODE_ENV=production webpack --config webpack.js",
-		"clean": "rimraf ./dist",
+		"build": "NODE_ENV=production webpack --config webpack.js",
+		"clean": "rimraf ./dist && rimraf .eslintcache",
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
 		"ts": "tsc",
@@ -35,10 +29,14 @@
 		"test:watch": "jest --watch",
 		"test:coverage": "../../tools/coverage.sh"
 	},
+	"devDependencies": {
+		"webpack-cli": "^3.3.11"
+	},
 	"dependencies": {
-		"accounting": "^0.4.1",
 		"debug": "^4.1.1",
-		"js-money": "^0.6.3"
+		"inspect-loader": "^1.0.0",
+		"webpack": "^4.44.1",
+		"webpack-node-externals": "^2.5.0"
 	},
 	"eslintConfig": {
 		"parserOptions": {
@@ -52,7 +50,7 @@
 		"testPathIgnorePatterns": [
 			"/node_modules/"
 		],
-		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/money",
+		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/common-webpack",
 		"collectCoverageFrom": [
 			"<rootDir>/src/**/*.js",
 			"<rootDir>/src/**/*.ts"
