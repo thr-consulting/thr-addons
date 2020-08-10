@@ -34,9 +34,9 @@
 		"webpack-cli": "^3.3.11"
 	},
 	"dependencies": {
-		"webpack": "^4.44.1",
 		"debug": "^4.1.1",
 		"inspect-loader": "^1.0.0",
+		"webpack": "^4.44.1",
 		"webpack-node-externals": "^2.5.0"
 	},
 	"eslintConfig": {
