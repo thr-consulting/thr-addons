@@ -27,8 +27,7 @@
 		"ts": "tsc",
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"test:coverage": "../../tools/coverage.sh",
-		"yalc:publish": "yalc publish --push"
+		"test:coverage": "../../tools/coverage.sh"
 	},
 	"devDependencies": {
 		"webpack-cli": "^3.3.11"
