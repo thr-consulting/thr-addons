@@ -1,6 +1,6 @@
 {
 	"name": "@thx/mimetype",
-	"version": "11.0.1",
+	"version": "11.0.2",
 	"description": "Mimetype and file type utilities",
 	"repository": {
 		"type": "git",
@@ -33,14 +33,17 @@
 		"ts": "tsc",
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"test:coverage": "../../tools/coverage.sh",
-		"yalc:publish": "yalc publish --push",
-		"prepublish": "yarn build && yarn ts"
+		"test:coverage": "../../tools/coverage.sh"
 	},
 	"dependencies": {
 		"debug": "^4.1.1",
 		"file-type": "^13.1.2",
 		"mime-types": "^2.1.27"
+	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "../../tsconfig.json"
+		}
 	},
 	"jest": {
 		"transform": {

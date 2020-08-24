@@ -1,6 +1,6 @@
 {
 	"name": "@thx/ordereddataloader",
-	"version": "11.0.1",
+	"version": "11.0.2",
 	"description": "Ordered DataLoader",
 	"repository": {
 		"type": "git",
@@ -30,9 +30,7 @@
 		"clean": "rimraf ./dist",
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
-		"ts": "tsc",
-		"yalc:publish": "yalc publish --push",
-		"prepublish": "yarn build && yarn ts"
+		"ts": "tsc"
 	},
 	"disabledScripts": {
 		"test": "jest",
@@ -43,6 +41,11 @@
 		"dataloader": "^2.0.0",
 		"debug": "^4.1.1",
 		"lodash": "^4.17.15"
+	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "../../tsconfig.json"
+		}
 	},
 	"jest": {
 		"transform": {

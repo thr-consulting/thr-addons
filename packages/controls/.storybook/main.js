@@ -12,7 +12,7 @@ module.exports = {
 		delete theirs.plugins[6]; // Remove progress plugin
 
 		const ourRules = [...webpackConfig.module.rules];
-		// This is highly dependant on @imperium/util webpack config
+		// This is highly dependant on @thx/common-webpack config
 		ourRules[1].use[1].options.presets[0][1].reactRefresh = false
 
 		return {

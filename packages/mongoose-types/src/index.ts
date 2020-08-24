@@ -22,7 +22,7 @@ if (!LD.prototype.toBSON) {
 }
 
 class LocalDate extends mongoose.SchemaType {
-	$conditionalHandlers: object;
+	$conditionalHandlers: Record<string, unknown>;
 
 	constructor(...params: any) {
 		// @ts-ignore
@@ -50,7 +50,7 @@ class LocalDate extends mongoose.SchemaType {
 }
 
 class Money extends mongoose.SchemaType {
-	$conditionalHandlers: object;
+	$conditionalHandlers: Record<string, unknown>;
 
 	constructor(...params: any) {
 		// @ts-ignore

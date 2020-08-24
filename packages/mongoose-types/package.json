@@ -1,6 +1,6 @@
 {
 	"name": "@thx/mongoose-types",
-	"version": "11.1.1",
+	"version": "11.1.3",
 	"description": "Mongoose Types",
 	"repository": {
 		"type": "git",
@@ -30,9 +30,7 @@
 		"clean": "rimraf ./dist",
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
-		"ts": "tsc",
-		"yalc:publish": "yalc publish --push",
-		"prepublish": "yarn build && yarn ts"
+		"ts": "tsc"
 	},
 	"disabledScripts": {
 		"test": "jest",
@@ -40,14 +38,16 @@
 		"test:coverage": "../../tools/coverage.sh"
 	},
 	"dependencies": {
-		"@js-joda/core": "^2.0.0",
-		"@thx/date": "^11.1.1",
-		"@thx/money": "^11.0.2",
+		"@js-joda/core": "^3.0.0",
+		"@thx/date": "^11.1.3",
+		"@thx/money": "^11.0.3",
 		"debug": "^4.1.1",
 		"lodash": "^4.17.15"
 	},
-	"devDependencies": {
-		"mongoose": "^5.x"
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "../../tsconfig.json"
+		}
 	},
 	"jest": {
 		"transform": {

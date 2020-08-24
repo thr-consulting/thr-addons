@@ -1,6 +1,6 @@
 {
 	"name": "@thx/sha256",
-	"version": "11.0.0",
+	"version": "11.0.1",
 	"description": "SHA256 Hash Function",
 	"repository": {
 		"type": "git",
@@ -33,9 +33,12 @@
 		"ts": "tsc",
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"test:coverage": "../../tools/coverage.sh",
-		"yalc:publish": "yalc publish --push",
-		"prepublish": "yarn build && yarn ts"
+		"test:coverage": "../../tools/coverage.sh"
+	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "../../tsconfig.json"
+		}
 	},
 	"jest": {
 		"transform": {
