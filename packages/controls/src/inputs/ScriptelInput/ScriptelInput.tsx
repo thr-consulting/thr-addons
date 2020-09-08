@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Button, Image, Label} from 'semantic-ui-react';
+import {Button, Image} from 'semantic-ui-react';
 import debug from 'debug';
 import type {InferType} from 'yup';
 import {ScriptelContext} from '../Scriptel/ScriptelContext';
@@ -19,12 +19,12 @@ export function ScriptelInput(props: ScriptelInputProps) {
 	const {value, onChange} = props;
 	const ctx = useContext(ScriptelContext);
 
-	const [entering, setEntering] = useState(false);
+	const [enterSignature, setEnterSignature] = useState(false);
 
 	useEffect(() => {
-		if (entering) {
-			setEntering(false);
+		if (enterSignature) {
 			if (onChange && ctx?.renderImage) {
+				setEnterSignature(false);
 				if (ctx.renderImage.type === 'image/svg+xml' || ctx.renderImage.type === 'image/png') {
 					onChange({
 						type: ctx.renderImage.type,
@@ -40,16 +40,23 @@ export function ScriptelInput(props: ScriptelInputProps) {
 		}
 	}, [ctx]);
 
-	if (entering) {
+	if (enterSignature) {
 		return (
 			<div>
-				<div>Enter a signature and click OK.</div>
-				<Button onClick={() => setEntering(false)} color="black">
+				<div>{ctx?.isSigning ? 'signing...' : 'Enter a signature and click OK.'}</div>
+				<Button
+					onClick={() => {
+						setEnterSignature(false);
+					}}
+					color="black"
+					loading={ctx?.loading}
+					disabled={ctx?.loading}
+				>
 					Cancel
 				</Button>
-				<Label as="a" basic onClick={() => ctx?.socket.current?.calibrate()}>
+				<Button size="mini" as="a" basic onClick={() => ctx?.socket.current?.calibrate()} disabled={ctx?.loading}>
 					Calibrate
-				</Label>
+				</Button>
 			</div>
 		);
 	}
@@ -62,7 +69,7 @@ export function ScriptelInput(props: ScriptelInputProps) {
 					size="mini"
 					compact
 					onClick={() => {
-						setEntering(false);
+						setEnterSignature(false);
 						if (onChange) onChange();
 					}}
 				>
@@ -72,5 +79,5 @@ export function ScriptelInput(props: ScriptelInputProps) {
 		);
 	}
 
-	return <Button onClick={() => setEntering(true)}>Enter Signature</Button>;
+	return <Button onClick={() => setEnterSignature(true)}>Enter Signature</Button>;
 }
