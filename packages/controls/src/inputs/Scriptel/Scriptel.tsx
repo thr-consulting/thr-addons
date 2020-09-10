@@ -19,6 +19,8 @@ export interface ScriptelProps {
 export function Scriptel({omniscriptUrl, imageType, scale, crop, penStyle, children}: ScriptelProps) {
 	const socket = useRef<ScriptelSocket>();
 	const [render, setRender] = useState<RenderedImage>();
+	const [loading, setLoading] = useState<boolean>(false);
+	const [isSigning, setIsSigning] = useState<boolean>(false);
 
 	useEffect(() => {
 		socket.current = new ScriptelSocket({
@@ -30,10 +32,25 @@ export function Scriptel({omniscriptUrl, imageType, scale, crop, penStyle, child
 		});
 
 		socket.current.on('render', msg => {
+			setLoading(true);
 			setRender(msg);
 		});
+		socket.current.on('okButtonDown', () => {
+			setLoading(true);
+		});
+		socket.current.on('okButtonPress', () => {
+			setLoading(false);
+			setRender(undefined);
+		});
 		socket.current.on('cancel', () => {
-			d('Canceled');
+			setLoading(false);
+			setRender(undefined);
+		});
+		socket.current.on('penMove', () => {
+			setIsSigning(true);
+		});
+		socket.current.on('penUp', () => {
+			setIsSigning(false);
 		});
 
 		return () => {
@@ -41,5 +58,5 @@ export function Scriptel({omniscriptUrl, imageType, scale, crop, penStyle, child
 		};
 	}, [omniscriptUrl, imageType, scale, crop, penStyle]);
 
-	return <ScriptelContext.Provider value={{socket, renderImage: render}}>{children}</ScriptelContext.Provider>;
+	return <ScriptelContext.Provider value={{socket, renderImage: render, loading, isSigning}}>{children}</ScriptelContext.Provider>;
 }

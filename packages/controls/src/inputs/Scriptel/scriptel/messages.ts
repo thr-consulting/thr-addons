@@ -36,10 +36,26 @@ export interface ButtonPress {
 	label: string;
 }
 
-export interface ButtonUp {
-	_class: ScriptelMessageClass.ButtonUp;
+export interface ButtonDown {
+	_class: ScriptelMessageClass.ButtonDown;
 	id: number;
 	label: string;
+	x: number;
+	y: number;
 }
 
-export type Message = ConnectionOpen | DeviceOpenResponse | RenderedImage | ScriptelException | ButtonPress | ButtonUp;
+export interface PenMove {
+	_class: ScriptelMessageClass.PenMove;
+	time: number;
+	x: string;
+	y: string;
+}
+
+export interface PenUp {
+	_class: ScriptelMessageClass.PenUp;
+	time: number;
+	x: string;
+	y: string;
+}
+
+export type Message = ConnectionOpen | DeviceOpenResponse | RenderedImage | ScriptelException | ButtonPress | ButtonDown | PenMove | PenUp;
