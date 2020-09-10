@@ -93,13 +93,19 @@ export class ScriptelSocket extends EventEmitter {
 				case ScriptelMessageClass.ScriptelException:
 					d(`Scriptel Exception Error: ${msg.message}`);
 					break;
+
 				case ScriptelMessageClass.ButtonPress:
-					if (!msg.accept) {
-						this.emit('cancel');
-					}
+					if (msg.label === 'Cancel') this.emit('cancel');
+					if (msg.label === 'OK') this.emit('okButtonPress');
 					break;
-				case ScriptelMessageClass.ButtonUp:
-					d(msg);
+				case ScriptelMessageClass.ButtonDown:
+					if (msg.label === 'OK') this.emit('okButtonDown');
+					break;
+				case ScriptelMessageClass.PenMove:
+					this.emit('penMove');
+					break;
+				case ScriptelMessageClass.PenUp:
+					this.emit('penUp');
 					break;
 				default:
 			}

@@ -2,7 +2,8 @@
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
 		"declarationDir": "dist",
-		"lib": ["esnext", "dom"]
+		"lib": ["esnext", "dom"],
+		"jsx": "react"
 	},
 	"include": [
 		"src/index.ts"

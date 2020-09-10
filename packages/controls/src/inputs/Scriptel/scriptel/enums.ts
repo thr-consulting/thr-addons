@@ -10,6 +10,8 @@ export enum ScriptelMessageClass {
 	DeviceOpenResponse = 'DeviceOpenResponse',
 	RenderedImage = 'RenderedImage',
 	ScriptelException = 'ScriptelException',
-	ButtonUp = 'ButtonUp',
+	ButtonDown = 'ButtonDown',
 	ButtonPress = 'ButtonPress',
+	PenMove = 'PenMove',
+	PenUp = 'PenUp',
 }

@@ -3,5 +3,5 @@ import type {RenderedImage} from './scriptel/messages';
 import type {ScriptelSocket} from './scriptel';
 
 export const ScriptelContext = React.createContext<
-	{socket: MutableRefObject<ScriptelSocket | undefined>; renderImage: RenderedImage | undefined} | undefined
+	{socket: MutableRefObject<ScriptelSocket | undefined>; renderImage: RenderedImage | undefined; loading: boolean; isSigning: boolean} | undefined
 >(undefined);

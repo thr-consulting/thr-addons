@@ -2,21 +2,15 @@
 	"name": "@thx/file-location",
 	"version": "11.0.3",
 	"description": "File function abstraction",
+	"bugs": {
+		"url": "https://github.com/thr-consulting/thr-addons/issues"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/thr-consulting/thr-addons.git"
 	},
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
-	"engines": {
-		"node": ">=12"
-	},
-	"bugs": {
-		"url": "https://github.com/thr-consulting/thr-addons/issues"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
 	"main": "index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
@@ -30,12 +24,26 @@
 		"clean": "rimraf ./dist",
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
+		"sort": "npx sort-package-json",
 		"ts": "tsc"
 	},
-	"disabledScripts": {
-		"test": "jest",
-		"test:watch": "jest --watch",
-		"test:coverage": "../../tools/coverage.sh"
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "./tsconfig-eslint.json"
+		}
+	},
+	"jest": {
+		"collectCoverageFrom": [
+			"<rootDir>/src/**/*.js",
+			"<rootDir>/src/**/*.ts"
+		],
+		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/file-location",
+		"testPathIgnorePatterns": [
+			"/node_modules/"
+		],
+		"transform": {
+			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
+		}
 	},
 	"dependencies": {
 		"aws-sdk": "^2.662.0",
@@ -44,22 +52,15 @@
 		"fs-extra": "^9.0.0",
 		"lodash": "^4.17.15"
 	},
-	"eslintConfig": {
-		"parserOptions": {
-			"project": "../../tsconfig.json"
-		}
+	"engines": {
+		"node": ">=12"
 	},
-	"jest": {
-		"transform": {
-			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
-		},
-		"testPathIgnorePatterns": [
-			"/node_modules/"
-		],
-		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/file-location",
-		"collectCoverageFrom": [
-			"<rootDir>/src/**/*.js",
-			"<rootDir>/src/**/*.ts"
-		]
+	"publishConfig": {
+		"access": "public"
+	},
+	"disabledScripts": {
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:coverage": "../../tools/coverage.sh"
 	}
 }
