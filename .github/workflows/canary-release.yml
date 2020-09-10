@@ -39,13 +39,17 @@ jobs:
         run: |
           yarn build
 
+      - name: Run typescript
+        run: |
+          yarn ts
+
       - name: Publish canary
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPMRC: ${{ github.workspace }}
         run: |
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > "$NPMRC/.npmrc"
-          yarn lerna publish patch -c --preid alpha
+          yarn lerna publish patch -c --preid alpha --yes
 
       - name: Notify discord
         run: |
