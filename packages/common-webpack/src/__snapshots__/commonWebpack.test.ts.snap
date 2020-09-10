@@ -5,12 +5,7 @@ Object {
   "context": "/src",
   "devtool": "inline-source-map",
   "entry": "entry.ts",
-  "externals": Array [
-    [Function],
-    [Function],
-    [Function],
-    [Function],
-  ],
+  "externals": [Function],
   "mode": "development",
   "module": Object {
     "rules": Array [
@@ -100,12 +95,7 @@ Object {
   "context": "/src",
   "devtool": "inline-source-map",
   "entry": "entry.ts",
-  "externals": Array [
-    [Function],
-    [Function],
-    [Function],
-    [Function],
-  ],
+  "externals": [Function],
   "mode": "development",
   "module": Object {
     "rules": Array [
@@ -194,12 +184,7 @@ Object {
   "context": "/src",
   "devtool": "source-map",
   "entry": "entry.ts",
-  "externals": Array [
-    [Function],
-    [Function],
-    [Function],
-    [Function],
-  ],
+  "externals": [Function],
   "mode": "production",
   "module": Object {
     "rules": Array [
@@ -289,12 +274,7 @@ Object {
   "context": "/src",
   "devtool": "source-map",
   "entry": "entry.ts",
-  "externals": Array [
-    [Function],
-    [Function],
-    [Function],
-    [Function],
-  ],
+  "externals": [Function],
   "mode": "production",
   "module": Object {
     "rules": Array [

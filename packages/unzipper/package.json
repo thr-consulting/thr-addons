@@ -2,21 +2,15 @@
 	"name": "@thx/unzipper",
 	"version": "11.0.2",
 	"description": "Process files inside a ZIP file",
+	"bugs": {
+		"url": "https://github.com/thr-consulting/thr-addons/issues"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/thr-consulting/thr-addons.git"
 	},
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
-	"engines": {
-		"node": ">=12"
-	},
-	"bugs": {
-		"url": "https://github.com/thr-consulting/thr-addons/issues"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
 	"main": "index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
@@ -30,32 +24,39 @@
 		"clean": "rimraf ./dist",
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
-		"ts": "tsc",
+		"sort": "npx sort-package-json",
 		"test": "jest",
+		"test:coverage": "../../tools/coverage.sh",
 		"test:watch": "jest --watch",
-		"test:coverage": "../../tools/coverage.sh"
+		"ts": "tsc"
+	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "./tsconfig-eslint.json"
+		}
+	},
+	"jest": {
+		"collectCoverageFrom": [
+			"<rootDir>/src/**/*.js",
+			"<rootDir>/src/**/*.ts"
+		],
+		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/unzipper",
+		"testPathIgnorePatterns": [
+			"/node_modules/"
+		],
+		"transform": {
+			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
+		}
 	},
 	"dependencies": {
 		"debug": "^4.1.1",
 		"memfs": "^3.1.2",
 		"yauzl": "^2.10.0"
 	},
-	"eslintConfig": {
-		"parserOptions": {
-			"project": "../../tsconfig.json"
-		}
+	"engines": {
+		"node": ">=12"
 	},
-	"jest": {
-		"transform": {
-			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
-		},
-		"testPathIgnorePatterns": [
-			"/node_modules/"
-		],
-		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/unzipper",
-		"collectCoverageFrom": [
-			"<rootDir>/src/**/*.js",
-			"<rootDir>/src/**/*.ts"
-		]
+	"publishConfig": {
+		"access": "public"
 	}
 }
