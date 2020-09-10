@@ -2,21 +2,15 @@
 	"name": "@thx/sha256",
 	"version": "11.0.1",
 	"description": "SHA256 Hash Function",
+	"bugs": {
+		"url": "https://github.com/thr-consulting/thr-addons/issues"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/thr-consulting/thr-addons.git"
 	},
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
-	"engines": {
-		"node": ">=12"
-	},
-	"bugs": {
-		"url": "https://github.com/thr-consulting/thr-addons/issues"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
 	"main": "index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
@@ -30,27 +24,34 @@
 		"clean": "rimraf ./dist",
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
-		"ts": "tsc",
+		"sort": "npx sort-package-json",
 		"test": "jest",
+		"test:coverage": "../../tools/coverage.sh",
 		"test:watch": "jest --watch",
-		"test:coverage": "../../tools/coverage.sh"
+		"ts": "tsc"
 	},
 	"eslintConfig": {
 		"parserOptions": {
-			"project": "../../tsconfig.json"
+			"project": "./tsconfig-eslint.json"
 		}
 	},
 	"jest": {
-		"transform": {
-			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
-		},
-		"testPathIgnorePatterns": [
-			"/node_modules/"
-		],
-		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/sha256",
 		"collectCoverageFrom": [
 			"<rootDir>/src/**/*.js",
 			"<rootDir>/src/**/*.ts"
-		]
+		],
+		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/sha256",
+		"testPathIgnorePatterns": [
+			"/node_modules/"
+		],
+		"transform": {
+			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
+		}
+	},
+	"engines": {
+		"node": ">=12"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }
