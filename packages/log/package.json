@@ -2,21 +2,15 @@
 	"name": "@thx/log",
 	"version": "11.0.2",
 	"description": "Logging Functions",
+	"bugs": {
+		"url": "https://github.com/thr-consulting/thr-addons/issues"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/thr-consulting/thr-addons.git"
 	},
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
-	"engines": {
-		"node": ">=12"
-	},
-	"bugs": {
-		"url": "https://github.com/thr-consulting/thr-addons/issues"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
 	"main": "index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
@@ -30,12 +24,26 @@
 		"clean": "rimraf ./dist",
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
+		"sort": "npx sort-package-json",
 		"ts": "tsc"
 	},
-	"disabledScripts": {
-		"test": "jest",
-		"test:watch": "jest --watch",
-		"test:coverage": "../../tools/coverage.sh"
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "./tsconfig-eslint.json"
+		}
+	},
+	"jest": {
+		"collectCoverageFrom": [
+			"<rootDir>/src/**/*.js",
+			"<rootDir>/src/**/*.ts"
+		],
+		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/log",
+		"testPathIgnorePatterns": [
+			"/node_modules/"
+		],
+		"transform": {
+			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
+		}
 	},
 	"dependencies": {
 		"colors": "^1.4.0",
@@ -45,22 +53,15 @@
 		"winston": "^3.2.1",
 		"winston-gelf": "^1.7.0"
 	},
-	"eslintConfig": {
-		"parserOptions": {
-			"project": "../../tsconfig.json"
-		}
+	"engines": {
+		"node": ">=12"
 	},
-	"jest": {
-		"transform": {
-			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
-		},
-		"testPathIgnorePatterns": [
-			"/node_modules/"
-		],
-		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/log",
-		"collectCoverageFrom": [
-			"<rootDir>/src/**/*.js",
-			"<rootDir>/src/**/*.ts"
-		]
+	"publishConfig": {
+		"access": "public"
+	},
+	"disabledScripts": {
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:coverage": "../../tools/coverage.sh"
 	}
 }

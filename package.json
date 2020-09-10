@@ -1,29 +1,29 @@
 {
-  "author": "Mike Kornelson <darkadept@durbn.net>",
-  "license": "MIT",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/thr-consulting/thr-addons.git"
   },
-  "private": true,
+  "license": "MIT",
+  "author": "Mike Kornelson <darkadept@durbn.net>",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "lerna": "lerna",
-    "build": "yarn build:phase1 && yarn build:phase2",
-    "build:phase1": "lerna run build --scope '@thx/common-webpack'",
-    "build:phase2": "lerna run build",
+    "build": "yarn build:common && yarn build:libs",
+    "build:common": "lerna run build --scope '@thx/common-webpack'",
+    "build:libs": "lerna run build",
     "clean": "lerna run clean && lerna clean && rimraf ./node_modules",
+    "docs": "lerna run docs",
+    "docs:md": "lerna run docs:md",
+    "docs:storybook": "lerna run docs:storybook",
+    "lerna": "lerna",
     "lint": "lerna run lint",
     "lint:fix": "lerna run lint:fix",
-    "ts": "lerna run ts",
+    "sort": "npx sort-package-json && lerna run sort",
     "test": "lerna run test --stream",
     "test:coverage": "lerna run test:coverage",
-    "yalc:publish": "lerna run yalc:publish",
-    "docs:storybook": "lerna run docs:storybook",
-    "docs": "lerna run docs",
-    "docs:md": "lerna run docs:md"
+    "ts": "lerna run ts"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -38,14 +38,12 @@
     "@types/file-type": "^10.9.1",
     "@types/flat": "^5.0.0",
     "@types/fs-extra": "^9.0.1",
-    "@types/inputmask": "^4.0.1",
     "@types/jest": "^26.0.7",
     "@types/js-money": "^0.6.0",
     "@types/lodash": "^4.14.150",
     "@types/mime-types": "^2.1.0",
     "@types/mongoose": "^5.7.12",
     "@types/node": "^12.7.0",
-    "@types/react-datepicker": "^3.1.0",
     "@types/redis": "^2.8.14",
     "@types/webpack-node-externals": "^2.5.0",
     "@types/yauzl": "^2.9.1",

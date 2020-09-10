@@ -1,8 +1,7 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"declarationDir": "dist",
-		"types": ["node", "./src/hummus", "./src/promise-sequential"]
+		"declarationDir": "dist"
 	},
-	"include": ["src/index.ts"]
+	"include": ["src/index.ts", "types/*.d.ts"]
 }
