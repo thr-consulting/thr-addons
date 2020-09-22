@@ -32,7 +32,7 @@ export function Scriptel({omniscriptUrl, imageType, scale, crop, penStyle, child
 		});
 
 		socket.current.on('render', msg => {
-			setLoading(true);
+			setLoading(false);
 			setRender(msg);
 		});
 		socket.current.on('okButtonDown', () => {
