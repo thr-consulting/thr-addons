@@ -10,6 +10,14 @@ exports[`Formatting should format a LocalTime 1`] = `"12:00 am"`;
 
 exports[`Formatting should format an integer (epoch days) 1`] = `"8/22/2017"`;
 
+exports[`Formatting should format with default string 1`] = `"1/1/1970 12:00 am"`;
+
+exports[`Formatting should format with default string 2`] = `"1/1/1970 12:00 am"`;
+
+exports[`Formatting should format with default string 3`] = `"1/1/1970"`;
+
+exports[`Formatting should format with default string 4`] = `"1/1/1970"`;
+
 exports[`Formatting should format with defaults 1`] = `"1/1/1970"`;
 
 exports[`Formatting should format with defaults 2`] = `"1/1/1970"`;

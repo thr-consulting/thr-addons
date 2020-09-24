@@ -30,6 +30,8 @@ export function formatDate(
 	let l: LocalDate | LocalDateTime | LocalTime | ZonedDateTime | undefined;
 	if (!obj) return '';
 	if (typeof obj === 'number') l = toLocalDate(obj);
+	if (typeof obj === 'string' && time === false) l = toLocalDate(obj);
+	if (typeof obj === 'string') l = toLocalDateTime(obj);
 	if (isLocalDateLike(obj)) l = toLocalDate(obj);
 	if (obj instanceof Date) l = toLocalDateTime(obj, zone);
 	if (obj instanceof LocalDate) l = obj;

@@ -41,6 +41,13 @@ describe('Formatting', () => {
 		expect(formatDate(vars.epochDate, undefined, ZoneId.UTC)).toMatchSnapshot();
 		expect(formatDate(vars.localEpochDate, undefined, ZoneId.SYSTEM)).toMatchSnapshot();
 	});
+	it('should format with default string', () => {
+		const vars = getDateVars();
+		expect(formatDate(vars.epochString, {time: true}, ZoneId.UTC)).toMatchSnapshot();
+		expect(formatDate(vars.localEpochStringB, {time: true}, ZoneId.SYSTEM)).toMatchSnapshot();
+		expect(formatDate(vars.epochString, undefined, ZoneId.UTC)).toMatchSnapshot();
+		expect(formatDate(vars.localEpochStringB, undefined, ZoneId.SYSTEM)).toMatchSnapshot();
+	});
 	it('should format with options', () => {
 		const vars = getDateVars();
 		expect(formatDate(vars.localEpochLocalDateTime, {type: FormatDateType.short, time: true, date: true})).toMatchSnapshot();
