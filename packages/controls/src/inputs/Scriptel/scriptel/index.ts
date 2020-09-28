@@ -96,7 +96,6 @@ export class ScriptelSocket extends EventEmitter {
 
 				case ScriptelMessageClass.ButtonPress:
 					if (msg.label === 'Cancel') this.emit('cancel');
-					if (msg.label === 'OK') this.emit('okButtonPress');
 					break;
 				case ScriptelMessageClass.ButtonDown:
 					if (msg.label === 'OK') this.emit('okButtonDown');

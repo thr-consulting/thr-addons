@@ -15,6 +15,7 @@ export const Main = () => {
 	const [value, setValue] = useState<ScriptelSignature>();
 	const [value2, setValue2] = useState<ScriptelSignature>();
 
+	//  omniscriptUrl="ws://localhost:8080" imageType="image/png" crop scale={10}
 	return (
 		<Scriptel>
 			<Container>

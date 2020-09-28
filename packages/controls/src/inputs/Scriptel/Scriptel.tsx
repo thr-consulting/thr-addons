@@ -32,15 +32,12 @@ export function Scriptel({omniscriptUrl, imageType, scale, crop, penStyle, child
 		});
 
 		socket.current.on('render', msg => {
-			setLoading(false);
 			setRender(msg);
+			setLoading(false);
+			setRender(undefined); // todo look at this in future
 		});
 		socket.current.on('okButtonDown', () => {
 			setLoading(true);
-		});
-		socket.current.on('okButtonPress', () => {
-			setLoading(false);
-			setRender(undefined);
 		});
 		socket.current.on('cancel', () => {
 			setLoading(false);
@@ -54,6 +51,7 @@ export function Scriptel({omniscriptUrl, imageType, scale, crop, penStyle, child
 		});
 
 		return () => {
+			d('socket close');
 			if (socket.current) socket.current.close();
 		};
 	}, [omniscriptUrl, imageType, scale, crop, penStyle]);
