@@ -51,7 +51,6 @@ export function Scriptel({omniscriptUrl, imageType, scale, crop, penStyle, child
 		});
 
 		return () => {
-			d('socket close');
 			if (socket.current) socket.current.close();
 		};
 	}, [omniscriptUrl, imageType, scale, crop, penStyle]);

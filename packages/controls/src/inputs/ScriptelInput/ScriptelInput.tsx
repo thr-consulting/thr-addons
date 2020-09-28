@@ -13,10 +13,11 @@ export type ScriptelSignature = InferType<typeof schemaType>;
 export interface ScriptelInputProps {
 	value?: ScriptelSignature;
 	onChange?: (value?: ScriptelSignature) => void;
+	buttonText?: string;
 }
 
 export function ScriptelInput(props: ScriptelInputProps) {
-	const {value, onChange} = props;
+	const {value, onChange, buttonText = 'Enter Signature'} = props;
 	const ctx = useContext(ScriptelContext);
 
 	const [enterSignature, setEnterSignature] = useState(false);
@@ -30,6 +31,7 @@ export function ScriptelInput(props: ScriptelInputProps) {
 						type: ctx.renderImage.type,
 						width: ctx.renderImage.width,
 						height: ctx.renderImage.height,
+						timestamp: new Date(),
 						data: ctx.renderImage.data,
 					});
 				}
@@ -79,5 +81,5 @@ export function ScriptelInput(props: ScriptelInputProps) {
 		);
 	}
 
-	return <Button onClick={() => setEnterSignature(true)}>Enter Signature</Button>;
+	return <Button onClick={() => setEnterSignature(true)}>{buttonText}</Button>;
 }

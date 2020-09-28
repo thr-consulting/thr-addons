@@ -10,6 +10,7 @@ describe('MoneySchemaType', () => {
 		const result = await schema.isValid({
 			sig: {
 				data: 'datavalue',
+				timestamp: new Date(),
 			},
 		});
 		expect(result).toBe(true);

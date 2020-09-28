@@ -35,6 +35,7 @@ export const Main = () => {
 							d(v);
 							setValue2(v);
 						}}
+						buttonText="Enter Another Signature"
 					/>
 				</Segment>
 			</Container>
