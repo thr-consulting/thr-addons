@@ -30,6 +30,7 @@ export function ScriptelInput(props: ScriptelInputProps) {
 						type: ctx.renderImage.type,
 						width: ctx.renderImage.width,
 						height: ctx.renderImage.height,
+						timestamp: new Date(),
 						data: ctx.renderImage.data,
 					});
 				}

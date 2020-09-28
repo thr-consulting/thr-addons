@@ -1,4 +1,4 @@
-import {object, number, string} from 'yup';
+import {object, number, string, date} from 'yup';
 
 export function scriptelSchemaType() {
 	return object()
@@ -6,6 +6,7 @@ export function scriptelSchemaType() {
 			width: number().notRequired(),
 			height: number().notRequired(),
 			data: string().required(),
+			timestamp: date().required(),
 			type: string().oneOf(['image/svg+xml', 'image/png']).notRequired(),
 		})
 		.required()
