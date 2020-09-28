@@ -24,6 +24,7 @@ export const Main = () => {
 						setValue(v);
 					}}
 					minDate={LocalDate.now()}
+					maxDate={LocalDate.now().withMonth(11).withDayOfMonth(1)}
 				/>
 			</Segment>
 		</Container>
