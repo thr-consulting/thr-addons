@@ -72,14 +72,14 @@ export function MonthYearPicker(props: MonthYearPickerProps): JSX.Element {
 		<DatePicker
 			{...rest}
 			selected={selected}
-			onChange={(date) => {
+			onChange={date => {
 				if (onChange) onChange(date ? toLocalDate(date) : undefined);
 			}}
 			customInput={<Input {...inputProps} />}
 			dateFormat="MMMM yyyy"
 			showMonthYearPicker
-			minDate={toDate(minDate || LocalDate.ofEpochDay(0))}
-			maxDate={toDate(maxDate || LocalDate.now().plusYears(20))}
+			minDate={toDate(minDate?.withDayOfMonth(1) || LocalDate.ofEpochDay(0))}
+			maxDate={toDate(maxDate?.plusMonths(1).withDayOfMonth(1).minusDays(1) || LocalDate.now().plusYears(20))}
 		/>
 	);
 }
