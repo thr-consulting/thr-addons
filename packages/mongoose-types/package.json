@@ -1,6 +1,6 @@
 {
 	"name": "@thx/mongoose-types",
-	"version": "11.1.4",
+	"version": "11.2.0",
 	"description": "Mongoose Types",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -47,7 +47,7 @@
 	},
 	"dependencies": {
 		"@js-joda/core": "^3.0.0",
-		"@thx/date": "^11.1.4",
+		"@thx/date": "^11.2.0",
 		"@thx/money": "^11.0.4",
 		"debug": "^4.1.1",
 		"lodash": "^4.17.15"
