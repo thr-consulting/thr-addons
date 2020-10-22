@@ -2322,9 +2322,9 @@
     write-file-atomic "^2.3.0"
 
 "@mikro-orm/core@^4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/core/-/core-4.2.1.tgz#9d5d9c6656953746d38292022489c15493141d5e"
-  integrity sha512-R7rvsAbC5+CJwwZI8VLzEdgzDNX0AEkUUzGgufdIqTtCRl/SZRQD4huUxBq/Dhd5Sx0wKUWCmPrW/rKNyy0ccA==
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/core/-/core-4.2.2.tgz#836c63abcc12fbe58f53447d3729fc1a77a8d6c1"
+  integrity sha512-ZnsRfB1CLI/WIgjNy0+X7Grl27ICXlJAinNIcK+w051yXFtg/cv+8AXx0IchSaa5hzFQ6MEZVRGdc89X97gJdw==
   dependencies:
     ansi-colors "^4.1.1"
     clone "^2.1.2"
@@ -3146,9 +3146,9 @@
   integrity sha512-BfbIHP9IapdupGhq/hc+jT5dyiBVZ2DdeC5WwJWQWDb0GijQlzUFAeIQn/2GtvZcd2HVUU7An8felIICFTC2qg==
 
 "@types/node@^12.7.0":
-  version "12.12.69"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.69.tgz#7cb6a3aa0d16664bf2dcd1450ccb8477464fbd79"
-  integrity sha512-2F2VQRSFmzqgUEXw75L51MgnnZqc6bKWVSUPfrDPzp6mzGGibeVwyQcpvZvBr5RnsoMRHmC8EcBQiobSeqeJxg==
+  version "12.19.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.19.1.tgz#303f74c8a2b35644594139e948b2be470ae1186f"
+  integrity sha512-/xaVmBBjOGh55WCqumLAHXU9VhjGtmyTGqJzFBXRWZzByOXI5JAJNx9xPVGEsNizrNwcec92fQMj458MWfjN1A==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -4080,9 +4080,9 @@ autoprefixer@^9.7.2:
     postcss-value-parser "^4.1.0"
 
 aws-sdk@^2.662.0:
-  version "2.775.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.775.0.tgz#707c369e84b79cf3b136819c01f849b93fb44eab"
-  integrity sha512-rlej1sgHmfhl+PJqpQ2qOOsbHEEnLBIKBmanMTUNGiEAfuS0MpFjXECXTpJIOrbUzl3OZuAYrGuBkg2qrBwRbQ==
+  version "2.777.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.777.0.tgz#c808dfa25b4c98a5fdf2ae6df29b9861dd6a5c63"
+  integrity sha512-eUUphwNARaex2uBCCWp/UGT5LabqbCgIZDXhJp5n2kGBuNlzkZMrLe5AiSo8OnaaP2ZnfaonxZKT87Ny56EKyA==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
