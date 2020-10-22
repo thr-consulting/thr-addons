@@ -49,8 +49,8 @@
 		}
 	},
 	"dependencies": {
-		"debug": "^4.1.1",
-		"@thx/date": "^11.2.0"
+		"@thx/date": "^11.2.0",
+		"debug": "^4.1.1"
 	},
 	"peerDependencies": {
 		"@mikro-orm/core": "4.x"

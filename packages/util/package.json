@@ -24,11 +24,11 @@
 		"lint": "eslint --cache --ext js,ts,tsx src",
 		"lint:fix": "eslint --cache --fix --ext js,ts,tsx src",
 		"sort": "npx sort-package-json",
-		"ts": "tsc",
-		"typedoc": "typedoc",
 		"test": "jest",
 		"test:coverage": "../../tools/coverage.sh",
-		"test:watch": "jest --watch"
+		"test:watch": "jest --watch",
+		"ts": "tsc",
+		"typedoc": "typedoc"
 	},
 	"eslintConfig": {
 		"parserOptions": {
@@ -53,8 +53,8 @@
 	"dependencies": {
 		"debug": "^4.1.1",
 		"inspect-loader": "^1.0.0",
-		"webpack-node-externals": "^2.5.0",
-		"lodash": "^4.17.20"
+		"lodash": "^4.17.20",
+		"webpack-node-externals": "^2.5.0"
 	},
 	"engines": {
 		"node": ">=12"
