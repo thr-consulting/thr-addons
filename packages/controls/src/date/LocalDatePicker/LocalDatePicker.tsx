@@ -28,7 +28,6 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		action,
 		actionPosition,
 		className,
-		disabled,
 		error,
 		fluid,
 		focus,
@@ -51,7 +50,6 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		action,
 		actionPosition,
 		className,
-		disabled,
 		error,
 		fluid,
 		focus,
@@ -70,11 +68,10 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		<DatePicker
 			{...rest}
 			selected={selected}
-			onChange={(date) => {
+			onChange={date => {
 				if (onChange) onChange(date ? toLocalDate(date) : null);
 			}}
 			onBlur={onBlur}
-			// @ts-ignore
 			customInput={<MaskedDateInput {...inputProps} onBlur={onBlur} />}
 		/>
 	);
