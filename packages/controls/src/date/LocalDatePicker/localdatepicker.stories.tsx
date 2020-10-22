@@ -1,6 +1,6 @@
 import debug from 'debug';
 import React, {useState} from 'react';
-import {Container, Form, Input, Segment} from 'semantic-ui-react';
+import {Container, Form, Segment} from 'semantic-ui-react';
 import {LocalDate} from '@js-joda/core';
 import {formatDate} from '@thx/date';
 import {InferType, object} from 'yup';
@@ -22,7 +22,6 @@ export const Main = () => {
 		<Container>
 			<Segment basic>
 				<LocalDatePicker value={value} onChange={v => setValue(v)} onBlur={() => d('onBlur')} />
-				<Input />
 			</Segment>
 			<Segment>
 				<p>Value is: {formatDate(value)}</p>

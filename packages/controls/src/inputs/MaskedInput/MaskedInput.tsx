@@ -21,7 +21,7 @@ export interface MaskedInputProps {
 }
 
 export function MaskedInput(props: MaskedInputProps & Omit<InputProps, 'onChange'>) {
-	const {name, value, onChange, onBlur, mask, ...rest} = props;
+	const {name, value, onChange, onBlur, mask, disabled, ...rest} = props;
 
 	const inputElement = useRef<HTMLInputElement | null>(null);
 	const maskInstance = useRef<Inputmask.Instance | null>(null);
@@ -66,7 +66,7 @@ export function MaskedInput(props: MaskedInputProps & Omit<InputProps, 'onChange
 
 	return (
 		<Input {...rest}>
-			<input name={name} ref={inputElement} onBlur={onBlur} />
+			<input disabled={disabled} name={name} ref={inputElement} onBlur={onBlur} />
 		</Input>
 	);
 }
