@@ -22,7 +22,6 @@ export const Main = () => {
 		<Container>
 			<Segment basic>
 				<LocalDatePicker value={value} onChange={v => setValue(v)} onBlur={() => d('onBlur')} />
-				<Input />
 			</Segment>
 			<Segment>
 				<p>Value is: {formatDate(value)}</p>
