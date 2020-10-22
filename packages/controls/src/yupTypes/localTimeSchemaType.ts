@@ -6,7 +6,7 @@ class LocalTimeSchemaType extends mixed {
 		super();
 
 		this.withMutation(() => {
-			this.transform(function (value) {
+			this.transform(function transform(value) {
 				if (this.isType(value)) return value;
 				return null;
 			});
