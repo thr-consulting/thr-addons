@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1603470657223" clover="3.2.0">
+  <project timestamp="1603470657224" name="All files">
+    <metrics statements="23" coveredstatements="17" conditionals="16" coveredconditionals="16" methods="15" coveredmethods="8" elements="54" coveredelements="41" complexity="0" loc="23" ncloc="23" packages="1" files="1" classes="1"/>
+    <file name="index.ts" path="/home/mike/dev/thr-addons/packages/sharedcache/src/index.ts">
+      <metrics statements="23" coveredstatements="17" conditionals="16" coveredconditionals="16" methods="15" coveredmethods="8"/>
+      <line num="6" count="28" type="cond" truecount="2" falsecount="0"/>
+      <line num="10" count="12" type="cond" truecount="2" falsecount="0"/>
+      <line num="11" count="11" type="stmt"/>
+      <line num="15" count="12" type="cond" truecount="2" falsecount="0"/>
+      <line num="16" count="10" type="stmt"/>
+      <line num="51" count="7" type="stmt"/>
+      <line num="66" count="7" type="cond" truecount="2" falsecount="0"/>
+      <line num="67" count="3" type="stmt"/>
+      <line num="69" count="4" type="stmt"/>
+      <line num="72" count="7" type="cond" truecount="2" falsecount="0"/>
+      <line num="83" count="12" type="cond" truecount="4" falsecount="0"/>
+      <line num="84" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="86" count="8" type="stmt"/>
+      <line num="89" count="12" type="stmt"/>
+      <line num="98" count="12" type="stmt"/>
+      <line num="107" count="3" type="stmt"/>
+      <line num="116" count="1" type="stmt"/>
+      <line num="125" count="0" type="stmt"/>
+      <line num="134" count="0" type="stmt"/>
+      <line num="144" count="0" type="stmt"/>
+      <line num="153" count="0" type="stmt"/>
+      <line num="157" count="0" type="stmt"/>
+      <line num="161" count="0" type="stmt"/>
+    </file>
+  </project>
+</coverage>

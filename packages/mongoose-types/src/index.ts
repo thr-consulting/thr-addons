@@ -1,36 +1,39 @@
+// @ts-nocheck
 // eslint-disable-next-line max-classes-per-file
-import debug from 'debug';
-import {LocalDate as LD} from '@js-joda/core';
+import {LocalDate as LD, LocalTime as LT} from '@js-joda/core';
+import {toEpochDay, toLocalDate, toLocalTime} from '@thx/date';
 import {toMoney} from '@thx/money';
-import {toEpochDay, toLocalDate} from '@thx/date';
-import mongoose from 'mongoose';
+import debug from 'debug';
 import isInteger from 'lodash/isInteger';
-import isUndefined from 'lodash/isUndefined';
 import isNull from 'lodash/isNull';
+import isUndefined from 'lodash/isUndefined';
+import {Schema, SchemaType} from 'mongoose';
 
-const d = debug('thx.mongoose-types');
-
-function toBSON(this: any): number {
-	return toEpochDay(this);
-}
+const d = debug('domain.lib.mongoose-types');
 
 // Add .toBSON to LocalDate if not defined
-// @ts-ignore
 if (!LD.prototype.toBSON) {
-	// @ts-ignore
-	LD.prototype.toBSON = toBSON;
+	LD.prototype.toBSON = function toBSON(this: LD) {
+		return toEpochDay(this);
+	};
 }
 
-class LocalDate extends mongoose.SchemaType {
+// Add .toBSON to LocalTime if not defined
+if (!LT.prototype.toBSON) {
+	LT.prototype.toBSON = function toBSON(this: LT) {
+		return this.toSecondOfDay();
+	};
+}
+
+class LocalDate extends SchemaType {
 	$conditionalHandlers: Record<string, unknown>;
 
 	constructor(...params: any) {
-		// @ts-ignore
 		super(...params);
 
 		this.$conditionalHandlers = {
 			// @ts-ignore
-			...mongoose.SchemaType.prototype.$conditionalHandlers,
+			...SchemaType.prototype.$conditionalHandlers,
 			$gt: this.cast,
 			$gte: this.cast,
 			$lt: this.cast,
@@ -49,16 +52,40 @@ class LocalDate extends mongoose.SchemaType {
 	}
 }
 
-class Money extends mongoose.SchemaType {
+class LocalTime extends SchemaType {
 	$conditionalHandlers: Record<string, unknown>;
 
 	constructor(...params: any) {
-		// @ts-ignore
 		super(...params);
 
 		this.$conditionalHandlers = {
-			// @ts-ignore
-			...mongoose.SchemaType.prototype.$conditionalHandlers,
+			...SchemaType.prototype.$conditionalHandlers,
+			$gt: this.cast,
+			$gte: this.cast,
+			$lt: this.cast,
+			$lte: this.cast,
+		};
+	}
+
+	cast(val: any) {
+		// d('Cast:', val);
+		if (val instanceof LT) return val;
+		if (isInteger(val)) return toLocalTime(val);
+		if (isNull(val)) return null;
+		if (isUndefined(val)) return undefined;
+
+		throw new Error(`SchemaType LocalTime: ${val} is not a LocalTime (or null, undefined)`);
+	}
+}
+
+class Money extends SchemaType {
+	$conditionalHandlers: Record<string, unknown>;
+
+	constructor(...params: any) {
+		super(...params);
+
+		this.$conditionalHandlers = {
+			...SchemaType.prototype.$conditionalHandlers,
 			$gt: this.cast,
 			$gte: this.cast,
 			$lt: this.cast,
@@ -74,7 +101,16 @@ class Money extends mongoose.SchemaType {
 	}
 }
 
-// @ts-ignore
-mongoose.Schema.Types.LocalDate = LocalDate;
-// @ts-ignore
-mongoose.Schema.Types.Money = Money;
+Schema.Types.LocalDate = LocalDate;
+Schema.Types.Money = Money;
+Schema.Types.LocalTime = LocalTime;
+
+// This is needed to make mongoose work in production.
+// it uses the Class.name (with the first letter capitalized) as an index on the Schema.Types
+// for the custom types.
+function capitalizeFirstLetter(string: string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}
+Schema.Types[capitalizeFirstLetter(LocalDate.name)] = LocalDate;
+Schema.Types[capitalizeFirstLetter(Money.name)] = Money;
+Schema.Types[capitalizeFirstLetter(LocalTime.name)] = LocalTime;

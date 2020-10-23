@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1603470655081" clover="3.2.0">
+  <project timestamp="1603470655081" name="All files">
+    <metrics statements="33" coveredstatements="32" conditionals="10" coveredconditionals="7" methods="10" coveredmethods="10" elements="53" coveredelements="49" complexity="0" loc="33" ncloc="33" packages="1" files="3" classes="3"/>
+    <file name="ZipReader.ts" path="/home/mike/dev/thr-addons/packages/unzipper/src/ZipReader.ts">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="14" count="2" type="stmt"/>
+      <line num="16" count="2" type="stmt"/>
+      <line num="17" count="2" type="stmt"/>
+      <line num="22" count="6" type="stmt"/>
+    </file>
+    <file name="index.ts" path="/home/mike/dev/thr-addons/packages/unzipper/src/index.ts">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+    </file>
+    <file name="unzipper.ts" path="/home/mike/dev/thr-addons/packages/unzipper/src/unzipper.ts">
+      <metrics statements="29" coveredstatements="28" conditionals="10" coveredconditionals="7" methods="8" coveredmethods="8"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="19" count="2" type="stmt"/>
+      <line num="20" count="2" type="stmt"/>
+      <line num="21" count="2" type="stmt"/>
+      <line num="22" count="2" type="stmt"/>
+      <line num="25" count="2" type="stmt"/>
+      <line num="26" count="2" type="stmt"/>
+      <line num="27" count="2" type="stmt"/>
+      <line num="28" count="2" type="stmt"/>
+      <line num="36" count="2" type="cond" truecount="4" falsecount="0"/>
+      <line num="37" count="1" type="stmt"/>
+      <line num="38" count="1" type="stmt"/>
+      <line num="41" count="1" type="stmt"/>
+      <line num="44" count="1" type="stmt"/>
+      <line num="47" count="1" type="stmt"/>
+      <line num="48" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="50" count="0" type="stmt"/>
+      <line num="53" count="1" type="stmt"/>
+      <line num="54" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="55" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="56" count="1" type="stmt"/>
+      <line num="58" count="1" type="stmt"/>
+      <line num="62" count="1" type="stmt"/>
+      <line num="69" count="1" type="stmt"/>
+      <line num="70" count="1" type="stmt"/>
+      <line num="72" count="1" type="stmt"/>
+      <line num="73" count="1" type="stmt"/>
+      <line num="77" count="1" type="stmt"/>
+      <line num="83" count="2" type="stmt"/>
+    </file>
+  </project>
+</coverage>

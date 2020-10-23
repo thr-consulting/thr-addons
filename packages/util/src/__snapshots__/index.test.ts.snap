@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExcludeFalse should exclude false values 1`] = `
+Array [
+  "string A",
+  555,
+  "string B",
+]
+`;
+
+exports[`valuesToFunctions should convert values to functions 1`] = `
+Object {
+  "field1": [Function],
+  "field2": [Function],
+}
+`;
