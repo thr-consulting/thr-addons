@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1603401532286" clover="3.2.0">
-  <project timestamp="1603401532286" name="All files">
+<coverage generated="1603470651739" clover="3.2.0">
+  <project timestamp="1603470651739" name="All files">
     <metrics statements="27" coveredstatements="26" conditionals="24" coveredconditionals="22" methods="11" coveredmethods="10" elements="62" coveredelements="58" complexity="0" loc="27" ncloc="27" packages="1" files="3" classes="3"/>
     <file name="FileTypeReadStream.ts" path="/home/mike/dev/thr-addons/packages/mimetype/src/FileTypeReadStream.ts">
       <metrics statements="14" coveredstatements="13" conditionals="4" coveredconditionals="2" methods="4" coveredmethods="3"/>

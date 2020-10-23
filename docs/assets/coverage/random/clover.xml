@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1603401537953" clover="3.2.0">
-  <project timestamp="1603401537954" name="All files">
+<coverage generated="1603470658307" clover="3.2.0">
+  <project timestamp="1603470658308" name="All files">
     <metrics statements="22" coveredstatements="21" conditionals="14" coveredconditionals="14" methods="6" coveredmethods="6" elements="42" coveredelements="41" complexity="0" loc="22" ncloc="22" packages="1" files="1" classes="1"/>
     <file name="index.ts" path="/home/mike/dev/thr-addons/packages/random/src/index.ts">
       <metrics statements="22" coveredstatements="21" conditionals="14" coveredconditionals="14" methods="6" coveredmethods="6"/>

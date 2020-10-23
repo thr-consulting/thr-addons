@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1603401533331" clover="3.2.0">
-  <project timestamp="1603401533331" name="All files">
+<coverage generated="1603470652121" clover="3.2.0">
+  <project timestamp="1603470652121" name="All files">
     <metrics statements="121" coveredstatements="102" conditionals="160" coveredconditionals="129" methods="12" coveredmethods="9" elements="293" coveredelements="240" complexity="0" loc="121" ncloc="121" packages="1" files="6" classes="6"/>
     <file name="conversion.ts" path="/home/mike/dev/thr-addons/packages/date/src/conversion.ts">
       <metrics statements="77" coveredstatements="74" conditionals="95" coveredconditionals="88" methods="7" coveredmethods="7"/>

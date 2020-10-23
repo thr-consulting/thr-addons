@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1603401532048" clover="3.2.0">
-  <project timestamp="1603401532048" name="All files">
+<coverage generated="1603470651257" clover="3.2.0">
+  <project timestamp="1603470651257" name="All files">
     <metrics statements="13" coveredstatements="13" conditionals="20" coveredconditionals="19" methods="7" coveredmethods="7" elements="40" coveredelements="39" complexity="0" loc="13" ncloc="13" packages="1" files="5" classes="5"/>
     <file name="currencyCountry.ts" path="/home/mike/dev/thr-addons/packages/money/src/currencyCountry.ts">
       <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1603401535508" clover="3.2.0">
-  <project timestamp="1603401535508" name="All files">
+<coverage generated="1603470655081" clover="3.2.0">
+  <project timestamp="1603470655081" name="All files">
     <metrics statements="33" coveredstatements="32" conditionals="10" coveredconditionals="7" methods="10" coveredmethods="10" elements="53" coveredelements="49" complexity="0" loc="33" ncloc="33" packages="1" files="3" classes="3"/>
     <file name="ZipReader.ts" path="/home/mike/dev/thr-addons/packages/unzipper/src/ZipReader.ts">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
