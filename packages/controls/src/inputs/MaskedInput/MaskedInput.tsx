@@ -1,7 +1,6 @@
 import debug from 'debug';
 import React, {useRef, useEffect} from 'react';
 import {Input, InputProps} from 'semantic-ui-react';
-import 'inputmask/dist/inputmask/inputmask.numeric.extensions';
 import Inputmask from 'inputmask';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
