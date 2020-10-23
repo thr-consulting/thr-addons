@@ -48,9 +48,6 @@
 		"webpack": "^4.44.1",
 		"webpack-node-externals": "^2.5.0"
 	},
-	"devDependencies": {
-		"webpack-cli": "^3.3.11"
-	},
 	"engines": {
 		"node": ">=12"
 	},

@@ -65,8 +65,7 @@
   },
   "devDependencies": {
     "css-loader": "^5.0.0",
-    "style-loader": "^2.0.0",
-    "webpack-cli": "^3.3.9"
+    "style-loader": "^2.0.0"
   },
   "peerDependencies": {
     "react": "16.x || 17.x",
