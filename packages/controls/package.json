@@ -52,6 +52,8 @@
     "@js-joda/core": "^3.0.0",
     "@thx/date": "^11.2.0",
     "@thx/money": "^11.0.4",
+    "@types/inputmask": "^4.0.1",
+    "@types/react-datepicker": "^3.1.1",
     "debug": "^4.1.1",
     "eventemitter3": "^4.0.0",
     "flat": "^5.0.0",
