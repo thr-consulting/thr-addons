@@ -1,6 +1,6 @@
 {
 	"name": "@thx/counter-stream",
-	"version": "11.0.4",
+	"version": "13.0.0",
 	"description": "Count number of bytes in a stream",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"

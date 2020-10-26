@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0](https://github.com/thr-consulting/thr-addons/compare/v10.2.2...v13.0.0) (2020-10-26)
+
+
+### Bug Fixes
+
+* **date:** passing default string value ([#218](https://github.com/thr-consulting/thr-addons/issues/218)) ([349b9e8](https://github.com/thr-consulting/thr-addons/commit/349b9e8406e718520ff34b756467536531816970))
+
+
+### Reverts
+
+* Revert "Publish" ([6901156](https://github.com/thr-consulting/thr-addons/commit/69011564c737c20bcf124819525cc15a6b66cc7e))
+
+
+
+
+
 # [11.2.0](https://github.com/thr-consulting/thr-addons/compare/@thx/date@11.1.4...@thx/date@11.2.0) (2020-09-30)
 
 
