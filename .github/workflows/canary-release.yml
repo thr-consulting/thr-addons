@@ -5,7 +5,8 @@ on:
       - master
 
 jobs:
-  deploy:
+  canary:
+    if: "!contains(github.event.head_commit.message, 'skip-ci')"
     name: Canary release
     runs-on: ubuntu-latest
     steps:
