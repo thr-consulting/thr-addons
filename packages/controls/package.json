@@ -25,9 +25,9 @@
     "lint:fix": "eslint --cache --fix --ext js,ts src",
     "sort": "npx sort-package-json",
     "storybook": "start-storybook -p 8000 --ci",
-    "test": "jest",
-    "test:coverage": "../../tools/coverage.sh",
-    "test:watch": "jest --watch",
+    "Xtest": "jest",
+    "Xtest:coverage": "../../tools/coverage.sh",
+    "Xtest:watch": "jest --watch",
     "ts": "tsc"
   },
   "eslintConfig": {
