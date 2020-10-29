@@ -2,9 +2,9 @@ import debug from 'debug';
 import React, {useState} from 'react';
 import {Container, Input, Segment, Form} from 'semantic-ui-react';
 import {formatDate} from '@thx/date';
+import {localDateSchemaType} from '@thx/yup-types';
 import {InferType, object} from 'yup';
 import {LocalMonthSelect} from './LocalMonthSelect';
-import {localDateSchemaType} from '../../yupTypes';
 import {TForm, TFormChildrenProps} from '../../form/TForm';
 
 const d = debug('thx.controls.LocalMonthSelect.stories');

@@ -3,10 +3,10 @@ import React, {useState} from 'react';
 import Money from 'js-money';
 import {Form, Container, Button, Segment, Radio} from 'semantic-ui-react';
 import {formatMoney} from '@thx/money';
+import {moneySchemaType} from '@thx/yup-types';
 import {InferType, object} from 'yup';
 import {MoneyInput} from './MoneyInput';
 import {TForm, TFormChildrenProps} from '../../form/TForm';
-import {moneySchemaType} from '../../yupTypes';
 
 const d = debug('thx.controls.MoneyInput.stories');
 

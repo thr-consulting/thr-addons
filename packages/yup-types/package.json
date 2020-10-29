@@ -1,0 +1,62 @@
+{
+	"name": "@thx/yup-types",
+	"version": "13.0.0",
+	"description": "Custom Yup types",
+	"bugs": {
+		"url": "https://github.com/thr-consulting/thr-addons/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thr-consulting/thr-addons.git"
+	},
+	"license": "MIT",
+	"author": "Mike Kornelson <darkadept@durbn.net>",
+	"main": "index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist",
+		"index.js"
+	],
+	"scripts": {
+		"build": "yarn build:dev && yarn build:prod",
+		"build:dev": "NODE_ENV=development webpack --config webpack.js",
+		"build:prod": "NODE_ENV=production webpack --config webpack.js",
+		"clean": "rimraf ./dist",
+		"lint": "eslint --cache --ext js,ts src",
+		"lint:fix": "eslint --cache --fix --ext js,ts src",
+		"sort": "npx sort-package-json",
+		"test": "jest",
+		"test:coverage": "../../tools/coverage.sh",
+		"test:watch": "jest --watch",
+		"ts": "tsc"
+	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "./tsconfig-eslint.json"
+		}
+	},
+	"jest": {
+		"collectCoverageFrom": [
+			"<rootDir>/src/**/*.js",
+			"<rootDir>/src/**/*.ts"
+		],
+		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/yup-types",
+		"testPathIgnorePatterns": [
+			"/node_modules/"
+		],
+		"transform": {
+			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
+		}
+	},
+	"dependencies": {
+		"@thx/date": "^13.0.0",
+		"debug": "^4.1.1",
+		"yup": "^0.29.3"
+	},
+	"engines": {
+		"node": ">=12"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
