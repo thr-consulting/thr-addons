@@ -3,11 +3,11 @@ import React, {useState} from 'react';
 import {Container, Form, Segment} from 'semantic-ui-react';
 import {LocalDate} from '@js-joda/core';
 import {formatDate} from '@thx/date';
+import {localDateSchemaType} from '@thx/yup-types';
 import {InferType, object} from 'yup';
 import {LocalDatePicker} from './LocalDatePicker';
 import {MaskedDateInput} from './MaskedDateInput';
 import {TForm, TFormChildrenProps} from '../../form/TForm';
-import {localDateSchemaType} from '../../yupTypes';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../DatePicker/styles.css';
 

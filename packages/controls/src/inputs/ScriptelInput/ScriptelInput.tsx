@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Button, Image} from 'semantic-ui-react';
 import debug from 'debug';
+import {scriptelSchemaType} from '@thx/yup-types';
 import type {InferType} from 'yup';
 import {ScriptelContext} from '../Scriptel/ScriptelContext';
-import {scriptelSchemaType} from '../../yupTypes';
 
 const d = debug('thx.controls.ScriptelInput');
 

@@ -15,9 +15,12 @@ export {MaskedInput, MaskedInputProps} from './inputs/MaskedInput';
 export {RadioGroup, RadioGroupProps} from './inputs/RadioGroup';
 export {Scriptel, ScriptelProps, ScriptelMessageClass, ScriptelPenStyle, withScriptel} from './inputs/Scriptel';
 export {ScriptelInput, ScriptelInputProps, ScriptelSignature} from './inputs/ScriptelInput';
+export {PhoneInput, PhoneInputProps} from './inputs/PhoneInput';
+export {CreditCardInput, CreditCardInputType} from './inputs/CreditCardInput';
+export {SinInput, SinInputProps} from './inputs/SinInput';
 
 // Money
 export {MoneyInput, MoneyInputProps} from './money/MoneyInput';
 
-// Yup Types
-export {localDateSchemaType, scriptelSchemaType, localTimeSchemaType, moneySchemaType} from './yupTypes';
+// Step
+export {FormStep, StepProvider, useStep, Step} from './step';
