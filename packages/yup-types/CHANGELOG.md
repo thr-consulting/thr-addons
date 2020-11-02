@@ -9,11 +9,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **controls:** added PhoneInput, CreditCardInput, SinInput, Step ([#233](https://github.com/thr-consulting/thr-addons/issues/233)) ([a13eaed](https://github.com/thr-consulting/thr-addons/commit/a13eaed861beab2238ca2c0b826faa2807dccfa7))
-
-
-
-
-
-# [13.0.0](https://github.com/thr-consulting/thr-addons/compare/v10.2.2...v13.0.0) (2020-10-26)
-
-**Note:** Version bump only for package @thx/mikroorm-types
