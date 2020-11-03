@@ -6,7 +6,7 @@ interface Tsconfig {
 	};
 }
 
-export function getTsconfigAliasPaths(tsconfig: Tsconfig, manualAliasPaths: Record<string, string>) {
+export function getTsconfigAliasPaths(tsconfig: Tsconfig, manualAliasPaths?: Record<string, string>) {
 	if (tsconfig.compilerOptions && tsconfig.compilerOptions.paths) {
 		return {
 			...manualAliasPaths,
