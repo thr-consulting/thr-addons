@@ -12,9 +12,21 @@ interface CommonWebpackParams {
 	outputFile: string;
 	rules?: any[];
 	jsxFactory?: string;
+	aliasPaths?: {
+		[key: string]: string;
+	};
 }
 
-export default function commonWebpack({isProduction, isClient, name, entry, outputFile, rules, jsxFactory}: CommonWebpackParams): Configuration {
+export default function commonWebpack({
+	isProduction,
+	isClient,
+	name,
+	entry,
+	outputFile,
+	rules,
+	jsxFactory,
+	aliasPaths,
+}: CommonWebpackParams): Configuration {
 	return {
 		entry,
 		mode: isProduction ? 'production' : 'development',
@@ -54,7 +66,7 @@ export default function commonWebpack({isProduction, isClient, name, entry, outp
 							loader: 'babel-loader',
 							options: {
 								babelrc: false,
-								presets: [['@imperium/babel-preset-imperium', {client: isClient}]],
+								presets: [['@imperium/babel-preset-imperium', {client: isClient, alias: aliasPaths}]],
 							},
 						},
 					],
@@ -68,7 +80,7 @@ export default function commonWebpack({isProduction, isClient, name, entry, outp
 							loader: 'babel-loader',
 							options: {
 								babelrc: false,
-								presets: [['@imperium/babel-preset-imperium', {client: isClient, typescript: true, jsxFactory}]],
+								presets: [['@imperium/babel-preset-imperium', {client: isClient, typescript: true, jsxFactory, alias: aliasPaths}]],
 							},
 						},
 					],
