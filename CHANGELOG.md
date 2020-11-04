@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](https://github.com/thr-consulting/thr-addons/compare/v13.1.0...v13.2.0) (2020-11-04)
+
+
+### Bug Fixes
+
+* **common-webpack:** fixed parameters bug in tsconfig alias paths ([9ee62d0](https://github.com/thr-consulting/thr-addons/commit/9ee62d0356ab2d4301147eb7956f80150cca4272))
+* **mikroorm-types:** closes [#234](https://github.com/thr-consulting/thr-addons/issues/234) ([#235](https://github.com/thr-consulting/thr-addons/issues/235)) ([6fd83f6](https://github.com/thr-consulting/thr-addons/commit/6fd83f6a81d0775b30f157ae0d80aced50b2d085))
+
+
+### Features
+
+* **common-webpack:** finish tsconfigAliasPaths feature ([b49e6d3](https://github.com/thr-consulting/thr-addons/commit/b49e6d3cfae479b66cc4738819efc9919c005a09))
+
+
+
+
+
 # [13.1.0](https://github.com/thr-consulting/thr-addons/compare/v13.0.0...v13.1.0) (2020-11-02)
 
 
