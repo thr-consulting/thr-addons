@@ -28,6 +28,7 @@ Object {
                 Array [
                   "@imperium/babel-preset-imperium",
                   Object {
+                    "alias": undefined,
                     "client": true,
                   },
                 ],
@@ -55,6 +56,7 @@ Object {
                 Array [
                   "@imperium/babel-preset-imperium",
                   Object {
+                    "alias": undefined,
                     "client": true,
                     "jsxFactory": undefined,
                     "typescript": true,
@@ -118,6 +120,7 @@ Object {
                 Array [
                   "@imperium/babel-preset-imperium",
                   Object {
+                    "alias": undefined,
                     "client": false,
                   },
                 ],
@@ -145,6 +148,7 @@ Object {
                 Array [
                   "@imperium/babel-preset-imperium",
                   Object {
+                    "alias": undefined,
                     "client": false,
                     "jsxFactory": undefined,
                     "typescript": true,
@@ -207,6 +211,7 @@ Object {
                 Array [
                   "@imperium/babel-preset-imperium",
                   Object {
+                    "alias": undefined,
                     "client": true,
                   },
                 ],
@@ -234,6 +239,7 @@ Object {
                 Array [
                   "@imperium/babel-preset-imperium",
                   Object {
+                    "alias": undefined,
                     "client": true,
                     "jsxFactory": undefined,
                     "typescript": true,
@@ -297,6 +303,7 @@ Object {
                 Array [
                   "@imperium/babel-preset-imperium",
                   Object {
+                    "alias": undefined,
                     "client": false,
                   },
                 ],
@@ -324,6 +331,7 @@ Object {
                 Array [
                   "@imperium/babel-preset-imperium",
                   Object {
+                    "alias": undefined,
                     "client": false,
                     "jsxFactory": undefined,
                     "typescript": true,
