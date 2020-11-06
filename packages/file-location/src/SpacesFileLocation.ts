@@ -8,9 +8,9 @@ import type {FileLocationInterface} from './FileLocationInterface';
 const d = debug('thx.file-location.SpacesFileLocation');
 
 export default class SpacesFileLocation implements FileLocationInterface {
-	_spaces: AWS.S3;
-	_bucket: string;
-	_basePath: string;
+	spaces: AWS.S3;
+	bucket: string;
+	basePath: string;
 
 	constructor({
 		endpoint,
@@ -26,17 +26,17 @@ export default class SpacesFileLocation implements FileLocationInterface {
 		basePath?: string;
 	}) {
 		// @ts-ignore
-		this._spaces = new AWS.S3({
+		this.spaces = new AWS.S3({
 			endpoint,
 			accessKeyId: accessKey,
 			secretAccessKey: secret,
 		});
 
-		this._bucket = bucket;
-		this._basePath = basePath || '';
+		this.bucket = bucket;
+		this.basePath = basePath || '';
 
 		// Create bucket if it doesn't exist
-		this.createBucket(this._bucket, 'private', true);
+		this.createBucket(this.bucket, 'private', true);
 	}
 
 	/**
@@ -47,12 +47,12 @@ export default class SpacesFileLocation implements FileLocationInterface {
 	 */
 	async createBucket(bucket: string, acl = 'private', checkIfExists = false) {
 		if (checkIfExists) {
-			const buckets = await this._spaces.listBuckets().promise();
+			const buckets = await this.spaces.listBuckets().promise();
 			const checkBucket = find(buckets.Buckets, {Name: bucket});
 			if (checkBucket) return;
 		}
 
-		await this._spaces
+		await this.spaces
 			.createBucket({
 				Bucket: bucket,
 				ACL: acl,
@@ -61,9 +61,9 @@ export default class SpacesFileLocation implements FileLocationInterface {
 	}
 
 	async putObject(name: string, stream: Readable, mimetype: string) {
-		await this._spaces
+		await this.spaces
 			.upload({
-				Bucket: this._bucket,
+				Bucket: this.bucket,
 				Key: this.getFullName(name),
 				Body: stream,
 				ContentType: mimetype || undefined,
@@ -72,34 +72,34 @@ export default class SpacesFileLocation implements FileLocationInterface {
 	}
 
 	getObject(name: string): Readable {
-		return this._spaces
+		return this.spaces
 			.getObject({
-				Bucket: this._bucket,
+				Bucket: this.bucket,
 				Key: this.getFullName(name),
 			})
 			.createReadStream();
 	}
 
 	async deleteObject(name: string) {
-		await this._spaces
+		await this.spaces
 			.deleteObject({
-				Bucket: this._bucket,
+				Bucket: this.bucket,
 				Key: this.getFullName(name),
 			})
 			.promise();
 	}
 
 	getObjectUrl(name: string, {expires} = {expires: 60}): string {
-		return this._spaces.getSignedUrl('getObject', {
-			Bucket: this._bucket,
+		return this.spaces.getSignedUrl('getObject', {
+			Bucket: this.bucket,
 			Key: this.getFullName(name),
 			Expires: expires,
 		});
 	}
 
 	putObjectUrl(name: string, mimetype?: string, {expires} = {expires: 60}): string {
-		return this._spaces.getSignedUrl('putObject', {
-			Bucket: this._bucket,
+		return this.spaces.getSignedUrl('putObject', {
+			Bucket: this.bucket,
 			Key: this.getFullName(name),
 			Expires: expires,
 			ContentType: mimetype || undefined, // 'application/pdf',
@@ -108,9 +108,9 @@ export default class SpacesFileLocation implements FileLocationInterface {
 
 	async objectExists(name: string): Promise<boolean> {
 		try {
-			await this._spaces
+			await this.spaces
 				.headObject({
-					Bucket: this._bucket,
+					Bucket: this.bucket,
 					Key: this.getFullName(name),
 				})
 				.promise();
@@ -122,7 +122,7 @@ export default class SpacesFileLocation implements FileLocationInterface {
 	}
 
 	getFullName(name: string): string {
-		return path.join(this._basePath, name);
+		return path.join(this.basePath, name);
 	}
 
 	locationType(): string {
