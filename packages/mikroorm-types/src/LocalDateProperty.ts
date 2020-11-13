@@ -21,6 +21,6 @@ export class LocalDateProperty extends Type {
 	}
 
 	getColumnType() {
-		return 'bigint';
+		return 'int';
 	}
 }
