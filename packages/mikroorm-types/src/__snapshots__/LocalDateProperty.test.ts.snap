@@ -4,7 +4,7 @@ exports[`LocalDateProperty should convert LocalDate values 1`] = `100`;
 
 exports[`LocalDateProperty should convert LocalDate values 2`] = `"1970-04-11"`;
 
-exports[`LocalDateProperty should convert LocalDate values 3`] = `"bigint"`;
+exports[`LocalDateProperty should convert LocalDate values 3`] = `"int"`;
 
 exports[`LocalDateProperty should throw errors on invalid values 1`] = `"Could not convert JS value 'not a date' of type 'string' to type LocalDateProperty"`;
 
