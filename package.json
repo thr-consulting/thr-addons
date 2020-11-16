@@ -30,6 +30,9 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
+  "resolutions": {
+    "**/react": "^17.0.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@commitlint/cli": "^11.0.0",
@@ -38,7 +41,7 @@
     "@imperium/eslint-config-imperium": "^4.0.8",
     "@imperium/prettier-config-imperium": "^4.0.4",
     "@mikro-orm/core": "^4.2.1",
-    "@storybook/react": "^5.3.18",
+    "@storybook/react": "^6.0.28",
     "@thx/common-webpack": "^5.0.0",
     "@types/accounting": "^0.4.1",
     "@types/debug": "^4.1.5",
