@@ -7,7 +7,8 @@ import {localDateSchemaType} from '@thx/yup-types';
 import {InferType, object} from 'yup';
 import {LocalDatePicker} from './LocalDatePicker';
 import {MaskedDateInput} from './MaskedDateInput';
-import {TForm, TFormChildrenProps} from '../../form/TForm';
+import {TForm} from '../../form/TForm';
+import type {TFormChildrenProps} from '../../form/TForm';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../DatePicker/styles.css';
 

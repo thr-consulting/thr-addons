@@ -8,6 +8,7 @@ interface FormStepProps {
 	children: JSX.Element;
 	title?: string;
 	step?: number;
+	hidden?: boolean | ((state: any, step: number) => boolean);
 }
 
 export function FormStep(props: FormStepProps) {
