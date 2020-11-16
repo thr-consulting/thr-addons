@@ -1,7 +1,7 @@
 import debug from 'debug';
 import React, {useState} from 'react';
 import {Button, Container, Form, Radio, Segment} from 'semantic-ui-react';
-import {FormStep, StepProvider} from './index';
+import {FormStep as CFormStep, StepProvider} from './index';
 import {TForm} from '../form/TForm';
 
 const d = debug('thx.controls.Step.stories');
@@ -34,15 +34,15 @@ const StepTwo = ({onSubmit}) => {
 	);
 };
 
-export const Step = () => {
+export const FormStep = () => {
 	const [vertical, setVertical] = useState(false);
 	return (
 		<Container>
 			<Segment basic>
 				<StepProvider onSubmit={() => {}} vertical={vertical}>
-					<FormStep title="step 1" children={<StepOne />}/>
-					<FormStep title="step 2" children={<StepTwo />}/>
-					<FormStep title="step 3" children={<div>The End</div>} hidden={state => !state[0]?.checked}/>
+					<CFormStep title="step 1" children={<StepOne />}/>
+					<CFormStep title="step 2" children={<StepTwo />}/>
+					<CFormStep title="step 3" children={<div>The End</div>} hidden={state => !state[0]?.checked}/>
 				</StepProvider>
 			</Segment>
 			<Segment>
