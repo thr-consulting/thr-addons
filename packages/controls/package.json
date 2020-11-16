@@ -18,6 +18,9 @@
     "index.js"
   ],
   "scripts": {
+    "Xtest": "jest",
+    "Xtest:coverage": "../../tools/coverage.sh",
+    "Xtest:watch": "jest --watch",
     "build": "yarn build:dev && yarn build:prod",
     "build:dev": "NODE_ENV=development webpack --config webpack.js",
     "build:prod": "NODE_ENV=production webpack --config webpack.js",
@@ -25,9 +28,6 @@
     "lint:fix": "eslint --cache --fix --ext js,ts src",
     "sort": "npx sort-package-json",
     "storybook": "start-storybook -p 8000 --ci",
-    "Xtest": "jest",
-    "Xtest:coverage": "../../tools/coverage.sh",
-    "Xtest:watch": "jest --watch",
     "ts": "tsc"
   },
   "eslintConfig": {
