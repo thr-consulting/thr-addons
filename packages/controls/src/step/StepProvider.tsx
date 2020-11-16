@@ -35,8 +35,15 @@ export function StepProvider(props: StepProviderProps) {
 		if (!child) return;
 		if (child?.type !== Step && child?.type !== FormStep)
 			throw new Error(`Can not render '${child?.type}' as child of 'StepProvider'. Must be of type 'Step' or 'FormStep'`);
-		titles.push(child?.props?.title || '');
-		children.push(React.cloneElement(child, {step: index, key: child?.key || index.toString()}));
+		if (child.props.hidden) {
+			if (typeof child.props.hidden === 'function' && !child.props.hidden(state, index)) {
+				titles.push(child?.props?.title || '');
+				children.push(React.cloneElement(child, {step: index, key: child?.key || index.toString()}));
+			}
+		} else {
+			titles.push(child?.props?.title || '');
+			children.push(React.cloneElement(child, {step: index, key: child?.key || index.toString()}));
+		}
 	});
 
 	const handleSubmit = (values: any) => {
