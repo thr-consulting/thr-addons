@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoneyProperty should convert Money values 1`] = `"{\\"amount\\":10000,\\"currency\\":\\"CAD\\"}"`;
+
+exports[`MoneyProperty should convert Money values 2`] = `
+Object {
+  "amount": 10000,
+  "currency": "CAD",
+}
+`;
+
+exports[`MoneyProperty should convert Money values 3`] = `"jsonb"`;
+
+exports[`MoneyProperty should throw errors on invalid values 1`] = `"Could not convert JS value 'not money' of type 'string' to type MoneyProperty"`;
+
+exports[`MoneyProperty should throw errors on invalid values 2`] = `"Could not convert database value 'not money' of type 'string' to type MoneyProperty"`;
