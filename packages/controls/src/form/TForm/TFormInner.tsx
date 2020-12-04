@@ -9,7 +9,6 @@ import uniq from 'lodash/uniq';
 
 const d = debug('thx.controls.TFormInner');
 
-const isFunction = (obj: any): obj is Function => typeof obj === 'function';
 const isEmptyChildren = (children: any): boolean => React.Children.count(children) === 0;
 
 export interface TFormChildrenProps<Values> extends FormikProps<Values> {
@@ -123,7 +122,7 @@ export function TFormInner<Values>(props: TFormInnerProps<Values>): JSX.Element 
 			);
 		},
 		fieldError(fieldName) {
-			return (property(fieldName)(formikProps.touched) || formikProps.submitCount > 0) && !!property(fieldName)(formikProps.errors);
+			return (!!property(fieldName)(formikProps.touched) || formikProps.submitCount > 0) && !!property(fieldName)(formikProps.errors);
 		},
 		handleSubmit(e?: React.FormEvent<HTMLFormElement>) {
 			setErrorCleared(false);
@@ -139,7 +138,7 @@ export function TFormInner<Values>(props: TFormInnerProps<Values>): JSX.Element 
 	};
 
 	if (children) {
-		if (isFunction(children)) {
+		if (typeof children === 'function') {
 			return (children as (bag: TFormChildrenProps<Values>) => JSX.Element)(bag);
 		}
 		if (!isEmptyChildren(children)) {
