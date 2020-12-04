@@ -26,7 +26,7 @@ export default class LocalFileLocation implements FileLocationInterface {
 	async putObject(name: string, stream: Readable): Promise<void> {
 		const full = this.getFullName(name);
 		await mkdirp(path.dirname(full));
-		await new Promise((resolve, reject) => {
+		await new Promise<void>((resolve, reject) => {
 			const writeStream = fs.createWriteStream(full);
 			writeStream.on('close', () => resolve());
 			writeStream.on('error', reject);
@@ -40,7 +40,7 @@ export default class LocalFileLocation implements FileLocationInterface {
 
 	async deleteObject(name: string): Promise<void> {
 		if (await this.objectExists(this.getFullName(name))) {
-			await new Promise((resolve, reject) => {
+			await new Promise<void>((resolve, reject) => {
 				fs.unlink(this.getFullName(name), err => {
 					if (err) {
 						reject(err);
