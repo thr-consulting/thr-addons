@@ -31,10 +31,12 @@ export function StepProvider(props: StepProviderProps) {
 
 	const titles: string[] = [];
 	const children: JSX.Element[] = [];
+
 	Children.forEach(props?.children, (child, index) => {
 		if (!child) return;
-		if (child?.type !== Step && child?.type !== FormStep)
+		if (child?.type !== Step && child?.type !== FormStep) {
 			throw new Error(`Can not render '${child?.type}' as child of 'StepProvider'. Must be of type 'Step' or 'FormStep'`);
+		}
 		if (child.props.hidden) {
 			if (typeof child.props.hidden === 'function' && !child.props.hidden(state, index)) {
 				titles.push(child?.props?.title || '');
@@ -46,13 +48,13 @@ export function StepProvider(props: StepProviderProps) {
 		}
 	});
 
-	const handleSubmit = (values: any) => {
+	const handleSubmit = (values: any, stepKey: string) => {
 		if (currentStep + 1 === children?.length) {
-			setState({...state, [currentStep]: values});
+			setState({...state, [stepKey]: values});
 			setIsSubmitting(true);
-			props.onSubmit({...state, [currentStep]: values});
+			props.onSubmit({...state, [stepKey]: values});
 		} else {
-			setState({...state, [currentStep]: values});
+			setState({...state, [stepKey]: values});
 			setCurrentStep(currentStep + 1);
 		}
 	};
