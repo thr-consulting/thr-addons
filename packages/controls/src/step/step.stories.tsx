@@ -40,9 +40,9 @@ export const FormStep = () => {
 		<Container>
 			<Segment basic>
 				<StepProvider onSubmit={() => {}} vertical={vertical}>
-					<CFormStep title="step 1" children={<StepOne />}/>
-					<CFormStep title="step 2" children={<StepTwo />}/>
-					<CFormStep title="step 3" children={<div>The End</div>} hidden={state => !state[0]?.checked}/>
+					<CFormStep title="step 1" stepKey="step1" children={<StepOne />}/>
+					<CFormStep title="step 2" stepKey="step2" children={<StepTwo />}/>
+					<CFormStep title="step 3" stepKey="step3" children={<div>The End</div>} hidden={state => !state['step1']?.checked}/>
 				</StepProvider>
 			</Segment>
 			<Segment>

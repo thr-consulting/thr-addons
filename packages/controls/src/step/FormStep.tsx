@@ -7,17 +7,17 @@ const d = debug('thx.controls.FormStep');
 interface FormStepProps {
 	children: JSX.Element;
 	title?: string;
-	step?: number;
+	stepKey: string;
 	hidden?: boolean | ((state: any, step: number) => boolean);
 }
 
 export function FormStep(props: FormStepProps) {
 	const [state, handleSubmit] = useStep();
-	const values = props.step !== null && props.step !== undefined ? state[props.step] : {};
+	const values = state[props.stepKey] || {};
 
 	const form = React.cloneElement(Children.only(props.children), {
 		values: values || {},
-		onSubmit: handleSubmit,
+		onSubmit: (vals: unknown) => handleSubmit(vals, props.stepKey),
 	});
 
 	return (
