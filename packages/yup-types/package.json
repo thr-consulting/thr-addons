@@ -51,7 +51,7 @@
 	"dependencies": {
 		"@thx/date": "^13.0.0",
 		"debug": "^4.1.1",
-		"yup": "^0.29.3"
+		"yup": "0.29.3"
 	},
 	"engines": {
 		"node": ">=12"
