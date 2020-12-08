@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.3.0](https://github.com/thr-consulting/thr-addons/compare/v13.2.1...v13.3.0) (2020-12-08)
+
+**Note:** Version bump only for package @thx/file-location
+
+
+
+
+
 ## [13.2.1](https://github.com/thr-consulting/thr-addons/compare/v13.2.0...v13.2.1) (2020-11-06)
 
 **Note:** Version bump only for package @thx/file-location

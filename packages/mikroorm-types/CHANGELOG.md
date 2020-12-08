@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.3.0](https://github.com/thr-consulting/thr-addons/compare/v13.2.1...v13.3.0) (2020-12-08)
+
+
+### Bug Fixes
+
+* **mikroorm-types:** changed local date property type ([#238](https://github.com/thr-consulting/thr-addons/issues/238)) ([55098fc](https://github.com/thr-consulting/thr-addons/commit/55098fcab4e6922d4938c529e1c3591d3b9be6d5))
+
+
+### Features
+
+* **mikroorm-types:** created moneyProperty ([#241](https://github.com/thr-consulting/thr-addons/issues/241)) ([52b19c5](https://github.com/thr-consulting/thr-addons/commit/52b19c53639cb95173b130bd7ed5f08c4e6c51dc))
+
+
+
+
+
 # [13.2.0](https://github.com/thr-consulting/thr-addons/compare/v13.1.0...v13.2.0) (2020-11-04)
 
 

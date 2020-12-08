@@ -1,6 +1,6 @@
 {
 	"name": "@thx/yup-types",
-	"version": "13.1.0",
+	"version": "13.3.0",
 	"description": "Custom Yup types",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"

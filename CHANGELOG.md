@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.3.0](https://github.com/thr-consulting/thr-addons/compare/v13.2.1...v13.3.0) (2020-12-08)
+
+
+### Bug Fixes
+
+* **mikroorm-types:** changed local date property type ([#238](https://github.com/thr-consulting/thr-addons/issues/238)) ([55098fc](https://github.com/thr-consulting/thr-addons/commit/55098fcab4e6922d4938c529e1c3591d3b9be6d5))
+
+
+### Features
+
+* **controls:** update the step component and created story ([#240](https://github.com/thr-consulting/thr-addons/issues/240)) ([6d308f2](https://github.com/thr-consulting/thr-addons/commit/6d308f23d8a0791b32aefc3bf6d7cfd6f613dbfe))
+* **controls:** updated the Step to use a step key for setting state ([#246](https://github.com/thr-consulting/thr-addons/issues/246)) ([2e3f8a7](https://github.com/thr-consulting/thr-addons/commit/2e3f8a731b63db034ed3e4b29cb765a1898b293a))
+* **mikroorm-types:** created moneyProperty ([#241](https://github.com/thr-consulting/thr-addons/issues/241)) ([52b19c5](https://github.com/thr-consulting/thr-addons/commit/52b19c53639cb95173b130bd7ed5f08c4e6c51dc))
+* upgrade to storybook 6 ([#239](https://github.com/thr-consulting/thr-addons/issues/239)) ([4c33cda](https://github.com/thr-consulting/thr-addons/commit/4c33cda41c3d65cebdd2ce687a5bbf6a71018926))
+
+
+
+
+
 ## [13.2.1](https://github.com/thr-consulting/thr-addons/compare/v13.2.0...v13.2.1) (2020-11-06)
 
 **Note:** Version bump only for package thr-addons

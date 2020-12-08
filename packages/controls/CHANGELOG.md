@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.3.0](https://github.com/thr-consulting/thr-addons/compare/v13.2.1...v13.3.0) (2020-12-08)
+
+
+### Features
+
+* **controls:** update the step component and created story ([#240](https://github.com/thr-consulting/thr-addons/issues/240)) ([6d308f2](https://github.com/thr-consulting/thr-addons/commit/6d308f23d8a0791b32aefc3bf6d7cfd6f613dbfe))
+* **controls:** updated the Step to use a step key for setting state ([#246](https://github.com/thr-consulting/thr-addons/issues/246)) ([2e3f8a7](https://github.com/thr-consulting/thr-addons/commit/2e3f8a731b63db034ed3e4b29cb765a1898b293a))
+* upgrade to storybook 6 ([#239](https://github.com/thr-consulting/thr-addons/issues/239)) ([4c33cda](https://github.com/thr-consulting/thr-addons/commit/4c33cda41c3d65cebdd2ce687a5bbf6a71018926))
+
+
+
+
+
 # [13.1.0](https://github.com/thr-consulting/thr-addons/compare/v13.0.0...v13.1.0) (2020-11-02)
 
 
