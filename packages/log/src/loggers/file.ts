@@ -12,16 +12,16 @@ export function createFileLogger({fileName}: FileLoggerParams) {
 		dateFormat: 'YYYYMMDD',
 		format: format.combine(
 			format.timestamp(),
-			format.printf(info => {
-				return compact([
+			format.printf(info =>
+				compact([
 					info.timestamp,
 					`${info.label}[session].${process.pid}:`,
 					info.groupId ? `{${info.groupId}}` : null,
 					`<${info.level}>`,
 					info.message,
 					info.stack ? `\n  ${info.stack}` : null,
-				]).join(' ');
-			}),
+				]).join(' '),
+			),
 		),
 	});
 }

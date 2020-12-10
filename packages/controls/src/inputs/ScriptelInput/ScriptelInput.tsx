@@ -1,18 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Button, Image} from 'semantic-ui-react';
 import debug from 'debug';
-import {scriptelSchemaType} from '@thx/yup-types';
-import type {InferType} from 'yup';
+import type {ScriptelSchema} from '@thx/yup-types';
 import {ScriptelContext} from '../Scriptel/ScriptelContext';
 
 const d = debug('thx.controls.ScriptelInput');
 
-const schemaType = scriptelSchemaType();
-export type ScriptelSignature = InferType<typeof schemaType>;
-
 export interface ScriptelInputProps {
-	value?: ScriptelSignature;
-	onChange?: (value?: ScriptelSignature) => void;
+	value?: ScriptelSchema;
+	onChange?: (value?: ScriptelSchema) => void;
 	buttonText?: string;
 }
 

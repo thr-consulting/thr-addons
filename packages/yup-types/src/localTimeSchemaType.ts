@@ -1,7 +1,7 @@
-import {mixed} from 'yup';
+import {MixedSchema} from 'yup';
 import {LocalTime} from '@js-joda/core';
 
-class LocalTimeSchemaType extends mixed {
+class LocalTimeSchemaType extends MixedSchema<LocalTime> {
 	constructor() {
 		super();
 
@@ -13,7 +13,7 @@ class LocalTimeSchemaType extends mixed {
 		});
 	}
 
-	_typeCheck(value: any) {
+	protected _typeCheck(value: any): value is NonNullable<LocalTime> {
 		return value instanceof LocalTime;
 	}
 }

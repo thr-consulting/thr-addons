@@ -207,8 +207,8 @@ describe('unzipper', () => {
 		readStream.push(zipFileBuffer);
 		readStream.push(null);
 
-		const callback: OnFileCallback = ({mimetype, filename, stream}): Promise<void> => {
-			return new Promise(resolve => {
+		const callback: OnFileCallback = ({mimetype, filename, stream}): Promise<void> =>
+			new Promise(resolve => {
 				expect(mimetype).toBe(undefined);
 				expect(filename).toBe('sample.txt');
 
@@ -218,7 +218,6 @@ describe('unzipper', () => {
 					resolve();
 				});
 			});
-		};
 
 		await unzipper(readStream, callback);
 	});
@@ -230,8 +229,8 @@ describe('unzipper', () => {
 		readStream.push(Buffer.from([75, 80, 2])); // Something that is NOT a zip file
 		readStream.push(null);
 
-		const callback: OnFileCallback = ({mimetype, filename, stream}): Promise<void> => {
-			return new Promise(resolve => {
+		const callback: OnFileCallback = ({mimetype, filename, stream}): Promise<void> =>
+			new Promise(resolve => {
 				expect(mimetype).toBe(undefined);
 				expect(filename).toBe('sample.txt');
 
@@ -241,7 +240,6 @@ describe('unzipper', () => {
 					resolve();
 				});
 			});
-		};
 
 		expect.assertions(1);
 		try {
