@@ -5,12 +5,13 @@ export {isString} from './typeguards';
  * @param obj
  */
 export function valuesToFunctions<T extends Record<string, unknown>>(obj: T): {[P in keyof T]: () => T[P]} {
-	return (Object.keys(obj) as (keyof T)[]).reduce((memo, v) => {
-		return {
+	return (Object.keys(obj) as (keyof T)[]).reduce(
+		(memo, v) => ({
 			...memo,
 			[v]: () => obj[v],
-		};
-	}, {} as {[P in keyof T]: () => T[P]});
+		}),
+		{} as {[P in keyof T]: () => T[P]},
+	);
 }
 
 /*

@@ -6,16 +6,19 @@ const d = debug('web.lib.creditCardSchemaType');
 
 function validate(cardNumber?: string) {
 	if (!cardNumber) return false;
-	if (cardNumber.startsWith('4')) {
-		return checkCreditCard(cardNumber, CreditCardCardNameEnum.Visa);
-	}
-	if (
-		(parseInt(cardNumber.substr(0, 2), 10) > 50 && parseInt(cardNumber.substr(0, 2), 10) < 56) ||
-		(parseInt(cardNumber.substr(0, 2), 10) > 2220 && parseInt(cardNumber.substr(0, 2), 10) < 2721)
-	) {
-		return checkCreditCard(cardNumber, CreditCardCardNameEnum.MasterCard);
-	}
-	return false;
+	if (checkCreditCard(cardNumber, CreditCardCardNameEnum.Visa)) return true;
+	if (checkCreditCard(cardNumber, CreditCardCardNameEnum.MasterCard)) return true;
+	if (checkCreditCard(cardNumber, CreditCardCardNameEnum.DinersClub)) return true;
+	if (checkCreditCard(cardNumber, CreditCardCardNameEnum.CarteBlanche)) return true;
+	if (checkCreditCard(cardNumber, CreditCardCardNameEnum.AmEx)) return true;
+	if (checkCreditCard(cardNumber, CreditCardCardNameEnum.Discover)) return true;
+	if (checkCreditCard(cardNumber, CreditCardCardNameEnum.JCB)) return true;
+	if (checkCreditCard(cardNumber, CreditCardCardNameEnum.enRoute)) return true;
+	if (checkCreditCard(cardNumber, CreditCardCardNameEnum.Solo)) return true;
+	if (checkCreditCard(cardNumber, CreditCardCardNameEnum.Switch)) return true;
+	if (checkCreditCard(cardNumber, CreditCardCardNameEnum.Maestro)) return true;
+	if (checkCreditCard(cardNumber, CreditCardCardNameEnum.VisaElectron)) return true;
+	return checkCreditCard(cardNumber, CreditCardCardNameEnum.LaserCard);
 }
 
 function test(value: any) {
