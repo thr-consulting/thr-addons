@@ -8,7 +8,7 @@ export {MonthYearPicker, MonthYearPickerProps} from './date/MonthYearPicker';
 export {YearSelect, YearSelectProps} from './date/YearSelect';
 
 // Form
-export {TFormProps, TFormChildrenProps, TForm} from './form/TForm';
+export {useTForm, TForm, UseTFormReturn} from './form/TForm';
 
 // Inputs
 export {MaskedInput, MaskedInputProps} from './inputs/MaskedInput';

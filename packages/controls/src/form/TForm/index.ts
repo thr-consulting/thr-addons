@@ -1,3 +1,3 @@
 export {TForm} from './TForm';
-export type {TFormChildrenProps} from './TFormInner';
-export type {TFormProps} from './TFormInner';
+export {useTForm} from './useTForm';
+export {UseTFormReturn} from './types';
