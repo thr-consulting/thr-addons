@@ -1,29 +1,31 @@
 import debug from 'debug';
 import React from 'react';
-import type {FormikValues} from 'formik';
-import type {UseTFormReturn} from './types';
-import {TFormConfig, useTForm} from './useTForm';
+import {FormikValues, isFunction, FormikProvider, isEmptyChildren} from 'formik';
+import {useTForm} from './useTForm';
+import type {TFormConfig, TFormProps} from './types';
 
 const d = debug('thx.controls.TForm');
 
-export interface TFormProps<Values> extends TFormConfig<Values> {
-	children?: ((props: UseTFormReturn<Values>) => React.ReactNode) | React.ReactNode;
-}
+export function TForm<Values extends FormikValues = FormikValues>(props: TFormConfig<Values>) {
+	const tbag = useTForm<Values>(props);
+	const {component, render, children, innerRef} = props;
 
-const isEmptyChildren = (children: any): boolean => React.Children.count(children) === 0;
+	// This allows folks to pass a ref to <Formik />
+	React.useImperativeHandle(innerRef, () => tbag);
 
-export function TForm<Values extends FormikValues = FormikValues>(props: TFormProps<Values>) {
-	const tform = useTForm<Values>(props);
-	const {children} = props;
-
-	if (children) {
-		if (typeof children === 'function') {
-			return children(tform);
+	let child = null;
+	if (component) {
+		// @ts-ignore
+		child = React.createElement(component, tbag);
+	} else if (render) {
+		child = render(tbag);
+	} else if (children) {
+		if (isFunction(children)) {
+			child = (children as (bag: TFormProps<Values>) => React.ReactNode)(tbag as TFormProps<Values>);
+		} else if (!isEmptyChildren(children)) {
+			child = React.Children.only(children);
 		}
-		if (!isEmptyChildren(children)) {
-			return React.Children.only(children);
-		}
-		return null;
 	}
-	return null;
+
+	return <FormikProvider value={tbag}>{child}</FormikProvider>;
 }

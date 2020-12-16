@@ -1,29 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {FormikValues, useFormik, FormikConfig, FormikErrors, FormikTouched} from 'formik';
+import {FormikValues, useFormik, FormikErrors, FormikTouched} from 'formik';
 import flatten from 'flat';
 import uniq from 'lodash/uniq';
 import get from 'lodash/get';
 import {Message, Segment} from 'semantic-ui-react';
 import property from 'lodash/property';
-
-// I don't want install the apollo package here, so this is the general type for error:
-interface ApolloError {
-	message?: string;
-	graphQLErrors?: {
-		message?: string;
-	}[];
-}
-
-export interface TFormConfig<Values> extends FormikConfig<Values> {
-	loading?: boolean;
-	error?: ApolloError;
-	onValidate?: (isValid: boolean) => void;
-	getSubmitFn?: (submitFormFn: () => Promise<void> | Promise<any>) => void;
-	onChange?: (values: Values) => void;
-}
+import type {TFormConfig} from './types';
 
 export function useTForm<Values extends FormikValues = FormikValues>(config: TFormConfig<Values>) {
-	const formik = useFormik(config);
+	const {render, children, ...rest} = config;
+	const formik = useFormik(rest);
 
 	useEffect(() => {
 		if (config.onValidate) config.onValidate(formik.isValid);
