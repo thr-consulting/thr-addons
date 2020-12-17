@@ -1,9 +1,9 @@
 import debug from 'debug';
 import React, {useState} from 'react';
-import {Container, Form, Segment} from 'semantic-ui-react';
+import {Container, Form, Grid, Segment} from 'semantic-ui-react';
 import {InferType, number, object} from 'yup';
 import {YearSelect} from './YearSelect';
-import {TForm, TFormChildrenProps} from '../../form/TForm';
+import {TForm} from '../../form/TForm';
 
 const d = debug('thx.controls.YearSelect.stories');
 
@@ -17,36 +17,40 @@ export const Main = () => {
 	return (
 		<Container>
 			<Segment basic>
-				<div>
-					<YearSelect
-						value={value1}
-						onChange={v => {
-							setValue1(v);
-						}}
-						onBlur={() => {
-							d('Blur yearselect');
-						}}
-					/>
-				</div>
-				<div>
-					<YearSelect
-						value={value2}
-						onChange={v => {
-							setValue2(v);
-						}}
-						error
-					/>
-				</div>
-				<div>
-					<YearSelect
-						value={value3}
-						onChange={v => {
-							setValue3(v);
-						}}
-						minYear={1980}
-						maxYear={1990}
-					/>
-				</div>
+				<Grid columns="equal">
+				    <Grid.Row>
+				        <Grid.Column>
+							<YearSelect
+								value={value1}
+								onChange={v => {
+									setValue1(v);
+								}}
+								onBlur={() => {
+									d('Blur yearselect');
+								}}
+							/>
+				        </Grid.Column>
+				        <Grid.Column>
+							<YearSelect
+								value={value2}
+								onChange={v => {
+									setValue2(v);
+								}}
+								error
+							/>
+				        </Grid.Column>
+						<Grid.Column>
+							<YearSelect
+								value={value3}
+								onChange={v => {
+									setValue3(v);
+								}}
+								minYear={1980}
+								maxYear={1990}
+							/>
+						</Grid.Column>
+					</Grid.Row>
+				</Grid>
 			</Segment>
 		</Container>
 	);
