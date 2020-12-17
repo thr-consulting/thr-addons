@@ -1,5 +1,5 @@
 import React from 'react';
-import {Icon, Button, Dropdown, Input, InputProps, DropdownItemProps} from 'semantic-ui-react';
+import {Icon, Button, Dropdown, DropdownItemProps, Segment, SegmentProps} from 'semantic-ui-react';
 import debug from 'debug';
 
 const d = debug('thx.controls.YearSelect');
@@ -13,7 +13,7 @@ export interface YearSelectProps {
 	error?: boolean; // Defaults to false
 }
 
-export function YearSelect(props: YearSelectProps & Omit<InputProps, 'onChange'>) {
+export function YearSelect(props: YearSelectProps & Omit<SegmentProps, 'onChange'>) {
 	const thisYear = new Date().getFullYear();
 	const {value, minYear = 1970, maxYear = thisYear, onChange, onBlur, error, ...rest} = props;
 
@@ -23,7 +23,7 @@ export function YearSelect(props: YearSelectProps & Omit<InputProps, 'onChange'>
 	}
 
 	return (
-		<Input {...rest}>
+		<Segment basic compact style={{padding: 0, margin: 0}} {...rest}>
 			<Button
 				basic
 				icon
@@ -60,9 +60,10 @@ export function YearSelect(props: YearSelectProps & Omit<InputProps, 'onChange'>
 					if (onChange) onChange(value + 1);
 				}}
 				onBlur={onBlur}
+				style={{marginRight: 0}}
 			>
 				<Icon name="arrow right" />
 			</Button>
-		</Input>
+		</Segment>
 	);
 }
