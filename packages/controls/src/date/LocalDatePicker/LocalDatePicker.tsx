@@ -13,14 +13,18 @@ interface ILocalDatePicker {
 	value?: LocalDate | number | null;
 	onChange?: (value: LocalDate | null) => void;
 	onChangeRaw?: () => void;
+	minDate?: LocalDate;
+	maxDate?: LocalDate;
 }
 
 type InputPropsOmitted = Omit<InputProps, 'onChange'>;
-type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange'>;
+type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange' | 'minDate' | 'maxDate'>;
 export type LocalDatePickerProps = ILocalDatePicker & InputPropsOmitted & ReactDatePickerPropsOmitted;
 
 export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 	const {
+		minDate,
+		maxDate,
 		value,
 		onChange,
 		onBlur,
@@ -73,6 +77,8 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 			}}
 			onBlur={onBlur}
 			customInput={<MaskedDateInput {...inputProps} onBlur={onBlur} />}
+			minDate={toDate(minDate)}
+			maxDate={toDate(maxDate)}
 		/>
 	);
 }
