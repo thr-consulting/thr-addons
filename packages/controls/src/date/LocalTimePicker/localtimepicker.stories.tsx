@@ -13,7 +13,7 @@ import {TForm, TFormChildrenProps} from '../../form/TForm';
 
 const d = debug('thx.controls.LocalTimePicker.stories');
 
-export default {title: 'LocalTimePicker'};
+export default {title: 'Date/LocalTimePicker'};
 
 export const Main = () => {
 	const [value, setValue] = useState<LocalTime | null>(LocalTime.now);

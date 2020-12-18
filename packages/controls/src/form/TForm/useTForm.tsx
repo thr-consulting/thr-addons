@@ -7,8 +7,9 @@ import {Message, Segment} from 'semantic-ui-react';
 import property from 'lodash/property';
 import type {TFormConfig} from './types';
 
-export function useTForm<Values extends FormikValues = FormikValues>(config: TFormConfig<Values>) {
+export function useTForm<Values extends FormikValues = FormikValues, InitialValues = any>(config: TFormConfig<Values, InitialValues>) {
 	const {render, children, ...rest} = config;
+	// @ts-ignore
 	const formik = useFormik(rest);
 
 	useEffect(() => {

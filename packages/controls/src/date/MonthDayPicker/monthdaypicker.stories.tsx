@@ -7,7 +7,7 @@ import {TForm, TFormChildrenProps} from '../../form/TForm';
 
 const d = debug('thx.controls.MonthDayPicker.stories');
 
-export default {title: 'MonthDayPicker'};
+export default {title: 'Date/MonthDayPicker'};
 
 export const Main = () => {
 	const [value, setValue] = useState();

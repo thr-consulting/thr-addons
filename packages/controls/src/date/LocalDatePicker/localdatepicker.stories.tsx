@@ -14,7 +14,7 @@ import '../DatePicker/styles.css';
 
 const d = debug('thx.controls.LocalDatePicker.stories');
 
-export default {title: 'LocalDatePicker'};
+export default {title: 'Date/LocalDatePicker'};
 
 export const Main = () => {
 	const [value, setValue] = useState<LocalDate | null>(LocalDate.now);

@@ -7,7 +7,7 @@ import './styles.css';
 
 const d = debug('thx.controls.DatePicker.stories');
 
-export default {title: 'DatePicker'};
+export default {title: 'Date/DatePicker'};
 
 export const WithDatePicker = () => {
 	const [value, setValue] = useState<Date | null>(new Date());

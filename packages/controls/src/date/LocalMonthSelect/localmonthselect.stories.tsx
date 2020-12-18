@@ -9,7 +9,7 @@ import {TForm, TFormChildrenProps} from '../../form/TForm';
 
 const d = debug('thx.controls.LocalMonthSelect.stories');
 
-export default {title: 'LocalMonthSelect'};
+export default {title: 'Date/LocalMonthSelect'};
 
 export const Main = () => {
 	const [value, setValue] = useState();

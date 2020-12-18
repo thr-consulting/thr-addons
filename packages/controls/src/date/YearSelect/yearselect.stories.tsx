@@ -7,7 +7,7 @@ import {TForm} from '../../form/TForm';
 
 const d = debug('thx.controls.YearSelect.stories');
 
-export default {title: 'YearSelect'};
+export default {title: 'Date/YearSelect'};
 
 export const Main = () => {
 	const [value1, setValue1] = useState(new Date().getFullYear());

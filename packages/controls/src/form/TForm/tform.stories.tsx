@@ -9,7 +9,7 @@ import type {TFormProps} from './types';
 
 const d = debug('thx.controls.TForm.stories');
 
-export default {title: 'TForm'};
+export default {title: 'Form / TForm'};
 
 // Yup Validation
 const formValidation = object().shape({
