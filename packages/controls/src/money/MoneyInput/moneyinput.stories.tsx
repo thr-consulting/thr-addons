@@ -6,7 +6,7 @@ import {formatMoney} from '@thx/money';
 import {moneySchemaType} from '@thx/yup-types';
 import {InferType, object} from 'yup';
 import {MoneyInput} from './MoneyInput';
-import {TForm, TFormChildrenProps} from '../../form/TForm';
+import {TForm} from '../../form/TForm';
 
 const d = debug('thx.controls.MoneyInput.stories');
 
@@ -112,7 +112,7 @@ type FormValidationType = InferType<typeof formValidation>;
 export const WithTForm = () => (
 	<Container>
 		<TForm<FormValidationType> initialValues={{money: {amount: 0, currency: 'CAD'}}} validationSchema={formValidation} onSubmit={() => {}}>
-			{(props: TFormChildrenProps<FormValidationType>) => {
+			{props => {
 				const {values, handleSubmit, handleBlur, setFieldValue} = props;
 
 				return (

@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {Form, Container, Segment, Radio} from 'semantic-ui-react';
 import {InferType, object, string} from 'yup';
 import {RadioGroup} from './RadioGroup';
-import {TForm, TFormChildrenProps} from '../../form/TForm';
+import {TForm} from '../../form/TForm';
 
 const d = debug('thx.controls.RadioGroup.stories');
 
@@ -43,7 +43,7 @@ type FormValidationType = InferType<typeof formValidation>;
 export const withTForm = () => (
 	<Container>
 		<TForm<FormValidationType> initialValues={{opt: ''}} validationSchema={formValidation} onSubmit={() => {}}>
-			{(props: TFormChildrenProps<FormValidationType>) => {
+			{props => {
 				const {values, handleSubmit, setFieldTouched, setFieldValue} = props;
 
 				return (

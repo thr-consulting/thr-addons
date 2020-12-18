@@ -9,7 +9,7 @@ import {LocalTimePicker} from './LocalTimePicker';
 import {MaskedTimeInput} from './MaskedTimeInput';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../DatePicker/styles.css';
-import {TForm, TFormChildrenProps} from '../../form/TForm';
+import {TForm} from '../../form/TForm';
 
 const d = debug('thx.controls.LocalTimePicker.stories');
 
@@ -62,7 +62,7 @@ type FormValidationType = InferType<typeof formValidation>;
 export const withTForm = () => (
 	<Container>
 		<TForm<FormValidationType> initialValues={{time: null}} validationSchema={formValidation} onSubmit={() => {}}>
-			{(props: TFormChildrenProps<FormValidationType>) => {
+			{props => {
 				const {values, handleSubmit, setFieldValue, handleBlur} = props;
 
 				return (

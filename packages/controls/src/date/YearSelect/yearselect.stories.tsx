@@ -18,8 +18,8 @@ export const Main = () => {
 		<Container>
 			<Segment basic>
 				<Grid columns="equal">
-				    <Grid.Row>
-				        <Grid.Column>
+					<Grid.Row>
+						<Grid.Column>
 							<YearSelect
 								value={value1}
 								onChange={v => {
@@ -29,8 +29,8 @@ export const Main = () => {
 									d('Blur yearselect');
 								}}
 							/>
-				        </Grid.Column>
-				        <Grid.Column>
+						</Grid.Column>
+						<Grid.Column>
 							<YearSelect
 								value={value2}
 								onChange={v => {
@@ -38,7 +38,7 @@ export const Main = () => {
 								}}
 								error
 							/>
-				        </Grid.Column>
+						</Grid.Column>
 						<Grid.Column>
 							<YearSelect
 								value={value3}
@@ -64,7 +64,7 @@ type FormValidationType = InferType<typeof formValidation>;
 export const withTForm = () => (
 	<Container>
 		<TForm<FormValidationType> initialValues={{year: 0}} validationSchema={formValidation} onSubmit={() => {}}>
-			{(props: TFormChildrenProps<FormValidationType>) => {
+			{props => {
 				const {values, handleSubmit, setFieldValue, setFieldTouched} = props;
 
 				return (

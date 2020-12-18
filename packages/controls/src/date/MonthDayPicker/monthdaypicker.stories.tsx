@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {Container, Form, Segment} from 'semantic-ui-react';
 import {InferType, object, number} from 'yup';
 import {MonthDayPicker} from './MonthDayPicker';
-import {TForm, TFormChildrenProps} from '../../form/TForm';
+import {TForm} from '../../form/TForm';
 
 const d = debug('thx.controls.MonthDayPicker.stories');
 
@@ -35,7 +35,7 @@ type FormValidationType = InferType<typeof formValidation>;
 export const withTForm = () => (
 	<Container>
 		<TForm<FormValidationType> initialValues={{month: 0}} validationSchema={formValidation} onSubmit={() => {}}>
-			{(props: TFormChildrenProps<FormValidationType>) => {
+			{props => {
 				const {values, handleSubmit, setFieldValue, handleBlur} = props;
 
 				return (

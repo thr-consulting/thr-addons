@@ -8,7 +8,6 @@ import {InferType, object} from 'yup';
 import {LocalDatePicker} from './LocalDatePicker';
 import {MaskedDateInput} from './MaskedDateInput';
 import {TForm} from '../../form/TForm';
-import type {TFormChildrenProps} from '../../form/TForm';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../DatePicker/styles.css';
 
@@ -57,7 +56,7 @@ type FormValidationType = InferType<typeof formValidation>;
 export const withTForm = () => (
 	<Container>
 		<TForm<FormValidationType> initialValues={{date: null}} validationSchema={formValidation} onSubmit={() => {}}>
-			{(props: TFormChildrenProps<FormValidationType>) => {
+			{props => {
 				const {values, handleSubmit, handleBlur, setFieldValue} = props;
 
 				return (

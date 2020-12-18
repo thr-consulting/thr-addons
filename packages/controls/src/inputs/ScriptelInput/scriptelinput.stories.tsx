@@ -5,7 +5,7 @@ import {InferType, object} from 'yup';
 import {scriptelSchemaType} from '@thx/yup-types';
 import {Scriptel} from '../Scriptel';
 import {ScriptelInput, ScriptelSignature} from './ScriptelInput';
-import {TForm, TFormChildrenProps} from '../../form/TForm';
+import {TForm} from '../../form/TForm';
 
 const d = debug('thx.controls.ScriptelInput.stories');
 
@@ -52,7 +52,7 @@ export const withTForm = () => (
 	<Scriptel>
 		<Container>
 			<TForm<FormValidationType> initialValues={{sig: undefined}} validationSchema={formValidation} onSubmit={() => {}}>
-				{(props: TFormChildrenProps<FormValidationType>) => {
+				{props => {
 					const {values, handleSubmit, setFieldValue, hasErrors, hasWarnings, renderWarnings} = props;
 
 					return (

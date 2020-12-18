@@ -5,7 +5,7 @@ import {Container, Form, Segment} from 'semantic-ui-react';
 import {localDateSchemaType} from '@thx/yup-types';
 import {InferType, object} from 'yup';
 import {MonthYearPicker} from './MonthYearPicker';
-import {TForm, TFormChildrenProps} from '../../form/TForm';
+import {TForm} from '../../form/TForm';
 
 const d = debug('thx.controls.MonthYearPicker.stories');
 
@@ -39,7 +39,7 @@ type FormValidationType = InferType<typeof formValidation>;
 export const withTForm = () => (
 	<Container>
 		<TForm<FormValidationType> initialValues={{date: null}} validationSchema={formValidation} onSubmit={() => {}}>
-			{(props: TFormChildrenProps<FormValidationType>) => {
+			{props => {
 				const {values, handleSubmit, setFieldValue, handleBlur} = props;
 
 				return (

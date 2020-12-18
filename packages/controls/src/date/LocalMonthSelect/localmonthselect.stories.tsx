@@ -5,7 +5,7 @@ import {formatDate} from '@thx/date';
 import {localDateSchemaType} from '@thx/yup-types';
 import {InferType, object} from 'yup';
 import {LocalMonthSelect} from './LocalMonthSelect';
-import {TForm, TFormChildrenProps} from '../../form/TForm';
+import {TForm} from '../../form/TForm';
 
 const d = debug('thx.controls.LocalMonthSelect.stories');
 
@@ -39,7 +39,7 @@ type FormValidationType = InferType<typeof formValidation>;
 export const withTForm = () => (
 	<Container>
 		<TForm<FormValidationType> initialValues={{opt: ''}} validationSchema={formValidation} onSubmit={() => {}}>
-			{(props: TFormChildrenProps<FormValidationType>) => {
+			{props => {
 				const {values, handleSubmit, setFieldValue, setFieldTouched} = props;
 
 				return (
