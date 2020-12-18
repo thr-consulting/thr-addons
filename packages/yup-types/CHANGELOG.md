@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.4.0](https://github.com/thr-consulting/thr-addons/compare/v13.3.0...v13.4.0) (2020-12-18)
+
+
+### Features
+
+* **yup-types:** added typescript types for yup validation schemas ([217a043](https://github.com/thr-consulting/thr-addons/commit/217a043801dc043edf25b1f7cc371af0373741a2))
+* **yup-types:** refactored credit card validation, extended MixedSchema instead of mixed ([#247](https://github.com/thr-consulting/thr-addons/issues/247)) ([df47a14](https://github.com/thr-consulting/thr-addons/commit/df47a1400a3ee1c761af3dae686b1eafef2ed29d))
+
+
+
+
+
 # [13.3.0](https://github.com/thr-consulting/thr-addons/compare/v13.2.1...v13.3.0) (2020-12-08)
 
 **Note:** Version bump only for package @thx/yup-types

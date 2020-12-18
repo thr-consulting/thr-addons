@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.4.0](https://github.com/thr-consulting/thr-addons/compare/v13.3.0...v13.4.0) (2020-12-18)
+
+
+### Bug Fixes
+
+* export bug ([df2ce85](https://github.com/thr-consulting/thr-addons/commit/df2ce858ea59b9f7a260fe79a7c823ed669218a2))
+
+
+### Features
+
+* **controls:** modified the year select ([#253](https://github.com/thr-consulting/thr-addons/issues/253)) ([926707f](https://github.com/thr-consulting/thr-addons/commit/926707f1d2bd0de34751378a538fe1aa3d787941))
+* **controls:** tForm now uses the same mechanism as Formik to provide context ([404ff9d](https://github.com/thr-consulting/thr-addons/commit/404ff9d274e21e2db88bf39d621fe1f09f36b317))
+* **controls:** updated local date picker min and max date ([#254](https://github.com/thr-consulting/thr-addons/issues/254)) ([7931f5e](https://github.com/thr-consulting/thr-addons/commit/7931f5eaa62842ab91a09ff827b693d452246fc0))
+* **yup-types:** refactored credit card validation, extended MixedSchema instead of mixed ([#247](https://github.com/thr-consulting/thr-addons/issues/247)) ([df47a14](https://github.com/thr-consulting/thr-addons/commit/df47a1400a3ee1c761af3dae686b1eafef2ed29d))
+
+
+
+
+
 # [13.3.0](https://github.com/thr-consulting/thr-addons/compare/v13.2.1...v13.3.0) (2020-12-08)
 
 

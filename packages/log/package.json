@@ -1,6 +1,6 @@
 {
 	"name": "@thx/log",
-	"version": "13.0.0",
+	"version": "13.4.0",
 	"description": "Logging Functions",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
