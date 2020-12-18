@@ -1,6 +1,6 @@
 import {object, number, string, date} from 'yup';
 
-export interface ScriptelSchema {
+export interface ScriptelSchemaType {
 	width?: number | null;
 	height?: number | null;
 	data: string;

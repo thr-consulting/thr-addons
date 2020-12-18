@@ -33,3 +33,5 @@ function message(params: any) {
 export function creditCardSchemaType() {
 	return string().test('Card Number Validation', message, test);
 }
+
+export type CreditCardSchemaType = string;
