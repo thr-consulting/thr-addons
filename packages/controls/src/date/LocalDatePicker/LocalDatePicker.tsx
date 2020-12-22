@@ -77,8 +77,8 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 			}}
 			onBlur={onBlur}
 			customInput={<MaskedDateInput {...inputProps} onBlur={onBlur} />}
-			minDate={toDate(minDate)}
-			maxDate={toDate(maxDate)}
+			minDate={minDate ? toDate(minDate) : null}
+			maxDate={maxDate ? toDate(maxDate) : null}
 		/>
 	);
 }
