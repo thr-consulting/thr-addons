@@ -9,7 +9,7 @@ import {TForm} from '../../form/TForm';
 
 const d = debug('thx.controls.ScriptelInput.stories');
 
-export default {title: 'ScriptelInput'};
+export default {title: 'Inputs/ScriptelInput'};
 
 export const Main = () => {
 	const [value, setValue] = useState<ScriptelSignature>();
