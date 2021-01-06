@@ -23,7 +23,7 @@ export function SinInput(props: SinInputProps & Omit<MaskedInputProps, 'mask' | 
 	}
 
 	// if we have a SIN and we don't want to edit
-	return hasSin && !edit ? (
+	return hasSin && !edit && !doDelete ? (
 		<>
 			<Label style={{width: '100%', height: '36px', paddingTop: '10px'}} size="large" color="green">
 				SIN is saved
@@ -79,6 +79,7 @@ export function SinInput(props: SinInputProps & Omit<MaskedInputProps, 'mask' | 
 			)}
 			{doDelete && (
 				<Button
+					color="orange"
 					type="button"
 					onClick={() => {
 						setDoDelete(false);
