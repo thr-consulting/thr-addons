@@ -16,13 +16,14 @@ export interface SinInputProps {
 export function SinInput(props: SinInputProps & Omit<MaskedInputProps, 'mask' | 'name'>) {
 	const {hasSin, onChange, ...rest} = props;
 	const [edit, setEdit] = useState(false);
+	const [doDelete, setDoDelete] = useState(false);
 
 	function handleChange(val?: string) {
 		onChange && onChange(val);
 	}
 
 	// if we have a SIN and we don't want to edit
-	return hasSin && !edit ? (
+	return hasSin && !edit && !doDelete ? (
 		<>
 			<Label style={{width: '100%', height: '36px', paddingTop: '10px'}} size="large" color="green">
 				SIN is saved
@@ -51,7 +52,7 @@ export function SinInput(props: SinInputProps & Omit<MaskedInputProps, 'mask' | 
 						type="button"
 						icon
 						onClick={() => {
-							setEdit(true);
+							setDoDelete(true);
 							handleChange('');
 						}}
 					>
@@ -74,6 +75,18 @@ export function SinInput(props: SinInputProps & Omit<MaskedInputProps, 'mask' | 
 					}}
 				>
 					Cancel
+				</Button>
+			)}
+			{doDelete && (
+				<Button
+					color="orange"
+					type="button"
+					onClick={() => {
+						setDoDelete(false);
+						handleChange(undefined);
+					}}
+				>
+					Undo
 				</Button>
 			)}
 		</>
