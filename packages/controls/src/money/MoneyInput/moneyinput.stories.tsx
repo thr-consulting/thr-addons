@@ -10,7 +10,7 @@ import {TForm} from '../../form/TForm';
 
 const d = debug('thx.controls.MoneyInput.stories');
 
-export default {title: 'MoneyInput'};
+export default {title: 'Inputs/MoneyInput'};
 
 export const Main = () => {
 	const [shown, setShown] = useState(true);

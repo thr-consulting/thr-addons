@@ -7,7 +7,7 @@ import {TForm} from '../../form/TForm';
 
 const d = debug('thx.controls.RadioGroup.stories');
 
-export default {title: 'RadioGroup'};
+export default {title: 'Inputs/RadioGroup'};
 
 export const Main = () => {
 	const [value1, setValue1] = useState();

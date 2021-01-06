@@ -7,7 +7,7 @@ import {TForm} from '../../form/TForm';
 
 const d = debug('thx.controls.MaskedInput.stories');
 
-export default {title: 'MaskedInput'};
+export default {title: 'Inputs/MaskedInput'};
 
 export const Main = () => {
 	const [shown, setShown] = useState(true);

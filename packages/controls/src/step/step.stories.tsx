@@ -6,7 +6,7 @@ import {TForm} from '../form/TForm';
 
 const d = debug('thx.controls.Step.stories');
 
-export default {title: 'Step'};
+export default {title: 'Inputs/Step'};
 
 const StepOne = ({onSubmit, values: propValues}) => {
 	return (
