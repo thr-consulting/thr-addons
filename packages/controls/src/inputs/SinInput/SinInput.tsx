@@ -9,10 +9,19 @@ export interface SinInputProps {
 	hasSin: boolean;
 }
 
+// if we click edit the value is set to an empty string.
+// if we click delete the value is set to an empty string.
+// if we click cancel the value is set to undefined.
+// if we change it we set it to the given string.
 export function SinInput(props: SinInputProps & Omit<MaskedInputProps, 'mask' | 'name'>) {
-	const {hasSin, ...rest} = props;
+	const {hasSin, onChange, ...rest} = props;
 	const [edit, setEdit] = useState(false);
 
+	function handleChange(val?: string) {
+		onChange && onChange(val);
+	}
+
+	// if we have a SIN and we don't want to edit
 	return hasSin && !edit ? (
 		<>
 			<Label style={{width: '100%', height: '36px', paddingTop: '10px'}} size="large" color="green">
@@ -21,7 +30,15 @@ export function SinInput(props: SinInputProps & Omit<MaskedInputProps, 'mask' | 
 			<Popup
 				content="edit"
 				trigger={
-					<Button type="button" onClick={() => setEdit(true)} color="orange" icon>
+					<Button
+						type="button"
+						onClick={() => {
+							setEdit(true);
+							handleChange('');
+						}}
+						color="orange"
+						icon
+					>
 						<Icon name="edit" />
 					</Button>
 				}
@@ -29,17 +46,33 @@ export function SinInput(props: SinInputProps & Omit<MaskedInputProps, 'mask' | 
 			<Popup
 				content="delete"
 				trigger={
-					<Button negative type="button" icon onClick={() => setEdit(true)}>
+					<Button
+						negative
+						type="button"
+						icon
+						onClick={() => {
+							setEdit(true);
+							handleChange('');
+						}}
+					>
 						<Icon name="trash alternate" />
 					</Button>
 				}
 			/>
 		</>
 	) : (
+		// if we dont have a SIN
 		<>
-			<MaskedInput mask={{mask: '999-999-999', greedy: false, autoUnmask: true}} {...rest} />
+			<MaskedInput {...rest} onChange={handleChange} mask={{mask: '999-999-999', greedy: false, autoUnmask: true}} />
+			{/* if we are editing */}
 			{edit && (
-				<Button type="button" onClick={() => setEdit(false)}>
+				<Button
+					type="button"
+					onClick={() => {
+						setEdit(false);
+						handleChange(undefined);
+					}}
+				>
 					Cancel
 				</Button>
 			)}
