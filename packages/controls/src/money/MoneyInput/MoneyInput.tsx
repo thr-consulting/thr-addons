@@ -29,7 +29,10 @@ export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>
 	const inputElement = useRef<HTMLInputElement | null>(null);
 	const maskInstance = useRef<Inputmask.Instance | null>(null);
 
-	const adjCurrency = currency || Money.CAD;
+	let adjCurrency = Money.CAD;
+	// @ts-ignore
+	if (value?.currency && Money[value?.currency]) adjCurrency = Money[value?.currency];
+	if (currency) adjCurrency = currency;
 
 	useDeepCompareEffect(() => {
 		if (!inputElement.current) throw new Error('Could not get input element');
