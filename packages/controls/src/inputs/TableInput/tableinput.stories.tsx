@@ -12,6 +12,7 @@ import {MoneyEditCell} from './MoneyEditCell';
 import {StringEditCell} from './StringEditCell';
 import {MoneyCell} from './MoneyCell';
 import {MoneySumFooter} from './MoneySumFooter';
+import {DropdownCell} from './DropdownCell';
 
 const d = debug('thx.controls.TableInput.stories');
 
@@ -42,10 +43,24 @@ interface FormValidationType {
 	journal: Journal;
 }
 
+const options = [
+	{key: 'a', text: 'The Letter A', value: 'a'},
+	{key: 'b', text: 'The Letter B', value: 'b'},
+];
+
 /*
 	Column definition
  */
 const columns: Column<JournalLine>[] = [
+	{
+		accessor: 'account',
+		Header: 'Account',
+		Cell: DropdownCell({
+			options,
+			basic: true,
+			search: true,
+		}),
+	},
 	{
 		accessor: 'name',
 		Header: 'Name',
