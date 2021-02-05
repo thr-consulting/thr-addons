@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.5.0](https://github.com/thr-consulting/thr-addons/compare/v13.4.0...v13.5.0) (2021-02-05)
+
+
+### Bug Fixes
+
+* **controls:** fixed money input ([#261](https://github.com/thr-consulting/thr-addons/issues/261)) ([46d008b](https://github.com/thr-consulting/thr-addons/commit/46d008b097ee3f46ba1217f903d910dc1985a772)), closes [#260](https://github.com/thr-consulting/thr-addons/issues/260)
+
+
+### Features
+
+* **controls:** added DropdownCell for TableInput ([#263](https://github.com/thr-consulting/thr-addons/issues/263)) ([e045896](https://github.com/thr-consulting/thr-addons/commit/e0458966d52e348038b0b6f3ff6f46bd52acc505))
+* **controls:** added TableInput form control ([#262](https://github.com/thr-consulting/thr-addons/issues/262)) ([a9ff80a](https://github.com/thr-consulting/thr-addons/commit/a9ff80a2484b15dc17d558d084a63bd416543bbb))
+
+
+
+
+
 # [13.4.0](https://github.com/thr-consulting/thr-addons/compare/v13.3.0...v13.4.0) (2020-12-18)
 
 
