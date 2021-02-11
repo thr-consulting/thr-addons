@@ -1,14 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Button, Image} from 'semantic-ui-react';
 import debug from 'debug';
-import type {ScriptelSchema} from '@thx/yup-types';
+import type {ScriptelSchemaType} from '@thx/yup-types';
 import {ScriptelContext} from '../Scriptel/ScriptelContext';
 
 const d = debug('thx.controls.ScriptelInput');
 
 export interface ScriptelInputProps {
-	value?: ScriptelSchema;
-	onChange?: (value?: ScriptelSchema) => void;
+	value?: ScriptelSchemaType;
+	onChange?: (value?: ScriptelSchemaType) => void;
 	buttonText?: string;
 }
 
