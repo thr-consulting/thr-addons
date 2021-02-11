@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
-import React, {useMemo} from 'react';
-import {Table} from 'semantic-ui-react';
+import React, {useMemo, useState} from 'react';
+import {Table, TableProps} from 'semantic-ui-react';
 import {FieldArray, FieldArrayRenderProps} from 'formik';
 import debug from 'debug';
 import {
@@ -13,12 +13,10 @@ import {
 	HeaderPropGetter,
 	RowPropGetter,
 	TableBodyPropGetter,
-	TableHeaderProps,
-	TablePropGetter,
 	useTable,
 } from 'react-table';
 
-const d = debug('thx.controls.TableInput');
+const d = debug('thx.controls.TableInput.TableInput');
 
 type DefaultTableType = Record<string, unknown>;
 
@@ -28,7 +26,7 @@ interface TableInputProps<A extends DefaultTableType> {
 	columns: Column<A>[];
 	setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
 	createRow: () => A;
-	tableProps?: TablePropGetter<A>;
+	tableProps?: TableProps;
 	headerRowProps?: HeaderGroupPropGetter<A>;
 	headerCellProps?: HeaderPropGetter<A>;
 	footerRowProps?: FooterGroupPropGetter<A>;
@@ -67,6 +65,7 @@ function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps
 	} = props;
 	const cols = useMemo(() => columns, [columns]);
 	const vals = useMemo(() => values, [values]);
+	const [hoverRow, setHoverRow] = useState('');
 
 	// React-Table hook
 	const {getTableProps, getTableBodyProps, headerGroups, prepareRow, rows, footerGroups} = useTable<A>({
@@ -118,9 +117,13 @@ function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps
 					{rows.map(row => {
 						prepareRow(row);
 						return (
-							<Table.Row {...{...row.getRowProps(), ...row.getRowProps(rowProps)}}>
+							<Table.Row
+								{...{...row.getRowProps(), ...row.getRowProps(rowProps)}}
+								onMouseEnter={() => setHoverRow(row.id)}
+								onMouseLeave={() => setHoverRow('')}
+							>
 								{row.cells.map(cell => (
-									<Table.Cell {...{...cell.getCellProps(), ...cell.getCellProps(cellProps)}}>{cell.render('Cell')}</Table.Cell>
+									<Table.Cell {...{...cell.getCellProps(), ...cell.getCellProps(cellProps)}}>{cell.render('Cell', {hoverRow})}</Table.Cell>
 								))}
 							</Table.Row>
 						);
