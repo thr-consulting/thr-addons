@@ -7,6 +7,6 @@
 	},
 	"include": [
 		"src/index.ts",
-		"src/**/*.stories.tsx" // todo make sure its commented out before commit
+//		"src/**/*.stories.tsx" // todo make sure its commented out before commit
 	]
 }
