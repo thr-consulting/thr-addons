@@ -24,6 +24,7 @@ export {AddRowOnTabIf, addRowOnTab, MoneyEditCell, StringEditCell, MoneySumFoote
 
 // Money
 export {MoneyInput, MoneyInputProps} from './money/MoneyInput';
+export {MoneyCurrencyInputProps, MoneyCurrencyInput} from './money/MoneyCurrencyInput';
 
 // Step
 export {FormStep, StepProvider, useStep, Step} from './step';
