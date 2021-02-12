@@ -21,7 +21,7 @@ export interface MoneyCurrencyInputProps {
 }
 
 export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputProps, 'onChange'>) {
-	const {name, onBlur, prefix, defaultCurrency, onChange, showPrefix, value, wholeNumber, currencies, ...rest} = props;
+	const {name, onBlur, prefix, defaultCurrency = Currencies.CAD, onChange, showPrefix, value, wholeNumber, currencies, ...rest} = props;
 	const {inputElement} = useMoneyInput({defaultCurrency, onChange, prefix, showPrefix, value, wholeNumber});
 
 	const options = currencies || [
@@ -40,7 +40,7 @@ export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputPr
 		<Input {...rest} labelPosition="right">
 			<input name={name} ref={inputElement} onBlur={onBlur} />
 			<Label>
-				<Dropdown options={options} value={value?.currency} onChange={handleChange} />
+				<Dropdown options={options} value={value?.currency || defaultCurrency.code} onChange={handleChange} />
 			</Label>
 		</Input>
 	);
