@@ -20,7 +20,17 @@ export {CreditCardInput, CreditCardInputType} from './inputs/CreditCardInput';
 export {SinInput, SinInputProps} from './inputs/SinInput';
 
 // Table
-export {AddRowOnTabIf, addRowOnTab, MoneyEditCell, StringEditCell, MoneySumFooter, MoneyCell, TableInput} from './inputs/TableInput';
+export {
+	AddRowOnTabIf,
+	addRowOnTab,
+	MoneyEditCell,
+	StringEditCell,
+	MoneySumFooter,
+	MoneyCell,
+	TableInput,
+	HoverCell,
+	DropdownCell,
+} from './inputs/TableInput';
 
 // Money
 export {MoneyInput, MoneyInputProps} from './money/MoneyInput';
