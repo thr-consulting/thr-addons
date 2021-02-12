@@ -6,6 +6,7 @@
 		"jsx": "react"
 	},
 	"include": [
-		"src/index.ts"
+		"src/index.ts",
+//		"src/**/*.stories.tsx" // todo make sure its commented out before commit
 	]
 }
