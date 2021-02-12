@@ -52,7 +52,7 @@ export const Main = () => {
 								setState(s => ({...s, tnd: v}));
 							}}
 							value={state.tnd}
-							currency={Money.TND}
+							defaultCurrency={Money.TND}
 							showPrefix
 						/>
 					</Form.Field>
