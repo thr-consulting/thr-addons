@@ -10,10 +10,17 @@ interface HoverCellOptions<D extends Record<string, unknown>> {
 
 export function HoverCell<D extends Record<string, unknown>>(options: HoverCellOptions<D>) {
 	return function HoverCellFn(props: CellProps<D>) {
-		// @ts-expect-error
-		const isHover = props.hoverRow === props.row.id;
 		const {Action} = options;
+
 		// @ts-expect-error
-		return <div style={{textAlign: 'right'}}>{isHover ? <Action {...props} /> : null}</div>;
+		if (props.hoverRow === props.row.id) {
+			return (
+				<div style={{textAlign: 'right'}}>
+					{/* @ts-expect-error */}
+					<Action {...props} />
+				</div>
+			);
+		}
+		return null;
 	};
 }
