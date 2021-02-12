@@ -15,7 +15,7 @@ function getDateVars() {
 		localEpochDate: new Date('1970-01-01T00:00:00.000'),
 		localEpochLocalDate: LocalDate.ofEpochDay(0),
 		localEpochDays: 0,
-		localEpochObject: {_year: 1970, _month: 1, _day: 1},
+		localEpochObject: {year: 1970, month: 1, day: 1},
 		localEpochLocalDateTime: LocalDateTime.of(1970, 1, 1, 0, 0, 0, 0),
 		localEpochStringA: '1970-01-01',
 		localEpochStringB: '1970-01-01T00:00:00.000',
