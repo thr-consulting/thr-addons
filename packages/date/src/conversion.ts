@@ -14,9 +14,9 @@ import {LocalDate, LocalDateTime, nativeJs, ZonedDateTime, ZoneId, LocalTime} fr
  */
 
 export interface ILocalDateLike {
-	_year: number;
-	_month: number;
-	_day: number;
+	year: number;
+	month: number;
+	day: number;
 }
 
 export function isLocalDateLike(date: any): date is ILocalDateLike {
@@ -24,17 +24,17 @@ export function isLocalDateLike(date: any): date is ILocalDateLike {
 		date !== null &&
 		date !== undefined &&
 		typeof date === 'object' &&
-		typeof date._year !== 'undefined' &&
-		typeof date._month !== 'undefined' &&
-		typeof date._day !== 'undefined'
+		typeof date.year !== 'undefined' &&
+		typeof date.month !== 'undefined' &&
+		typeof date.day !== 'undefined'
 	);
 }
 
 export interface ILocalTimeLike {
-	_hour: number;
-	_minute: number;
-	_second: number;
-	_nano: number;
+	hour: number;
+	minute: number;
+	second: number;
+	nano: number;
 }
 
 export function isLocalTimeLike(time: any): time is ILocalTimeLike {
@@ -42,10 +42,10 @@ export function isLocalTimeLike(time: any): time is ILocalTimeLike {
 		time !== null &&
 		time !== undefined &&
 		typeof time === 'object' &&
-		typeof time._hour !== 'undefined' &&
-		typeof time._minute !== 'undefined' &&
-		typeof time._second !== 'undefined' &&
-		typeof time._nano !== 'undefined'
+		typeof time.hour !== 'undefined' &&
+		typeof time.minute !== 'undefined' &&
+		typeof time.second !== 'undefined' &&
+		typeof time.nano !== 'undefined'
 	);
 }
 
@@ -75,7 +75,7 @@ export function toLocalDate(date: any, zone: ZoneId = ZoneId.SYSTEM): LocalDate 
 	}
 	if (isLocalDateLike(date)) {
 		// eslint-disable-next-line no-underscore-dangle
-		return LocalDate.of(date._year, date._month, date._day);
+		return LocalDate.of(date.year, date.month, date.day);
 	}
 	if (typeof date === 'string') {
 		if (iso8601DateOnly.test(date)) {
@@ -166,7 +166,7 @@ export function toLocalTime(time: any, zone: ZoneId = ZoneId.SYSTEM): LocalTime 
 	}
 	if (isLocalTimeLike(time)) {
 		// eslint-disable-next-line no-underscore-dangle
-		return LocalTime.of(time._hour, time._minute, time._second, time._nano);
+		return LocalTime.of(time.hour, time.minute, time.second, time.nano);
 	}
 	if (typeof time === 'number') {
 		return LocalTime.ofSecondOfDay(time);

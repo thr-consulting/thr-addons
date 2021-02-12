@@ -58,8 +58,8 @@ function render(msg: RenderedImage, args: ScriptelSocketArgs, eventEmitter: Even
 }
 
 export class ScriptelSocket extends EventEmitter {
-	private socket: WebSocket;
-	private options: ScriptelSocketArgs;
+	private readonly socket: WebSocket;
+	private readonly options: ScriptelSocketArgs;
 
 	constructor(args: ScriptelSocketArgs) {
 		super();
@@ -78,8 +78,10 @@ export class ScriptelSocket extends EventEmitter {
 
 		this.socket.onmessage = ev => {
 			const msg = JSON.parse(ev.data) as Message;
+			// eslint-disable-next-line no-underscore-dangle
 			if (!msg._class) return; // A message with no class.
 
+			// eslint-disable-next-line no-underscore-dangle
 			switch (msg._class) {
 				case ScriptelMessageClass.ConnectionOpen:
 					serverConnected(msg, this.socket);
