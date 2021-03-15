@@ -11,6 +11,7 @@ class MoneySchemaType extends MixedSchema<Money> {
 				if (!value) return value;
 				if (this.isType(value)) return value;
 				if (isMoneyObject(value)) return toMoney(value);
+
 				return null;
 			});
 		});
