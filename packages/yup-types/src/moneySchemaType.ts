@@ -8,6 +8,7 @@ class MoneySchemaType extends MixedSchema<Money> {
 
 		this.withMutation(() => {
 			this.transform(function transform(value) {
+				if (!value) return value;
 				if (this.isType(value)) return value;
 				if (isMoneyObject(value)) return toMoney(value);
 				return null;
