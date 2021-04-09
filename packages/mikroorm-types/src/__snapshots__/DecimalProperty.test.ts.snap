@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DecimalProperty should throw errors on invalid values 1`] = `"Could not convert JS value 'not money' of type 'string' to type DecimalProperty"`;
+
+exports[`DecimalProperty should throw errors on invalid values 2`] = `"Could not convert database value 'not money' of type 'string' to type DecimalProperty"`;
