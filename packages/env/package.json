@@ -1,0 +1,41 @@
+{
+	"name": "@thx/env",
+	"version": "13.0.0",
+	"description": "Environment globals",
+	"bugs": {
+		"url": "https://github.com/darkadept/imperium/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thr-consulting/thr-addons.git"
+	},
+	"license": "MIT",
+	"author": "Mike Kornelson <darkadept@durbn.net>",
+	"main": "index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"index.js",
+		"dist"
+	],
+	"scripts": {
+		"build": "yarn build:dev && yarn build:prod",
+		"build:dev": "NODE_ENV=development webpack --config webpack.js",
+		"build:prod": "NODE_ENV=production webpack --config webpack.js",
+		"clean": "rimraf ./dist",
+		"lint": "eslint --cache --ext js,ts src",
+		"lint:fix": "eslint --cache --fix --ext js,ts src",
+		"sort": "npx sort-package-json",
+		"ts": "tsc"
+	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "./tsconfig-eslint.json"
+		}
+	},
+	"engines": {
+		"node": ">=12"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
