@@ -2,16 +2,18 @@ interface Dict<T> {
 	[key: string]: T;
 }
 
-export type EnvironmentDefaultDict = Dict<string | number | boolean>;
-export type EnvironmentDict = Dict<string | undefined>;
+export type EnvironmentDefaultDict = Dict<string | number | boolean | Record<string, unknown>>;
+export type EnvironmentDict = Dict<string | Record<string, unknown> | undefined>;
 
 export class Environment {
 	private static instance: Environment;
-	readonly #dict: Dict<string | undefined>;
-	readonly #defaults: Dict<string | number | boolean>;
+	readonly #stringDict: Dict<string | undefined>;
+	readonly #recordDict: Dict<Record<string, unknown>>;
+	readonly #defaults: EnvironmentDefaultDict;
 
 	private constructor() {
-		this.#dict = {};
+		this.#stringDict = {};
+		this.#recordDict = {};
 		this.#defaults = {};
 	}
 
@@ -27,7 +29,13 @@ export class Environment {
 	}
 	public addEnvironment(env: EnvironmentDict) {
 		Object.keys(env).forEach(key => {
-			this.#dict[key] = env[key];
+			const envElement = env[key];
+			if (!envElement) return;
+			if (typeof envElement === 'string') {
+				this.#stringDict[key] = envElement;
+			} else {
+				this.#recordDict[key] = envElement;
+			}
 		});
 	}
 
@@ -40,12 +48,15 @@ export class Environment {
 		});
 	}
 
-	public static get(key: string, def?: string): string | undefined {
+	public static get(key: string, def?: string | Record<string, unknown>): string | undefined | Record<string, unknown> {
 		return Environment.getInstance().get(key, def);
 	}
-	public get(key: string, def?: string): string | undefined {
-		if (key in this.#dict) {
-			return this.#dict[key];
+	public get(key: string, def?: string | Record<string, unknown>): string | undefined | Record<string, unknown> {
+		if (key in this.#stringDict) {
+			return this.#stringDict[key];
+		}
+		if (key in this.#recordDict) {
+			return this.#recordDict[key];
 		}
 		if (key in this.#defaults) {
 			const sysdef = this.#defaults[key];
@@ -64,8 +75,8 @@ export class Environment {
 		return Environment.getInstance().getString(key, def);
 	}
 	public getString(key: string, def?: string): string {
-		if (key in this.#dict) {
-			return this.#dict[key] || '';
+		if (key in this.#stringDict) {
+			return this.#stringDict[key] || '';
 		}
 		if (key in this.#defaults) {
 			const sysdef = this.#defaults[key];
@@ -80,8 +91,8 @@ export class Environment {
 		return Environment.getInstance().getInt(key, def);
 	}
 	public getInt(key: string, def?: number): number {
-		if (key in this.#dict) {
-			return parseInt(this.#dict[key] || '0', 10);
+		if (key in this.#stringDict) {
+			return parseInt(this.#stringDict[key] || '0', 10);
 		}
 		if (key in this.#defaults) {
 			const sysdef = this.#defaults[key];
@@ -96,8 +107,8 @@ export class Environment {
 		return Environment.getInstance().getFloat(key, def);
 	}
 	public getFloat(key: string, def?: number): number {
-		if (key in this.#dict) {
-			return parseFloat(this.#dict[key] || '0');
+		if (key in this.#stringDict) {
+			return parseFloat(this.#stringDict[key] || '0');
 		}
 		if (key in this.#defaults) {
 			const sysdef = this.#defaults[key];
@@ -112,8 +123,8 @@ export class Environment {
 		return Environment.getInstance().getBool(key, def);
 	}
 	public getBool(key: string, def?: boolean): boolean {
-		if (key in this.#dict) {
-			return this.#dict[key] === 'true';
+		if (key in this.#stringDict) {
+			return this.#stringDict[key] === 'true';
 		}
 		if (key in this.#defaults) {
 			const sysdef = this.#defaults[key];
@@ -122,5 +133,21 @@ export class Environment {
 			}
 		}
 		return def || false;
+	}
+
+	public static getRecord(key: string, def?: Record<string, unknown>) {
+		return Environment.getInstance().getRecord(key, def);
+	}
+	public getRecord(key: string, def?: Record<string, unknown>) {
+		if (key in this.#recordDict) {
+			return this.#recordDict;
+		}
+		if (key in this.#defaults) {
+			const sysdef = this.#defaults[key];
+			if (typeof sysdef !== 'string' && typeof sysdef !== 'boolean' && typeof sysdef !== 'number') {
+				return sysdef;
+			}
+		}
+		return def || {};
 	}
 }
