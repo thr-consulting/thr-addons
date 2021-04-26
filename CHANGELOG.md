@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.6.0](https://github.com/thr-consulting/thr-addons/compare/v13.5.0...v13.6.0) (2021-04-23)
+
+
+### Bug Fixes
+
+* **controls:** fixed money currency input ([#286](https://github.com/thr-consulting/thr-addons/issues/286)) ([bf7f534](https://github.com/thr-consulting/thr-addons/commit/bf7f53456ecb56d50e46d6d1fca87ce172cd04cf))
+* **controls:** fixed MoneyCurrencyInput default value ([#270](https://github.com/thr-consulting/thr-addons/issues/270)) ([c9be7bc](https://github.com/thr-consulting/thr-addons/commit/c9be7bc4bd1a957ed1bd83f52913650c5f444347))
+* **yup-types:** updated stuff ([#279](https://github.com/thr-consulting/thr-addons/issues/279)) ([1fcd7dc](https://github.com/thr-consulting/thr-addons/commit/1fcd7dc208b8cae2776fb88b19337c231f17cc66))
+
+
+### Features
+
+* added @thx/env package ([#283](https://github.com/thr-consulting/thr-addons/issues/283)) ([5716d0d](https://github.com/thr-consulting/thr-addons/commit/5716d0d062cd81f2192abe9efbc4ff0f0fc4d43a))
+* added @thx/env package ([#287](https://github.com/thr-consulting/thr-addons/issues/287)) ([a99b66f](https://github.com/thr-consulting/thr-addons/commit/a99b66f3af037c14a22cd417792d372cdc932836))
+* space ([#280](https://github.com/thr-consulting/thr-addons/issues/280)) ([431ef5d](https://github.com/thr-consulting/thr-addons/commit/431ef5d7f487f3a286df5544b9e5faab2fae0af4))
+* update ci ([6858b98](https://github.com/thr-consulting/thr-addons/commit/6858b9867c7df4eba90f1f18468ee51068adb04b))
+* **controls:** created money currency input ([#267](https://github.com/thr-consulting/thr-addons/issues/267)) ([18ed494](https://github.com/thr-consulting/thr-addons/commit/18ed4947254af4efe96390c084af6ed817f6c114))
+* **controls:** updated TableInput exports ([#268](https://github.com/thr-consulting/thr-addons/issues/268)) ([d78e05b](https://github.com/thr-consulting/thr-addons/commit/d78e05b0fff8cd3eb600d21e58b19aba7aee9dfc))
+* **mikroorm-types:** created decimal property ([#282](https://github.com/thr-consulting/thr-addons/issues/282)) ([4aeb2d2](https://github.com/thr-consulting/thr-addons/commit/4aeb2d256e2afc69cd7620d7d8d948777ab75b3d))
+
+
+
+
+
 # [13.5.0](https://github.com/thr-consulting/thr-addons/compare/v13.4.0...v13.5.0) (2021-02-05)
 
 

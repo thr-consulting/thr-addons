@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.6.0](https://github.com/thr-consulting/thr-addons/compare/v13.5.0...v13.6.0) (2021-04-23)
+
+
+### Bug Fixes
+
+* **controls:** fixed money currency input ([#286](https://github.com/thr-consulting/thr-addons/issues/286)) ([bf7f534](https://github.com/thr-consulting/thr-addons/commit/bf7f53456ecb56d50e46d6d1fca87ce172cd04cf))
+* **controls:** fixed MoneyCurrencyInput default value ([#270](https://github.com/thr-consulting/thr-addons/issues/270)) ([c9be7bc](https://github.com/thr-consulting/thr-addons/commit/c9be7bc4bd1a957ed1bd83f52913650c5f444347))
+
+
+### Features
+
+* **controls:** created money currency input ([#267](https://github.com/thr-consulting/thr-addons/issues/267)) ([18ed494](https://github.com/thr-consulting/thr-addons/commit/18ed4947254af4efe96390c084af6ed817f6c114))
+* **controls:** updated TableInput exports ([#268](https://github.com/thr-consulting/thr-addons/issues/268)) ([d78e05b](https://github.com/thr-consulting/thr-addons/commit/d78e05b0fff8cd3eb600d21e58b19aba7aee9dfc))
+
+
+
+
+
 # [13.5.0](https://github.com/thr-consulting/thr-addons/compare/v13.4.0...v13.5.0) (2021-02-05)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.6.0](https://github.com/thr-consulting/thr-addons/compare/v13.5.0...v13.6.0) (2021-04-23)
+
+
+### Features
+
+* **mikroorm-types:** created decimal property ([#282](https://github.com/thr-consulting/thr-addons/issues/282)) ([4aeb2d2](https://github.com/thr-consulting/thr-addons/commit/4aeb2d256e2afc69cd7620d7d8d948777ab75b3d))
+
+
+
+
+
 # [13.3.0](https://github.com/thr-consulting/thr-addons/compare/v13.2.1...v13.3.0) (2020-12-08)
 
 

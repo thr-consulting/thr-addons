@@ -30,7 +30,7 @@ export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputPr
 	return (
 		<Input {...rest} labelPosition="right">
 			<input name={name} ref={inputElement} onBlur={onBlur} readOnly={locked} />
-			<Label>
+			<Label basic>
 				<Dropdown disabled={locked} options={options} value={value?.currency || defaultCurrency?.code || 'CAD'} onChange={handleDropdownChange} />
 			</Label>
 		</Input>
