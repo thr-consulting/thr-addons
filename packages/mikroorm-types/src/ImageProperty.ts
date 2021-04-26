@@ -1,23 +1,22 @@
 import {Type, ValidationError} from '@mikro-orm/core';
-import {isMoneyObject, toMoney} from '@thx/money';
 
-export class MoneyProperty extends Type {
+export class ImageProperty extends Type {
 	convertToDatabaseValue(value: any): any {
 		try {
 			if (!value) return value;
-			if (!isMoneyObject(value)) throw new Error();
+			if (!value.data || !value.timestamp || !value.type) throw new Error();
 			return JSON.stringify(value);
 		} catch (err) {
-			throw ValidationError.invalidType(MoneyProperty, value, 'JS');
+			throw ValidationError.invalidType(ImageProperty, value, 'JS');
 		}
 	}
 
 	convertToJSValue(value: any): any {
 		try {
 			if (!value) return value;
-			return toMoney(value);
+			return JSON.parse(value);
 		} catch (err) {
-			throw ValidationError.invalidType(MoneyProperty, value, 'database');
+			throw ValidationError.invalidType(ImageProperty, value, 'database');
 		}
 	}
 
