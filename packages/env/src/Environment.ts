@@ -10,11 +10,15 @@ export class Environment {
 	readonly #stringDict: Dict<string | undefined>;
 	readonly #recordDict: Dict<Record<string, unknown>>;
 	readonly #defaults: EnvironmentDefaultDict;
+	readonly #isDevelopment: boolean;
+	readonly #isProduction: boolean;
 
 	private constructor() {
 		this.#stringDict = {};
 		this.#recordDict = {};
 		this.#defaults = {};
+		this.#isProduction = process.env.NODE_ENV === 'production';
+		this.#isDevelopment = !this.#isProduction;
 	}
 
 	public static getInstance(): Environment {
@@ -22,6 +26,20 @@ export class Environment {
 			Environment.instance = new Environment();
 		}
 		return Environment.instance;
+	}
+
+	public static isDevelopment() {
+		return this.getInstance().isDevelopment();
+	}
+	public isDevelopment() {
+		return this.#isDevelopment;
+	}
+
+	public static isProduction() {
+		return this.getInstance().isProduction();
+	}
+	public isProduction() {
+		return this.#isProduction;
 	}
 
 	public static addEnvironment(env: EnvironmentDict) {
