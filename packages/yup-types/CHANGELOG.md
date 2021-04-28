@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.7.0](https://github.com/thr-consulting/thr-addons/compare/v13.6.0...v13.7.0) (2021-04-28)
+
+
+### Features
+
+* **yup-types:** updated type ([#294](https://github.com/thr-consulting/thr-addons/issues/294)) ([7b12bbe](https://github.com/thr-consulting/thr-addons/commit/7b12bbe98aa98164e90e794c2f49cda95856417e))
+
+
+
+
+
 # [13.6.0](https://github.com/thr-consulting/thr-addons/compare/v13.5.0...v13.6.0) (2021-04-23)
 
 
