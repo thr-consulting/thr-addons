@@ -4,7 +4,7 @@ export interface ScriptelSchemaType {
 	width?: number | null;
 	height?: number | null;
 	data: string;
-	timestamp?: Date | null;
+	timestamp: Date;
 	type?: 'image/svg+xml' | 'image/png' | null;
 }
 
