@@ -21,6 +21,6 @@ export class ImageProperty extends Type {
 	}
 
 	getColumnType() {
-		return 'jsonb';
+		return 'json';
 	}
 }
