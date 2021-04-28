@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.7.0](https://github.com/thr-consulting/thr-addons/compare/v13.6.0...v13.7.0) (2021-04-28)
+
+
+### Bug Fixes
+
+* **mikroorm-types:** added missing export ([#291](https://github.com/thr-consulting/thr-addons/issues/291)) ([00d110b](https://github.com/thr-consulting/thr-addons/commit/00d110b3889e41a6f3bec14df4e91a0212f5aecf))
+
+
+### Features
+
+* **controls:** update ui ([#289](https://github.com/thr-consulting/thr-addons/issues/289)) ([f71759a](https://github.com/thr-consulting/thr-addons/commit/f71759a3242e47979d35d325731873eb276e94a3))
+* **env:** enhanced the Environment class and added documentation ([b16651b](https://github.com/thr-consulting/thr-addons/commit/b16651b39bb1816480c7a116e18902fbcd5108ac))
+* **mikroorm-types:** created image property ([#290](https://github.com/thr-consulting/thr-addons/issues/290)) ([04dbb1c](https://github.com/thr-consulting/thr-addons/commit/04dbb1cac6a593e8248e49e285cdb5c1b8e6f892))
+* **yup-types:** updated type ([#294](https://github.com/thr-consulting/thr-addons/issues/294)) ([7b12bbe](https://github.com/thr-consulting/thr-addons/commit/7b12bbe98aa98164e90e794c2f49cda95856417e))
+* added development and production environment ([#293](https://github.com/thr-consulting/thr-addons/issues/293)) ([7b811ff](https://github.com/thr-consulting/thr-addons/commit/7b811ff6d1d38dfecf2af806ed63c27ffc169100))
+
+
+
+
+
 # [13.6.0](https://github.com/thr-consulting/thr-addons/compare/v13.5.0...v13.6.0) (2021-04-23)
 
 

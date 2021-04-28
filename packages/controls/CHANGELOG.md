@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.7.0](https://github.com/thr-consulting/thr-addons/compare/v13.6.0...v13.7.0) (2021-04-28)
+
+
+### Features
+
+* **controls:** update ui ([#289](https://github.com/thr-consulting/thr-addons/issues/289)) ([f71759a](https://github.com/thr-consulting/thr-addons/commit/f71759a3242e47979d35d325731873eb276e94a3))
+
+
+
+
+
 # [13.6.0](https://github.com/thr-consulting/thr-addons/compare/v13.5.0...v13.6.0) (2021-04-23)
 
 
