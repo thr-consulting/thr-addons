@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.8.0](https://github.com/thr-consulting/thr-addons/compare/v13.7.0...v13.8.0) (2021-04-30)
+
+
+### Features
+
+* **mikroorm-types:** updated image property ([#295](https://github.com/thr-consulting/thr-addons/issues/295)) ([8b3ab48](https://github.com/thr-consulting/thr-addons/commit/8b3ab48ae9f8544546c0434cf5c3e5e592519ad0))
+
+
+
+
+
 # [13.7.0](https://github.com/thr-consulting/thr-addons/compare/v13.6.0...v13.7.0) (2021-04-28)
 
 
