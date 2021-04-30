@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.8.1](https://github.com/thr-consulting/thr-addons/compare/v13.8.0...v13.8.1) (2021-04-30)
+
+
+### Bug Fixes
+
+* **env:** forgot to export getCorsOrigin ([91b1c62](https://github.com/thr-consulting/thr-addons/commit/91b1c62266a150a3250a43a15712961dd0ceb2a3))
+
+
+
+
+
 # [13.8.0](https://github.com/thr-consulting/thr-addons/compare/v13.7.0...v13.8.0) (2021-04-30)
 
 
