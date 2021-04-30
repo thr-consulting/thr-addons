@@ -1,6 +1,6 @@
 {
 	"name": "@thx/common-webpack",
-	"version": "13.2.0",
+	"version": "13.8.2",
 	"description": "Common webpack configuration",
 	"bugs": {
 		"url": "https://github.com/darkadept/thr-addons/issues"

@@ -1,6 +1,6 @@
 {
 	"name": "@thx/sharedcache",
-	"version": "13.0.0",
+	"version": "13.8.2",
 	"description": "Redis shared cache",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"

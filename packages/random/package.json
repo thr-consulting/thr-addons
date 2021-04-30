@@ -1,6 +1,6 @@
 {
 	"name": "@thx/random",
-	"version": "13.0.0",
+	"version": "13.8.2",
 	"description": "Random Functions",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -50,7 +50,7 @@
 	},
 	"dependencies": {
 		"@js-joda/core": "^3.0.0",
-		"@thx/date": "^13.0.0",
+		"@thx/date": "^13.8.2",
 		"debug": "^4.1.1"
 	},
 	"engines": {

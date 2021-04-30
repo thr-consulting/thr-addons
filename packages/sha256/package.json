@@ -1,6 +1,6 @@
 {
 	"name": "@thx/sha256",
-	"version": "13.0.0",
+	"version": "13.8.2",
 	"description": "SHA256 Hash Function",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"

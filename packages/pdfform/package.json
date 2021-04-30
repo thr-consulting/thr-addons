@@ -1,6 +1,6 @@
 {
 	"name": "@thx/pdfform",
-	"version": "13.0.0",
+	"version": "13.8.2",
 	"description": "PDF form filling library",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -46,7 +46,7 @@
 		}
 	},
 	"dependencies": {
-		"@thx/random": "^13.0.0",
+		"@thx/random": "^13.8.2",
 		"debug": "^4.1.1",
 		"hummus": "^1.0.108",
 		"lodash": "^4.17.15",
