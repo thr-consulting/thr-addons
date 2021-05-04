@@ -2,15 +2,13 @@ import fs from 'fs';
 import type {Readable} from 'stream';
 import path from 'path';
 import {randomFilename} from '@thx/random';
+import type {ScriptelSchemaType} from '@thx/yup-types';
 import {PDFWStreamForFile, createWriterToModify, PDFPageModifier} from 'hummus';
 import sequential from 'promise-sequential';
 import {PDFRStreamForStream} from './PDFRStreamForStream';
 
 export interface PDFSignature {
-	signature: {
-		type: string;
-		data: string;
-	};
+	signature: ScriptelSchemaType;
 	location: {
 		width?: number;
 		height?: number;
