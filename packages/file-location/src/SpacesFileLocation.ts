@@ -18,18 +18,21 @@ export default class SpacesFileLocation implements FileLocationInterface {
 		secret,
 		bucket,
 		basePath,
+		options,
 	}: {
 		endpoint: string;
 		accessKey: string;
 		secret: string;
 		bucket: string;
 		basePath?: string;
+		options?: AWS.S3.Types.ClientConfiguration;
 	}) {
 		// @ts-ignore
 		this.spaces = new AWS.S3({
 			endpoint,
 			accessKeyId: accessKey,
 			secretAccessKey: secret,
+			...options,
 		});
 
 		this.bucket = bucket;
