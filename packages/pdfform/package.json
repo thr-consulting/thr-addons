@@ -47,6 +47,7 @@
 	},
 	"dependencies": {
 		"@thx/random": "^13.8.2",
+		"@thx/yup-types": "^13.8.2",
 		"debug": "^4.1.1",
 		"hummus": "^1.0.108",
 		"lodash": "^4.17.15",
