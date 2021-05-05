@@ -44,9 +44,9 @@
 	},
 	"dependencies": {
 		"debug": "^4.1.1",
-		"inspect-loader": "^1.0.0",
+		"inspect-loader": "^2.0.0",
 		"webpack": "^4.44.1",
-		"webpack-node-externals": "^2.5.0"
+		"webpack-node-externals": "^3.0.0"
 	},
 	"engines": {
 		"node": ">=12"
