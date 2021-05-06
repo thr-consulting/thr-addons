@@ -14,13 +14,13 @@ function replaceDebugNamespace(namespace: string, root: Collection) {
 
 export function fixDebugNamespace(root: Collection, j: JSCodeshift, fileInfo: FileInfo) {
 	// Parse the current file's path
-	const pathMatched = /^packages\/(.+)\/src\/(.*)/.exec(fileInfo.path);
+	const pathMatched = /packages\/(.+)\/src\/(.*)/.exec(fileInfo.path);
 	if (pathMatched === null) return null;
 	const pkgName = pathMatched[1];
 	const parsed = path.parse(pathMatched[2]);
 
 	// Build the debug namespace string
-	const nameArr = ['thx', pkgName, ...parsed.dir.split(path.sep), parsed.name === 'index' ? null : parsed.name];
+	const nameArr = [process.env.DEBUG_NAMESPACE, pkgName, ...parsed.dir.split(path.sep), parsed.name === 'index' ? null : parsed.name];
 	const name = nameArr
 		.filter((v, index) => {
 			if (index !== 0 && nameArr[index - 1] === v) {
