@@ -12,7 +12,8 @@
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
 	"bin": {
-		"organize": "./bin/organize.sh"
+		"organize": "./bin/organize.sh",
+		"coverage": "./bin/coverage.sh"
 	},
 	"files": [
 		"bin",

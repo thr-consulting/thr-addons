@@ -50,7 +50,6 @@
 		}
 	},
 	"dependencies": {
-		"debug": "^4.1.1",
 		"file-type": "13.1.2",
 		"mime-types": "^2.1.27"
 	},

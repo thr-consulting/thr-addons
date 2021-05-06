@@ -49,9 +49,6 @@
 			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
 		}
 	},
-	"dependencies": {
-		"debug": "^4.1.1"
-	},
 	"peerDependencies": {
 		"redis": "^3.x"
 	},

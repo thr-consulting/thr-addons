@@ -50,8 +50,8 @@
 		}
 	},
 	"dependencies": {
-		"@thx/date": "^13.8.2",
-		"debug": "^4.1.1"
+		"@thx/money": "^13.8.2",
+		"@thx/date": "^13.8.2"
 	},
 	"peerDependencies": {
 		"@mikro-orm/core": "4.x"

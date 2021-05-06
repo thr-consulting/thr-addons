@@ -118,7 +118,7 @@ fix_jscodeshift () {
   dos2unix -q -F *
   ret=$?
   if [ $ret -ne 0 ]; then
-    printf "\n${LRED}[ERROR] Error fixing jscodeshift. Please install dos2unix first: apt install dos2unix.${NC}\n"
+    error "Error fixing jscodeshift. Please install dos2unix first: apt install dos2unix."
     exit 1
   fi
   patch -Nu "$1/src/Runner.js" -i "$DIR/files/jscodeshift.patch"
@@ -138,13 +138,13 @@ banner "Codemod"
 echo "${SRCDIRS::-1}" | DEBUG_NAMESPACE="$DEBUG_NAMESPACE" "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$DIR/files/cmOrganize.ts" --stdin
 ret=$?
 if [ $ret -ne 0 ]; then
-  printf "\n${LRED}[ERROR] Error running codemod. Lint fixing will continue to prevent many changed files.${NC}\n"
+  error "Error running codemod. Lint fixing will continue to prevent many changed files."
 fi
 
 banner "Fixing lint issues"
 yarn lerna run lint:fix
 
 if [ $ret -ne 0 ]; then
-  printf "\n${LRED}Errors occured during generation. Some files may be left in an inconsistent state.${NC}\n"
+  error "Errors occurred during generation. Some files may be left in an inconsistent state."
 fi
 exit $ret

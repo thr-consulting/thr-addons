@@ -51,12 +51,6 @@
 			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
 		}
 	},
-	"dependencies": {
-		"debug": "^4.1.1",
-		"inspect-loader": "^2.0.0",
-		"lodash": "^4.17.20",
-		"webpack-node-externals": "^3.0.0"
-	},
 	"engines": {
 		"node": ">=12"
 	},

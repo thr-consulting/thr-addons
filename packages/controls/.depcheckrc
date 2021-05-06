@@ -1,2 +1,2 @@
-ignorePatterns: ['build/*', 'types/*', 'webpack.js']
-ignores: []
+ignorePatterns: ['build/*', 'types/*', 'webpack.js', '*.stories.tsx']
+ignores: ['css-loader', 'style-loader']

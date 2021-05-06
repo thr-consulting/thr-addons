@@ -51,7 +51,6 @@
 		"@thx/yup-types": "^13.8.2",
 		"debug": "^4.1.1",
 		"hummus": "^1.0.108",
-		"lodash": "^4.17.15",
 		"node-pdftk": "^2.1.2",
 		"promise-sequential": "^1.1.1"
 	},
