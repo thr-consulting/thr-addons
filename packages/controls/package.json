@@ -27,6 +27,7 @@
     "lint": "eslint --cache --ext js,ts src",
     "lint:fix": "eslint --cache --fix --ext js,ts src",
     "sort": "npx sort-package-json",
+    "depcheck": "depcheck",
     "storybook": "start-storybook -p 8000 --ci",
     "ts": "tsc"
   },

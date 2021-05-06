@@ -19,6 +19,7 @@
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
 		"sort": "npx sort-package-json",
+		"depcheck": "depcheck",
 		"test": "jest",
 		"test:coverage": "../../tools/coverage.sh",
 		"test:watch": "jest --watch",
