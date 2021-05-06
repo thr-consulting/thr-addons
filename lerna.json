@@ -12,6 +12,6 @@
       "message": "chore(release): publish [skip-ci]"
     }
   },
-  "concurrency": 4,
+  "concurrency": 8,
   "registry": "https://registry.npmjs.org/"
 }

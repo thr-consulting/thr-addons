@@ -34,7 +34,6 @@ export function useMoneyInput(props: UseMoneyInputProps) {
 		maskInstance.current = new Inputmask({
 			alias: 'numeric',
 			groupSeparator: ',',
-			autoGroup: true,
 			digits: wholeNumber ? '0' : Currencies[adjCurrency.code].decimal_digits.toString(),
 			digitsOptional: false,
 			prefix: showPrefix ? prefix || Currencies[adjCurrency.code].symbol : undefined,

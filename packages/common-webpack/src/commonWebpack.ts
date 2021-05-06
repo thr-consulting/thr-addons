@@ -7,7 +7,6 @@ import inspectLoader from './inspectLoader';
 interface CommonWebpackParams {
 	isProduction: boolean;
 	isClient: boolean;
-	name: string;
 	entry: string;
 	outputFile: string;
 	rules?: any[];
@@ -20,7 +19,6 @@ interface CommonWebpackParams {
 export default function commonWebpack({
 	isProduction,
 	isClient,
-	name,
 	entry,
 	outputFile,
 	rules,
@@ -44,8 +42,9 @@ export default function commonWebpack({
 		output: {
 			filename: isProduction ? `${path.basename(outputFile, path.extname(outputFile))}.min.js` : outputFile,
 			path: path.resolve(process.cwd(), 'dist'),
-			library: name,
-			libraryTarget: 'commonjs2',
+			library: {
+				type: 'commonjs2',
+			},
 		},
 		resolve: {
 			extensions: ['.js', '.mjs', '.ts', '.d.ts'].concat(isClient || jsxFactory ? ['.tsx'] : []), // .concat(jsxFactory ? ['.jsx'] : []),

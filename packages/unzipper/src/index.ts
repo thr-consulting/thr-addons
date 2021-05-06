@@ -1,1 +1,2 @@
-export {default as unzipper, OnFileCallback} from './unzipper';
+export {default as unzipper} from './unzipper';
+export type {OnFileCallback} from './unzipper';
