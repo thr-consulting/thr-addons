@@ -1,7 +1,7 @@
 import debug from 'debug';
 import React from 'react';
 
-const d = debug('thx.controls.Step');
+const d = debug('thx.controls.step.Step');
 
 interface StepProps {
 	children?: JSX.Element | JSX.Element[];

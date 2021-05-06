@@ -1,11 +1,11 @@
-import React, {useEffect, useRef, useState} from 'react';
 import debug from 'debug';
+import React, {useEffect, useRef, useState} from 'react';
 import {ScriptelContext} from './ScriptelContext';
 import {ScriptelSocket} from './scriptel';
 import type {ScriptelPenStyle} from './scriptel/enums';
 import type {RenderedImage} from './scriptel/messages';
 
-const d = debug('thx.controls.Scriptel');
+const d = debug('thx.controls.inputs.Scriptel');
 
 export interface ScriptelProps {
 	omniscriptUrl?: string; // Defaults to 'ws://localhost:8080'

@@ -1,9 +1,9 @@
+import {CreditCardCardNameEnum} from '@thx/yup-types';
 import debug from 'debug';
 import React, {useEffect, useState} from 'react';
-import {CreditCardCardNameEnum} from '@thx/yup-types';
 import {MaskedInput, MaskedInputProps} from '../MaskedInput';
 
-const d = debug('thx.controls.CreditCardInput');
+const d = debug('thx.controls.inputs.CreditCardInput');
 
 export interface CreditCardInputType {
 	cardType?: (cardType: CreditCardCardNameEnum | undefined) => void;

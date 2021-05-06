@@ -1,10 +1,10 @@
 /* globals WebSocket: true */
 import debug from 'debug';
 import EventEmitter from 'eventemitter3';
-import type {ConnectionOpen, DeviceOpenResponse, Message, RenderedImage} from './messages';
 import {ScriptelMessageClass, ScriptelPenStyle} from './enums';
+import type {ConnectionOpen, DeviceOpenResponse, Message, RenderedImage} from './messages';
 
-const d = debug('thx.controls.Scriptel.API');
+const d = debug('thx.controls.inputs.Scriptel.scriptel');
 
 export interface ScriptelSocketArgs {
 	omniscriptUrl?: string; // Defaults to 'ws://localhost:8080'

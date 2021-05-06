@@ -1,5 +1,5 @@
-import {object} from 'yup';
 import Money from 'js-money';
+import {object} from 'yup';
 import {moneySchemaType} from './moneySchemaType';
 
 describe('MoneySchemaType', () => {

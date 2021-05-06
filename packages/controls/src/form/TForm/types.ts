@@ -1,5 +1,5 @@
-import type React from 'react';
 import type {FormikConfig, FormikProps} from 'formik';
+import type React from 'react';
 
 export interface TFormProps<Values> extends FormikProps<Values> {
 	hasErrors: boolean;

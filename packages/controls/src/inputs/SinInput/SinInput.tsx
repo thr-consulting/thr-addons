@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {Button, Icon, Label, Popup} from 'semantic-ui-react';
 import {MaskedInput, MaskedInputProps} from '../MaskedInput';
 
-const d = debug('thx.components.SinInput');
+const d = debug('thx.controls.inputs.SinInput');
 
 export interface SinInputProps {
 	hasSin: boolean;

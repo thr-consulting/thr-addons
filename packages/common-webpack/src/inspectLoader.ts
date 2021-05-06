@@ -4,7 +4,7 @@
  */
 import debug from 'debug';
 
-const d = debug('inspectLoader');
+const d = debug('thx.common-webpack.inspectLoader');
 
 export function log(name: string, resource: string): void {
 	d(`[${name}] ${resource}`);

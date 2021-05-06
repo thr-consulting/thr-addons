@@ -1,6 +1,6 @@
+import {formatMoney, toMoney} from '@thx/money';
 import React from 'react';
 import type {IdType, TableInstance} from 'react-table';
-import {formatMoney, toMoney} from '@thx/money';
 
 interface MoneySumFooterOptions<A extends Record<string, unknown>> {
 	id: IdType<A>;

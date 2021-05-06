@@ -2,7 +2,7 @@ import debug from 'debug';
 import React, {forwardRef} from 'react';
 import {MaskedInput, MaskedInputProps} from '../../inputs/MaskedInput';
 
-const d = debug('thx.controls.MaskedDateInput');
+const d = debug('thx.controls.date.LocalDatePicker.MaskedDateInput');
 
 export interface MaskedDateInputProps {
 	name?: string;

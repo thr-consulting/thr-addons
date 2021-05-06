@@ -1,5 +1,5 @@
-import debug from 'debug';
 import AWS from 'aws-sdk';
+import debug from 'debug';
 import find from 'lodash/find';
 import path from 'path';
 import type {Readable} from 'stream';

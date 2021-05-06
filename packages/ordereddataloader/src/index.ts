@@ -1,9 +1,9 @@
+import DataLoader from 'dataloader';
 import debug from 'debug';
 import get from 'lodash/get';
 import identity from 'lodash/identity';
-import DataLoader from 'dataloader';
 
-const d = debug('app.lib.OrderedDataLoader');
+const d = debug('thx.ordereddataloader');
 
 interface OrderedDataLoaderOptions<K, V, C = K> extends DataLoader.Options<K, V, C> {
 	idField?: string;

@@ -1,5 +1,5 @@
-import {object} from 'yup';
 import {LocalTime} from '@js-joda/core';
+import {object} from 'yup';
 import {localTimeSchemaType} from './localTimeSchemaType';
 
 describe('LocalTimeSchemaType', () => {

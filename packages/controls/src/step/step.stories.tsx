@@ -1,10 +1,10 @@
 import debug from 'debug';
 import React, {useState} from 'react';
 import {Button, Container, Form, Radio, Segment} from 'semantic-ui-react';
-import {FormStep as CFormStep, StepProvider} from './index';
 import {TForm} from '../form/TForm';
+import {FormStep as CFormStep, StepProvider} from './index';
 
-const d = debug('thx.controls.Step.stories');
+const d = debug('thx.controls.step.step.stories');
 
 export default {title: 'Inputs/Step'};
 

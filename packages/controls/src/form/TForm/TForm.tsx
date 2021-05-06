@@ -1,10 +1,10 @@
 import debug from 'debug';
-import React from 'react';
 import {FormikValues, isFunction, FormikProvider, isEmptyChildren} from 'formik';
-import {useTForm} from './useTForm';
+import React from 'react';
 import type {TFormConfig, TFormProps} from './types';
+import {useTForm} from './useTForm';
 
-const d = debug('thx.controls.TForm');
+const d = debug('thx.controls.form.TForm');
 
 export function TForm<Values extends FormikValues = FormikValues>(props: TFormConfig<Values>) {
 	const tbag = useTForm<Values>(props);

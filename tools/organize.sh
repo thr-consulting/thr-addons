@@ -33,12 +33,26 @@ banner () {
   printf "${LCYAN}#################################################${NC}\n"
 }
 
+banner "Fixing jscodeshift"
+P=$(pwd)
+cd "$DIR/../node_modules/.bin" || exit 1
+dos2unix -q -F *
+ret=$?
+if [ $ret -ne 0 ]; then
+  printf "\n${LRED}[ERROR] Error fixing jscodeshift. Please install dos2unix first: apt install dos2unix.${NC}\n"
+  exit 1
+fi
+cd "$P" || exit 1
+patch -Nu "$DIR/../node_modules/jscodeshift/src/Runner.js" -i "$DIR/jscodeshift.patch"
+#ret=$?
+#if [ $ret -ne 0 ]; then
+#  printf "\n${LRED}[ERROR] Error patching jsocdeshift. This patch is required to return possible errors from jscodeshift.${NC}\n"
+#  exit 1
+#fi
+
 banner "Sorting package.json files"
 npx sort-package-json
 yarn lerna run sort
-
-banner "Patching jscodeshift"
-patch -Nu "$DIR/../node_modules/jscodeshift/src/Runner.js" -i "$DIR/jscodeshift.patch"
 
 banner "Codemod"
 echo "${SRCDIRS::-1}" | yarn codemod -t "$DIR/codemod/cmOrganize.ts" --stdin

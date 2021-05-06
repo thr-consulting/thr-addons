@@ -9,7 +9,7 @@ import isNull from 'lodash/isNull';
 import isUndefined from 'lodash/isUndefined';
 import {Schema, SchemaType} from 'mongoose';
 
-const d = debug('domain.lib.mongoose-types');
+const d = debug('thx.mongoose-types');
 
 // Add .toBSON to LocalDate if not defined
 if (!LD.prototype.toBSON) {

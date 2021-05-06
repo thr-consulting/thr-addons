@@ -2,7 +2,7 @@ import debug from 'debug';
 import {string} from 'yup';
 import {checkCreditCard, CreditCardCardNameEnum} from './creditcard';
 
-const d = debug('web.lib.creditCardSchemaType');
+const d = debug('thx.yup-types.creditCardSchemaType');
 
 function validate(cardNumber?: string) {
 	if (!cardNumber) return false;

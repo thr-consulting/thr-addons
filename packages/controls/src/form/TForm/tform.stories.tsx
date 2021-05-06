@@ -1,13 +1,13 @@
 import debug from 'debug';
+import {Field} from 'formik';
 import React, {useRef, useState} from 'react';
 import {Form, Container, Button, ButtonGroup, Segment} from 'semantic-ui-react';
 import {object, string} from 'yup';
-import {Field} from 'formik';
 import {TForm} from './TForm';
-import {useTForm} from './useTForm';
 import type {TFormProps} from './types';
+import {useTForm} from './useTForm';
 
-const d = debug('thx.controls.TForm.stories');
+const d = debug('thx.controls.form.TForm.tform.stories');
 
 export default {title: 'Form / TForm'};
 

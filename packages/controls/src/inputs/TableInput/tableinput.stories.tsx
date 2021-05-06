@@ -1,21 +1,21 @@
+import {toMoney} from '@thx/money';
+import {moneySchemaType} from '@thx/yup-types';
 import debug from 'debug';
 import type Money from 'js-money';
 import React, {useMemo, useState} from 'react';
 import type {Column} from 'react-table';
-import {moneySchemaType} from '@thx/yup-types';
-import {toMoney} from '@thx/money';
 import {Form, Container, Input, Icon, Modal, Grid, Button} from 'semantic-ui-react';
 import {object, string, array} from 'yup';
-import {TableInput} from './TableInput';
 import {TForm} from '../../form/TForm';
-import {MoneyEditCell} from './MoneyEditCell';
-import {StringEditCell} from './StringEditCell';
-import {MoneyCell} from './MoneyCell';
-import {MoneySumFooter} from './MoneySumFooter';
 import {DropdownCell} from './DropdownCell';
 import {HoverCell} from './HoverCell';
+import {MoneyCell} from './MoneyCell';
+import {MoneyEditCell} from './MoneyEditCell';
+import {MoneySumFooter} from './MoneySumFooter';
+import {StringEditCell} from './StringEditCell';
+import {TableInput} from './TableInput';
 
-const d = debug('thx.controls.TableInput.stories');
+const d = debug('thx.controls.inputs.TableInput.tableinput.stories');
 
 export default {title: 'Inputs/TableInput'};
 

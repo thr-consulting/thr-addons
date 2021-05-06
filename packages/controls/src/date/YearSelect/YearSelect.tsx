@@ -1,8 +1,8 @@
+import debug from 'debug';
 import React from 'react';
 import {Icon, Button, Dropdown, DropdownItemProps, Segment, SegmentProps} from 'semantic-ui-react';
-import debug from 'debug';
 
-const d = debug('thx.controls.YearSelect');
+const d = debug('thx.controls.date.YearSelect');
 
 export interface YearSelectProps {
 	onChange?: (value: number) => void;

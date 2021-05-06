@@ -1,5 +1,5 @@
-import {promisify} from 'util';
 import type {RedisClient} from 'redis';
+import {promisify} from 'util';
 
 /* eslint-disable no-underscore-dangle */
 function getRedisKey(prefix: string, key: string): string {

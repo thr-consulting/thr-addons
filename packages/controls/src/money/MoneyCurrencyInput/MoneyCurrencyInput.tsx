@@ -1,13 +1,13 @@
+import {toMoney} from '@thx/money';
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import debug from 'debug';
+import Money from 'js-money';
 import React, {SyntheticEvent} from 'react';
 import {Dropdown, DropdownProps, Input, InputProps, Label} from 'semantic-ui-react';
-import Money from 'js-money';
-import {toMoney} from '@thx/money';
-import {useMoneyInput} from '../useMoneyInput';
 import type {MoneyInputProps} from '../MoneyInput';
+import {useMoneyInput} from '../useMoneyInput';
 
-const d = debug('thx.controls.MoneyCurrencyInput');
+const d = debug('thx.controls.money.MoneyCurrencyInput');
 
 export interface MoneyCurrencyInputProps extends MoneyInputProps {
 	currencyOptions?: {key: string; value: string; text: string}[];

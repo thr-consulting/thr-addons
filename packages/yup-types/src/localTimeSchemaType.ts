@@ -1,5 +1,5 @@
-import {MixedSchema} from 'yup';
 import {LocalTime} from '@js-joda/core';
+import {MixedSchema} from 'yup';
 
 class LocalTimeSchemaType extends MixedSchema<LocalTime> {
 	constructor() {

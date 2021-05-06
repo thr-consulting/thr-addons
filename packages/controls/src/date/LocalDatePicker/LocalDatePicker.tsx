@@ -1,13 +1,13 @@
-import React from 'react';
-import debug from 'debug';
-import type {ReactDatePickerProps} from 'react-datepicker';
 import type {LocalDate} from '@js-joda/core';
-import type {InputProps} from 'semantic-ui-react';
 import {toDate, toLocalDate} from '@thx/date';
-import {MaskedDateInput} from './MaskedDateInput';
+import debug from 'debug';
+import React from 'react';
+import type {ReactDatePickerProps} from 'react-datepicker';
+import type {InputProps} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
+import {MaskedDateInput} from './MaskedDateInput';
 
-const d = debug('thx.controls.LocalDatePicker');
+const d = debug('thx.controls.date.LocalDatePicker');
 
 interface ILocalDatePicker {
 	value?: LocalDate | number | null;

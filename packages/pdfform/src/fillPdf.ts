@@ -1,7 +1,7 @@
+import {spawn} from 'child_process';
 // @ts-ignore
 import pdftk from 'node-pdftk';
 import type {Readable} from 'stream';
-import {spawn} from 'child_process';
 import generateFdfFromJson from './generateFdfFromJson';
 
 /**

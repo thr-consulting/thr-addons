@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {FormikValues, useFormik, FormikErrors, FormikTouched} from 'formik';
 import flatten from 'flat';
-import uniq from 'lodash/uniq';
+import {FormikValues, useFormik, FormikErrors, FormikTouched} from 'formik';
 import get from 'lodash/get';
-import {Message, Segment} from 'semantic-ui-react';
 import property from 'lodash/property';
+import uniq from 'lodash/uniq';
+import React, {useEffect, useState} from 'react';
+import {Message, Segment} from 'semantic-ui-react';
 import type {TFormConfig} from './types';
 
 export function useTForm<Values extends FormikValues = FormikValues, InitialValues = any>(config: TFormConfig<Values, InitialValues>) {

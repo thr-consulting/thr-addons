@@ -1,13 +1,13 @@
 import {Currencies} from '@thx/money';
+import {moneySchemaType} from '@thx/yup-types';
 import debug from 'debug';
 import React from 'react';
 import {Form, Container} from 'semantic-ui-react';
-import {moneySchemaType} from '@thx/yup-types';
 import {InferType, object} from 'yup';
-import {MoneyCurrencyInput} from './MoneyCurrencyInput';
 import {TForm} from '../../form/TForm';
+import {MoneyCurrencyInput} from './MoneyCurrencyInput';
 
-const d = debug('thx.controls.MoneyCurrencyInput.stories');
+const d = debug('thx.controls.money.MoneyCurrencyInput.moneycurrencyinput.stories');
 
 export default {title: 'Inputs/MoneyCurrencyInput'};
 

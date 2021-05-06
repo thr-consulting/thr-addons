@@ -1,13 +1,13 @@
 import {LocalDate} from '@js-joda/core';
+import {localDateSchemaType} from '@thx/yup-types';
 import debug from 'debug';
 import React, {useState} from 'react';
 import {Container, Form, Segment} from 'semantic-ui-react';
-import {localDateSchemaType} from '@thx/yup-types';
 import {InferType, object} from 'yup';
-import {MonthYearPicker} from './MonthYearPicker';
 import {TForm} from '../../form/TForm';
+import {MonthYearPicker} from './MonthYearPicker';
 
-const d = debug('thx.controls.MonthYearPicker.stories');
+const d = debug('thx.controls.date.MonthYearPicker.monthyearpicker.stories');
 
 export default {title: 'Date/MonthYearPicker'};
 

@@ -1,14 +1,14 @@
-import debug from 'debug';
-import React, {useState} from 'react';
-import Money from 'js-money';
-import {Form, Container, Button, Segment, Radio} from 'semantic-ui-react';
 import {formatMoney} from '@thx/money';
 import {moneySchemaType} from '@thx/yup-types';
+import debug from 'debug';
+import Money from 'js-money';
+import React, {useState} from 'react';
+import {Form, Container, Button, Segment, Radio} from 'semantic-ui-react';
 import {InferType, object} from 'yup';
-import {MoneyInput} from './MoneyInput';
 import {TForm} from '../../form/TForm';
+import {MoneyInput} from './MoneyInput';
 
-const d = debug('thx.controls.MoneyInput.stories');
+const d = debug('thx.controls.money.MoneyInput.moneyinput.stories');
 
 export default {title: 'Inputs/MoneyInput'};
 

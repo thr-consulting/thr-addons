@@ -1,7 +1,7 @@
+import {formatMoney} from '@thx/money';
+import type Money from 'js-money';
 import React from 'react';
 import type {CellProps} from 'react-table';
-import type Money from 'js-money';
-import {formatMoney} from '@thx/money';
 
 interface MoneyCellOptions<D extends Record<string, unknown>> {
 	/** If provided, this function will override the Money value displayed */

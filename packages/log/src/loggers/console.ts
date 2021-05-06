@@ -1,6 +1,6 @@
+import colors from 'colors/safe';
 import compact from 'lodash/compact';
 import winston, {format} from 'winston';
-import colors from 'colors/safe';
 
 export function createConsoleLogger() {
 	return new winston.transports.Console({

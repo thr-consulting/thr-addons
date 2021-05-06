@@ -1,13 +1,13 @@
+import {formatDate} from '@thx/date';
+import {localDateSchemaType} from '@thx/yup-types';
 import debug from 'debug';
 import React, {useState} from 'react';
 import {Container, Input, Segment, Form} from 'semantic-ui-react';
-import {formatDate} from '@thx/date';
-import {localDateSchemaType} from '@thx/yup-types';
 import {InferType, object} from 'yup';
-import {LocalMonthSelect} from './LocalMonthSelect';
 import {TForm} from '../../form/TForm';
+import {LocalMonthSelect} from './LocalMonthSelect';
 
-const d = debug('thx.controls.LocalMonthSelect.stories');
+const d = debug('thx.controls.date.LocalMonthSelect.localmonthselect.stories');
 
 export default {title: 'Date/LocalMonthSelect'};
 

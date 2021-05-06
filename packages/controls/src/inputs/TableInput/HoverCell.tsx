@@ -2,7 +2,7 @@ import debug from 'debug';
 import React from 'react';
 import type {CellProps, Renderer} from 'react-table';
 
-const d = debug('thx.controls.TableInput.HoverCell');
+const d = debug('thx.controls.inputs.TableInput.HoverCell');
 
 interface HoverCellOptions<D extends Record<string, unknown>> {
 	Action: Renderer<CellProps<D>>;

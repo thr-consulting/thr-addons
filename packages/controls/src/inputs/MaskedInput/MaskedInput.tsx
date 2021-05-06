@@ -1,10 +1,10 @@
 import debug from 'debug';
+import Inputmask from 'inputmask';
 import React, {useRef, useEffect} from 'react';
 import {Input, InputProps} from 'semantic-ui-react';
-import Inputmask from 'inputmask';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
-const d = debug('thx.controls.MaskedInput');
+const d = debug('thx.controls.inputs.MaskedInput');
 
 /**
  * See source code for detailed prop types or {@link https://github.com/RobinHerbots/jquery.inputmask|here} for more info.

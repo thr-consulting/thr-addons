@@ -1,17 +1,17 @@
-import debug from 'debug';
-import React, {useState} from 'react';
-import {Container, Form, Segment} from 'semantic-ui-react';
 import {LocalTime} from '@js-joda/core';
 import {formatDate} from '@thx/date';
 import {localTimeSchemaType} from '@thx/yup-types';
+import debug from 'debug';
+import React, {useState} from 'react';
+import 'react-datepicker/dist/react-datepicker.css';
+import {Container, Form, Segment} from 'semantic-ui-react';
 import {InferType, object} from 'yup';
+import {TForm} from '../../form/TForm';
+import '../DatePicker/styles.css';
 import {LocalTimePicker} from './LocalTimePicker';
 import {MaskedTimeInput} from './MaskedTimeInput';
-import 'react-datepicker/dist/react-datepicker.css';
-import '../DatePicker/styles.css';
-import {TForm} from '../../form/TForm';
 
-const d = debug('thx.controls.LocalTimePicker.stories');
+const d = debug('thx.controls.date.LocalTimePicker.localtimepicker.stories');
 
 export default {title: 'Date/LocalTimePicker'};
 
