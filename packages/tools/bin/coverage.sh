@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-ORANGE='\033[0;33m'
-BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-DGRAY='\033[1;30m'
-LRED='\033[1;31m'
-LGREEN='\033[1;32m'
-YELLOW='\033[0;33m'
-LBLUE='\033[1;34m'
-LPURPLE='\033[1;35m'
-LCYAN='\033[1;36m'
-NC='\033[0m'
+get_tools_dir () {
+  local prg="$BASH_SOURCE"
+  while [ -h "$prg" ] ; do
+      local ls
+      local link
+      ls=`ls -ld "$prg"`
+      link=`expr "$ls" : '.*-> \(.*\)$'`
+      if expr "$link" : '/.*' > /dev/null; then
+          prg="$link"
+      else
+          prg=`dirname "$prg"`"/$link"
+      fi
+  done
+  echo "$(realpath "$(dirname "$prg")/..")"
+}
+TOOLS_DIR=$(get_tools_dir)
+source "$TOOLS_DIR/bin/common.sh"
 
 show_help () {
   printf "${LCYAN}Coverage Script${NC}\n\n"
@@ -33,7 +36,8 @@ OPTIND=1 # Reset in case getopts has been used previously in the shell.
 PACKAGE_DIR=""
 COVERAGE_DIR=""
 IGNORE_DIRS=""
-BINDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+BINDIR=$(get_node_modules_bin_dir "$TOOLS_DIR")
 
 while getopts "h?c:p:i:" opt; do
 	case "$opt" in
@@ -43,7 +47,7 @@ while getopts "h?c:p:i:" opt; do
 		;;
   p)  PACKAGE_DIR=$OPTARG
 		;;
-	c)  COVERAGE_DIR=$OPTARG
+	c)  COVERAGE_DIR=$(realpath $OPTARG)
 		;;
   i)  IGNORE_DIRS=$OPTARG
     ;;
@@ -53,16 +57,6 @@ done
 shift $((OPTIND-1))
 
 [ "${1:-}" = "--" ] && shift
-
-banner () {
-  printf "\n${LCYAN}#################################################${NC}\n"
-  printf "  ${LGREEN}%s${NC}\n" "$1"
-  printf "${LCYAN}#################################################${NC}\n"
-}
-
-error () {
-  printf "\n${LRED}[ERROR] %s${NC}\n" "$1"
-}
 
 # Make sure a packages dir is specified
 if [ -z "$PACKAGE_DIR" ]; then
@@ -77,42 +71,34 @@ if [ -z "$COVERAGE_DIR" ]; then
 fi
 
 # Get comma separated package ignores into array
-IFS=',' read -r -a IGNORE_PKGS <<< "$IGNORE_DIRS"
+split_csv "$IGNORE_DIRS" IGNORE_PKGS
 
 # Create array of source folders in each package, except ignored packages
-#PKGDIRS=()
-#mapfile -t M < <( ls -1 "$PACKAGE_DIR" )
-#for i in "${M[@]}"
-#do
-#  if [[ ! " ${IGNORE_PKGS[@]} " =~ " ${i} " ]]; then
-#    PKGDIRS+=("$(realpath "$PACKAGE_DIR/$i")")
-#  fi
-#done
-
-PKGDIRS=( common-webpack )
+PKGDIRS=()
+get_package_folders_arr "$PACKAGE_DIR" IGNORE_PKGS PKGDIRS
 
 for i in "${PKGDIRS[@]}"
 do
   PKGBASE=$(basename "$i")
-  rm -rf "${COVERAGE_DIR:?}/$PKGBASE"
-  "${BINDIR:?}/jest" --coverage
+  cd "$i" || exit 1
+
+  # Remove existing coverage dir
+  if [ -d "${COVERAGE_DIR:?}/$PKGBASE" ]; then
+    rm -rf "${COVERAGE_DIR:?}/$PKGBASE"
+  fi
+
+  # Generate coverage info
+  "${BINDIR:?}/jest" --coverage --silent
+
+  # Generate coverage badge
+  LCOV="${COVERAGE_DIR:?}/$PKGBASE/lcov.info"
+  if [ -f "$LCOV" ]; then
+    cat "$LCOV" | "$BINDIR"/coverbadge -o "${COVERAGE_DIR:?}/$PKGBASE/coverage.svg"
+  fi
 done
 
-#BIN=$PWD/../../node_modules/.bin
-#COVERAGE=$PWD/../../docs/assets/coverage
-#NAME=`basename $PWD`
-#
-#echo $NAME
-#
-## Delete previous coverage info
-#rm -rf $COVERAGE/$NAME
-#
-## Generage coverage info
-#$BIN/jest --coverage
-#
-## Generate coverbadge svg
-#cat $COVERAGE/$NAME/lcov.info | $BIN/coverbadge -o $COVERAGE/$NAME/coverage.svg
-#
+restore_cwd
+
 ## Copy template index.html and replace text
 #cp $PWD/../../tools/template.html $COVERAGE/$NAME/index.html
 #sed -i -e 's/IFRAMEURL/\.\/lcov-report\/index.html/g' $COVERAGE/$NAME/index.html

@@ -1,7 +1,7 @@
-import type {Collection, JSCodeshift, FileInfo} from 'jscodeshift';
-import path from 'path';
 import findUp from 'find-up';
 import fs from 'fs';
+import type {Collection, JSCodeshift, FileInfo} from 'jscodeshift';
+import path from 'path';
 
 interface Alias {
 	alias: string;
