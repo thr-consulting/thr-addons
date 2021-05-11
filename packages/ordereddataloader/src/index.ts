@@ -29,11 +29,11 @@ export default class OrderedDataLoader<K, V, C = K> {
 		const docsMap = new Map<C, V>();
 		unorderedResults.forEach(doc => {
 			const key: K = get(doc, this.options.idField || 'id');
-			const sKey = this.options.cacheKeyFn ? this.options.cacheKeyFn(key) : ((identity(key) as unknown) as C);
+			const sKey = this.options.cacheKeyFn ? this.options.cacheKeyFn(key) : (identity(key) as unknown as C);
 			docsMap.set(sKey, doc);
 		});
 		return keys.map(key => {
-			const sKey = this.options.cacheKeyFn ? this.options.cacheKeyFn(key) : ((identity(key) as unknown) as C);
+			const sKey = this.options.cacheKeyFn ? this.options.cacheKeyFn(key) : (identity(key) as unknown as C);
 			return docsMap.get(sKey);
 		});
 	}
