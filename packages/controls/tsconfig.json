@@ -6,7 +6,12 @@
 		"jsx": "react"
 	},
 	"include": [
-		"src/index.ts",
-//		"src/**/*.stories.tsx" // todo make sure its commented out before commit
-	]
+		"src/index.ts"
+	],
+	"comments": [{
+		"comment":  "Add this to include section above, but remove it before check in",
+		"include": [
+			"src/**/*.stories.tsx"
+		]
+	}]
 }

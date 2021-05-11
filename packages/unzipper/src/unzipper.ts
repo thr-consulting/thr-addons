@@ -1,11 +1,11 @@
 import debug from 'debug';
-import type {Readable} from 'stream';
 import {Volume} from 'memfs';
 import path from 'path';
+import type {Readable} from 'stream';
 import yauzl from 'yauzl';
 import ZipReader from './ZipReader';
 
-const d = debug('thx.unzipper');
+const d = debug('thx.unzipper.unzipper');
 
 export type OnFileCallback = (fileStreamData: {stream: Readable; filename: string; mimetype?: string}) => Promise<void>;
 

@@ -1,13 +1,13 @@
+import {scriptelSchemaType} from '@thx/yup-types';
 import debug from 'debug';
 import React, {useState} from 'react';
 import {Container, Form, Segment} from 'semantic-ui-react';
 import {InferType, object} from 'yup';
-import {scriptelSchemaType} from '@thx/yup-types';
+import {TForm} from '../../form/TForm';
 import {Scriptel} from '../Scriptel';
 import {ScriptelInput, ScriptelSignature} from './ScriptelInput';
-import {TForm} from '../../form/TForm';
 
-const d = debug('thx.controls.ScriptelInput.stories');
+const d = debug('thx.controls.inputs.ScriptelInput.scriptelinput.stories');
 
 export default {title: 'Inputs/ScriptelInput'};
 

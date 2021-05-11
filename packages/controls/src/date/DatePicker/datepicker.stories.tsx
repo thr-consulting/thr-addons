@@ -1,11 +1,11 @@
 import debug from 'debug';
 import React, {useState} from 'react';
+import 'react-datepicker/dist/react-datepicker.css';
 import {Container, Segment} from 'semantic-ui-react';
 import {DatePicker} from './index';
-import 'react-datepicker/dist/react-datepicker.css';
 import './styles.css';
 
-const d = debug('thx.controls.DatePicker.stories');
+const d = debug('thx.controls.date.DatePicker.datepicker.stories');
 
 export default {title: 'Date/DatePicker'};
 

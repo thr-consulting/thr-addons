@@ -1,1 +1,2 @@
-export {LocalDatePicker, LocalDatePickerProps} from './LocalDatePicker';
+export {LocalDatePicker} from './LocalDatePicker';
+export type {LocalDatePickerProps} from './LocalDatePicker';

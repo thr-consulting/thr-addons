@@ -1,12 +1,12 @@
-import React from 'react';
-import debug from 'debug';
-import type {ReactDatePickerProps} from 'react-datepicker';
 import type {LocalDate} from '@js-joda/core';
-import {InputProps, Input} from 'semantic-ui-react';
 import {toDate, toLocalDate} from '@thx/date';
+import debug from 'debug';
+import React from 'react';
+import type {ReactDatePickerProps} from 'react-datepicker';
+import {InputProps, Input} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
 
-const d = debug('thx.controls.MonthDayPicker');
+const d = debug('thx.controls.date.MonthDayPicker');
 
 const months = [
 	'January',

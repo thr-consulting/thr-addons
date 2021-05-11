@@ -1,10 +1,10 @@
+import type {ScriptelSchemaType} from '@thx/yup-types';
+import debug from 'debug';
 import React, {useContext, useEffect, useState} from 'react';
 import {Button, Image} from 'semantic-ui-react';
-import debug from 'debug';
-import type {ScriptelSchemaType} from '@thx/yup-types';
 import {ScriptelContext} from '../Scriptel/ScriptelContext';
 
-const d = debug('thx.controls.ScriptelInput');
+const d = debug('thx.controls.inputs.ScriptelInput');
 
 export interface ScriptelInputProps {
 	value?: ScriptelSchemaType;

@@ -1,12 +1,12 @@
+import type {Currencies, IMoneyObject} from '@thx/money';
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import debug from 'debug';
+import type Money from 'js-money';
 import React from 'react';
 import {Input, InputProps} from 'semantic-ui-react';
-import type Money from 'js-money';
-import type {Currencies, IMoneyObject} from '@thx/money';
 import {useMoneyInput} from '../useMoneyInput';
 
-const d = debug('thx.controls.MoneyInput');
+const d = debug('thx.controls.money.MoneyInput');
 
 export interface MoneyInputProps {
 	name?: string;

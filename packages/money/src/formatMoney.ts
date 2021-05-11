@@ -1,5 +1,5 @@
-import Money from 'js-money';
 import accounting from 'accounting';
+import Money from 'js-money';
 
 /**
  * Formats a Money value to a nice string.

@@ -2,10 +2,10 @@ import debug from 'debug';
 import React, {useState} from 'react';
 import {Container, Form, Segment} from 'semantic-ui-react';
 import {InferType, object, number} from 'yup';
-import {MonthDayPicker} from './MonthDayPicker';
 import {TForm} from '../../form/TForm';
+import {MonthDayPicker} from './MonthDayPicker';
 
-const d = debug('thx.controls.MonthDayPicker.stories');
+const d = debug('thx.controls.date.MonthDayPicker.monthdaypicker.stories');
 
 export default {title: 'Date/MonthDayPicker'};
 

@@ -1,11 +1,11 @@
 import debug from 'debug';
 import React from 'react';
-import {object, string, number} from 'yup';
 import {Container, Form, Input} from 'semantic-ui-react';
-import {useTForm} from './useTForm';
+import {object, string, number} from 'yup';
 import type {TFormProps} from './types';
+import {useTForm} from './useTForm';
 
-const d = debug('thx.controls.TForm.stories');
+const d = debug('thx.controls.form.TForm.addeditforms.stories');
 
 export default {title: 'Form/Add and Edit Forms'};
 

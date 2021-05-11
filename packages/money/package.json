@@ -22,6 +22,7 @@
 		"build:dev": "NODE_ENV=development webpack --config webpack.js",
 		"build:prod": "NODE_ENV=production webpack --config webpack.js",
 		"clean": "rimraf ./dist",
+		"depcheck": "depcheck",
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
 		"sort": "npx sort-package-json",
@@ -50,7 +51,6 @@
 	},
 	"dependencies": {
 		"accounting": "^0.4.1",
-		"debug": "^4.1.1",
 		"js-money": "^0.6.3"
 	},
 	"engines": {

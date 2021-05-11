@@ -6,7 +6,7 @@ describe('ExcludeFalse', () => {
 		const bool2 = false;
 		const arr = ['string A', 555, null, undefined, bool1 && 'string B', bool2 && 'string C'];
 
-		expect(arr.filter((Boolean as any) as ExcludeFalse)).toMatchSnapshot();
+		expect(arr.filter(Boolean as any as ExcludeFalse)).toMatchSnapshot();
 	});
 });
 

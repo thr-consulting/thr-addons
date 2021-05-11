@@ -1,6 +1,6 @@
 import debug from 'debug';
-import uniq from 'lodash/uniq';
 import pull from 'lodash/pull';
+import uniq from 'lodash/uniq';
 import type {FileLocationInterface} from './FileLocationInterface';
 
 const d = debug('thx.file-location.FileCleaner');

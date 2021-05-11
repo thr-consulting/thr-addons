@@ -2,7 +2,7 @@ import debug from 'debug';
 import React, {Children} from 'react';
 import {useStep} from './useStep';
 
-const d = debug('thx.controls.FormStep');
+const d = debug('thx.controls.step.FormStep');
 
 interface FormStepProps {
 	children: JSX.Element;

@@ -2,10 +2,10 @@ import debug from 'debug';
 import React, {useState} from 'react';
 import {Form, Container, Button, Segment, Input} from 'semantic-ui-react';
 import {InferType, object, string} from 'yup';
-import {MaskedInput} from './MaskedInput';
 import {TForm} from '../../form/TForm';
+import {MaskedInput} from './MaskedInput';
 
-const d = debug('thx.controls.MaskedInput.stories');
+const d = debug('thx.controls.inputs.MaskedInput.maskedinput.stories');
 
 export default {title: 'Inputs/MaskedInput'};
 

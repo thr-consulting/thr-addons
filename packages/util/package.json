@@ -22,6 +22,7 @@
 		"build:prod": "NODE_ENV=production webpack --config webpack.js",
 		"clean": "rimraf ./dist && rimraf .eslintcache",
 		"lint": "eslint --cache --ext js,ts,tsx src",
+		"depcheck": "depcheck",
 		"lint:fix": "eslint --cache --fix --ext js,ts,tsx src",
 		"sort": "npx sort-package-json",
 		"test": "jest",
@@ -49,12 +50,6 @@
 		"transform": {
 			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
 		}
-	},
-	"dependencies": {
-		"debug": "^4.1.1",
-		"inspect-loader": "^1.0.0",
-		"lodash": "^4.17.20",
-		"webpack-node-externals": "^2.5.0"
 	},
 	"engines": {
 		"node": ">=12"

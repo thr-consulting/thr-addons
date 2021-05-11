@@ -2,10 +2,10 @@ import debug from 'debug';
 import React, {useState} from 'react';
 import {Form, Container, Segment, Radio} from 'semantic-ui-react';
 import {InferType, object, string} from 'yup';
-import {RadioGroup} from './RadioGroup';
 import {TForm} from '../../form/TForm';
+import {RadioGroup} from './RadioGroup';
 
-const d = debug('thx.controls.RadioGroup.stories');
+const d = debug('thx.controls.inputs.RadioGroup.radiogroup.stories');
 
 export default {title: 'Inputs/RadioGroup'};
 

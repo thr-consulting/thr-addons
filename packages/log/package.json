@@ -22,6 +22,7 @@
 		"build:dev": "NODE_ENV=development webpack --config webpack.js",
 		"build:prod": "NODE_ENV=production webpack --config webpack.js",
 		"clean": "rimraf ./dist",
+		"depcheck": "depcheck",
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
 		"sort": "npx sort-package-json",
@@ -51,7 +52,8 @@
 		"fast-file-rotate": "^1.0.1",
 		"gelf-pro": "^1.3.4",
 		"lodash": "^4.17.15",
-		"winston": "^3.3.3"
+		"winston": "^3.3.3",
+		"winston-transport": "^4.4.0"
 	},
 	"engines": {
 		"node": ">=12"

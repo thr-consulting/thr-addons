@@ -1,10 +1,10 @@
+import {Currencies, IMoneyObject, isMoneyObject, toMoney} from '@thx/money';
 import debug from 'debug';
-import {useEffect, useRef} from 'react';
 import Inputmask from 'inputmask';
 import Money from 'js-money';
-import {Currencies, IMoneyObject, isMoneyObject, toMoney} from '@thx/money';
+import {useEffect, useRef} from 'react';
 
-const d = debug('');
+const d = debug('thx.controls.money.useMoneyInput');
 
 interface UseMoneyInputProps {
 	onChange?: (value: Money) => void;
@@ -34,7 +34,6 @@ export function useMoneyInput(props: UseMoneyInputProps) {
 		maskInstance.current = new Inputmask({
 			alias: 'numeric',
 			groupSeparator: ',',
-			autoGroup: true,
 			digits: wholeNumber ? '0' : Currencies[adjCurrency.code].decimal_digits.toString(),
 			digitsOptional: false,
 			prefix: showPrefix ? prefix || Currencies[adjCurrency.code].symbol : undefined,

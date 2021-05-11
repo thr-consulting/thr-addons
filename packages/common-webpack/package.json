@@ -19,6 +19,7 @@
 		"lint": "eslint --cache --ext js,ts src",
 		"lint:fix": "eslint --cache --fix --ext js,ts src",
 		"sort": "npx sort-package-json",
+		"depcheck": "depcheck",
 		"test": "jest",
 		"test:coverage": "../../tools/coverage.sh",
 		"test:watch": "jest --watch",
@@ -44,9 +45,9 @@
 	},
 	"dependencies": {
 		"debug": "^4.1.1",
-		"inspect-loader": "^1.0.0",
-		"webpack": "^4.44.1",
-		"webpack-node-externals": "^2.5.0"
+		"inspect-loader": "^2.0.0",
+		"webpack": "^5.36.2",
+		"webpack-node-externals": "^3.0.0"
 	},
 	"engines": {
 		"node": ">=12"

@@ -75,8 +75,9 @@ Object {
   },
   "output": Object {
     "filename": "out.ts",
-    "library": "commonWebpackTest",
-    "libraryTarget": "commonjs2",
+    "library": Object {
+      "type": "commonjs2",
+    },
     "path": "/dist",
   },
   "resolve": Object {
@@ -167,8 +168,9 @@ Object {
   },
   "output": Object {
     "filename": "out.ts",
-    "library": "commonWebpackTest",
-    "libraryTarget": "commonjs2",
+    "library": Object {
+      "type": "commonjs2",
+    },
     "path": "/dist",
   },
   "resolve": Object {
@@ -258,8 +260,9 @@ Object {
   },
   "output": Object {
     "filename": "out.min.js",
-    "library": "commonWebpackTest",
-    "libraryTarget": "commonjs2",
+    "library": Object {
+      "type": "commonjs2",
+    },
     "path": "/dist",
   },
   "resolve": Object {
@@ -350,8 +353,9 @@ Object {
   },
   "output": Object {
     "filename": "out.min.js",
-    "library": "commonWebpackTest",
-    "libraryTarget": "commonjs2",
+    "library": Object {
+      "type": "commonjs2",
+    },
     "path": "/dist",
   },
   "resolve": Object {

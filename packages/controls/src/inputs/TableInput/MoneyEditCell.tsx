@@ -1,12 +1,12 @@
-import type Money from 'js-money';
 import debug from 'debug';
+import type Money from 'js-money';
 import React, {useState} from 'react';
-import type {TableCellProps} from './TableInput';
 import {MoneyInput} from '../../money/MoneyInput';
+import type {TableCellProps} from './TableInput';
 import type {AddRowOnTabIf} from './addRowOnTab';
 import {addRowOnTab} from './addRowOnTab';
 
-const d = debug('thx.controls.MoneyEditCell');
+const d = debug('thx.controls.inputs.TableInput.MoneyEditCell');
 
 interface MoneyEditCellOptions<D extends Record<string, unknown>> {
 	/** If function is present, and returns true, will add a new row if tab is pressed on the last row */

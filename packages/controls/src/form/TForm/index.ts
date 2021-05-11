@@ -1,3 +1,3 @@
 export {TForm} from './TForm';
 export {useTForm} from './useTForm';
-export {TFormProps} from './types';
+export type {TFormProps} from './types';

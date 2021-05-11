@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const {name} = require('./package.json');
 
 module.exports = {
 	mode: 'production',
@@ -14,8 +13,9 @@ module.exports = {
 	output: {
 		filename: 'index.js',
 		path: path.resolve(__dirname, 'dist'),
-		library: name,
-		libraryTarget: 'commonjs2',
+		library: {
+			type: 'commonjs2'
+		},
 	},
 	target: 'node',
 	entry: './index.ts',

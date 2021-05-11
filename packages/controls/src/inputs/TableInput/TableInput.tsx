@@ -1,8 +1,7 @@
+import debug from 'debug';
+import {FieldArray, FieldArrayRenderProps} from 'formik';
 /* eslint-disable react/jsx-key */
 import React, {useMemo, useState} from 'react';
-import {Table, TableProps} from 'semantic-ui-react';
-import {FieldArray, FieldArrayRenderProps} from 'formik';
-import debug from 'debug';
 import {
 	CellPropGetter,
 	CellProps,
@@ -15,8 +14,9 @@ import {
 	TableBodyPropGetter,
 	useTable,
 } from 'react-table';
+import {Table, TableProps} from 'semantic-ui-react';
 
-const d = debug('thx.controls.TableInput.TableInput');
+const d = debug('thx.controls.inputs.TableInput');
 
 type DefaultTableType = Record<string, unknown>;
 

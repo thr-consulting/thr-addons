@@ -1,9 +1,9 @@
+import {LocalDate} from '@js-joda/core';
 import debug from 'debug';
 import React from 'react';
 import {Select, SelectProps} from 'semantic-ui-react';
-import {LocalDate} from '@js-joda/core';
 
-const d = debug('thx.controls.LocalMonthSelect');
+const d = debug('thx.controls.date.LocalMonthSelect');
 
 const monthOptions = [
 	{text: 'January', value: 1, key: 1},

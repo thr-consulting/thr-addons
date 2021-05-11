@@ -1,6 +1,6 @@
+import debug from 'debug';
 import hummus, {PDFRStream} from 'hummus';
 import type {Readable} from 'stream';
-import debug from 'debug';
 
 const d = debug('thx.pdfform.PDFRStreamForStream');
 

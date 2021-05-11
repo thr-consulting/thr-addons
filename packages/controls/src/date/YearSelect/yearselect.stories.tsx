@@ -2,10 +2,10 @@ import debug from 'debug';
 import React, {useState} from 'react';
 import {Container, Form, Grid, Segment} from 'semantic-ui-react';
 import {InferType, number, object} from 'yup';
-import {YearSelect} from './YearSelect';
 import {TForm} from '../../form/TForm';
+import {YearSelect} from './YearSelect';
 
-const d = debug('thx.controls.YearSelect.stories');
+const d = debug('thx.controls.date.YearSelect.yearselect.stories');
 
 export default {title: 'Date/YearSelect'};
 

@@ -3,9 +3,8 @@
  * With the DEBUG environment variable "inspectLoader" set this file will log all Babel and other Webpack loaders.
  */
 import debug from 'debug';
-import type {RuleSetLoader} from 'webpack';
 
-const d = debug('inspectLoader');
+const d = debug('thx.common-webpack.inspectLoader');
 
 export function log(name: string, resource: string): void {
 	d(`[${name}] ${resource}`);
@@ -22,7 +21,7 @@ export interface Inspection {
 	};
 }
 
-export default function inspectLoader(loaderName: string): RuleSetLoader {
+export default function inspectLoader(loaderName: string) {
 	return {
 		loader: 'inspect-loader',
 		options: {

@@ -1,11 +1,11 @@
 import debug from 'debug';
 import type winston from 'winston';
-import {createConsoleLogger} from './loggers/console';
-import {createGelfLogger} from './loggers/gelf';
-import {createFileLogger} from './loggers/file';
 import {environment} from './environment';
+import {createConsoleLogger} from './loggers/console';
+import {createFileLogger} from './loggers/file';
+import {createGelfLogger} from './loggers/gelf';
 
-const d = debug('imperium.log');
+const d = debug('thx.log');
 const env = environment();
 
 export enum LogTo {

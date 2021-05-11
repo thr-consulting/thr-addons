@@ -1,11 +1,11 @@
 import debug from 'debug';
 import React, {useState} from 'react';
-import {string, object} from 'yup';
 import {Button, Container, Form, Grid, Segment} from 'semantic-ui-react';
-import {SinInput} from './SinInput';
+import {string, object} from 'yup';
 import {useTForm} from '../../form/TForm';
+import {SinInput} from './SinInput';
 
-const d = debug('thx.controls.SinInput.stories');
+const d = debug('thx.controls.inputs.SinInput.SinInput.stories');
 
 export default {title: 'Inputs/SinInput'};
 
