@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.0.0](https://github.com/thr-consulting/thr-addons/compare/v13.8.2...v14.0.0) (2021-05-11)
+
+
+### Features
+
+* **pdfform:** updated the type ([#297](https://github.com/thr-consulting/thr-addons/issues/297)) ([fc8fed5](https://github.com/thr-consulting/thr-addons/commit/fc8fed506542d424a6a9b825bc52b6d4b8a9b2d3))
+
+
+
+
+
 ## [13.8.2](https://github.com/thr-consulting/thr-addons/compare/v13.8.1...v13.8.2) (2021-04-30)
 
 **Note:** Version bump only for package @thx/pdfform

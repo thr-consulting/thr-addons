@@ -1,6 +1,6 @@
 {
 	"name": "@thx/tools",
-	"version": "13.8.2",
+	"version": "14.0.0",
 	"description": "Dev tools to help code consistency",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -25,11 +25,11 @@
 		"files"
 	],
 	"dependencies": {
-		"@types/jscodeshift": "^0.11.0",
 		"@babel/preset-env": "^7.14.1",
-		"jscodeshift": "^0.12.0",
+		"@types/jscodeshift": "^0.11.0",
+		"coverbadge": "^0.5.5",
 		"find-up": "^5.0.0",
-		"coverbadge": "^0.5.5"
+		"jscodeshift": "^0.12.0"
 	},
 	"peerDependencies": {
 		"jest": "26.x"
