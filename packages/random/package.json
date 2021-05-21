@@ -51,7 +51,8 @@
 	},
 	"dependencies": {
 		"@js-joda/core": "^3.0.0",
-		"@thx/date": "^14.0.0"
+		"@thx/date": "^14.0.0",
+		"nanoid": "^3.1.23"
 	},
 	"engines": {
 		"node": ">=12"
