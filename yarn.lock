@@ -3045,27 +3045,6 @@
     resolve-from "^5.0.0"
     store2 "^2.12.0"
 
-"@thx/common-webpack@^13.2.0":
-  version "13.8.2"
-  resolved "https://registry.yarnpkg.com/@thx/common-webpack/-/common-webpack-13.8.2.tgz#c8b3d69637b55d3484ea5c1a33689f982c58fb68"
-  integrity sha512-O89A1/qIIEJzCD7A0H3tcJbbmjHBe00CVc5Fx+p7gvVhsPU9heBknfg6BE7qXpXO3EIKqXoSTBbodXa2WZ5+Sw==
-  dependencies:
-    debug "^4.1.1"
-    inspect-loader "^1.0.0"
-    webpack "^4.44.1"
-    webpack-node-externals "^2.5.0"
-
-"@thx/tools@^13.2.0":
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/@thx/tools/-/tools-14.0.0.tgz#a1479c73b6f2a35617718545f006de876c426192"
-  integrity sha512-v9zaYDZ3JsFyEKUc6e4v8q2cXmQ3jD59m5LsUXNvYfaCE1g6ho2lmPO3U0NOnlQUUryk6y2CC9LPMs3iS3bNig==
-  dependencies:
-    "@babel/preset-env" "^7.14.1"
-    "@types/jscodeshift" "^0.11.0"
-    coverbadge "^0.5.5"
-    find-up "^5.0.0"
-    jscodeshift "^0.12.0"
-
 "@tokenizer/token@^0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@tokenizer/token/-/token-0.1.1.tgz#f0d92c12f87079ddfd1b29f614758b9696bc29e3"
@@ -8946,13 +8925,6 @@ inquirer@^7.3.3:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
-inspect-loader@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/inspect-loader/-/inspect-loader-1.0.0.tgz#b5b1158237e059540f99edab84195abd4587b440"
-  integrity sha1-tbEVgjfgWVQPme2rhBlavUWHtEA=
-  dependencies:
-    loader-utils "^1.0.3"
-
 inspect-loader@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/inspect-loader/-/inspect-loader-2.0.0.tgz#93697b33a88709e783cd27a07c34b05b0ee5a950"
@@ -10285,7 +10257,7 @@ loader-utils@2.0.0, loader-utils@^2.0.0:
     emojis-list "^3.0.0"
     json5 "^2.1.2"
 
-loader-utils@^1.0.3, loader-utils@^1.1.0, loader-utils@^1.2.3, loader-utils@^1.4.0:
+loader-utils@^1.1.0, loader-utils@^1.2.3, loader-utils@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.4.0.tgz#c579b5e34cb34b1a74edc6c1fb36bfa371d5a613"
   integrity sha512-qH0WSMBtn/oHuwjy/NucEgbx5dbxxnxup9s4PVXJUDHZBQY+s0NWA9rJf53RBnQZxfch7euUui7hpoAPvALZdA==
@@ -15596,11 +15568,6 @@ webpack-merge@^5.7.3:
     clone-deep "^4.0.1"
     wildcard "^2.0.0"
 
-webpack-node-externals@^2.5.0:
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/webpack-node-externals/-/webpack-node-externals-2.5.2.tgz#178e017a24fec6015bc9e672c77958a6afac861d"
-  integrity sha512-aHdl/y2N7PW2Sx7K+r3AxpJO+aDMcYzMQd60Qxefq3+EwhewSbTBqNumOsCE1JsCUNoyfGj5465N0sSf6hc/5w==
-
 webpack-node-externals@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/webpack-node-externals/-/webpack-node-externals-3.0.0.tgz#1a3407c158d547a9feb4229a9e3385b7b60c9917"
@@ -15629,7 +15596,7 @@ webpack-virtual-modules@^0.2.2:
   dependencies:
     debug "^3.0.0"
 
-webpack@4, webpack@^4.44.1:
+webpack@4:
   version "4.46.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.46.0.tgz#bf9b4404ea20a073605e0a011d188d77cb6ad542"
   integrity sha512-6jJuJjg8znb/xRItk7bkT0+Q7AHCYjjFnvKIWQPkNIOyRqoCGvkOs0ipeQzrqz4l5FtN5ZI/ukEHroeX/o1/5Q==

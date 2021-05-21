@@ -6,6 +6,7 @@ const origMath = Math;
 const origCrypto = {
 	randomBytes: crypto.randomBytes,
 	pseudoRandomBytes: crypto.pseudoRandomBytes,
+	randomFillSync: crypto.randomFillSync,
 };
 const origZonedDateTimeNow = ZonedDateTime.now;
 
@@ -23,6 +24,12 @@ function mockRandom() {
 	};
 	crypto.randomBytes = mockedCrypto;
 	crypto.pseudoRandomBytes = mockedCrypto;
+	crypto.randomFillSync = buffer => {
+		for (let i = 0; i < buffer.byteLength; i++) {
+			// eslint-disable-next-line no-param-reassign
+			buffer[i] = 0x06;
+		}
+	};
 
 	ZonedDateTime.now = () => ZonedDateTime.parse('1970-01-01T00:00:00.000Z');
 }
@@ -31,14 +38,15 @@ function unmockRandom() {
 	global.Math = origMath;
 	crypto.randomBytes = origCrypto.randomBytes;
 	crypto.pseudoRandomBytes = origCrypto.pseudoRandomBytes;
+	crypto.randomFillSync = origCrypto.randomFillSync;
 	ZonedDateTime.now = origZonedDateTimeNow;
 }
 
 describe('random', () => {
 	it('should generate a random id', () => {
 		mockRandom();
-		expect(randomId()).toBe('050505050505050505050505');
-		expect(randomId(3)).toBe('050');
+		expect(randomId()).toBe('SSSSSSSSSSSSSSSSSSSSSSSS');
+		expect(randomId(3)).toBe('SSS');
 		unmockRandom();
 	});
 
