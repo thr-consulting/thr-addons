@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.3](https://github.com/thr-consulting/thr-addons/compare/v14.0.2...v14.0.3) (2021-05-28)
+
+
+### Bug Fixes
+
+* **common-webpack:** fixed import issue ([c0a4e84](https://github.com/thr-consulting/thr-addons/commit/c0a4e84f3f9c13f91ba08e3e84a4a6ad5e944349))
+* **mikroorm-types:** fixed decimal property ([#308](https://github.com/thr-consulting/thr-addons/issues/308)) ([d255923](https://github.com/thr-consulting/thr-addons/commit/d255923cbb902eebb6468fa5a2d643556f74de40))
+
+
+
+
+
 ## [14.0.2](https://github.com/thr-consulting/thr-addons/compare/v14.0.1...v14.0.2) (2021-05-28)
 
 
