@@ -10,18 +10,28 @@ describe('DecimalProperty', () => {
 		expect(prop.getColumnType()).toBe('decimal');
 	});
 
+	it('should convert 0', () => {
+		const decimalJs = 0;
+		const decimalDB = '0';
+		const prop = new DecimalProperty();
+
+		expect(prop.convertToDatabaseValue(decimalJs)).toBe(decimalDB);
+		expect(prop.convertToJSValue(decimalDB)).toBe(decimalJs);
+		expect(prop.getColumnType()).toBe('decimal');
+	});
+
 	it('should throw errors on invalid values', () => {
 		const decimal = 'not money';
 		const prop = new DecimalProperty();
 
-		function convertDbValue() {
+		function convertToDbValue() {
 			prop.convertToDatabaseValue(decimal);
 		}
-		function convertJsValue() {
+		function convertToJsValue() {
 			prop.convertToJSValue(decimal);
 		}
 
-		expect(convertDbValue).toThrowErrorMatchingSnapshot();
-		expect(convertJsValue).toThrowErrorMatchingSnapshot();
+		expect(convertToDbValue).toThrowErrorMatchingSnapshot();
+		expect(convertToJsValue).toThrowErrorMatchingSnapshot();
 	});
 });
