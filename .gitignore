@@ -16,3 +16,4 @@ yalc.lock
 npm-debug.log*
 .env
 .npmrc
+tsconfig.tsbuildinfo
