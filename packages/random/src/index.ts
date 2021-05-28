@@ -1,19 +1,12 @@
 import {ZonedDateTime} from '@js-joda/core';
 import {formatDate} from '@thx/date';
-import {randomBytes, pseudoRandomBytes} from 'crypto';
+import {nanoid} from 'nanoid';
 
 const letters = 'abcdefghijklmnopqrstuvwxyz';
 const alphanumeric = 'abcdefghijklmnopqrstuvwxyz0123456789';
 
 export function randomId(digits = 24): string {
-	const numBytes = Math.ceil(digits / 2);
-	let bytes;
-	try {
-		bytes = randomBytes(numBytes);
-	} catch (e) {
-		bytes = pseudoRandomBytes(numBytes);
-	}
-	return bytes.toString('hex').substring(0, digits);
+	return nanoid(digits);
 }
 
 export function randomAlphanumericCharacter(): string {

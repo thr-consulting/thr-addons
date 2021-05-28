@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.2](https://github.com/thr-consulting/thr-addons/compare/v14.0.1...v14.0.2) (2021-05-28)
+
+
+### Features
+
+* added incremental build ([ad94b99](https://github.com/thr-consulting/thr-addons/commit/ad94b99cf9fe103e89bc8f230de1a313202cb197))
+* added promise-sequential package ([#307](https://github.com/thr-consulting/thr-addons/issues/307)) ([b4f94b2](https://github.com/thr-consulting/thr-addons/commit/b4f94b26507428c21dc36b722a61cc280d05b455))
+
+
+
+
+
+## [14.0.1](https://github.com/thr-consulting/thr-addons/compare/v14.0.0...v14.0.1) (2021-05-21)
+
+
+### Bug Fixes
+
+* removed need for crypto polyfill and used nanoid instead ([a0d43d1](https://github.com/thr-consulting/thr-addons/commit/a0d43d14edcbb3d9dc8d33982648419f96a49037))
+
+
+
+
+
 # [14.0.0](https://github.com/thr-consulting/thr-addons/compare/v13.8.2...v14.0.0) (2021-05-11)
 
 
