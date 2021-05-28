@@ -21,7 +21,7 @@ export interface Inspection {
 	};
 }
 
-export default function inspectLoader(loaderName: string) {
+export function inspectLoader(loaderName: string) {
 	return {
 		loader: 'inspect-loader',
 		options: {
