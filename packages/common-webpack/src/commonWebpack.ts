@@ -2,7 +2,7 @@ import path from 'path';
 import process from 'process';
 import type {Configuration} from 'webpack';
 import nodeExternals from 'webpack-node-externals';
-import inspectLoader from './inspectLoader';
+import {inspectLoader} from './inspectLoader';
 
 interface CommonWebpackParams {
 	isProduction: boolean;
@@ -16,15 +16,7 @@ interface CommonWebpackParams {
 	};
 }
 
-export default function commonWebpack({
-	isProduction,
-	isClient,
-	entry,
-	outputFile,
-	rules,
-	jsxFactory,
-	aliasPaths,
-}: CommonWebpackParams): Configuration {
+export function commonWebpack({isProduction, isClient, entry, outputFile, rules, jsxFactory, aliasPaths}: CommonWebpackParams): Configuration {
 	return {
 		entry,
 		mode: isProduction ? 'production' : 'development',
