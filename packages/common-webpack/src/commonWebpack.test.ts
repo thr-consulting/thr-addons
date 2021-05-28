@@ -1,4 +1,4 @@
-import commonWebpack from './commonWebpack';
+import {commonWebpack} from './commonWebpack';
 
 jest.mock('process', () => ({
 	cwd: () => '/',
