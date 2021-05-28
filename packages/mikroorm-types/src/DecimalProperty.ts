@@ -3,9 +3,10 @@ import {Type, ValidationError} from '@mikro-orm/core';
 export class DecimalProperty extends Type {
 	convertToDatabaseValue(value: any): any {
 		try {
-			if (!value) return value;
-			if (!parseFloat(value)) throw new Error();
-			return JSON.stringify(value);
+			if (value === undefined || value === null) return value;
+			const number = parseFloat(value);
+			if (Number.isNaN(number)) throw new Error();
+			return JSON.stringify(number);
 		} catch (err) {
 			throw ValidationError.invalidType(DecimalProperty, value, 'JS');
 		}
@@ -13,9 +14,9 @@ export class DecimalProperty extends Type {
 
 	convertToJSValue(value: string): any {
 		try {
-			if (!value) return value;
+			if (value === undefined || value === null) return value;
 			const number = parseFloat(value);
-			if (!number) throw new Error();
+			if (Number.isNaN(number)) throw new Error();
 			return number;
 		} catch (err) {
 			throw ValidationError.invalidType(DecimalProperty, value, 'database');
