@@ -21,14 +21,6 @@ export function StepProvider(props: StepProviderProps) {
 	const [currentStep, setCurrentStep] = useState(0);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	const onNavigate = () => {
-		if (currentStep !== 0) {
-			setCurrentStep(currentStep - 1);
-			return false;
-		}
-		return 'If you leave this page you will lose all the entered data.';
-	};
-
 	const titles: string[] = [];
 	const children: JSX.Element[] = [];
 
@@ -48,6 +40,8 @@ export function StepProvider(props: StepProviderProps) {
 		}
 	});
 
+	const onNavigate = () => 'Are you sure you want to end this process? All the entered data will be lost!';
+
 	const handleSubmit = (values: any, stepKey: string) => {
 		if (currentStep + 1 === children?.length) {
 			setState({...state, [stepKey]: values});
@@ -66,7 +60,7 @@ export function StepProvider(props: StepProviderProps) {
 				<Grid divided stackable>
 					<Grid.Row>
 						<Grid.Column width={3}>
-							<SemanticStep.Group ordered size="mini" vertical={props.vertical} widths={1}>
+							<SemanticStep.Group ordered size="mini" vertical widths={1}>
 								{titles?.map((title, index) => {
 									return (
 										<SemanticStep
