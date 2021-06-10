@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.4](https://github.com/thr-consulting/thr-addons/compare/v14.0.3...v14.0.4) (2021-06-10)
+
+
+### Bug Fixes
+
+* **controls:** updated stepProvider ([#310](https://github.com/thr-consulting/thr-addons/issues/310)) ([bb448e4](https://github.com/thr-consulting/thr-addons/commit/bb448e4c98dbe9c1321422f834caff54cd124289))
+
+
+### Features
+
+* enhanced promise-sequential ([3f6d877](https://github.com/thr-consulting/thr-addons/commit/3f6d87764716fcbba9f706f8e0f656ad91e3d303))
+
+
+
+
+
 # [14.0.0](https://github.com/thr-consulting/thr-addons/compare/v13.8.2...v14.0.0) (2021-05-11)
 
 **Note:** Version bump only for package @thx/controls
