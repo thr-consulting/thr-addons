@@ -26,7 +26,8 @@
     "sort": "npx sort-package-json && lerna run sort",
     "test": "lerna run test --stream",
     "ts": "lerna run ts",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "ci-test": "yarn build && yarn ts && yarn depcheck && yarn organize && yarn lint:fix && yarn sort && yarn test"
   },
   "resolutions": {
     "**/react": "^17.0.1"

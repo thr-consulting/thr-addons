@@ -64,7 +64,106 @@ describe('promise-sequential', () => {
 			},
 		];
 
-		const out = await sequential(fnArray);
+		const out = await sequential<string | boolean | number>(fnArray);
 		expect(out).toEqual(['first', true, 3.14]);
+	});
+
+	it('should throw an error (and stop processing) by default', async () => {
+		// This obviously also stop processing when an error is thrown.
+		const m = [false, false, false];
+
+		const fnArray = [
+			async () => {
+				m[0] = true;
+				return 'first';
+			},
+			async () => {
+				m[1] = true;
+				throw new Error('stop processing');
+			},
+			async () => {
+				m[2] = true;
+				return 3.14;
+			},
+		];
+
+		await expect(sequential<string | boolean | number>(fnArray)).rejects.toThrow('stop processing');
+		expect(m).toEqual([true, true, false]);
+	});
+
+	it('should stop processing if there is a failure (same as default)', async () => {
+		// This throws an error, so we are stopped, but we don't get the output because of the thrown error.
+		const m = [false, false, false];
+
+		const fnArray = [
+			async () => {
+				m[0] = true;
+				return 'first';
+			},
+			async () => {
+				m[1] = true;
+				throw new Error('stop processing');
+			},
+			async () => {
+				m[2] = true;
+				return 3.14;
+			},
+		];
+
+		await expect(sequential<string | boolean | number>(fnArray, {stopOnError: true})).rejects.toThrow('stop processing');
+		expect(m).toEqual([true, true, false]);
+	});
+
+	it('should not throw an error, continue processing with Error objects returned', async () => {
+		const fnArray = [
+			async () => {
+				return 'first';
+			},
+			async () => {
+				throw new Error('stop processing');
+			},
+			async () => {
+				return 3.14;
+			},
+		];
+
+		const out = await sequential<string | number>(fnArray, {noThrowOnError: true});
+		expect(out).toEqual(['first', new Error('stop processing'), 3.14]);
+	});
+
+	it('should not throw an error, and stop processing with Error objects returned', async () => {
+		const fnArray = [
+			async () => {
+				return 'first';
+			},
+			async () => {
+				throw new Error('stop processing');
+			},
+			async () => {
+				return 'second';
+			},
+		];
+
+		const out = await sequential(fnArray, {stopOnError: true, noThrowOnError: true});
+		expect(out).toEqual(['first', new Error('stop processing')]);
+	});
+
+	it('should stop the queue on command', async () => {
+		const fnArray = [
+			async ({index}) => {
+				expect(index).toEqual(0);
+				return 'first';
+			},
+			async ({stopQueue}) => {
+				stopQueue();
+				return 'second';
+			},
+			async () => {
+				return 'third';
+			},
+		];
+
+		const out = await sequential(fnArray, {stopOnError: true, noThrowOnError: true});
+		expect(out).toEqual(['first']);
 	});
 });
