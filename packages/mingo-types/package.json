@@ -1,6 +1,6 @@
 {
 	"name": "@thx/mingo-types",
-	"version": "14.0.3",
+	"version": "14.1.0",
 	"description": "Mingo operators for custom types",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
