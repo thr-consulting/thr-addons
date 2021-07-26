@@ -6,7 +6,7 @@ module.exports = {
 	core: {
 		builder: 'webpack5',
 	},
-	stories: ['../src/**/*.stories.[tj]sx'],
+	stories: ['../src/**/*.stories.tsx'],
 	webpackFinal: config => {
 		const theirs = {...config};
 

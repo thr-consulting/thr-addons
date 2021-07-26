@@ -11,7 +11,7 @@ export default {title: 'Inputs/MaskedInput'};
 
 export const Main = () => {
 	const [shown, setShown] = useState(true);
-	const [value, setValue] = useState();
+	const [value, setValue] = useState<string | undefined>();
 	const [mask, setMask] = useState('99-999-99');
 	const [maskTemp, setMaskTemp] = useState('99-999-99');
 
