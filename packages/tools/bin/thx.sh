@@ -155,6 +155,7 @@ case "${1}" in
     ;;
   sort)
     if [ "$LR" = "$PWD" ]; then
+      yarn -s sort-package-json "${@:2}"
       yarn -s lerna run sort
     else
       yarn -s sort-package-json "${@:2}"

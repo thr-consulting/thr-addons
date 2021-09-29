@@ -20,6 +20,7 @@
     "docs": "thx docs",
     "docs:md": "thx docs:md",
     "docs:storybook": "thx docs:storybook",
+    "lerna": "lerna",
     "lint": "thx lint",
     "lint:fix": "thx lint:fix",
     "organize": "organize -p packages -i tools -d thx",
