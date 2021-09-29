@@ -118,7 +118,7 @@ export default class SpacesFileLocation implements FileLocationInterface {
 				})
 				.promise();
 			return true;
-		} catch (err) {
+		} catch (err: any) {
 			if (err.statusCode === 404) return false;
 			throw err;
 		}

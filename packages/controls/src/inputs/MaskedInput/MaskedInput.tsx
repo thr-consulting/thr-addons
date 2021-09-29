@@ -2,6 +2,7 @@ import debug from 'debug';
 import Inputmask from 'inputmask';
 import React, {useRef, useEffect} from 'react';
 import {Input, InputProps} from 'semantic-ui-react';
+// @ts-ignore Stuck at 1.4 because 1.5 depends on @types/react which breaks everything
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
 const d = debug('thx.controls.inputs.MaskedInput');

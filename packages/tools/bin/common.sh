@@ -194,3 +194,22 @@ join () {
   done
   echo "$str"
 }
+
+# Traversing up, get the lerna root folder
+get_lerna_root () {
+  local lerna_root
+  lerna_root=""
+
+  if [ -n "$1" ]; then
+    cd "$1" || exit 1
+  fi
+  while [[ $PWD != / ]] ; do
+    lerna_root=$(find "$PWD" -maxdepth 1 -type f -name "lerna.json")
+    if [ -n "$lerna_root" ]; then
+      echo "$(dirname "$lerna_root")"
+      return 0
+    fi
+    cd ..
+  done
+  return 1
+}

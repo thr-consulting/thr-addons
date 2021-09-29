@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # Find the current directory for wherever the node_modules/@thx/tools is, following symlinks
-#   TOOLS_DIR=$(get_tools_dir)
 get_tools_dir () {
   local prg="$BASH_SOURCE"
   while [ -h "$prg" ] ; do
@@ -121,7 +120,6 @@ fix_jscodeshift "$JSCODESHIFT_DIR" "$TOOLS_DIR"
 restore_cwd
 
 banner "Sorting package.json files"
-npx sort-package-json
 yarn lerna run sort
 
 banner "Codemod"

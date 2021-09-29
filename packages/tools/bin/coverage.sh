@@ -88,7 +88,7 @@ do
   fi
 
   # Generate coverage info
-  "${BINDIR:?}/jest" --coverage --silent
+  "${BINDIR:?}/jest" --coverage --silent --collectCoverageFrom="<rootDir>/src/**/*.[jt]s" --coverageDirectory="${COVERAGE_DIR}/${PKGBASE}" --passWithNoTests
 
   # Generate coverage badge
   LCOV="${COVERAGE_DIR:?}/$PKGBASE/lcov.info"

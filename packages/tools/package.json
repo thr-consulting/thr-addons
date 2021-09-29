@@ -12,6 +12,7 @@
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
 	"bin": {
+		"thx": "./bin/thx.sh",
 		"check-git-status": "./bin/check-git-status.sh",
 		"coverage": "./bin/coverage.sh",
 		"discord": "./bin/discord.sh",
@@ -25,17 +26,19 @@
 		"files"
 	],
 	"dependencies": {
-		"@babel/preset-env": "^7.14.1",
-		"@types/jscodeshift": "^0.11.0",
+		"@babel/preset-env": "^7.15.6",
+		"@types/jscodeshift": "^0.11.2",
+		"rimraf": "^3.0.2",
+		"sort-package-json": "^1.52.0",
 		"coverbadge": "^0.5.5",
 		"find-up": "^5.0.0",
-		"jscodeshift": "^0.12.0"
+		"jscodeshift": "^0.13.0"
 	},
 	"peerDependencies": {
-		"jest": "26.x"
+		"jest": "27.x"
 	},
 	"engines": {
-		"node": ">=12"
+		"node": ">=14"
 	},
 	"publishConfig": {
 		"access": "public"
