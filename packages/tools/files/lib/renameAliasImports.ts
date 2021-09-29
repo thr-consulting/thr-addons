@@ -18,12 +18,17 @@ function getAliases(pth: string): Alias[] | null {
 	// Read and parse the tsconfig file
 	const cwd = path.resolve(path.dirname(pth));
 	const tsconfigPath = findup.sync('tsconfig.json', {cwd});
-	if (!tsconfigPath) return null;
+	if (!tsconfigPath) {
+		console.log(`[WARNING] Couldn't find tsconfig.json: ${pth}`);
+		return null;
+	}
 	const tsconfigRaw = fs.readFileSync(tsconfigPath, {encoding: 'utf-8'});
 	const tsconfig = JSON.parse(tsconfigRaw);
 
 	// Check for tsconfig options
-	if (!tsconfig.compilerOptions || !tsconfig.compilerOptions.paths) return null;
+	if (!tsconfig.compilerOptions || !tsconfig.compilerOptions.paths) {
+		return null;
+	}
 
 	// Iterate over tsconfig alias paths and generate Alias objects for each one
 	return Object.keys(tsconfig.compilerOptions.paths).map(alias => {
@@ -83,7 +88,7 @@ export function renameAliasImports(root: Collection, j: JSCodeshift, fileInfo: F
 	// Replace the import paths with aliases
 	imps.forEach(p => {
 		const importPath = path.join(path.dirname(fileInfo.path), p.value.source.value as string);
-		p.value.source.value = replacePathAlias(aliases, path.join(process.cwd(), importPath));
+		p.value.source.value = replacePathAlias(aliases, importPath);
 	});
 
 	// Search import declarations for imports renamed wrongly by Webstorm refactoring and fix them

@@ -14,11 +14,12 @@
 	"bin": {
 		"thx": "./bin/thx.sh",
 		"check-git-status": "./bin/check-git-status.sh",
+		"thx_codegen": "./bin/codegen.sh",
 		"coverage": "./bin/coverage.sh",
 		"discord": "./bin/discord.sh",
 		"docker-build": "./bin/docker-build.sh",
 		"common": "./bin/lib.sh",
-		"organize": "./bin/organize.sh",
+		"thx_organize": "./bin/organize.sh",
 		"watchtower": "./bin/watchtower.sh"
 	},
 	"files": [
@@ -32,7 +33,22 @@
 		"sort-package-json": "^1.52.0",
 		"coverbadge": "^0.5.5",
 		"find-up": "^5.0.0",
-		"jscodeshift": "^0.13.0"
+		"depcheck": "^1.4.2",
+		"jscodeshift": "^0.13.0",
+		"lodash": "^4.17.21",
+		"@graphql-codegen/add": "^2.0.1",
+		"@graphql-codegen/cli": "^1.19.0",
+		"@graphql-codegen/import-types-preset": "^1.18.1",
+		"@graphql-codegen/near-operation-file-preset": "^1.17.13",
+		"@graphql-codegen/time": "^2.0.1",
+		"@graphql-codegen/typescript": "^1.17.11",
+		"@graphql-codegen/typescript-operations": "^1.17.8",
+		"@graphql-codegen/typescript-react-apollo": "^2.0.7",
+		"@graphql-codegen/typescript-resolvers": "^2.2.1",
+		"graphql": "^15.5.0",
+		"graphql-tag": "^2.11.0",
+		"@thx/graphql-typescript-scalar-type-policies": "^1.0.2",
+		"yaml": "^1.10.2"
 	},
 	"peerDependencies": {
 		"jest": "27.x"

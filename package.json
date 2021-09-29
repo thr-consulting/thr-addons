@@ -23,11 +23,11 @@
     "lerna": "lerna",
     "lint": "thx lint",
     "lint:fix": "thx lint:fix",
-    "organize": "organize -p packages -i tools -d thx",
+    "organize": "thx organize -p packages -i tools -d thx",
     "prepare": "husky install",
     "sort": "thx sort",
     "test": "thx test",
-    "ts": "lerna run ts"
+    "ts": "thx ts"
   },
   "resolutions": {
     "**/react": "^17.0.2"
@@ -52,6 +52,7 @@
     "@types/inputmask": "^5.0.0",
     "@types/jest": "^27.0.2",
     "@types/js-money": "^0.6.0",
+    "@types/jscodeshift": "^0.11.2",
     "@types/lodash": "^4.14.150",
     "@types/mime-types": "^2.1.0",
     "@types/node": "^14.17.19",

@@ -118,7 +118,15 @@ case "${1}" in
     fi
     ;;
   ts)
-    yarn -s tsc "${@:2}"
+    if [ "$LR" = "$PWD" ]; then
+      yarn -s lerna run ts
+    else
+      if [ -f "$LR/node_modules/.bin/ttsc" ]; then
+        yarn -s ttsc "${@:2}"
+      else
+        yarn -s tsc "${@:2}"
+      fi
+    fi
     ;;
   ts:watch)
     yarn -s tsc --watch "${@:2}"
@@ -170,6 +178,18 @@ case "${1}" in
       yarn -s lint:fix
       yarn -s sort
       yarn -s test
+    fi
+    ;;
+  codegen)
+    if [ "$LR" = "$PWD" ]; then
+      yarn -s thx_codegen "${@:2}"
+    else
+      yarn -s graphql-codegen "${@:2}"
+    fi
+    ;;
+  organize)
+    if [ "$LR" = "$PWD" ]; then
+      yarn -s thx_organize "${@:2}"
     fi
     ;;
   *)
