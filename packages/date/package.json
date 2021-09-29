@@ -18,44 +18,28 @@
 		"index.js"
 	],
 	"scripts": {
-		"build": "yarn build:dev && yarn build:prod",
-		"build:dev": "NODE_ENV=development webpack --config webpack.js",
-		"build:prod": "NODE_ENV=production webpack --config webpack.js",
-		"clean": "rimraf ./dist",
-		"depcheck": "depcheck",
-		"lint": "eslint --cache --ext js,ts src",
-		"lint:fix": "eslint --cache --fix --ext js,ts src",
-		"sort": "npx sort-package-json",
-		"test": "jest",
-		"test:coverage": "../../tools/coverage.sh",
-		"test:watch": "jest --watch",
-		"ts": "tsc"
+		"build": "thx build",
+		"clean": "thx clean",
+		"deps": "thx deps",
+		"lint": "thx lint",
+		"lint:fix": "thx lint:fix",
+		"sort": "thx sort",
+		"test": "thx test",
+		"test:watch": "thx test:watch",
+		"ts": "thx ts"
 	},
 	"eslintConfig": {
 		"parserOptions": {
 			"project": "./tsconfig-eslint.json"
 		}
 	},
-	"jest": {
-		"collectCoverageFrom": [
-			"<rootDir>/src/**/*.js",
-			"<rootDir>/src/**/*.ts"
-		],
-		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/date",
-		"testPathIgnorePatterns": [
-			"/node_modules/"
-		],
-		"transform": {
-			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
-		}
-	},
 	"dependencies": {
-		"@js-joda/core": "^3.0.0",
-		"@js-joda/locale_en-us": "^3.1.1",
-		"@js-joda/timezone": "^2.3.0"
+		"@js-joda/core": "^4.0.0",
+		"@js-joda/locale_en": "^4.0.0",
+		"@js-joda/timezone": "^2.6.0"
 	},
 	"engines": {
-		"node": ">=12"
+		"node": ">=14"
 	},
 	"publishConfig": {
 		"access": "public"

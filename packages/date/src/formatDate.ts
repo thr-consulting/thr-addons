@@ -1,6 +1,6 @@
 import {DateTimeFormatter, LocalDate, LocalDateTime, LocalTime, ZonedDateTime, ZoneId} from '@js-joda/core';
-// @ts-ignore
-import {Locale} from '@js-joda/locale_en-us';
+import {Locale} from '@js-joda/locale_en';
+import '@js-joda/timezone';
 import {toLocalDate, toLocalDateTime, ILocalDateLike, isLocalDateLike} from './conversion';
 
 export enum FormatDateType {

@@ -14,43 +14,29 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "NODE_ENV=production webpack --config webpack.js",
-		"clean": "rimraf ./dist && rimraf .eslintcache",
-		"lint": "eslint --cache --ext js,ts src",
-		"lint:fix": "eslint --cache --fix --ext js,ts src",
-		"sort": "npx sort-package-json",
-		"depcheck": "depcheck",
-		"test": "jest",
-		"test:coverage": "../../tools/coverage.sh",
-		"test:watch": "jest --watch",
-		"ts": "tsc"
+		"build": "thx build:prod",
+		"clean": "thx clean",
+		"deps": "thx deps",
+		"lint": "thx lint",
+		"lint:fix": "thx lint:fix",
+		"sort": "thx sort",
+		"test": "thx test",
+		"test:watch": "thx test:watch",
+		"ts": "thx ts"
 	},
 	"eslintConfig": {
 		"parserOptions": {
 			"project": "./tsconfig-eslint.json"
 		}
 	},
-	"jest": {
-		"collectCoverageFrom": [
-			"<rootDir>/src/**/*.js",
-			"<rootDir>/src/**/*.ts"
-		],
-		"coverageDirectory": "<rootDir>/../../docs/assets/coverage/common-webpack",
-		"testPathIgnorePatterns": [
-			"/node_modules/"
-		],
-		"transform": {
-			"^.+\\.[tj]sx?$": "<rootDir>/../../tools/jest-transform-server.js"
-		}
-	},
 	"dependencies": {
-		"debug": "^4.1.1",
+		"debug": "^4.3.2",
 		"inspect-loader": "^2.0.0",
-		"webpack": "^5.36.2",
+		"webpack": "^5.55.0",
 		"webpack-node-externals": "^3.0.0"
 	},
 	"engines": {
-		"node": ">=12"
+		"node": ">=14"
 	},
 	"publishConfig": {
 		"access": "public"

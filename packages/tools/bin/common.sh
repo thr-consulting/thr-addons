@@ -36,6 +36,10 @@ error () {
   printf "\n${LRED}[ERROR] %s${NC}\n" "$1"
 }
 
+message () {
+  printf "\n${ORANGE}%s${NC}\n" "$1"
+}
+
 # Checks to see if all commands indicated in an array are present on the system
 #   COMMANDS=( "dos2unix" )
 #   check_cmds COMMANDS
@@ -193,4 +197,63 @@ join () {
     str+="$i$2"
   done
   echo "$str"
+}
+
+# Traversing up, get the lerna root folder
+get_lerna_root () {
+  local lerna_root
+  lerna_root=""
+
+  if [ -n "$1" ]; then
+    cd "$1" || exit 1
+  fi
+  while [[ $PWD != / ]] ; do
+    lerna_root=$(find "$PWD" -maxdepth 1 -type f -name "lerna.json")
+    if [ -n "$lerna_root" ]; then
+      echo "$(dirname "$lerna_root")"
+      return 0
+    fi
+    cd ..
+  done
+  return 1
+}
+
+get_jscodeshift_dir () {
+  local nm_dir
+  local jscs_dir
+  local toolsdir
+  nm_dir=""
+  jscs_dir=""
+  toolsdir="$1"
+
+  cd "$toolsdir" || exit 1
+  while [[ $PWD != / ]] ; do
+    nm_dir=$(find "$PWD" -maxdepth 1 -type d -name "node_modules")
+    if [ -n "$nm_dir" ]; then
+      jscs_dir=$(find "$nm_dir" -maxdepth 1 -type d -name "jscodeshift")
+      if [ -n "$jscs_dir" ]; then
+        echo "$jscs_dir"
+        return 0
+      fi
+    fi
+    cd ..
+  done
+}
+
+fix_jscodeshift () {
+  local jscs_dir
+  local toolsdir
+  jscs_dir="$1"
+  toolsdir="$2"
+
+  cd "$jscs_dir/bin" || exit 1
+  dos2unix -q -F *
+  cd "$jscs_dir/src" || exit 1
+  dos2unix -q -F *
+  ret=$?
+  if [ $ret -ne 0 ]; then
+    error "Error fixing jscodeshift. Please install dos2unix first: apt install dos2unix."
+    exit 1
+  fi
+  patch -Nu "$jscs_dir/src/Runner.js" -i "$toolsdir/files/jscodeshift.patch"
 }
