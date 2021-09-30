@@ -1,6 +1,6 @@
 {
 	"name": "@thx/tools",
-	"version": "14.0.0",
+	"version": "14.2.0",
 	"description": "Dev tools to help code consistency",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -28,14 +28,6 @@
 	],
 	"dependencies": {
 		"@babel/preset-env": "^7.15.6",
-		"@types/jscodeshift": "^0.11.2",
-		"rimraf": "^3.0.2",
-		"sort-package-json": "^1.52.0",
-		"coverbadge": "^0.5.5",
-		"find-up": "^5.0.0",
-		"depcheck": "^1.4.2",
-		"jscodeshift": "^0.13.0",
-		"lodash": "^4.17.21",
 		"@graphql-codegen/add": "^2.0.1",
 		"@graphql-codegen/cli": "^1.19.0",
 		"@graphql-codegen/import-types-preset": "^1.18.1",
@@ -45,9 +37,17 @@
 		"@graphql-codegen/typescript-operations": "^1.17.8",
 		"@graphql-codegen/typescript-react-apollo": "^2.0.7",
 		"@graphql-codegen/typescript-resolvers": "^2.2.1",
+		"@thx/graphql-typescript-scalar-type-policies": "^1.0.2",
+		"@types/jscodeshift": "^0.11.2",
+		"coverbadge": "^0.5.5",
+		"depcheck": "^1.4.2",
+		"find-up": "^5.0.0",
 		"graphql": "^15.5.0",
 		"graphql-tag": "^2.11.0",
-		"@thx/graphql-typescript-scalar-type-policies": "^1.0.2",
+		"jscodeshift": "^0.13.0",
+		"lodash": "^4.17.21",
+		"rimraf": "^3.0.2",
+		"sort-package-json": "^1.52.0",
 		"yaml": "^1.10.2"
 	},
 	"peerDependencies": {

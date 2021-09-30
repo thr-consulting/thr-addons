@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.2.0](https://github.com/darkadept/thr-addons/compare/v14.0.4...v14.2.0) (2021-09-30)
+
+**Note:** Version bump only for package @thx/common-webpack
+
+
+
+
+
 ## [14.0.3](https://github.com/darkadept/thr-addons/compare/v14.0.2...v14.0.3) (2021-05-28)
 
 
