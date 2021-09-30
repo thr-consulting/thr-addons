@@ -1,7 +1,7 @@
 import type {Collection, JSCodeshift, TSPropertySignature, TSTypeAnnotation, TSTypeReference} from 'jscodeshift';
 
 function makeTypeName(str: string) {
-	const a = /^(.*)(Query|Mutation)$/.exec(str);
+	const a = /^(.*)(Query|Mutation|Subscription)$/.exec(str);
 	if (!a) throw new Error('Query or Mutation is named wrong');
 	return `${a[1]}Type`;
 }
@@ -25,12 +25,12 @@ export function addCustomGraphqlType(root: Collection, j: JSCodeshift) {
 	const u = root.find(j.CallExpression).filter(v => {
 		if (v.node.callee.type === 'MemberExpression') {
 			if (v.node.callee.property.type === 'Identifier') {
-				return v.node.callee.property.name === 'useQuery' || v.node.callee.property.name === 'useMutation';
+				return v.node.callee.property.name === 'useQuery' || v.node.callee.property.name === 'useMutation' || v.node.callee.property.name === 'useSubscription';
 			}
 		}
 		return false;
 	});
-	if (u.length !== 1) throw new Error('One mutation or query should exist in this file.');
+	if (u.length !== 1) throw new Error('One mutation, query, or subscription should exist in this file.');
 
 	// Get the first generic parameters. ie. 'GetSomethingQuery'
 	// @ts-ignore 'typeParameters' exists, but jscodeshift doesn't think so.
