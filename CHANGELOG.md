@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.2.1](https://github.com/thr-consulting/thr-addons/compare/v14.2.0...v14.2.1) (2021-09-30)
+
+
+### Bug Fixes
+
+* **tools:** fix missing Subscription stuff for codegen ([e295347](https://github.com/thr-consulting/thr-addons/commit/e2953473ec424bedfb1fd41418b3f192ee5ee6cb))
+
+
+
+
+
 # [14.2.0](https://github.com/thr-consulting/thr-addons/compare/v14.0.4...v14.2.0) (2021-09-30)
 
 
