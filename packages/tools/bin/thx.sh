@@ -69,10 +69,10 @@ case "${1}" in
     NODE_ENV=production yarn -s webpack --config webpack.js
     ;;
   build:dev)
-      NODE_ENV=development yarn -s webpack --config webpack.js
+      NODE_ENV=development yarn -s webpack --config webpack.js "${@:2}"
       ;;
   build:prod)
-      NODE_ENV=production yarn -s webpack --config webpack.js
+      NODE_ENV=production yarn -s webpack --config webpack.js "${@:2}"
       ;;
   clean)
     if [ "$LR" = "$PWD" ]; then
@@ -87,21 +87,21 @@ case "${1}" in
     ;;
   lint)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run lint
+      yarn -s lerna run lint "${@:2}"
     else
       yarn -s eslint --cache --ext js,ts,tsx src "${@:2}"
     fi
     ;;
   lint:fix)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run lint:fix
+      yarn -s lerna run lint:fix "${@:2}"
     else
       yarn -s eslint --cache --fix --ext js,ts,tsx src "${@:2}"
     fi
     ;;
   test)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run test --stream
+      yarn -s lerna run test --stream "${@:2}"
     else
       if [ "${JEST_IS_SERVER}" = true ]; then
         yarn -s jest --transform="${JEST_TRANSFORM_SERVER}" "${@:2}"
@@ -119,7 +119,7 @@ case "${1}" in
     ;;
   ts)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run ts
+      yarn -s lerna run ts "${@:2}"
     else
       if [ -f "$LR/node_modules/.bin/ttsc" ]; then
         yarn -s ttsc "${@:2}"
@@ -133,7 +133,7 @@ case "${1}" in
     ;;
   deps)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run deps
+      yarn -s lerna run deps "${@:2}"
     else
       PATS="build/*,dist/*,types/*,webpack.js,*.test.ts"
       IGS="inspect-loader"
@@ -143,28 +143,28 @@ case "${1}" in
       if [ -n "$DEPS_EXTRA_IGNORES" ]; then
         IGS="${IGS},${DEPS_EXTRA_IGNORES}"
       fi
-      yarn -s depcheck --ignore-patterns="${PATS}" --ignores="${IGS}"
+      yarn -s depcheck --ignore-patterns="${PATS}" --ignores="${IGS}" "${@:2}"
     fi
     ;;
   docs)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run docs
+      yarn -s lerna run docs "${@:2}"
     fi
     ;;
   docs:md)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run docs:md
+      yarn -s lerna run docs:md "${@:2}"
     fi
     ;;
   docs:storybook)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run docs:storybook
+      yarn -s lerna run docs:storybook "${@:2}"
     fi
     ;;
   sort)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s sort-package-json "${@:2}"
-      yarn -s lerna run sort
+      yarn -s sort-package-json
+      yarn -s lerna run sort "${@:2}"
     else
       yarn -s sort-package-json "${@:2}"
     fi
@@ -196,6 +196,3 @@ case "${1}" in
     show_help
     ;;
 esac
-
-# *.stories.tsx
-# style-loader,css-loader
