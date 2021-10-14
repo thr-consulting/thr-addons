@@ -31,5 +31,5 @@ export function fixDebugNamespace(root: Collection, j: JSCodeshift, fileInfo: Fi
 		.join('.');
 
 	// Replace `d` variable declarators
-	replaceDebugNamespace(name, root);
+	replaceDebugNamespace(name.replaceAll('/', '.'), root);
 }
