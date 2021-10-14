@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.2.4](https://github.com/thr-consulting/thr-addons/compare/v14.2.3...v14.2.4) (2021-10-14)
+
+
+### Bug Fixes
+
+* **tools:** fixed debug namespace bug ([a530b61](https://github.com/thr-consulting/thr-addons/commit/a530b61c0a5a2cbda8e0299436cde8e32a37a50c))
+
+
+
+
+
 ## [14.2.3](https://github.com/thr-consulting/thr-addons/compare/v14.2.2...v14.2.3) (2021-10-14)
 
 
