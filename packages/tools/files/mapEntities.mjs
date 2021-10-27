@@ -65,6 +65,7 @@ function mapEntitiesFromPackage(config) {
 function mapEntitiesFrom(config) {
 	Object.keys(mappedEntities).forEach(entityPkgDir => {
 		mappedEntities[entityPkgDir].forEach(entityMap => {
+			if (!config.mappers) config.mappers = {};
 			if (typeof config.mapEntitiesFrom[entityPkgDir] === 'boolean' && config.mapEntitiesFrom[entityPkgDir]) {
 				// Map to local file (within package)
 				const parsed = parse(entityMap.entityPath);
