@@ -1,6 +1,10 @@
 import type {FileInfo, API, Decorator} from 'jscodeshift';
 import {appendFileSync} from 'fs';
-import {relative, parse, sep} from 'path';
+
+/*
+	This codemod scans for classes that have the @Entity decorator and
+	stores them in a temporary file
+*/
 
 export default function transform(fileInfo: FileInfo, api: API) {
 	const j = api.jscodeshift;
@@ -30,8 +34,6 @@ export default function transform(fileInfo: FileInfo, api: API) {
 	});
 
 	if (entity) {
-		// const relativePath = parse(relative('./packages/server/src/core', fileInfo.path));
-		// appendFileSync('/tmp/imp_codegen_entity_map.txt', `${entity},${relativePath.dir}${sep}${relativePath.name}#${entity}\n`);
 		appendFileSync('/tmp/imp_codegen_entity_map.txt', `${entity},${fileInfo.path}\n`);
 	}
 
