@@ -71,14 +71,14 @@ fi
 split_csv "$IGNORE_DIRS" IGNORE_PKGS
 SRCDIRS=$(get_package_folders_string "$PACKAGE_DIR" IGNORE_PKGS '/src')
 
-banner "Patching jscodeshift"
+banner "[Patching jscodeshift]"
 JSCODESHIFT_DIR=$(get_jscodeshift_dir "$TOOLS_DIR")
 echo "TOOLS_DIR: ${TOOLS_DIR}"
 echo "JSCODESHIFT_DIR: ${JSCODESHIFT_DIR}"
 fix_jscodeshift "$JSCODESHIFT_DIR" "$TOOLS_DIR"
 restore_cwd
 
-banner "Mapping Entities"
+banner "[Mapping Entities] Modify codegen.yml"
 rm -f /tmp/imp_codegen_entity_map.txt
 echo "${SRCDIRS::-1}" | "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$TOOLS_DIR/files/cmMapEntities.ts" --stdin
 ret=$?
@@ -88,17 +88,17 @@ if [ $ret -ne 0 ]; then
 fi
 node "$TOOLS_DIR/files/mapEntities.mjs" "$(realpath "${PACKAGE_DIR}")" "src"
 
-banner "Generating code from graphql schema & documents"
+banner "[Codegen] Generating code from graphql schema & documents"
 yarn lerna run codegen
 
-banner "Codemod"
+banner "[Codemod] Enum lookups, Fix operations"
 echo "${SRCDIRS}" | "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$TOOLS_DIR/files/cmCodegen.ts" --stdin
 ret=$?
 if [ $ret -ne 0 ]; then
   error "Error running codemod. Lint fixing will continue to prevent many changed files."
 fi
 
-banner "Organize"
+banner "[Organize] Import sort, alias & debug namespaces"
 echo "${SRCDIRS}" | DEBUG_NAMESPACE="$DEBUG_NAMESPACE" "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$TOOLS_DIR/files/cmOrganize.ts" --stdin
 ret=$?
 if [ $ret -ne 0 ]; then
@@ -106,7 +106,7 @@ if [ $ret -ne 0 ]; then
 fi
 
 if [ $QUICK_AND_DIRTY -eq 0 ]; then
-  banner "Fixing lint issues"
+  banner "[Lint] Fixing issues"
   yarn lint:fix
 else
   warning "Lint did not run, git may have many changes"
