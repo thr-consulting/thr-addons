@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.2.6](https://github.com/thr-consulting/thr-addons/compare/v14.2.5...v14.2.6) (2021-10-27)
+
+
+### Bug Fixes
+
+* **tools:** refactored codegen entity mapping ([0272ae7](https://github.com/thr-consulting/thr-addons/commit/0272ae7d567247788da4b597a9de9b79ba9058e7))
+
+
+
+
+
 ## [14.2.5](https://github.com/thr-consulting/thr-addons/compare/v14.2.4...v14.2.5) (2021-10-26)
 
 
