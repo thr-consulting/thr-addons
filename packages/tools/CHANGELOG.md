@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.2.9](https://github.com/thr-consulting/thr-addons/compare/v14.2.8...v14.2.9) (2021-10-29)
+
+
+### Features
+
+* **tools:** sped up codegen ([3a5c2f1](https://github.com/thr-consulting/thr-addons/commit/3a5c2f1181643c5619187b23e5e8a42f0fb346a1))
+
+
+
+
+
 ## [14.2.8](https://github.com/thr-consulting/thr-addons/compare/v14.2.7...v14.2.8) (2021-10-27)
 
 
