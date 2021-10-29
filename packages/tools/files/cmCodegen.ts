@@ -5,6 +5,9 @@ import {genTSEnumLookups} from './lib/genTSEnumLookups';
 import {checkIfCodegenOperationsFile} from './lib/checkIfCodegenOperationsFile';
 import {fixCodegenOperationImports} from './lib/fixCodegenOperationImports';
 import {addCustomGraphqlType} from './lib/addCustomGraphqlType';
+import {renameAliasImports} from './lib/renameAliasImports';
+import {sortImports} from './lib/sortImports';
+import {fixDebugNamespace} from './lib/fixDebugNamespace';
 
 export default function transform(fileInfo: FileInfo, api: API) {
 	const j = api.jscodeshift;
@@ -27,6 +30,10 @@ export default function transform(fileInfo: FileInfo, api: API) {
 		fixCodegenOperationImports(root, j);
 		addCustomGraphqlType(root, j);
 	}
+
+	renameAliasImports(root, j, fileInfo);
+	sortImports(root, j);
+	fixDebugNamespace(root, j, fileInfo);
 
 	return root.toSource({quote: 'single'});
 }

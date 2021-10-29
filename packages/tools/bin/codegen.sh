@@ -27,7 +27,8 @@ show_help () {
 	printf "Options:\n"
 	printf "  -p  string  Packages directory [required]\n"
 	printf "  -i  string  Comma separated list of package dirs to ignore\n"
-	printf "  -d  string  Debug namespace root [required]\n"
+	printf "  -s  string  The scope of the monorepo (ie. thx) [required]"
+	printf "  -r  string  The folder under each package where source code resides (default: src)"
 	printf "\n"
 }
 
@@ -38,8 +39,10 @@ PACKAGE_DIR=""
 IGNORE_DIRS=""
 DEBUG_NAMESPACE=""
 QUICK_AND_DIRTY=0
+SCOPE=""
+SRC="src"
 
-while getopts "h?p:i:qd:" opt; do
+while getopts "h?p:i:qs:r:" opt; do
 	case "$opt" in
 	h|\?)
 		show_help
@@ -51,7 +54,9 @@ while getopts "h?p:i:qd:" opt; do
     ;;
   q)  QUICK_AND_DIRTY=1
     ;;
-  d)  DEBUG_NAMESPACE=$OPTARG
+  s)  SCOPE=$OPTARG
+    ;;
+  r)  SRC=$OPTARG
     ;;
 	esac
 done
@@ -69,7 +74,9 @@ fi
 
 # Get comma separated package ignores into array
 split_csv "$IGNORE_DIRS" IGNORE_PKGS
-SRCDIRS=$(get_package_folders_string "$PACKAGE_DIR" IGNORE_PKGS '/src')
+SRCDIRS=$(get_package_folders_string "$PACKAGE_DIR" IGNORE_PKGS "/$SRC")
+SRCDIRS_FILTERED=$(node "$TOOLS_DIR/files/findCodegenPkgs.mjs" "GETSRCDIRS" "${SRCDIRS}" "${SRC}")
+SCOPES=$(node "$TOOLS_DIR/files/findCodegenPkgs.mjs" "GETSCOPES" "${SRCDIRS}" "${SRC}" "$(realpath "${PACKAGE_DIR}")")
 
 banner "[Patching jscodeshift]"
 JSCODESHIFT_DIR=$(get_jscodeshift_dir "$TOOLS_DIR")
@@ -78,28 +85,21 @@ echo "JSCODESHIFT_DIR: ${JSCODESHIFT_DIR}"
 fix_jscodeshift "$JSCODESHIFT_DIR" "$TOOLS_DIR"
 restore_cwd
 
-banner "[Mapping Entities] Modify codegen.yml"
+banner "[Codemod] Mapping Entities"
 rm -f /tmp/imp_codegen_entity_map.txt
-echo "${SRCDIRS::-1}" | "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$TOOLS_DIR/files/cmMapEntities.ts" --stdin
+echo "${SRCDIRS}" | "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$TOOLS_DIR/files/cmMapEntities.ts" --stdin
 ret=$?
 if [ $ret -ne 0 ]; then
   error "Error running entity mapping codemod."
   exit 1
 fi
-node "$TOOLS_DIR/files/mapEntities.mjs" "$(realpath "${PACKAGE_DIR}")" "src"
+node "$TOOLS_DIR/files/mapEntities.mjs" "$(realpath "${PACKAGE_DIR}")" "$SRC"
 
-banner "[Codegen] Generating code from graphql schema & documents"
+banner "[Codegen] Generating TS code from graphql schema"
 yarn lerna run codegen
 
-banner "[Codemod] Enum lookups, Fix operations"
-echo "${SRCDIRS}" | "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$TOOLS_DIR/files/cmCodegen.ts" --stdin
-ret=$?
-if [ $ret -ne 0 ]; then
-  error "Error running codemod. Lint fixing will continue to prevent many changed files."
-fi
-
-banner "[Organize] Import sort, alias & debug namespaces"
-echo "${SRCDIRS}" | DEBUG_NAMESPACE="$DEBUG_NAMESPACE" "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$TOOLS_DIR/files/cmOrganize.ts" --stdin
+banner "[Codemod] Enums, fixes, import alias & sort"
+echo "${SRCDIRS_FILTERED}" | DEBUG_NAMESPACE="$SCOPE" "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$TOOLS_DIR/files/cmCodegen.ts" --stdin
 ret=$?
 if [ $ret -ne 0 ]; then
   error "Error running codemod. Lint fixing will continue to prevent many changed files."
@@ -107,7 +107,7 @@ fi
 
 if [ $QUICK_AND_DIRTY -eq 0 ]; then
   banner "[Lint] Fixing issues"
-  yarn lint:fix
+  yarn lerna run lint:fix --scope "@${SCOPE}/{${SCOPES}}"
 else
   warning "Lint did not run, git may have many changes"
 fi
