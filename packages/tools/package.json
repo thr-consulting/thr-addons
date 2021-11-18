@@ -27,6 +27,7 @@
 		"files"
 	],
 	"dependencies": {
+		"@thx/common-webpack": "^14.2.0",
 		"@babel/preset-env": "^7.15.6",
 		"@graphql-codegen/add": "^2.0.1",
 		"@graphql-codegen/cli": "^1.19.0",
@@ -40,6 +41,7 @@
 		"@thx/graphql-typescript-scalar-type-policies": "^1.0.2",
 		"@types/jscodeshift": "^0.11.2",
 		"coverbadge": "^0.5.5",
+		"babel-jest": "^27.3.1",
 		"debug": "^4.3.2",
 		"depcheck": "^1.4.2",
 		"find-up": "^5.0.0",

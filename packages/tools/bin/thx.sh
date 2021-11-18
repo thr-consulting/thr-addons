@@ -23,12 +23,25 @@ show_help () {
   printf "Usage:  thx [COMMAND]\n\n"
 	printf "A helper script for thr-addons\n\n"
 	printf "Commands:\n"
+	printf "  build       Runs webpack for dev & prod on webpack.js\n"
+	printf "  build:dev   Runs webpack for dev on webpack.js\n"
+	printf "  build:prod  Runs webpack for prod on webpack.js\n"
+	printf "  ci          Runs build, ts, deps, organize, lint:fix, sort, & test\n"
 	printf "  clean       Remove production and temporary build files\n"
+  printf "  codegen     Runs codegen script\n"
+  printf "  codemod     Runs jscodeshift codemod\n"
+  printf "  deps        Runs depcheck\n"
+  printf "  docs        Runs doc building\n"
+  printf "  docs:md     Runs doc building for markdown\n"
+  printf "  docs:storybook Runs doc building using storybook\n"
 	printf "  lint        Runs eslint on js, ts, and tsx files\n"
 	printf "  lint:fix    Runs eslint with automatic fixing\n"
+	printf "  organize    Runs organize script\n"
+	printf "  sort        Sorts package.json files\n"
+	printf "  test        Runs jest (use -c for client)\n"
+ 	printf "  test:watch  Runs jest in watch mode (use -c for client)\n"
 	printf "  ts          Runs the typescript compiler\n"
-	printf "  depcheck    Runs depcheck\n"
-	printf "  test        Runs jest\n"
+	printf "  ts:watch    Runs the typescript compiler in watch mode\n"
 	printf "\n"
 }
 
@@ -111,10 +124,14 @@ case "${1}" in
     fi
     ;;
   test:watch)
-    if [ "${JEST_IS_SERVER}" = true ]; then
-      yarn -s jest --transform="${JEST_TRANSFORM_SERVER}" --watch "${@:2}"
+    if [ "$LR" = "$PWD" ]; then
+      printf "Can't run test in watch mode from lerna root\n"
     else
-      yarn -s jest --transform="${JEST_TRANSFORM_CLIENT}" --watch "${@:2}"
+      if [ "${JEST_IS_SERVER}" = true ]; then
+        yarn -s jest --transform="${JEST_TRANSFORM_SERVER}" --watch "${@:2}"
+      else
+        yarn -s jest --transform="${JEST_TRANSFORM_CLIENT}" --watch "${@:2}"
+      fi
     fi
     ;;
   ts)
@@ -129,7 +146,15 @@ case "${1}" in
     fi
     ;;
   ts:watch)
-    yarn -s tsc --watch "${@:2}"
+    if [ "$LR" = "$PWD" ]; then
+      printf "Can't run ts in watch mode from lerna root\n"
+    else
+      if [ -f "$LR/node_modules/.bin/ttsc" ]; then
+        yarn -s ttsc --watch "${@:2}"
+      else
+        yarn -s tsc --watch "${@:2}"
+      fi
+    fi
     ;;
   deps)
     if [ "$LR" = "$PWD" ]; then
@@ -191,6 +216,9 @@ case "${1}" in
     if [ "$LR" = "$PWD" ]; then
       yarn -s thx_organize "${@:2}"
     fi
+    ;;
+  codemod)
+    yarn -s jscodeshift --extensions=ts,tsx --parser=tsx "${@:2}"
     ;;
   *)
     show_help
