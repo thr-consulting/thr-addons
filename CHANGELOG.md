@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.3.0](https://github.com/thr-consulting/thr-addons/compare/v14.2.9...v14.3.0) (2021-11-18)
+
+
+### Features
+
+* **tools:** enhanced thx script ([9010b1c](https://github.com/thr-consulting/thr-addons/commit/9010b1c5dc92366b9ca23d9d07d2c3db6deefe85))
+
+
+
+
+
 ## [14.2.9](https://github.com/thr-consulting/thr-addons/compare/v14.2.8...v14.2.9) (2021-10-29)
 
 
