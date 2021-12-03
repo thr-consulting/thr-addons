@@ -1,17 +1,24 @@
 const util = require('util');
-const webpackConfig = require('../webpack');
 const compact = require('lodash/compact');
+const webpackConfig = require('../webpack');
 
 module.exports = {
-	stories: ['../src/**/*.stories.[tj]sx'],
+	core: {
+		builder: 'webpack5',
+	},
+	stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+	addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-actions'],
 	webpackFinal: config => {
 		const theirs = {...config};
 
+		// console.log(util.inspect(theirs, true, null, true));
+
 		// This is dependant on storybook's config
-		delete theirs.module.rules[0]; // Remove JS rule
-		delete theirs.module.rules[1]; // Remove JS rule
-		delete theirs.module.rules[3]; // Remove CSS rule
-		delete theirs.plugins[6]; // Remove progress plugin
+		delete theirs.module.rules[0];
+		delete theirs.module.rules[1];
+		delete theirs.module.rules[7];
+		delete theirs.module.rules[8];
+		delete theirs.module.rules[9];
 
 		const ourRules = [...webpackConfig.module.rules];
 		// This is highly dependant on @thx/common-webpack config
@@ -24,11 +31,13 @@ module.exports = {
 			resolve: webpackConfig.resolve,
 			plugins: compact(theirs.plugins),
 			module: {
-				rules: [...ourRules, ...compact(theirs.module.rules)],
+				rules: [...compact(theirs.module.rules), ...ourRules],
 			},
 		};
+		cnf.resolve.fallback = {path: false, crypto: false, assert: false};
 
-		// console.log(util.inspect(cnf, true, null, true));
+		// console.log(util.inspect(theirs, true, null, true));
+
 		return cnf;
 	},
 };

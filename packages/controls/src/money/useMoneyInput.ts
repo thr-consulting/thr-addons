@@ -1,31 +1,34 @@
-import {Currencies, IMoneyObject, isMoneyObject, toMoney} from '@thx/money';
+import {toMoney} from '@thx/money';
 import debug from 'debug';
 import Inputmask from 'inputmask';
 import Money from 'js-money';
-import {useEffect, useRef} from 'react';
+import {MutableRefObject, useCallback, useEffect, useRef} from 'react';
 
 const d = debug('thx.controls.money.useMoneyInput');
 
 interface UseMoneyInputProps {
-	onChange?: (value: Money) => void;
-	value?: Money | IMoneyObject;
-	defaultCurrency?: Currencies.Currency; // Defaults to Money.CAD
+	value?: Money;
+	onChange?: (value?: Money) => void;
+	onSet?: (value?: Money) => void;
+	// defaultCurrency?: Currency; // Defaults to Money.CAD
 	prefix?: string; // Defaults to currency symbol
 	showPrefix?: boolean; // Defaults to false
 	wholeNumber?: boolean; // Defaults to false
 }
 
-export function useMoneyInput(props: UseMoneyInputProps) {
-	const {value, onChange, defaultCurrency, showPrefix, prefix, wholeNumber} = props;
+type SetValueFn = (value?: Money) => void;
+
+export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTMLInputElement | null>, SetValueFn] {
+	const {value, onChange, onSet, showPrefix, prefix, wholeNumber} = props;
 
 	const inputElement = useRef<HTMLInputElement | null>(null);
 	const maskInstance = useRef<Inputmask.Instance | null>(null);
 
 	// set the adjCurrency
-	let adjCurrency = Money.CAD;
-	// @ts-ignore
-	if (value?.currency && Money[value?.currency]) adjCurrency = Money[value?.currency];
-	if (defaultCurrency) adjCurrency = defaultCurrency;
+	// let adjCurrency = Money.CAD;
+	// if (value?.currency && Money[value?.currency]) adjCurrency = Money[value?.currency];
+	// if (defaultCurrency) adjCurrency = defaultCurrency;
+	const currencyCode = value?.currency || 'CAD';
 
 	useEffect(() => {
 		if (!inputElement.current) throw new Error('Could not get input element');
@@ -34,19 +37,25 @@ export function useMoneyInput(props: UseMoneyInputProps) {
 		maskInstance.current = new Inputmask({
 			alias: 'numeric',
 			groupSeparator: ',',
-			digits: wholeNumber ? '0' : Currencies[adjCurrency.code].decimal_digits.toString(),
+			digits: wholeNumber ? '0' : Money[currencyCode].decimal_digits.toString(),
 			digitsOptional: false,
-			prefix: showPrefix ? prefix || Currencies[adjCurrency.code].symbol : undefined,
+			prefix: showPrefix ? prefix || Money[currencyCode].symbol : undefined,
 			placeholder: '0',
 			autoUnmask: true,
 			oncomplete() {
-				if (onChange) onChange(toMoney(inputElement.current?.value, adjCurrency));
+				if (onChange) {
+					if (inputElement.current?.value) {
+						onChange(toMoney(inputElement.current?.value, currencyCode));
+					} else {
+						onChange();
+					}
+				}
 			},
 			oncleared() {
-				if (onChange) onChange(toMoney(0, adjCurrency));
+				if (onChange) onChange();
 			},
 			onincomplete() {
-				if (onChange) onChange(toMoney(inputElement.current?.value, adjCurrency));
+				if (onChange) onChange(toMoney(inputElement.current?.value, currencyCode));
 			},
 		});
 		maskInstance.current.mask(inputElement.current);
@@ -58,26 +67,32 @@ export function useMoneyInput(props: UseMoneyInputProps) {
 				maskInstance.current = null;
 			}
 		};
-	}, [adjCurrency, prefix, wholeNumber]);
+	}, [currencyCode, prefix, showPrefix, wholeNumber]);
+
+	const setVal = useCallback<SetValueFn>(
+		(v?: Money) => {
+			if (inputElement.current) {
+				d('Value is being set:', v);
+				if (v) {
+					inputElement.current.value = v.toDecimal().toString();
+				} else {
+					inputElement.current.value = '';
+				}
+				onSet && onSet(v);
+			}
+		},
+		[onSet],
+	);
 
 	// If we change the value prop we need to sync the DOM value to display the new value
 	useEffect(() => {
-		const inputValue = toMoney(inputElement.current?.value, adjCurrency);
-		if ((value === undefined || value === null) && inputElement.current) {
-			inputElement.current.value = '';
-		} else if (value instanceof Money && inputElement.current) {
-			if (!inputValue.equals(value)) {
-				inputElement.current.value = value.toString();
-			}
-		} else if (isMoneyObject(value) && inputElement.current) {
-			const valueInMoney = toMoney(value);
-			if (!inputValue.equals(valueInMoney)) {
-				inputElement.current.value = valueInMoney.toString();
-			}
-		} else {
-			throw new Error(`Value must be a Money instance or IMoneyObject: ${value} (${typeof value}`);
-		}
-	}, [value, adjCurrency]);
+		const whatCurrentlyIsDisplayed = inputElement.current?.value || ''; // string | undef
+		const whatWeAreSetting = value ? value.toString() : ''; // money | undef
 
-	return {inputElement};
+		if (whatCurrentlyIsDisplayed !== whatWeAreSetting) {
+			setVal(value);
+		}
+	}, [setVal, value]);
+
+	return [inputElement, setVal];
 }

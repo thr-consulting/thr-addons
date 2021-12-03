@@ -1,28 +1,26 @@
 import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
-/* eslint-disable react-hooks/rules-of-hooks */
 import debug from 'debug';
 import React from 'react';
-import '../DatePicker/styles.css';
-import {LocalMonthSelect} from './LocalMonthSelect';
+import {SinInput} from './SinInput';
 
-const d = debug('thx.controls.date.LocalMonthSelect.localmonthselect.stories');
+const d = debug('thx.controls.inputs.SinInput.sininput.stories');
 
 export default {
-	title: 'Date/LocalMonthSelect',
+	title: 'Inputs/SinInput',
 	argTypes: {
-		value: {control: {type: 'text'}},
 		onChange: {type: 'function'},
-		year: {type: 'number'},
 		onBlur: {type: 'function'},
+		value: {type: 'string'},
 	},
 } as Meta;
 
-const t: ComponentStory<typeof LocalMonthSelect> = args => {
+const t: ComponentStory<typeof SinInput> = args => {
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
 	return (
-		<LocalMonthSelect
+		<SinInput
 			{...args}
 			onChange={value => {
 				updateArgs({value});
@@ -34,6 +32,5 @@ const t: ComponentStory<typeof LocalMonthSelect> = args => {
 
 export const Main = t.bind({});
 Main.args = {
-	value: null,
-	year: new Date().getFullYear(),
+	value: '',
 };

@@ -1,82 +1,53 @@
+import {useArgs} from '@storybook/client-api';
+import type {ComponentStory, Meta} from '@storybook/react';
+/* eslint-disable react-hooks/rules-of-hooks */
 import debug from 'debug';
-import React, {useState} from 'react';
-import {Container, Form, Grid, Segment} from 'semantic-ui-react';
-import {InferType, number, object} from 'yup';
-import {TForm} from '../../form/TForm';
+import React from 'react';
 import {YearSelect} from './YearSelect';
 
 const d = debug('thx.controls.date.YearSelect.yearselect.stories');
 
-export default {title: 'Date/YearSelect'};
+export default {
+	title: 'Date/YearSelect',
+	argTypes: {
+		value: {type: 'number'},
+		onChange: {type: 'function'},
+		onBlur: {type: 'function'},
+		minYear: {type: 'number'},
+		maxYear: {type: 'number'},
+		error: {type: 'boolean'},
+	},
+} as Meta;
 
-export const Main = () => {
-	const [value1, setValue1] = useState(new Date().getFullYear());
-	const [value2, setValue2] = useState(new Date().getFullYear());
-	const [value3, setValue3] = useState(1990);
+const t: ComponentStory<typeof YearSelect> = args => {
+	const [, updateArgs] = useArgs();
 
 	return (
-		<Container>
-			<Segment basic>
-				<Grid columns="equal">
-					<Grid.Row>
-						<Grid.Column>
-							<YearSelect
-								value={value1}
-								onChange={v => {
-									setValue1(v);
-								}}
-								onBlur={() => {
-									d('Blur yearselect');
-								}}
-							/>
-						</Grid.Column>
-						<Grid.Column>
-							<YearSelect
-								value={value2}
-								onChange={v => {
-									setValue2(v);
-								}}
-								error
-							/>
-						</Grid.Column>
-						<Grid.Column>
-							<YearSelect
-								value={value3}
-								onChange={v => {
-									setValue3(v);
-								}}
-								minYear={1980}
-								maxYear={1990}
-							/>
-						</Grid.Column>
-					</Grid.Row>
-				</Grid>
-			</Segment>
-		</Container>
+		<YearSelect
+			{...args}
+			onChange={value => {
+				updateArgs({value});
+				args.onChange && args.onChange(value);
+			}}
+		/>
 	);
 };
 
-const formValidation = object().shape({
-	year: number().required(),
-});
-type FormValidationType = InferType<typeof formValidation>;
+export const Main = t.bind({});
+Main.args = {
+	value: new Date().getFullYear(),
+	error: false,
+};
 
-export const withTForm = () => (
-	<Container>
-		<TForm<FormValidationType> initialValues={{year: 0}} validationSchema={formValidation} onSubmit={() => {}}>
-			{props => {
-				const {values, handleSubmit, setFieldValue, setFieldTouched} = props;
+export const WithError = t.bind({});
+WithError.args = {
+	...Main.args,
+	error: true,
+};
 
-				return (
-					<Form onSubmit={handleSubmit}>
-						<Form.Field width={6}>
-							<label>Enter some value</label>
-							<YearSelect value={values.year} onChange={v => setFieldValue('year', v)} onBlur={() => setFieldTouched('year')} />
-						</Form.Field>
-						<Form.Button type="submit">Submit</Form.Button>
-					</Form>
-				);
-			}}
-		</TForm>
-	</Container>
-);
+export const WithMinMaxYears = t.bind({});
+WithMinMaxYears.args = {
+	...Main.args,
+	minYear: new Date().getFullYear() - 2,
+	maxYear: new Date().getFullYear() + 2,
+};

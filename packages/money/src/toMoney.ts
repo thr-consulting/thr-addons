@@ -1,5 +1,5 @@
 import Money from 'js-money';
-import type Currencies from 'js-money/lib/currency';
+import type {MoneyObject, Currency, CurrencyString} from 'js-money';
 
 function isString(x: any): x is string {
 	return typeof x === 'string';
@@ -9,20 +9,18 @@ function isNumber(x: any): x is number {
 	return typeof x === 'number';
 }
 
-export interface IMoneyObject {
-	currency: string;
-	amount: number;
-}
-
 export function isMoney(x: any): x is Money {
 	return x instanceof Money;
 }
 
-export function isMoneyObject(x: any): x is IMoneyObject {
-	return (x as IMoneyObject).amount !== undefined && (x as IMoneyObject).currency !== undefined;
+export function isMoneyObject(x: any): x is MoneyObject {
+	return (x as MoneyObject).amount !== undefined && (x as MoneyObject).currency !== undefined;
 }
 
-export function toMoney(value: Money | undefined | null | number | string | IMoneyObject = null, currency: Currencies.Currency = Money.CAD): Money {
+export function toMoney(
+	value: Money | undefined | null | number | string | MoneyObject = null,
+	currency: CurrencyString | Currency = Money.CAD,
+): Money {
 	if (isMoney(value)) return value;
 	if (!value) return new Money(0, currency);
 	if (isNumber(value)) return Money.fromDecimal(value, currency, 'round');

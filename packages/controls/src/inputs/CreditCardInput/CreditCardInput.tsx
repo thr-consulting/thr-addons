@@ -1,44 +1,102 @@
-import {CreditCardCardNameEnum} from '@thx/yup-types';
+import type {LocalDate} from '@js-joda/core';
+import {formatDate} from '@thx/date';
 import debug from 'debug';
-import React, {useEffect, useState} from 'react';
-import {MaskedInput, MaskedInputProps} from '../MaskedInput';
+import React, {useState} from 'react';
+import CreditCards, {Focused} from 'react-credit-cards';
+import 'react-credit-cards/es/styles-compiled.css';
+import {Form, Grid, Input, InputProps} from 'semantic-ui-react';
+import {MonthYearPicker} from '../../date/MonthYearPicker';
+import {CreditCardNumberInput} from './CreditCardNumberInput';
+import './styles.css';
 
 const d = debug('thx.controls.inputs.CreditCardInput');
 
-export interface CreditCardInputType {
-	cardType?: (cardType: CreditCardCardNameEnum | undefined) => void;
+export interface CreditCardData {
+	number?: string;
+	name?: string;
+	cvc?: string;
+	expiry?: LocalDate;
 }
 
-export function CreditCardInput({cardType, ...rest}: CreditCardInputType & Omit<MaskedInputProps, 'mask'>) {
-	const [type, setType] = useState<CreditCardCardNameEnum | undefined>();
+export type CreditCardInputProps = {
+	value?: CreditCardData;
+	onChange?: (data: CreditCardData) => void;
+} & Pick<InputProps, 'disabled' | 'onBlur'>;
 
-	useEffect(() => {
-		if (cardType) cardType(type);
-	}, [type]);
+export function CreditCardInput(props: CreditCardInputProps) {
+	const {onBlur, disabled, onChange, value} = props;
+	const {name, number, cvc, expiry} = value || {};
 
-	function validate(valueArray: string[]) {
-		const cardNumber = valueArray.filter(b => b !== '_' && b !== ' ').join('');
+	const [focus, setFocus] = useState<Focused>('number');
 
-		if (cardNumber[0] === '4') {
-			// test using 4111111111111111
-			setType(CreditCardCardNameEnum.Visa);
-		} else if (
-			(parseInt(cardNumber.substr(0, 2), 10) > 50 && parseInt(cardNumber.substr(0, 2), 10) < 56) ||
-			(parseInt(cardNumber.substr(0, 2), 10) > 2220 && parseInt(cardNumber.substr(0, 2), 10) < 2721)
-		) {
-			// test using 5555555555554444 || 2222405343248877
-			setType(CreditCardCardNameEnum.MasterCard);
-		} else {
-			setType(undefined);
-		}
-		return cardNumber.length === 16;
-	}
-
-	const creditCardMask: MaskedInputProps['mask'] = {
-		mask: '9999 9999 9999 9999',
-		isComplete: validate,
-		autoUnmask: true,
-	};
-
-	return <MaskedInput mask={creditCardMask} {...rest} />;
+	return (
+		<Grid>
+			<Grid.Column width={4}>
+				<Form>
+					<Form.Group>
+						<Form.Field width={9}>
+							<label>Number</label>
+							<CreditCardNumberInput
+								onFocus={() => setFocus('number')}
+								onBlur={onBlur}
+								onChange={v => {
+									onChange && onChange({name, number: v, cvc, expiry});
+								}}
+								disabled={disabled}
+							/>
+						</Form.Field>
+						<Form.Field width={4}>
+							<label>CVC</label>
+							<Input
+								value={cvc || ''}
+								onChange={(ev, v) => {
+									onChange && onChange({name, number, cvc: v.value, expiry});
+								}}
+								onFocus={() => setFocus('cvc')}
+								onBlur={() => setFocus('name')}
+								disabled={disabled}
+							/>
+						</Form.Field>
+					</Form.Group>
+					<Form.Group>
+						<Form.Field width={9}>
+							<label>Name</label>
+							<Input
+								value={name || ''}
+								onChange={(ev, v) => {
+									onChange && onChange({name: v.value, number, cvc, expiry});
+								}}
+								onFocus={() => setFocus('name')}
+								disabled={disabled}
+								fluid
+							/>
+						</Form.Field>
+						<Form.Field width={6}>
+							<label>Expiry</label>
+							<MonthYearPicker
+								value={expiry}
+								onChange={v => {
+									onChange && onChange({name, number, cvc, expiry: v});
+								}}
+								onFocus={() => setFocus('expiry')}
+								disabled={disabled}
+							/>
+						</Form.Field>
+					</Form.Group>
+				</Form>
+			</Grid.Column>
+			<Grid.Column width={12}>
+				<CreditCards
+					cvc={cvc || ''}
+					expiry={formatDate(expiry, {format: 'MMuu'}) || ''}
+					name={name || ''}
+					number={number || ''}
+					focused={focus}
+					callback={(a, b) => {
+						d(a, b);
+					}}
+				/>
+			</Grid.Column>
+		</Grid>
+	);
 }

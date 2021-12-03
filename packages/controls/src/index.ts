@@ -29,7 +29,7 @@ export type {ScriptelInputProps} from './inputs/ScriptelInput';
 export {PhoneInput} from './inputs/PhoneInput';
 export type {PhoneInputProps} from './inputs/PhoneInput';
 export {CreditCardInput} from './inputs/CreditCardInput';
-export type {CreditCardInputType} from './inputs/CreditCardInput';
+export type {CreditCardInputProps} from './inputs/CreditCardInput';
 export {SinInput} from './inputs/SinInput';
 export type {SinInputProps} from './inputs/SinInput';
 

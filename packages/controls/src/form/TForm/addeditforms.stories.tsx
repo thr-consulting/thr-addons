@@ -1,13 +1,22 @@
+import {useArgs} from '@storybook/client-api';
+import type {Meta} from '@storybook/react';
 import debug from 'debug';
 import React from 'react';
-import {Container, Form, Input} from 'semantic-ui-react';
-import {object, string, number} from 'yup';
-import type {TFormProps} from './types';
+import {Form, Input} from 'semantic-ui-react';
+import {number, object, string} from 'yup';
+import type {TFormConfig, TFormProps} from './types';
 import {useTForm} from './useTForm';
 
 const d = debug('thx.controls.form.TForm.addeditforms.stories');
 
-export default {title: 'Form/Add and Edit Forms'};
+export default {
+	title: 'Form/Add and Edit Forms',
+	argTypes: {
+		onSubmit: {type: 'function'},
+		onChange: {type: 'function'},
+		onValidate: {type: 'function'},
+	},
+} as Meta;
 
 interface LockedEditForm {
 	id: string;
@@ -33,6 +42,7 @@ interface AddressFormType {
 	line1: string;
 	line2?: string;
 }
+
 type AddressEditFormType = AddressFormType & LockedEditForm;
 
 function AddressForm<T extends AddressFormType>(props: TFormProps<T>) {
@@ -55,36 +65,39 @@ function AddressForm<T extends AddressFormType>(props: TFormProps<T>) {
 	);
 }
 
-function AddressCreateForm() {
+export const AddressCreateForm = (args: {onSubmit: (value: any) => any}) => {
+	const [, updateArgs] = useArgs();
+
 	const tform = useTForm<AddressFormType>({
-		initialValues: {},
+		initialValues: {line1: '', line2: ''},
 		validationSchema: addressFormValidation,
 		onSubmit(value) {
-			d(addressFormValidation.validateSync(value, {stripUnknown: true}));
+			args.onSubmit && args.onSubmit(addressFormValidation.validateSync(value, {stripUnknown: true}));
 		},
 	});
 
 	return <AddressForm {...tform} />;
-}
+};
+AddressCreateForm.args = {
+	enableReinitialize: false,
+	loading: false,
+};
 
-function AddressEditForm() {
+export const AddressEditForm = (args: TFormConfig<AddressEditFormType>) => {
+	const [, updateArgs] = useArgs();
+
 	const tform = useTForm<AddressEditFormType>({
-		initialValues: {},
+		...args,
+		initialValues: {line1: '', line2: ''},
 		validationSchema: addressEditFormValidation,
-		onSubmit(value) {
-			d(addressEditFormValidation.validateSync(value, {stripUnknown: true}));
+		onSubmit(value, helpers) {
+			args.onSubmit(addressEditFormValidation.validateSync(value, {stripUnknown: true}), helpers);
 		},
 	});
 
 	return <AddressForm {...tform} />;
-}
-
-export const Main = () => {
-	return (
-		<Container>
-			<AddressCreateForm />
-			<hr />
-			<AddressEditForm />
-		</Container>
-	);
+};
+AddressEditForm.args = {
+	enableReinitialize: false,
+	loading: false,
 };

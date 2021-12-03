@@ -1,94 +1,61 @@
 import debug from 'debug';
-import React, {useState} from 'react';
-import {Button, Icon, Label, Popup} from 'semantic-ui-react';
-import {MaskedInput, MaskedInputProps} from '../MaskedInput';
+import React, {useCallback, useMemo, useState} from 'react';
+import {Icon, Input, SemanticCOLORS} from 'semantic-ui-react';
+import SIN from 'social-insurance-number';
+import type {MaskedInputProps} from '../MaskedInput';
+import {useMaskedInput} from '../MaskedInput/useMaskedInput';
 
 const d = debug('thx.controls.inputs.SinInput');
 
-export interface SinInputProps {
-	hasSin: boolean;
+export interface SinInputProps extends Omit<MaskedInputProps, 'mask'> {
+	value?: string;
+	onChange(value?: string): void;
 }
 
-// if we click edit the value is set to an empty string.
-// if we click delete the value is set to an empty string.
-// if we click cancel the value is set to undefined.
-// if we change it we set it to the given string.
-export function SinInput(props: SinInputProps & Omit<MaskedInputProps, 'mask' | 'name'>) {
-	const {hasSin, onChange, ...rest} = props;
-	const [edit, setEdit] = useState(false);
-	const [doDelete, setDoDelete] = useState(false);
+export function SinInput(props: SinInputProps) {
+	const {value, onChange, ...rest} = props;
+	const [color, setColor] = useState<SemanticCOLORS>('black');
 
-	function handleChange(val?: string) {
-		onChange && onChange(val);
-	}
+	const checkValidation = useCallback((valueArray: string[]) => {
+		const num = valueArray.join('').replaceAll(/(_|\s|-)/g, '');
+		const validate = new SIN(num);
+		if (num.length > 0) {
+			if (validate.isValid()) {
+				setColor('green');
+			} else {
+				setColor('red');
+			}
+		} else {
+			setColor('black');
+		}
+		return validate.isValid();
+	}, []);
 
-	// if we have a SIN and we don't want to edit
-	return hasSin && !edit && !doDelete ? (
-		<>
-			<Label style={{width: '100%', height: '36px', paddingTop: '10px'}} size="large" color="green">
-				SIN is saved
-			</Label>
-			<Popup
-				content="edit"
-				trigger={
-					<Button
-						type="button"
-						onClick={() => {
-							setEdit(true);
-							handleChange('');
-						}}
-						color="orange"
-						icon
-					>
-						<Icon name="edit" />
-					</Button>
-				}
-			/>
-			<Popup
-				content="delete"
-				trigger={
-					<Button
-						negative
-						type="button"
-						icon
-						onClick={() => {
-							setDoDelete(true);
-							handleChange('');
-						}}
-					>
-						<Icon name="trash alternate" />
-					</Button>
-				}
-			/>
-		</>
-	) : (
-		// if we dont have a SIN
-		<>
-			<MaskedInput {...rest} onChange={handleChange} mask={{mask: '999-999-999', greedy: false, autoUnmask: true}} />
-			{/* if we are editing */}
-			{edit && (
-				<Button
-					type="button"
-					onClick={() => {
-						setEdit(false);
-						handleChange(undefined);
-					}}
-				>
-					Cancel
-				</Button>
-			)}
-			{doDelete && (
-				<Button
-					color="orange"
-					type="button"
-					onClick={() => {
-						setDoDelete(false);
-						handleChange(undefined);
-					}}
-				>
-					Undo
-				</Button>
-			)}
-		</>
+	const mask: MaskedInputProps['mask'] = useMemo(
+		() => ({
+			mask: '999-999-999',
+			isComplete: checkValidation,
+			greedy: false,
+			autoUnmask: true,
+		}),
+		[checkValidation],
+	);
+
+	const cardNumberRef = useMaskedInput({
+		mask,
+		value,
+		onChange: v => {
+			onChange && onChange(v);
+		},
+		onSet: v => {
+			checkValidation([v || '']);
+		},
+	});
+
+	return (
+		<Input {...rest} icon>
+			<input ref={cardNumberRef} />
+			<Icon name="id badge" color={color} size="large" />
+		</Input>
 	);
 }

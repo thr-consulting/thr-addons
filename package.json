@@ -6,9 +6,14 @@
   },
   "license": "MIT",
   "author": "Mike Kornelson <darkadept@durbn.net>",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/react-router"
+    ]
+  },
   "scripts": {
     "build": "yarn build:common && yarn build:libs",
     "build:common": "lerna run build --scope '@thx/common-webpack'",
@@ -40,7 +45,16 @@
     "@imperium/eslint-config-imperium": "^7.0.0",
     "@imperium/prettier-config-imperium": "^7.0.0",
     "@mikro-orm/core": "^4.3.3",
-    "@storybook/react": "^6.0.28",
+    "@storybook/addon-actions": "^6.4.3",
+    "@storybook/addon-essentials": "^6.4.3",
+    "@storybook/addon-links": "^6.4.3",
+    "@storybook/builder-webpack5": "^6.4.3",
+    "@storybook/client-api": "^6.4.3",
+    "@storybook/components": "^6.4.3",
+    "@storybook/core-events": "^6.4.3",
+    "@storybook/manager-webpack5": "^6.4.3",
+    "@storybook/react": "^6.4.3",
+    "@storybook/theming": "^6.4.3",
     "@thx/common-webpack": "^14.0.0",
     "@thx/tools": "^14.0.0",
     "@types/accounting": "^0.4.1",
@@ -51,19 +65,22 @@
     "@types/fs-extra": "^9.0.1",
     "@types/inputmask": "^5.0.0",
     "@types/jest": "^27.0.2",
-    "@types/js-money": "^0.6.0",
+    "@types/js-money": "git+https://github.com/thr-consulting/types-js-money.git",
     "@types/jscodeshift": "^0.11.2",
     "@types/lodash": "^4.14.150",
     "@types/mime-types": "^2.1.0",
     "@types/node": "^14.17.19",
+    "@types/react-credit-cards": "^0.8.1",
     "@types/react-datepicker": "^4.1.7",
     "@types/react-router-dom": "^5.1.6",
     "@types/react-table": "^7.0.28",
     "@types/redis": "^2.8.28",
+    "@types/use-deep-compare-effect": "^1.5.1",
     "@types/yauzl": "^2.9.1",
     "babel-jest": "^27.2.3",
     "babel-loader": "^8.2.2",
     "depcheck": "^1.4.0",
+    "dts-gen": "^0.6.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-17-updated": "^1.0.2",
     "enzyme-to-json": "^3.4.4",

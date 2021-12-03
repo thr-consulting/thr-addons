@@ -1,2 +1,2 @@
 export {CreditCardInput} from './CreditCardInput';
-export type {CreditCardInputType} from './CreditCardInput';
+export type {CreditCardInputProps} from './CreditCardInput';
