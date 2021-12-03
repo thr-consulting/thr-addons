@@ -1,6 +1,6 @@
 {
 	"name": "@thx/tools",
-	"version": "14.3.0",
+	"version": "15.0.0",
 	"description": "Dev tools to help code consistency",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -37,7 +37,7 @@
 		"@graphql-codegen/typescript-operations": "^1.17.8",
 		"@graphql-codegen/typescript-react-apollo": "^2.0.7",
 		"@graphql-codegen/typescript-resolvers": "^2.2.1",
-		"@thx/common-webpack": "^14.2.0",
+		"@thx/common-webpack": "^15.0.0",
 		"@thx/graphql-typescript-scalar-type-policies": "^1.0.2",
 		"@types/jscodeshift": "^0.11.2",
 		"babel-jest": "^27.3.1",

@@ -1,6 +1,6 @@
 {
 	"name": "@thx/ordereddataloader",
-	"version": "14.2.0",
+	"version": "15.0.0",
 	"description": "Ordered DataLoader",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"

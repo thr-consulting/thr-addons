@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.0.0](https://github.com/thr-consulting/thr-addons/compare/v14.3.0...v15.0.0) (2021-12-03)
+
+
+### Features
+
+* **money:** replaced js-money types with our own package ([#325](https://github.com/thr-consulting/thr-addons/issues/325)) ([c147322](https://github.com/thr-consulting/thr-addons/commit/c14732285e6dd59779e84872003c6eb9402cd43b))
+
+
+
+
+
 # [14.2.0](https://github.com/thr-consulting/thr-addons/compare/v14.0.4...v14.2.0) (2021-09-30)
 
 **Note:** Version bump only for package @thx/controls
