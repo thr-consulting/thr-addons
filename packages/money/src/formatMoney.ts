@@ -9,11 +9,6 @@ import Money from 'js-money';
  */
 export function formatMoney(value: Money | undefined | null = null, symbol = false): string {
 	if (!value) return '';
-	return accounting.formatMoney(
-		value.toDecimal(),
-		// @ts-ignore
-		symbol ? Money[value.currency].symbol_native : '',
-		// @ts-ignore
-		Money[value.currency].decimal_digits,
-	);
+
+	return accounting.formatMoney(value.toDecimal(), symbol ? Money[value.currency].symbol_native : '', Money[value.currency].decimal_digits);
 }

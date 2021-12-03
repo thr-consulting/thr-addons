@@ -1,48 +1,42 @@
-import {Currencies} from '@thx/money';
-import {moneySchemaType} from '@thx/yup-types';
+import {useArgs} from '@storybook/client-api';
+import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
+import Money from 'js-money';
 import React from 'react';
-import {Form, Container} from 'semantic-ui-react';
-import {InferType, object} from 'yup';
-import {TForm} from '../../form/TForm';
 import {MoneyCurrencyInput} from './MoneyCurrencyInput';
 
 const d = debug('thx.controls.money.MoneyCurrencyInput.moneycurrencyinput.stories');
 
-export default {title: 'Inputs/MoneyCurrencyInput'};
+export default {
+	title: 'Money/MoneyCurrencyInput',
+	component: MoneyCurrencyInput,
+} as Meta;
 
-const formValidation = object().shape({
-	moneyOne: moneySchemaType().required(),
-	moneyTwo: moneySchemaType().required(),
-});
-type FormValidationType = InferType<typeof formValidation>;
+const t: ComponentStory<typeof MoneyCurrencyInput> = args => {
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const [, updateArgs] = useArgs();
 
-export const Main = () => (
-	<Container>
-		<TForm<FormValidationType> initialValues={{moneyOne: {amount: 10000, currency: 'CAD'}}} validationSchema={formValidation} onSubmit={d}>
-			{props => {
-				const {values, handleSubmit, handleBlur, setFieldValue} = props;
-
-				return (
-					<Form onSubmit={handleSubmit}>
-						<Form.Field width={6}>
-							<label>Enter some value</label>
-							<MoneyCurrencyInput name="moneyOne" value={values.moneyOne} onChange={v => setFieldValue('moneyOne', v)} onBlur={handleBlur} />
-						</Form.Field>
-						<Form.Field width={6}>
-							<label>Default of USD</label>
-							<MoneyCurrencyInput
-								defaultCurrency={Currencies.USD}
-								name="moneyTwo"
-								value={values.moneyTwo}
-								onChange={v => setFieldValue('moneyTwo', v)}
-								onBlur={handleBlur}
-							/>
-						</Form.Field>
-						<Form.Button type="submit">Submit</Form.Button>
-					</Form>
-				);
+	return (
+		<MoneyCurrencyInput
+			{...args}
+			onChange={value => {
+				updateArgs({value});
+				args.onChange && args.onChange(value);
 			}}
-		</TForm>
-	</Container>
-);
+		/>
+	);
+};
+
+export const Main = t.bind({});
+Main.args = {
+	value: {amount: 0, currency: 'CAD'},
+	defaultCurrency: Money.CAD,
+	prefix: undefined,
+	showPrefix: false,
+	locked: false,
+	wholeNumber: false,
+	currencies: [
+		{key: 'CAD', text: 'CAD', value: 'CAD'},
+		{key: 'USD', text: 'USD', value: 'USD'},
+	],
+};

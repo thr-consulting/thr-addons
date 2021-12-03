@@ -1,162 +1,45 @@
-import {formatMoney} from '@thx/money';
-import {moneySchemaType} from '@thx/yup-types';
+import {useArgs} from '@storybook/client-api';
+import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
 import Money from 'js-money';
-import React, {useState} from 'react';
-import {Form, Container, Button, Segment, Radio} from 'semantic-ui-react';
-import {InferType, object} from 'yup';
-import {TForm} from '../../form/TForm';
+import React from 'react';
 import {MoneyInput} from './MoneyInput';
 
 const d = debug('thx.controls.money.MoneyInput.moneyinput.stories');
 
-export default {title: 'Inputs/MoneyInput'};
+export default {
+	title: 'Money/MoneyInput',
+	component: MoneyInput,
+} as Meta;
 
-export const Main = () => {
-	const [shown, setShown] = useState(true);
-	const [state, setState] = useState({
-		cad: new Money(0, Money.CAD),
-		tnd: new Money(0, Money.TND),
-		whole: new Money(0, Money.CAD),
-	});
-
-	if (!shown) {
-		return (
-			<Container>
-				<Button onClick={() => setShown(true)}>Show</Button>
-			</Container>
-		);
-	}
+const t: ComponentStory<typeof MoneyInput> = args => {
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const [, updateArgs] = useArgs();
 
 	return (
-		<Container>
-			<Segment basic>
-				<Form>
-					<Form.Field inline width={6}>
-						<label>Masked Input: CAD</label>
-						<MoneyInput
-							onChange={v => {
-								d('onChange', v);
-								setState(s => ({...s, cad: v}));
-							}}
-							onBlur={() => {
-								d('onBlur');
-							}}
-							value={state.cad}
-						/>
-					</Form.Field>
-					<Form.Field inline width={6}>
-						<label>Masked Input: TND</label>
-						<MoneyInput
-							onChange={v => {
-								setState(s => ({...s, tnd: v}));
-							}}
-							value={state.tnd}
-							defaultCurrency={Money.TND}
-							showPrefix
-						/>
-					</Form.Field>
-					<Form.Field inline width={6}>
-						<label>Masked Input: Locked</label>
-						<MoneyInput value={new Money(10101, Money.CAD)} locked />
-					</Form.Field>
-					<Form.Field inline width={6}>
-						<label>Masked Input: Details</label>
-						<MoneyInput
-							value={new Money(10101, Money.CAD)}
-							onDetailsClicked={() => {
-								d('Details Clicked');
-							}}
-						/>
-					</Form.Field>
-					<Form.Field inline width={6}>
-						<label>Masked Input: Whole Number</label>
-						<MoneyInput
-							value={state.whole}
-							onChange={v => {
-								setState(s => ({...s, whole: v}));
-							}}
-							wholeNumber
-						/>
-					</Form.Field>
-				</Form>
-			</Segment>
-			<Segment basic>
-				<Button
-					onClick={() => {
-						setState({
-							cad: new Money(4205, Money.CAD),
-							tnd: new Money(4205, Money.TND),
-							whole: new Money(4205, Money.CAD),
-						});
-					}}
-				>
-					Set value
-				</Button>
-				<Button onClick={() => setShown(false)}>Hide</Button>
-			</Segment>
-			<Segment>
-				<p>CAD is: {formatMoney(state.cad, true)}</p>
-				<p>TND is: {formatMoney(state.tnd, true)}</p>
-				<p>WholeNumber is: {formatMoney(state.whole, true)}</p>
-			</Segment>
-		</Container>
-	);
-};
-
-const formValidation = object().shape({
-	money: moneySchemaType().required(),
-});
-type FormValidationType = InferType<typeof formValidation>;
-
-export const WithTForm = () => (
-	<Container>
-		<TForm<FormValidationType> initialValues={{money: {amount: 0, currency: 'CAD'}}} validationSchema={formValidation} onSubmit={() => {}}>
-			{props => {
-				const {values, handleSubmit, handleBlur, setFieldValue} = props;
-
-				return (
-					<Form onSubmit={handleSubmit}>
-						<Form.Field width={6}>
-							<label>Enter some value</label>
-							<MoneyInput name="money" value={values.money} onChange={v => setFieldValue('money', v)} onBlur={handleBlur} />
-						</Form.Field>
-						<Form.Button type="submit">Submit</Form.Button>
-					</Form>
-				);
+		<MoneyInput
+			{...args}
+			onChange={value => {
+				updateArgs({value});
+				args.onChange && args.onChange(value);
 			}}
-		</TForm>
-	</Container>
-);
-
-export const WithIMoneyObject = () => {
-	const [state, setState] = useState({amount: 506, currency: 'CAD'});
-
-	return (
-		<Container>
-			<Segment basic>
-				<Form>
-					<Form.Field inline width={6}>
-						<label>Not Money</label>
-						<MoneyInput
-							value={state}
-							onChange={v => {
-								d(v);
-								setState(v);
-							}}
-						/>
-					</Form.Field>
-				</Form>
-			</Segment>
-		</Container>
+		/>
 	);
 };
 
-export const WithUndefinedValue = () => (
-	<Container>
-		<Form.Field width={6}>
-			<label>Enter some value</label>
-			<MoneyInput name="money" value={undefined} />
-		</Form.Field>
-	</Container>
-);
+export const Main = t.bind({});
+Main.args = {
+	value: undefined,
+	defaultCurrency: Money.CAD,
+	prefix: undefined,
+	showPrefix: false,
+	locked: false,
+	wholeNumber: false,
+};
+
+export const MoreDecimals = t.bind({});
+MoreDecimals.args = {
+	...Main.args,
+	defaultCurrency: Money.TND,
+	showPrefix: true,
+};

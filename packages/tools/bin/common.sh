@@ -257,3 +257,12 @@ fix_jscodeshift () {
   fi
   patch -Nu "$jscs_dir/src/Runner.js" -i "$toolsdir/files/jscodeshift.patch"
 }
+
+get_cores () {
+  cores=$(getconf _NPROCESSORS_ONLN)
+  re='^[0-9]+$'
+  if ! [[ $cores =~ $re ]] ; then
+    echo "1"
+  fi
+  echo "$cores"
+}

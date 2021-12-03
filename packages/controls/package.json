@@ -19,10 +19,11 @@
   ],
   "scripts": {
     "build": "thx build",
+    "build-storybook": "build-storybook",
     "build:dev": "thx build:dev",
     "build:prod": "thx build:prod",
     "clean": "thx clean",
-    "deps": "thx -p *.stories.tsx -i style-loader,css-loader deps",
+    "deps": "thx -p *.stories.tsx,*.story.tsx -i style-loader,css-loader deps",
     "lint": "thx lint",
     "lint:fix": "thx lint:fix",
     "sort": "thx sort",
@@ -41,6 +42,7 @@
     "@thx/yup-types": "^14.2.0",
     "@types/inputmask": "^5.0.1",
     "@types/react-datepicker": "^4.1.7",
+    "credit-card-type": "^9.1.0",
     "debug": "^4.1.1",
     "eventemitter3": "^4.0.0",
     "flat": "^5.0.0",
@@ -48,8 +50,11 @@
     "inputmask": "^5.0.6",
     "js-money": "^0.6.3",
     "lodash": "^4.17.15",
+    "luhn": "^2.4.1",
+    "react-credit-cards": "^0.8.3",
     "react-datepicker": "^4.2.1",
     "react-table": "^7.6.3",
+    "social-insurance-number": "^0.2.2",
     "use-deep-compare-effect": "1.4.0"
   },
   "devDependencies": {

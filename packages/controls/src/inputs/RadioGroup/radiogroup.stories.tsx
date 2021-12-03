@@ -1,64 +1,74 @@
+import {useArgs} from '@storybook/client-api';
+import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
-import React, {useState} from 'react';
-import {Form, Container, Segment, Radio} from 'semantic-ui-react';
-import {InferType, object, string} from 'yup';
-import {TForm} from '../../form/TForm';
+import React from 'react';
+import {Radio} from 'semantic-ui-react';
 import {RadioGroup} from './RadioGroup';
 
 const d = debug('thx.controls.inputs.RadioGroup.radiogroup.stories');
 
-export default {title: 'Inputs/RadioGroup'};
+export default {
+	title: 'Inputs/RadioGroup',
+	component: RadioGroup,
+	argTypes: {
+		value: {type: 'string'},
+		onBlur: {type: 'function'},
+	},
+} as Meta;
 
-export const Main = () => {
-	const [value1, setValue1] = useState();
-	const [value2, setValue2] = useState();
+export const Main: ComponentStory<typeof RadioGroup> = args => {
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const [, updateArgs] = useArgs();
 
 	return (
-		<Container>
-			<Segment basic>
-				<Form>
-					<Form.Field>
-						<label>Radio Group: {value1}</label>
-						<RadioGroup onChange={value => setValue1(value)} value={value1} inline onBlur={() => d('onBlur')}>
-							<Radio label="Choice A" value="a" />
-							<Radio label="Choice B" value="b" />
-						</RadioGroup>
-					</Form.Field>
-					<Form.Field width={6}>
-						<label>Semantic Radio Group: {value2}</label>
-						<Radio label="Choice A" name="radioGroup" value="aa" checked={value2 === 'aa'} onChange={(e, {value}) => setValue2(value)} />
-						<Radio label="Choice B" name="radioGroup" value="bb" checked={value2 === 'bb'} onChange={(e, {value}) => setValue2(value)} />
-					</Form.Field>
-				</Form>
-			</Segment>
-		</Container>
+		<RadioGroup
+			{...args}
+			onChange={value => {
+				updateArgs({value});
+				args.onChange && args.onChange(value);
+			}}
+		>
+			<Radio label="Choice A" value="a" />
+			<Radio label="Choice B" value="b" />
+		</RadioGroup>
 	);
 };
+Main.args = {
+	value: undefined,
+};
 
-const formValidation = object().shape({
-	opt: string().required(),
-});
-type FormValidationType = InferType<typeof formValidation>;
+export const WithoutRadioGroup: ComponentStory<typeof RadioGroup> = args => {
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const [, updateArgs] = useArgs();
 
-export const withTForm = () => (
-	<Container>
-		<TForm<FormValidationType> initialValues={{opt: ''}} validationSchema={formValidation} onSubmit={() => {}}>
-			{props => {
-				const {values, handleSubmit, setFieldTouched, setFieldValue} = props;
+	const val = args.value;
 
-				return (
-					<Form onSubmit={handleSubmit}>
-						<Form.Field width={6}>
-							<label>Enter some text</label>
-							<RadioGroup onChange={value => setFieldValue('opt', value)} value={values.opt} inline onBlur={() => setFieldTouched('opt')}>
-								<Radio label="Choice A" value="a" />
-								<Radio label="Choice B" value="b" />
-							</RadioGroup>
-						</Form.Field>
-						<Form.Button type="submit">Submit</Form.Button>
-					</Form>
-				);
-			}}
-		</TForm>
-	</Container>
-);
+	return (
+		<>
+			<p>This shows how you can use the Radio component without the group.</p>
+			<Radio
+				label="Choice A"
+				name="radioGroup"
+				value="aa"
+				checked={val === 'aa'}
+				onChange={(e, {value}) => {
+					updateArgs({value});
+					args.onChange && args.onChange(value);
+				}}
+			/>
+			<Radio
+				label="Choice B"
+				name="radioGroup"
+				value="bb"
+				checked={val === 'bb'}
+				onChange={(e, {value}) => {
+					updateArgs({value});
+					args.onChange && args.onChange(value);
+				}}
+			/>
+		</>
+	);
+};
+WithoutRadioGroup.args = {
+	value: undefined,
+};

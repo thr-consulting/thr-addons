@@ -1,8 +1,8 @@
-import type {Currencies, IMoneyObject} from '@thx/money';
+import {toMoney} from '@thx/money';
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import debug from 'debug';
-import type Money from 'js-money';
-import React from 'react';
+import Money, {Currency, MoneyObject} from 'js-money';
+import React, {useCallback} from 'react';
 import {Input, InputProps} from 'semantic-ui-react';
 import {useMoneyInput} from '../useMoneyInput';
 
@@ -11,8 +11,8 @@ const d = debug('thx.controls.money.MoneyInput');
 export interface MoneyInputProps {
 	name?: string;
 	onChange?: (value: Money) => void;
-	value?: Money | IMoneyObject;
-	defaultCurrency?: Currencies.Currency; // Defaults to Money.CAD
+	value?: Money | MoneyObject;
+	defaultCurrency?: Currency; // Defaults to Money.CAD
 	onBlur?: (ev: any) => void;
 	prefix?: string; // Defaults to currency symbol
 	showPrefix?: boolean; // Defaults to false
@@ -22,7 +22,21 @@ export interface MoneyInputProps {
 
 export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>) {
 	const {name, onBlur, locked, prefix, defaultCurrency, onChange, showPrefix, value, wholeNumber, ...rest} = props;
-	const {inputElement} = useMoneyInput({defaultCurrency, onChange, prefix, showPrefix, value, wholeNumber});
+
+	const handleChange = useCallback(
+		(v?: Money) => {
+			if (!v) {
+				onChange && onChange(toMoney(0, defaultCurrency));
+			} else {
+				onChange && onChange(v);
+			}
+		},
+		[defaultCurrency, onChange],
+	);
+
+	const val = !(value instanceof Money) && value !== undefined ? toMoney(value) : value;
+
+	const [inputElement] = useMoneyInput({onChange: handleChange, prefix, showPrefix, value: val, wholeNumber});
 
 	return (
 		<Input {...rest}>

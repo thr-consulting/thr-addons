@@ -79,7 +79,6 @@ export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
 			timeIntervals={15}
 			timeCaption="Time"
 			dateFormat="hh:mm aa"
-			// @ts-ignore
 			customInput={<MaskedTimeInput {...inputProps} />}
 		/>
 	);

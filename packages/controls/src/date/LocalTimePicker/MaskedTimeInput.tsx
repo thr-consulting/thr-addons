@@ -4,8 +4,14 @@ import {MaskedInput, MaskedInputProps} from '../../inputs/MaskedInput';
 
 const d = debug('thx.controls.date.LocalTimePicker.MaskedTimeInput');
 
+export interface MaskedTimeInputValue {
+	target: {
+		value: string;
+	};
+}
+
 export interface MaskedTimeInputProps {
-	onChange?: (value: {target: {value: string}}) => void;
+	onChange?: (value: MaskedTimeInputValue) => void;
 }
 
 // eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars

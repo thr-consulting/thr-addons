@@ -6,7 +6,8 @@
 		"jsx": "react"
 	},
 	"include": [
-		"src/index.ts"
+		"src/index.ts",
+		"types/*.d.ts"
 	],
 	"comments": [{
 		"comment":  "Add this to include section above, but remove it before check in",

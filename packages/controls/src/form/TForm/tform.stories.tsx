@@ -1,7 +1,8 @@
+import {useArgs} from '@storybook/client-api';
+import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
-import {Field} from 'formik';
 import React, {useRef, useState} from 'react';
-import {Form, Container, Button, ButtonGroup, Segment} from 'semantic-ui-react';
+import {Button, ButtonGroup, Form, Segment} from 'semantic-ui-react';
 import {object, string} from 'yup';
 import {TForm} from './TForm';
 import type {TFormProps} from './types';
@@ -9,7 +10,14 @@ import {useTForm} from './useTForm';
 
 const d = debug('thx.controls.form.TForm.tform.stories');
 
-export default {title: 'Form / TForm'};
+export default {
+	title: 'Form/TForm',
+	argTypes: {
+		onSubmit: {type: 'function'},
+		onChange: {type: 'function'},
+		onValidate: {type: 'function'},
+	},
+} as Meta;
 
 // Yup Validation
 const formValidation = object().shape({
@@ -28,22 +36,6 @@ interface FormType {
 	};
 	plainInput: string;
 }
-
-interface ApolloError {
-	message?: string;
-	graphQLErrors?: {
-		message?: string;
-	}[];
-}
-
-const sampleGraphqlError: (ApolloError | undefined)[] = [
-	undefined,
-	{message: 'Sample Graphql Error 1'},
-	{
-		message: 'Sample Graphql Error 2',
-		graphQLErrors: [{message: 'Graphql Sub Error 2-A'}, {message: 'Graphql Sub Error 2-B'}],
-	},
-];
 
 function MyForm(props: TFormProps<FormType>) {
 	const {values, handleChange, handleSubmit, handleBlur, hasWarnings, fieldError, formError, submitDisabled, isSubmitting, renderWarnings} = props;
@@ -70,88 +62,114 @@ function MyForm(props: TFormProps<FormType>) {
 	);
 }
 
-function MyFootSegment({vars, setVars, setGraphqlError, formSubmitFn}: any) {
+export const Main: ComponentStory<any> = args => {
+	const [, updateArgs] = useArgs();
+
 	return (
-		<Segment>
-			<ButtonGroup vertical>
-				<Button
-					color={vars.graphqlError === 0 ? 'green' : 'blue'}
-					onClick={() => {
-						setVars({graphqlError: 0});
-						setGraphqlError(undefined);
-					}}
-				>
-					Clear GraphQL Error
-				</Button>
-				<Button
-					color={vars.graphqlError === 1 ? 'green' : 'blue'}
-					onClick={() => {
-						setVars({graphqlError: 1});
-						setGraphqlError(undefined);
-					}}
-				>
-					Simulate GraphQL Error 1
-				</Button>
-				<Button
-					color={vars.graphqlError === 2 ? 'green' : 'blue'}
-					onClick={() => {
-						setVars({graphqlError: 2});
-						setGraphqlError(undefined);
-					}}
-				>
-					Simulate GraphQL Error 2
-				</Button>
-				<Button color="orange" onClick={() => formSubmitFn.current && formSubmitFn.current()}>
-					Outside Submit
-				</Button>
-			</ButtonGroup>
-		</Segment>
+		<TForm<FormType>
+			{...args}
+			initialValues={{text: '', nested: {text: ''}, plainInput: ''}}
+			validationSchema={formValidation}
+			onSubmit={async (data, helpers) => {
+				args.onSubmit(data, helpers);
+			}}
+		>
+			{props => <MyForm {...props} />}
+		</TForm>
 	);
+};
+Main.args = {
+	enableReinitialize: false,
+	loading: false,
+};
+
+interface ApolloError {
+	message?: string;
+	graphQLErrors?: {
+		message?: string;
+	}[];
 }
 
-export const Main = () => {
-	const [vars, setVars] = useState({
-		graphqlError: 0,
-	});
-	const [graphqlError, setGraphqlError] = useState<ApolloError>();
-	const formSubmitFn = useRef<() => Promise<void>>();
+const sampleGraphqlError: (ApolloError | undefined)[] = [
+	undefined,
+	{message: 'Sample Graphql Error 1'},
+	{
+		message: 'Sample Graphql Error 2',
+		graphQLErrors: [{message: 'Graphql Sub Error 2-A'}, {message: 'Graphql Sub Error 2-B'}],
+	},
+];
+
+export const WithError: ComponentStory<any> = args => {
+	const [, updateArgs] = useArgs();
+	const [graphqlError, setGraphqlError] = useState(0);
 
 	return (
-		<Container>
+		<>
 			<TForm<FormType>
+				{...args}
+				error={sampleGraphqlError[graphqlError]}
 				initialValues={{text: '', nested: {text: ''}, plainInput: ''}}
 				validationSchema={formValidation}
-				error={graphqlError}
-				getSubmitFn={sub => (formSubmitFn.current = sub)}
-				onSubmit={data =>
-					new Promise((resolve, reject) => {
+				onSubmit={data => {
+					return new Promise((resolve, reject) => {
 						setTimeout(() => {
-							if (vars.graphqlError === 0) {
-								d('Success!', data);
+							if (graphqlError === 0) {
+								args.onSubmit(data);
 								resolve(data);
 							} else {
-								setGraphqlError(sampleGraphqlError[vars.graphqlError]);
+								updateArgs({error: sampleGraphqlError[graphqlError]});
 								reject();
 							}
 						}, 1000);
-					})
-				}
+					});
+				}}
 			>
 				{props => <MyForm {...props} />}
 			</TForm>
-			<MyFootSegment vars={vars} formSubmitFn={formSubmitFn} setGraphqlError={setGraphqlError} setVars={setVars} />
-		</Container>
+			<Segment>
+				<ButtonGroup vertical>
+					<Button
+						color={graphqlError === 0 ? 'green' : 'blue'}
+						onClick={() => {
+							setGraphqlError(0);
+							updateArgs({error: undefined});
+						}}
+					>
+						Clear GraphQL Error
+					</Button>
+					<Button
+						color={graphqlError === 1 ? 'green' : 'blue'}
+						onClick={() => {
+							setGraphqlError(1);
+							updateArgs({error: undefined});
+						}}
+					>
+						Simulate GraphQL Error 1
+					</Button>
+					<Button
+						color={graphqlError === 2 ? 'green' : 'blue'}
+						onClick={() => {
+							setGraphqlError(2);
+							updateArgs({error: undefined});
+						}}
+					>
+						Simulate GraphQL Error 2
+					</Button>
+				</ButtonGroup>
+			</Segment>
+		</>
 	);
 };
+WithError.args = {
+	...Main.args,
+	error: undefined,
+};
 
-export const UseHooks = () => {
-	const [vars, setVars] = useState({
-		graphqlError: 0,
-	});
-	const [graphqlError, setGraphqlError] = useState<ApolloError>();
-	const formSubmitFn = useRef<() => Promise<void>>();
+export const UsingHooks: ComponentStory<any> = args => {
+	const [, updateArgs] = useArgs();
 
 	const props = useTForm<FormType>({
+		...args,
 		initialValues: {
 			text: '',
 			nested: {
@@ -160,72 +178,40 @@ export const UseHooks = () => {
 			plainInput: '',
 		},
 		validationSchema: formValidation,
-		error: graphqlError,
-		getSubmitFn: sub => (formSubmitFn.current = sub),
-		onSubmit: data =>
-			new Promise((resolve, reject) => {
-				setTimeout(() => {
-					if (vars.graphqlError === 0) {
-						d('Success!', data);
-						resolve(data);
-					} else {
-						setGraphqlError(sampleGraphqlError[vars.graphqlError]);
-						reject();
-					}
-				}, 1000);
-			}),
+		onSubmit: data => args.onSubmit(data),
 	});
 
-	return (
-		<Container>
-			<MyForm {...props} />
-			<MyFootSegment vars={vars} formSubmitFn={formSubmitFn} setGraphqlError={setGraphqlError} setVars={setVars} />
-		</Container>
-	);
+	return <MyForm {...props} />;
+};
+UsingHooks.args = {
+	...Main.args,
 };
 
-export const UsingField = () => {
-	const [vars, setVars] = useState({
-		graphqlError: 0,
-	});
-	const [graphqlError, setGraphqlError] = useState<ApolloError>();
+export const OutsideSubmit: ComponentStory<any> = args => {
+	const [, updateArgs] = useArgs();
 	const formSubmitFn = useRef<() => Promise<void>>();
 
 	return (
-		<Container>
+		<>
 			<TForm<FormType>
+				{...args}
 				initialValues={{text: '', nested: {text: ''}, plainInput: ''}}
 				validationSchema={formValidation}
-				error={graphqlError}
 				getSubmitFn={sub => (formSubmitFn.current = sub)}
-				onSubmit={data =>
-					new Promise((resolve, reject) => {
-						setTimeout(() => {
-							if (vars.graphqlError === 0) {
-								d('Success!', data);
-								resolve(data);
-							} else {
-								setGraphqlError(sampleGraphqlError[vars.graphqlError]);
-								reject();
-							}
-						}, 1000);
-					})
-				}
-			>
-				{props => {
-					const {handleSubmit, hasWarnings, formError, submitDisabled, isSubmitting, renderWarnings} = props;
-					return (
-						<Form error={formError} warning={hasWarnings} onSubmit={handleSubmit}>
-							<Field as={Form.Field} name="text" />
-							<Form.Button disabled={submitDisabled} type="submit" loading={isSubmitting}>
-								Submit
-							</Form.Button>
-							{renderWarnings()}
-						</Form>
-					);
+				onSubmit={async (data, formikHelpers) => {
+					args.onSubmit(data, formikHelpers);
 				}}
+			>
+				{props => <MyForm {...props} />}
 			</TForm>
-			<MyFootSegment vars={vars} formSubmitFn={formSubmitFn} setGraphqlError={setGraphqlError} setVars={setVars} />
-		</Container>
+			<Segment>
+				<Button color="orange" onClick={() => formSubmitFn.current && formSubmitFn.current()}>
+					Outside Submit
+				</Button>
+			</Segment>
+		</>
 	);
+};
+OutsideSubmit.args = {
+	...Main.args,
 };
