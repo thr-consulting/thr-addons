@@ -38,4 +38,48 @@ describe('MoneySchemaType', () => {
 			moneyLike: new Money(77, Money.CAD),
 		});
 	});
+
+	it('should validate max', async () => {
+		const schema = object().shape({
+			money: moneySchemaType().max(new Money(500, Money.CAD)).required(),
+		});
+
+		expect(
+			await schema.isValid({
+				money: new Money(503, Money.CAD),
+			}),
+		).toBe(false);
+		expect(
+			await schema.isValid({
+				money: new Money(403, Money.CAD),
+			}),
+		).toBe(true);
+		expect(
+			await schema.isValid({
+				money: new Money(500, Money.CAD),
+			}),
+		).toBe(true);
+	});
+
+	it('should validate min', async () => {
+		const schema = object().shape({
+			money: moneySchemaType().min(new Money(500, Money.CAD)).required(),
+		});
+
+		expect(
+			await schema.isValid({
+				money: new Money(503, Money.CAD),
+			}),
+		).toBe(true);
+		expect(
+			await schema.isValid({
+				money: new Money(403, Money.CAD),
+			}),
+		).toBe(false);
+		expect(
+			await schema.isValid({
+				money: new Money(500, Money.CAD),
+			}),
+		).toBe(true);
+	});
 });
