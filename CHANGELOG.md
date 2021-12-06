@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.1.0](https://github.com/thr-consulting/thr-addons/compare/v15.0.0...v15.1.0) (2021-12-06)
+
+
+### Features
+
+* **yup-types:** added min and max methods to Money schema ([#326](https://github.com/thr-consulting/thr-addons/issues/326)) ([0be5aca](https://github.com/thr-consulting/thr-addons/commit/0be5aca27ddf634222808bdc360df7333b99feb9))
+
+
+
+
+
 # [15.0.0](https://github.com/thr-consulting/thr-addons/compare/v14.3.0...v15.0.0) (2021-12-03)
 
 
