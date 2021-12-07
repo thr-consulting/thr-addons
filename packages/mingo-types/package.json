@@ -1,6 +1,6 @@
 {
 	"name": "@thx/mingo-types",
-	"version": "15.0.0",
+	"version": "15.1.1",
 	"description": "Mingo operators for custom types",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -34,8 +34,8 @@
 		}
 	},
 	"dependencies": {
-		"@thx/date": "^15.0.0",
-		"@thx/money": "^15.0.0"
+		"@thx/date": "^15.1.1",
+		"@thx/money": "^15.1.1"
 	},
 	"peerDependencies": {
 		"mingo": "^4.x"

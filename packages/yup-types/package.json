@@ -1,6 +1,6 @@
 {
 	"name": "@thx/yup-types",
-	"version": "15.1.0",
+	"version": "15.1.1",
 	"description": "Custom Yup types",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@js-joda/core": "^4.0.0",
-		"@thx/money": "^15.0.0",
+		"@thx/money": "^15.1.1",
 		"debug": "^4.1.1",
 		"js-money": "^0.6.3",
 		"yup": "^0.32.9"

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.1.1](https://github.com/thr-consulting/thr-addons/compare/v15.1.0...v15.1.1) (2021-12-07)
+
+**Note:** Version bump only for package thr-addons
+
+
+
+
+
 # [15.1.0](https://github.com/thr-consulting/thr-addons/compare/v15.0.0...v15.1.0) (2021-12-06)
 
 
