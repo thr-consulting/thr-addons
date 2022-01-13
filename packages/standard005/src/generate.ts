@@ -1,7 +1,7 @@
 import type {LocalDate} from '@js-joda/core';
 import {numberToHexString} from '@thx/util';
-import type Money from 'js-money';
 import Crc32 from 'crc-32';
+import type Money from 'js-money';
 import type {Institution} from './types';
 
 export function generateDate(date: LocalDate): string {

@@ -34,12 +34,12 @@
 		}
 	},
 	"dependencies": {
-		"js-money": "^0.6.3",
-		"@thx/money": "^15.1.1",
 		"@js-joda/core": "^5.1.0",
-		"lodash": "^4.17.21",
+		"@thx/money": "^15.1.1",
+		"@thx/util": "^15.1.1",
 		"crc-32": "^1.2.0",
-		"@thx/util": "^15.1.1"
+		"js-money": "^0.6.3",
+		"lodash": "^4.17.21"
 	},
 	"engines": {
 		"node": ">=14"

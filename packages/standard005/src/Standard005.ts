@@ -1,10 +1,10 @@
-import type {Currency, CurrencyString} from 'js-money';
 import {LocalDate} from '@js-joda/core';
+import type {Currency, CurrencyString} from 'js-money';
 import Money from 'js-money';
 import chunk from 'lodash/chunk';
+import {filler, generateAmount, generateCrossRef, generateDate, generateInstitution, generateNumber, generateString} from './generate';
 import type {Originator, Receive, Returns, Send} from './types';
 import {verifyCurrency, verifyInteger, verifyOriginator, verifyReceive, verifyReturns, verifySend, verifyStringExact} from './verify';
-import {filler, generateAmount, generateCrossRef, generateDate, generateInstitution, generateNumber, generateString} from './generate';
 
 interface Standard005Constructor {
 	currency: Currency | CurrencyString;
