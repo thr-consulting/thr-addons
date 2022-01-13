@@ -1,0 +1,50 @@
+{
+	"name": "@thx/standard005",
+	"version": "15.1.1",
+	"description": "Create Standard 005 files",
+	"bugs": {
+		"url": "https://github.com/thr-consulting/thr-addons/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thr-consulting/thr-addons.git"
+	},
+	"license": "MIT",
+	"author": "Mike Kornelson <darkadept@durbn.net>",
+	"main": "index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist",
+		"index.js"
+	],
+	"scripts": {
+		"build": "thx build",
+		"clean": "thx clean",
+		"deps": "thx deps",
+		"lint": "thx lint",
+		"lint:fix": "thx lint:fix",
+		"sort": "thx sort",
+		"test": "thx test",
+		"test:watch": "thx test:watch",
+		"ts": "thx ts"
+	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "./tsconfig-eslint.json"
+		}
+	},
+	"dependencies": {
+		"js-money": "^0.6.3",
+		"@thx/money": "^15.1.1",
+		"@js-joda/core": "^5.1.0",
+		"lodash": "^4.17.21",
+		"crc-32": "^1.2.0",
+		"@thx/util": "^15.1.1"
+	},
+	"engines": {
+		"node": ">=14"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

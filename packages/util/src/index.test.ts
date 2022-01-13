@@ -1,4 +1,5 @@
-import {ExcludeFalse, valuesToFunctions} from './index';
+import {valuesToFunctions} from './index';
+import type {ExcludeFalse} from './types';
 
 describe('ExcludeFalse', () => {
 	it('should exclude false values', () => {
