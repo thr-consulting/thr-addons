@@ -36,6 +36,7 @@ export function ScriptelInput(props: ScriptelInputProps) {
 				onChange();
 			}
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ctx]);
 
 	if (enterSignature) {

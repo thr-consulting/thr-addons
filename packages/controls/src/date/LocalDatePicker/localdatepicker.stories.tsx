@@ -1,6 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {LocalDate} from '@js-joda/core';
 import {useArgs} from '@storybook/client-api';
-/* eslint-disable react-hooks/rules-of-hooks */
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
 import React from 'react';

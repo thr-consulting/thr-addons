@@ -26,7 +26,7 @@ const options = [
 	{key: 'b', text: 'The Letter B', value: 'b'},
 ];
 
-export const Main = () => {
+export function Main() {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
@@ -111,7 +111,7 @@ export const Main = () => {
 			}}
 		</TForm>
 	);
-};
+}
 Main.args = {
 	value: undefined,
 };

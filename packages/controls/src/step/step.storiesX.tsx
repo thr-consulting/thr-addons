@@ -8,7 +8,7 @@ const d = debug('thx.controls.step.step.storiesX');
 
 export default {title: 'Inputs/Step'};
 
-const StepOne = ({onSubmit, values: propValues}) => {
+function StepOne({onSubmit, values: propValues}) {
 	return (
 		<TForm initialValues={propValues} onSubmit={onSubmit}>
 			{({handleSubmit, setFieldValue, values}) => {
@@ -25,9 +25,9 @@ const StepOne = ({onSubmit, values: propValues}) => {
 			}}
 		</TForm>
 	);
-};
+}
 
-const StepTwo = ({onSubmit}) => {
+function StepTwo({onSubmit}) {
 	return (
 		<Form onSubmit={onSubmit}>
 			<Form.Input label="Name" />
@@ -36,9 +36,9 @@ const StepTwo = ({onSubmit}) => {
 			</Button>
 		</Form>
 	);
-};
+}
 
-export const FormStep = () => {
+export function FormStep() {
 	const [vertical, setVertical] = useState(false);
 	return (
 		<Container>
@@ -54,4 +54,4 @@ export const FormStep = () => {
 			</Segment>
 		</Container>
 	);
-};
+}

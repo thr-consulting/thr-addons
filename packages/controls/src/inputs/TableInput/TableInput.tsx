@@ -100,38 +100,36 @@ function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps
 	) : null;
 
 	return (
-		<>
-			<Table {...{...getTableProps(), ...getTableProps(tableProps)}}>
-				<Table.Header>
-					{headerGroups.map(headerGroup => (
-						<Table.Row {...{...headerGroup.getHeaderGroupProps(), ...headerGroup.getHeaderGroupProps(headerRowProps)}}>
-							{headerGroup.headers.map(column => (
-								<Table.HeaderCell {...{...column.getHeaderProps(), ...column.getHeaderProps(headerCellProps)}}>
-									{column.render('Header')}
-								</Table.HeaderCell>
+		<Table {...{...getTableProps(), ...getTableProps(tableProps)}}>
+			<Table.Header>
+				{headerGroups.map(headerGroup => (
+					<Table.Row {...{...headerGroup.getHeaderGroupProps(), ...headerGroup.getHeaderGroupProps(headerRowProps)}}>
+						{headerGroup.headers.map(column => (
+							<Table.HeaderCell {...{...column.getHeaderProps(), ...column.getHeaderProps(headerCellProps)}}>
+								{column.render('Header')}
+							</Table.HeaderCell>
+						))}
+					</Table.Row>
+				))}
+			</Table.Header>
+			<Table.Body {...{...getTableBodyProps(), ...getTableBodyProps(bodyProps)}}>
+				{rows.map(row => {
+					prepareRow(row);
+					return (
+						<Table.Row
+							{...{...row.getRowProps(), ...row.getRowProps(rowProps)}}
+							onMouseEnter={() => setHoverRow(row.id)}
+							onMouseLeave={() => setHoverRow('')}
+						>
+							{row.cells.map(cell => (
+								<Table.Cell {...{...cell.getCellProps(), ...cell.getCellProps(cellProps)}}>{cell.render('Cell', {hoverRow})}</Table.Cell>
 							))}
 						</Table.Row>
-					))}
-				</Table.Header>
-				<Table.Body {...{...getTableBodyProps(), ...getTableBodyProps(bodyProps)}}>
-					{rows.map(row => {
-						prepareRow(row);
-						return (
-							<Table.Row
-								{...{...row.getRowProps(), ...row.getRowProps(rowProps)}}
-								onMouseEnter={() => setHoverRow(row.id)}
-								onMouseLeave={() => setHoverRow('')}
-							>
-								{row.cells.map(cell => (
-									<Table.Cell {...{...cell.getCellProps(), ...cell.getCellProps(cellProps)}}>{cell.render('Cell', {hoverRow})}</Table.Cell>
-								))}
-							</Table.Row>
-						);
-					})}
-				</Table.Body>
-				{footer}
-			</Table>
-		</>
+					);
+				})}
+			</Table.Body>
+			{footer}
+		</Table>
 	);
 }
 

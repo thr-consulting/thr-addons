@@ -1,5 +1,5 @@
 import {useArgs} from '@storybook/client-api';
-import type {ComponentStory, Meta} from '@storybook/react';
+import type {Meta} from '@storybook/react';
 import React from 'react';
 import {MaskedDateInput, MaskedDateInputValue} from './MaskedDateInput';
 
@@ -11,7 +11,7 @@ export default {
 	},
 } as Meta;
 
-export const Main: ComponentStory<typeof MaskedDateInput> = ({...args}) => {
+export function Main({...args}) {
 	const [, updateArgs] = useArgs();
 
 	return (
@@ -23,7 +23,8 @@ export const Main: ComponentStory<typeof MaskedDateInput> = ({...args}) => {
 			}}
 		/>
 	);
-};
+}
+
 Main.args = {
 	value: '',
 };

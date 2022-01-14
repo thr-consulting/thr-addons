@@ -1,5 +1,5 @@
 import debug from 'debug';
-import React, {useState, Children} from 'react';
+import React, {Children, useMemo, useState} from 'react';
 import {Prompt} from 'react-router-dom';
 import {Grid, Step as SemanticStep} from 'semantic-ui-react';
 import {FormStep} from './FormStep';
@@ -42,20 +42,25 @@ export function StepProvider(props: StepProviderProps) {
 
 	const onNavigate = () => 'Are you sure you want to end this process? All the entered data will be lost!';
 
-	const handleSubmit = (values: any, stepKey: string) => {
-		if (currentStep + 1 === children?.length) {
-			setState({...state, [stepKey]: values});
-			setIsSubmitting(true);
-			props.onSubmit({...state, [stepKey]: values});
-		} else {
-			setState({...state, [stepKey]: values});
-			setCurrentStep(currentStep + 1);
-		}
-	};
+	const valueProps = useMemo(() => {
+		return {
+			state,
+			handleSubmit: (values: any, stepKey: string) => {
+				if (currentStep + 1 === children?.length) {
+					setState({...state, [stepKey]: values});
+					setIsSubmitting(true);
+					props.onSubmit({...state, [stepKey]: values});
+				} else {
+					setState({...state, [stepKey]: values});
+					setCurrentStep(currentStep + 1);
+				}
+			},
+		};
+	}, [children?.length, currentStep, props, state]);
 
 	if (props.vertical) {
 		return (
-			<StepContext.Provider value={{state, handleSubmit}}>
+			<StepContext.Provider value={valueProps}>
 				{props.warnOnReroute && <Prompt message={onNavigate} when={!isSubmitting} />}
 				<Grid divided stackable>
 					<Grid.Row>
@@ -86,7 +91,7 @@ export function StepProvider(props: StepProviderProps) {
 	}
 
 	return (
-		<StepContext.Provider value={{state, handleSubmit}}>
+		<StepContext.Provider value={valueProps}>
 			{props.warnOnReroute && <Prompt message={onNavigate} />}
 			<SemanticStep.Group ordered size="mini">
 				{titles?.map((title, index) => {

@@ -65,7 +65,7 @@ function AddressForm<T extends AddressFormType>(props: TFormProps<T>) {
 	);
 }
 
-export const AddressCreateForm = (args: {onSubmit: (value: any) => any}) => {
+export function AddressCreateForm(args: {onSubmit: (value: any) => any}) {
 	const [, updateArgs] = useArgs();
 
 	const tform = useTForm<AddressFormType>({
@@ -77,13 +77,13 @@ export const AddressCreateForm = (args: {onSubmit: (value: any) => any}) => {
 	});
 
 	return <AddressForm {...tform} />;
-};
+}
 AddressCreateForm.args = {
 	enableReinitialize: false,
 	loading: false,
 };
 
-export const AddressEditForm = (args: TFormConfig<AddressEditFormType>) => {
+export function AddressEditForm(args: TFormConfig<AddressEditFormType>) {
 	const [, updateArgs] = useArgs();
 
 	const tform = useTForm<AddressEditFormType>({
@@ -96,7 +96,7 @@ export const AddressEditForm = (args: TFormConfig<AddressEditFormType>) => {
 	});
 
 	return <AddressForm {...tform} />;
-};
+}
 AddressEditForm.args = {
 	enableReinitialize: false,
 	loading: false,

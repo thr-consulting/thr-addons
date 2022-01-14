@@ -39,12 +39,12 @@ class GelfTransport extends Transport {
 			case 'notice':
 				this.logger.notice(message, meta);
 				break;
+			case 'debug':
+				this.logger.debug(message, meta);
+				break;
 			case 'info':
 			default:
 				this.logger.info(message, meta);
-				break;
-			case 'debug':
-				this.logger.debug(message, meta);
 				break;
 		}
 
