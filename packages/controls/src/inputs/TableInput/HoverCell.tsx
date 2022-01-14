@@ -1,5 +1,4 @@
 import debug from 'debug';
-import React from 'react';
 import type {CellProps, Renderer} from 'react-table';
 
 const d = debug('thx.controls.inputs.TableInput.HoverCell');

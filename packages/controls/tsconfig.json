@@ -3,7 +3,7 @@
 	"compilerOptions": {
 		"declarationDir": "dist",
 		"lib": ["esnext", "dom"],
-		"jsx": "react"
+		"jsx": "react-jsx"
 	},
 	"include": [
 		"src/index.ts",

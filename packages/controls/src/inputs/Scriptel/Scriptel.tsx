@@ -1,5 +1,5 @@
 import debug from 'debug';
-import React, {useEffect, useRef, useState} from 'react';
+import {useEffect, useMemo, useRef, useState} from 'react';
 import {ScriptelContext} from './ScriptelContext';
 import {ScriptelSocket} from './scriptel';
 import type {ScriptelPenStyle} from './scriptel/enums';
@@ -55,5 +55,9 @@ export function Scriptel({omniscriptUrl, imageType, scale, crop, penStyle, child
 		};
 	}, [omniscriptUrl, imageType, scale, crop, penStyle]);
 
-	return <ScriptelContext.Provider value={{socket, renderImage: render, loading, isSigning}}>{children}</ScriptelContext.Provider>;
+	const scriptel = useMemo(() => {
+		return {socket, renderImage: render, loading, isSigning};
+	}, [isSigning, loading, render]);
+
+	return <ScriptelContext.Provider value={scriptel}>{children}</ScriptelContext.Provider>;
 }

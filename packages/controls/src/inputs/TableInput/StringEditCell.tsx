@@ -1,5 +1,5 @@
 import debug from 'debug';
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Input, InputProps} from 'semantic-ui-react';
 import type {TableCellProps} from './TableInput';
 import type {AddRowOnTabIf} from './addRowOnTab';

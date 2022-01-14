@@ -1,6 +1,5 @@
 import {formatMoney} from '@thx/money';
 import type Money from 'js-money';
-import React from 'react';
 import type {CellProps} from 'react-table';
 
 interface MoneyCellOptions<D extends Record<string, unknown>> {
