@@ -1,5 +1,5 @@
 import debug from 'debug';
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Button, Container, Form, Radio, Segment} from 'semantic-ui-react';
 import {TForm} from '../form/TForm';
 import {FormStep as CFormStep, StepProvider} from './index';

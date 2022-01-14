@@ -3,7 +3,7 @@ import {FormikValues, useFormik, FormikErrors, FormikTouched} from 'formik';
 import get from 'lodash/get';
 import property from 'lodash/property';
 import uniq from 'lodash/uniq';
-import React, {useEffect, useState} from 'react';
+import {FormEvent, useEffect, useState} from 'react';
 import {Message, Segment} from 'semantic-ui-react';
 import type {TFormConfig} from './types';
 
@@ -97,7 +97,7 @@ export function useTForm<Values extends FormikValues = FormikValues, InitialValu
 	}
 
 	// Handles the form submit
-	function handleSubmit(e?: React.FormEvent<HTMLFormElement>) {
+	function handleSubmit(e?: FormEvent<HTMLFormElement>) {
 		setErrorCleared(false);
 		formik.handleSubmit(e);
 	}

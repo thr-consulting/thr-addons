@@ -1,7 +1,7 @@
 import {useArgs} from '@storybook/client-api';
 import type {Meta} from '@storybook/react';
 import debug from 'debug';
-import React, {useRef, useState} from 'react';
+import {useRef, useState} from 'react';
 import {Button, ButtonGroup, Form, Segment} from 'semantic-ui-react';
 import {object, string} from 'yup';
 import {TForm} from './TForm';

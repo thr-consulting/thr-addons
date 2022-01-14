@@ -1,7 +1,6 @@
 import {useArgs} from '@storybook/client-api';
 import type {Meta} from '@storybook/react';
 import debug from 'debug';
-import React from 'react';
 import {Form, Input} from 'semantic-ui-react';
 import {number, object, string} from 'yup';
 import type {TFormConfig, TFormProps} from './types';

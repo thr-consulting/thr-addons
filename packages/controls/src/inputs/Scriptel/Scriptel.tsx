@@ -1,5 +1,5 @@
 import debug from 'debug';
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import {useEffect, useMemo, useRef, useState} from 'react';
 import {ScriptelContext} from './ScriptelContext';
 import {ScriptelSocket} from './scriptel';
 import type {ScriptelPenStyle} from './scriptel/enums';

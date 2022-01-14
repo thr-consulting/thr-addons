@@ -2,7 +2,7 @@ import {useArgs} from '@storybook/client-api';
 import {toMoney} from '@thx/money';
 import debug from 'debug';
 import type Money from 'js-money';
-import React, {useMemo} from 'react';
+import {useMemo} from 'react';
 import type {Column} from 'react-table';
 import {TForm} from '../../form/TForm';
 import {DropdownCell} from './DropdownCell';

@@ -1,5 +1,5 @@
 import debug from 'debug';
-import React, {Children, useMemo, useState} from 'react';
+import {cloneElement, Children, useMemo, useState} from 'react';
 import {Prompt} from 'react-router-dom';
 import {Grid, Step as SemanticStep} from 'semantic-ui-react';
 import {FormStep} from './FormStep';
@@ -32,11 +32,11 @@ export function StepProvider(props: StepProviderProps) {
 		if (child.props.hidden) {
 			if (typeof child.props.hidden === 'function' && !child.props.hidden(state, index)) {
 				titles.push(child?.props?.title || '');
-				children.push(React.cloneElement(child, {step: index, key: child?.key || index.toString()}));
+				children.push(cloneElement(child, {step: index, key: child?.key || index.toString()}));
 			}
 		} else {
 			titles.push(child?.props?.title || '');
-			children.push(React.cloneElement(child, {step: index, key: child?.key || index.toString()}));
+			children.push(cloneElement(child, {step: index, key: child?.key || index.toString()}));
 		}
 	});
 

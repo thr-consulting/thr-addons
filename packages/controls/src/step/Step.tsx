@@ -1,5 +1,4 @@
 import debug from 'debug';
-import React from 'react';
 
 const d = debug('thx.controls.step.Step');
 

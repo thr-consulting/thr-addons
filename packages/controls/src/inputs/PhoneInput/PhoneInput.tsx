@@ -1,5 +1,4 @@
 import debug from 'debug';
-import React from 'react';
 import {MaskedInput, MaskedInputProps} from '../MaskedInput';
 
 const d = debug('thx.controls.inputs.PhoneInput');

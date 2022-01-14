@@ -1,5 +1,4 @@
 import debug from 'debug';
-import React from 'react';
 import {Icon, Button, Dropdown, DropdownItemProps, Segment, SegmentProps} from 'semantic-ui-react';
 
 const d = debug('thx.controls.date.YearSelect');

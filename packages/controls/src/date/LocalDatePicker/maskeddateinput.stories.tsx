@@ -1,6 +1,5 @@
 import {useArgs} from '@storybook/client-api';
 import type {Meta} from '@storybook/react';
-import React from 'react';
 import {MaskedDateInput, MaskedDateInputValue} from './MaskedDateInput';
 
 export default {

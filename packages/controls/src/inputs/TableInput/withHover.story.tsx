@@ -2,7 +2,7 @@ import {useArgs} from '@storybook/client-api';
 import {toMoney} from '@thx/money';
 import debug from 'debug';
 import type Money from 'js-money';
-import React, {useMemo, useState} from 'react';
+import {useMemo, useState, MouseEvent} from 'react';
 import {Button, Grid, Icon, Modal} from 'semantic-ui-react';
 import {TForm} from '../../form/TForm';
 import {DropdownCell} from './DropdownCell';
@@ -116,7 +116,7 @@ export function WithHover() {
 							size="small"
 							dimmer="blurring"
 							open={showDeleteModal}
-							onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.stopPropagation()}
+							onClick={(e: MouseEvent<HTMLButtonElement>) => e.stopPropagation()}
 							onClose={e => e.stopPropagation()}
 						>
 							<Modal.Content>

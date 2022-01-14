@@ -1,4 +1,3 @@
-import React from 'react';
 import {Dropdown} from 'semantic-ui-react';
 import type {DropdownProps} from 'semantic-ui-react';
 import type {TableCellProps} from './TableInput';
