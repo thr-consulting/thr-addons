@@ -135,8 +135,4 @@ export default class SharedCache {
 	async ttl(key: string) {
 		return this.redis.ttl(getRedisKey(this.prefix, key));
 	}
-
-	async quit() {
-		await this.redis.quit();
-	}
 }
