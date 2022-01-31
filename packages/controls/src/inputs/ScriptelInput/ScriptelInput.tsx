@@ -1,6 +1,6 @@
 import type {ScriptelSchemaType} from '@thx/yup-types';
 import debug from 'debug';
-import React, {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {Button, Image} from 'semantic-ui-react';
 import {ScriptelContext} from '../Scriptel/ScriptelContext';
 
@@ -36,6 +36,7 @@ export function ScriptelInput(props: ScriptelInputProps) {
 				onChange();
 			}
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ctx]);
 
 	if (enterSignature) {

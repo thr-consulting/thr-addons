@@ -1,6 +1,6 @@
 import debug from 'debug';
 import type Money from 'js-money';
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {MoneyInput} from '../../money/MoneyInput';
 import type {TableCellProps} from './TableInput';
 import type {AddRowOnTabIf} from './addRowOnTab';

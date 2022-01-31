@@ -34,7 +34,7 @@
 		}
 	},
 	"peerDependencies": {
-		"redis": "^3.x"
+		"redis": "^4.x"
 	},
 	"engines": {
 		"node": ">=14"

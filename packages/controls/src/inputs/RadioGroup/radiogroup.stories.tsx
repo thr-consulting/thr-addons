@@ -1,7 +1,6 @@
 import {useArgs} from '@storybook/client-api';
-import type {ComponentStory, Meta} from '@storybook/react';
+import type {Meta} from '@storybook/react';
 import debug from 'debug';
-import React from 'react';
 import {Radio} from 'semantic-ui-react';
 import {RadioGroup} from './RadioGroup';
 
@@ -16,7 +15,7 @@ export default {
 	},
 } as Meta;
 
-export const Main: ComponentStory<typeof RadioGroup> = args => {
+export function Main(args) {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
@@ -32,12 +31,13 @@ export const Main: ComponentStory<typeof RadioGroup> = args => {
 			<Radio label="Choice B" value="b" />
 		</RadioGroup>
 	);
-};
+}
+
 Main.args = {
 	value: undefined,
 };
 
-export const WithoutRadioGroup: ComponentStory<typeof RadioGroup> = args => {
+export function WithoutRadioGroup(args) {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
@@ -68,7 +68,8 @@ export const WithoutRadioGroup: ComponentStory<typeof RadioGroup> = args => {
 			/>
 		</>
 	);
-};
+}
+
 WithoutRadioGroup.args = {
 	value: undefined,
 };
