@@ -3,17 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [15.3.0](https://github.com/thr-consulting/thr-addons/compare/v15.2.0...v15.3.0) (2022-01-25)
-
-
-### Features
-
-* **sharedcache:** added quit command for redis ([dcca7c0](https://github.com/thr-consulting/thr-addons/commit/dcca7c050d4f91205a3eff5399ee257cc78867eb))
-
-
-
-
-
 # [15.2.0](https://github.com/thr-consulting/thr-addons/compare/v15.1.1...v15.2.0) (2022-01-13)
 
 **Note:** Version bump only for package thr-addons
