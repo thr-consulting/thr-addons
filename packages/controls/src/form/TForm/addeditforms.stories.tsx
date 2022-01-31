@@ -1,6 +1,7 @@
 import {useArgs} from '@storybook/client-api';
 import type {Meta} from '@storybook/react';
 import debug from 'debug';
+import React from 'react';
 import {Form, Input} from 'semantic-ui-react';
 import {number, object, string} from 'yup';
 import type {TFormConfig, TFormProps} from './types';
@@ -64,7 +65,7 @@ function AddressForm<T extends AddressFormType>(props: TFormProps<T>) {
 	);
 }
 
-export function AddressCreateForm(args: {onSubmit: (value: any) => any}) {
+export const AddressCreateForm = (args: {onSubmit: (value: any) => any}) => {
 	const [, updateArgs] = useArgs();
 
 	const tform = useTForm<AddressFormType>({
@@ -76,13 +77,13 @@ export function AddressCreateForm(args: {onSubmit: (value: any) => any}) {
 	});
 
 	return <AddressForm {...tform} />;
-}
+};
 AddressCreateForm.args = {
 	enableReinitialize: false,
 	loading: false,
 };
 
-export function AddressEditForm(args: TFormConfig<AddressEditFormType>) {
+export const AddressEditForm = (args: TFormConfig<AddressEditFormType>) => {
 	const [, updateArgs] = useArgs();
 
 	const tform = useTForm<AddressEditFormType>({
@@ -95,7 +96,7 @@ export function AddressEditForm(args: TFormConfig<AddressEditFormType>) {
 	});
 
 	return <AddressForm {...tform} />;
-}
+};
 AddressEditForm.args = {
 	enableReinitialize: false,
 	loading: false,

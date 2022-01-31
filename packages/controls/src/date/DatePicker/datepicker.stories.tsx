@@ -2,6 +2,7 @@ import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 /* eslint-disable react-hooks/rules-of-hooks */
 import debug from 'debug';
+import React from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import {DatePicker} from './index';
 import './styles.css';

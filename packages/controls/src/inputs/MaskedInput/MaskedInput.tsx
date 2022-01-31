@@ -1,4 +1,5 @@
 import debug from 'debug';
+import React from 'react';
 import {Input, InputProps} from 'semantic-ui-react';
 import {useMaskedInput, UseMaskedInputProps} from './useMaskedInput';
 

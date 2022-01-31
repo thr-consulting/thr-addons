@@ -1,6 +1,6 @@
-import {createContext} from 'react';
+import React from 'react';
 
-export const StepContext = createContext<{handleSubmit: (values: unknown, stepKey: string) => void; state: Record<string, any>}>({
+export const StepContext = React.createContext<{handleSubmit: (values: unknown, stepKey: string) => void; state: Record<string, any>}>({
 	handleSubmit: () => {},
 	state: {},
 });

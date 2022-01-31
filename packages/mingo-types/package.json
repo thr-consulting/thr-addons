@@ -38,7 +38,7 @@
 		"@thx/money": "^15.1.1"
 	},
 	"peerDependencies": {
-		"mingo": "^5.x"
+		"mingo": "^4.x"
 	},
 	"engines": {
 		"node": ">=14"

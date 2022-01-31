@@ -55,7 +55,6 @@ export function useMaskedInput(props: UseMaskedInputProps) {
 			inputElement.current.value = value;
 			onSet && onSet(value);
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [value]);
 
 	return inputElement;

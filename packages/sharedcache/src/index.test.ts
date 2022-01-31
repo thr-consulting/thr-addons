@@ -1,29 +1,6 @@
-import type {RedisClientType, RedisModules, RedisScripts} from 'redis';
 // @ts-ignore
-import redisMock from 'redis-mock';
-import {promisify} from 'util';
+import redis from 'redis-mock';
 import SharedCache from './index';
-
-function createClient() {
-	const mockRedis = redisMock.createClient();
-	return {
-		get: promisify(mockRedis.get).bind(mockRedis),
-		set: async (key: string, value: string, opts?: {EX: number}) => {
-			if (opts) {
-				return promisify(mockRedis.set).bind(mockRedis)(key, value, 'EX', opts.EX);
-			}
-			return promisify(mockRedis.set).bind(mockRedis)(key, value);
-		},
-		exists: promisify(mockRedis.exists).bind(mockRedis),
-		del: promisify(mockRedis.del).bind(mockRedis),
-		hmGet: promisify(mockRedis.hmget).bind(mockRedis),
-		hGet: promisify(mockRedis.hget).bind(mockRedis),
-		hSet: promisify(mockRedis.hset).bind(mockRedis),
-		hDel: promisify(mockRedis.hdel).bind(mockRedis),
-		expire: promisify(mockRedis.expire).bind(mockRedis),
-		ttl: promisify(mockRedis.ttl).bind(mockRedis),
-	} as unknown as RedisClientType<RedisModules, RedisScripts>;
-}
 
 function timeout(seconds: number) {
 	return new Promise(resolve => {
@@ -33,13 +10,13 @@ function timeout(seconds: number) {
 
 describe('SharedCache', () => {
 	it('should construct with defaults', async () => {
-		const client = createClient();
+		const client = redis.createClient();
 		const cache = new SharedCache({redis: client});
 		expect(cache).not.toBeNull();
 	});
 
 	it('should set and get different types of data', async () => {
-		const client = createClient();
+		const client = redis.createClient();
 		const cache = new SharedCache({redis: client});
 
 		await cache.set('null', null);
@@ -60,7 +37,7 @@ describe('SharedCache', () => {
 	});
 
 	it('should use prefixes', async () => {
-		const client = createClient();
+		const client = redis.createClient();
 		const cache = new SharedCache({redis: client, prefix: 'myprefix'});
 
 		await cache.set('key', 'value');
@@ -68,7 +45,7 @@ describe('SharedCache', () => {
 	});
 
 	it('should expire a value by default', async () => {
-		const client = createClient();
+		const client = redis.createClient();
 		const cache = new SharedCache({redis: client, expire: 1});
 
 		await cache.set('key', 'value');
@@ -78,7 +55,7 @@ describe('SharedCache', () => {
 	});
 
 	it('should expire a value', async () => {
-		const client = createClient();
+		const client = redis.createClient();
 		const cache = new SharedCache({redis: client});
 
 		await cache.set('key', 'value', 1);
@@ -88,7 +65,7 @@ describe('SharedCache', () => {
 	});
 
 	it('should check if a key exists', async () => {
-		const client = createClient();
+		const client = redis.createClient();
 		const cache = new SharedCache({redis: client, expire: 1});
 
 		await cache.set('key', 'value');
@@ -96,7 +73,7 @@ describe('SharedCache', () => {
 	});
 
 	it('should clear a key from the store', async () => {
-		const client = createClient();
+		const client = redis.createClient();
 		const cache = new SharedCache({redis: client, expire: 1});
 
 		await cache.set('key', 'value');

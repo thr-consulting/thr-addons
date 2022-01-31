@@ -2,7 +2,7 @@ import {toMoney} from '@thx/money';
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import debug from 'debug';
 import Money, {Currency, MoneyObject} from 'js-money';
-import {useCallback} from 'react';
+import React, {useCallback} from 'react';
 import {Input, InputProps} from 'semantic-ui-react';
 import {useMoneyInput} from '../useMoneyInput';
 

@@ -2,7 +2,7 @@ import {useArgs} from '@storybook/client-api';
 import {toMoney} from '@thx/money';
 import debug from 'debug';
 import type Money from 'js-money';
-import {useMemo, useState, MouseEvent} from 'react';
+import React, {useMemo, useState} from 'react';
 import {Button, Grid, Icon, Modal} from 'semantic-ui-react';
 import {TForm} from '../../form/TForm';
 import {DropdownCell} from './DropdownCell';
@@ -27,15 +27,7 @@ const options = [
 	{key: 'b', text: 'The Letter B', value: 'b'},
 ];
 
-function RightHeader({title}: {title: string}) {
-	return <div style={{textAlign: 'right'}}>{title}</div>;
-}
-
-function TrashIcon({onClick}: {onClick: () => void}) {
-	return <Icon name="trash alternate" color="red" style={{cursor: 'pointer'}} onClick={onClick} />;
-}
-
-export function WithHover() {
+export const WithHover = () => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
@@ -58,13 +50,13 @@ export function WithHover() {
 				Cell: StringEditCell(),
 			},
 			{
-				Header: <RightHeader title="Amount" />,
+				Header: () => <div style={{textAlign: 'right'}}>Amount</div>,
 				accessor: 'amount',
 				Cell: MoneyEditCell(),
 				Footer: MoneySumFooter<JournalLine>({id: 'amount'}),
 			},
 			{
-				Header: <RightHeader title="GST" />,
+				Header: () => <div style={{textAlign: 'right'}}>GST</div>,
 				accessor: 'gst',
 				Cell: MoneyEditCell<JournalLine>({
 					addRowOnTabIf: (p, newValue) => !p.row.values.amount.isZero() || !newValue.isZero(),
@@ -72,7 +64,7 @@ export function WithHover() {
 				Footer: MoneySumFooter<JournalLine>({id: 'gst'}),
 			},
 			{
-				Header: <RightHeader title="Total" />,
+				Header: () => <div style={{textAlign: 'right'}}>Total</div>,
 				accessor: 'total',
 				Cell: MoneyCell({
 					overrideValue: ({
@@ -84,10 +76,10 @@ export function WithHover() {
 			},
 			{
 				Cell: HoverCell({
-					Action: <TrashIcon onClick={() => setShowDeleteModal(true)} />,
+					Action: () => <Icon name="trash alternate" color="red" style={{cursor: 'pointer'}} onClick={() => setShowDeleteModal(true)} />,
 				}),
 				accessor: 'action',
-				Header: <RightHeader title="Action" />,
+				Header: () => <div style={{textAlign: 'right'}}>Action</div>,
 			},
 		],
 		[],
@@ -116,7 +108,7 @@ export function WithHover() {
 							size="small"
 							dimmer="blurring"
 							open={showDeleteModal}
-							onClick={(e: MouseEvent<HTMLButtonElement>) => e.stopPropagation()}
+							onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.stopPropagation()}
 							onClose={e => e.stopPropagation()}
 						>
 							<Modal.Content>
@@ -178,7 +170,7 @@ export function WithHover() {
 			}}
 		</TForm>
 	);
-}
+};
 WithHover.args = {
 	value: undefined,
 };

@@ -3,7 +3,7 @@ import {FormikValues, useFormik, FormikErrors, FormikTouched} from 'formik';
 import get from 'lodash/get';
 import property from 'lodash/property';
 import uniq from 'lodash/uniq';
-import {FormEvent, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Message, Segment} from 'semantic-ui-react';
 import type {TFormConfig} from './types';
 
@@ -14,19 +14,16 @@ export function useTForm<Values extends FormikValues = FormikValues, InitialValu
 
 	useEffect(() => {
 		if (config.onValidate) config.onValidate(formik.isValid);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [formik.isValid, config.onValidate]);
 
 	// Get submit function
 	useEffect(() => {
 		if (config.getSubmitFn) config.getSubmitFn(formik.submitForm);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [formik.submitForm, config.getSubmitFn]);
 
 	// On change event (if this ends up changing values it will cycle)
 	useEffect(() => {
 		if (config.onChange) config.onChange(formik.values);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [formik.values]);
 
 	// Mark the error cleared if the form has been edited after an error
@@ -35,7 +32,6 @@ export function useTForm<Values extends FormikValues = FormikValues, InitialValu
 		if (config.error && config.error.message && !formik.isSubmitting) {
 			setErrorCleared(true);
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [formik.values, config.error]);
 
 	// Flatten the warnings (formik errors) and touch objects.
@@ -97,7 +93,7 @@ export function useTForm<Values extends FormikValues = FormikValues, InitialValu
 	}
 
 	// Handles the form submit
-	function handleSubmit(e?: FormEvent<HTMLFormElement>) {
+	function handleSubmit(e?: React.FormEvent<HTMLFormElement>) {
 		setErrorCleared(false);
 		formik.handleSubmit(e);
 	}

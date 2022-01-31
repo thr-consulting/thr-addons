@@ -2,6 +2,7 @@ import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
 import Money from 'js-money';
+import React from 'react';
 import {MoneyInput} from './MoneyInput';
 
 const d = debug('thx.controls.money.MoneyInput.moneyinput.stories');

@@ -67,7 +67,6 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 				maskInstance.current = null;
 			}
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currencyCode, prefix, showPrefix, wholeNumber]);
 
 	const setVal = useCallback<SetValueFn>(

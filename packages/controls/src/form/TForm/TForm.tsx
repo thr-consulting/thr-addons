@@ -1,6 +1,6 @@
 import debug from 'debug';
 import {FormikValues, isFunction, FormikProvider, isEmptyChildren} from 'formik';
-import * as React from 'react';
+import React from 'react';
 import type {TFormConfig, TFormProps} from './types';
 import {useTForm} from './useTForm';
 

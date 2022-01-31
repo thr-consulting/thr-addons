@@ -1,7 +1,7 @@
 import {useArgs} from '@storybook/client-api';
-import type {Meta} from '@storybook/react';
+import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
-import {useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Button, ButtonGroup, Form, Segment} from 'semantic-ui-react';
 import {object, string} from 'yup';
 import {TForm} from './TForm';
@@ -62,7 +62,7 @@ function MyForm(props: TFormProps<FormType>) {
 	);
 }
 
-export function Main(args) {
+export const Main: ComponentStory<any> = args => {
 	const [, updateArgs] = useArgs();
 
 	return (
@@ -77,8 +77,7 @@ export function Main(args) {
 			{props => <MyForm {...props} />}
 		</TForm>
 	);
-}
-
+};
 Main.args = {
 	enableReinitialize: false,
 	loading: false,
@@ -100,7 +99,7 @@ const sampleGraphqlError: (ApolloError | undefined)[] = [
 	},
 ];
 
-export function WithError(args) {
+export const WithError: ComponentStory<any> = args => {
 	const [, updateArgs] = useArgs();
 	const [graphqlError, setGraphqlError] = useState(0);
 
@@ -160,14 +159,13 @@ export function WithError(args) {
 			</Segment>
 		</>
 	);
-}
-
+};
 WithError.args = {
 	...Main.args,
 	error: undefined,
 };
 
-export function UsingHooks(args) {
+export const UsingHooks: ComponentStory<any> = args => {
 	const [, updateArgs] = useArgs();
 
 	const props = useTForm<FormType>({
@@ -184,13 +182,12 @@ export function UsingHooks(args) {
 	});
 
 	return <MyForm {...props} />;
-}
-
+};
 UsingHooks.args = {
 	...Main.args,
 };
 
-export function OutsideSubmit(args) {
+export const OutsideSubmit: ComponentStory<any> = args => {
 	const [, updateArgs] = useArgs();
 	const formSubmitFn = useRef<() => Promise<void>>();
 
@@ -214,8 +211,7 @@ export function OutsideSubmit(args) {
 			</Segment>
 		</>
 	);
-}
-
+};
 OutsideSubmit.args = {
 	...Main.args,
 };

@@ -1,5 +1,5 @@
 import debug from 'debug';
-import {cloneElement, Children} from 'react';
+import React, {Children} from 'react';
 import {useStep} from './useStep';
 
 const d = debug('thx.controls.step.FormStep');
@@ -15,7 +15,7 @@ export function FormStep(props: FormStepProps) {
 	const [state, handleSubmit] = useStep();
 	const values = state[props.stepKey] || {};
 
-	const form = cloneElement(Children.only(props.children), {
+	const form = React.cloneElement(Children.only(props.children), {
 		values: values || {},
 		onSubmit: (vals: unknown) => handleSubmit(vals, props.stepKey),
 	});

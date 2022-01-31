@@ -1,5 +1,5 @@
 import debug from 'debug';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {Button, Container, Form, Radio, Segment} from 'semantic-ui-react';
 import {TForm} from '../form/TForm';
 import {FormStep as CFormStep, StepProvider} from './index';
@@ -8,7 +8,7 @@ const d = debug('thx.controls.step.step.storiesX');
 
 export default {title: 'Inputs/Step'};
 
-function StepOne({onSubmit, values: propValues}) {
+const StepOne = ({onSubmit, values: propValues}) => {
 	return (
 		<TForm initialValues={propValues} onSubmit={onSubmit}>
 			{({handleSubmit, setFieldValue, values}) => {
@@ -25,9 +25,9 @@ function StepOne({onSubmit, values: propValues}) {
 			}}
 		</TForm>
 	);
-}
+};
 
-function StepTwo({onSubmit}) {
+const StepTwo = ({onSubmit}) => {
 	return (
 		<Form onSubmit={onSubmit}>
 			<Form.Input label="Name" />
@@ -36,9 +36,9 @@ function StepTwo({onSubmit}) {
 			</Button>
 		</Form>
 	);
-}
+};
 
-export function FormStep() {
+export const FormStep = () => {
 	const [vertical, setVertical] = useState(false);
 	return (
 		<Container>
@@ -54,4 +54,4 @@ export function FormStep() {
 			</Segment>
 		</Container>
 	);
-}
+};

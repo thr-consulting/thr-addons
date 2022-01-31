@@ -1,7 +1,7 @@
 import creditCardType from 'credit-card-type';
 import debug from 'debug';
 import {validate} from 'luhn';
-import {useCallback, useMemo, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import {Icon, Input, InputProps, SemanticICONS, SemanticCOLORS} from 'semantic-ui-react';
 import type {MaskedInputProps} from '../MaskedInput';
 import {useMaskedInput} from '../MaskedInput/useMaskedInput';

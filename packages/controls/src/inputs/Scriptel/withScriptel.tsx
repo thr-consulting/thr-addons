@@ -1,3 +1,4 @@
+import React from 'react';
 import {Scriptel, ScriptelProps} from './Scriptel';
 
 /**
@@ -7,11 +8,9 @@ import {Scriptel, ScriptelProps} from './Scriptel';
  * @return {Object}
  */
 export function withScriptel(WrappedComponent: any, scriptelProps: ScriptelProps) {
-	return function withScriptelHoC(props: any) {
-		return (
-			<Scriptel {...scriptelProps}>
-				<WrappedComponent {...props} />
-			</Scriptel>
-		);
-	};
+	return (props: any) => (
+		<Scriptel {...scriptelProps}>
+			<WrappedComponent {...props} />
+		</Scriptel>
+	);
 }
