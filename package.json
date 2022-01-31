@@ -21,6 +21,7 @@
     "ci": "thx ci",
     "clean": "thx clean",
     "coverage": "coverage -p packages -i tools -c docs/assets/coverage",
+    "deduplicate": "npx yarn-deduplicate",
     "deps": "thx deps",
     "docs": "thx docs",
     "docs:md": "thx docs:md",
