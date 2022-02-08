@@ -22,42 +22,43 @@
 		"thx_organize": "./bin/organize.sh",
 		"watchtower": "./bin/watchtower.sh"
 	},
+	"type": "module",
 	"files": [
 		"bin",
 		"files"
 	],
 	"dependencies": {
-		"@babel/preset-env": "^7.15.6",
+		"@babel/preset-env": "^7.16.11",
 		"@graphql-codegen/add": "^3.1.1",
-		"@graphql-codegen/cli": "^2.3.1",
-		"@graphql-codegen/import-types-preset": "^2.1.9",
-		"@graphql-codegen/near-operation-file-preset": "^2.2.3",
+		"@graphql-codegen/cli": "^2.5.0",
+		"@graphql-codegen/import-types-preset": "^2.1.10",
+		"@graphql-codegen/near-operation-file-preset": "^2.2.4",
 		"@graphql-codegen/time": "^3.1.1",
-		"@graphql-codegen/typescript": "^2.4.2",
-		"@graphql-codegen/typescript-operations": "^2.2.2",
-		"@graphql-codegen/typescript-react-apollo": "^3.2.4",
-		"@graphql-codegen/typescript-resolvers": "^2.4.3",
+		"@graphql-codegen/typescript": "^2.4.3",
+		"@graphql-codegen/typescript-operations": "^2.2.4",
+		"@graphql-codegen/typescript-react-apollo": "^3.2.5",
+		"@graphql-codegen/typescript-resolvers": "^2.5.0",
 		"@thx/common-webpack": "^15.1.1",
 		"@thx/graphql-typescript-scalar-type-policies": "^2.0.0",
-		"@types/jscodeshift": "^0.11.2",
-		"babel-jest": "^27.3.1",
+		"@types/jscodeshift": "^0.11.3",
+		"babel-jest": "^27.5.0",
 		"coverbadge": "^0.5.5",
-		"debug": "^4.3.2",
-		"depcheck": "^1.4.2",
+		"debug": "^4.3.3",
+		"depcheck": "^1.4.3",
 		"find-up": "^5.0.0",
-		"graphql": "^16.2.0",
-		"graphql-tag": "^2.11.0",
-		"jscodeshift": "^0.13.0",
+		"graphql": "^16.3.0",
+		"graphql-tag": "^2.12.6",
+		"jscodeshift": "^0.13.1",
 		"lodash": "^4.17.21",
 		"rimraf": "^3.0.2",
-		"sort-package-json": "^1.52.0",
+		"sort-package-json": "^1.54.0",
 		"yaml": "^1.10.2"
 	},
 	"peerDependencies": {
 		"jest": "27.x"
 	},
 	"engines": {
-		"node": ">=14"
+		"node": ">=16"
 	},
 	"publishConfig": {
 		"access": "public"

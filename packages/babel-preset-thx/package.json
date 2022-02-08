@@ -1,0 +1,57 @@
+{
+	"name": "@thx/babel-preset-thx",
+	"version": "16.0.0-alpha.0",
+	"description": "Babel preset",
+	"license": "MIT",
+	"type": "module",
+	"files": [
+		"index.js",
+		"create.js",
+		"dependencies.js",
+		"dev.js",
+		"prod.js"
+	],
+	"scripts": {
+		"clean": "thx clean",
+		"lint": "eslint '*.js'",
+		"lint:fix": "eslint --cache --fix '*.js'",
+		"sort": "thx sort",
+		"test": "thx test",
+		"test:watch": "thx test:watch"
+	},
+	"dependencies": {
+		"@babel/core": "^7.17.0",
+		"@babel/plugin-proposal-class-properties": "^7.16.7",
+		"@babel/plugin-proposal-decorators": "^7.17.0",
+		"@babel/plugin-proposal-do-expressions": "^7.16.7",
+		"@babel/plugin-proposal-object-rest-spread": "^7.16.7",
+		"@babel/plugin-proposal-optional-chaining": "^7.16.7",
+		"@babel/plugin-syntax-dynamic-import": "^7.8.3",
+		"@babel/plugin-syntax-object-rest-spread": "^7.8.3",
+		"@babel/plugin-transform-classes": "^7.16.7",
+		"@babel/plugin-transform-destructuring": "^7.16.7",
+		"@babel/plugin-transform-react-constant-elements": "^7.16.7",
+		"@babel/plugin-transform-react-display-name": "^7.16.7",
+		"@babel/plugin-transform-react-jsx": "^7.16.7",
+		"@babel/plugin-transform-regenerator": "^7.16.7",
+		"@babel/plugin-transform-runtime": "^7.17.0",
+		"@babel/preset-env": "^7.16.11",
+		"@babel/preset-react": "^7.16.7",
+		"@babel/preset-typescript": "^7.16.7",
+		"babel-jest": "^27.5.0",
+		"babel-plugin-add-import-extension": "^1.6.0",
+		"babel-plugin-inline-import": "^3.0.0",
+		"babel-plugin-macros": "^3.1.0",
+		"babel-plugin-module-resolver": "^4.1.0",
+		"babel-plugin-transform-default-named-imports": "^1.2.2",
+		"babel-plugin-transform-dynamic-import": "^2.1.0",
+		"babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+		"babel-plugin-transform-typescript-metadata": "^0.3.2"
+	},
+	"engines": {
+		"node": ">=16"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
