@@ -88,11 +88,13 @@ do
   fi
 
   # Generate coverage info
-  "${BINDIR:?}/jest" --coverage --silent --collectCoverageFrom="<rootDir>/src/**/*.[jt]s" --coverageDirectory="${COVERAGE_DIR}/${PKGBASE}" --passWithNoTests
+  yarn -s test --coverage --silent --collectCoverageFrom="<rootDir>/src/**/*.[jt]s" --coverageDirectory="${COVERAGE_DIR}/${PKGBASE}" --passWithNoTests
+  # node --experimental-vm-modules "${BINDIR:?}/jest" --coverage --silent --collectCoverageFrom="<rootDir>/src/**/*.[jt]s" --coverageDirectory="${COVERAGE_DIR}/${PKGBASE}" --passWithNoTests
 
   # Generate coverage badge
   LCOV="${COVERAGE_DIR:?}/$PKGBASE/lcov.info"
   if [ -f "$LCOV" ]; then
+    printf "${COVERAGE_DIR:?} / ${PKGBASE}"
     cat "$LCOV" | "$BINDIR"/coverbadge -o "${COVERAGE_DIR:?}/$PKGBASE/coverage.svg"
   fi
 done

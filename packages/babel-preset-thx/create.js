@@ -1,38 +1,14 @@
 /* eslint-disable no-param-reassign, func-names, global-require, no-var, vars-on-top, prefer-template, operator-linebreak, no-unused-vars */
-
-const validateBoolOption = (name, value, defaultValue) => {
-	if (typeof value === 'undefined') {
-		value = defaultValue;
-	}
-	if (typeof value !== 'boolean') {
-		throw new Error(`Preset imperium: '${name}' option must be a boolean.`);
-	}
-	return value;
-};
-
-const validateStringOption = (name, value, defaultValue) => {
-	if (typeof value === 'undefined') {
-		value = defaultValue;
-	}
-	if (typeof value !== 'string' && typeof value !== 'undefined') {
-		throw new Error(`Preset imperium: '${name} option must be a string.`);
-	}
-	return value;
-};
-
-const validateObjectOption = (name, value, defaultValue) => {
-	if (typeof value === 'undefined' || value === null) {
-		return defaultValue;
-	}
-	if (typeof value === 'object') {
-		return value;
-	}
-	throw new Error(`Preset imperium: '${name}' option must be an object.`);
-};
+const {validateObjectOption, validateStringOption, validateBoolOption} = require('./lib');
 
 module.exports = function (api, opts, env) {
 	if (!opts) {
 		opts = {};
+	}
+
+	// Assume development if env is not specified
+	if (!env) {
+		env = 'development';
 	}
 
 	// Environment
@@ -45,7 +21,7 @@ module.exports = function (api, opts, env) {
 	const isClient = validateBoolOption('client', opts.client, false);
 	const forceModules = validateBoolOption('forceModules', opts.forceModules, false);
 	const forceReact = validateBoolOption('react', opts.react, false);
-	const enableTypescript = validateBoolOption('typescript', opts.typescript, false);
+	const enableTypescript = validateBoolOption('typescript', opts.typescript, true);
 	const enableGraphqls = validateBoolOption('graphqls', opts.graphqls, false);
 	const enableDecorators = validateBoolOption('decorators', opts.decorators, true);
 	const enableReactRefresh = validateBoolOption('reactRefresh', opts.reactRefresh, true);

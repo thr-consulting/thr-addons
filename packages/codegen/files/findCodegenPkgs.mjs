@@ -1,5 +1,5 @@
-import {existsSync, readdirSync} from 'fs';
 import debug from 'debug';
+import {existsSync} from 'node:fs';
 
 const d = debug('thx.tools.files.mapEntities');
 

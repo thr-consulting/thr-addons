@@ -7,10 +7,8 @@
 	"scripts": {
 		"clean": "thx clean",
 		"lint": "eslint '*.js'",
-		"lint:fix": "eslint --cache --fix '*.js'",
-		"sort": "thx sort",
-		"test": "thx test",
-		"test:watch": "thx test:watch"
+		"lint.fix": "eslint --cache --fix '*.js'",
+		"sort": "thx sort"
 	},
 	"dependencies": {
 		"@babel/core": "^7.17.0",

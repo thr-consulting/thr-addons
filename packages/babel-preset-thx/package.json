@@ -3,21 +3,19 @@
 	"version": "16.0.0-alpha.0",
 	"description": "Babel preset",
 	"license": "MIT",
-	"type": "module",
+	"type": "commonjs",
+	"main": "index.js",
 	"files": [
 		"index.js",
 		"create.js",
-		"dependencies.js",
 		"dev.js",
 		"prod.js"
 	],
 	"scripts": {
 		"clean": "thx clean",
 		"lint": "eslint '*.js'",
-		"lint:fix": "eslint --cache --fix '*.js'",
-		"sort": "thx sort",
-		"test": "thx test",
-		"test:watch": "thx test:watch"
+		"lint.fix": "eslint --cache --fix '*.js'",
+		"sort": "thx sort"
 	},
 	"dependencies": {
 		"@babel/core": "^7.17.0",

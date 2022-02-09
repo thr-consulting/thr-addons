@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 import {LocalDate, LocalDateTime, ZonedDateTime, ZoneId, ZoneOffset, Instant, LocalTime} from '@js-joda/core';
-import timezoneMock from 'timezone-mock';
+import {register, unregister} from 'timezone-mock';
 import {toEpochDay, toDate, toLocalDateTime, toLocalDate, toLocalTime} from './conversion';
 
 function getDateVars() {
@@ -139,58 +139,58 @@ function testTimeConversion() {
 }
 
 describe('US/Pacific Date Conversion', () => {
-	timezoneMock.register('US/Pacific');
+	register('US/Pacific');
 	// console.log(getDateVars().localEpochDate.valueOf());
 	it('should convert to LocalDate (US/Pacific)', testLocalDateConversion);
 	it('should convert to epoch day (US/Pacific)', testEpochDayConversion);
 	it('should convert to LocalDateTime (US/Pacific)', testLocalDateTimeConversion);
 	it('should convert to Date (US/Pacific)', testDateConversion);
 	it('should convert to LocalTime (US/Pacific)', testTimeConversion);
-	timezoneMock.unregister();
+	unregister();
 });
 
 describe('US/Eastern Date Conversion', () => {
-	timezoneMock.register('US/Eastern');
+	register('US/Eastern');
 	// console.log(getDateVars().localEpochDate.valueOf());
 	it('should convert to LocalDate (US/Eastern)', testLocalDateConversion);
 	it('should convert to epoch day (US/Eastern)', testEpochDayConversion);
 	it('should convert to LocalDateTime (US/Eastern)', testLocalDateTimeConversion);
 	it('should convert to Date (US/Eastern)', testDateConversion);
 	it('should convert to LocalTime (US/Eastern)', testTimeConversion);
-	timezoneMock.unregister();
+	unregister();
 });
 
 describe('Brazil/East Date Conversion', () => {
-	timezoneMock.register('Brazil/East');
+	register('Brazil/East');
 	// console.log(getDateVars().localEpochDate.valueOf());
 	it('should convert to LocalDate (Brazil/East)', testLocalDateConversion);
 	it('should convert to epoch day (Brazil/East)', testEpochDayConversion);
 	it('should convert to LocalDateTime (Brazil/East)', testLocalDateTimeConversion);
 	it('should convert to Date (Brazil/East)', testDateConversion);
 	it('should convert to LocalTime (Brazil/East)', testTimeConversion);
-	timezoneMock.unregister();
+	unregister();
 });
 
 describe('UTC Date Conversion', () => {
-	timezoneMock.register('UTC');
+	register('UTC');
 	// console.log(getDateVars().localEpochDate.valueOf());
 	it('should convert to LocalDate (UTC)', testLocalDateConversion);
 	it('should convert to epoch day (UTC)', testEpochDayConversion);
 	it('should convert to LocalDateTime (UTC)', testLocalDateTimeConversion);
 	it('should convert to Date (UTC)', testDateConversion);
 	it('should convert to LocalTime (UTC)', testTimeConversion);
-	timezoneMock.unregister();
+	unregister();
 });
 
 describe('Europe/London Date Conversion', () => {
-	timezoneMock.register('Europe/London');
+	register('Europe/London');
 	// console.log(getDateVars().localEpochDate.valueOf());
 	it('should convert to LocalDate (Europe/London)', testLocalDateConversion);
 	it('should convert to epoch day (Europe/London)', testEpochDayConversion);
 	it('should convert to LocalDateTime (Europe/London)', testLocalDateTimeConversion);
 	it('should convert to Date (Europe/London)', testDateConversion);
 	it('should convert to LocalTime (Europe/London)', testTimeConversion);
-	timezoneMock.unregister();
+	unregister();
 });
 
 describe('Conversion Errors', () => {

@@ -82,7 +82,7 @@ restore_cwd
 banner "Sorting package.json files"
 yarn -s sort
 
-banner "Codemod"
+banner "Codemod - Sort imports, aliases, debug namespaces"
 echo "${SRCDIRS}" | DEBUG_NAMESPACE="$DEBUG_NAMESPACE" "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$TOOLS_DIR/files/cmOrganize.ts" --stdin
 ret=$?
 if [ $ret -ne 0 ]; then
@@ -90,7 +90,7 @@ if [ $ret -ne 0 ]; then
 fi
 
 banner "Fixing lint issues"
-yarn -s lint:fix
+yarn -s lint.fix
 
 if [ $ret -ne 0 ]; then
   error "Errors occurred during generation. Some files may be left in an inconsistent state."
