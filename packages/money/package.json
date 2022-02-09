@@ -1,7 +1,7 @@
 {
-	"name": "@thx/mikroorm-types",
-	"version": "15.3.0",
-	"description": "Custom Mikro-orm types",
+	"name": "@thx/money",
+	"version": "15.1.1",
+	"description": "Money utils",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
 	},
@@ -11,7 +11,8 @@
 	},
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
-	"main": "index.js",
+	"type": "module",
+	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
 		"dist",
@@ -22,10 +23,10 @@
 		"clean": "thx clean",
 		"deps": "thx deps",
 		"lint": "thx lint",
-		"lint:fix": "thx lint:fix",
+		"lint.fix": "thx lint.fix",
 		"sort": "thx sort",
 		"test": "thx test",
-		"test:watch": "thx test:watch",
+		"test.watch": "thx test.watch",
 		"ts": "thx ts"
 	},
 	"eslintConfig": {
@@ -34,14 +35,11 @@
 		}
 	},
 	"dependencies": {
-		"@thx/date": "^15.3.0",
-		"@thx/money": "^15.1.1"
-	},
-	"peerDependencies": {
-		"@mikro-orm/core": "4.x"
+		"accounting": "^0.4.1",
+		"js-money": "^0.6.3"
 	},
 	"engines": {
-		"node": ">=14"
+		"node": ">=16"
 	},
 	"publishConfig": {
 		"access": "public"
