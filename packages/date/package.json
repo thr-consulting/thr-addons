@@ -33,12 +33,6 @@
 			"project": "./tsconfig-eslint.json"
 		}
 	},
-	"jest": {
-		"extensionsToTreatAsEsm": [
-			".ts"
-		],
-		"resolver": "ts-jest-resolver"
-	},
 	"dependencies": {
 		"@js-joda/core": "^5.2.0",
 		"@js-joda/locale_en": "^4.7.0",
