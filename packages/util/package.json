@@ -11,8 +11,9 @@
 	},
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
-	"main": "index.js",
-	"types": "dist/index.d.ts",
+	"main": "./dist/index.js",
+	"type": "module",
+	"types": "./dist/index.d.ts",
 	"files": [
 		"dist"
 	],
@@ -21,10 +22,10 @@
 		"clean": "thx clean",
 		"deps": "thx deps",
 		"lint": "thx lint",
-		"lint:fix": "thx lint:fix",
+		"lint.fix": "thx lint.fix",
 		"sort": "thx sort",
 		"test": "thx test",
-		"test:watch": "thx test:watch",
+		"test.watch": "thx test.watch",
 		"ts": "thx ts",
 		"typedoc": "typedoc"
 	},
@@ -34,7 +35,7 @@
 		}
 	},
 	"engines": {
-		"node": ">=14"
+		"node": ">=16"
 	},
 	"publishConfig": {
 		"access": "public"
