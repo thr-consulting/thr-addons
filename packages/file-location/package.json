@@ -11,12 +11,11 @@
 	},
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
-	"main": "./dist/index.js",
 	"type": "module",
+	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
-		"dist",
-		"index.js"
+		"dist"
 	],
 	"scripts": {
 		"build": "thx build",
@@ -40,7 +39,7 @@
 		"lodash": "^4.17.21"
 	},
 	"engines": {
-		"node": ">=14"
+		"node": ">=16"
 	},
 	"publishConfig": {
 		"access": "public"
