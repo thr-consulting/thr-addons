@@ -1,9 +1,9 @@
+import {sequential} from '@thx/promise-sequential';
 import {randomFilename} from '@thx/random';
 import type {ScriptelSchemaType} from '@thx/yup-types';
 import fs from 'fs';
 import {PDFWStreamForFile, createWriterToModify, PDFPageModifier} from 'hummus';
 import path from 'path';
-import sequential from 'promise-sequential';
 import type {Readable} from 'stream';
 import {PDFRStreamForStream} from './PDFRStreamForStream';
 

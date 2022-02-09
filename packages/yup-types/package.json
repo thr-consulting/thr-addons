@@ -1,7 +1,7 @@
 {
-	"name": "@thx/pdfform",
+	"name": "@thx/yup-types",
 	"version": "15.3.0",
-	"description": "PDF form filling library",
+	"description": "Custom Yup types",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
 	},
@@ -11,19 +11,21 @@
 	},
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
-	"main": "index.js",
+	"type": "module",
+	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
-		"dist",
-		"index.js"
+		"dist"
 	],
 	"scripts": {
 		"build": "thx build",
 		"clean": "thx clean",
 		"deps": "thx deps",
 		"lint": "thx lint",
-		"lint:fix": "thx lint:fix",
+		"lint.fix": "thx lint.fix",
 		"sort": "thx sort",
+		"test": "thx test",
+		"test.watch": "thx test.watch",
 		"ts": "thx ts"
 	},
 	"eslintConfig": {
@@ -32,15 +34,14 @@
 		}
 	},
 	"dependencies": {
-		"@thx/random": "^15.3.0",
-		"@thx/yup-types": "^15.3.0",
-		"debug": "^4.1.1",
-		"hummus": "^1.0.108",
-		"node-pdftk": "^2.1.2",
-		"promise-sequential": "^1.1.1"
+		"@js-joda/core": "^5.2.0",
+		"@thx/money": "^15.1.1",
+		"debug": "^4.3.3",
+		"js-money": "^0.6.3",
+		"yup": "^0.32.11"
 	},
 	"engines": {
-		"node": ">=14"
+		"node": ">=16"
 	},
 	"publishConfig": {
 		"access": "public"

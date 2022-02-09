@@ -1,7 +1,7 @@
 {
-	"name": "@thx/yup-types",
+	"name": "@thx/random",
 	"version": "15.3.0",
-	"description": "Custom Yup types",
+	"description": "Random Functions",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
 	},
@@ -11,21 +11,21 @@
 	},
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
-	"main": "index.js",
+	"type": "module",
+	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
-		"dist",
-		"index.js"
+		"dist"
 	],
 	"scripts": {
 		"build": "thx build",
 		"clean": "thx clean",
 		"deps": "thx deps",
 		"lint": "thx lint",
-		"lint:fix": "thx lint:fix",
+		"lint.fix": "thx lint.fix",
 		"sort": "thx sort",
 		"test": "thx test",
-		"test:watch": "thx test:watch",
+		"test.watch": "thx test.watch",
 		"ts": "thx ts"
 	},
 	"eslintConfig": {
@@ -34,14 +34,12 @@
 		}
 	},
 	"dependencies": {
-		"@js-joda/core": "^5.1.0",
-		"@thx/money": "^15.1.1",
-		"debug": "^4.1.1",
-		"js-money": "^0.6.3",
-		"yup": "^0.32.9"
+		"@js-joda/core": "^5.2.0",
+		"@thx/date": "^15.3.0",
+		"nanoid": "^3.2.0"
 	},
 	"engines": {
-		"node": ">=14"
+		"node": ">=16"
 	},
 	"publishConfig": {
 		"access": "public"
