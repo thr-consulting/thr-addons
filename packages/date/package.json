@@ -11,20 +11,21 @@
 	},
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
+	"sideEffects": false,
 	"type": "module",
-	"main": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+	"main": "./dist/esm/index.js",
+	"types": "./dist/types/index.d.ts",
 	"files": [
 		"dist"
 	],
 	"scripts": {
-		"build": "thx build",
+		"build": "thx build.roll",
 		"clean": "thx clean",
-		"deps": "thx deps",
+		"deps": "thx -p mocha.setup.ts deps",
 		"lint": "thx lint",
 		"lint.fix": "thx lint.fix",
 		"sort": "thx sort",
-		"test": "thx test",
+		"test": "mocha",
 		"test.watch": "thx test.watch",
 		"ts": "thx ts"
 	},

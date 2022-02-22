@@ -4,8 +4,7 @@ const merge = require('lodash/merge');
 let options = {
 	typescript: true,
 	react: false,
-	jest: true,
-	babel: true,
+	jest: false,
 	debug: false,
 	// override: {},
 };
@@ -78,10 +77,6 @@ if (options.typescript) {
 		'@typescript-eslint/no-before-define': ['off'], // This was disabled to support optional chaining: https://github.com/typescript-eslint/typescript-eslint/issues/1116
 		'@typescript-eslint/explicit-module-boundary-types': ['off'],
 	});
-}
-
-if (!options.typescript && options.babel) {
-	config.parser = '@babel/eslint-parser';
 }
 
 if (options.react) {

@@ -11,9 +11,10 @@
 	},
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
-	"main": "./dist/index.js",
+	"sideEffects": false,
 	"type": "module",
-	"types": "./dist/index.d.ts",
+	"main": "./dist/esm/index.js",
+	"types": "./dist/types/index.d.ts",
 	"files": [
 		"dist"
 	],
@@ -24,8 +25,6 @@
 		"lint": "thx lint",
 		"lint.fix": "thx lint.fix",
 		"sort": "thx sort",
-		"test": "thx test",
-		"test.watch": "thx test.watch",
 		"ts": "thx ts"
 	},
 	"eslintConfig": {

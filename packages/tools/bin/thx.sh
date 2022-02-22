@@ -76,31 +76,23 @@ shift $((OPTIND-1))
 # Check first argument
 case "${1}" in
   build)
+    if [ "$LR" = "$PWD" ]; then
+      yarn -s lerna run build "${@:2}"
+    fi
+    ;;
+  build.roll)
+    if [ "$LR" != "$PWD" ]; then
+      yarn -s rollup -c "${@:2}"
+    fi
+    ;;
+  build.babel)
     # Assumptions
     #   - TS and TSX files
     #   - 'dist' output
     #   - Ignores test files
     #   - Creates sourcemaps
-    if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run build
-    else
-      NODE_ENV=production yarn -s babel src --extensions ".ts,.tsx" --out-dir dist --source-maps --ignore "src/**/*.test.ts" "${@:2}"
-    fi
-    ;;
-  build.dev)
-    # Assumptions - see above
-    if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run build.dev
-    else
-      NODE_ENV=development yarn -s babel src --extensions ".ts,.tsx" --out-dir dist --source-maps --ignore "src/**/*.test.ts" "${@:2}"
-    fi
-    ;;
-  build.prod)
-    # Assumptions - see above
-    if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run build.prod
-    else
-      NODE_ENV=production yarn -s babel src --extensions ".ts,.tsx" --out-dir dist --source-maps --ignore "src/**/*.test.ts" "${@:2}"
+    if [ "$LR" != "$PWD" ]; then
+      yarn -s babel src --extensions ".ts,.tsx" --out-dir dist --source-maps --ignore "src/**/*.test.ts" "${@:2}"
     fi
     ;;
   clean)
@@ -139,16 +131,19 @@ case "${1}" in
     ;;
   test)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run test --stream "${@:2}"
+      # yarn -s lerna run test --stream "${@:2}"
+      yarn -s lerna run test "${@:2}"
     else
-      node --experimental-vm-modules "${LR}/node_modules/.bin/jest" "${@:2}"
+      yarn -s mocha "${@:2}"
+      # node --experimental-vm-modules "${LR}/node_modules/.bin/jest" "${@:2}"
     fi
     ;;
   test.watch)
     if [ "$LR" = "$PWD" ]; then
       printf "Can't run test in watch mode from lerna root\n"
     else
-      node --experimental-vm-modules "${LR}/node_modules/.bin/jest" --watch "${@:2}"
+      printf "Not implemented\n"
+      # node --experimental-vm-modules "${LR}/node_modules/.bin/jest" --watch "${@:2}"
     fi
     ;;
   ts)

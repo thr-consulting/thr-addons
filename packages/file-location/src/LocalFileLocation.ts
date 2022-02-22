@@ -8,7 +8,7 @@ import type {FileLocationInterface} from './FileLocationInterface';
 
 const d = debug('thx.file-location.LocalFileLocation');
 
-export default class LocalFileLocation implements FileLocationInterface {
+export class LocalFileLocation implements FileLocationInterface {
 	_rootPath: string;
 	_publishUrl: string | undefined;
 

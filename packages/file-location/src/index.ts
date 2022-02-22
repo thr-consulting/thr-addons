@@ -1,4 +1,4 @@
-export {FileLocationInterface} from './FileLocationInterface';
-export {default as LocalFileLocation} from './LocalFileLocation';
-export {default as SpacesFileLocation} from './SpacesFileLocation';
-export {default as FileCleaner} from './FileCleaner';
+export type {FileLocationInterface} from './FileLocationInterface';
+export {LocalFileLocation} from './LocalFileLocation';
+export {SpacesFileLocation} from './SpacesFileLocation';
+export {FileCleaner} from './FileCleaner';

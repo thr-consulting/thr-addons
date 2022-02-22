@@ -6,7 +6,7 @@ import type {FileLocationInterface} from './FileLocationInterface';
 const d = debug('thx.file-location.FileCleaner');
 
 /** Class that records written files and cleans up after */
-export default class FileCleaner {
+export class FileCleaner {
 	private _files: string[];
 	private _fileLocation: FileLocationInterface;
 

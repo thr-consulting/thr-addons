@@ -7,7 +7,7 @@ import type {FileLocationInterface} from './FileLocationInterface';
 
 const d = debug('thx.file-location.SpacesFileLocation');
 
-export default class SpacesFileLocation implements FileLocationInterface {
+export class SpacesFileLocation implements FileLocationInterface {
 	spaces: AWS.S3;
 	bucket: string;
 	basePath: string;
