@@ -7,4 +7,4 @@ export interface RollupConfigOptions {
 	type: 'web' | 'node';
 }
 
-export declare function rollupLibConfig(options: RollupConfigOptions): RollupOptions[];
+export declare function rollupLibConfig(options: RollupConfigOptions): RollupOptions;

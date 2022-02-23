@@ -36,19 +36,17 @@ export function rollupLibConfig(opts) {
 		);
 	}
 
-	return [
-		{
-			input: `${sourcePath}/index.ts`,
-			output: {
-				name,
-				format: 'esm',
-				externalLiveBindings: false,
-				dir: 'dist/esm',
-				preserveModules: true,
-				preserveModulesRoot: sourcePath,
-				sourcemap: false,
-			},
-			plugins,
+	return {
+		input: `${sourcePath}/index.ts`,
+		output: {
+			name,
+			format: 'esm',
+			externalLiveBindings: false,
+			dir: 'dist/esm',
+			preserveModules: true,
+			preserveModulesRoot: sourcePath,
+			sourcemap: false,
 		},
-	];
+		plugins,
+	};
 }
