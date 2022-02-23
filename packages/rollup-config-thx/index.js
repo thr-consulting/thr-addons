@@ -6,10 +6,11 @@ import esbuild from 'rollup-plugin-esbuild';
 import renameNodeModules from 'rollup-plugin-rename-node-modules';
 
 export function rollupLibConfig(opts) {
-	const {name, srcPath, mode, type} = opts;
+	const {name, srcPath, mode, type, sourcemap} = opts;
 
 	const isProduction = mode === 'production';
 	const sourcePath = srcPath || 'src';
+	const createSourcemaps = !(typeof sourcemap === 'boolean' && sourcemap === false);
 
 	const extensions = ['.js', '.ts'];
 
@@ -23,7 +24,7 @@ export function rollupLibConfig(opts) {
 		nodeResolve({extensions}),
 		esbuild({
 			minify: isProduction,
-			sourceMap: !isProduction,
+			sourceMap: createSourcemaps,
 			tsconfig: resolve(process.cwd(), 'tsconfig.json'),
 		}),
 	];
@@ -45,7 +46,7 @@ export function rollupLibConfig(opts) {
 			dir: 'dist/esm',
 			preserveModules: true,
 			preserveModulesRoot: sourcePath,
-			sourcemap: false,
+			sourcemap: createSourcemaps,
 		},
 		plugins,
 	};
