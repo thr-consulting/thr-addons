@@ -28,7 +28,7 @@
 		"depcheck": "^1.4.3",
 		"find-up": "^5.0.0",
 		"jscodeshift": "^0.13.1",
-		"lodash": "^4.17.21",
+		"lodash-es": "^4.17.21",
 		"rimraf": "^3.0.2",
 		"sort-package-json": "^1.54.0",
 		"yaml": "^1.10.2",

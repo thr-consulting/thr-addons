@@ -1,5 +1,5 @@
 import FileRotateTransport from 'fast-file-rotate';
-import compact from 'lodash/compact';
+import {compact} from 'lodash-es';
 import {format} from 'winston';
 
 export interface FileLoggerParams {

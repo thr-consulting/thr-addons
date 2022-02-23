@@ -24,7 +24,7 @@
 		"eslint-plugin-prettier": "^4.0.0",
 		"eslint-plugin-react": "^7.28.0",
 		"eslint-plugin-react-hooks": "^4.3.0",
-		"lodash": "^4.17.21"
+		"lodash-es": "^4.17.21"
 	},
 	"peerDependencies": {
 		"eslint": "8.x",

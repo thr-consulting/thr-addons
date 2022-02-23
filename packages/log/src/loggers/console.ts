@@ -1,5 +1,5 @@
 import colors from 'colors/safe';
-import compact from 'lodash/compact';
+import {compact} from 'lodash-es';
 import winston, {format} from 'winston';
 
 export function createConsoleLogger() {

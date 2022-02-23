@@ -1,6 +1,6 @@
 import AWS from 'aws-sdk';
 import debug from 'debug';
-import find from 'lodash/find';
+import {find} from 'lodash-es';
 import path from 'path';
 import type {Readable} from 'stream';
 import type {FileLocationInterface} from './FileLocationInterface';
