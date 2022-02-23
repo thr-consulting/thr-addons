@@ -2537,7 +2537,7 @@
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
   integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
 
-"@types/use-deep-compare-effect@^1.2.0":
+"@types/use-deep-compare-effect@^1.2.0", "@types/use-deep-compare-effect@^1.5.1":
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/@types/use-deep-compare-effect/-/use-deep-compare-effect-1.5.1.tgz#738e24ace9610a1bf672d698a837c7c115ae4a00"
   integrity sha512-IpPu2lOV4HWjuzncETLsPpeYKJEOfYHbx6Bn7leBwp5X+a8TBmd4jIBcMQJ5F+WXz/lYkeKphmB4uUij3W4Gdg==
