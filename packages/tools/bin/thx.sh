@@ -76,11 +76,15 @@ shift $((OPTIND-1))
 # Check first argument
 case "${1}" in
   build)
+    # Assumptions
+    #   - Calls build from monorepo root only
     if [ "$LR" = "$PWD" ]; then
       yarn -s lerna run build "${@:2}"
     fi
     ;;
   build.roll)
+    # Assumptions
+    #   - Runs rollup
     if [ "$LR" != "$PWD" ]; then
       yarn -s rollup -c "${@:2}"
     fi
@@ -130,6 +134,8 @@ case "${1}" in
     fi
     ;;
   test)
+    # Assumptions
+    #   - Uses mocha for tests
     if [ "$LR" = "$PWD" ]; then
       # yarn -s lerna run test --stream "${@:2}"
       yarn -s lerna run test "${@:2}"
@@ -139,6 +145,7 @@ case "${1}" in
     fi
     ;;
   test.watch)
+    # Assumptions
     if [ "$LR" = "$PWD" ]; then
       printf "Can't run test in watch mode from lerna root\n"
     else
@@ -147,6 +154,8 @@ case "${1}" in
     fi
     ;;
   ts)
+    # Assumptions
+    #   - If ttypescript is found, uses that instead
     if [ "$LR" = "$PWD" ]; then
       yarn -s lerna run ts "${@:2}"
     else
@@ -158,6 +167,8 @@ case "${1}" in
     fi
     ;;
   ts.watch)
+    # Assumptions
+    #   - If ttypescript is found, uses that instead
     if [ "$LR" = "$PWD" ]; then
       printf "Can't run ts in watch mode from lerna root\n"
     else
@@ -172,7 +183,7 @@ case "${1}" in
     if [ "$LR" = "$PWD" ]; then
       yarn -s lerna run deps "${@:2}"
     else
-      PATS="build/*,dist/*,types/*,*.test.ts,*.test.js"
+      PATS="build/*,dist/*,types/*,*.test.ts,*.test.js,.eslintrc.cjs"
       IGS="inspect-loader"
       if [ -n "$DEPS_EXTRA_IGNORE_PATTERNS" ]; then
         PATS="${PATS},${DEPS_EXTRA_IGNORE_PATTERNS}"

@@ -40,6 +40,10 @@ message () {
   printf "\n${ORANGE}%s${NC}\n" "$1"
 }
 
+op () {
+  printf "${LCYAN}* ${LGREEN}%s${NC}\n" "$1"
+}
+
 # Checks to see if all commands indicated in an array are present on the system
 #   COMMANDS=( "dos2unix" )
 #   check_cmds COMMANDS
@@ -132,6 +136,45 @@ get_package_folders_string () {
   extra=${3:-""}
   arr=()
   get_package_folders_arr "$1" $2 arr
+  for i in "${arr[@]}"
+  do
+    dirs+="$i$extra"$'\n'
+  done
+  echo "$dirs"
+}
+
+# Gets package paths into an array, but only include packages you specify
+#   PKGDIRS=()
+#   get_package_folders_arr "$PACKAGE_DIR" INCLUDE_PKGS PKGDIRS
+# $1 - Packages directory
+# $2 - Array of packages to include
+# $3 - Reference to array to add package paths too
+get_package_filtered_folders_arr () {
+  local pkgdir
+  local -n includes=$2
+  local -n outarr=$3
+  pkgdir="$1"
+  outarr=()
+  mapfile -t M < <( ls -1 "$pkgdir" )
+  for i in "${M[@]}"
+  do
+    if [[ " ${includes[@]} " =~ " ${i} " ]]; then
+      outarr+=( "$(realpath "$pkgdir/$i")" )
+    fi
+  done
+}
+
+# Gets package folders into a newline-separated string
+#   PKGSTR=$(get_package_folders_string "$PACKAGE_DIR" INCLUDE_PKGS '/src')
+# $1 - Packages directory
+# $2 - Array of packages to include
+# $3 - Extra string to append to each package folder
+get_package_filtered_folders_string () {
+  local extra
+  local dirs=""
+  extra=${3:-""}
+  arr=()
+  get_package_filtered_folders_arr "$1" $2 arr
   for i in "${arr[@]}"
   do
     dirs+="$i$extra"$'\n'

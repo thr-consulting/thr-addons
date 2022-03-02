@@ -1,0 +1,43 @@
+{
+	"name": "@thx/codegen",
+	"version": "1.0.0",
+	"description": "Dev tool for mapping graphql to code",
+	"bugs": {
+		"url": "https://github.com/thr-consulting/thr-addons/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thr-consulting/thr-addons.git"
+	},
+	"license": "MIT",
+	"author": "Mike Kornelson <darkadept@durbn.net>",
+	"bin": {
+		"thx.codegen": "./bin/codegen.sh"
+	},
+	"files": [
+		"bin",
+		"files"
+	],
+	"dependencies": {
+		"@graphql-codegen/add": "^3.1.1",
+		"@graphql-codegen/cli": "^2.3.1",
+		"@graphql-codegen/import-types-preset": "^2.1.9",
+		"@graphql-codegen/near-operation-file-preset": "^2.2.3",
+		"@graphql-codegen/time": "^3.1.1",
+		"@graphql-codegen/typescript": "^2.4.2",
+		"@graphql-codegen/typescript-operations": "^2.2.2",
+		"@graphql-codegen/typescript-react-apollo": "^3.2.4",
+		"@graphql-codegen/typescript-resolvers": "^2.4.3",
+		"@thx/graphql-typescript-scalar-type-policies": "^2.0.0",
+		"graphql-tag": "^2.12.6"
+	},
+	"peerDependencies": {
+		"graphql": "16.x"
+	},
+	"engines": {
+		"node": ">=16"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
