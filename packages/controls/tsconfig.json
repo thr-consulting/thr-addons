@@ -6,7 +6,6 @@
 	},
 	"include": [
 		"src/index.ts",
-		"types/*.d.ts",
-		"src/**/*.tsx"
+		"types/*.d.ts"
 	]
 }

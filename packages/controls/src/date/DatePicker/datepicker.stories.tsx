@@ -4,7 +4,6 @@ import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
 import 'react-datepicker/dist/react-datepicker.css';
 import {DatePicker} from './index';
-import './styles.css';
 
 const d = debug('thx.controls.date.DatePicker.datepicker.stories');
 

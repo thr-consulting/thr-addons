@@ -4,8 +4,8 @@ import debug from 'debug';
 import type {ReactDatePickerProps} from 'react-datepicker';
 import type {InputProps} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
-import {MaskedDateInput} from './MaskedDateInput';
 import '../DatePicker/styles.css';
+import {MaskedDateInput} from './MaskedDateInput';
 
 const d = debug('thx.controls.date.LocalDatePicker');
 

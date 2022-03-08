@@ -1,7 +1,11 @@
 import debug from 'debug';
-import Inputmask from 'inputmask';
+import InputmaskImport from 'inputmask';
+import type InputmaskType from 'inputmask';
 import {useEffect, useRef} from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
+
+// @ts-ignore
+const {default: Inputmask} = InputmaskImport;
 
 const d = debug('thx.controls.inputs.MaskedInput.useMaskedInput');
 
@@ -16,12 +20,13 @@ export function useMaskedInput(props: UseMaskedInputProps) {
 	const {value, onChange, onSet, mask} = props;
 
 	const inputElement = useRef<HTMLInputElement | null>(null);
-	const maskInstance = useRef<Inputmask.Instance | null>(null);
+	const maskInstance = useRef<InputmaskType.Instance | null>(null);
 
 	useDeepCompareEffect(() => {
 		if (!inputElement.current) throw new Error('Could not get input element');
 
 		d('Creating input mask instance');
+		d(Inputmask);
 		maskInstance.current = new Inputmask({
 			...mask,
 			oncomplete() {
@@ -37,7 +42,7 @@ export function useMaskedInput(props: UseMaskedInputProps) {
 				if (mask?.onincomplete) mask.onincomplete();
 			},
 		});
-		maskInstance.current.mask(inputElement.current);
+		maskInstance.current?.mask(inputElement.current);
 
 		return () => {
 			if (maskInstance.current) {
