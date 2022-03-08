@@ -59,7 +59,7 @@ export class Environment {
 		Environment.getInstance().addEnvironment(env);
 	}
 	protected addEnvironment(env: EnvironmentDict) {
-		Object.keys(env).forEach(key => {
+		Object.keys(env || {}).forEach(key => {
 			const envElement = env[key];
 			if (!envElement) return;
 			if (typeof envElement === 'string') {
@@ -78,7 +78,7 @@ export class Environment {
 		Environment.getInstance().addDefaults(defaults);
 	}
 	protected addDefaults(defaults: EnvironmentDefaultDict) {
-		Object.keys(defaults).forEach(key => {
+		Object.keys(defaults || {}).forEach(key => {
 			this.#defaults[key] = defaults[key];
 		});
 	}

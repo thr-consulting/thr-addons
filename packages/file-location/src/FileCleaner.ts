@@ -1,12 +1,11 @@
 import debug from 'debug';
-import pull from 'lodash/pull';
-import uniq from 'lodash/uniq';
+import {pull, uniq} from 'lodash-es';
 import type {FileLocationInterface} from './FileLocationInterface';
 
 const d = debug('thx.file-location.FileCleaner');
 
 /** Class that records written files and cleans up after */
-export default class FileCleaner {
+export class FileCleaner {
 	private _files: string[];
 	private _fileLocation: FileLocationInterface;
 

@@ -1,0 +1,40 @@
+{
+	"name": "@thx/eslint-config-thx",
+	"version": "16.0.0-alpha.0",
+	"description": "ESLint configuration",
+	"license": "MIT",
+	"sideEffects": false,
+	"type": "commonjs",
+	"scripts": {
+		"clean": "thx clean",
+		"lint": "eslint '*.js'",
+		"lint.fix": "eslint --cache --fix '*.js'",
+		"sort": "thx sort"
+	},
+	"dependencies": {
+		"@typescript-eslint/eslint-plugin": "^5.10.2",
+		"@typescript-eslint/parser": "^5.10.2",
+		"eslint-config-airbnb": "^19.0.4",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-config-airbnb-typescript": "^16.1.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-import": "^2.25.4",
+		"eslint-plugin-jest": "^26.1.0",
+		"eslint-plugin-jsx-a11y": "^6.5.1",
+		"eslint-plugin-prettier": "^4.0.0",
+		"eslint-plugin-react": "^7.28.0",
+		"eslint-plugin-react-hooks": "^4.3.0",
+		"lodash-es": "^4.17.21"
+	},
+	"peerDependencies": {
+		"eslint": "8.x",
+		"prettier": "2.x",
+		"typescript": "4.x"
+	},
+	"engines": {
+		"node": ">=16"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

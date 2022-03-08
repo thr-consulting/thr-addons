@@ -24,24 +24,28 @@ show_help () {
 	printf "A helper script for thr-addons\n\n"
 	printf "Commands:\n"
 	printf "  build       Runs webpack for dev & prod on webpack.js\n"
-	printf "  build:dev   Runs webpack for dev on webpack.js\n"
-	printf "  build:prod  Runs webpack for prod on webpack.js\n"
+	printf "  build.dev   Runs webpack for dev on webpack.js\n"
+	printf "  build.prod  Runs webpack for prod on webpack.js\n"
+	printf "  check-git-status Checks if there are pending git files\n"
 	printf "  ci          Runs build, ts, deps, organize, lint:fix, sort, & test\n"
 	printf "  clean       Remove production and temporary build files\n"
-  printf "  codegen     Runs codegen script\n"
   printf "  codemod     Runs jscodeshift codemod\n"
+  printf "  coverage    Builds test coverage information\n"
+  printf "  deduplicate Runs yarn deduplicate\n"
   printf "  deps        Runs depcheck\n"
+  printf "  discord     Sends a message to discord via api\n"
+  printf "  docker-build Runs the docker-build script\n"
   printf "  docs        Runs doc building\n"
-  printf "  docs:md     Runs doc building for markdown\n"
-  printf "  docs:storybook Runs doc building using storybook\n"
+  printf "  docs.storybook Runs doc building using storybook\n"
 	printf "  lint        Runs eslint on js, ts, and tsx files\n"
-	printf "  lint:fix    Runs eslint with automatic fixing\n"
+	printf "  lint.fix    Runs eslint with automatic fixing\n"
 	printf "  organize    Runs organize script\n"
 	printf "  sort        Sorts package.json files\n"
-	printf "  test        Runs jest (use -c for client)\n"
- 	printf "  test:watch  Runs jest in watch mode (use -c for client)\n"
+	printf "  test        Runs jest\n"
+ 	printf "  test.watch  Runs jest in watch mode\n"
 	printf "  ts          Runs the typescript compiler\n"
-	printf "  ts:watch    Runs the typescript compiler in watch mode\n"
+	printf "  ts.watch    Runs the typescript compiler in watch mode\n"
+	printf "  watchtower  Runs docker watchtower in HTTP mode\n"
 	printf "\n"
 }
 
@@ -50,14 +54,11 @@ OPTIND=1 # Reset in case getopts has been used previously in the shell.
 
 # This was a good idea, but webstorm linting stops working if we remove this from the package.json
 # ESLINT_PARSER_OPTIONS="{\"project\": \"./tsconfig-eslint.json\"}"
-JEST_IS_SERVER=true
-JEST_TRANSFORM_SERVER="{\"^.+.[tj]sx?$\":\"$TOOLS_DIR/files/jest-transform-server.js\"}"
-JEST_TRANSFORM_CLIENT="{\"^.+.[tj]sx?$\":\"$TOOLS_DIR/files/jest-transform-client.js\"}"
 DEPS_EXTRA_IGNORE_PATTERNS=""
 DEPS_EXTRA_IGNORES=""
 LR=$(get_lerna_root)
 
-while getopts "?p:i:c" opt; do
+while getopts "?p:i:" opt; do
 	case "$opt" in
 	\?)
     show_help
@@ -67,27 +68,41 @@ while getopts "?p:i:c" opt; do
     ;;
 	i)  DEPS_EXTRA_IGNORES=$OPTARG
 		;;
-  c)  JEST_IS_SERVER=false
-    ;;
 	esac
 done
 shift $((OPTIND-1))
 [ "${1:-}" = "--" ] && shift
 
+# Check first argument
 case "${1}" in
   build)
-    printf "${LCYAN}>>> DEVELOPMENT${NC}\n"
-    NODE_ENV=development yarn -s webpack --config webpack.js
-    printf "${LCYAN}>>> PRODUCTION${NC}\n"
-    NODE_ENV=production yarn -s webpack --config webpack.js
+    # Assumptions
+    #   - Calls build from monorepo root only
+    if [ "$LR" = "$PWD" ]; then
+      yarn -s lerna run build "${@:2}"
+    fi
     ;;
-  build:dev)
-      NODE_ENV=development yarn -s webpack --config webpack.js "${@:2}"
-      ;;
-  build:prod)
-      NODE_ENV=production yarn -s webpack --config webpack.js "${@:2}"
-      ;;
+  build.roll)
+    # Assumptions
+    #   - Runs rollup
+    if [ "$LR" != "$PWD" ]; then
+      yarn -s rollup -c "${@:2}"
+    fi
+    ;;
+  build.babel)
+    # Assumptions
+    #   - TS and TSX files
+    #   - 'dist' output
+    #   - Ignores test files
+    #   - Creates sourcemaps
+    if [ "$LR" != "$PWD" ]; then
+      yarn -s babel src --extensions ".ts,.tsx" --out-dir dist --source-maps --ignore "src/**/*.test.ts" "${@:2}"
+    fi
+    ;;
   clean)
+    # Assumptions
+    #   - 'dist' folder
+    #   - '.eslintcache' and 'tsconfig.tsbuildinfo' files
     if [ "$LR" = "$PWD" ]; then
       yarn -s lerna run clean
       yarn -s lerna clean -y
@@ -99,42 +114,48 @@ case "${1}" in
     fi
     ;;
   lint)
+    # Assumptions
+    #   - JS, TS,  and TSX files
+    #   - 'src' folder
     if [ "$LR" = "$PWD" ]; then
       yarn -s lerna run lint "${@:2}"
     else
       yarn -s eslint --cache --ext js,ts,tsx src "${@:2}"
     fi
     ;;
-  lint:fix)
+  lint.fix)
+    # Assumptions
+    #   - JS, TS,  and TSX files
+    #   - 'src' folder
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run lint:fix "${@:2}"
+      yarn -s lerna run lint.fix "${@:2}"
     else
       yarn -s eslint --cache --fix --ext js,ts,tsx src "${@:2}"
     fi
     ;;
   test)
+    # Assumptions
+    #   - Uses mocha for tests
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run test --stream "${@:2}"
+      # yarn -s lerna run test --stream "${@:2}"
+      yarn -s lerna run test "${@:2}"
     else
-      if [ "${JEST_IS_SERVER}" = true ]; then
-        yarn -s jest --transform="${JEST_TRANSFORM_SERVER}" "${@:2}"
-      else
-        yarn -s jest --transform="${JEST_TRANSFORM_CLIENT}" "${@:2}"
-      fi
+      yarn -s mocha "${@:2}"
+      # node --experimental-vm-modules "${LR}/node_modules/.bin/jest" "${@:2}"
     fi
     ;;
-  test:watch)
+  test.watch)
+    # Assumptions
     if [ "$LR" = "$PWD" ]; then
       printf "Can't run test in watch mode from lerna root\n"
     else
-      if [ "${JEST_IS_SERVER}" = true ]; then
-        yarn -s jest --transform="${JEST_TRANSFORM_SERVER}" --watch "${@:2}"
-      else
-        yarn -s jest --transform="${JEST_TRANSFORM_CLIENT}" --watch "${@:2}"
-      fi
+      printf "Not implemented\n"
+      # node --experimental-vm-modules "${LR}/node_modules/.bin/jest" --watch "${@:2}"
     fi
     ;;
   ts)
+    # Assumptions
+    #   - If ttypescript is found, uses that instead
     if [ "$LR" = "$PWD" ]; then
       yarn -s lerna run ts "${@:2}"
     else
@@ -145,7 +166,9 @@ case "${1}" in
       fi
     fi
     ;;
-  ts:watch)
+  ts.watch)
+    # Assumptions
+    #   - If ttypescript is found, uses that instead
     if [ "$LR" = "$PWD" ]; then
       printf "Can't run ts in watch mode from lerna root\n"
     else
@@ -160,7 +183,7 @@ case "${1}" in
     if [ "$LR" = "$PWD" ]; then
       yarn -s lerna run deps "${@:2}"
     else
-      PATS="build/*,dist/*,types/*,webpack.js,*.test.ts"
+      PATS="build/*,dist/*,types/*,*.test.ts,*.test.js,.eslintrc.cjs"
       IGS="inspect-loader"
       if [ -n "$DEPS_EXTRA_IGNORE_PATTERNS" ]; then
         PATS="${PATS},${DEPS_EXTRA_IGNORE_PATTERNS}"
@@ -174,21 +197,18 @@ case "${1}" in
   docs)
     if [ "$LR" = "$PWD" ]; then
       yarn -s lerna run docs "${@:2}"
+    else
+      printf "Docs doesn't have anything to do in specific packages\n"
     fi
     ;;
-  docs:md)
+  docs.storybook)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run docs:md "${@:2}"
-    fi
-    ;;
-  docs:storybook)
-    if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run docs:storybook "${@:2}"
+      yarn -s lerna run docs.storybook "${@:2}"
     fi
     ;;
   sort)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s sort-package-json
+      yarn -s sort-package-json "${@:2}"
       yarn -s lerna run sort "${@:2}"
     else
       yarn -s sort-package-json "${@:2}"
@@ -196,29 +216,55 @@ case "${1}" in
     ;;
   ci)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s build
-      yarn -s ts
-      yarn -s deps
-      yarn -s organize
-      yarn -s lint:fix
-      yarn -s sort
-      yarn -s test
-    fi
-    ;;
-  codegen)
-    if [ "$LR" = "$PWD" ]; then
-      yarn -s thx_codegen "${@:2}"
-    else
-      yarn -s graphql-codegen "${@:2}"
+      coproc bfd { yarn -s build 2>&1; }
+      exec 3>&${bfd[0]}
+      spinop $! "Building"
+
+      coproc bfd { yarn -s ts 2>&1; }
+      exec 3>&${bfd[0]}
+      spinop $! "Checking types"
+
+      coproc bfd { yarn -s deps 2>&1; }
+      exec 3>&${bfd[0]}
+      spinop $! "Checking dependencies"
+
+      coproc bfd { yarn -s organize 2>&1; }
+      exec 3>&${bfd[0]}
+      spinop $! "Organizing code and linting"
+
+      coproc bfd { yarn -s test 2>&1; }
+      exec 3>&${bfd[0]}
+      spinop $! "Testing"
     fi
     ;;
   organize)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s thx_organize "${@:2}"
+      "${TOOLS_DIR}/bin/organize.sh" "${@:2}"
     fi
     ;;
   codemod)
     yarn -s jscodeshift --extensions=ts,tsx --parser=tsx "${@:2}"
+    ;;
+  deduplicate)
+    npx yarn-deduplicate
+    ;;
+  watchtower)
+    "${TOOLS_DIR}/bin/watchtower.sh" "${@:2}"
+    ;;
+  docker-build)
+    "${TOOLS_DIR}/bin/docker-build.sh" "${@:2}"
+    ;;
+  discord)
+    "${TOOLS_DIR}/bin/discord.sh" "${@:2}"
+    ;;
+  coverage)
+    # TODO this does not autodetect if 'test' is not defined in package.json
+    if [ "$LR" = "$PWD" ]; then
+      "${TOOLS_DIR}/bin/coverage.sh" "${@:2}"
+    fi
+    ;;
+  check-git-status)
+    "${TOOLS_DIR}/bin/check-git-status.sh" "${@:2}"
     ;;
   *)
     show_help

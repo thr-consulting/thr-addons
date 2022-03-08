@@ -1,18 +1,11 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"declarationDir": "dist",
-		"lib": ["esnext", "dom"],
+		"declarationDir": "dist/types",
 		"jsx": "react-jsx"
 	},
 	"include": [
 		"src/index.ts",
 		"types/*.d.ts"
-	],
-	"comments": [{
-		"comment":  "Add this to include section above, but remove it before check in",
-		"include": [
-			"src/**/*.stories.tsx"
-		]
-	}]
+	]
 }

@@ -12,52 +12,37 @@
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
 	"bin": {
-		"thx": "./bin/thx.sh",
-		"check-git-status": "./bin/check-git-status.sh",
-		"thx_codegen": "./bin/codegen.sh",
-		"coverage": "./bin/coverage.sh",
-		"discord": "./bin/discord.sh",
-		"docker-build": "./bin/docker-build.sh",
-		"common": "./bin/lib.sh",
-		"thx_organize": "./bin/organize.sh",
-		"watchtower": "./bin/watchtower.sh"
+		"thx": "./bin/thx.sh"
 	},
+	"type": "module",
+	"sideEffects": false,
 	"files": [
 		"bin",
 		"files"
 	],
 	"dependencies": {
-		"@babel/preset-env": "^7.15.6",
-		"@graphql-codegen/add": "^3.1.1",
-		"@graphql-codegen/cli": "^2.3.1",
-		"@graphql-codegen/import-types-preset": "^2.1.9",
-		"@graphql-codegen/near-operation-file-preset": "^2.2.3",
-		"@graphql-codegen/time": "^3.1.1",
-		"@graphql-codegen/typescript": "^2.4.2",
-		"@graphql-codegen/typescript-operations": "^2.2.2",
-		"@graphql-codegen/typescript-react-apollo": "^3.2.4",
-		"@graphql-codegen/typescript-resolvers": "^2.4.3",
-		"@thx/common-webpack": "^15.1.1",
-		"@thx/graphql-typescript-scalar-type-policies": "^2.0.0",
-		"@types/jscodeshift": "^0.11.2",
-		"babel-jest": "^27.3.1",
-		"coverbadge": "^0.5.5",
-		"debug": "^4.3.2",
-		"depcheck": "^1.4.2",
+		"@babel/core": "^7.17.5",
+		"@babel/preset-env": "^7.16.11",
+		"@types/jscodeshift": "^0.11.3",
+		"debug": "^4.3.3",
+		"depcheck": "^1.4.3",
 		"find-up": "^5.0.0",
-		"graphql": "^16.2.0",
-		"graphql-tag": "^2.11.0",
-		"jscodeshift": "^0.13.0",
-		"lodash": "^4.17.21",
+		"jscodeshift": "^0.13.1",
+		"lodash-es": "^4.17.21",
 		"rimraf": "^3.0.2",
-		"sort-package-json": "^1.52.0",
-		"yaml": "^1.10.2"
-	},
-	"peerDependencies": {
-		"jest": "27.x"
+		"sort-package-json": "^1.54.0",
+		"yaml": "^1.10.2",
+		"chai": "^4.3.6",
+		"mocha": "^9.2.1",
+		"testdouble": "^3.16.4",
+		"ts-node": "^10.5.0",
+		"chai-as-promised": "^7.1.1",
+		"@types/chai": "^4.3.0",
+		"@types/chai-as-promised": "^7.1.5",
+		"@types/mocha": "^9.1.0"
 	},
 	"engines": {
-		"node": ">=14"
+		"node": ">=16"
 	},
 	"publishConfig": {
 		"access": "public"

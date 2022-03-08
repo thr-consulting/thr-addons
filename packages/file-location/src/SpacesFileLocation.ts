@@ -1,13 +1,13 @@
 import AWS from 'aws-sdk';
 import debug from 'debug';
-import find from 'lodash/find';
+import {find} from 'lodash-es';
 import path from 'path';
 import type {Readable} from 'stream';
 import type {FileLocationInterface} from './FileLocationInterface';
 
 const d = debug('thx.file-location.SpacesFileLocation');
 
-export default class SpacesFileLocation implements FileLocationInterface {
+export class SpacesFileLocation implements FileLocationInterface {
 	spaces: AWS.S3;
 	bucket: string;
 	basePath: string;

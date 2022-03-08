@@ -11,21 +11,22 @@
 	},
 	"license": "MIT",
 	"author": "Mike Kornelson <darkadept@durbn.net>",
-	"main": "index.js",
-	"types": "./dist/index.d.ts",
+	"sideEffects": false,
+	"type": "module",
+	"main": "./dist/esm/index.js",
+	"types": "./dist/types/index.d.ts",
 	"files": [
-		"dist",
-		"index.js"
+		"dist"
 	],
 	"scripts": {
-		"build": "thx build",
+		"build": "thx build.roll",
 		"clean": "thx clean",
-		"deps": "thx deps",
+		"deps": "thx -p mocha.setup.ts deps",
 		"lint": "thx lint",
-		"lint:fix": "thx lint:fix",
+		"lint.fix": "thx lint.fix",
 		"sort": "thx sort",
-		"test": "thx test",
-		"test:watch": "thx test:watch",
+		"test": "mocha",
+		"test.watch": "thx test.watch",
 		"ts": "thx ts"
 	},
 	"eslintConfig": {
@@ -34,12 +35,12 @@
 		}
 	},
 	"dependencies": {
-		"@js-joda/core": "^5.1.0",
-		"@js-joda/locale_en": "^4.0.0",
-		"@js-joda/timezone": "^2.6.0"
+		"@js-joda/core": "^5.2.0",
+		"@js-joda/locale_en": "^4.7.0",
+		"@js-joda/timezone": "^2.12.0"
 	},
 	"engines": {
-		"node": ">=14"
+		"node": ">=16"
 	},
 	"publishConfig": {
 		"access": "public"

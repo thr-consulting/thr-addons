@@ -1,0 +1,17 @@
+{
+	"name": "@thx/prettier-config-thx",
+	"version": "16.0.0-alpha.0",
+	"description": "Prettier config",
+	"license": "MIT",
+	"sideEffects": false,
+	"main": "index.json",
+	"scripts": {
+		"sort": "thx sort"
+	},
+	"engines": {
+		"node": ">=16"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

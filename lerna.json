@@ -3,7 +3,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "15.3.0",
+  "version": "16.0.0-alpha.0",
   "npmClient": "yarn",
   "useWorkspaces": true,
   "command": {
@@ -12,6 +12,6 @@
       "message": "chore(release): publish [skip-ci]"
     }
   },
-  "concurrency": 8,
+  "concurrency": 16,
   "registry": "https://registry.npmjs.org/"
 }

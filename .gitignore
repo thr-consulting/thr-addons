@@ -17,3 +17,4 @@ npm-debug.log*
 .env
 .npmrc
 tsconfig.tsbuildinfo
+dist

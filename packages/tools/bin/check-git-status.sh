@@ -3,10 +3,23 @@
 # Checks git status to see if there are any outstanding files to be checked in.
 # This is used to detect generated files that are not properly checked in such as yarn.lock.
 
-LRED='\033[1;31m'
-LGREEN='\033[1;32m'
-LCYAN='\033[1;36m'
-NC='\033[0m'
+get_tools_dir () {
+  local prg="$BASH_SOURCE"
+  while [ -h "$prg" ] ; do
+      local ls
+      local link
+      ls=`ls -ld "$prg"`
+      link=`expr "$ls" : '.*-> \(.*\)$'`
+      if expr "$link" : '/.*' > /dev/null; then
+          prg="$link"
+      else
+          prg=`dirname "$prg"`"/$link"
+      fi
+  done
+  echo "$(realpath "$(dirname "$prg")/..")"
+}
+TOOLS_DIR=$(get_tools_dir)
+source "$TOOLS_DIR/bin/common.sh"
 
 cmds=( "git" "garg" )
 check_cmds "${cmds[@]}"

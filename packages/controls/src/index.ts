@@ -32,12 +32,11 @@ export {CreditCardInput} from './inputs/CreditCardInput';
 export type {CreditCardInputProps} from './inputs/CreditCardInput';
 export {SinInput} from './inputs/SinInput';
 export type {SinInputProps} from './inputs/SinInput';
-
-// Table
-export {addRowOnTab, MoneyEditCell, StringEditCell, MoneySumFooter, MoneyCell, TableInput, HoverCell, DropdownCell} from './inputs/TableInput';
+export {TableInput, MoneyCell, MoneyEditCell, MoneySumFooter, StringEditCell, DropdownCell, HoverCell, addRowOnTab} from './inputs/TableInput';
 export type {AddRowOnTabIf} from './inputs/TableInput';
 
 // Money
+export {useMoneyInput} from './money/useMoneyInput';
 export {MoneyInput} from './money/MoneyInput';
 export type {MoneyInputProps} from './money/MoneyInput';
 export {MoneyCurrencyInput} from './money/MoneyCurrencyInput';

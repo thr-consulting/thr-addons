@@ -1,29 +1,29 @@
-:global(.rw-datetimepicker) > input {
+.rw-datetimepicker > input {
 	border: none !important;
 }
 
-:global(.rw-datetimepicker) :global(.rw-calendar-grid.rw-nav-view) :global(.rw-btn) {
+.rw-datetimepicker .rw-calendar-grid.rw-nav-view .rw-btn {
 	padding: 0 !important;
 }
 
-:global(.dateTimePickerAutoWidth) {
+.dateTimePickerAutoWidth {
 	width: auto;
 	display: inline-flex;
 }
 
-:global(.dateTimePickerAutoWidth) > input {
+.dateTimePickerAutoWidth > input {
 	width: auto;
 }
 
-:global(.react-datepicker-wrapper) {
+.react-datepicker-wrapper {
 	width: 100%;
 	display: inline !important;
 }
 
-:global(.react-datepicker__input-container) {
+.react-datepicker__input-container {
 	display: inline !important;
 }
 
-:global(.react-datepicker-popper) {
+.react-datepicker-popper {
 	z-index: 5 !important;
 }

@@ -1,7 +1,6 @@
 import DataLoader from 'dataloader';
 import debug from 'debug';
-import get from 'lodash/get';
-import identity from 'lodash/identity';
+import {get, identity} from 'lodash-es';
 
 const d = debug('thx.ordereddataloader');
 

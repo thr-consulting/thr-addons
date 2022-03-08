@@ -1,4 +1,4 @@
-import memoize from 'lodash/memoize';
+import {memoize} from 'lodash-es';
 
 export const environment = memoize(() => ({
 	deployment: process.env.LOG_DEPLOYMENT || 'Development',
