@@ -11,7 +11,7 @@
   },
   "license": "MIT",
   "author": "Mike Kornelson <darkadept@durbn.net>",
-  "sideEffects": false,
+  "sideEffects": true,
   "type": "module",
   "main": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -68,9 +68,5 @@
     "deps": "thx -p *.stories.tsx,*.story.tsx -i style-loader,css-loader deps",
     "storybook": "start-storybook -p 8000 --ci"
   },
-  "gitHead": "b7fd4722f916b99ce0c25fdfde7f65445343cb04",
-  "xdevDependencies": {
-    "css-loader": "^6.6.0",
-    "style-loader": "^3.3.1"
-  }
+  "gitHead": "b7fd4722f916b99ce0c25fdfde7f65445343cb04"
 }

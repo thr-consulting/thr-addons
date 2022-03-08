@@ -1,0 +1,46 @@
+{
+	"name": "@thx/example-controls",
+	"version": "9.0.0",
+	"private": true,
+	"description": "THX controls example project",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thr-consulting/thr-addons.git"
+	},
+	"license": "MIT",
+	"author": "Mike Kornelson <darkadept@durbn.net>",
+	"scripts": {
+		"build": "vite build",
+		"clean": "thx clean",
+		"deps": "thx -p vite.config.js deps",
+		"lint": "thx lint",
+		"lint.fix": "thx lint.fix",
+		"sort": "thx sort",
+		"start": "vite",
+		"ts": "thx ts"
+	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "./tsconfig-eslint.json"
+		}
+	},
+	"dependencies": {
+		"@js-joda/core": "^5.2.0",
+		"@thx/controls": "^15.3.0",
+		"debug": "^4.3.2",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-router": "^5.2.1",
+		"react-router-dom": "^5.3.0",
+		"semantic-ui-react": "^2.1.2"
+	},
+	"devDependencies": {
+		"vite": "^2.8.6",
+		"@vitejs/plugin-react": "^1.2.0",
+		"@types/react": "^17.0.39",
+		"@types/react-dom": "^17.0.13"
+	},
+	"engines": {
+		"node": ">=16"
+	}
+}

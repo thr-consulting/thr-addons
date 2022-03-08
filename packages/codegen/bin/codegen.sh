@@ -144,7 +144,7 @@ if [ "$LR" = "$PWD" ]; then
   fi
 
   op "Running lint fix in: ${PKG_CODEGEN_NAMES}"
-  O=$(yarn lerna run lint.fix --scope "${PKG_CODEGEN_NAMES}")
+  O=$(yarn lerna run lint.fix --scope "@${SCOPE}/{${PKG_CODEGEN_NAMES}}")
   if [ "$?" -ne "0" ]; then
     error "Problem running lint fix"
     printf "${YELLOW}%s${NC}\n" "${O}"

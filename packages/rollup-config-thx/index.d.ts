@@ -9,6 +9,7 @@ export interface RollupConfigOptions {
 	sourcemap?: boolean; // Defaults to true
 	run?: string;
 	delete?: boolean; // Defaults to true
+	analysis?: boolean; // Defaults to true
 }
 
 export declare function rollupLibConfig(options: RollupConfigOptions, additionalConfig?: RollupOptions): RollupOptions;

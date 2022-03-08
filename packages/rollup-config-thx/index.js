@@ -1,24 +1,29 @@
 import {resolve} from 'node:path';
+import {existsSync, readFileSync, writeFileSync} from 'node:fs';
+import {cwd} from 'node:process';
 import {nodeResolve} from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 import nodeExternals from 'rollup-plugin-node-externals';
-import esbuild from 'rollup-plugin-esbuild';
+import esbuild from 'rollup-plugin-esbuild-transform';
 import renameNodeModules from 'rollup-plugin-rename-node-modules';
 import runPlugin from '@rollup/plugin-run';
 import {merge} from 'lodash-es';
 import aliasPlugin from '@rollup/plugin-alias';
-import {existsSync, readFileSync} from 'node:fs';
 import delPlugin from 'rollup-plugin-delete';
+import commonjs from '@rollup/plugin-commonjs';
+import analyze from 'rollup-plugin-analyzer';
+import visualizer from 'rollup-plugin-visualizer';
 
 export function rollupLibConfig(opts, additionalConfig) {
-	const {name, srcPath, mode, type, sourcemap, run, delete: del} = opts;
+	const {name, srcPath, mode, type, sourcemap, run, delete: del, analysis} = opts;
 
 	// Variables
 	const isProduction = mode === 'production';
 	const sourcePath = srcPath || 'src';
 	const createSourcemaps = !(typeof sourcemap === 'boolean' && sourcemap === false);
 	const extensions = ['.js', '.ts'];
-	const tsconfigPath = resolve(process.cwd(), 'tsconfig.json');
+	const tsconfigPath = resolve(cwd(), 'tsconfig.json');
+	const tsconfig = JSON.parse(readFileSync(tsconfigPath, 'utf-8'));
 
 	// Process TSX files as well if type is web
 	if (type === 'web') {
@@ -27,26 +32,38 @@ export function rollupLibConfig(opts, additionalConfig) {
 
 	// Base plugins
 	const plugins = [
+		commonjs(),
 		nodeExternals(),
 		renameNodeModules('external'),
 		nodeResolve({extensions}),
-		esbuild({
-			minify: isProduction,
-			sourceMap: createSourcemaps,
-			tsconfig: tsconfigPath,
-			target: 'esnext',
-		}),
+		esbuild([
+			{
+				loader: 'json',
+			},
+			{
+				loader: 'ts',
+			},
+			{
+				loader: 'tsx',
+				banner: "import React from 'react'",
+			},
+			{
+				minify: isProduction,
+				tsconfigRaw: tsconfig,
+				sourcemap: createSourcemaps,
+				target: 'esnext',
+			},
+		]),
 	];
 
 	// If a tsconfig.json is present, check for aliases and add if needed
 	if (existsSync(tsconfigPath)) {
-		const tsconfig = JSON.parse(readFileSync(tsconfigPath, 'utf-8'));
 		if (tsconfig.compilerOptions?.paths) {
 			plugins.push(
 				aliasPlugin({
 					entries: Object.entries(tsconfig.compilerOptions.paths).map(([alias, value]) => ({
 						find: new RegExp(`${alias.replace('/*', '')}`),
-						replacement: resolve(process.cwd(), `${value[0].replace('/*', '')}`),
+						replacement: resolve(cwd(), `${value[0].replace('/*', '')}`),
 					})),
 				}),
 			);
@@ -81,7 +98,7 @@ export function rollupLibConfig(opts, additionalConfig) {
 		);
 	}
 
-	const config = {
+	let config = {
 		input: `${sourcePath}/index.ts`,
 		output: {
 			name,
@@ -99,7 +116,24 @@ export function rollupLibConfig(opts, additionalConfig) {
 	};
 
 	if (additionalConfig) {
-		return merge(config, additionalConfig);
+		config = merge(config, additionalConfig);
+	}
+
+	if (!(typeof analysis === 'boolean' && analysis === false)) {
+		config.plugins.push(
+			analyze({
+				summaryOnly: true,
+				writeTo: a => {
+					writeFileSync(resolve(cwd(), 'dist/stats.txt'), a);
+				},
+			}),
+			visualizer.default({
+				filename: './dist/stats.html',
+				gzipSize: true,
+				brotliSize: true,
+				template: 'treemap',
+			}),
+		);
 	}
 
 	return config;

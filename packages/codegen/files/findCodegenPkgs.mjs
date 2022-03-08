@@ -25,8 +25,8 @@ allPkgs.forEach(pkgDir => {
 			pkgs.push(`${pkgDir}/${src}`);
 		} else if (cmd === 'GET_CODEGEN_NAMES') {
 			const y = JSON.parse(readFileSync(join(pkgDir, 'package.json'), 'utf-8'));
-			pkgs.push(y.name);
-			// pkgs.push(pkgDir.replace(new RegExp(`^${pkgPath}/`), ''));
+			// pkgs.push(y.name);
+			pkgs.push(pkgDir.replace(new RegExp(`^${pkgPath}/`), ''));
 		}
 	}
 });

@@ -1,0 +1,11 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"target": "ES6",
+		"emitDeclarationOnly": false,
+		"noEmit": true,
+		"jsx": "react-jsx",
+		"baseUrl": ".",
+	},
+	"include": ["src/index.tsx", "types/*.d.ts"]
+}
