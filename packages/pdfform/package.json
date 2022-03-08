@@ -1,6 +1,6 @@
 {
 	"name": "@thx/pdfform",
-	"version": "15.3.0",
+	"version": "16.0.0",
 	"description": "PDF form filling library",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -33,9 +33,9 @@
 		}
 	},
 	"dependencies": {
-		"@thx/promise-sequential": "^15.1.1",
-		"@thx/random": "^15.3.0",
-		"@thx/yup-types": "^15.3.0",
+		"@thx/promise-sequential": "^16.0.0",
+		"@thx/random": "^16.0.0",
+		"@thx/yup-types": "^16.0.0",
 		"debug": "^4.3.3",
 		"hummus": "^1.0.110",
 		"node-pdftk": "^2.1.3"

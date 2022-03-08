@@ -1,6 +1,6 @@
 {
 	"name": "@thx/mimetype",
-	"version": "15.1.1",
+	"version": "16.0.0",
 	"description": "Mimetype and file type utilities",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"

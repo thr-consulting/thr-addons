@@ -5,12 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [16.0.0](https://github.com/thr-consulting/thr-addons/compare/v15.3.0...v16.0.0) (2022-03-08)
 
-**Note:** Version bump only for package @thx/standard005
-
-
-
-
-
-# [15.2.0](https://github.com/thr-consulting/thr-addons/compare/v15.1.1...v15.2.0) (2022-01-13)
-
-**Note:** Version bump only for package @thx/standard005
+**Note:** Version bump only for package @thx/codegen

@@ -1,6 +1,6 @@
 {
 	"name": "@thx/util",
-	"version": "15.2.0",
+	"version": "16.0.0",
 	"description": "THR Utility functions",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"

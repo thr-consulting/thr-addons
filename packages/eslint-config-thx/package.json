@@ -1,6 +1,6 @@
 {
 	"name": "@thx/eslint-config-thx",
-	"version": "16.0.0-alpha.0",
+	"version": "16.0.0",
 	"description": "ESLint configuration",
 	"license": "MIT",
 	"sideEffects": false,
