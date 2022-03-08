@@ -117,39 +117,22 @@ if [ "$LR" = "$PWD" ]; then
     echo "============================================="
   fi
 
-  op "Mapping entities from: ${ENTITY_DIRS}"
   rm -f /tmp/imp_codegen_entity_map.txt
-  O=$( { echo "${ENTITY_DIRS}" | "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$THXCODEGEN_DIR/files/cmMapEntities.ts" --stdin; } 2>&1 )
-  if [ "$?" -ne "0" ]; then
-    error "Cannot map entities"
-    printf "${YELLOW}%s${NC}\n" "${O}"
-    exit 1
-  fi
+  coproc bfd { echo "${ENTITY_DIRS}" | "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$THXCODEGEN_DIR/files/cmMapEntities.ts" --stdin 2>&1; }
+  exec 3>&${bfd[0]}
+  spinop $! "Mapping entities from: ${ENTITY_DIRS}"
 
-  op "Generating TS code from graphql schema"
-  O=$( { yarn lerna run codegen; } 2>&1 )
-  if [ "$?" -ne "0" ]; then
-    error "Problem running graphql-codegen"
-    printf "${YELLOW}%s${NC}\n" "${O}"
-    exit 2
-  fi
+  coproc bfd { yarn lerna run codegen 2>&1; }
+  exec 3>&${bfd[0]}
+  spinop $! "Generating TS code from graphql schema"
 
-  op "Creating enums and fixing/sorting imports"
-#  echo "${PKG_CODEGEN_DIRS}" | DEBUG_NAMESPACE="${SCOPE}" "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$THXCODEGEN_DIR/files/cmCodegen.ts" --stdin
-  O=$( { echo "${PKG_CODEGEN_DIRS}" | DEBUG_NAMESPACE="${SCOPE}" "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$THXCODEGEN_DIR/files/cmCodegen.ts" --stdin; } 2>&1 )
-  if [ "$?" -ne "0" ]; then
-    error "Problem creating enums or fixing imports"
-    printf "${YELLOW}%s${NC}\n" "${O}"
-    exit 3
-  fi
+  coproc bfd { echo "${PKG_CODEGEN_DIRS}" | DEBUG_NAMESPACE="${SCOPE}" "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$THXCODEGEN_DIR/files/cmCodegen.ts" --stdin 2>&1; }
+  exec 3>&${bfd[0]}
+  spinop $! "Creating enums and fixing/sorting imports"
 
-  op "Running lint fix in: ${PKG_CODEGEN_NAMES}"
-  O=$(yarn lerna run lint.fix --scope "@${SCOPE}/{${PKG_CODEGEN_NAMES}}")
-  if [ "$?" -ne "0" ]; then
-    error "Problem running lint fix"
-    printf "${YELLOW}%s${NC}\n" "${O}"
-    exit 4
-  fi
+  coproc bfd { yarn lerna run lint.fix --scope "@${SCOPE}/{${PKG_CODEGEN_NAMES}}" 2>&1; }
+  exec 3>&${bfd[0]}
+  spinop $! "Running lint fix in: ${PKG_CODEGEN_NAMES}"
 
   rm -f /tmp/imp_codegen_entity_map.txt
 else

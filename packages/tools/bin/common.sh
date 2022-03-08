@@ -16,6 +16,9 @@ LPURPLE='\033[1;35m'
 LCYAN='\033[1;36m'
 NC='\033[0m'
 
+POS1='\033[s'
+POS2='\033[u'
+
 # Ends the script from where ever
 #   endscript
 endscript () {
@@ -42,6 +45,44 @@ message () {
 
 op () {
   printf "${LCYAN}* ${LGREEN}%s${NC}\n" "$1"
+}
+
+spinner() {
+    local pid="$1"
+    local oper="$2"
+    local delay="0.1"
+    local status=0
+    tput civis  # hide cursor
+
+    while [ -d /proc/$pid ]; do
+      printf "${POS1}}${POS2}${LCYAN}* ${LBLUE}[ / ] ${LCYAN}${oper}${NC}${POS2}"; sleep "$delay"
+      printf "${POS1}}${POS2}${LCYAN}* ${LBLUE}[ - ] ${LCYAN}${oper}${NC}${POS2}"; sleep "$delay"
+      printf "${POS1}}${POS2}${LCYAN}* ${LBLUE}[ \ ] ${LCYAN}${oper}${NC}${POS2}"; sleep "$delay"
+      printf "${POS1}}${POS2}${LCYAN}* ${LBLUE}[ | ] ${LCYAN}${oper}${NC}${POS2}"; sleep "$delay"
+    done
+    wait $pid
+    status=$?
+    if [ "$status" -ne "0" ]; then
+      printf "${POS1}}${POS2}${LCYAN}* ${LRED}Error: ${LBLUE}%s               ${LGREEN}${NC}${POS2}\n" "${oper}"; sleep "$delay"
+    else
+      printf "${POS1}}${POS2}${LCYAN}* ${LGREEN}Completed: ${LBLUE}%s              ${LGREEN}${NC}${POS2}" "${oper}"; sleep "$delay"
+    fi
+    tput cnorm  # restore cursor
+    printf "\n"
+    return $status
+}
+
+spinop() {
+  local pid="$1"
+  local oper="$2"
+
+  spinner "$pid" "$oper"
+  ret="$?"
+  if [ "$ret" -ne "0" ]; then
+    IFS= read -d '' -u 3 O
+    printf "\n%s\n" "${O}"
+    exit $status
+  fi
 }
 
 # Checks to see if all commands indicated in an array are present on the system

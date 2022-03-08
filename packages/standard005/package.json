@@ -19,7 +19,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "thx build",
+		"build": "thx build.roll",
 		"clean": "thx clean",
 		"deps": "thx deps",
 		"lint": "thx lint",

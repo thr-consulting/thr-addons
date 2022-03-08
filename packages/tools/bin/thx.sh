@@ -216,11 +216,25 @@ case "${1}" in
     ;;
   ci)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s build
-      yarn -s ts
-      yarn -s deps
-      yarn -s organize
-      yarn -s test
+      coproc bfd { yarn -s build 2>&1; }
+      exec 3>&${bfd[0]}
+      spinop $! "Building"
+
+      coproc bfd { yarn -s ts 2>&1; }
+      exec 3>&${bfd[0]}
+      spinop $! "Checking types"
+
+      coproc bfd { yarn -s deps 2>&1; }
+      exec 3>&${bfd[0]}
+      spinop $! "Checking dependencies"
+
+      coproc bfd { yarn -s organize 2>&1; }
+      exec 3>&${bfd[0]}
+      spinop $! "Organizing code and linting"
+
+      coproc bfd { yarn -s test 2>&1; }
+      exec 3>&${bfd[0]}
+      spinop $! "Testing"
     fi
     ;;
   organize)
