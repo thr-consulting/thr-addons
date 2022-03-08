@@ -25,7 +25,9 @@
     "lint": "thx lint",
     "lint.fix": "thx lint.fix",
     "sort": "thx sort",
-    "ts": "thx ts"
+    "ts": "thx ts",
+    "storybook": "start-storybook -p 8000 --ci",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@js-joda/core": "^5.1.0",
