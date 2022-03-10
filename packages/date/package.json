@@ -21,7 +21,7 @@
 	"scripts": {
 		"build": "thx build.roll",
 		"clean": "thx clean",
-		"deps": "thx -p mocha.setup.ts deps",
+		"deps": "thx deps -p mocha.setup.ts",
 		"lint": "thx lint",
 		"lint.fix": "thx lint.fix",
 		"sort": "thx sort",

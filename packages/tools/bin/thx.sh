@@ -20,7 +20,7 @@ source "$TOOLS_DIR/bin/common.sh"
 
 show_help () {
   printf "${LCYAN}THX Script${NC}\n\n"
-  printf "Usage:  thx [COMMAND]\n\n"
+  printf "Usage:  thx [COMMAND] [OPTIONS]\n\n"
 	printf "A helper script for thr-addons\n\n"
 	printf "Commands:\n"
 	printf "  build       Runs webpack for dev & prod on webpack.js\n"
@@ -47,44 +47,43 @@ show_help () {
 	printf "  ts.watch    Runs the typescript compiler in watch mode\n"
 	printf "  watchtower  Runs docker watchtower in HTTP mode\n"
 	printf "\n"
+	printf "Options:      Used in project root only\n"
+  printf "  -v          Displays more information\n"
+	printf "\n"
 }
-
-# A POSIX variable
-OPTIND=1 # Reset in case getopts has been used previously in the shell.
 
 # This was a good idea, but webstorm linting stops working if we remove this from the package.json
 # ESLINT_PARSER_OPTIONS="{\"project\": \"./tsconfig-eslint.json\"}"
-DEPS_EXTRA_IGNORE_PATTERNS=""
-DEPS_EXTRA_IGNORES=""
-LR=$(get_lerna_root)
 
-while getopts "?p:i:" opt; do
-	case "$opt" in
-	\?)
-    show_help
-    exit 0
-    ;;
-  p)  DEPS_EXTRA_IGNORE_PATTERNS=$OPTARG
-    ;;
-	i)  DEPS_EXTRA_IGNORES=$OPTARG
-		;;
-	esac
-done
-shift $((OPTIND-1))
-[ "${1:-}" = "--" ] && shift
+LR=$(get_lerna_root)
+CMD="$1"
+
+if [ "$LR" = "$PWD" ]; then
+  OPTIND=2
+  while getopts "v" opt; do
+  	case "$opt" in
+    v)  IS_DEBUG=1
+      ;;
+    *)
+      ;;
+  	esac
+  done
+fi
+
+export IS_DEBUG
 
 # Check first argument
-case "${1}" in
+case "${CMD}" in
   build)
     # Assumptions
     #   - Calls build from monorepo root only
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run build "${@:2}"
+      spinop "Building" "yarn" "-s lerna run build"
     fi
     ;;
   build.roll)
     # Assumptions
-    #   - Runs rollup
+    #   - Runs rollup, not from monorepo root
     if [ "$LR" != "$PWD" ]; then
       yarn -s rollup -c "${@:2}"
     fi
@@ -95,6 +94,7 @@ case "${1}" in
     #   - 'dist' output
     #   - Ignores test files
     #   - Creates sourcemaps
+    #   - Not from monorepo root
     if [ "$LR" != "$PWD" ]; then
       yarn -s babel src --extensions ".ts,.tsx" --out-dir dist --source-maps --ignore "src/**/*.test.ts" "${@:2}"
     fi
@@ -104,9 +104,9 @@ case "${1}" in
     #   - 'dist' folder
     #   - '.eslintcache' and 'tsconfig.tsbuildinfo' files
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run clean
-      yarn -s lerna clean -y
-      yarn -s rimraf ./node_modules
+      spinop "Cleaning packages" "yarn" "-s lerna run clean"
+      spinop "Cleaning root packages" "yarn" "-s lerna clean -y"
+      spinop "Deleting node_modules" "yarn" "-s rimraf ./node_modules"
     else
       yarn -s rimraf ./dist
       yarn -s rimraf ./.eslintcache
@@ -118,7 +118,7 @@ case "${1}" in
     #   - JS, TS,  and TSX files
     #   - 'src' folder
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run lint "${@:2}"
+      spinop "Linting" "yarn" "-s lerna run lint"
     else
       yarn -s eslint --cache --ext js,ts,tsx src "${@:2}"
     fi
@@ -128,7 +128,7 @@ case "${1}" in
     #   - JS, TS,  and TSX files
     #   - 'src' folder
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run lint.fix "${@:2}"
+      spinop "Linting and fixing" "yarn" "-s lerna run lint.fix"
     else
       yarn -s eslint --cache --fix --ext js,ts,tsx src "${@:2}"
     fi
@@ -137,8 +137,7 @@ case "${1}" in
     # Assumptions
     #   - Uses mocha for tests
     if [ "$LR" = "$PWD" ]; then
-      # yarn -s lerna run test --stream "${@:2}"
-      yarn -s lerna run test "${@:2}"
+      spinop "Testing" "yarn" "-s lerna run test"
     else
       yarn -s mocha "${@:2}"
       # node --experimental-vm-modules "${LR}/node_modules/.bin/jest" "${@:2}"
@@ -157,7 +156,7 @@ case "${1}" in
     # Assumptions
     #   - If ttypescript is found, uses that instead
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run ts "${@:2}"
+      spinop "Checking types" "yarn" "-s lerna run ts"
     else
       if [ -f "$LR/node_modules/.bin/ttsc" ]; then
         yarn -s ttsc "${@:2}"
@@ -170,7 +169,7 @@ case "${1}" in
     # Assumptions
     #   - If ttypescript is found, uses that instead
     if [ "$LR" = "$PWD" ]; then
-      printf "Can't run ts in watch mode from lerna root\n"
+      printf "Can't run ts in watch mode from lerna root"
     else
       if [ -f "$LR/node_modules/.bin/ttsc" ]; then
         yarn -s ttsc --watch "${@:2}"
@@ -181,65 +180,72 @@ case "${1}" in
     ;;
   deps)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run deps "${@:2}"
+      spinop "Checking dependencies" "yarn" "-s lerna run deps"
     else
+      PATTERNS=""
+      IGNORES=""
+
+      OPTIND=2
+      while getopts "p:i:" opt; do
+      	case "$opt" in
+        p)  PATTERNS=$OPTARG
+          ;;
+      	i)  IGNORES=$OPTARG
+      		;;
+        *)
+          ;;
+      	esac
+      done
+
       PATS="build/*,dist/*,types/*,*.test.ts,*.test.js,.eslintrc.cjs"
       IGS="inspect-loader"
-      if [ -n "$DEPS_EXTRA_IGNORE_PATTERNS" ]; then
-        PATS="${PATS},${DEPS_EXTRA_IGNORE_PATTERNS}"
+      if [ -n "${PATTERNS}" ]; then
+        PATS="${PATS},${PATTERNS}"
       fi
-      if [ -n "$DEPS_EXTRA_IGNORES" ]; then
-        IGS="${IGS},${DEPS_EXTRA_IGNORES}"
+      if [ -n "${IGNORES}" ]; then
+        IGS="${IGS},${IGNORES}"
       fi
-      yarn -s depcheck --ignore-patterns="${PATS}" --ignores="${IGS}" "${@:2}"
+
+      yarn -s depcheck --ignore-patterns="${PATS}" --ignores="${IGS}" "${@:OPTIND+1}"
     fi
     ;;
   docs)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run docs "${@:2}"
+      spinop "Building docs" "yarn" "-s lerna run docs"
     else
       printf "Docs doesn't have anything to do in specific packages\n"
     fi
     ;;
   docs.storybook)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s lerna run docs.storybook "${@:2}"
+      spinop "Building storybook docs" "yarn" "-s lerna run docs.storybook"
     fi
     ;;
   sort)
     if [ "$LR" = "$PWD" ]; then
-      yarn -s sort-package-json "${@:2}"
-      yarn -s lerna run sort "${@:2}"
+      spinop "Sorting root package.json" "yarn" "-s sort-package-json"
+      spinop "Sorting packages package.json" "yarn" "-s lerna run sort"
     else
       yarn -s sort-package-json "${@:2}"
     fi
     ;;
   ci)
     if [ "$LR" = "$PWD" ]; then
-      coproc bfd { yarn -s build 2>&1; }
-      exec 3>&${bfd[0]}
-      spinop $! "Building"
-
-      coproc bfd { yarn -s ts 2>&1; }
-      exec 3>&${bfd[0]}
-      spinop $! "Checking types"
-
-      coproc bfd { yarn -s deps 2>&1; }
-      exec 3>&${bfd[0]}
-      spinop $! "Checking dependencies"
-
-      coproc bfd { yarn -s organize 2>&1; }
-      exec 3>&${bfd[0]}
-      spinop $! "Organizing code and linting"
-
-      coproc bfd { yarn -s test 2>&1; }
-      exec 3>&${bfd[0]}
-      spinop $! "Testing"
+      spinop "Building" "yarn" "-s build"
+      spinop "Checking types" "yarn" "-s ts"
+      spinop "Checking dependencies" "yarn" "-s deps"
+      spinop "Organizing code and linting" "yarn" "-s organize"
+      spinop "Testing" "yarn" "-s test"
     fi
     ;;
   organize)
     if [ "$LR" = "$PWD" ]; then
-      "${TOOLS_DIR}/bin/organize.sh" "${@:2}"
+      printf "${LRED}============${NC}\n"
+      printf "%s\n" "${@:OPTIND+1}"
+      printf "${LRED}============${NC}\n"
+      printf "%s\n" "${OPTIND}"
+      printf "${LRED}============${NC}\n"
+      "${TOOLS_DIR}/bin/organize.sh" "${@:OPTIND+1}"
     fi
     ;;
   codemod)

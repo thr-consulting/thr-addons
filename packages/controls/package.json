@@ -20,9 +20,9 @@
   ],
   "scripts": {
     "build": "thx build.roll",
-    "build-storybook": "build-storybook",
     "clean": "thx clean",
-    "deps": "thx -p *.stories.tsx,*.story.tsx,*.cjs deps",
+    "deps": "thx deps -p *.stories.tsx,*.story.tsx,*.cjs",
+    "docs.storybook": "build-storybook",
     "lint": "thx lint",
     "lint.fix": "thx lint.fix",
     "sort": "thx sort",

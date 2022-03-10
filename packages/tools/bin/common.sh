@@ -72,7 +72,7 @@ spinner() {
     return $status
 }
 
-spinop() {
+spinopDeprecated () {
   local pid="$1"
   local oper="$2"
 
@@ -82,6 +82,27 @@ spinop() {
     IFS= read -d '' -u 3 O
     printf "\n%s\n" "${O}"
     exit $status
+  fi
+}
+
+spinop () {
+  local oper="$1"
+  local cmd="$2"
+  # Convert string arg into array
+  IFS=' ' read -r -a args <<< "${3}"
+
+  if [ "$IS_DEBUG" = "1" ]; then
+    "${cmd}" "${args[@]}"
+  else
+    coproc bfd { "${cmd}" "${args[@]}" 2>&1; }
+    exec 3>&${bfd[0]}
+    spinner "$!" "$oper"
+    ret="$?"
+    if [ "$ret" -ne "0" ]; then
+      IFS= read -d '' -u 3 O
+      printf "\n%s\n" "${O}"
+      exit $status
+    fi
   fi
 }
 
