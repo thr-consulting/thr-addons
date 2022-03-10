@@ -240,11 +240,6 @@ case "${CMD}" in
     ;;
   organize)
     if [ "$LR" = "$PWD" ]; then
-      printf "${LRED}============${NC}\n"
-      printf "%s\n" "${@:OPTIND+1}"
-      printf "${LRED}============${NC}\n"
-      printf "%s\n" "${OPTIND}"
-      printf "${LRED}============${NC}\n"
       "${TOOLS_DIR}/bin/organize.sh" "${@:OPTIND+1}"
     fi
     ;;
@@ -252,7 +247,7 @@ case "${CMD}" in
     yarn -s jscodeshift --extensions=ts,tsx --parser=tsx "${@:2}"
     ;;
   deduplicate)
-    npx yarn-deduplicate
+    spinop "Deduplicate packages" "npx" "yarn-deduplicate"
     ;;
   watchtower)
     "${TOOLS_DIR}/bin/watchtower.sh" "${@:2}"

@@ -40,7 +40,7 @@ show_help () {
 OPTIND=1 # Reset in case getopts has been used previously in the shell.
 
 # Command line variable defaults
-PACKAGE_DIR=""
+PACKAGE_DIRS=""
 IGNORE_DIRS=""
 DEBUG_NAMESPACE=""
 
@@ -50,7 +50,7 @@ while getopts "h?p:i:d:" opt; do
 		show_help
 		exit 0
 		;;
-	p)  PACKAGE_DIR=$OPTARG
+	p)  PACKAGE_DIRS=$OPTARG
 		;;
   i)  IGNORE_DIRS=$OPTARG
     ;;
@@ -64,38 +64,52 @@ shift $((OPTIND-1))
 C=( "dos2unix" "git" )
 check_cmds C
 
-# Make sure a packages dir is specified
-if [ -z "$PACKAGE_DIR" ]; then
+# Make sure packages dirs are specified
+if [ -z "$PACKAGE_DIRS" ]; then
   error "Packages directory not specified with -p"
   exit 1
 fi
 
+# Get comma separated package dirs into array
+split_csv "$PACKAGE_DIRS" PKG_DIRS
+
 # Get comma separated package ignores into array
 split_csv "$IGNORE_DIRS" IGNORE_PKGS
-SRCDIRS=$(get_package_folders_string "$PACKAGE_DIR" IGNORE_PKGS '/src')
+
+ALL_SRC_DIRS=""
+for i in "${PKG_DIRS[@]}"; do
+  SRCDIRS=$(get_package_folders_string "$i" IGNORE_PKGS '/src')
+  printf -v ALL_SRC_DIRS "%s\n%s" "${ALL_SRC_DIRS}" "${SRCDIRS}"
+done
+ALL_SRC_DIRS=`echo ${ALL_SRC_DIRS} | sed '/^\s*$/d' | sed 's/ /\n/g'`
 
 #banner "Fixing jscodeshift"
 JSCODESHIFT_DIR=$(get_jscodeshift_dir "$TOOLS_DIR")
-fix_jscodeshift "$JSCODESHIFT_DIR" "$TOOLS_DIR"
+fix_jscodeshift "$JSCODESHIFT_DIR" "$TOOLS_DIR" >/dev/null 2>&1
 restore_cwd
+printf "${LCYAN}* ${LGREEN}Completed: ${LBLUE}Fixed jscodeshift${NC}\n"
 
-banner "Sorting package.json files"
-yarn -s sort
+spinop "Sorting package.json files" "yarn" "-s sort"
 
-banner "Codemod - Sort imports, aliases, debug namespaces"
-echo "${SRCDIRS}" | DEBUG_NAMESPACE="$DEBUG_NAMESPACE" "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$TOOLS_DIR/files/cmOrganize.ts" --stdin
-ret=$?
+
+cmd=("${JSCODESHIFT_DIR}/bin/jscodeshift.js" "--extensions=tsx,ts" "--parser=tsx" "-t" "${TOOLS_DIR}/files/cmOrganize.ts" "--stdin")
+export DEBUG_NAMESPACE
+if [ "$IS_DEBUG" = "1" ]; then
+  echo "${ALL_SRC_DIRS}" | "${cmd[@]}"
+  ret="$?"
+else
+  coproc bfd { echo "${ALL_SRC_DIRS}" | "${cmd[@]}" 2>&1; }
+  exec 3>&${bfd[0]}
+  spinner "$!" "Codemod - Sort imports, aliases, debug namespaces"
+  ret="$?"
+  if [ "$ret" -ne "0" ]; then
+    IFS= read -d '' -u 3 O
+    printf "\n%s\n" "${O}"
+  fi
+fi
+
 if [ $ret -ne 0 ]; then
   error "Error running codemod. Lint fixing will continue to prevent many changed files."
 fi
 
-banner "Fixing lint issues"
-yarn -s lint.fix
-
-if [ $ret -ne 0 ]; then
-  error "Errors occurred during generation. Some files may be left in an inconsistent state."
-  exit $ret
-fi
-
-banner "Organize complete"
-exit 0
+spinop "Fixing lint issues" "yarn" "-s lint.fix"

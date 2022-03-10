@@ -72,19 +72,6 @@ spinner() {
     return $status
 }
 
-spinopDeprecated () {
-  local pid="$1"
-  local oper="$2"
-
-  spinner "$pid" "$oper"
-  ret="$?"
-  if [ "$ret" -ne "0" ]; then
-    IFS= read -d '' -u 3 O
-    printf "\n%s\n" "${O}"
-    exit $status
-  fi
-}
-
 spinop () {
   local oper="$1"
   local cmd="$2"
@@ -101,7 +88,7 @@ spinop () {
     if [ "$ret" -ne "0" ]; then
       IFS= read -d '' -u 3 O
       printf "\n%s\n" "${O}"
-      exit $status
+      exit $ret
     fi
   fi
 }

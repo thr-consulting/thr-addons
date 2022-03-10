@@ -20,7 +20,7 @@
     "lerna": "lerna",
     "lint": "thx lint",
     "lint.fix": "thx lint.fix",
-    "organize": "thx organize - -p packages -i tools -d thx",
+    "organize": "thx organize - -p packages -i tools,codegen,eslint-config-thx,prettier-config-thx,rollup-config-thx -d thx",
     "prepare": "husky install",
     "sort": "thx sort",
     "test": "thx test",
