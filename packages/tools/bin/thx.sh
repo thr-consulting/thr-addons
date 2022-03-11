@@ -99,6 +99,11 @@ case "${CMD}" in
       yarn -s babel src --extensions ".ts,.tsx" --out-dir dist --source-maps --ignore "src/**/*.test.ts" "${@:2}"
     fi
     ;;
+  build.vite)
+    if [ "$LR" != "$PWD" ]; then
+      yarn -s vite build "${@:2}"
+    fi
+    ;;
   clean)
     # Assumptions
     #   - 'dist' folder

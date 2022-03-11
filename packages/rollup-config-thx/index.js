@@ -83,7 +83,7 @@ export function rollupLibConfig(opts, additionalConfig) {
 	if (run) {
 		plugins.push(
 			runPlugin({
-				execPath: 'yarn',
+				execPath: 'node',
 				execArgv: run.split(' '),
 				allowRestarts: true,
 			}),
