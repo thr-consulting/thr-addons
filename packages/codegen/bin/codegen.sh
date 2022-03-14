@@ -45,7 +45,7 @@ show_help () {
   printf "Usage:  thx.codegen [OPTIONS]\n\n"
 	printf "A helper script for generating typescript code from graphql.\n"
 	printf "Options:\n"
-	printf "  -d          Debug mode\n"
+	printf "  -v          Verbose mode\n"
 	printf "  -p  string  Packages directory (ie. packages) [required]\n"
 	printf "  -e  string  Package(s) where entities exist, comma separated (ie. domain) [required]"
 	printf "  -i  string  Comma separated list of package dirs to ignore\n"
@@ -57,7 +57,7 @@ show_help () {
 # A POSIX variable
 OPTIND=1 # Reset in case getopts has been used previously in the shell.
 
-DEBUG_MODE=0
+IS_DEBUG=0
 PACKAGE_DIR=""
 ENTITIES=""
 SCOPE=""
@@ -65,13 +65,13 @@ IGNORE_DIRS=""
 SRC="src"
 LR=$(get_lerna_root)
 
-while getopts "h?dp:e:s:i:" opt; do
+while getopts "h?vp:e:s:i:" opt; do
 	case "$opt" in
 	h|\?)
 		show_help
 		exit 0
 		;;
-	d)  DEBUG_MODE=1
+	v)  IS_DEBUG=1
 	  ;;
 	p)  PACKAGE_DIR=$OPTARG
 	  ;;
@@ -86,7 +86,7 @@ done
 shift $((OPTIND-1))
 [ "${1:-}" = "--" ] && shift
 
-export DEBUG_MODE
+export IS_DEBUG
 export SCOPE
 export PACKAGE_DIR
 
@@ -107,34 +107,91 @@ if [ "$LR" = "$PWD" ]; then
   PKG_CODEGEN_DIRS=$(node "$THXCODEGEN_DIR/files/findCodegenPkgs.mjs" "GET_CODEGEN_DIRS" "${PKG_SRC_DIRS}" "${SRC}")
   PKG_CODEGEN_NAMES=$(node "$THXCODEGEN_DIR/files/findCodegenPkgs.mjs" "GET_CODEGEN_NAMES" "${PKG_SRC_DIRS}" "${SRC}" "$(realpath "${PACKAGE_DIR}")")
 
-  if [ "$DEBUG_MODE" -eq "1" ]; then
-    echo "== pkg src dirs ============================="
-    echo "$PKG_SRC_DIRS"
-    echo "== pkg codegen dirs ========================="
-    echo "$PKG_CODEGEN_DIRS"
-    echo "== pkg codegen names ========================"
-    echo "$PKG_CODEGEN_NAMES"
-    echo "============================================="
+  if [ "$IS_DEBUG" = "1" ]; then
+    banner "Package Source Dirs (PKG_SRC_DIRS)"
+    printf "%s\n" "$PKG_SRC_DIRS"
+    banner "Package Codegen Dirs (PKG_CODEGEN_DIRS)"
+    printf "%s\n" "$PKG_CODEGEN_DIRS"
+    banner "Package Codegen Names (PKG_CODEGEN_NAMES)"
+    printf "%s\n\n" "$PKG_CODEGEN_NAMES"
   fi
 
+  # Remove tmp file
   rm -f /tmp/imp_codegen_entity_map.txt
-  coproc bfd { echo "${ENTITY_DIRS}" | "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$THXCODEGEN_DIR/files/cmMapEntities.ts" --stdin 2>&1; }
-  exec 3>&${bfd[0]}
-  spinop $! "Mapping entities from: ${ENTITY_DIRS}"
 
-  coproc bfd { yarn lerna run codegen 2>&1; }
-  exec 3>&${bfd[0]}
-  spinop $! "Generating TS code from graphql schema"
+  # Map entities into tmp file
+  if [ "$IS_DEBUG" = "1" ]; then
+    op "Mapping entities from: ${ENTITY_DIRS}"
+    echo "${ENTITY_DIRS}" | "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$THXCODEGEN_DIR/files/cmMapEntities.ts" --stdin
+  else
+    coproc bfd { echo "${ENTITY_DIRS}" | "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$THXCODEGEN_DIR/files/cmMapEntities.ts" --stdin 2>&1; }
+    exec 3>&${bfd[0]}
+    spinner "$!" "Mapping entities from: ${ENTITY_DIRS}"
+    ret="$?"
+    if [ "$ret" -ne "0" ]; then
+      IFS= read -d '' -u 3 O
+      printf "\n%s\n" "${O}"
+      exit $ret
+    fi
+  fi
 
-  coproc bfd { echo "${PKG_CODEGEN_DIRS}" | DEBUG_NAMESPACE="${SCOPE}" "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$THXCODEGEN_DIR/files/cmCodegen.ts" --stdin 2>&1; }
-  exec 3>&${bfd[0]}
-  spinop $! "Creating enums and fixing/sorting imports"
+  if [ "$IS_DEBUG" = "1" ]; then
+    banner "Mapped entities"
+    cat /tmp/imp_codegen_entity_map.txt
+    printf "\n"
+  fi
 
-  coproc bfd { yarn lerna run lint.fix --scope "@${SCOPE}/{${PKG_CODEGEN_NAMES}}" 2>&1; }
-  exec 3>&${bfd[0]}
-  spinop $! "Running lint fix in: ${PKG_CODEGEN_NAMES}"
+  # Generate TS code with codegen in each package
+  if [ "$IS_DEBUG" = "1" ]; then
+    op "Generating TS code from graphql schema"
+    yarn -s lerna run codegen
+  else
+    coproc bfd { yarn -s lerna run codegen 2>&1; }
+    exec 3>&${bfd[0]}
+    spinner "$!" "Generating TS code from graphql schema"
+    ret="$?"
+    if [ "$ret" -ne "0" ]; then
+      IFS= read -d '' -u 3 O
+      printf "\n%s\n" "${O}"
+      exit $ret
+    fi
+  fi
 
+  # Create enums, fix imports, sort imports
+  if [ "$IS_DEBUG" = "1" ]; then
+    op "Creating enums and fixing/sorting imports"
+    echo "${PKG_CODEGEN_DIRS}" | DEBUG_NAMESPACE="${SCOPE}" "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$THXCODEGEN_DIR/files/cmCodegen.ts" --stdin
+  else
+    coproc bfd { echo "${PKG_CODEGEN_DIRS}" | DEBUG_NAMESPACE="${SCOPE}" "$JSCODESHIFT_DIR/bin/jscodeshift.js" --extensions=tsx,ts --parser=tsx -t "$THXCODEGEN_DIR/files/cmCodegen.ts" --stdin 2>&1; }
+    exec 3>&${bfd[0]}
+    spinner "$!" "Creating enums and fixing/sorting imports"
+    ret="$?"
+    if [ "$ret" -ne "0" ]; then
+      IFS= read -d '' -u 3 O
+      printf "\n%s\n" "${O}"
+      exit $ret
+    fi
+  fi
+
+  # Run lint.fix
+  if [ "$IS_DEBUG" = "1" ]; then
+    op "Running lint fix in: ${PKG_CODEGEN_NAMES}"
+    yarn lerna run lint.fix --scope "@${SCOPE}/{${PKG_CODEGEN_NAMES}}"
+  else
+    coproc bfd { yarn lerna run lint.fix --scope "@${SCOPE}/{${PKG_CODEGEN_NAMES}}" 2>&1; }
+    exec 3>&${bfd[0]}
+    spinner "$!" "Running lint fix in: ${PKG_CODEGEN_NAMES}"
+    ret="$?"
+    if [ "$ret" -ne "0" ]; then
+      IFS= read -d '' -u 3 O
+      printf "\n%s\n" "${O}"
+      exit $ret
+    fi
+  fi
+
+  # Remove tmp file
   rm -f /tmp/imp_codegen_entity_map.txt
 else
+  # Run graphql-codegen
   yarn -s graphql-codegen "${@:2}"
 fi
