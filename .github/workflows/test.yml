@@ -41,6 +41,23 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup node 16.13
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: "16.13"
+
+      - name: node_modules cache
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
+
       - name: Run linting
         run: |
           yarn lint -v
@@ -50,6 +67,23 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup node 16.13
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: "16.13"
+
+      - name: node_modules cache
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
+
       - name: Run build
         run: |
           yarn build -v
@@ -59,6 +93,23 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup node 16.13
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: "16.13"
+
+      - name: node_modules cache
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
+
       - name: Run tests
         run: |
           yarn test -v
@@ -68,6 +119,23 @@ jobs:
     name: Typescript
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup node 16.13
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: "16.13"
+
+      - name: node_modules cache
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
+
       - name: Run typescript
         run: |
           yarn ts -v
