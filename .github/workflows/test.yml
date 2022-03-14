@@ -5,9 +5,8 @@ on:
       - master
 
 jobs:
-  test:
-    name: Test
-#    runs-on: self-hosted
+  installdeps:
+    name: Install dependencies
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -33,18 +32,42 @@ jobs:
           yarn global add lerna
           yarn lerna bootstrap
 
+      - name: Check dependencies
+        run: |
+          yarn deps -v
+
+  lint:
+    needs: installdeps
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
       - name: Run linting
         run: |
           yarn lint -v
 
+  build:
+    needs: installdeps
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
       - name: Run build
         run: |
           yarn build -v
 
+  tests:
+    needs: installdeps
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
       - name: Run tests
         run: |
           yarn test -v
 
+  typescript:
+    needs: installdeps
+    name: Typescript
+    runs-on: ubuntu-latest
+    steps:
       - name: Run typescript
         run: |
           yarn ts -v
