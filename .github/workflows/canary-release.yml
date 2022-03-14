@@ -39,11 +39,11 @@ jobs:
 
       - name: Run build
         run: |
-          yarn build
+          yarn build -v
 
       - name: Run typescript
         run: |
-          yarn ts
+          yarn ts -v
 
       - name: Publish canary
         env:
@@ -53,6 +53,6 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > "$NPMRC/.npmrc"
           yarn lerna publish patch -c --preid alpha --yes
 
-      - name: Notify discord
-        run: |
-          DISCORD_WEBHOOK=${{ secrets.DISCORD_WEBHOOK }} bash ./tools/discordhook.sh
+#      - name: Notify discord
+#        run: |
+#          DISCORD_WEBHOOK=${{ secrets.DISCORD_WEBHOOK }} bash ./tools/discordhook.sh

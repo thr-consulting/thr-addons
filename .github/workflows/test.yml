@@ -35,16 +35,16 @@ jobs:
 
       - name: Run linting
         run: |
-          yarn lint
+          yarn lint -v
 
       - name: Run build
         run: |
-          yarn build
+          yarn build -v
 
       - name: Run tests
         run: |
-          yarn test
+          yarn test -v
 
       - name: Run typescript
         run: |
-          yarn ts
+          yarn ts -v
