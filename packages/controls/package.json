@@ -34,7 +34,7 @@
     "@thx/date": "^16.0.1",
     "@thx/money": "^16.0.0",
     "@thx/yup-types": "^16.0.0",
-    "@types/inputmask": "^5.0.1",
+    "@types/inputmask": "^5.0.3",
     "@types/react-datepicker": "^4.1.7",
     "credit-card-type": "^9.1.0",
     "debug": "^4.1.1",
@@ -46,7 +46,7 @@
     "lodash-es": "^4.17.15",
     "luhn": "^2.4.1",
     "react-credit-cards": "^0.8.3",
-    "react-datepicker": "^4.2.1",
+    "react-datepicker": "^4.7.0",
     "react-table": "^7.6.3",
     "social-insurance-number": "^0.2.2",
     "use-deep-compare-effect": "1.4.0"

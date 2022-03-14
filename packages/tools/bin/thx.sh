@@ -45,6 +45,7 @@ show_help () {
 	printf "  lint             Runs eslint on js, ts, and tsx files\n"
 	printf "  lint.fix         Runs eslint with automatic fixing\n"
 	printf "  organize         Runs organize script\n"
+	printf "  outdated         Runs a sorted yarn outdated\n"
 	printf "  sort             Sorts package.json files\n"
 	printf "  test             Runs jest\n"
  	printf "  test.watch       Runs jest in watch mode ${pro}\n"
@@ -221,6 +222,9 @@ case "${CMD}" in
     if [ "$LR" = "$PWD" ]; then
       "${TOOLS_DIR}/bin/organize.sh" "${@:OPTIND+1}"
     fi
+    ;;
+  outdated)
+    yarn outdated --color=always | tail -n +5 | sort -i -b -k5,5 -k1
     ;;
   sort)
     if [ "$LR" = "$PWD" ]; then

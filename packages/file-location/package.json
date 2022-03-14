@@ -33,10 +33,10 @@
 		}
 	},
 	"dependencies": {
-		"aws-sdk": "^2.1072.0",
+		"aws-sdk": "^2.1092.0",
 		"debug": "^4.3.3",
 		"delete-empty": "^3.0.0",
-		"fs-extra": "^10.0.0",
+		"fs-extra": "^10.0.1",
 		"lodash-es": "^4.17.21"
 	},
 	"engines": {
