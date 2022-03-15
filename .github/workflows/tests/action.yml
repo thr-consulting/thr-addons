@@ -1,5 +1,5 @@
-name: 'Install dependencies'
-description: 'Installs and caches node modules'
+name: 'Test code'
+description: 'Runs the tests'
 runs:
   using: 'composite'
   steps:
@@ -17,15 +17,7 @@ runs:
           */*/node_modules
         key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
 
-    - name: Install dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
+    - name: Run tests
       shell: bash
       run: |
-        yarn global add lerna
-        yarn lerna bootstrap
-        yarn run thx check-git-status
-
-    - name: Check dependencies
-      shell: bash
-      run: |
-        yarn deps -v
+        yarn test -v

@@ -9,8 +9,10 @@ jobs:
     name: Install dependencies
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: ./.github/workflows/installdeps
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install & cache dependencies
+        uses: ./.github/workflows/installdeps
 
   lint:
     needs: installdeps
@@ -19,24 +21,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup node 16
-        uses: actions/setup-node@v2-beta
-        with:
-          node-version: "16"
-
-      - name: node_modules cache
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
-
-      - name: Run linting
-        run: |
-          yarn lint -v
+      - name: Lint code
+        uses: ./.github/workflows/lint
 
   build:
     needs: installdeps
@@ -45,24 +31,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: "16"
-
-      - name: node_modules cache
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
-
-      - name: Run build
-        run: |
-          yarn build -v
+      - name: Build code
+        uses: ./.github/workflows/build
 
   tests:
     needs: installdeps
@@ -71,24 +41,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: "16"
-
-      - name: node_modules cache
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
-
       - name: Run tests
-        run: |
-          yarn test -v
+        uses: ./.github/workflows/tests
 
   typescript:
     needs: installdeps
@@ -97,21 +51,5 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup node 16
-        uses: actions/setup-node@v2
-        with:
-          node-version: "16"
-
-      - name: node_modules cache
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
-
-      - name: Run typescript
-        run: |
-          yarn ts -v
+      - name: Run ts
+        uses: ./.github/workflows/typescript
