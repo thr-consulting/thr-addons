@@ -5,17 +5,11 @@ on:
       - master
 
 jobs:
-  checkout:
-    name: Checkout code
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
   installdeps:
-    needs: checkout
     name: Install dependencies
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: ./.github/workflows/installdeps
 
   lint:
