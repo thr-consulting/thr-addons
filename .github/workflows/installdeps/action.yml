@@ -3,6 +3,9 @@ description: 'Checks out the repository, installs and caches node modules'
 runs:
   using: 'composite'
   steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
     - name: Setup node
       uses: actions/setup-node@v2
       with:
