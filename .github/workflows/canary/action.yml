@@ -64,4 +64,4 @@ runs:
     - name: Notify discord
       shell: bash
       run: |
-        DISCORD_WEBHOOK=${{ secrets.DISCORD_WEBHOOK }} bash yarn run thx discord - "${{ inputs.name }} Canary Release" ""
+        DISCORD_WEBHOOK=${{ inputs.discord-webhook }} bash yarn run thx discord - "${{ inputs.name }} Canary Release" ""
