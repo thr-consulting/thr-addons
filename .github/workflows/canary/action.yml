@@ -12,6 +12,12 @@ inputs:
     description: 'The preid to publish with: alpha, beta, etc'
     required: false
     default: 'alpha'
+  npm-token:
+    description: 'npm token'
+    required: true
+  discord-webhook:
+    description: 'Webhook for posting to discord'
+    required: true
 runs:
   using: 'composite'
   steps:
@@ -48,7 +54,7 @@ runs:
 
     - name: Publish canary
       env:
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NPM_TOKEN: ${{ inputs.npm-token }}
         NPMRC: ${{ github.workspace }}
       shell: bash
       run: |
