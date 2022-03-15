@@ -9,32 +9,7 @@ jobs:
     name: Install dependencies
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup node 16.13
-        uses: actions/setup-node@v2-beta
-        with:
-          node-version: "16.13"
-
-      - name: node_modules cache
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          yarn global add lerna
-          yarn lerna bootstrap
-
-      - name: Check dependencies
-        run: |
-          yarn deps -v
+      - uses: ./.github/workflows/installdeps
 
   lint:
     needs: installdeps
@@ -44,10 +19,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup node 16.13
+      - name: Setup node 16
         uses: actions/setup-node@v2-beta
         with:
-          node-version: "16.13"
+          node-version: "16"
 
       - name: node_modules cache
         uses: actions/cache@v2
@@ -70,10 +45,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup node 16.13
-        uses: actions/setup-node@v2-beta
+      - name: Setup node
+        uses: actions/setup-node@v2
         with:
-          node-version: "16.13"
+          node-version: "16"
 
       - name: node_modules cache
         uses: actions/cache@v2
@@ -96,10 +71,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup node 16.13
-        uses: actions/setup-node@v2-beta
+      - name: Setup node
+        uses: actions/setup-node@v2
         with:
-          node-version: "16.13"
+          node-version: "16"
 
       - name: node_modules cache
         uses: actions/cache@v2
@@ -122,10 +97,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup node 16.13
-        uses: actions/setup-node@v2-beta
+      - name: Setup node 16
+        uses: actions/setup-node@v2
         with:
-          node-version: "16.13"
+          node-version: "16"
 
       - name: node_modules cache
         uses: actions/cache@v2
