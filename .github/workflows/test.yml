@@ -32,7 +32,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build code
-        uses: ./.github/workflows/build
+        uses: ./.github/workflows/buildcode
 
   tests:
     needs: installdeps
