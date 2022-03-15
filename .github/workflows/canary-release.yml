@@ -14,44 +14,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: '0'
-
-      - name: Setup node 16.13
-        uses: actions/setup-node@v2-beta
+      - name: Build & release canary
+        uses: ./.github/workflows/canary
         with:
-          node-version: "16.13"
-          registry-url: "https://registry.npmjs.org"
-
-      - name: Restore lerna node_modules
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          yarn global add lerna
-          yarn lerna bootstrap
-
-      - name: Run build
-        run: |
-          yarn build -v
-
-      - name: Run typescript
-        run: |
-          yarn ts -v
-
-      - name: Publish canary
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPMRC: ${{ github.workspace }}
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > "$NPMRC/.npmrc"
-          yarn lerna publish patch -c --preid alpha --yes
-
-#      - name: Notify discord
-#        run: |
-#          DISCORD_WEBHOOK=${{ secrets.DISCORD_WEBHOOK }} bash ./tools/discordhook.sh
+          publish-level: 'patch'
+          preid: 'alpha'
+          name: 'THR-Addons'

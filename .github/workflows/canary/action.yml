@@ -1,0 +1,61 @@
+name: 'Canary build'
+description: 'Builds for a canary release'
+inputs:
+  name:
+    description: 'The name of the release'
+    required: true
+  publish-level:
+    description: 'The level to publish: patch, minor, major'
+    required: false
+    default: 'patch'
+  preid:
+    description: 'The preid to publish with: alpha, beta, etc'
+    required: false
+    default: 'alpha'
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: node_modules cache
+      uses: actions/cache@v2
+      id: cache
+      with:
+        path: |
+          node_modules
+          */*/node_modules
+        key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
+
+    - name: Install dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        yarn global add lerna
+        yarn lerna bootstrap
+
+    - name: Run build
+      shell: bash
+      run: |
+        yarn build -v
+
+    - name: Run typescript
+      shell: bash
+      run: |
+        yarn ts -v
+
+    - name: Publish canary
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NPMRC: ${{ github.workspace }}
+      shell: bash
+      run: |
+        echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > "$NPMRC/.npmrc"
+        yarn lerna publish ${{ inputs.publish-level }} -c --preid $${ inputs.preid }} --yes
+
+    - name: Notify discord
+      shell: bash
+      run: |
+        DISCORD_WEBHOOK=${{ secrets.DISCORD_WEBHOOK }} bash yarn run thx discord - "${{ inputs.name }} Canary Release" ""

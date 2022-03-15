@@ -181,10 +181,18 @@ case "${CMD}" in
     fi
     ;;
   discord)
-    "${TOOLS_DIR}/bin/discord.sh" "${@:2}"
+    if [ "$LR" = "$PWD" ]; then
+      "${TOOLS_DIR}/bin/discord.sh" "${@:OPTIND+1}"
+    else
+      "${TOOLS_DIR}/bin/discord.sh" "${@:2}"
+    fi
     ;;
   docker-build)
-    "${TOOLS_DIR}/bin/docker-build.sh" "${@:2}"
+    if [ "$LR" = "$PWD" ]; then
+      "${TOOLS_DIR}/bin/docker-build.sh" "${@:OPTIND+1}"
+    else
+      "${TOOLS_DIR}/bin/docker-build.sh" "${@:2}"
+    fi
     ;;
   docs)
     if [ "$LR" = "$PWD" ]; then

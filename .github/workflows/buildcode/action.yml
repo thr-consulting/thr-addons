@@ -21,11 +21,3 @@ runs:
       shell: bash
       run: |
         yarn build -v
-
-    - name: Build cache
-      uses: actions/cache@v2
-      id: cache-build
-      with:
-        path: |
-          */*/dist
-        key: ${{ runner.os }}-build-${{ hashFiles('yarn.lock', '**/src/**', '*.json', '*.mjs', '*.js', '*.cjs') }}
