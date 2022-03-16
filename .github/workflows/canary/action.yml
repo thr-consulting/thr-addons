@@ -43,8 +43,7 @@ runs:
       if: steps.cache.outputs.cache-hit != 'true'
       shell: bash
       run: |
-        yarn global add lerna
-        yarn lerna bootstrap
+        yarn install
 
     - name: Run build
       shell: bash
@@ -68,6 +67,7 @@ runs:
     - name: Notify discord
       env:
         DISCORD_WEBHOOK: ${{ inputs.discord-webhook }}
+        MSG: ${{ format('There is a new canary release available {0}', github.ref) }}
       shell: bash
       run: |
-        yarn run thx discord - "${{ inputs.name }} Canary Release" ""
+        yarn run thx discord - "${{ inputs.name }} Canary Release" "$MSG"
