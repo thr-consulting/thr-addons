@@ -59,7 +59,7 @@ runs:
       shell: bash
       run: |
         echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > "$NPMRC/.npmrc"
-        yarn lerna publish ${{ inputs.publish-level }} -c --preid $${ inputs.preid }} --yes
+        yarn lerna publish ${{ inputs.publish-level }} -c --preid ${{ inputs.preid }} --yes
 
     - name: Notify discord
       shell: bash
