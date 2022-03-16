@@ -18,13 +18,17 @@ inputs:
   discord-webhook:
     description: 'Webhook for posting to discord'
     required: true
+  node-version:
+    description: 'Node version to use'
+    required: true
+    default: '16'
 runs:
   using: 'composite'
   steps:
     - name: Setup node
       uses: actions/setup-node@v2
       with:
-        node-version: '16'
+        node-version: ${{ inputs.node-version }}
 
     - name: node_modules cache
       uses: actions/cache@v2
@@ -62,6 +66,8 @@ runs:
         yarn lerna publish ${{ inputs.publish-level }} -c --preid ${{ inputs.preid }} --yes
 
     - name: Notify discord
+      env:
+        DISCORD_WEBHOOK: ${{ inputs.discord-webhook }}
       shell: bash
       run: |
-        DISCORD_WEBHOOK=${{ inputs.discord-webhook }} bash yarn run thx discord - "${{ inputs.name }} Canary Release" ""
+        yarn run thx discord - "${{ inputs.name }} Canary Release" ""
