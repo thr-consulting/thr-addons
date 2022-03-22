@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.6](https://github.com/thr-consulting/thr-addons/compare/v16.0.5...v16.0.6) (2022-03-22)
+
+
+### Bug Fixes
+
+* fixed a cjs hummus import ([#334](https://github.com/thr-consulting/thr-addons/issues/334)) ([31a4593](https://github.com/thr-consulting/thr-addons/commit/31a4593237d14e87c51e2749eb337d5268495b79))
+
+
+
+
+
 ## [16.0.1](https://github.com/thr-consulting/thr-addons/compare/v16.0.0...v16.0.1) (2022-03-10)
 
 **Note:** Version bump only for package @thx/pdfform
