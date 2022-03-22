@@ -2,10 +2,13 @@ import {sequential} from '@thx/promise-sequential';
 import {randomFilename} from '@thx/random';
 import type {ScriptelSchemaType} from '@thx/yup-types';
 import fs from 'fs';
-import {PDFWStreamForFile, createWriterToModify, PDFPageModifier} from 'hummus';
+import type {PDFPageModifier} from 'hummus';
+import hummus from 'hummus';
 import path from 'path';
 import type {Readable} from 'stream';
 import {PDFRStreamForStream} from './PDFRStreamForStream';
+
+const {PDFWStreamForFile, createWriterToModify, PDFPageModifier: PDFPgMod} = hummus;
 
 export interface PDFSignature {
 	signature: ScriptelSchemaType;
@@ -48,7 +51,7 @@ export async function signPdf(pdfStream: Readable, signature: PDFSignature[], tm
 
 			// if the page is not the same as the previous one then we want to create a new pageModifier.
 			if (isPageNumDifferent) {
-				pageModifier = new PDFPageModifier(pdfWriter, onPage - 1, true);
+				pageModifier = new PDFPgMod(pdfWriter, onPage - 1, true);
 				currentPage = val.location.onPage;
 			}
 
