@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0](https://github.com/thr-consulting/thr-addons/compare/v16.0.6...v16.1.0) (2022-03-25)
+
+
+### Features
+
+* **mimetype:** removed FileTypeReadStream, use file-type from npm instead ([a5a1808](https://github.com/thr-consulting/thr-addons/commit/a5a18082ea78a6464f02f4aaf8792fcf0d7d6ba6))
+
+
+
+
+
 ## [16.0.4](https://github.com/thr-consulting/thr-addons/compare/v16.0.3...v16.0.4) (2022-03-14)
 
 **Note:** Version bump only for package @thx/mimetype
