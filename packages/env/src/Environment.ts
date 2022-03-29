@@ -21,6 +21,16 @@ export class Environment {
 		this.#isDevelopment = !this.#isProduction;
 	}
 
+	public dump() {
+		return {
+			strings: this.#stringDict,
+			objects: this.#recordDict,
+			defaults: this.#defaults,
+			isDevelopment: this.#isDevelopment,
+			isProduction: this.#isProduction,
+		};
+	}
+
 	/**
 	 * Get the singleton instance of Environment.
 	 */
