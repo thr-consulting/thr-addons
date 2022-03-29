@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.1](https://github.com/thr-consulting/thr-addons/compare/v16.1.0...v16.1.1) (2022-03-29)
+
+
+### Features
+
+* **env:** added a dump method to dump the current environment ([f6cc3f7](https://github.com/thr-consulting/thr-addons/commit/f6cc3f7b3cc1d687b169b46437f0e78e10bdac30))
+
+
+
+
+
 # [16.1.0](https://github.com/thr-consulting/thr-addons/compare/v16.0.6...v16.1.0) (2022-03-25)
 
 
