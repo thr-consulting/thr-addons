@@ -1,4 +1,6 @@
-import {env as processEnv} from 'node:process';
+import process from 'node:process';
+
+const processEnv = process.env;
 
 type EnvType = string | boolean | number;
 
