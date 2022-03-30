@@ -1,5 +1,4 @@
 import type {RollupOptions} from 'rollup';
-import type {RollupAliasOptions} from '@rollup/plugin-alias';
 
 export interface RollupConfigOptions {
 	name: string;
@@ -12,4 +11,6 @@ export interface RollupConfigOptions {
 	analysis?: boolean; // Defaults to true
 }
 
-export declare function rollupLibConfig(options: RollupConfigOptions, additionalConfig?: RollupOptions): RollupOptions;
+export type RollupConfigModifier = (config: RollupOptions) => RollupOptions;
+
+export declare function rollupLibConfig(options: RollupConfigOptions, additionalConfig?: RollupOptions, modifier?: RollupConfigModifier): RollupOptions;
