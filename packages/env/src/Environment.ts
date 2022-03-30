@@ -5,6 +5,9 @@ interface Dict<T> {
 export type EnvironmentDefaultDict = Dict<string | number | boolean | Record<string, unknown>>;
 export type EnvironmentDict = Dict<string | Record<string, unknown> | undefined>;
 
+/**
+	@deprecated
+ */
 export class Environment {
 	private static instance: Environment;
 	readonly #stringDict: Dict<string | undefined>; // Store all environment variables, except records.
@@ -35,6 +38,8 @@ export class Environment {
 	 * Get the singleton instance of Environment.
 	 */
 	public static getInstance(): Environment {
+		// eslint-disable-next-line no-console
+		console.warn(`WARNING! Obsolete feature called. 'Environment' has been deprecated, please use the new 'env' feature instead`);
 		if (!Environment.instance) {
 			Environment.instance = new Environment();
 		}

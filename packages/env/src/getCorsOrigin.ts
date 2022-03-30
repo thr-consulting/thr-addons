@@ -1,7 +1,7 @@
-import {Environment} from './Environment';
+import {env} from './env';
 
 export function getCorsOrigin(): boolean | string | RegExp | string[] {
-	const corsString = Environment.getString('CORS_ORIGIN');
+	const corsString = env.getString('CORS_ORIGIN');
 	if (corsString === '') return false;
 	if (corsString.toLowerCase() === 'true') return true; // Reflect request origin
 	if (corsString.toLowerCase() === 'false') return false; // Disable CORS
