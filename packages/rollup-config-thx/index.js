@@ -14,7 +14,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import analyze from 'rollup-plugin-analyzer';
 import visualizer from 'rollup-plugin-visualizer';
 
-export function rollupLibConfig(opts, additionalConfig) {
+export function rollupLibConfig(opts, additionalConfig, modifier) {
 	const {name, srcPath, mode, type, sourcemap, run, delete: del, analysis} = opts;
 
 	// Variables
@@ -134,6 +134,10 @@ export function rollupLibConfig(opts, additionalConfig) {
 				template: 'treemap',
 			}),
 		);
+	}
+
+	if (modifier) {
+		config = modifier(config);
 	}
 
 	return config;

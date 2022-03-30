@@ -32,6 +32,9 @@
 			"project": "./tsconfig-eslint.json"
 		}
 	},
+	"dependencies": {
+		"lodash-es": "^4.17.21"
+	},
 	"engines": {
 		"node": ">=16"
 	},
