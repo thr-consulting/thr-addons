@@ -1,4 +1,5 @@
 import type {Collection, JSCodeshift, TSPropertySignature, TSTypeAnnotation, TSTypeReference} from 'jscodeshift';
+import type { TSTypeKind } from 'ast-types/gen/kinds';
 
 function makeTypeName(str: string) {
 	const a = /^(.*)(Query|Mutation|Subscription)$/.exec(str);
@@ -6,14 +7,38 @@ function makeTypeName(str: string) {
 	return `${a[1]}Type`;
 }
 
-function dig(typeAnno: TSTypeAnnotation['typeAnnotation']): TSTypeAnnotation['typeAnnotation'] {
-	if (typeAnno.type === 'TSTypeReference') {
-		if (typeAnno.typeName.type === 'Identifier' || typeAnno.typeName.type === 'TSQualifiedName') {
-			const tp = typeAnno.typeParameters;
-			if (tp && tp.type === 'TSTypeParameterInstantiation' && tp.params.length > 0) {
-				return dig(tp.params[0]);
-			}
+function isolateArrayType(v: TSTypeKind | undefined) {
+	if (!v) {
+		throw new Error('Null arrayType');
+	}
+	if (v?.type === 'TSUnionType') {
+		return v.types[0];
+	}
+	return v;
+}
+
+/**
+ * Isolates a graphql return type to it's "atomic" type. Removes optionals and possibly digs into first array type.
+ * @param typeAnno
+ */
+function isolateGraphqlReturnType(typeAnno: TSTypeAnnotation['typeAnnotation']): TSTypeAnnotation['typeAnnotation'] {
+	if (typeAnno.type === 'TSUnionType') {
+		if (typeAnno.types.length !== 2) {
+			throw new Error(`We expect union types to be between 2 different types but received: ${typeAnno.types.length}`);
 		}
+		if (typeAnno.types[1].type !== 'TSNullKeyword') {
+			throw new Error(`We expect union types to be between the first type and a null but we received: ${typeAnno.types[1].type}`);
+		}
+
+		const firstUnionMember = typeAnno.types[0];
+		if (firstUnionMember.type === 'TSTypeReference' && firstUnionMember.typeName.type === 'Identifier' && firstUnionMember.typeName.name === 'Array') {
+			return isolateArrayType(firstUnionMember.typeParameters?.params[0]);
+		}
+		return firstUnionMember;
+	}
+
+	if (typeAnno.type === 'TSTypeReference' && typeAnno.typeName.type === 'Identifier' && typeAnno.typeName.name === 'Array') {
+		return isolateArrayType(typeAnno.typeParameters?.params[0]);
 	}
 
 	return typeAnno;
@@ -43,9 +68,9 @@ export function addCustomGraphqlType(root: Collection, j: JSCodeshift) {
 	// @ts-ignore
 	const querySpecifier: TSPropertySignature = t.nodes()[0].declaration.typeAnnotation.members[0];
 	if (querySpecifier.key.type !== 'Identifier') throw new Error(`Query specifier must have a name`);
-	const querySpecifierName = querySpecifier.key.name; // Should be something like 'getSomething'
+	// const querySpecifierName = querySpecifier.key.name; // Should be something like 'getSomething'
 
-	const r = dig(querySpecifier.typeAnnotation?.typeAnnotation as TSTypeAnnotation);
+	const r = isolateGraphqlReturnType(querySpecifier.typeAnnotation?.typeAnnotation as TSTypeAnnotation);
 	// console.log('-------');
 	// console.log(j(r).toSource());
 	// console.log('-------');
