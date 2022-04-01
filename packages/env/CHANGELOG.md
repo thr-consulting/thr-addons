@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.6](https://github.com/thr-consulting/thr-addons/compare/v16.1.5...v16.1.6) (2022-04-01)
+
+
+### Features
+
+* **env:** enhanced and extended @thx/env ([c4338aa](https://github.com/thr-consulting/thr-addons/commit/c4338aa17add45cd81bd611f135fb15f434210dc))
+
+
+
+
+
 ## [16.1.4](https://github.com/thr-consulting/thr-addons/compare/v16.1.3...v16.1.4) (2022-03-30)
 
 **Note:** Version bump only for package @thx/env
