@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.7](https://github.com/thr-consulting/thr-addons/compare/v16.1.6...v16.1.7) (2022-04-01)
+
+
+### Bug Fixes
+
+* **env:** fixed a small bug in @thx/env. skip-ci ([e4862b9](https://github.com/thr-consulting/thr-addons/commit/e4862b91ad7da5f17ca85da793aa5a0e2f317c11))
+
+
+
+
+
 ## [16.1.6](https://github.com/thr-consulting/thr-addons/compare/v16.1.5...v16.1.6) (2022-04-01)
 
 
