@@ -143,7 +143,7 @@ function getRegex(key: string, def = /.*/): RegExp {
 	return def;
 }
 
-function getStringArray(key: string, def: string[] = []): string[] {
+function getStringArray(key: string, def: string[] | string = []): string[] {
 	const envc = getEnv();
 	if (key in envc) {
 		const val = getEnv()[key] as EnvType;
@@ -156,7 +156,10 @@ function getStringArray(key: string, def: string[] = []): string[] {
 		}
 		throw new Error(`Environment variable: '${key}' must be a valid array or comma-separated string`);
 	}
-	return def;
+	if (isArray(def)) {
+		return def;
+	}
+	return def.split(',');
 }
 
 function get(key: string, def: any = undefined): unknown {
