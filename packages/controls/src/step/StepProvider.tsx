@@ -2,7 +2,7 @@
 import debug from 'debug';
 import {cloneElement, Children, useMemo, useState} from 'react';
 import {Prompt} from 'react-router-dom';
-import {Grid, Step as SemanticStep} from 'semantic-ui-react';
+import {Grid, Step as SemanticStep, StepGroup} from 'semantic-ui-react';
 import {FormStep} from './FormStep';
 import {Step} from './Step';
 import {StepContext} from './stepContext';
@@ -66,7 +66,7 @@ export function StepProvider(props: StepProviderProps) {
 				<Grid divided stackable>
 					<Grid.Row>
 						<Grid.Column width={3}>
-							<SemanticStep.Group ordered size="mini" vertical widths={1}>
+							<StepGroup ordered size="mini" vertical widths={1}>
 								{titles?.map((title, index) => {
 									return (
 										<SemanticStep
@@ -82,7 +82,7 @@ export function StepProvider(props: StepProviderProps) {
 										</SemanticStep>
 									);
 								})}
-							</SemanticStep.Group>
+							</StepGroup>
 						</Grid.Column>
 						<Grid.Column width={13}>{children?.[currentStep]}</Grid.Column>
 					</Grid.Row>
@@ -94,7 +94,7 @@ export function StepProvider(props: StepProviderProps) {
 	return (
 		<StepContext.Provider value={valueProps}>
 			{props.warnOnReroute && <Prompt message={onNavigate} />}
-			<SemanticStep.Group ordered size="mini">
+			<StepGroup ordered size="mini">
 				{titles?.map((title, index) => {
 					return (
 						<SemanticStep
@@ -110,7 +110,7 @@ export function StepProvider(props: StepProviderProps) {
 						</SemanticStep>
 					);
 				})}
-			</SemanticStep.Group>
+			</StepGroup>
 			{children?.[currentStep]}
 		</StepContext.Provider>
 	);

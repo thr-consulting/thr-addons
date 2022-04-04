@@ -26,7 +26,6 @@ export function useMaskedInput(props: UseMaskedInputProps) {
 		if (!inputElement.current) throw new Error('Could not get input element');
 
 		d('Creating input mask instance');
-		d(Inputmask);
 		maskInstance.current = new Inputmask({
 			...mask,
 			oncomplete() {
