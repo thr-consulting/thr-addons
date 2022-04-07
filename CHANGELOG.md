@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.9](https://github.com/thr-consulting/thr-addons/compare/v16.1.8...v16.1.9) (2022-04-07)
+
+
+### Bug Fixes
+
+* **tools:** fixed docker build scripts [skip-ci] ([c248ed5](https://github.com/thr-consulting/thr-addons/commit/c248ed52dfe07bd3a77121a8882d0640fb5f3f9a))
+
+
+
+
+
 ## [16.1.8](https://github.com/thr-consulting/thr-addons/compare/v16.1.7...v16.1.8) (2022-04-04)
 
 

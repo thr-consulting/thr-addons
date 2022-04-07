@@ -1,6 +1,6 @@
 {
 	"name": "@thx/tools",
-	"version": "16.0.5",
+	"version": "16.1.9",
 	"description": "Dev tools to help code consistency",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
