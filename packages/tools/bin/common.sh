@@ -52,6 +52,7 @@ spinner() {
     local oper="$2"
     local delay="0.1"
     local status=0
+    local noerror="${3:-0}"
     tput civis  # hide cursor
 
     while [ -d /proc/$pid ]; do
@@ -62,7 +63,7 @@ spinner() {
     done
     wait $pid
     status=$?
-    if [ "$status" -ne "0" ]; then
+    if [ "$status" -ne "0" ] && [ "$noerror" == "0" ]; then
       printf "${POS1}}${POS2}${LCYAN}* ${LRED}Error: ${LBLUE}%s               ${LGREEN}${NC}${POS2}\n" "${oper}"; sleep "$delay"
     else
       printf "${POS1}}${POS2}${LCYAN}* ${LGREEN}Completed: ${LBLUE}%s              ${LGREEN}${NC}${POS2}" "${oper}"; sleep "$delay"
@@ -77,14 +78,18 @@ spinop () {
   local cmd="$2"
   # Convert string arg into array
   IFS=' ' read -r -a args <<< "${3}"
+  local noerror="${4:-0}"
 
   if [ "$IS_DEBUG" = "1" ]; then
     "${cmd}" "${args[@]}"
   else
     coproc bfd { "${cmd}" "${args[@]}" 2>&1; }
     exec 3>&${bfd[0]}
-    spinner "$!" "$oper"
+    spinner "$!" "$oper" "$noerror"
     ret="$?"
+    if [ "$noerror" == "1" ]; then
+      return 0
+    fi
     if [ "$ret" -ne "0" ]; then
       IFS= read -d '' -u 3 O
       printf "\n%s\n" "${O}"

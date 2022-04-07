@@ -26,13 +26,14 @@ show_help () {
 	printf "  -i  string  Comma separated list of images [required]\n"
 	printf "  -r  string  Repository ie. r.mymc.app [required]\n"
 	printf "  -p  string  Image prefix [required]\n"
-	printf "  -d  string  Docker source path (default: docker)\n"
+	printf "  -d  string  Dockerfile source path (default: docker)\n"
 	printf "  -c  string  Cache repo\n"
 	printf "  -x  string  Context directory (default: current dir)\n"
-	printf "  -v  string  Version\n"
+	printf "  -e  string  Version\n"
 	printf "  -l          Tag with latest \n"
 	printf "  -g          Ignore git status check\n"
 	printf "  -n          Don't push to repository\n"
+	printf "  -v          Verbose\n"
 	printf "\n"
 }
 
@@ -50,8 +51,9 @@ OPTVER=$VERSION
 IGNORE_GIT_STATUS=0
 DONT_PUSH=0
 TAG_LATEST=0
+IS_DEBUG=0
 
-while getopts "h?d:r:p:c:x:i:v:gnl" opt; do
+while getopts "h?d:r:p:c:x:i:e:gnlv" opt; do
 	case "$opt" in
 	h|\?)
 		show_help
@@ -69,7 +71,7 @@ while getopts "h?d:r:p:c:x:i:v:gnl" opt; do
 		;;
   i)  IMAGES=$OPTARG
     ;;
-  v)  OPTVER=$OPTARG
+  e)  OPTVER=$OPTARG
     ;;
   l)  TAG_LATEST=1
     ;;
@@ -77,34 +79,30 @@ while getopts "h?d:r:p:c:x:i:v:gnl" opt; do
 		;;
   n)  DONT_PUSH=1
     ;;
+  v)  IS_DEBUG=1
 	esac
 done
-
 shift $((OPTIND-1))
-
 [ "${1:-}" = "--" ] && shift
+
+export IS_DEBUG
 
 C=( "git" "docker" )
 check_cmds C
 
-function check_required_arguments () {
-  if [ -z "$IMAGES" ]; then
-    printf "${LRED}[ERROR] Image(s) not specified with -i${NC}\n"
-    exit 1
-  fi
-
-  if [ -z "$REPO" ]; then
-    printf "${LRED}[ERROR] Repository not specified with -r${NC}\n"
-    exit 1
-  fi
-
-  if [ -z "$IMAGE_PREFIX" ]; then
-    printf "${LRED}[ERROR] Image prefix not specified with -p${NC}\n"
-    exit 1
-  fi
-}
-
-check_required_arguments
+# Check required options
+if [ -z "$IMAGES" ]; then
+  printf "${LRED}[ERROR] Image(s) not specified with -i${NC}\n"
+  exit 1
+fi
+if [ -z "$REPO" ]; then
+  printf "${LRED}[ERROR] Repository not specified with -r${NC}\n"
+  exit 1
+fi
+if [ -z "$IMAGE_PREFIX" ]; then
+  printf "${LRED}[ERROR] Image prefix not specified with -p${NC}\n"
+  exit 1
+fi
 
 # Get comma separated image names into array
 IMAGE_ARRAY=()
@@ -142,39 +140,36 @@ docker_build () {
   if [ -n "$CACHE_REPO" ]
   then
     # Pull cached image
-    printf "${LCYAN}Attempting to pull cached image: ${CACHE_FILE}...${NC}\n"
-    docker pull "$CACHE_FILE" || true
+    spinop "Attempting to pull cached image: ${CACHE_FILE}" "docker" "pull $CACHE_FILE" 1
   fi
 
   # Build image
-  printf "${LCYAN}Building image: ${IMAGE_NAME}...${NC}\n"
   if [ -z "$CACHE_REPO" ]
   then
-    docker build -t "$TAG" -f "$DOCKER_FILE" "$CONTEXT_DIR"
+    spinop "Building image" "docker" "build -t $TAG -f $DOCKER_FILE $CONTEXT_DIR"
   else
-    docker build -t "$TAG" -f "$DOCKER_FILE" --cache-from="$CACHE_FILE" "$CONTEXT_DIR"
+    spinop "Building image" "docker" "build -t $TAG -f $DOCKER_FILE --cache-from=$CACHE_FILE $CONTEXT_DIR"
   fi
 
-  ret=$?
-  if [ $ret -ne 0 ]; then
-		printf "\n${LRED}[ERROR] Error building docker image: ${IMAGE_NAME}${NC}\n"
-		exit 1
-	else
-		printf "\n${LGREEN}Build OK: ${IMAGE_NAME}${NC}\n"
-	fi
+#  ret=$?
+#  if [ $ret -ne 0 ]; then
+#		printf "\n${LRED}[ERROR] Error building docker image: ${IMAGE_NAME}${NC}\n"
+#		exit 1
+#	else
+#		printf "\n${LGREEN}Build OK: ${IMAGE_NAME}${NC}\n"
+#	fi
 
   if [ -n "$CACHE_REPO" ]
   then
     # Tag and push cache
-  printf "${LCYAN}Tagging and pushing cache: ${CACHE_FILE}...${NC}\n"
-	docker tag "$TAG" "$CACHE_FILE"
-	docker push "$CACHE_FILE"
+    spinop "Tagging cache image" "docker" "tag $TAG $CACHE_FILE"
+    spinop "Pushing cache image" "docker" "push $CACHE_FILE"
   fi
 
   if [ "$TAG_LATEST" = "1" ]; then
     # Tag as latest
 	  printf "${LCYAN}Tagging image as latest...${NC}\n"
-	  docker tag $TAG "$REPO/$IMAGE_PREFIX-$IMAGE_NAME:latest"
+	  spinop "Tagging image as latest" "docker" "tag $TAG $REPO/$IMAGE_PREFIX-$IMAGE_NAME:latest"
   fi
 }
 
@@ -182,8 +177,7 @@ docker_push () {
   IMAGE_NAME=$1
   TAG="$REPO/$IMAGE_PREFIX-$IMAGE_NAME:$VER"
 
-  printf "${LCYAN}Pushing release: ${IMAGE_PREFIX}-${IMAGE_NAME}:${VER}...${NC}\n"
-  docker push "$TAG"
+  spinop "Pushing release ${IMAGE_PREFIX}-${IMAGE_NAME}:${VER}" "docker" "push $TAG"
   ret=$?
 	if [ $ret -ne 0 ]; then
 		printf " ${LRED}error${NC}\n"
@@ -194,25 +188,42 @@ docker_push () {
 	fi
 
   if [ "$TAG_LATEST" = "1" ]; then
-    printf "${LCYAN}Pushing latest tag: ${IMAGE_PREFIX}-${IMAGE_NAME}:latest...${NC}\n"
-    docker push "$REPO/$IMAGE_PREFIX-$IMAGE_NAME:latest"
+    spinop "Pushing latest tag: ${IMAGE_PREFIX}-${IMAGE_NAME}:latest" "docker" "push $REPO/$IMAGE_PREFIX-$IMAGE_NAME:latest"
   fi
 }
 
 build_summary () {
-  printf "${LCYAN}DOCKER BUILD${NC}\n"
-  printf "${LCYAN}============${NC}\n"
   printf "${LBLUE}Build Options:${NC}\n"
-  printf "  ${LBLUE}Context dir: ${GREEN}${CONTEXT_DIR}${NC}\n"
+  printf "  ${LBLUE}Dockerfile dir: ${GREEN}${DOCKER_SOURCE_DIR}${NC}\n"
+  printf "  ${LBLUE}Context dir   : ${GREEN}${CONTEXT_DIR}${NC}\n"
   if [ -n "$CACHE_REPO" ]
   then
-    printf "  ${LBLUE}Cache repo : ${GREEN}${CACHE_REPO}${NC}\n"
+    printf "  ${LBLUE}Cache repo  : ${GREEN}${CACHE_REPO}${NC}\n"
   fi
+
+  nl=0
+  printf "${LBLUE}"
+  if [ "${TAG_LATEST}" == "1" ]; then
+    nl=1
+    printf "Tag latest,"
+  fi
+  if [ "${IGNORE_GIT_STATUS}" == "1" ]; then
+    nl=1
+    printf " Ignore git status,"
+  fi
+  if [ "${DONT_PUSH}" == "1" ]; then
+    nl=1
+    printf " Don't push repo,"
+  fi
+  if [ $nl -eq 1 ]; then
+    printf "\n"
+  fi
+  printf "${NC}"
   printf "${LBLUE}Images:${NC}\n"
   for el in "${IMAGE_ARRAY[@]}"
   do
     TAG="$REPO/$IMAGE_PREFIX-$el:$VER"
-    printf "  ${GREEN}${TAG}${NC}\n"
+    printf "    ${GREEN}${TAG}${NC}\n"
   done
   printf "\n"
 }
@@ -237,4 +248,6 @@ if [ "$DONT_PUSH" = "0" ]; then
   done
 fi
 
-build_summary
+if [ "$IS_DEBUG" = "1" ]; then
+  build_summary
+fi

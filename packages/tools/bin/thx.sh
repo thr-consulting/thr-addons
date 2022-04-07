@@ -66,15 +66,17 @@ CMD="$1"
 
 # Get options if we are in the lerna root
 if [ "$LR" = "$PWD" ]; then
-  OPTIND=2
-  while getopts "v" opt; do
-  	case "$opt" in
-    v)  IS_DEBUG=1
-      ;;
-    *)
-      ;;
-  	esac
-  done
+  if [ "$CMD" != "docker-build" ]; then
+    OPTIND=2
+    while getopts "v" opt; do
+      case "$opt" in
+      v)  IS_DEBUG=1
+        ;;
+      *)
+        ;;
+      esac
+    done
+  fi
 fi
 
 export IS_DEBUG
@@ -190,8 +192,6 @@ case "${CMD}" in
   docker-build)
     if [ "$LR" = "$PWD" ]; then
       "${TOOLS_DIR}/bin/docker-build.sh" "${@:OPTIND+1}"
-    else
-      "${TOOLS_DIR}/bin/docker-build.sh" "${@:2}"
     fi
     ;;
   docs)
