@@ -178,14 +178,6 @@ docker_push () {
   TAG="$REPO/$IMAGE_PREFIX-$IMAGE_NAME:$VER"
 
   spinop "Pushing release ${IMAGE_PREFIX}-${IMAGE_NAME}:${VER}" "docker" "push $TAG"
-  ret=$?
-	if [ $ret -ne 0 ]; then
-		printf " ${LRED}error${NC}\n"
-		printf "\n${LRED}[ERROR] Error pushing docker image: ${IMAGE_NAME}:${VER}${NC}\n"
-		exit 1
-	else
-		printf " ${LGREEN}OK${NC}\n"
-	fi
 
   if [ "$TAG_LATEST" = "1" ]; then
     spinop "Pushing latest tag: ${IMAGE_PREFIX}-${IMAGE_NAME}:latest" "docker" "push $REPO/$IMAGE_PREFIX-$IMAGE_NAME:latest"
