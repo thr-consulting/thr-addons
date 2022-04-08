@@ -33,7 +33,6 @@
 		}
 	},
 	"dependencies": {
-		"@thx/promise-sequential": "^16.0.0",
 		"@thx/random": "^16.0.1",
 		"@thx/yup-types": "^16.0.0",
 		"debug": "^4.3.3",
