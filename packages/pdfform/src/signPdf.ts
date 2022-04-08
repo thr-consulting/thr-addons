@@ -1,7 +1,4 @@
-import {randomFilename} from '@thx/random';
 import type {ScriptelSchemaType} from '@thx/yup-types';
-import fs from 'fs';
-import path from 'path';
 import {Readable} from 'stream';
 import {PDFDocument} from 'pdf-lib';
 
@@ -22,25 +19,27 @@ export interface PDFSignature {
  * @param signature
  * @param tmpFolderPath - This is required because we need to save a temporary file
  */
-export async function signPdf(pdfStream: Readable, signature: PDFSignature[], tmpFolderPath: string): Promise<Readable> {
+export async function signPdf(pdfStream: Readable, signature: PDFSignature[]): Promise<Readable> {
 	if (!signature || signature.length < 1) throw new Error('The signatureLocationArray is empty');
 
-	const tempFilePath = path.resolve(tmpFolderPath, randomFilename({id: 'temporary', ext: 'pdf'}));
-	const writeStream = fs.createWriteStream(tempFilePath);
-	pdfStream.pipe(writeStream);
+	return new Promise((resolve, reject) => {
+		const buffer: Buffer[] = [];
 
-	return new Promise(resolve => {
-		fs.readFile(tempFilePath, async (error, file) => {
-			if (error) throw error;
+		pdfStream.on('data', chunk => {
+			buffer.push(chunk);
+		});
 
+		pdfStream.on('close', async () => {
+			const file = Buffer.concat(buffer);
 			const pdfDoc = await PDFDocument.load(file);
 			const pages = pdfDoc.getPages();
 
 			await Promise.all(
 				signature.map(async s => {
-					if (!pages[s.location.onPage]) return;
+					const index = s.location.onPage - 1;
+					if (!pages[index]) return;
 					const pngImage = await pdfDoc.embedPng(s.signature.data);
-					pages[s.location.onPage].drawImage(pngImage, {
+					pages[index].drawImage(pngImage, {
 						x: s.location.x,
 						y: s.location.y,
 						width: s.location.width,
@@ -50,12 +49,18 @@ export async function signPdf(pdfStream: Readable, signature: PDFSignature[], tm
 			);
 
 			const pdfBytes = await pdfDoc.save();
-
-			fs.unlink(tempFilePath, error1 => {
-				if (error1) throw error1;
+			const readable = new Readable({
+				read() {
+					this.push(pdfBytes);
+					this.push(null);
+				},
 			});
 
-			resolve(Readable.from(pdfBytes));
+			resolve(readable);
+		});
+
+		pdfStream.on('error', error => {
+			reject(error);
 		});
 	});
 }

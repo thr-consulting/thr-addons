@@ -2,14 +2,19 @@ import {Readable} from 'stream';
 import {PDFDocument} from 'pdf-lib';
 import fs from 'fs';
 
-async function fillPdf(sourcePdfFilename: string, data: {[key: string]: string | undefined}): Promise<Uint8Array> {
+async function fillPdf(sourcePdfFilename: string, data: {[key: string]: string | boolean | undefined}): Promise<Uint8Array> {
 	return new Promise(resolve => {
 		fs.readFile(sourcePdfFilename, async (error, file) => {
 			if (error) throw error;
 			const pdfDoc = await PDFDocument.load(file);
 			const form = pdfDoc.getForm();
 			Object.keys(data).forEach(key => {
-				form.getTextField(key).setText(data[key]);
+				const value = data[key];
+				if (value === true) {
+					form.getCheckBox(key).check();
+				} else if (typeof value === 'string') {
+					form.getTextField(key).setText(value);
+				}
 			});
 			const pdfBytes = await pdfDoc.save();
 			resolve(pdfBytes);
@@ -22,8 +27,14 @@ async function fillPdf(sourcePdfFilename: string, data: {[key: string]: string |
  * @param sourcePdfFilename
  * @param data
  */
-export async function pdfForStream(sourcePdfFilename: string, data: {[key: string]: string | undefined}): Promise<Readable> {
-	return Readable.from(await fillPdf(sourcePdfFilename, data));
+export async function pdfForStream(sourcePdfFilename: string, data: {[key: string]: string | boolean | undefined}): Promise<Readable> {
+	const buffer = await fillPdf(sourcePdfFilename, data);
+	return new Readable({
+		read() {
+			this.push(buffer);
+			this.push(null);
+		},
+	});
 }
 
 /**
@@ -31,7 +42,7 @@ export async function pdfForStream(sourcePdfFilename: string, data: {[key: strin
  * @param sourcePdfFilename
  * @param data
  */
-export async function pdfForBuffer(sourcePdfFilename: string, data: {[key: string]: string | undefined}): Promise<Buffer> {
+export async function pdfForBuffer(sourcePdfFilename: string, data: {[key: string]: string | boolean | undefined}): Promise<Buffer> {
 	return Buffer.from(await fillPdf(sourcePdfFilename, data));
 }
 
