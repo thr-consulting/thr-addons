@@ -1,8 +1,21 @@
-import {spawn} from 'child_process';
-// @ts-ignore
-import pdftk from 'node-pdftk';
-import type {Readable} from 'stream';
-import generateFdfFromJson from './generateFdfFromJson';
+import {Readable} from 'stream';
+import {PDFDocument} from 'pdf-lib';
+import fs from 'fs';
+
+async function fillPdf(sourcePdfFilename: string, data: {[key: string]: string | undefined}): Promise<Uint8Array> {
+	return new Promise(resolve => {
+		fs.readFile(sourcePdfFilename, async (error, file) => {
+			if (error) throw error;
+			const pdfDoc = await PDFDocument.load(file);
+			const form = pdfDoc.getForm();
+			Object.keys(data).forEach(key => {
+				form.getTextField(key).setText(data[key]);
+			});
+			const pdfBytes = await pdfDoc.save();
+			resolve(pdfBytes);
+		});
+	});
+}
 
 /**
  * Take mapped pdf form data and fill a PDF form, returning a read stream
@@ -10,19 +23,7 @@ import generateFdfFromJson from './generateFdfFromJson';
  * @param data
  */
 export async function pdfForStream(sourcePdfFilename: string, data: {[key: string]: string | undefined}): Promise<Readable> {
-	// implement taking a source PDF filename and mapped data from mapPdfFormData and returning a PDF stream
-	return new Promise((resolve, reject) => {
-		const fdfData = generateFdfFromJson(data);
-		const options = [sourcePdfFilename, 'fill_form', '-', 'output', '-', 'flatten'];
-
-		const child = spawn('pdftk', options);
-
-		child.stdin.write(fdfData);
-		child.on('error', reject);
-		child.stdin.on('error', reject);
-		child.stdin.on('close', () => resolve(child.stdout));
-		child.stdin.end();
-	});
+	return Readable.from(await fillPdf(sourcePdfFilename, data));
 }
 
 /**
@@ -30,8 +31,8 @@ export async function pdfForStream(sourcePdfFilename: string, data: {[key: strin
  * @param sourcePdfFilename
  * @param data
  */
-export function pdfForBuffer(sourcePdfFilename: string, data: {[key: string]: string | undefined}): Buffer {
-	return pdftk.input(sourcePdfFilename).fillForm(data).flatten().output();
+export async function pdfForBuffer(sourcePdfFilename: string, data: {[key: string]: string | undefined}): Promise<Buffer> {
+	return Buffer.from(await fillPdf(sourcePdfFilename, data));
 }
 
 /**
@@ -39,5 +40,5 @@ export function pdfForBuffer(sourcePdfFilename: string, data: {[key: string]: st
  * @param buffers
  */
 export function buildPdf(buffers: Buffer[]): Buffer {
-	return pdftk.input(buffers).output();
+	return Buffer.concat(buffers);
 }

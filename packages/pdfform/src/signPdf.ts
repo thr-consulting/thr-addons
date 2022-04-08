@@ -1,14 +1,9 @@
-import {sequential} from '@thx/promise-sequential';
 import {randomFilename} from '@thx/random';
 import type {ScriptelSchemaType} from '@thx/yup-types';
 import fs from 'fs';
-import type {PDFPageModifier} from 'hummus';
-import hummus from 'hummus';
 import path from 'path';
-import type {Readable} from 'stream';
-import {PDFRStreamForStream} from './PDFRStreamForStream';
-
-const {PDFWStreamForFile, createWriterToModify, PDFPageModifier: PDFPgMod} = hummus;
+import {Readable} from 'stream';
+import {PDFDocument} from 'pdf-lib';
 
 export interface PDFSignature {
 	signature: ScriptelSchemaType;
@@ -31,61 +26,36 @@ export async function signPdf(pdfStream: Readable, signature: PDFSignature[], tm
 	if (!signature || signature.length < 1) throw new Error('The signatureLocationArray is empty');
 
 	const tempFilePath = path.resolve(tmpFolderPath, randomFilename({id: 'temporary', ext: 'pdf'}));
-	// https://github.com/galkahana/HummusJS
-	const outStream = new PDFWStreamForFile(tempFilePath);
-	const inStream = await PDFRStreamForStream(pdfStream);
-	const pdfWriter = createWriterToModify(inStream, outStream);
+	const writeStream = fs.createWriteStream(tempFilePath);
+	pdfStream.pipe(writeStream);
 
-	let currentPage = 0;
-	let pageModifier: PDFPageModifier;
-	// I want to create an image for each signature and then draw them both to the stream.
-	const drawingArray = signature
-		.sort((a, b) => a.location.onPage - b.location.onPage)
-		.map((val, index) => async () => {
-			const {
-				signature: {data},
-				location: {width = 400, height = 100, x = 1, y = 1, onPage = 1},
-			} = val;
-			const isPageNumDifferent = currentPage.toString() !== onPage.toString();
-			const isNextPageNumDifferent = signature[index + 1] && signature[index + 1].location.onPage.toString() !== onPage.toString();
+	return new Promise(resolve => {
+		fs.readFile(tempFilePath, async (error, file) => {
+			if (error) throw error;
 
-			// if the page is not the same as the previous one then we want to create a new pageModifier.
-			if (isPageNumDifferent) {
-				pageModifier = new PDFPgMod(pdfWriter, onPage - 1, true);
-				currentPage = val.location.onPage;
-			}
+			const pdfDoc = await PDFDocument.load(file);
+			const pages = pdfDoc.getPages();
 
-			if (!data) throw new Error('The signature data field is empty');
+			await Promise.all(
+				signature.map(async s => {
+					if (!pages[s.location.onPage]) return;
+					const pngImage = await pdfDoc.embedPng(s.signature.data);
+					pages[s.location.onPage].drawImage(pngImage, {
+						x: s.location.x,
+						y: s.location.y,
+						width: s.location.width,
+						height: s.location.height,
+					});
+				}),
+			);
 
-			// create the signature image.
-			const signatureBuffer = Buffer.from(data.replace('data:image/png;base64,', ''), 'base64');
-			const signatureFilePath = path.resolve(tmpFolderPath, randomFilename({id: 'signature', ext: 'png'}));
-			await fs.promises.writeFile(signatureFilePath, signatureBuffer);
+			const pdfBytes = await pdfDoc.save();
 
-			// I am giving it the height of 100 because the ratio is set to being proportional,
-			// which alleviates the reason for having a height prop.
-			const cxt = pageModifier.startContext().getContext();
-			cxt.drawImage(x, y, signatureFilePath, {
-				transformation: {width, height, proportional: true},
+			fs.unlink(tempFilePath, error1 => {
+				if (error1) throw error1;
 			});
 
-			// we only want to write page if the next page is a new one or if this page is the last one.
-			if (isNextPageNumDifferent || signature.length === index + 1) {
-				pageModifier.endContext().writePage();
-			} else pageModifier.endContext();
-			await fs.promises.unlink(signatureFilePath);
+			resolve(Readable.from(pdfBytes));
 		});
-
-	await sequential(drawingArray);
-	pdfWriter.end();
-
-	const returnStream = fs.createReadStream(tempFilePath);
-	// if I don't have the on data event, then the on close event doesn't get called.
-	returnStream.on('data', () => {});
-	returnStream.on('close', () =>
-		fs.unlink(tempFilePath, err => {
-			if (err) throw new Error(err.message);
-		}),
-	);
-	return returnStream;
+	});
 }

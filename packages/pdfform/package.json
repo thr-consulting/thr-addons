@@ -37,8 +37,7 @@
 		"@thx/random": "^16.0.1",
 		"@thx/yup-types": "^16.0.0",
 		"debug": "^4.3.3",
-		"hummus": "^1.0.110",
-		"node-pdftk": "^2.1.3"
+		"pdf-lib": "^1.17.1"
 	},
 	"engines": {
 		"node": ">=16"
