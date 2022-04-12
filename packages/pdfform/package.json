@@ -1,6 +1,6 @@
 {
 	"name": "@thx/pdfform",
-	"version": "16.0.6",
+	"version": "16.1.10",
 	"description": "PDF form filling library",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
