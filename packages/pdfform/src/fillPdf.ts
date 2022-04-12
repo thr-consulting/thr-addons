@@ -1,43 +1,47 @@
-import {spawn} from 'child_process';
-// @ts-ignore
-import pdftk from 'node-pdftk';
-import type {Readable} from 'stream';
-import generateFdfFromJson from './generateFdfFromJson';
+import {isString} from 'lodash-es';
+import {Buffer} from 'node:buffer';
+import {Readable} from 'node:stream';
+import {PDFDocument, PDFDropdown, PDFTextField} from 'pdf-lib';
+import {getPdfDoc} from './getPdfDoc';
+import type {PdfInputType} from './types';
 
-/**
- * Take mapped pdf form data and fill a PDF form, returning a read stream
- * @param sourcePdfFilename
- * @param data
- */
-export async function pdfForStream(sourcePdfFilename: string, data: {[key: string]: string | undefined}): Promise<Readable> {
-	// implement taking a source PDF filename and mapped data from mapPdfFormData and returning a PDF stream
-	return new Promise((resolve, reject) => {
-		const fdfData = generateFdfFromJson(data);
-		const options = [sourcePdfFilename, 'fill_form', '-', 'output', '-', 'flatten'];
+export type PdfFormDataType = Record<string, string | boolean | number | undefined>;
 
-		const child = spawn('pdftk', options);
+export async function fillPdfFormDoc(srcPdf: PdfInputType, data: PdfFormDataType): Promise<PDFDocument> {
+	const pdfDoc = await getPdfDoc(srcPdf);
 
-		child.stdin.write(fdfData);
-		child.on('error', reject);
-		child.stdin.on('error', reject);
-		child.stdin.on('close', () => resolve(child.stdout));
-		child.stdin.end();
+	const form = pdfDoc.getForm();
+	Object.keys(data).forEach(key => {
+		const value = data[key];
+		if (isString(value)) {
+			const field = form.getField(key);
+			if (field instanceof PDFTextField) {
+				form.getTextField(key).setText(value);
+			} else if (field instanceof PDFDropdown) {
+				form.getDropdown(key).select(value);
+			}
+		} else if (typeof value === 'boolean') {
+			if (value) {
+				form.getCheckBox(key).check();
+			}
+		} else if (typeof value === 'number') {
+			form.getTextField(key).setText(value.toString());
+		}
 	});
+	return pdfDoc;
 }
 
-/**
- * Take mapped pdf form data and fill a PDF form, returning a buffer
- * @param sourcePdfFilename
- * @param data
- */
-export function pdfForBuffer(sourcePdfFilename: string, data: {[key: string]: string | undefined}): Buffer {
-	return pdftk.input(sourcePdfFilename).fillForm(data).flatten().output();
+export async function fillPdfForm(srcPdf: PdfInputType, data: PdfFormDataType): Promise<Buffer> {
+	const array = await (await fillPdfFormDoc(srcPdf, data)).save();
+	return Buffer.from(array);
 }
 
-/**
- * Take in array of buffers and return single buffer
- * @param buffers
- */
-export function buildPdf(buffers: Buffer[]): Buffer {
-	return pdftk.input(buffers).output();
+export async function fillPdfFormStream(srcPdf: PdfInputType, data: PdfFormDataType): Promise<Readable> {
+	const pdf = await fillPdfForm(srcPdf, data);
+	return new Readable({
+		read() {
+			this.push(pdf);
+			this.push(null);
+		},
+	});
 }

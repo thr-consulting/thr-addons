@@ -26,3 +26,12 @@ runs:
       shell: bash
       run: |
         yarn build -v
+
+    - name: Store build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        retention-days: 1
+        path: |
+          **/dist
+          !node_modules/**

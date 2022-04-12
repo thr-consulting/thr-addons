@@ -26,3 +26,12 @@ runs:
       shell: bash
       run: |
         yarn ts -v
+
+    - name: Store ts artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ts
+        retention-days: 1
+        path: |
+          **/dist
+          !node_modules/**

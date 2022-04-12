@@ -1,3 +1,5 @@
-export {signPdf} from './signPdf';
-export {pdfForStream, pdfForBuffer, buildPdf} from './fillPdf';
-export {streamToBuffer} from './streamToBuffer';
+export {signPdf, signPdfDoc, signPdfStream} from './signPdf';
+export type {PDFSignature} from './signPdf';
+export {fillPdfForm, fillPdfFormStream, fillPdfFormDoc} from './fillPdf';
+export type {PdfFormDataType} from './fillPdf';
+export type {PdfInputType} from './types';

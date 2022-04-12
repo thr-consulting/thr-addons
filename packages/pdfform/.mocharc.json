@@ -1,0 +1,7 @@
+{
+	"extension": ["ts"],
+	"node-option": ["experimental-specifier-resolution=node", "loader=ts-node/esm", "no-warnings"],
+	"spec": ["src/**/*.test.ts"],
+	"require": "mocha.setup.ts",
+	"loader": "testdouble"
+}
