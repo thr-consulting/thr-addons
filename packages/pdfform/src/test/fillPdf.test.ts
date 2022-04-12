@@ -1,15 +1,21 @@
 import {config, expect} from 'chai';
 import {createReadStream} from 'node:fs';
-import {readFile} from 'node:fs/promises';
+import {readFile, writeFile} from 'node:fs/promises';
 import {dirname, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {fillPdfFormDoc} from '../fillPdf';
+import {input} from 'node-pdftk';
+import {fillPdfForm, fillPdfFormDoc} from '../fillPdf';
+import {mergePdf} from '../mergePdf';
 
 config.truncateThreshold = 0;
 
 const curdir = dirname(fileURLToPath(import.meta.url));
 
 const pdfSamplePath = resolve(curdir, 'PdfFormTest.pdf');
+
+export async function buildPdf(buffers: Buffer[]): Promise<Buffer> {
+	return input(buffers).output();
+}
 
 describe('Fill PDF Form', () => {
 	const data = {
