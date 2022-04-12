@@ -25,6 +25,8 @@
 		"lint": "thx lint",
 		"lint.fix": "thx lint.fix",
 		"sort": "thx sort",
+		"test": "mocha",
+		"test.watch": "thx test.watch",
 		"ts": "thx ts"
 	},
 	"eslintConfig": {
@@ -35,6 +37,7 @@
 	"dependencies": {
 		"@thx/yup-types": "^16.0.0",
 		"debug": "^4.3.3",
+		"lodash-es": "^4.17.21",
 		"pdf-lib": "^1.17.1"
 	},
 	"engines": {

@@ -1,55 +1,47 @@
-import {Readable} from 'stream';
-import {PDFDocument} from 'pdf-lib';
-import fs from 'fs';
+import {isString} from 'lodash-es';
+import {Buffer} from 'node:buffer';
+import {Readable} from 'node:stream';
+import {PDFDocument, PDFDropdown, PDFTextField} from 'pdf-lib';
+import {getPdfDoc} from './getPdfDoc';
+import type {PdfInputType} from './types';
 
-async function fillPdf(sourcePdfFilename: string, data: {[key: string]: string | boolean | undefined}): Promise<Uint8Array> {
-	return new Promise(resolve => {
-		fs.readFile(sourcePdfFilename, async (error, file) => {
-			if (error) throw error;
-			const pdfDoc = await PDFDocument.load(file);
-			const form = pdfDoc.getForm();
-			Object.keys(data).forEach(key => {
-				const value = data[key];
-				if (value === true) {
-					form.getCheckBox(key).check();
-				} else if (typeof value === 'string') {
-					form.getTextField(key).setText(value);
-				}
-			});
-			const pdfBytes = await pdfDoc.save();
-			resolve(pdfBytes);
-		});
+export type PdfFormDataType = Record<string, string | boolean | number | undefined>;
+
+export async function fillPdfFormDoc(srcPdf: PdfInputType, data: PdfFormDataType): Promise<PDFDocument> {
+	const pdfDoc = await getPdfDoc(srcPdf);
+
+	const form = pdfDoc.getForm();
+	Object.keys(data).forEach(key => {
+		const value = data[key];
+		if (isString(value)) {
+			const field = form.getField(key);
+			if (field instanceof PDFTextField) {
+				form.getTextField(key).setText(value);
+			} else if (field instanceof PDFDropdown) {
+				form.getDropdown(key).select(value);
+			}
+		} else if (typeof value === 'boolean') {
+			if (value) {
+				form.getCheckBox(key).check();
+			}
+		} else if (typeof value === 'number') {
+			form.getTextField(key).setText(value.toString());
+		}
 	});
+	return pdfDoc;
 }
 
-/**
- * Take mapped pdf form data and fill a PDF form, returning a read stream
- * @param sourcePdfFilename
- * @param data
- */
-export async function pdfForStream(sourcePdfFilename: string, data: {[key: string]: string | boolean | undefined}): Promise<Readable> {
-	const buffer = await fillPdf(sourcePdfFilename, data);
+export async function fillPdfForm(srcPdf: PdfInputType, data: PdfFormDataType): Promise<Buffer> {
+	const array = await (await fillPdfFormDoc(srcPdf, data)).save();
+	return Buffer.from(array);
+}
+
+export async function fillPdfFormStream(srcPdf: PdfInputType, data: PdfFormDataType): Promise<Readable> {
+	const pdf = await fillPdfForm(srcPdf, data);
 	return new Readable({
 		read() {
-			this.push(buffer);
+			this.push(pdf);
 			this.push(null);
 		},
 	});
-}
-
-/**
- * Take mapped pdf form data and fill a PDF form, returning a buffer
- * @param sourcePdfFilename
- * @param data
- */
-export async function pdfForBuffer(sourcePdfFilename: string, data: {[key: string]: string | boolean | undefined}): Promise<Buffer> {
-	return Buffer.from(await fillPdf(sourcePdfFilename, data));
-}
-
-/**
- * Take in array of buffers and return single buffer
- * @param buffers
- */
-export function buildPdf(buffers: Buffer[]): Buffer {
-	return Buffer.concat(buffers);
 }
