@@ -1,5 +1,4 @@
 import {config, expect} from 'chai';
-import {input} from 'node-pdftk';
 import {createReadStream} from 'node:fs';
 import {readFile} from 'node:fs/promises';
 import {dirname, resolve} from 'node:path';
@@ -11,10 +10,6 @@ config.truncateThreshold = 0;
 const curdir = dirname(fileURLToPath(import.meta.url));
 
 const pdfSamplePath = resolve(curdir, 'PdfFormTest.pdf');
-
-export async function buildPdf(buffers: Buffer[]): Promise<Buffer> {
-	return input(buffers).output();
-}
 
 describe('Fill PDF Form', () => {
 	const data = {
