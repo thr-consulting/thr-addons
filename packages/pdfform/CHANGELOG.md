@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.11](https://github.com/thr-consulting/thr-addons/compare/v16.1.10...v16.1.11) (2022-04-13)
+
+
+### Bug Fixes
+
+* **pdfform:** fixed a bug ([a28cb60](https://github.com/thr-consulting/thr-addons/commit/a28cb60a9306986e579e3354482b7a77ce00454f))
+* **pdfform:** fixed test ([a1771ca](https://github.com/thr-consulting/thr-addons/commit/a1771ca8bbb2ecb6cdda1e13cca1f77a2f0fd331))
+
+
+### Features
+
+* **pdfform:** added mergePdf function ([e0bde74](https://github.com/thr-consulting/thr-addons/commit/e0bde748de07dc4e5e2eb4051c3cdb8c9b23f38a))
+
+
+
+
+
 ## [16.1.10](https://github.com/thr-consulting/thr-addons/compare/v16.1.9...v16.1.10) (2022-04-12)
 
 
