@@ -1,6 +1,6 @@
 import {PDFDocument} from 'pdf-lib';
-import type {PdfInputType} from './types';
 import {getPdfDoc} from './getPdfDoc';
+import type {PdfInputType} from './types';
 
 export async function mergePdf(pdfSrc: PdfInputType[]) {
 	const pdfDoc = await PDFDocument.create();

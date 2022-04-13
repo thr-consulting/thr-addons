@@ -37,8 +37,7 @@
 	"dependencies": {
 		"@thx/yup-types": "^16.0.0",
 		"lodash-es": "^4.17.21",
-		"pdf-lib": "^1.17.1",
-		"node-pdftk": "^2.1.3"
+		"pdf-lib": "^1.17.1"
 	},
 	"engines": {
 		"node": ">=16"

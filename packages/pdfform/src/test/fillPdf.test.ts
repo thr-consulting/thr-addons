@@ -1,11 +1,10 @@
 import {config, expect} from 'chai';
+import {input} from 'node-pdftk';
 import {createReadStream} from 'node:fs';
-import {readFile, writeFile} from 'node:fs/promises';
+import {readFile} from 'node:fs/promises';
 import {dirname, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {input} from 'node-pdftk';
-import {fillPdfForm, fillPdfFormDoc} from '../fillPdf';
-import {mergePdf} from '../mergePdf';
+import {fillPdfFormDoc} from '../fillPdf';
 
 config.truncateThreshold = 0;
 
