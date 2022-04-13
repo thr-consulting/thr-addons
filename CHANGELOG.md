@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.12](https://github.com/thr-consulting/thr-addons/compare/v16.1.11...v16.1.12) (2022-04-13)
+
+
+### Bug Fixes
+
+* **controls:** fixed a bug in money input hook ([#340](https://github.com/thr-consulting/thr-addons/issues/340)) ([85dac20](https://github.com/thr-consulting/thr-addons/commit/85dac204ef110af30210a54528c42caca9947056))
+
+
+
+
+
 ## [16.1.11](https://github.com/thr-consulting/thr-addons/compare/v16.1.10...v16.1.11) (2022-04-13)
 
 
