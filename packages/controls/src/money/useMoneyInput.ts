@@ -1,13 +1,14 @@
 import {toMoney} from '@thx/money';
 import debug from 'debug';
-import Inputmask from 'inputmask';
+import InputmaskImport from 'inputmask';
+import type InputmaskType from 'inputmask';
 import Money from 'js-money';
 import {MutableRefObject, useCallback, useEffect, useRef} from 'react';
 
 const d = debug('thx.controls.money.useMoneyInput');
 
-// @ts-ignore inputmask .d.ts file is correct, but ESM causes some difficulty. -mk
-const InputmaskClass = Inputmask.default;
+// @ts-ignore
+const {default: Inputmask} = InputmaskImport;
 
 interface UseMoneyInputProps {
 	value?: Money;
@@ -25,7 +26,7 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 	const {value, onChange, onSet, showPrefix, prefix, wholeNumber} = props;
 
 	const inputElement = useRef<HTMLInputElement | null>(null);
-	const maskInstance = useRef<Inputmask.Instance | null>(null);
+	const maskInstance = useRef<InputmaskType.Instance | null>(null);
 
 	// set the adjCurrency
 	// let adjCurrency = Money.CAD;
@@ -37,7 +38,7 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 		if (!inputElement.current) throw new Error('Could not get input element');
 
 		d('Creating input mask instance');
-		maskInstance.current = new InputmaskClass({
+		maskInstance.current = new Inputmask({
 			alias: 'numeric',
 			groupSeparator: ',',
 			digits: wholeNumber ? '0' : Money[currencyCode].decimal_digits.toString(),
