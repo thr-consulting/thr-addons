@@ -8,7 +8,7 @@ import {MutableRefObject, useCallback, useEffect, useRef} from 'react';
 const d = debug('thx.controls.money.useMoneyInput');
 
 // @ts-ignore
-const {default: Inputmask} = InputmaskImport;
+const Inputmask = InputmaskImport.default || InputmaskImport;
 
 interface UseMoneyInputProps {
 	value?: Money;
@@ -37,7 +37,7 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 	useEffect(() => {
 		if (!inputElement.current) throw new Error('Could not get input element');
 
-		d('Creating input mask instance');
+		d('Creating input mask instance (money)');
 		maskInstance.current = new Inputmask({
 			alias: 'numeric',
 			groupSeparator: ',',

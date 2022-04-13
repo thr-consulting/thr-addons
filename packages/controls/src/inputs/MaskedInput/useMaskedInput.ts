@@ -5,7 +5,7 @@ import {useEffect, useRef} from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
 // @ts-ignore
-const {default: Inputmask} = InputmaskImport;
+const Inputmask = InputmaskImport.default || InputmaskImport;
 
 const d = debug('thx.controls.inputs.MaskedInput.useMaskedInput');
 
