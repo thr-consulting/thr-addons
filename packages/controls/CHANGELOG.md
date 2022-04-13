@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.13](https://github.com/thr-consulting/thr-addons/compare/v16.1.12...v16.1.13) (2022-04-13)
+
+
+### Bug Fixes
+
+* **controls:** fixed input mask bugs ([8e72ec8](https://github.com/thr-consulting/thr-addons/commit/8e72ec8d292b8bcc8fc58fee241cf73891f759ae))
+
+
+
+
+
 ## [16.1.12](https://github.com/thr-consulting/thr-addons/compare/v16.1.11...v16.1.12) (2022-04-13)
 
 
