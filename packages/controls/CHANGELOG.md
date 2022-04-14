@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.16](https://github.com/thr-consulting/thr-addons/compare/v16.1.15...v16.1.16) (2022-04-14)
+
+
+### Bug Fixes
+
+* fixing inputmask imports [skip-ci] ([e91b1a0](https://github.com/thr-consulting/thr-addons/commit/e91b1a0f22e12139c587fd68e504b286fc398237))
+
+
+
+
+
 ## [16.1.15](https://github.com/thr-consulting/thr-addons/compare/v16.1.14...v16.1.15) (2022-04-14)
 
 
