@@ -7,7 +7,7 @@ import {MutableRefObject, useCallback, useEffect, useRef} from 'react';
 const d = debug('thx.controls.money.useMoneyInput');
 
 // @ts-ignore inputmask .d.ts file is correct, but ESM causes some difficulty. -mk
-const InputmaskClass = Inputmask.default;
+const InputmaskClass = Inputmask.default || Inputmask;
 
 interface UseMoneyInputProps {
 	value?: Money;
