@@ -9,6 +9,8 @@ const d = debug('thx.controls.money.useMoneyInput');
 
 // @ts-ignore
 const Inputmask = InputmaskImport.default || InputmaskImport;
+// @ts-ignore
+d('Inputmask Import', Inputmask, InputmaskImport.default, InputmaskImport);
 
 interface UseMoneyInputProps {
 	value?: Money;

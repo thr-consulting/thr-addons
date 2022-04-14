@@ -4,10 +4,12 @@ import type InputmaskType from 'inputmask';
 import {useEffect, useRef} from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
+const d = debug('thx.controls.inputs.MaskedInput.useMaskedInput');
+
 // @ts-ignore
 const Inputmask = InputmaskImport.default || InputmaskImport;
-
-const d = debug('thx.controls.inputs.MaskedInput.useMaskedInput');
+// @ts-ignore
+d('Inputmask Import', Inputmask, InputmaskImport.default, InputmaskImport);
 
 export interface UseMaskedInputProps {
 	value?: string;
