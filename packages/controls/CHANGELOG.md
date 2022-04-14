@@ -3,39 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [16.1.14](https://github.com/thr-consulting/thr-addons/compare/v16.1.13...v16.1.14) (2022-04-14)
-
-
-### Bug Fixes
-
-* **controls:** added some debugging to input masks ([f2ddef2](https://github.com/thr-consulting/thr-addons/commit/f2ddef2385f175102d5e5b0eb3afa9362a41a705))
-
-
-
-
-
-## [16.1.13](https://github.com/thr-consulting/thr-addons/compare/v16.1.12...v16.1.13) (2022-04-13)
-
-
-### Bug Fixes
-
-* **controls:** fixed input mask bugs ([8e72ec8](https://github.com/thr-consulting/thr-addons/commit/8e72ec8d292b8bcc8fc58fee241cf73891f759ae))
-
-
-
-
-
-## [16.1.12](https://github.com/thr-consulting/thr-addons/compare/v16.1.11...v16.1.12) (2022-04-13)
-
-
-### Bug Fixes
-
-* **controls:** fixed a bug in money input hook ([#340](https://github.com/thr-consulting/thr-addons/issues/340)) ([85dac20](https://github.com/thr-consulting/thr-addons/commit/85dac204ef110af30210a54528c42caca9947056))
-
-
-
-
-
 ## [16.1.8](https://github.com/thr-consulting/thr-addons/compare/v16.1.7...v16.1.8) (2022-04-04)
 
 
