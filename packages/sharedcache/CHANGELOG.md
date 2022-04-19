@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.1](https://github.com/thr-consulting/thr-addons/compare/v16.2.0...v16.2.1) (2022-04-19)
+
+
+### Bug Fixes
+
+* bring ioredis down from v5 to v4 because bullmq requires v4 for now [skip-ci] ([884fd3c](https://github.com/thr-consulting/thr-addons/commit/884fd3c233ccb4235bd12936c488c710382c44ec))
+
+
+
+
+
 # [16.2.0](https://github.com/thr-consulting/thr-addons/compare/v16.1.16...v16.2.0) (2022-04-19)
 
 
