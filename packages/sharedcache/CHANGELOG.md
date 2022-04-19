@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0](https://github.com/thr-consulting/thr-addons/compare/v16.1.16...v16.2.0) (2022-04-19)
+
+
+### Features
+
+* **sharedcache:** switched from redis to ioredis ([#344](https://github.com/thr-consulting/thr-addons/issues/344)) ([50273a0](https://github.com/thr-consulting/thr-addons/commit/50273a0ad193e50aef196208400fd7867ab1c79f))
+
+
+
+
+
 # [16.0.0](https://github.com/thr-consulting/thr-addons/compare/v15.3.0...v16.0.0) (2022-03-08)
 
 
