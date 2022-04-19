@@ -1,4 +1,4 @@
-import type Redis from 'ioredis';
+import type {Redis} from 'ioredis';
 
 /* eslint-disable no-underscore-dangle */
 function getRedisKey(prefix: string, key: string): string {
