@@ -1,4 +1,4 @@
-import type {RedisClientType, RedisModules, RedisScripts} from 'redis';
+import type Redis from 'ioredis';
 
 /* eslint-disable no-underscore-dangle */
 function getRedisKey(prefix: string, key: string): string {
@@ -16,13 +16,13 @@ function parse(value: string | null): Record<string, unknown> | null {
 }
 
 interface ISharedCacheConstructor {
-	redis: RedisClientType<RedisModules, RedisScripts>;
+	redis: Redis;
 	prefix?: string;
 	expire?: number;
 }
 
 export default class SharedCache {
-	private redis: RedisClientType<RedisModules, RedisScripts>;
+	private redis: Redis;
 	private readonly _expire: number | null;
 	private readonly prefix: string;
 
@@ -53,9 +53,9 @@ export default class SharedCache {
 	 */
 	async set(key: string, data: any, expire?: number) {
 		if (expire) {
-			await this.redis.set(getRedisKey(this.prefix, key), toString(data), {EX: expire});
+			await this.redis.set(getRedisKey(this.prefix, key), toString(data), 'EX', expire);
 		} else if (this._expire) {
-			await this.redis.set(getRedisKey(this.prefix, key), toString(data), {EX: this._expire});
+			await this.redis.set(getRedisKey(this.prefix, key), toString(data), 'EX', this._expire);
 		} else {
 			await this.redis.set(getRedisKey(this.prefix, key), toString(data));
 		}
@@ -96,7 +96,7 @@ export default class SharedCache {
 	 * @param fields
 	 */
 	async hmget(key: string, fields: string[]): Promise<any[]> {
-		return (await this.redis.hmGet(getRedisKey(this.prefix, key), fields)).map(v => parse(v));
+		return (await this.redis.hmget(getRedisKey(this.prefix, key), ...fields)).map(v => parse(v));
 	}
 
 	/**
@@ -105,7 +105,7 @@ export default class SharedCache {
 	 * @param field
 	 */
 	async hget(key: string, field: string): Promise<any> {
-		const val = await this.redis.hGet(getRedisKey(this.prefix, key), field);
+		const val = await this.redis.hget(getRedisKey(this.prefix, key), field);
 		return parse(val || null);
 	}
 
@@ -116,7 +116,7 @@ export default class SharedCache {
 	 * @param data
 	 */
 	async hset(key: string, field: string, data: any) {
-		await this.redis.hSet(getRedisKey(this.prefix, key), field, toString(data));
+		await this.redis.hset(getRedisKey(this.prefix, key), field, toString(data));
 	}
 
 	/**
@@ -125,7 +125,7 @@ export default class SharedCache {
 	 * @param field
 	 */
 	async hdel(key: string, field: string) {
-		await this.redis.hDel(getRedisKey(this.prefix, key), field);
+		await this.redis.hdel(getRedisKey(this.prefix, key), field);
 	}
 
 	async expire(key: string, seconds: number) {
