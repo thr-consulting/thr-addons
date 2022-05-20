@@ -33,8 +33,8 @@
 		}
 	},
 	"dependencies": {
-		"mime-types": "^2.1.35",
-		"file-type": "^17.1.1"
+		"file-type": "^17.1.1",
+		"mime-types": "^2.1.35"
 	},
 	"engines": {
 		"node": ">=16"
