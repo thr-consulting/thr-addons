@@ -3,8 +3,6 @@ import {LocalDate} from '@js-joda/core';
 import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
-import 'react-datepicker/dist/react-datepicker.css';
-import '../DatePicker/styles.css';
 import {LocalDatePicker} from './LocalDatePicker';
 
 const d = debug('thx.controls.date.LocalDatePicker.localdatepicker.stories');
@@ -23,6 +21,7 @@ export default {
 const t: ComponentStory<typeof LocalDatePicker> = args => {
 	const [, updateArgs] = useArgs();
 
+	// return <LocalDatePicker />;
 	return (
 		<LocalDatePicker
 			{...args}

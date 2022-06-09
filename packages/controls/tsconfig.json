@@ -6,6 +6,7 @@
 	},
 	"include": [
 		"src/index.ts",
-		"types/*.d.ts"
+		"types/*.d.ts",
+		"**/*.stories.tsx"
 	]
 }

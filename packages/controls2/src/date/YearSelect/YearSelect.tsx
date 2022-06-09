@@ -1,41 +1,26 @@
 import debug from 'debug';
-import {Button, NumberInput} from '@mantine/core';
-import {ArrowBigLeft, ArrowBigRight} from 'tabler-icons-react';
+import {Icon, Button, Dropdown, DropdownItemProps, Segment, SegmentProps} from 'semantic-ui-react';
 
 const d = debug('thx.controls.date.YearSelect');
 
 export interface YearSelectProps {
 	onChange?: (value: number) => void;
+	onBlur?: (ev: any) => void;
 	value: number;
 	minYear?: number; // Defaults to 1970
 	maxYear?: number; // Defaults to current year
 	error?: boolean; // Defaults to false
 }
 
-export function YearSelect(props: YearSelectProps) {
+export function YearSelect(props: YearSelectProps & Omit<SegmentProps, 'onChange'>) {
 	const thisYear = new Date().getFullYear();
-	const {value, minYear = 1970, maxYear = thisYear, onChange, error, ...rest} = props;
+	const {value, minYear = 1970, maxYear = thisYear, onChange, onBlur, error, ...rest} = props;
 
-	// const availableYears: DropdownItemProps[] = [];
-	// for (let i = maxYear; i >= minYear; i--) {
-	// 	availableYears.push({value: i, text: i.toString(), key: i});
-	// }
+	const availableYears: DropdownItemProps[] = [];
+	for (let i = maxYear; i >= minYear; i--) {
+		availableYears.push({value: i, text: i.toString(), key: i});
+	}
 
-	return (
-		<>
-			<Button component={ArrowBigLeft} size="lg" compact />
-			<NumberInput
-				value={value}
-
-				onChange={v => {
-					if (v && onChange) onChange(v);
-				}}
-			/>
-			<Button component={ArrowBigRight} size="lg" compact />
-		</>
-	);
-
-	/*
 	return (
 		<Segment basic compact style={{padding: 0, margin: 0}} {...rest}>
 			<Button
@@ -80,6 +65,4 @@ export function YearSelect(props: YearSelectProps) {
 			</Button>
 		</Segment>
 	);
-
-	 */
 }

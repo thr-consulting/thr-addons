@@ -2,8 +2,6 @@ import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 /* eslint-disable react-hooks/rules-of-hooks */
 import debug from 'debug';
-import 'react-datepicker/dist/react-datepicker.css';
-import '../DatePicker/styles.css';
 import {MonthDayPicker} from './MonthDayPicker';
 
 const d = debug('thx.controls.date.MonthDayPicker.monthdaypicker.stories');

@@ -1,84 +1,42 @@
 import type {LocalDate} from '@js-joda/core';
 import {toDate, toLocalDate} from '@thx/date';
 import debug from 'debug';
-import type {ReactDatePickerProps} from 'react-datepicker';
-import type {InputProps} from 'semantic-ui-react';
-import {DatePicker} from '../DatePicker/index';
-import '../DatePicker/styles.css';
-import {MaskedDateInput} from './MaskedDateInput';
+import {DatePicker} from '@mantine/dates';
+import type {DatePickerProps} from '@mantine/dates';
 
 const d = debug('thx.controls.date.LocalDatePicker');
 
 interface ILocalDatePicker {
+	defaultValue?: LocalDate | number | null;
+	initialMonth?: LocalDate | number | null;
 	value?: LocalDate | number | null;
 	onChange?: (value: LocalDate | null) => void;
-	onChangeRaw?: () => void;
+	onChangeRaw?: (value: Date | null) => void;
 	minDate?: LocalDate;
 	maxDate?: LocalDate;
 }
 
-type InputPropsOmitted = Omit<InputProps, 'onChange'>;
-type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange' | 'minDate' | 'maxDate'>;
-export type LocalDatePickerProps = ILocalDatePicker & InputPropsOmitted & ReactDatePickerPropsOmitted;
+type InputPropsOmitted = Omit<DatePickerProps, 'onChange' | 'value' | 'defaultValue' | 'initialMonth'>;
+export type LocalDatePickerProps = ILocalDatePicker & InputPropsOmitted;
 
 export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
-	const {
-		minDate,
-		maxDate,
-		value,
-		onChange,
-		onBlur,
-		as,
-		action,
-		actionPosition,
-		className,
-		error,
-		fluid,
-		focus,
-		icon,
-		iconPosition,
-		inverted,
-		label,
-		labelPosition,
-		loading,
-		size,
-		tabIndex,
-		transparent,
-		...rest
-	} = props;
+	const {minDate, maxDate, value, onChange, onChangeRaw, defaultValue, initialMonth, ...rest} = props;
 
 	const selected = value ? toDate(value) : null;
 
-	const inputProps = {
-		as,
-		action,
-		actionPosition,
-		className,
-		error,
-		fluid,
-		focus,
-		icon,
-		iconPosition,
-		inverted,
-		label,
-		labelPosition,
-		loading,
-		size,
-		tabIndex,
-		transparent,
-	};
-
 	return (
 		<DatePicker
-			{...rest}
-			selected={selected}
+			defaultValue={defaultValue ? toDate(defaultValue) : undefined}
+			initialMonth={initialMonth ? toDate(initialMonth) : undefined}
+			allowFreeInput
+			minDate={minDate ? toDate(minDate) : undefined}
+			maxDate={maxDate ? toDate(maxDate) : undefined}
+			value={selected}
 			onChange={date => {
 				if (onChange) onChange(date ? toLocalDate(date) : null);
+				if (onChangeRaw) onChangeRaw(date);
 			}}
-			onBlur={onBlur}
-			customInput={<MaskedDateInput {...inputProps} onBlur={onBlur} />}
-			minDate={minDate ? toDate(minDate) : null}
-			maxDate={maxDate ? toDate(maxDate) : null}
+			{...rest}
 		/>
 	);
 }

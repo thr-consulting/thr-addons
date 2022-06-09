@@ -1,120 +1,43 @@
 import type {LocalDate} from '@js-joda/core';
 import {toDate, toLocalDate} from '@thx/date';
 import debug from 'debug';
-import type {ReactDatePickerProps} from 'react-datepicker';
-import {InputProps, Input} from 'semantic-ui-react';
-import {DatePicker} from '../DatePicker/index';
+import {DatePicker} from '@mantine/dates';
+import type {DatePickerProps} from '@mantine/dates';
 
 const d = debug('thx.controls.date.MonthDayPicker');
 
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-interface MonthDayHeaderProps {
-	date: Date;
-	changeYear(year: number): void;
-	changeMonth(month: number): void;
-	decreaseMonth(): void;
-	increaseMonth(): void;
-	prevMonthButtonDisabled: boolean;
-	nextMonthButtonDisabled: boolean;
-	decreaseYear(): void;
-	increaseYear(): void;
-	prevYearButtonDisabled: boolean;
-	nextYearButtonDisabled: boolean;
-}
-
-function MonthDayHeader(props: MonthDayHeaderProps) {
-	return (
-		<>
-			<div className="react-datepicker__current-month">{months[props.date.getMonth()]}</div>
-			<button
-				type="button"
-				className="react-datepicker__navigation react-datepicker__navigation--previous"
-				aria-label="Previous Month"
-				onClick={props.decreaseMonth}
-				disabled={props.prevMonthButtonDisabled}
-			>
-				Previous Month
-			</button>
-			<button
-				type="button"
-				className="react-datepicker__navigation react-datepicker__navigation--next"
-				aria-label="Next Month"
-				onClick={props.increaseMonth}
-				disabled={props.nextMonthButtonDisabled}
-			>
-				Next Month
-			</button>
-		</>
-	);
-}
-
 interface IMonthDayPickerProps {
+	defaultValue?: LocalDate | number | null;
+	initialMonth?: LocalDate | number | null;
 	value?: LocalDate | number | null;
 	onChange?: (value: LocalDate | null) => void;
-	onChangeRaw?: () => void;
+	onChangeRaw?: (value: Date | null) => void;
+	minDate?: LocalDate;
+	maxDate?: LocalDate;
 }
 
-type InputPropsOmitted = Omit<InputProps, 'onChange'>;
-type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange'>;
-export type MonthDayPickerProps = IMonthDayPickerProps & InputPropsOmitted & ReactDatePickerPropsOmitted;
+export type MonthDayPickerProps = IMonthDayPickerProps & Omit<DatePickerProps, 'onChange' | 'value'>;
 
 export function MonthDayPicker(props: MonthDayPickerProps): JSX.Element {
-	const {
-		value,
-		onChange,
-		as,
-		action,
-		actionPosition,
-		className,
-		disabled,
-		error,
-		fluid,
-		focus,
-		icon,
-		iconPosition,
-		inverted,
-		label,
-		labelPosition,
-		loading,
-		size,
-		tabIndex,
-		transparent,
-		...rest
-	} = props;
+	const {defaultValue, initialMonth, minDate, maxDate, value, onChange, onChangeRaw, ...rest} = props;
 
 	const selected = value ? toDate(value) : null;
 
-	const inputProps = {
-		as,
-		action,
-		actionPosition,
-		className,
-		disabled,
-		error,
-		fluid,
-		focus,
-		icon,
-		iconPosition,
-		inverted,
-		label,
-		labelPosition,
-		loading,
-		size,
-		tabIndex,
-		transparent,
-	};
-
 	return (
 		<DatePicker
-			{...rest}
-			selected={selected}
+			inputFormat="MMMM D"
+			labelFormat="MMMM D"
+			defaultValue={defaultValue ? toDate(defaultValue) : undefined}
+			initialMonth={initialMonth ? toDate(initialMonth) : undefined}
+			allowFreeInput
+			minDate={minDate ? toDate(minDate) : undefined}
+			maxDate={maxDate ? toDate(maxDate) : undefined}
+			value={selected}
 			onChange={date => {
 				if (onChange) onChange(date ? toLocalDate(date) : null);
+				if (onChangeRaw) onChangeRaw(date);
 			}}
-			customInput={<Input {...inputProps} />}
-			renderCustomHeader={MonthDayHeader}
-			dateFormat="MMMM d"
+			{...rest}
 		/>
 	);
 }

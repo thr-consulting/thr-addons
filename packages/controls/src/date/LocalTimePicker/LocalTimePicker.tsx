@@ -1,84 +1,33 @@
 import {LocalTime} from '@js-joda/core';
 import {toDate, toLocalTime} from '@thx/date';
 import debug from 'debug';
-import type {ReactDatePickerProps} from 'react-datepicker';
-import type {InputProps} from 'semantic-ui-react';
-import {DatePicker} from '../DatePicker/index';
-import {MaskedTimeInput} from './MaskedTimeInput';
+import {TimeInput} from '@mantine/dates';
+import type {TimeInputProps} from '@mantine/dates';
 
 const d = debug('thx.controls.date.LocalTimePicker');
 
 interface ILocalTimePicker {
 	value?: LocalTime | number | null;
 	onChange?: (value: LocalTime | null) => void;
-	onChangeRaw?: () => void;
 }
 
-type InputPropsOmitted = Omit<InputProps, 'onChange'>;
-type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange'>;
-export type LocalTimePickerProps = ILocalTimePicker & InputPropsOmitted & ReactDatePickerPropsOmitted;
+export type LocalTimePickerProps = ILocalTimePicker & Omit<TimeInputProps, 'onChange' | 'value'>;
 
 export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
-	const {
-		value,
-		onChange,
-		as,
-		action,
-		actionPosition,
-		className,
-		disabled,
-		error,
-		fluid,
-		focus,
-		icon,
-		iconPosition,
-		inverted,
-		label,
-		labelPosition,
-		loading,
-		size,
-		tabIndex,
-		transparent,
-		...rest
-	} = props;
+	const {value, onChange, ...rest} = props;
 
-	let selected;
+	let selected: Date | null;
 	if (typeof value === 'number') selected = toDate(LocalTime.ofSecondOfDay(value));
 	else selected = value ? toDate(value) : null;
 
-	const inputProps = {
-		as,
-		action,
-		actionPosition,
-		className,
-		disabled,
-		error,
-		fluid,
-		focus,
-		icon,
-		iconPosition,
-		inverted,
-		label,
-		labelPosition,
-		loading,
-		size,
-		tabIndex,
-		transparent,
-	};
-
 	return (
-		<DatePicker
-			{...rest}
-			selected={selected}
+		<TimeInput
+			value={selected}
 			onChange={date => {
 				if (onChange) onChange(date ? toLocalTime(date) : null);
 			}}
-			showTimeSelect
-			showTimeSelectOnly
-			timeIntervals={15}
-			timeCaption="Time"
-			dateFormat="hh:mm aa"
-			customInput={<MaskedTimeInput {...inputProps} />}
+			format="12"
+			{...rest}
 		/>
 	);
 }
