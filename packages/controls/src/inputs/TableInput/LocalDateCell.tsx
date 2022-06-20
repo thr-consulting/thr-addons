@@ -1,5 +1,5 @@
 import type {CellProps} from 'react-table';
-import type {LocalDate} from "@js-joda/core";
+import type {LocalDate} from '@js-joda/core';
 import {formatDate} from '@thx/date';
 
 interface LocalDateCellOptions<D extends Record<string, unknown>> {
