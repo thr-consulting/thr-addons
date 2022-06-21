@@ -32,7 +32,18 @@ export {CreditCardInput} from './inputs/CreditCardInput';
 export type {CreditCardInputProps} from './inputs/CreditCardInput';
 export {SinInput} from './inputs/SinInput';
 export type {SinInputProps} from './inputs/SinInput';
-export {TableInput, MoneyCell, MoneyEditCell, MoneySumFooter, StringEditCell, DropdownCell, HoverCell, addRowOnTab} from './inputs/TableInput';
+export {
+	TableInput,
+	MoneyCell,
+	MoneyEditCell,
+	LocalDateCell,
+	LocalDateEditCell,
+	MoneySumFooter,
+	StringEditCell,
+	DropdownCell,
+	HoverCell,
+	addRowOnTab,
+} from './inputs/TableInput';
 export type {AddRowOnTabIf} from './inputs/TableInput';
 
 // Money
