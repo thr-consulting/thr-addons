@@ -1,5 +1,5 @@
 import debug from 'debug';
-import {Button, NumberInput} from '@mantine/core';
+import {Button, Group, NumberInput} from '@mantine/core';
 import {ArrowBigLeft, ArrowBigRight} from 'tabler-icons-react';
 
 const d = debug('thx.controls.date.YearSelect');
@@ -22,17 +22,17 @@ export function YearSelect(props: YearSelectProps) {
 	// }
 
 	return (
-		<>
-			<Button component={ArrowBigLeft} size="lg" compact />
+		<Group spacing={3}>
+			<Button component={ArrowBigLeft} size="lg" compact variant="outline" />
 			<NumberInput
 				value={value}
-
 				onChange={v => {
 					if (v && onChange) onChange(v);
 				}}
+				sx={{width: '85px'}}
 			/>
-			<Button component={ArrowBigRight} size="lg" compact />
-		</>
+			<Button component={ArrowBigRight} size="lg" compact variant="outline" />
+		</Group>
 	);
 
 	/*
