@@ -1,8 +1,8 @@
+import {LocalDate} from '@js-joda/core';
 import debug from 'debug';
 import {useState} from 'react';
-import {LocalDate} from '@js-joda/core';
-import type {TableCellProps} from './TableInput';
 import {LocalDatePicker} from '../../date/LocalDatePicker';
+import type {TableCellProps} from './TableInput';
 
 const d = debug('thx.controls.inputs.TableInput.LocalDateEditCell');
 

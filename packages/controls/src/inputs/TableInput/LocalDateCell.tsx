@@ -1,6 +1,6 @@
-import type {CellProps} from 'react-table';
 import type {LocalDate} from '@js-joda/core';
 import {formatDate} from '@thx/date';
+import type {CellProps} from 'react-table';
 
 interface LocalDateCellOptions<D extends Record<string, unknown>> {
 	/** If provided, this function will override the LocalDate value displayed */
