@@ -37,7 +37,7 @@
     "@types/inputmask": "^5.0.3",
     "@types/react-datepicker": "^4.1.7",
     "credit-card-type": "^9.1.0",
-    "debug": "^4.1.1",
+    "debug": "^4.3.4",
     "eventemitter3": "^4.0.0",
     "flat": "^5.0.0",
     "formik": "^2.2.9",
