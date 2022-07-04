@@ -1,7 +1,9 @@
+import {Paper} from '@mantine/core';
 import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
 import {SinInput} from './SinInput';
+import {storyDecorator} from '../../storyDecorator';
 
 const d = debug('thx.controls.inputs.SinInput.sininput.stories');
 
@@ -12,6 +14,15 @@ export default {
 		onBlur: {type: 'function'},
 		value: {type: 'string'},
 	},
+	decorators: [
+		Story => (
+			<>
+				<Paper m="1em">Sample: 283 694 685</Paper>
+				<Story />
+			</>
+		),
+		storyDecorator,
+	],
 } as Meta;
 
 const t: ComponentStory<typeof SinInput> = args => {
@@ -23,7 +34,6 @@ const t: ComponentStory<typeof SinInput> = args => {
 			{...args}
 			onChange={value => {
 				updateArgs({value});
-				args.onChange && args.onChange(value);
 			}}
 		/>
 	);

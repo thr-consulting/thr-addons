@@ -1,20 +1,21 @@
 import debug from 'debug';
 import {useCallback, useMemo, useState} from 'react';
-import {Icon, Input, SemanticCOLORS} from 'semantic-ui-react';
 import SIN from 'social-insurance-number';
+import type {MantineColor} from '@mantine/core';
+import {TextInput} from '@mantine/core';
+import {IdBadge} from 'tabler-icons-react';
 import type {MaskedInputProps} from '../MaskedInput';
-import {useMaskedInput} from '../MaskedInput/useMaskedInput';
+import {useMaskedInput} from '../MaskedInput';
 
 const d = debug('thx.controls.inputs.SinInput');
 
 export interface SinInputProps extends Omit<MaskedInputProps, 'mask'> {
 	value?: string;
-	onChange(value?: string): void;
 }
 
 export function SinInput(props: SinInputProps) {
 	const {value, onChange, ...rest} = props;
-	const [color, setColor] = useState<SemanticCOLORS>('black');
+	const [color, setColor] = useState<MantineColor>('black');
 
 	const checkValidation = useCallback((valueArray: string[]) => {
 		const num = valueArray.join('').replaceAll(/(_|\s|-)/g, '');
@@ -53,9 +54,6 @@ export function SinInput(props: SinInputProps) {
 	});
 
 	return (
-		<Input {...rest} icon>
-			<input ref={cardNumberRef} />
-			<Icon name="id badge" color={color} size="large" />
-		</Input>
+		<TextInput {...rest} icon={<IdBadge color={color} />} ref={cardNumberRef} />
 	);
 }
