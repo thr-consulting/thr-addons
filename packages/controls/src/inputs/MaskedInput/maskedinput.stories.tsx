@@ -1,17 +1,24 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
 import {MaskedInput} from './MaskedInput';
+import {storyDecorator} from '../../storyDecorator';
 
 const d = debug('thx.controls.inputs.MaskedInput.maskedinput.stories');
 
 export default {
 	title: 'Inputs/MaskedInput',
-	component: MaskedInput,
+	argTypes: {
+		value: {control: {type: 'text'}},
+		onChange: {type: 'function'},
+		disabled: {type: 'boolean'},
+		required: {type: 'boolean'},
+	},
+	decorators: [storyDecorator],
 } as Meta;
 
 const t: ComponentStory<typeof MaskedInput> = args => {
-	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
 	return (
@@ -20,7 +27,6 @@ const t: ComponentStory<typeof MaskedInput> = args => {
 			// mask={{mask: args.mask}}
 			onChange={value => {
 				updateArgs({value});
-				args.onChange && args.onChange(value);
 			}}
 		/>
 	);

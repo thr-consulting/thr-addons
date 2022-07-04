@@ -2,12 +2,19 @@ import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
 import {PhoneInput} from './PhoneInput';
+import {storyDecorator} from '../../storyDecorator';
 
 const d = debug('thx.controls.inputs.PhoneInput.phoneinput.stories');
 
 export default {
 	title: 'Inputs/PhoneInput',
-	component: PhoneInput,
+	argTypes: {
+		value: {control: {type: 'text'}},
+		onChange: {type: 'function'},
+		disabled: {type: 'boolean'},
+		required: {type: 'boolean'},
+	},
+	decorators: [storyDecorator],
 } as Meta;
 
 const t: ComponentStory<typeof PhoneInput> = args => {
@@ -19,7 +26,6 @@ const t: ComponentStory<typeof PhoneInput> = args => {
 			{...args}
 			onChange={value => {
 				updateArgs({value});
-				args.onChange && args.onChange(value);
 			}}
 		/>
 	);

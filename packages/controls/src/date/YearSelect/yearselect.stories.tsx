@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
-/* eslint-disable react-hooks/rules-of-hooks */
 import debug from 'debug';
 import {YearSelect} from './YearSelect';
+import {storyDecorator} from '../../storyDecorator';
 
 const d = debug('thx.controls.date.YearSelect.yearselect.stories');
 
@@ -16,6 +17,7 @@ export default {
 		maxYear: {type: 'number'},
 		error: {type: 'boolean'},
 	},
+	decorators: [storyDecorator],
 } as Meta;
 
 const t: ComponentStory<typeof YearSelect> = args => {

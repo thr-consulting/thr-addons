@@ -1,23 +1,18 @@
 import debug from 'debug';
-import {Input, InputProps} from 'semantic-ui-react';
+import {TextInput, TextInputProps} from '@mantine/core';
 import {useMaskedInput, UseMaskedInputProps} from './useMaskedInput';
 
 const d = debug('thx.controls.inputs.MaskedInput');
 
 export type MaskedInputProps = {
 	name?: string;
-	onBlur?: (event: any) => void;
 } & UseMaskedInputProps &
-	Omit<InputProps, 'onChange'>;
+	TextInputProps;
 
 export function MaskedInput(props: MaskedInputProps) {
-	const {name, onBlur, disabled, onChange, mask, value, ...rest} = props;
+	const {name, onChange, mask, value, ...rest} = props;
 
 	const inputRef = useMaskedInput({mask, value, onChange});
 
-	return (
-		<Input {...rest}>
-			<input disabled={disabled} name={name} ref={inputRef} onBlur={onBlur} />
-		</Input>
-	);
+	return <TextInput name={name} ref={inputRef} {...rest} />;
 }

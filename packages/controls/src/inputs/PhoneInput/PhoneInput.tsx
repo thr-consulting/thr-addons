@@ -3,9 +3,8 @@ import {MaskedInput, MaskedInputProps} from '../MaskedInput';
 
 const d = debug('thx.controls.inputs.PhoneInput');
 
-export interface PhoneInputProps {
+export interface PhoneInputProps extends Omit<MaskedInputProps, 'mask'> {
 	extension?: boolean;
-	onChange?: (value?: string) => void;
 }
 
 export function PhoneInput(props: PhoneInputProps & Omit<MaskedInputProps, 'mask' | 'onChange'>) {

@@ -4,6 +4,7 @@ import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
 import {MonthYearPicker} from './MonthYearPicker';
+import {storyDecorator} from '../../storyDecorator';
 
 const d = debug('thx.controls.date.MonthYearPicker.monthyearpicker.stories');
 
@@ -16,6 +17,7 @@ export default {
 		minDate: {control: {type: 'text'}},
 		maxDate: {control: {type: 'text'}},
 	},
+	decorators: [storyDecorator],
 } as Meta;
 
 const t: ComponentStory<typeof MonthYearPicker> = args => {

@@ -1,37 +1,39 @@
 import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
-/* eslint-disable react-hooks/rules-of-hooks */
+import {Radio, RadioGroup} from '@mantine/core';
 import debug from 'debug';
-import {LocalTimePicker} from './LocalTimePicker';
 import {storyDecorator} from '../../storyDecorator';
 
-const d = debug('thx.controls.date.LocalTimePicker.localtimepicker.stories');
+const d = debug('thx.controls.inputs.RadioGroup.radiogroup.stories');
 
 export default {
-	title: 'Date/LocalTimePicker',
+	title: 'Inputs/RadioGroup',
 	argTypes: {
-		value: {control: {type: 'text'}},
+		value: {type: 'string'},
 		onChange: {type: 'function'},
-		onChangeRaw: {type: 'function'},
 	},
 	decorators: [storyDecorator],
 } as Meta;
 
-const t: ComponentStory<typeof LocalTimePicker> = args => {
+const t: ComponentStory<typeof RadioGroup> = args => {
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
 	return (
-		<LocalTimePicker
+		<RadioGroup
 			{...args}
 			onChange={value => {
+				d(value);
 				updateArgs({value});
-				args.onChange && args.onChange(value);
 			}}
-		/>
+		>
+			<Radio value="a" label="Choice A" />
+			<Radio value="b" label="Choice B" />
+		</RadioGroup>
 	);
 };
 
 export const Main = t.bind({});
 Main.args = {
-	value: null,
+	value: undefined,
 };

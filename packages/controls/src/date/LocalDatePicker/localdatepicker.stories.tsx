@@ -4,6 +4,7 @@ import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
 import {LocalDatePicker} from './LocalDatePicker';
+import {storyDecorator} from '../../storyDecorator';
 
 const d = debug('thx.controls.date.LocalDatePicker.localdatepicker.stories');
 
@@ -16,6 +17,7 @@ export default {
 		onChange: {type: 'function'},
 		onChangeRaw: {type: 'function'},
 	},
+	decorators: [storyDecorator],
 } as Meta;
 
 const t: ComponentStory<typeof LocalDatePicker> = args => {

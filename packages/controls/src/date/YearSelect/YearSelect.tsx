@@ -1,6 +1,6 @@
 import debug from 'debug';
-import {Button, Group, NumberInput} from '@mantine/core';
-import {ArrowBigLeft, ArrowBigRight} from 'tabler-icons-react';
+import {Button, ButtonProps, Group, NumberInput} from '@mantine/core';
+import {ArrowLeft, ArrowRight} from 'tabler-icons-react';
 
 const d = debug('thx.controls.date.YearSelect');
 
@@ -14,72 +14,48 @@ export interface YearSelectProps {
 
 export function YearSelect(props: YearSelectProps) {
 	const thisYear = new Date().getFullYear();
-	const {value, minYear = 1970, maxYear = thisYear, onChange, error, ...rest} = props;
+	const {value, minYear = 1970, maxYear = thisYear, onChange, error} = props;
 
-	// const availableYears: DropdownItemProps[] = [];
-	// for (let i = maxYear; i >= minYear; i--) {
-	// 	availableYears.push({value: i, text: i.toString(), key: i});
-	// }
+	const buttonProps: ButtonProps<any> = {
+		size: 'sm',
+		compact: true,
+		variant: 'outline',
+		sx: {height: 36},
+	};
 
 	return (
-		<Group spacing={3}>
-			<Button component={ArrowBigLeft} size="lg" compact variant="outline" />
-			<NumberInput
-				value={value}
-				onChange={v => {
-					if (v && onChange) onChange(v);
-				}}
-				sx={{width: '85px'}}
-			/>
-			<Button component={ArrowBigRight} size="lg" compact variant="outline" />
-		</Group>
-	);
-
-	/*
-	return (
-		<Segment basic compact style={{padding: 0, margin: 0}} {...rest}>
+		<Group spacing={2}>
 			<Button
-				basic
-				icon
-				type="button"
-				color={error ? 'red' : 'green'}
+				{...buttonProps}
 				disabled={value <= minYear}
 				onClick={() => {
 					if (onChange) onChange(value - 1);
 				}}
-				onBlur={onBlur}
 			>
-				<Icon name="arrow left" />
+				<ArrowLeft />
 			</Button>
-			<Dropdown
-				icon={<div />}
-				button
-				basic
-				scrolling
+			<NumberInput
+				hideControls
 				value={value}
-				options={availableYears}
-				onChange={(e, val) => {
-					if (typeof val.value === 'number' && onChange) onChange(val.value);
+				max={maxYear}
+				min={minYear}
+				onChange={v => {
+					if (v && onChange) {
+						onChange(v);
+					}
 				}}
-				error={error}
-				onBlur={onBlur}
+				sx={{width: '4rem'}}
+				styles={{input: {borderColor: error ? 'red' : undefined, textAlign: 'center'}}}
 			/>
 			<Button
-				basic
-				icon
-				type="button"
-				color={error ? 'red' : 'green'}
+				{...buttonProps}
 				disabled={value >= maxYear}
 				onClick={() => {
 					if (onChange) onChange(value + 1);
 				}}
-				onBlur={onBlur}
-				style={{marginRight: 0}}
 			>
-				<Icon name="arrow right" />
+				<ArrowRight />
 			</Button>
-		</Segment>
+		</Group>
 	);
-
-	 */
 }
