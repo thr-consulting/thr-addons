@@ -26,7 +26,7 @@ interface ILocalMonthSelectProps {
 	year?: number;
 }
 
-export type LocalMonthSelectProps = ILocalMonthSelectProps & Omit<SelectProps, 'options' | 'data' | 'value'>;
+export type LocalMonthSelectProps = ILocalMonthSelectProps & Omit<SelectProps, 'options' | 'data' | 'value' | 'onChange'>;
 
 export function LocalMonthSelect(props: LocalMonthSelectProps): JSX.Element {
 	const {value, onChange, year, ...rest} = props;

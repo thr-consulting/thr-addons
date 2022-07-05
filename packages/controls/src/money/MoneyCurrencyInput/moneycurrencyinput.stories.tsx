@@ -2,25 +2,28 @@ import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
 import Money from 'js-money';
-import {MoneyInput} from './MoneyInput';
+import {MoneyCurrencyInput} from './MoneyCurrencyInput';
+import {storyDecorator} from '../../storyDecorator';
 
-const d = debug('thx.controls.money.MoneyInput.moneyinput.stories');
+const d = debug('thx.controls.money.MoneyCurrencyInput.moneycurrencyinput.stories');
 
 export default {
-	title: 'Money/MoneyInput',
-	component: MoneyInput,
+	title: 'Money/MoneyCurrencyInput',
+	argTypes: {
+		onChange: {type: 'function'},
+	},
+	decorators: [storyDecorator],
 } as Meta;
 
-const t: ComponentStory<typeof MoneyInput> = args => {
+const t: ComponentStory<typeof MoneyCurrencyInput> = args => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
 	return (
-		<MoneyInput
+		<MoneyCurrencyInput
 			{...args}
 			onChange={value => {
 				updateArgs({value});
-				args.onChange && args.onChange(value);
 			}}
 		/>
 	);
@@ -28,17 +31,14 @@ const t: ComponentStory<typeof MoneyInput> = args => {
 
 export const Main = t.bind({});
 Main.args = {
-	value: undefined,
+	value: {amount: 0, currency: 'CAD'},
 	defaultCurrency: Money.CAD,
 	prefix: undefined,
 	showPrefix: false,
 	locked: false,
 	wholeNumber: false,
-};
-
-export const MoreDecimals = t.bind({});
-MoreDecimals.args = {
-	...Main.args,
-	defaultCurrency: Money.TND,
-	showPrefix: true,
+	currencies: [
+		{label: 'CAD', value: 'CAD'},
+		{label: 'USD', value: 'USD'},
+	],
 };

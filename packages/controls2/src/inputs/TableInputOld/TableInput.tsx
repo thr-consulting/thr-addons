@@ -13,7 +13,7 @@ import {
 	TableBodyPropGetter,
 	useTable,
 } from 'react-table';
-import {Table, TableProps} from '@mantine/core';
+import {Table, TableProps} from 'semantic-ui-react';
 
 const d = debug('thx.controls.inputs.TableInput');
 
@@ -85,50 +85,54 @@ function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps
 
 	// Build Footer if any footer renderers exist
 	const footer = hasFooter ? (
-		<tfoot>
+		<Table.Footer>
 			{footerGroups.map(group => (
 				// eslint-disable-next-line react/jsx-key
-				<tr {...{...group.getFooterGroupProps(), ...group.getFooterGroupProps(footerRowProps)}}>
+				<Table.Row {...{...group.getFooterGroupProps(), ...group.getFooterGroupProps(footerRowProps)}}>
 					{group.headers.map(column => (
 						// eslint-disable-next-line react/jsx-key
-						<th {...{...column.getFooterProps(), ...column.getFooterProps(footerCellProps)}}>{column.render('Footer')}</th>
+						<Table.HeaderCell {...{...column.getFooterProps(), ...column.getFooterProps(footerCellProps)}}>
+							{column.render('Footer')}
+						</Table.HeaderCell>
 					))}
-				</tr>
+				</Table.Row>
 			))}
-		</tfoot>
+		</Table.Footer>
 	) : null;
 
 	return (
 		<Table {...{...getTableProps(), ...getTableProps(tableProps)}}>
-			<th>
+			<Table.Header>
 				{headerGroups.map(headerGroup => (
 					// eslint-disable-next-line react/jsx-key
-					<tr {...{...headerGroup.getHeaderGroupProps(), ...headerGroup.getHeaderGroupProps(headerRowProps)}}>
+					<Table.Row {...{...headerGroup.getHeaderGroupProps(), ...headerGroup.getHeaderGroupProps(headerRowProps)}}>
 						{headerGroup.headers.map(column => (
 							// eslint-disable-next-line react/jsx-key
-							<th {...{...column.getHeaderProps(), ...column.getHeaderProps(headerCellProps)}}>{column.render('Header')}</th>
+							<Table.HeaderCell {...{...column.getHeaderProps(), ...column.getHeaderProps(headerCellProps)}}>
+								{column.render('Header')}
+							</Table.HeaderCell>
 						))}
-					</tr>
+					</Table.Row>
 				))}
-			</th>
-			<tbody {...{...getTableBodyProps(), ...getTableBodyProps(bodyProps)}}>
+			</Table.Header>
+			<Table.Body {...{...getTableBodyProps(), ...getTableBodyProps(bodyProps)}}>
 				{rows.map(row => {
 					prepareRow(row);
 					return (
 						// eslint-disable-next-line react/jsx-key
-						<tr
+						<Table.Row
 							{...{...row.getRowProps(), ...row.getRowProps(rowProps)}}
 							onMouseEnter={() => setHoverRow(row.id)}
 							onMouseLeave={() => setHoverRow('')}
 						>
 							{row.cells.map(cell => (
 								// eslint-disable-next-line react/jsx-key
-								<td {...{...cell.getCellProps(), ...cell.getCellProps(cellProps)}}>{cell.render('Cell', {hoverRow})}</td>
+								<Table.Cell {...{...cell.getCellProps(), ...cell.getCellProps(cellProps)}}>{cell.render('Cell', {hoverRow})}</Table.Cell>
 							))}
-						</tr>
+						</Table.Row>
 					);
 				})}
-			</tbody>
+			</Table.Body>
 			{footer}
 		</Table>
 	);

@@ -13,8 +13,10 @@ export {YearSelect} from './date/YearSelect';
 export type {YearSelectProps} from './date/YearSelect';
 
 // Form
-// export {useTForm, TForm} from './form/TForm';
-// export type {TFormProps} from './form/TForm';
+export {useTForm, TForm} from './form/TForm';
+export type {TFormProps} from './form/TForm';
+export {TMForm} from './form/TMForm/TMForm';
+export type {TMFormProps} from './form/TMForm/TMForm';
 
 // Inputs
 export {MaskedInput} from './inputs/MaskedInput';

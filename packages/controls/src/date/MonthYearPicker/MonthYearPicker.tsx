@@ -16,7 +16,7 @@ interface IMonthYearPickerProps {
 	maxDate?: LocalDate;
 }
 
-export type MonthYearPickerProps = IMonthYearPickerProps & Omit<DatePickerProps, 'onChange' | 'value'>;
+export type MonthYearPickerProps = IMonthYearPickerProps & Omit<DatePickerProps, 'onChange' | 'value' | 'minDate' | 'maxDate'>;
 
 export function MonthYearPicker(props: MonthYearPickerProps): JSX.Element {
 	const {defaultValue, initialMonth, minDate, maxDate, value, onChange, onChangeRaw, ...rest} = props;

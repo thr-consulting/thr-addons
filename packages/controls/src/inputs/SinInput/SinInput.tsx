@@ -2,7 +2,7 @@ import debug from 'debug';
 import {useCallback, useMemo, useState} from 'react';
 import SIN from 'social-insurance-number';
 import type {MantineColor} from '@mantine/core';
-import {TextInput} from '@mantine/core';
+import {TextInput, useMantineTheme} from '@mantine/core';
 import {IdBadge} from 'tabler-icons-react';
 import type {MaskedInputProps} from '../MaskedInput';
 import {useMaskedInput} from '../MaskedInput';
@@ -15,22 +15,27 @@ export interface SinInputProps extends Omit<MaskedInputProps, 'mask'> {
 
 export function SinInput(props: SinInputProps) {
 	const {value, onChange, ...rest} = props;
-	const [color, setColor] = useState<MantineColor>('black');
+	const theme = useMantineTheme();
+	const defaultColor = theme.colorScheme === 'light' ? 'black' : 'white';
+	const [color, setColor] = useState<MantineColor>(defaultColor);
 
-	const checkValidation = useCallback((valueArray: string[]) => {
-		const num = valueArray.join('').replaceAll(/(_|\s|-)/g, '');
-		const validate = new SIN(num);
-		if (num.length > 0) {
-			if (validate.isValid()) {
-				setColor('green');
+	const checkValidation = useCallback(
+		(valueArray: string[]) => {
+			const num = valueArray.join('').replaceAll(/(_|\s|-)/g, '');
+			const validate = new SIN(num);
+			if (num.length > 0) {
+				if (validate.isValid()) {
+					setColor('green');
+				} else {
+					setColor('red');
+				}
 			} else {
-				setColor('red');
+				setColor(defaultColor);
 			}
-		} else {
-			setColor('black');
-		}
-		return validate.isValid();
-	}, []);
+			return validate.isValid();
+		},
+		[defaultColor],
+	);
 
 	const mask: MaskedInputProps['mask'] = useMemo(
 		() => ({
@@ -53,7 +58,5 @@ export function SinInput(props: SinInputProps) {
 		},
 	});
 
-	return (
-		<TextInput {...rest} icon={<IdBadge color={color} />} ref={cardNumberRef} />
-	);
+	return <TextInput {...rest} icon={<IdBadge color={color} />} ref={cardNumberRef} />;
 }

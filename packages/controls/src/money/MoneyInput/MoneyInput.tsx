@@ -1,27 +1,28 @@
 import {toMoney} from '@thx/money';
+import type {TextInputProps} from '@mantine/core';
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+import {TextInput} from '@mantine/core';
 import debug from 'debug';
 import Money, {Currency, MoneyObject} from 'js-money';
 import {useCallback} from 'react';
-import {Input, InputProps} from 'semantic-ui-react';
 import {useMoneyInput} from '../useMoneyInput';
 
 const d = debug('thx.controls.money.MoneyInput');
 
-export interface MoneyInputProps {
-	name?: string;
+export interface MoneyInputOnlyProps {
 	onChange?: (value: Money) => void;
 	value?: Money | MoneyObject;
 	defaultCurrency?: Currency; // Defaults to Money.CAD
-	onBlur?: (ev: any) => void;
 	prefix?: string; // Defaults to currency symbol
 	showPrefix?: boolean; // Defaults to false
 	locked?: boolean; // Defaults to false
 	wholeNumber?: boolean; // Defaults to false
 }
 
-export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>) {
-	const {name, onBlur, locked, prefix, defaultCurrency, onChange, showPrefix, value, wholeNumber, ...rest} = props;
+export type MoneyInputProps = MoneyInputOnlyProps & Omit<TextInputProps, 'onChange' | 'value'>;
+
+export function MoneyInput(props: MoneyInputProps) {
+	const {locked, prefix, defaultCurrency, onChange, showPrefix, value, wholeNumber, ...rest} = props;
 
 	const handleChange = useCallback(
 		(v?: Money) => {
@@ -38,9 +39,5 @@ export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>
 
 	const [inputElement] = useMoneyInput({onChange: handleChange, prefix, showPrefix, value: val, wholeNumber});
 
-	return (
-		<Input {...rest}>
-			<input name={name} ref={inputElement} onBlur={onBlur} readOnly={locked} />
-		</Input>
-	);
+	return <TextInput ref={inputElement} readOnly={locked} {...rest} />;
 }

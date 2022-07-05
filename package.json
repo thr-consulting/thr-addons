@@ -29,6 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@commitlint/cli": "^16.2.1",
+    "@apollo/client": "^3.5.10",
     "@commitlint/config-conventional": "^16.2.1",
     "@mikro-orm/core": "^4.5.10",
     "@storybook/addon-actions": "^6.5.0-alpha.48",

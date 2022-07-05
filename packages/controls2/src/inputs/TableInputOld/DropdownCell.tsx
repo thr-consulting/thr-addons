@@ -1,7 +1,8 @@
-import {Select, SelectProps} from '@mantine/core';
+import {Dropdown} from 'semantic-ui-react';
+import type {DropdownProps} from 'semantic-ui-react';
 import type {TableCellProps} from './TableInput';
 
-export function DropdownCell<D extends Record<string, unknown>>(dropdownProps: SelectProps) {
+export function DropdownCell<D extends Record<string, unknown>>(dropdownProps: DropdownProps) {
 	return function DropdownCellFn(props: TableCellProps<D>) {
 		const {
 			value,
@@ -14,12 +15,12 @@ export function DropdownCell<D extends Record<string, unknown>>(dropdownProps: S
 		const {value: v, onChange, ...rest} = dropdownProps;
 
 		return (
-			<Select
+			<Dropdown
 				{...rest}
 				value={value}
-				onChange={val => {
-					updateData(rowIndex, id, val);
-					if (onChange) onChange(val);
+				onChange={(event, val) => {
+					updateData(rowIndex, id, val.value);
+					if (onChange) onChange(event, val);
 				}}
 			/>
 		);

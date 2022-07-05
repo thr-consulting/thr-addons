@@ -1,24 +1,24 @@
 import {toMoney} from '@thx/money';
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import debug from 'debug';
+import {Select, TextInput} from '@mantine/core';
 import Money, {CurrencyString} from 'js-money';
-import {SyntheticEvent, useCallback} from 'react';
-import {Dropdown, DropdownProps, Input, InputProps, Label} from 'semantic-ui-react';
+import {useCallback} from 'react';
 import type {MoneyInputProps} from '../MoneyInput';
 import {useMoneyInput} from '../useMoneyInput';
 
 const d = debug('thx.controls.money.MoneyCurrencyInput');
 
 export interface MoneyCurrencyInputProps extends MoneyInputProps {
-	currencies?: {key: string; value: string; text: string}[];
+	currencies?: {value: string; label: string}[];
 }
 
-export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputProps, 'onChange'>) {
-	const {name, onBlur, prefix, defaultCurrency, onChange, showPrefix, value, wholeNumber, currencies, locked, ...rest} = props;
+export function MoneyCurrencyInput(props: MoneyCurrencyInputProps) {
+	const {prefix, defaultCurrency, onChange, showPrefix, value, wholeNumber, currencies, locked, ...rest} = props;
 
 	const options = currencies || [
-		{key: 'CAD', text: 'CAD', value: 'CAD'},
-		{key: 'USD', text: 'USD', value: 'USD'},
+		{label: 'CAD', value: 'CAD'},
+		{label: 'USD', value: 'USD'},
 	];
 
 	const handleChange = useCallback(
@@ -37,8 +37,8 @@ export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputPr
 	const [inputElement] = useMoneyInput({onChange: handleChange, prefix, showPrefix, value: val, wholeNumber});
 
 	const handleDropdownChange = useCallback(
-		(e: SyntheticEvent<HTMLElement, Event>, v: DropdownProps) => {
-			const newCurrencyCode = v.value as CurrencyString;
+		v => {
+			const newCurrencyCode = v as CurrencyString;
 			const newMoney = new Money(value?.amount || 0, newCurrencyCode);
 
 			d('Change', value, newCurrencyCode, newMoney);
@@ -53,11 +53,26 @@ export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputPr
 	d('Render', value, currencyCode);
 
 	return (
-		<Input {...rest} labelPosition="right">
-			<input name={name} ref={inputElement} onBlur={onBlur} readOnly={locked} />
-			<Label basic>
-				<Dropdown disabled={locked} options={options} value={currencyCode} onChange={handleDropdownChange} />
-			</Label>
-		</Input>
+		<TextInput
+			ref={inputElement}
+			readOnly={locked}
+			{...rest}
+			rightSectionWidth={80}
+			rightSection={
+				<Select
+					data={options}
+					value={currencyCode}
+					onChange={handleDropdownChange}
+					disabled={locked}
+					variant="unstyled"
+					styles={{
+						input: {
+							textAlign: 'right',
+							paddingRight: 36,
+						},
+					}}
+				/>
+			}
+		/>
 	);
 }

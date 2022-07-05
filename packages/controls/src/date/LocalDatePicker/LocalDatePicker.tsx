@@ -16,8 +16,8 @@ interface ILocalDatePicker {
 	maxDate?: LocalDate;
 }
 
-type InputPropsOmitted = Omit<DatePickerProps, 'onChange' | 'value' | 'defaultValue' | 'initialMonth'>;
-export type LocalDatePickerProps = ILocalDatePicker & InputPropsOmitted;
+export type LocalDatePickerProps = ILocalDatePicker &
+	Omit<DatePickerProps, 'onChange' | 'value' | 'defaultValue' | 'initialMonth' | 'minDate' | 'maxDate'>;
 
 export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 	const {minDate, maxDate, value, onChange, onChangeRaw, defaultValue, initialMonth, ...rest} = props;

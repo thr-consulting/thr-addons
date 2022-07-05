@@ -1,4 +1,3 @@
-import type {KeyboardEvent} from 'react';
 import type {TableCellProps} from './TableInput';
 
 export type AddRowOnTabIf<D extends Record<string, unknown>, V = any> = (props: TableCellProps<D, V>, newValue: V) => boolean;
