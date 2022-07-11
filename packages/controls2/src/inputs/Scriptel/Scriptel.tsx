@@ -5,7 +5,7 @@ import {ScriptelSocket} from './scriptel';
 import type {ScriptelPenStyle} from './scriptel/enums';
 import type {RenderedImage} from './scriptel/messages';
 
-const d = debug('thx.controls.inputs.Scriptel');
+const d = debug('thx.controls2.inputs.Scriptel');
 
 export interface ScriptelProps {
 	omniscriptUrl?: string; // Defaults to 'ws://localhost:8080'

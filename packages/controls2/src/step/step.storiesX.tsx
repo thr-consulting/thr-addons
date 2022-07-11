@@ -4,7 +4,7 @@ import {Button, Container, Form, Radio, Segment} from 'semantic-ui-react';
 import {TForm} from '../form/TForm';
 import {FormStep as CFormStep, StepProvider} from './index';
 
-const d = debug('thx.controls.step.step.storiesX');
+const d = debug('thx.controls2.step.step.storiesX');
 
 export default {title: 'Inputs/Step'};
 

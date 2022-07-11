@@ -1,6 +1,7 @@
+import {Table, TableProps, useMantineTheme} from '@mantine/core';
 import debug from 'debug';
 import {FieldArray, FieldArrayRenderProps} from 'formik';
-import {useMemo, useState} from 'react';
+import {CSSProperties, useMemo, useState} from 'react';
 import {
 	CellPropGetter,
 	CellProps,
@@ -13,11 +14,14 @@ import {
 	TableBodyPropGetter,
 	useTable,
 } from 'react-table';
-import {Table, TableProps} from '@mantine/core';
 
 const d = debug('thx.controls.inputs.TableInput');
 
 type DefaultTableType = Record<string, unknown>;
+
+export interface CustomTableProps {
+	celled?: boolean;
+}
 
 interface TableInputProps<A extends DefaultTableType> {
 	name: string;
@@ -25,7 +29,7 @@ interface TableInputProps<A extends DefaultTableType> {
 	columns: Column<A>[];
 	setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
 	createRow: () => A;
-	tableProps?: TableProps;
+	tableProps?: TableProps & CustomTableProps;
 	headerRowProps?: HeaderGroupPropGetter<A>;
 	headerCellProps?: HeaderPropGetter<A>;
 	footerRowProps?: FooterGroupPropGetter<A>;
@@ -65,6 +69,7 @@ function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps
 	const cols = useMemo(() => columns, [columns]);
 	const vals = useMemo(() => values, [values]);
 	const [hoverRow, setHoverRow] = useState('');
+	const theme = useMantineTheme();
 
 	// React-Table hook
 	const {getTableProps, getTableBodyProps, headerGroups, prepareRow, rows, footerGroups} = useTable<A>({
@@ -83,16 +88,27 @@ function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps
 	// @ts-ignore Check for the existence of a Footer that is not the default emptyRenderer()
 	const hasFooter = footerGroups.some(fg => fg.headers.some(fgh => fgh.Footer.name !== 'emptyRenderer'));
 
+	const celledStyle = (col: number): CSSProperties | undefined => {
+		return tableProps?.celled ? {borderLeftWidth: col === 0 ? 0 : 1, borderLeftColor: theme.colors.gray[8], borderLeftStyle: 'solid'} : undefined;
+	};
+
 	// Build Footer if any footer renderers exist
 	const footer = hasFooter ? (
 		<tfoot>
 			{footerGroups.map(group => (
 				// eslint-disable-next-line react/jsx-key
 				<tr {...{...group.getFooterGroupProps(), ...group.getFooterGroupProps(footerRowProps)}}>
-					{group.headers.map(column => (
-						// eslint-disable-next-line react/jsx-key
-						<th {...{...column.getFooterProps(), ...column.getFooterProps(footerCellProps)}}>{column.render('Footer')}</th>
-					))}
+					{group.headers.map((column, col) => {
+						const thProps = {
+							...column.getFooterProps(),
+							...column.getFooterProps(footerCellProps),
+						};
+						thProps.style = {...thProps.style, ...celledStyle(col)};
+						return (
+							// eslint-disable-next-line react/jsx-key
+							<th {...thProps}>{column.render('Footer')}</th>
+						);
+					})}
 				</tr>
 			))}
 		</tfoot>
@@ -100,17 +116,24 @@ function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps
 
 	return (
 		<Table {...{...getTableProps(), ...getTableProps(tableProps)}}>
-			<th>
+			<thead>
 				{headerGroups.map(headerGroup => (
 					// eslint-disable-next-line react/jsx-key
 					<tr {...{...headerGroup.getHeaderGroupProps(), ...headerGroup.getHeaderGroupProps(headerRowProps)}}>
-						{headerGroup.headers.map(column => (
-							// eslint-disable-next-line react/jsx-key
-							<th {...{...column.getHeaderProps(), ...column.getHeaderProps(headerCellProps)}}>{column.render('Header')}</th>
-						))}
+						{headerGroup.headers.map((column, col) => {
+							const thProps = {
+								...column.getHeaderProps(),
+								...column.getHeaderProps(headerCellProps),
+							};
+							thProps.style = {...thProps.style, ...celledStyle(col)};
+							return (
+								// eslint-disable-next-line react/jsx-key
+								<th {...thProps}>{column.render('Header')}</th>
+							);
+						})}
 					</tr>
 				))}
-			</th>
+			</thead>
 			<tbody {...{...getTableBodyProps(), ...getTableBodyProps(bodyProps)}}>
 				{rows.map(row => {
 					prepareRow(row);
@@ -121,10 +144,17 @@ function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps
 							onMouseEnter={() => setHoverRow(row.id)}
 							onMouseLeave={() => setHoverRow('')}
 						>
-							{row.cells.map(cell => (
-								// eslint-disable-next-line react/jsx-key
-								<td {...{...cell.getCellProps(), ...cell.getCellProps(cellProps)}}>{cell.render('Cell', {hoverRow})}</td>
-							))}
+							{row.cells.map((cell, col) => {
+								const tdProps = {
+									...cell.getCellProps(),
+									...cell.getCellProps(cellProps),
+								};
+								tdProps.style = {...tdProps.style, ...celledStyle(col)};
+								return (
+									// eslint-disable-next-line react/jsx-key
+									<td {...tdProps}>{cell.render('Cell', {hoverRow})}</td>
+								);
+							})}
 						</tr>
 					);
 				})}

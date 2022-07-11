@@ -7,7 +7,7 @@ import {FormStep} from './FormStep';
 import {Step} from './Step';
 import {StepContext} from './stepContext';
 
-const d = debug('thx.controls.step.StepProvider');
+const d = debug('thx.controls2.step.StepProvider');
 
 interface StepProviderProps {
 	children: (JSX.Element | null | false)[];

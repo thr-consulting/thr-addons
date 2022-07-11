@@ -1,9 +1,9 @@
+import {Alert} from '@mantine/core';
 import flatten from 'flat';
 import {FormikValues, useFormik, FormikErrors, FormikTouched} from 'formik';
-import {Alert} from '@mantine/core';
-import {AlertCircle} from 'tabler-icons-react';
 import {get, property, uniq} from 'lodash-es';
 import {FormEvent, useEffect, useState} from 'react';
+import {AlertCircle} from 'tabler-icons-react';
 import type {TFormConfig} from './types';
 
 export function useTForm<Values extends FormikValues = FormikValues, InitialValues = any>(config: TFormConfig<Values, InitialValues>) {

@@ -5,7 +5,7 @@ import type {ReactNode} from 'react';
 import type {TFormConfig, TFormProps} from './types';
 import {useTForm} from './useTForm';
 
-const d = debug('thx.controls.form.TForm');
+const d = debug('thx.controls2.form.TForm');
 
 export function TForm<Values extends FormikValues = FormikValues>(props: TFormConfig<Values>) {
 	const tbag = useTForm<Values>(props);

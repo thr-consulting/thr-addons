@@ -21,7 +21,7 @@
   "scripts": {
     "build": "thx build.roll",
     "clean": "thx clean",
-    "deps": "thx deps -p *.stories.tsx,*.story.tsx,*.cjs",
+    "deps": "thx deps -p *.stories.tsx,*.story.tsx,*.cjs,storyDecorator.tsx",
     "docs.storybook": "build-storybook",
     "lint": "thx lint",
     "lint.fix": "thx lint.fix",
@@ -33,31 +33,25 @@
     "@js-joda/core": "^5.1.0",
     "@thx/date": "^16.0.1",
     "@thx/money": "^16.0.0",
-    "@thx/yup-types": "^16.0.0",
     "@types/inputmask": "^5.0.3",
-    "@types/react-datepicker": "^4.1.7",
     "credit-card-type": "^9.1.0",
     "debug": "^4.1.1",
-    "eventemitter3": "^4.0.0",
     "flat": "^5.0.0",
     "formik": "^2.2.9",
     "inputmask": "^5.0.6",
     "js-money": "^0.6.3",
     "lodash-es": "^4.17.15",
     "luhn": "^2.4.1",
-    "tabler-icons-react": "^1.48.1",
     "react-credit-cards": "^0.8.3",
-    "react-datepicker": "^4.7.0",
     "react-table": "^7.6.3",
     "social-insurance-number": "^0.2.2",
-    "use-deep-compare-effect": "1.4.0",
-    "@mantine/core": "^4.2.7",
-    "@mantine/dates": "^4.2.7",
-    "@mantine/hooks": "^4.2.7",
-    "@mantine/form": "^4.2.7",
-    "dayjs": "^1.11.2"
+    "tabler-icons-react": "^1.48.1"
   },
   "peerDependencies": {
+    "@mantine/core": "4.x",
+    "@mantine/dates": "4.x",
+    "@mantine/form": "4.x",
+    "@mantine/hooks": "4.x",
     "react": "17.x",
     "react-dom": "17.x",
     "react-router": "5.x",
@@ -69,5 +63,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "b7fd4722f916b99ce0c25fdfde7f65445343cb04"
+  "gitHead": "b7fd4722f916b99ce0c25fdfde7f65445343cb04",
+  "unusedDeps": {
+    "@thx/yup-types": "^16.0.0",
+    "eventemitter3": "^4.0.0"
+  }
 }

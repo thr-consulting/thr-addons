@@ -1,10 +1,10 @@
 import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
-import {CreditCardNumberInput} from './CreditCardNumberInput';
 import {storyDecorator} from '../../storyDecorator';
+import {CreditCardNumberInput} from './CreditCardNumberInput';
 
-const d = debug('thx.controls.inputs.CreditCardInput.creditcardinput.stories');
+const d = debug('thx.controls.inputs.CreditCardInput.creditcardnumberinput.stories');
 
 export default {
 	title: 'Inputs/CreditCardInput',

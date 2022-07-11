@@ -6,7 +6,7 @@ import {number, object, string} from 'yup';
 import type {TFormConfig, TFormProps} from './types';
 import {useTForm} from './useTForm';
 
-const d = debug('thx.controls.form.TForm.addeditforms.stories');
+const d = debug('thx.controls2.form.TForm.addeditforms.stories');
 
 export default {
 	title: 'Form/Add and Edit Forms',

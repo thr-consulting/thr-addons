@@ -1,6 +1,6 @@
 import debug from 'debug';
 
-const d = debug('thx.controls.step.Step');
+const d = debug('thx.controls2.step.Step');
 
 interface StepProps {
 	children?: JSX.Element | JSX.Element[];

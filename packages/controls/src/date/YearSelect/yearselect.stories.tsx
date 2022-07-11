@@ -2,8 +2,8 @@
 import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
-import {YearSelect} from './YearSelect';
 import {storyDecorator} from '../../storyDecorator';
+import {YearSelect} from './YearSelect';
 
 const d = debug('thx.controls.date.YearSelect.yearselect.stories');
 

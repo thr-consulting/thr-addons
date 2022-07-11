@@ -8,7 +8,7 @@ import {TForm} from './TForm';
 import type {TFormProps} from './types';
 import {useTForm} from './useTForm';
 
-const d = debug('thx.controls.form.TForm.tform.stories');
+const d = debug('thx.controls2.form.TForm.tform.stories');
 
 export default {
 	title: 'Form/TForm',

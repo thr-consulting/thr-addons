@@ -11,7 +11,7 @@ export function DropdownCell<D extends Record<string, unknown>>(dropdownProps: S
 		} = props;
 
 		// eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
-		const {value: v, onChange, ...rest} = dropdownProps;
+		const {value: v, onChange, searchable, variant, ...rest} = dropdownProps;
 
 		return (
 			<Select
@@ -21,6 +21,8 @@ export function DropdownCell<D extends Record<string, unknown>>(dropdownProps: S
 					updateData(rowIndex, id, val);
 					if (onChange) onChange(val);
 				}}
+				searchable={typeof searchable === 'boolean' ? searchable : true}
+				variant={typeof variant === 'string' ? variant : 'unstyled'}
 			/>
 		);
 	};

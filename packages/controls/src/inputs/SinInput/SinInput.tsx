@@ -1,8 +1,8 @@
+import type {MantineColor} from '@mantine/core';
+import {TextInput, useMantineTheme} from '@mantine/core';
 import debug from 'debug';
 import {useCallback, useMemo, useState} from 'react';
 import SIN from 'social-insurance-number';
-import type {MantineColor} from '@mantine/core';
-import {TextInput, useMantineTheme} from '@mantine/core';
 import {IdBadge} from 'tabler-icons-react';
 import type {MaskedInputProps} from '../MaskedInput';
 import {useMaskedInput} from '../MaskedInput';

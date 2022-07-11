@@ -4,7 +4,7 @@ import {useContext, useEffect, useState} from 'react';
 import {Button, Image} from 'semantic-ui-react';
 import {ScriptelContext} from '../Scriptel/ScriptelContext';
 
-const d = debug('thx.controls.inputs.ScriptelInput');
+const d = debug('thx.controls2.inputs.ScriptelInput');
 
 export interface ScriptelInputProps {
 	value?: ScriptelSchemaType;

@@ -2,8 +2,8 @@ import {Paper} from '@mantine/core';
 import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
-import {SinInput} from './SinInput';
 import {storyDecorator} from '../../storyDecorator';
+import {SinInput} from './SinInput';
 
 const d = debug('thx.controls.inputs.SinInput.sininput.stories');
 

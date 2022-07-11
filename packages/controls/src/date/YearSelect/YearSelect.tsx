@@ -1,5 +1,5 @@
-import debug from 'debug';
 import {Button, ButtonProps, Group, NumberInput} from '@mantine/core';
+import debug from 'debug';
 import {ArrowLeft, ArrowRight} from 'tabler-icons-react';
 
 const d = debug('thx.controls.date.YearSelect');

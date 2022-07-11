@@ -8,6 +8,7 @@
 	"include": [
 		"src/index.ts",
 		"types/*.d.ts",
-		"src/**/*.stories.tsx"
+		"src/**/*.stories.tsx",
+		"src/**/*.story.tsx"
 	]
 }

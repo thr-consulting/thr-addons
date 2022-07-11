@@ -2,8 +2,8 @@ import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 /* eslint-disable react-hooks/rules-of-hooks */
 import debug from 'debug';
-import {LocalTimePicker} from './LocalTimePicker';
 import {storyDecorator} from '../../storyDecorator';
+import {LocalTimePicker} from './LocalTimePicker';
 
 const d = debug('thx.controls.date.LocalTimePicker.localtimepicker.stories');
 

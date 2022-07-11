@@ -1,13 +1,13 @@
+import {Button, Group, TextInput} from '@mantine/core';
 /* eslint-disable react-hooks/rules-of-hooks */
 import {useArgs} from '@storybook/client-api';
-import {useState} from 'react';
 import type {Meta} from '@storybook/react';
 import debug from 'debug';
-import {Button, Group, TextInput} from '@mantine/core';
+import {useState} from 'react';
 import {object, string} from 'yup';
+import {storyDecorator} from '../../storyDecorator';
 import {TForm} from './TForm';
 import type {TFormProps} from './types';
-import {storyDecorator} from '../../storyDecorator';
 
 const d = debug('thx.controls.form.TForm.tform.stories');
 

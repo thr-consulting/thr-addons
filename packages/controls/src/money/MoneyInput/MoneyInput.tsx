@@ -1,7 +1,7 @@
-import {toMoney} from '@thx/money';
 import type {TextInputProps} from '@mantine/core';
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import {TextInput} from '@mantine/core';
+import {toMoney} from '@thx/money';
 import debug from 'debug';
 import Money, {Currency, MoneyObject} from 'js-money';
 import {useCallback} from 'react';

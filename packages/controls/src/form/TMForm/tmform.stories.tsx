@@ -1,16 +1,16 @@
+import {ApolloError} from '@apollo/client';
 /* eslint-disable react-hooks/rules-of-hooks */
 import {Button, Group, TextInput} from '@mantine/core';
 import {useForm, yupResolver} from '@mantine/form';
 import type {Meta} from '@storybook/react';
+import debug from 'debug';
 import {GraphQLError} from 'graphql';
 import {useState} from 'react';
-import {ApolloError} from '@apollo/client';
-import debug from 'debug';
 import {object, string} from 'yup';
 import {storyDecorator} from '../../storyDecorator';
 import {TMForm} from './TMForm';
 
-const d = debug('thx.controls.inputs.TMForm.stories');
+const d = debug('thx.controls.form.TMForm.tmform.stories');
 
 export default {
 	title: 'TMForm/Basic',

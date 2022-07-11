@@ -2,8 +2,8 @@
 import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
-import {MaskedInput} from './MaskedInput';
 import {storyDecorator} from '../../storyDecorator';
+import {MaskedInput} from './MaskedInput';
 
 const d = debug('thx.controls.inputs.MaskedInput.maskedinput.stories');
 

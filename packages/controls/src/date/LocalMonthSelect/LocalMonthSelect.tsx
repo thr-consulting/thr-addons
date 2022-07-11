@@ -1,7 +1,7 @@
 import {LocalDate} from '@js-joda/core';
-import debug from 'debug';
 import {Select} from '@mantine/core';
 import type {SelectProps} from '@mantine/core';
+import debug from 'debug';
 
 const d = debug('thx.controls.date.LocalMonthSelect');
 

@@ -1,12 +1,12 @@
+import {Alert, List, LoadingOverlay} from '@mantine/core';
 import type {UseFormReturnType} from '@mantine/form/lib/use-form';
 import debug from 'debug';
 import {useState} from 'react';
-import {Alert, List, LoadingOverlay} from '@mantine/core';
 import {AlertCircle} from 'tabler-icons-react';
 import type {ErrorMessages} from './errorMessages';
 import {errorMessages} from './errorMessages';
 
-const d = debug('thx.controls.inputs.TMForm');
+const d = debug('thx.controls.form.TMForm');
 
 export interface TMFormProps<T> {
 	form: UseFormReturnType<T>;

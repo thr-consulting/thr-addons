@@ -1,6 +1,6 @@
+import {Radio, RadioGroup} from '@mantine/core';
 import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
-import {Radio, RadioGroup} from '@mantine/core';
 import debug from 'debug';
 import {storyDecorator} from '../../storyDecorator';
 

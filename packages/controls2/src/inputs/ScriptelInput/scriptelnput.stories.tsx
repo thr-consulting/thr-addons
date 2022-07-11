@@ -4,7 +4,7 @@ import debug from 'debug';
 import {Scriptel} from '../Scriptel';
 import {ScriptelInput} from './ScriptelInput';
 
-const d = debug('thx.controls.inputs.ScriptelInput.scriptelnput.stories');
+const d = debug('thx.controls2.inputs.ScriptelInput.scriptelnput.stories');
 
 export default {
 	title: 'Inputs/ScriptelInput',

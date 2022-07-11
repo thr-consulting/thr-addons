@@ -4,7 +4,7 @@ import EventEmitter from 'eventemitter3';
 import {ScriptelMessageClass, ScriptelPenStyle} from './enums';
 import type {ConnectionOpen, DeviceOpenResponse, Message, RenderedImage} from './messages';
 
-const d = debug('thx.controls.inputs.Scriptel.scriptel');
+const d = debug('thx.controls2.inputs.Scriptel.scriptel');
 
 export interface ScriptelSocketArgs {
 	omniscriptUrl?: string; // Defaults to 'ws://localhost:8080'

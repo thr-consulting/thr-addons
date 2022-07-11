@@ -21,9 +21,9 @@ interface JournalLine extends Record<string, unknown> {
 	gst: Money;
 }
 
-const options = [
-	{key: 'a', text: 'The Letter A', value: 'a'},
-	{key: 'b', text: 'The Letter B', value: 'b'},
+const data = [
+	{label: 'The Letter A', value: 'a'},
+	{label: 'The Letter B', value: 'b'},
 ];
 
 export function Main() {
@@ -36,9 +36,9 @@ export function Main() {
 				accessor: 'account',
 				Header: 'Account',
 				Cell: DropdownCell({
-					options,
-					basic: true,
-					search: true,
+					data,
+					variant: 'unstyled',
+					searchable: true,
 				}),
 			},
 			{
@@ -98,11 +98,11 @@ export function Main() {
 						columns={mainColumns}
 						setFieldValue={setFieldValue}
 						createRow={() => ({account: 'a', name: 'New', amount: toMoney(), gst: toMoney()})}
-						tableProps={() => ({
-							compact: true,
+						tableProps={{
+							highlightOnHover: true,
+							verticalSpacing: 2,
 							celled: true,
-							basic: 'very',
-						})}
+						}}
 						footerCellProps={() => ({
 							style: {paddingTop: '7px', paddingBottom: '7px'},
 						})}

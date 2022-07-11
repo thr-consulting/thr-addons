@@ -1,8 +1,8 @@
 import {LocalTime} from '@js-joda/core';
-import {toDate, toLocalTime} from '@thx/date';
-import debug from 'debug';
 import {TimeInput} from '@mantine/dates';
 import type {TimeInputProps} from '@mantine/dates';
+import {toDate, toLocalTime} from '@thx/date';
+import debug from 'debug';
 
 const d = debug('thx.controls.date.LocalTimePicker');
 

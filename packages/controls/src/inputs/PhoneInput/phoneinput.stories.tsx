@@ -1,8 +1,8 @@
 import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
-import {PhoneInput} from './PhoneInput';
 import {storyDecorator} from '../../storyDecorator';
+import {PhoneInput} from './PhoneInput';
 
 const d = debug('thx.controls.inputs.PhoneInput.phoneinput.stories');
 

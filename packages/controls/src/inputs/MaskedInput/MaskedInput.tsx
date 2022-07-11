@@ -1,5 +1,5 @@
-import debug from 'debug';
 import {TextInput, TextInputProps} from '@mantine/core';
+import debug from 'debug';
 import {useMaskedInput, UseMaskedInputProps} from './useMaskedInput';
 
 const d = debug('thx.controls.inputs.MaskedInput');

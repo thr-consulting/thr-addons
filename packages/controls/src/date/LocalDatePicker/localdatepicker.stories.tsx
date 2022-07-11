@@ -3,8 +3,8 @@ import {LocalDate} from '@js-joda/core';
 import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
-import {LocalDatePicker} from './LocalDatePicker';
 import {storyDecorator} from '../../storyDecorator';
+import {LocalDatePicker} from './LocalDatePicker';
 
 const d = debug('thx.controls.date.LocalDatePicker.localdatepicker.stories');
 
