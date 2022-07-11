@@ -1,6 +1,6 @@
 {
   "name": "@thx/controls",
-  "version": "16.1.16",
+  "version": "17.0.0-mantine.0",
   "description": "A collection of components designed with SemanticUI.",
   "bugs": {
     "url": "https://github.com/thr-consulting/thr-addons/issues"

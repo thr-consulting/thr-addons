@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.0.0-mantine.0](https://github.com/thr-consulting/thr-addons/compare/v16.2.2...v17.0.0-mantine.0) (2022-07-11)
+
+
+### Features
+
+* added credit card input ([b88011f](https://github.com/thr-consulting/thr-addons/commit/b88011f81ad0f624571dd3ba72e6b887b7c3f73d))
+* added light and dark theming ([0de85e7](https://github.com/thr-consulting/thr-addons/commit/0de85e7bcf4b995ef78d9c0ce7be0b9edafa85b6))
+* added more controls ([1194b3c](https://github.com/thr-consulting/thr-addons/commit/1194b3c9ea4f148a083ab8eeaa0481176c0327df))
+* added SinInput ([ac41432](https://github.com/thr-consulting/thr-addons/commit/ac41432bd8f997425f83334d7c31bd79e89bd306))
+* added table input ([5ae7ea4](https://github.com/thr-consulting/thr-addons/commit/5ae7ea4e2418df292106c77b55cebc34af04b8e1))
+* working on switching to mantine ([1ae501b](https://github.com/thr-consulting/thr-addons/commit/1ae501b45ac25ffc26b5b9db4425f9d1dc9cd684))
+* working on ui ([0cf215f](https://github.com/thr-consulting/thr-addons/commit/0cf215f535d392da0da24087925d203e1825a005))
+
+
+
+
+
 ## [16.2.2](https://github.com/thr-consulting/thr-addons/compare/v16.2.1...v16.2.2) (2022-05-20)
 
 **Note:** Version bump only for package thx-esm
