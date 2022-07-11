@@ -1,8 +1,8 @@
 import debug from 'debug';
-import InputmaskImport from 'inputmask';
 import type InputmaskType from 'inputmask';
+import InputmaskImport from 'inputmask';
 import {useEffect, useRef} from 'react';
-import useDeepCompareEffect from 'use-deep-compare-effect';
+import type {OnChangeValue} from '../../commonTypes';
 
 const d = debug('thx.controls.inputs.MaskedInput.useMaskedInput');
 
@@ -11,7 +11,7 @@ const Inputmask = InputmaskImport.default || InputmaskImport;
 
 export interface UseMaskedInputProps {
 	value?: string;
-	onChange?: (value?: string) => void;
+	onChange?: OnChangeValue<string>;
 	mask?: Inputmask.Options;
 	onSet?: (value?: string) => void;
 }
@@ -22,7 +22,8 @@ export function useMaskedInput(props: UseMaskedInputProps) {
 	const inputElement = useRef<HTMLInputElement | null>(null);
 	const maskInstance = useRef<InputmaskType.Instance | null>(null);
 
-	useDeepCompareEffect(() => {
+	// useDeepCompareEffect(() => {
+	useEffect(() => {
 		if (!inputElement.current) throw new Error('Could not get input element');
 
 		d('Creating input mask instance');
@@ -50,7 +51,7 @@ export function useMaskedInput(props: UseMaskedInputProps) {
 				maskInstance.current = null;
 			}
 		};
-	}, [mask]);
+	}, [mask, onChange]);
 
 	// If we change the value prop we need to sync the DOM value to display the new value
 	useEffect(() => {

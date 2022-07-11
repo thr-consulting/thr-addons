@@ -7,7 +7,7 @@ const d = debug('thx.controls.inputs.MaskedInput');
 export type MaskedInputProps = {
 	name?: string;
 } & UseMaskedInputProps &
-	TextInputProps;
+	Omit<TextInputProps, 'onChange' | 'value'>;
 
 export function MaskedInput(props: MaskedInputProps) {
 	const {name, onChange, mask, value, ...rest} = props;

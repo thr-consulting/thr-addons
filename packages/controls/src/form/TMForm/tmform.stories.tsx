@@ -8,7 +8,7 @@ import {ApolloError} from '@apollo/client';
 import debug from 'debug';
 import {object, string} from 'yup';
 import {storyDecorator} from '../../storyDecorator';
-import {TMForm, TMFormProps} from './TMForm';
+import {TMForm} from './TMForm';
 
 const d = debug('thx.controls.inputs.TMForm.stories');
 
@@ -42,7 +42,7 @@ const sampleErrors = [
 		}),
 ];
 
-export function Main(args: TMFormProps<unknown>) {
+export function Main() {
 	const [errorIndex, setErrorIndex] = useState(0);
 
 	const form = useForm({
@@ -57,7 +57,7 @@ export function Main(args: TMFormProps<unknown>) {
 					form={form}
 					onSubmit={values => {
 						if (errorIndex !== 0) {
-							throw sampleErrors[errorIndex]();
+							throw sampleErrors[errorIndex]() as Error;
 						}
 						d(values);
 					}}
@@ -88,7 +88,7 @@ export function Main(args: TMFormProps<unknown>) {
 }
 Main.args = {};
 
-export function SubmitPromises(args: TMFormProps<unknown>) {
+export function SubmitPromises() {
 	// const [, updateArgs] = useArgs();
 	const [errorIndex, setErrorIndex] = useState(0);
 
