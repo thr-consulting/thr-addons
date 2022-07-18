@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.2](https://github.com/thr-consulting/thr-addons/compare/v16.3.1...v16.3.2) (2022-07-18)
+
+
+### Bug Fixes
+
+* **controls:** fixed issue where selecting a date didn't update the tableinput ([db1ace2](https://github.com/thr-consulting/thr-addons/commit/db1ace250dc610619549b605b57868ad0ddb6792))
+
+
+
+
+
 ## [16.3.1](https://github.com/thr-consulting/thr-addons/compare/v16.3.0...v16.3.1) (2022-06-27)
 
 **Note:** Version bump only for package thx-esm
