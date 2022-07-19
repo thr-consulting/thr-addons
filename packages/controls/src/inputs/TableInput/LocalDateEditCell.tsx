@@ -19,8 +19,6 @@ export function LocalDateEditCell<D extends Record<string, unknown>>() {
 
 		return (
 			<LocalDatePicker
-				fluid
-				transparent
 				value={value}
 				onChange={val => {
 					setValue(val);
