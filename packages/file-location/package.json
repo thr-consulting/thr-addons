@@ -33,7 +33,7 @@
 		}
 	},
 	"dependencies": {
-		"aws-sdk": "^2.1092.0",
+		"aws-sdk": "^2.1177.0",
 		"debug": "^4.3.3",
 		"delete-empty": "^3.0.0",
 		"fs-extra": "^10.0.1",
