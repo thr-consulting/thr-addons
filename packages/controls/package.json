@@ -35,7 +35,7 @@
     "@thx/money": "^16.0.0",
     "@types/inputmask": "^5.0.3",
     "credit-card-type": "^9.1.0",
-    "debug": "^4.1.1",
+    "debug": "^4.3.4",
     "flat": "^5.0.0",
     "formik": "^2.2.9",
     "inputmask": "^5.0.6",
