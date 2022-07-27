@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.3](https://github.com/thr-consulting/thr-addons/compare/v16.3.2...v16.3.3) (2022-07-27)
+
+
+### Features
+
+* update aws-sdk ([#353](https://github.com/thr-consulting/thr-addons/issues/353)) ([ef6968d](https://github.com/thr-consulting/thr-addons/commit/ef6968d68eb0e6d2725d6687169fd64f998da507))
+
+
+
+
+
 ## [16.0.4](https://github.com/thr-consulting/thr-addons/compare/v16.0.3...v16.0.4) (2022-03-14)
 
 **Note:** Version bump only for package @thx/file-location

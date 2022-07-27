@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.3](https://github.com/thr-consulting/thr-addons/compare/v16.3.2...v16.3.3) (2022-07-27)
+
+
+### Features
+
+* check if type is money before attempting math ([#356](https://github.com/thr-consulting/thr-addons/issues/356)) ([60510b6](https://github.com/thr-consulting/thr-addons/commit/60510b607824ffe1c4867911a8e3f97275b7c27b))
+
+
+
+
+
 ## [16.3.2](https://github.com/thr-consulting/thr-addons/compare/v16.3.1...v16.3.2) (2022-07-18)
 
 
