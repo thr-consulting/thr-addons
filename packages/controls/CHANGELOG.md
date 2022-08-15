@@ -17,6 +17,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * working on ui ([0cf215f](https://github.com/thr-consulting/thr-addons/commit/0cf215f535d392da0da24087925d203e1825a005))
 
 
+## [16.3.3](https://github.com/thr-consulting/thr-addons/compare/v16.3.2...v16.3.3) (2022-07-27)
+
+
+### Features
+
+* check if type is money before attempting math ([#356](https://github.com/thr-consulting/thr-addons/issues/356)) ([60510b6](https://github.com/thr-consulting/thr-addons/commit/60510b607824ffe1c4867911a8e3f97275b7c27b))
+
+
+
+
+
 ## [16.3.2](https://github.com/thr-consulting/thr-addons/compare/v16.3.1...v16.3.2) (2022-07-18)
 
 
