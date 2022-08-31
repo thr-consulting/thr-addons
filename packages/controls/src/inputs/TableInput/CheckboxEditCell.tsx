@@ -5,7 +5,7 @@ import type {TableCellProps} from './TableInput';
 import type {AddRowOnTabIf} from './addRowOnTab';
 import {addRowOnTab} from './addRowOnTab';
 
-const d = debug('thx.controls.inputs.TableInput.StringEditCell');
+const d = debug('thx.controls.inputs.TableInput.CheckboxEditCell');
 
 interface CheckboxEditCellOptions<D extends Record<string, unknown>> {
 	/** Override SemanticUI Input props */
