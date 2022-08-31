@@ -36,6 +36,7 @@ export {
 	TableInput,
 	MoneyCell,
 	MoneyEditCell,
+	CheckboxEditCell,
 	LocalDateCell,
 	LocalDateEditCell,
 	MoneySumFooter,

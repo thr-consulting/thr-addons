@@ -2,6 +2,7 @@ export {TableInput} from './TableInput';
 export {MoneyCell} from './MoneyCell';
 export {MoneyEditCell} from './MoneyEditCell';
 export {LocalDateCell} from './LocalDateCell';
+export {CheckboxEditCell} from './CheckboxEditCell';
 export {LocalDateEditCell} from './LocalDateEditCell';
 export {MoneySumFooter} from './MoneySumFooter';
 export {StringEditCell} from './StringEditCell';
