@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.4](https://github.com/thr-consulting/thr-addons/compare/v16.3.3...v16.3.4) (2022-08-31)
+
+
+### Features
+
+* checkbox edit cell ([#359](https://github.com/thr-consulting/thr-addons/issues/359)) ([bc8c324](https://github.com/thr-consulting/thr-addons/commit/bc8c324c6d50adc63354914f67cf17133202b324))
+
+
+
+
+
 ## [16.3.3](https://github.com/thr-consulting/thr-addons/compare/v16.3.2...v16.3.3) (2022-07-27)
 
 
