@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.5](https://github.com/thr-consulting/thr-addons/compare/v16.3.4...v16.3.5) (2022-09-07)
+
+
+### Features
+
+* added some fiscal range functions ([#360](https://github.com/thr-consulting/thr-addons/issues/360)) ([57e018e](https://github.com/thr-consulting/thr-addons/commit/57e018e2defdfe59002cfec1838697b38619a081))
+
+
+
+
+
 ## [16.0.1](https://github.com/thr-consulting/thr-addons/compare/v16.0.0...v16.0.1) (2022-03-10)
 
 **Note:** Version bump only for package @thx/date

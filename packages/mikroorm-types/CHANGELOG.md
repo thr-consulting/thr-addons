@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.5](https://github.com/thr-consulting/thr-addons/compare/v16.3.4...v16.3.5) (2022-09-07)
+
+**Note:** Version bump only for package @thx/mikroorm-types
+
+
+
+
+
 ## [16.0.1](https://github.com/thr-consulting/thr-addons/compare/v16.0.0...v16.0.1) (2022-03-10)
 
 **Note:** Version bump only for package @thx/mikroorm-types

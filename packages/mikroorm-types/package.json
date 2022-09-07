@@ -1,6 +1,6 @@
 {
 	"name": "@thx/mikroorm-types",
-	"version": "16.0.1",
+	"version": "16.3.5",
 	"description": "Custom Mikro-orm types",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -33,7 +33,7 @@
 		}
 	},
 	"dependencies": {
-		"@thx/date": "^16.0.1",
+		"@thx/date": "^16.3.5",
 		"@thx/money": "^16.0.0"
 	},
 	"peerDependencies": {
