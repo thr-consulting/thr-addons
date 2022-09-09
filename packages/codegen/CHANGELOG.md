@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.6](https://github.com/thr-consulting/thr-addons/compare/v16.3.5...v16.3.6) (2022-09-09)
+
+
+### Bug Fixes
+
+* fixes [#348](https://github.com/thr-consulting/thr-addons/issues/348) ([a5e7ba3](https://github.com/thr-consulting/thr-addons/commit/a5e7ba3921ad739830e0dc5a88264b8eedd8adac))
+
+
+### Features
+
+* fix problem with codegen adding .js extension to graphql files ([65cd34f](https://github.com/thr-consulting/thr-addons/commit/65cd34fb7c5f8e39f807c16707a1987e058ff012))
+
+
+
+
+
 ## [16.1.5](https://github.com/thr-consulting/thr-addons/compare/v16.1.4...v16.1.5) (2022-03-31)
 
 
