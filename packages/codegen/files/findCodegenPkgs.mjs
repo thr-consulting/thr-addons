@@ -3,7 +3,7 @@ import {env} from 'node:process';
 import {join} from 'node:path';
 import debug from 'debug';
 
-const d = debug('thx.tools.files.mapEntities');
+const d = debug('thx.tools.files.findCodegenPkgs');
 
 const isDebug = env.DEBUG_MODE === '1';
 

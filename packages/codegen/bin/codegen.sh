@@ -141,6 +141,24 @@ if [ "$LR" = "$PWD" ]; then
     printf "\n"
   fi
 
+  # Update codegen.yml files with mapped entities
+    if [ "$IS_DEBUG" = "1" ]; then
+      op "Updating codegen.yml"
+      node "$THXCODEGEN_DIR/files/updateCodegen.mjs" "$(realpath "${PACKAGE_DIR}")" "${PKG_CODEGEN_NAMES}" "${SRC}"
+    else
+      coproc bfd { node "$THXCODEGEN_DIR/files/updateCodegen.mjs" "$(realpath "${PACKAGE_DIR}")" "${PKG_CODEGEN_NAMES}" "${SRC}" 2>&1; }
+      exec 3>&${bfd[0]}
+      spinner "$!" "Updating codegen.yml"
+      ret="$?"
+      if [ "$ret" -ne "0" ]; then
+        IFS= read -d '' -u 3 O
+        printf "\n%s\n" "${O}"
+        exit $ret
+      fi
+    fi
+
+
+
   # Generate TS code with codegen in each package
   if [ "$IS_DEBUG" = "1" ]; then
     op "Generating TS code from graphql schema"
@@ -190,7 +208,7 @@ if [ "$LR" = "$PWD" ]; then
   fi
 
   # Remove tmp file
-  rm -f /tmp/imp_codegen_entity_map.txt
+#  rm -f /tmp/imp_codegen_entity_map.txt
 else
   # Run graphql-codegen
   yarn -s graphql-codegen "${@:2}"

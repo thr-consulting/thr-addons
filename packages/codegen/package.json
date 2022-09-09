@@ -29,7 +29,9 @@
 		"@graphql-codegen/typescript-react-apollo": "^3.2.10",
 		"@graphql-codegen/typescript-resolvers": "^2.5.4",
 		"@thx/graphql-typescript-scalar-type-policies": "^2.0.0",
-		"graphql-tag": "^2.12.6"
+		"graphql-tag": "^2.12.6",
+		"js-yaml": "^4.1.0",
+		"lodash-es": "^4.17.21"
 	},
 	"peerDependencies": {
 		"graphql": "16.x"
