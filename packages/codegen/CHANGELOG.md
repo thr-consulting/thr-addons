@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.7](https://github.com/thr-consulting/thr-addons/compare/v16.3.6...v16.3.7) (2022-09-09)
+
+
+### Bug Fixes
+
+* **codegen:** fixed a small bug with codegen ([c85143c](https://github.com/thr-consulting/thr-addons/commit/c85143cfa81f42a3982d55badf0523211813dbf8))
+
+
+
+
+
 ## [16.3.6](https://github.com/thr-consulting/thr-addons/compare/v16.3.5...v16.3.6) (2022-09-09)
 
 
