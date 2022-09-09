@@ -1,6 +1,6 @@
 import {readFileSync} from 'node:fs';
 import {env} from 'node:process';
-import {join, relative, dirname} from 'node:path';
+import {join, relative, dirname, basename, extname} from 'node:path';
 import debug from 'debug';
 import {dump, load} from 'js-yaml';
 import {get, set} from 'lodash-es';
@@ -28,9 +28,11 @@ const mappedEntities = readFileSync(mappedEntitiesPath, 'utf-8')
 
 function makeRelativeObj(from) {
 	return mappedEntities.reduce((memo, v) => {
+		const relPath = relative(from, v.path);
+		const pathWithoutExt = join(dirname(relPath), basename(relPath, extname(relPath)));
 		return {
 			...memo,
-			[v.entity]: `${relative(from, v.path)}#${v.entity}`,
+			[v.entity]: `${pathWithoutExt}#${v.entity}`,
 		};
 	}, {});
 }
