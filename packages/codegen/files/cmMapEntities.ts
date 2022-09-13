@@ -1,6 +1,8 @@
 import type {FileInfo, API, Decorator} from 'jscodeshift';
-import {appendFileSync} from 'node:fs';
+import {appendFileSync, readFileSync} from 'node:fs';
+import {join} from 'node:path';
 import {env} from 'node:process';
+import findRoot from 'find-root';
 
 const isDebug = env.DEBUG_MODE === '1';
 
@@ -37,8 +39,12 @@ export default function transform(fileInfo: FileInfo, api: API) {
 	});
 
 	if (entity) {
-		if (isDebug) console.log(`Found entity "${entity}" in: ${fileInfo.path}`);
-		appendFileSync('/tmp/imp_codegen_entity_map.txt', `${entity},${fileInfo.path}\n`);
+		const packageJsonPath = join(findRoot(fileInfo.path), 'package.json');
+		const {name} = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
+
+		if (isDebug) console.log(`Found entity "${entity}" in: ${name} at ${fileInfo.path}`);
+
+		appendFileSync('/tmp/imp_codegen_entity_map.txt', `${entity},${fileInfo.path},${name}\n`);
 	}
 
 	return null;

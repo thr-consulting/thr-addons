@@ -31,7 +31,8 @@
 		"@thx/graphql-typescript-scalar-type-policies": "^2.0.0",
 		"graphql-tag": "^2.12.6",
 		"js-yaml": "^4.1.0",
-		"lodash-es": "^4.17.21"
+		"lodash-es": "^4.17.21",
+		"find-root": "^1.1.0"
 	},
 	"peerDependencies": {
 		"graphql": "16.x"

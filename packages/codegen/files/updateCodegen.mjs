@@ -18,16 +18,28 @@ const srcDir = args[2];
 const mappedEntitiesPath = '/tmp/imp_codegen_entity_map.txt';
 const graphqlTsPath = 'core/graphql.ts';
 
+// Read entities from tmp file
 const mappedEntities = readFileSync(mappedEntitiesPath, 'utf-8')
 	.split('\n')
 	.reduce((memo, line) => {
-		const [entity, path] = line.split(',');
+		const [entity, path, pkg] = line.split(',');
 		if (!entity || entity === '') return memo;
-		return [...memo, {entity, path}];
+		return [...memo, {entity, path, pkg}];
 	}, []);
 
-function makeRelativeObj(from) {
+//
+function makeRelativeObj(from, mapFromArr) {
 	return mappedEntities.reduce((memo, v) => {
+
+		// We are mapping from a package
+		if (mapFromArr.includes(v.pkg)) {
+			return {
+				...memo,
+				[v.entity]: `${v.pkg}#${v.entity}`,
+			};
+		}
+
+		// We are mapping the entity from a local directory
 		const relPath = relative(from, v.path);
 		const pathWithoutExt = join(dirname(relPath), basename(relPath, extname(relPath)));
 		return {
@@ -39,15 +51,18 @@ function makeRelativeObj(from) {
 
 dirsWithCodegen.forEach(v => {
 	const packagePath = join(pkgDir, v);
-	const yaml = load(readFileSync(join(packagePath, 'codegen.yml'), 'utf-8'));
+	const yaml = load(readFileSync(join(packagePath, 'codegen.yml'), 'utf-8'), {});
 
-	const mappersYamlPath = ['generates', join(srcDir, graphqlTsPath), 'config', 'mappers'];
+	const yamlMappersPath = ['generates', join(srcDir, graphqlTsPath), 'config', 'mappers'];
+	const yamlMapEntitiesFromPath = ['generates', join(srcDir, graphqlTsPath), 'config', 'mapEntitiesFrom'];
 
-	const a = get(yaml, mappersYamlPath);
-	if (a) {
+	const yamlMapEntitiesFrom = get(yaml, yamlMapEntitiesFromPath, []);
+
+	const yamlMappers = get(yaml, yamlMappersPath);
+	if (yamlMappers) {
 		const corePath = join(packagePath, srcDir, dirname(graphqlTsPath));
-		const newMappers = makeRelativeObj(corePath);
-		set(yaml, mappersYamlPath, newMappers);
+		const newMappers = makeRelativeObj(corePath, yamlMapEntitiesFrom);
+		set(yaml, yamlMappersPath, newMappers);
 		writeFileSync(
 			join(packagePath, 'codegen.yml'),
 			dump(yaml, {
