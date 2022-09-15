@@ -35,7 +35,7 @@ export function rollupLibConfig(opts, additionalConfig, modifier) {
 		commonjs(),
 		nodeExternals(),
 		renameNodeModules('external'),
-		nodeResolve({extensions}),
+		nodeResolve({extensions, preferBuiltins: true}),
 		esbuild([
 			{
 				loader: 'json',
