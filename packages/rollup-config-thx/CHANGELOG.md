@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.9](https://github.com/thr-consulting/thr-addons/compare/v16.3.8...v16.3.9) (2022-09-15)
+
+
+### Bug Fixes
+
+* **mimetype:** fixed an issue where certain malformed pdf files did not detect as pdf ([#361](https://github.com/thr-consulting/thr-addons/issues/361)) ([5b817ce](https://github.com/thr-consulting/thr-addons/commit/5b817ce22b40f17f4b7867ad73010c6075fa827a))
+
+
+
+
+
 ## [16.1.4](https://github.com/thr-consulting/thr-addons/compare/v16.1.3...v16.1.4) (2022-03-30)
 
 **Note:** Version bump only for package @thx/rollup-config-thx
