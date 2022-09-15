@@ -1,10 +1,9 @@
-import {readFileSync} from 'node:fs';
+import {readFileSync, writeFileSync} from 'node:fs';
 import {env} from 'node:process';
 import {join, relative, dirname, basename, extname} from 'node:path';
 import debug from 'debug';
 import {dump, load} from 'js-yaml';
 import {get, set} from 'lodash-es';
-import {writeFileSync} from 'fs';
 
 const d = debug('thx.tools.files.updateCodegen');
 

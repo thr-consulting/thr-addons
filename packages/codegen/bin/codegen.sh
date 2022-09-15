@@ -206,7 +206,7 @@ if [ "$LR" = "$PWD" ]; then
   fi
 
   # Remove tmp file
-#  rm -f /tmp/imp_codegen_entity_map.txt
+  rm -f /tmp/imp_codegen_entity_map.txt
 else
   # Run graphql-codegen
   yarn -s graphql-codegen "${@:2}"
