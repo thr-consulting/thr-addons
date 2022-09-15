@@ -1,7 +1,12 @@
-import {fileTypeFromFile, fileTypeFromBuffer, fileTypeFromStream} from 'file-type';
+import {fileTypeFromBuffer, fileTypeFromFile, fileTypeFromStream} from 'file-type';
 import type {Readable} from 'node:stream';
+import {checkForPdf} from './checkForPdf';
 
 export async function mimetypeFrom(input: string | Buffer | Readable): Promise<string | undefined> {
+	if (await checkForPdf(input)) {
+		return 'application/pdf';
+	}
+
 	if (typeof input === 'string') {
 		const m = await fileTypeFromFile(input);
 		return m?.mime.toString();

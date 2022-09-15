@@ -42,6 +42,7 @@
     "@thx/rollup-config-thx": "^16.0.2",
     "@thx/tools": "^16.0.0",
     "@types/accounting": "^0.4.2",
+    "@types/cross-spawn": "^6.0.2",
     "@types/debug": "^4.1.7",
     "@types/delete-empty": "^3.0.2",
     "@types/file-type": "^10.9.1",
