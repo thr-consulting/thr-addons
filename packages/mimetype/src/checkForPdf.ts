@@ -1,12 +1,8 @@
 import {spawn} from 'cross-spawn';
-import {Readable} from 'stream';
 
-export async function checkForPdf(input: Readable | string | Buffer): Promise<boolean> {
+export async function checkForPdf(path: string): Promise<boolean> {
 	return new Promise(resolve => {
-		// Convert buffer to stream if needed
-		const inp = input instanceof Buffer ? Readable.from(input) : input;
-
-		const args = inp instanceof Readable ? ['--'] : [inp];
+		const args = [path];
 		const proc = spawn('pdfinfo', args);
 
 		proc.on('close', (code: number) => {
@@ -15,9 +11,5 @@ export async function checkForPdf(input: Readable | string | Buffer): Promise<bo
 			}
 			resolve(false);
 		});
-
-		if (inp instanceof Readable) {
-			inp.pipe(proc.stdin);
-		}
 	});
 }
