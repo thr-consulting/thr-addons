@@ -1,6 +1,6 @@
 {
 	"name": "@thx/codegen",
-	"version": "16.3.7",
+	"version": "16.3.8",
 	"description": "Dev tool for mapping graphql to code",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -29,10 +29,10 @@
 		"@graphql-codegen/typescript-react-apollo": "^3.2.10",
 		"@graphql-codegen/typescript-resolvers": "^2.5.4",
 		"@thx/graphql-typescript-scalar-type-policies": "^2.0.0",
+		"find-root": "^1.1.0",
 		"graphql-tag": "^2.12.6",
 		"js-yaml": "^4.1.0",
-		"lodash-es": "^4.17.21",
-		"find-root": "^1.1.0"
+		"lodash-es": "^4.17.21"
 	},
 	"peerDependencies": {
 		"graphql": "16.x"
