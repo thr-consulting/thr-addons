@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.10](https://github.com/thr-consulting/thr-addons/compare/v16.3.9...v16.3.10) (2022-10-20)
+
+
+### Bug Fixes
+
+* **controls:** input control negative number fix ([#362](https://github.com/thr-consulting/thr-addons/issues/362)) ([9e6d6d8](https://github.com/thr-consulting/thr-addons/commit/9e6d6d8e9550a88757fc97bfba51f57089348614))
+
+
+
+
+
 ## [16.3.5](https://github.com/thr-consulting/thr-addons/compare/v16.3.4...v16.3.5) (2022-09-07)
 
 **Note:** Version bump only for package @thx/controls

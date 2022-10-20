@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.10](https://github.com/thr-consulting/thr-addons/compare/v16.3.9...v16.3.10) (2022-10-20)
+
+
+### Bug Fixes
+
+* **controls:** input control negative number fix ([#362](https://github.com/thr-consulting/thr-addons/issues/362)) ([9e6d6d8](https://github.com/thr-consulting/thr-addons/commit/9e6d6d8e9550a88757fc97bfba51f57089348614))
+* realized the mimetype fix will break if it's a stream ([4f7c54d](https://github.com/thr-consulting/thr-addons/commit/4f7c54d50e7c6bf238b81e43b379df724f478117))
+
+
+
+
+
 ## [16.3.9](https://github.com/thr-consulting/thr-addons/compare/v16.3.8...v16.3.9) (2022-09-15)
 
 
