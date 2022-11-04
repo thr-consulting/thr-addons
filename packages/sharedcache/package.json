@@ -33,7 +33,7 @@
 		}
 	},
 	"peerDependencies": {
-		"ioredis": "^4.x"
+		"ioredis": "^5.x"
 	},
 	"engines": {
 		"node": ">=16"
