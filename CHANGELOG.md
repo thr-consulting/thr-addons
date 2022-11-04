@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.4.0](https://github.com/thr-consulting/thr-addons/compare/v16.3.10...v16.4.0) (2022-11-04)
+
+
+### Features
+
+* upgraded ioredis to the latest version ([188bd5d](https://github.com/thr-consulting/thr-addons/commit/188bd5d1c917decbc7cd26e7da0ed7b5ca22a948))
+
+
+
+
+
 ## [16.3.10](https://github.com/thr-consulting/thr-addons/compare/v16.3.9...v16.3.10) (2022-10-20)
 
 
