@@ -1,0 +1,26 @@
+diff --git a/node_modules/semantic-ui-react/dist/commonjs/generic.d.ts b/node_modules/semantic-ui-react/dist/commonjs/generic.d.ts
+index 7d27637..ec217bf 100644
+--- a/node_modules/semantic-ui-react/dist/commonjs/generic.d.ts
++++ b/node_modules/semantic-ui-react/dist/commonjs/generic.d.ts
+@@ -70,7 +70,7 @@ export type ShorthandRenderFunction<C extends React.ElementType, P> = (
+   props: P,
+ ) => React.ReactNode
+ 
+-export type SemanticShorthandCollection<TProps> = SemanticShorthandItem<TProps>[]
++export type SemanticShorthandCollection<TProps extends Record<string, any>> = SemanticShorthandItem<TProps>[]
+ export type SemanticShorthandContent = React.ReactNode
+ export type SemanticShorthandItem<TProps extends Record<string, any>> =
+   | React.ReactNode
+diff --git a/node_modules/semantic-ui-react/src/generic.d.ts b/node_modules/semantic-ui-react/src/generic.d.ts
+index 7d27637..ec217bf 100644
+--- a/node_modules/semantic-ui-react/src/generic.d.ts
++++ b/node_modules/semantic-ui-react/src/generic.d.ts
+@@ -70,7 +70,7 @@ export type ShorthandRenderFunction<C extends React.ElementType, P> = (
+   props: P,
+ ) => React.ReactNode
+ 
+-export type SemanticShorthandCollection<TProps> = SemanticShorthandItem<TProps>[]
++export type SemanticShorthandCollection<TProps extends Record<string, any>> = SemanticShorthandItem<TProps>[]
+ export type SemanticShorthandContent = React.ReactNode
+ export type SemanticShorthandItem<TProps extends Record<string, any>> =
+   | React.ReactNode
