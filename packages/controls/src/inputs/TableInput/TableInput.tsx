@@ -88,54 +88,54 @@ function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps
 		<Table.Footer>
 			{footerGroups.map(group => (
 				// eslint-disable-next-line react/jsx-key
-				<Table.Row {...{...group.getFooterGroupProps(), ...group.getFooterGroupProps(footerRowProps)}}>
-					{group.headers.map(column => (
+				(<Table.Row {...{...group.getFooterGroupProps(), ...group.getFooterGroupProps(footerRowProps)}}>
+                    {group.headers.map(column => (
 						// eslint-disable-next-line react/jsx-key
-						<Table.HeaderCell {...{...column.getFooterProps(), ...column.getFooterProps(footerCellProps)}}>
-							{column.render('Footer')}
-						</Table.HeaderCell>
+						(<Table.HeaderCell {...{...column.getFooterProps(), ...column.getFooterProps(footerCellProps)}}>
+                            {column.render('Footer')}
+                        </Table.HeaderCell>)
 					))}
-				</Table.Row>
+                </Table.Row>)
 			))}
 		</Table.Footer>
 	) : null;
 
 	return (
-		<Table {...{...getTableProps(), ...getTableProps(tableProps)}}>
-			<Table.Header>
+        (<Table {...{...getTableProps(), ...getTableProps(tableProps)}}>
+            <Table.Header>
 				{headerGroups.map(headerGroup => (
 					// eslint-disable-next-line react/jsx-key
-					<Table.Row {...{...headerGroup.getHeaderGroupProps(), ...headerGroup.getHeaderGroupProps(headerRowProps)}}>
-						{headerGroup.headers.map(column => (
+					(<Table.Row {...{...headerGroup.getHeaderGroupProps(), ...headerGroup.getHeaderGroupProps(headerRowProps)}}>
+                        {headerGroup.headers.map(column => (
 							// eslint-disable-next-line react/jsx-key
-							<Table.HeaderCell {...{...column.getHeaderProps(), ...column.getHeaderProps(headerCellProps)}}>
-								{column.render('Header')}
-							</Table.HeaderCell>
+							(<Table.HeaderCell {...{...column.getHeaderProps(), ...column.getHeaderProps(headerCellProps)}}>
+                                {column.render('Header')}
+                            </Table.HeaderCell>)
 						))}
-					</Table.Row>
+                    </Table.Row>)
 				))}
 			</Table.Header>
-			<Table.Body {...{...getTableBodyProps(), ...getTableBodyProps(bodyProps)}}>
+            <Table.Body {...{...getTableBodyProps(), ...getTableBodyProps(bodyProps)}}>
 				{rows.map(row => {
 					prepareRow(row);
 					return (
-						// eslint-disable-next-line react/jsx-key
-						<Table.Row
+                        // eslint-disable-next-line react/jsx-key
+                        (<Table.Row
 							{...{...row.getRowProps(), ...row.getRowProps(rowProps)}}
 							onMouseEnter={() => setHoverRow(row.id)}
 							onMouseLeave={() => setHoverRow('')}
 						>
-							{row.cells.map(cell => (
+                            {row.cells.map(cell => (
 								// eslint-disable-next-line react/jsx-key
-								<Table.Cell {...{...cell.getCellProps(), ...cell.getCellProps(cellProps)}}>{cell.render('Cell', {hoverRow})}</Table.Cell>
+								(<Table.Cell {...{...cell.getCellProps(), ...cell.getCellProps(cellProps)}}>{cell.render('Cell', {hoverRow})}</Table.Cell>)
 							))}
-						</Table.Row>
-					);
+                        </Table.Row>)
+                    );
 				})}
 			</Table.Body>
-			{footer}
-		</Table>
-	);
+            {footer}
+        </Table>)
+    );
 }
 
 /**
