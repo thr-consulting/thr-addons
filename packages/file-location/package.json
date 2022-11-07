@@ -36,7 +36,7 @@
 		"aws-sdk": "^2.1177.0",
 		"debug": "^4.3.4",
 		"delete-empty": "^3.0.0",
-		"fs-extra": "^10.0.1",
+		"fs-extra": "^10.1.0",
 		"lodash-es": "^4.17.21"
 	},
 	"engines": {

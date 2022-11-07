@@ -36,9 +36,9 @@
 		"chalk": "^5.1.2",
 		"debug": "^4.3.4",
 		"fast-file-rotate": "^1.0.1",
-		"gelf-pro": "^1.3.6",
+		"gelf-pro": "^1.3.9",
 		"lodash-es": "^4.17.21",
-		"winston": "^3.6.0",
+		"winston": "^3.8.2",
 		"winston-transport": "^4.5.0"
 	},
 	"engines": {
