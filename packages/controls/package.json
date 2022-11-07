@@ -30,7 +30,7 @@
     "ts": "thx ts"
   },
   "dependencies": {
-    "@js-joda/core": "^5.1.0",
+    "@js-joda/core": "^5.4.2",
     "@thx/date": "^16.3.5",
     "@thx/money": "^16.0.0",
     "@thx/yup-types": "^16.0.0",
