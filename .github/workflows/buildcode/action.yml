@@ -9,9 +9,10 @@ runs:
   using: 'composite'
   steps:
     - name: Setup node
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node-version }}
+        cache: 'yarn'
 
     - name: node_modules cache
       uses: actions/cache@v3
@@ -28,7 +29,7 @@ runs:
         yarn build -v
 
     - name: Store build artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: build
         retention-days: 1
