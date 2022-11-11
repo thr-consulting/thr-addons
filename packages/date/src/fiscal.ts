@@ -50,7 +50,7 @@ export function getFiscalYearRange(date: LocalDate, yearEnd: LocalDate): FiscalD
 		};
 	}
 	return {
-		start: startMD.withYear(date.year() - 1),
+		start: startMD.withYear(date.year()),
 		end: startMD.withYear(date.year()).minusDays(1),
 	};
 }
