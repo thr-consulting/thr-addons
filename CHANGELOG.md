@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.4.1](https://github.com/thr-consulting/thr-addons/compare/v16.4.0...v16.4.1) (2022-11-11)
+
+
+### Bug Fixes
+
+* fix fiscal date range calculation ([326ac05](https://github.com/thr-consulting/thr-addons/commit/326ac05a88a0bf95e7d3a312fa4a75605397bbc3))
+
+
+### Features
+
+* actions-cache-update ([#364](https://github.com/thr-consulting/thr-addons/issues/364)) ([7002d5c](https://github.com/thr-consulting/thr-addons/commit/7002d5ce9c9df159b6729348b7d2e75f7058dd7a))
+
+
+
+
+
 # [16.4.0](https://github.com/thr-consulting/thr-addons/compare/v16.3.10...v16.4.0) (2022-11-04)
 
 
