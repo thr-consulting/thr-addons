@@ -49,6 +49,14 @@ export function getFiscalYearRange(date: LocalDate, yearEnd: LocalDate): FiscalD
 			end: startMD.withYear(date.year()).plusYears(1).minusDays(1),
 		};
 	}
+
+	if (startMD.monthValue() === 1) {
+		return {
+			start: startMD.withYear(date.year()),
+			end: startMD.withYear(date.year() + 1).minusDays(1),
+		};
+	}
+
 	return {
 		start: startMD.withYear(date.year()),
 		end: startMD.withYear(date.year()).minusDays(1),
