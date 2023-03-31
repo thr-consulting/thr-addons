@@ -63,6 +63,24 @@ export class LocalFileLocation implements FileLocationInterface {
 		return `${this._publishUrl}/static/${name}`;
 	}
 
+	async getObjectSize(name: string) {
+		try {
+			return new Promise<number>((resolve, reject) => {
+				return fs.stat(this.getFullName(name), (err, stats) => {
+					if (err) {
+						reject(err);
+					}
+					else {
+						resolve(stats.size);
+					}
+				})
+			});
+		} catch (err) {
+			d(err);
+			return undefined;
+		}
+	}
+
 	putObjectUrl(): string {
 		throw new Error('Not implemented for Local location');
 	}

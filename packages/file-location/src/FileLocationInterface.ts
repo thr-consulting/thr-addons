@@ -7,6 +7,7 @@ export interface FileLocationInterface {
 	deleteObject(name: string): Promise<void>;
 	getObjectUrl(name: string): string;
 	putObjectUrl(name: string, mimetype?: string): string;
+	getObjectSize(name: string): Promise<number | undefined>;
 	objectExists(name: string): Promise<boolean>;
 	locationType(): string;
 }

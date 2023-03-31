@@ -5,10 +5,10 @@ import path from 'path';
 import type {Readable} from 'stream';
 import type {FileLocationInterface} from './FileLocationInterface';
 
-const d = debug('thx.file-location.SpacesFileLocation');
+const d = debug('thx.file-location.WasabiFileLocation');
 
-export class SpacesFileLocation implements FileLocationInterface {
-	spaces: AWS.S3;
+export class WasabiFileLocation implements FileLocationInterface {
+	wasabi: AWS.S3;
 	bucket: string;
 	basePath: string;
 
@@ -28,7 +28,7 @@ export class SpacesFileLocation implements FileLocationInterface {
 		options?: AWS.S3.Types.ClientConfiguration;
 	}) {
 		// @ts-ignore
-		this.spaces = new AWS.S3({
+		this.wasabi = new AWS.S3({
 			endpoint,
 			accessKeyId: accessKey,
 			secretAccessKey: secret,
@@ -50,12 +50,12 @@ export class SpacesFileLocation implements FileLocationInterface {
 	 */
 	async createBucket(bucket: string, acl = 'private', checkIfExists = false) {
 		if (checkIfExists) {
-			const buckets = await this.spaces.listBuckets().promise();
+			const buckets = await this.wasabi.listBuckets().promise();
 			const checkBucket = find(buckets.Buckets, {Name: bucket});
 			if (checkBucket) return;
 		}
 
-		await this.spaces
+		await this.wasabi
 			.createBucket({
 				Bucket: bucket,
 				ACL: acl,
@@ -64,7 +64,7 @@ export class SpacesFileLocation implements FileLocationInterface {
 	}
 
 	async putObject(name: string, stream: Readable, mimetype: string) {
-		await this.spaces
+		await this.wasabi
 			.upload({
 				Bucket: this.bucket,
 				Key: this.getFullName(name),
@@ -75,7 +75,7 @@ export class SpacesFileLocation implements FileLocationInterface {
 	}
 
 	getObject(name: string): Readable {
-		return this.spaces
+		return this.wasabi
 			.getObject({
 				Bucket: this.bucket,
 				Key: this.getFullName(name),
@@ -84,7 +84,7 @@ export class SpacesFileLocation implements FileLocationInterface {
 	}
 
 	async deleteObject(name: string) {
-		await this.spaces
+		await this.wasabi
 			.deleteObject({
 				Bucket: this.bucket,
 				Key: this.getFullName(name),
@@ -93,7 +93,7 @@ export class SpacesFileLocation implements FileLocationInterface {
 	}
 
 	getObjectUrl(name: string, {expires} = {expires: 60}): string {
-		return this.spaces.getSignedUrl('getObject', {
+		return this.wasabi.getSignedUrl('getObject', {
 			Bucket: this.bucket,
 			Key: this.getFullName(name),
 			Expires: expires,
@@ -101,7 +101,7 @@ export class SpacesFileLocation implements FileLocationInterface {
 	}
 
 	putObjectUrl(name: string, mimetype?: string, {expires} = {expires: 60}): string {
-		return this.spaces.getSignedUrl('putObject', {
+		return this.wasabi.getSignedUrl('putObject', {
 			Bucket: this.bucket,
 			Key: this.getFullName(name),
 			Expires: expires,
@@ -111,7 +111,7 @@ export class SpacesFileLocation implements FileLocationInterface {
 
 	async getObjectSize(name: string) {
 		try {
-			const headObject = await this.spaces
+			const headObject = await this.wasabi
 				.headObject({
 					Bucket: this.bucket,
 					Key: this.getFullName(name),
@@ -126,7 +126,7 @@ export class SpacesFileLocation implements FileLocationInterface {
 
 	async objectExists(name: string): Promise<boolean> {
 		try {
-			await this.spaces
+			await this.wasabi
 				.headObject({
 					Bucket: this.bucket,
 					Key: this.getFullName(name),
@@ -144,6 +144,6 @@ export class SpacesFileLocation implements FileLocationInterface {
 	}
 
 	locationType(): string {
-		return 'spaces';
+		return 'wasabi';
 	}
 }
