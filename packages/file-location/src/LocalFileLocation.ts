@@ -65,16 +65,16 @@ export class LocalFileLocation implements FileLocationInterface {
 
 	async getObjectSize(name: string) {
 		try {
-			return new Promise<number>((resolve, reject) => {
-				return fs.stat(this.getFullName(name), (err, stats) => {
+			const stats = await new Promise<fs.Stats>((resolve, reject) => {
+				fs.stat(this.getFullName(name), (err, stat) => {
 					if (err) {
 						reject(err);
+					} else {
+						resolve(stat);
 					}
-					else {
-						resolve(stats.size);
-					}
-				})
+				});
 			});
+			return stats.size;
 		} catch (err) {
 			d(err);
 			return undefined;
