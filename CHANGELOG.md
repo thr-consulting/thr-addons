@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.5.0](https://github.com/thr-consulting/thr-addons/compare/v16.4.1...v16.5.0) (2023-04-03)
+
+
+### Features
+
+* **file-location:** wasabi connector ([#367](https://github.com/thr-consulting/thr-addons/issues/367)) ([888dadc](https://github.com/thr-consulting/thr-addons/commit/888dadcdf84152fd7403a5e8038ac4f5bf683f31))
+
+
+
+
+
 ## [16.4.1](https://github.com/thr-consulting/thr-addons/compare/v16.4.0...v16.4.1) (2022-11-11)
 
 
