@@ -1,6 +1,8 @@
 import type {Readable} from 'node:stream';
 
 export interface FileLocationInterface {
+	bucket?: string;
+	basePath?: string;
 	createBucket(bucket: string): Promise<void>;
 	putObject(name: string, stream: Readable, mimetype?: string): Promise<void>;
 	getObject(name: string): Readable;
