@@ -101,13 +101,11 @@ export class LocalFileLocation implements FileLocationInterface {
 		return 'local';
 	}
 
-	async listObjects(prefix?: string, maxKeys = 1000, cursor?: string) {
+	async listObjects(prefix?: string) {
 		const dirPath = path.join(this._rootPath, prefix || '');
 		const files = await fs.promises.readdir(dirPath, {withFileTypes: true});
 
-		const objects = files
-			.filter((dirent) => !dirent.isDirectory())
-			.map((dirent) => dirent.name);
+		const objects = files.filter(dirent => !dirent.isDirectory()).map(dirent => dirent.name);
 
 		return {objects};
 	}

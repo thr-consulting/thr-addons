@@ -12,5 +12,5 @@ export interface FileLocationInterface {
 	getObjectSize(name: string): Promise<number | undefined>;
 	objectExists(name: string): Promise<boolean>;
 	locationType(): string;
-	listObjects(prefix?: string, maxKeys?: number, cursor?: string): Promise<{objects: string[], nextCursor?: string}>;
+	listObjects(prefix?: string, maxKeys?: number, cursor?: string): Promise<{objects: string[]; nextCursor?: string}>;
 }
