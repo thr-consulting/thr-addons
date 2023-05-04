@@ -107,8 +107,8 @@ export class LocalFileLocation implements FileLocationInterface {
 
 		const objects = files
 			.filter((dirent) => !dirent.isDirectory())
-			.slice(0, maxKeys)
 			.map((dirent) => dirent.name);
+
 		return {objects};
 	}
 }
