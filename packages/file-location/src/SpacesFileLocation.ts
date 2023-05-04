@@ -146,4 +146,17 @@ export class SpacesFileLocation implements FileLocationInterface {
 	locationType(): string {
 		return 'spaces';
 	}
+
+	async listObjects(prefix?: string, maxKeys = 1000, cursor?: string) {
+		const response = await this.spaces.listObjectsV2({
+			Bucket: this.bucket,
+			Prefix: prefix,
+			MaxKeys: maxKeys,
+			ContinuationToken: cursor,
+		}).promise();
+		const objects = (response.Contents ?? [])
+			.map(({Key: key}) => key)
+			.filter((val): val is string => val !== undefined);
+		return {objects, nextCursor: response.NextContinuationToken}
+	}
 }

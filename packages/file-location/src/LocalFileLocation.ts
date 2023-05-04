@@ -100,4 +100,15 @@ export class LocalFileLocation implements FileLocationInterface {
 	locationType(): string {
 		return 'local';
 	}
+
+	async listObjects(prefix?: string, maxKeys = 1000, cursor?: string) {
+		const dirPath = path.join(this._rootPath, prefix || '');
+		const files = await fs.promises.readdir(dirPath, {withFileTypes: true});
+
+		const objects = files
+			.filter((dirent) => !dirent.isDirectory())
+			.slice(0, maxKeys)
+			.map((dirent) => dirent.name);
+		return {objects};
+	}
 }
