@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.6.0](https://github.com/thr-consulting/thr-addons/compare/v16.5.0...v16.6.0) (2023-05-12)
+
+**Note:** Version bump only for package thx
+
+
+
+
+
 # [16.5.0](https://github.com/thr-consulting/thr-addons/compare/v16.4.1...v16.5.0) (2023-04-03)
 
 
