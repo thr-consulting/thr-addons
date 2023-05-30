@@ -17,6 +17,7 @@ interface ILocalDatePicker {
 	minDate?: LocalDate;
 	maxDate?: LocalDate;
 	showIcon?: boolean;
+	hideIcon?: boolean;
 }
 
 type InputPropsOmitted = Omit<InputProps, 'onChange'>;
@@ -46,7 +47,8 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		size,
 		tabIndex,
 		transparent,
-		showIcon,
+		hideIcon = false,
+		showIcon = !hideIcon,
 		...rest
 	} = props;
 
@@ -96,6 +98,12 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		}
 	};
 
+	const toggleDatePicker = () => {
+		if (showIcon) {
+			setIsOpen(!isOpen);
+		}
+	};
+
 	return (
 		<DatePicker
 			{...rest}
@@ -109,13 +117,15 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 						onClick={({target}: {target: HTMLInputElement}) => (showIcon ? target.select() : setIsOpen(!isOpen))}
 						{...inputProps}
 					/>
-					{showIcon && <Button attached="right" basic onClick={() => setIsOpen(!isOpen)} tabIndex={-1} icon="calendar" />}
+					{showIcon && <Button attached="right" basic onClick={toggleDatePicker} tabIndex={-1} icon="calendar" />}
 				</>
 			}
 			minDate={minDate ? toDate(minDate) : null}
 			maxDate={maxDate ? toDate(maxDate) : null}
 			open={isOpen}
-			disabledKeyboardNavigation
+			disabledKeyboardNavigation={showIcon}
+			enableTabLoop={!showIcon}
+			preventOpenOnFocus={!showIcon}
 			onBlur={handleDatePickerBlur}
 		/>
 	);
