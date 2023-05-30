@@ -55,7 +55,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		as,
 		action,
 		actionPosition,
-		className: (className || '') + ' icon',
+		className: `${className || ''} icon`,
 		error,
 		focus,
 		fluid,
@@ -91,7 +91,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		size,
 		transparent,
 		iconPosition,
-	}
+	};
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [selected, setSelected] = useState(value ? toDate(value) : null);
@@ -139,13 +139,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 						onClick={({target}: {target: HTMLInputElement}) => (openOnFocus ? setIsOpen(!isOpen) : target.select())}
 						onKeyDown={handleOnKeyDown}
 					/>
-					{icon && <Icon
-						{...iconProps}
-						onClick={toggleDatePicker}
-						tabIndex={-1}
-						name="calendar alternate"
-						link
-					/>}
+					{icon && <Icon {...iconProps} onClick={toggleDatePicker} tabIndex={-1} name="calendar alternate" link />}
 				</Input>
 			}
 			minDate={minDate ? toDate(minDate) : null}
