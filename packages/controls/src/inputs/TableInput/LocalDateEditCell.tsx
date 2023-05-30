@@ -13,6 +13,7 @@ export function LocalDateEditCell<D extends Record<string, unknown>>() {
 			row: {index: rowIndex},
 			column: {id},
 			updateData,
+			hoverRow,
 		} = props;
 
 		const [value, setValue] = useState(initialValue);
@@ -29,6 +30,7 @@ export function LocalDateEditCell<D extends Record<string, unknown>>() {
 				onBlur={() => {
 					updateData(rowIndex, id, value);
 				}}
+				icon={hoverRow.toString() === rowIndex.toString()}
 			/>
 		);
 	};

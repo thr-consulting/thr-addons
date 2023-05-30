@@ -4,6 +4,7 @@ import debug from 'debug';
 import type Money from 'js-money';
 import {useMemo} from 'react';
 import type {Column} from 'react-table';
+import {LocalDate} from '@js-joda/core';
 import {TForm} from '../../form/TForm';
 import {DropdownCell} from './DropdownCell';
 import {MoneyCell} from './MoneyCell';
@@ -11,6 +12,7 @@ import {MoneyEditCell} from './MoneyEditCell';
 import {MoneySumFooter} from './MoneySumFooter';
 import {StringEditCell} from './StringEditCell';
 import {TableInput} from './TableInput';
+import {LocalDateEditCell} from './LocalDateEditCell';
 
 const d = debug('thx.controls.inputs.TableInput.main.story');
 
@@ -47,6 +49,11 @@ export function Main() {
 				Cell: StringEditCell(),
 			},
 			{
+				accessor: 'date',
+				Header: 'Date',
+				Cell: LocalDateEditCell(),
+			},
+			{
 				Header: 'Amount',
 				accessor: 'amount',
 				Cell: MoneyEditCell(),
@@ -79,7 +86,7 @@ export function Main() {
 		<TForm
 			initialValues={{
 				journal: {
-					lines: [{name: 'Data', amount: toMoney(10), gst: toMoney(2)}],
+					lines: [{name: 'Data', date: LocalDate.now(), amount: toMoney(10), gst: toMoney(2)}],
 				},
 			}}
 			onSubmit={v => {
@@ -97,7 +104,7 @@ export function Main() {
 						values={values.journal.lines}
 						columns={mainColumns}
 						setFieldValue={setFieldValue}
-						createRow={() => ({account: 'a', name: 'New', amount: toMoney(), gst: toMoney()})}
+						createRow={() => ({account: 'a', name: 'New', date: LocalDate.now(), amount: toMoney(), gst: toMoney()})}
 						tableProps={() => ({
 							compact: true,
 							celled: true,

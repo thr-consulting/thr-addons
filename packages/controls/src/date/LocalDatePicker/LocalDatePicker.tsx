@@ -3,7 +3,7 @@ import {toDate, toLocalDate} from '@thx/date';
 import debug from 'debug';
 import {useState} from 'react';
 import type {ReactDatePickerProps} from 'react-datepicker';
-import {Button, InputProps} from 'semantic-ui-react';
+import {Grid, GridColumn, GridRow, Icon, Input, InputProps} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
 import '../DatePicker/styles.css';
 import {MaskedDateInput} from './MaskedDateInput';
@@ -16,8 +16,8 @@ interface ILocalDatePicker {
 	onChangeRaw?: () => void;
 	minDate?: LocalDate;
 	maxDate?: LocalDate;
-	showIcon?: boolean;
-	hideIcon?: boolean;
+	icon?: boolean;
+	openOnFocus?: boolean;
 }
 
 type InputPropsOmitted = Omit<InputProps, 'onChange'>;
@@ -38,7 +38,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		error,
 		fluid,
 		focus,
-		icon,
+		icon = true,
 		iconPosition,
 		inverted,
 		label,
@@ -47,8 +47,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		size,
 		tabIndex,
 		transparent,
-		hideIcon = false,
-		showIcon = !hideIcon,
+		openOnFocus = false,
 		...rest
 	} = props;
 
@@ -56,12 +55,10 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		as,
 		action,
 		actionPosition,
-		className,
+		className: (className || '') + ' icon',
 		error,
-		fluid,
 		focus,
-		icon,
-		iconPosition,
+		fluid,
 		inverted,
 		label,
 		labelPosition,
@@ -71,14 +68,37 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		transparent,
 	};
 
+	const maskedInputProps = {
+		as,
+		action,
+		actionPosition,
+		className,
+		error,
+		focus,
+		inverted,
+		label,
+		labelPosition,
+		loading,
+		size,
+		tabIndex,
+		transparent,
+	};
+
+	const iconProps = {
+		className,
+		inverted,
+		loading,
+		size,
+		transparent,
+		iconPosition,
+	}
+
 	const [isOpen, setIsOpen] = useState(false);
 	const [selected, setSelected] = useState(value ? toDate(value) : null);
 
 	const handleDateChange = (date: Date) => {
 		setSelected(date);
-		if (onChange) {
-			onChange(date ? toLocalDate(date) : null);
-		}
+		onChange && onChange(date ? toLocalDate(date) : null);
 		setIsOpen(false);
 	};
 
@@ -86,22 +106,23 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		const inputValue = e.target.value;
 		const date = inputValue ? toDate(inputValue) : null;
 		setSelected(date);
-		if (onChange) {
-			onChange(date ? toLocalDate(date) : null);
-		}
+		onChange && onChange(date ? toLocalDate(date) : null);
 	};
 
 	const handleDatePickerBlur = (e: React.FocusEvent<HTMLInputElement>) => {
 		setIsOpen(false);
-		if (onBlur) {
-			onBlur(e);
-		}
+		onBlur && onBlur(e);
 	};
 
 	const toggleDatePicker = () => {
-		if (showIcon) {
-			setIsOpen(!isOpen);
-		}
+		setIsOpen(!isOpen);
+	};
+
+	const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		// toggle on enter
+		e?.key === 'Enter' && toggleDatePicker();
+		// hide on escape
+		e?.key === 'Escape' && toggleDatePicker();
 	};
 
 	return (
@@ -110,22 +131,28 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 			selected={selected}
 			onChange={handleDateChange}
 			customInput={
-				<>
+				<Input {...inputProps}>
 					<MaskedDateInput
+						{...maskedInputProps}
 						value={selected ? toDate(selected) : ''}
 						onChange={handleInputChange}
-						onClick={({target}: {target: HTMLInputElement}) => (showIcon ? target.select() : setIsOpen(!isOpen))}
-						{...inputProps}
+						onClick={({target}: {target: HTMLInputElement}) => (openOnFocus ? setIsOpen(!isOpen) : target.select())}
+						onKeyDown={handleOnKeyDown}
 					/>
-					{showIcon && <Button attached="right" basic onClick={toggleDatePicker} tabIndex={-1} icon="calendar" />}
-				</>
+					{icon && <Icon
+						{...iconProps}
+						onClick={toggleDatePicker}
+						tabIndex={-1}
+						name="calendar alternate"
+						link
+					/>}
+				</Input>
 			}
 			minDate={minDate ? toDate(minDate) : null}
 			maxDate={maxDate ? toDate(maxDate) : null}
 			open={isOpen}
-			disabledKeyboardNavigation={showIcon}
-			enableTabLoop={!showIcon}
-			preventOpenOnFocus={!showIcon}
+			enableTabLoop={openOnFocus}
+			preventOpenOnFocus={openOnFocus}
 			onBlur={handleDatePickerBlur}
 		/>
 	);
