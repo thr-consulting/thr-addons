@@ -43,7 +43,7 @@ export interface TableCellProps<D extends DefaultTableType, V = any> extends Cel
 	arrayHelpers: FieldArrayRenderProps;
 	addRow: () => void;
 	updateData: (index: number, id: string, value: V) => void;
-	hoverRow: string;
+	hoverRow: string | number;
 }
 
 function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps<A>) {
