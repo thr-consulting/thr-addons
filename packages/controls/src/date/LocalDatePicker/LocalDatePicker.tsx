@@ -109,7 +109,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 						onClick={({target}: {target: HTMLInputElement}) => (showIcon ? target.select() : setIsOpen(!isOpen))}
 						{...inputProps}
 					/>
-					{showIcon && <Button attached="right" basic onClick={() => setIsOpen(!isOpen)} tabIndex={-1} icon="calendar" />}
+					{showIcon && <Button attached="right" basic onClick={() => setIsOpen(!isOpen)} tabIndex={-1} icon="calendar alternate" />}
 				</>
 			}
 			minDate={minDate ? toDate(minDate) : null}
