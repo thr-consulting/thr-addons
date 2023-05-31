@@ -39,9 +39,21 @@ Main.args = {
 	value: LocalDate.now(),
 };
 
+export const Transparent: ComponentStory<typeof LocalDatePicker> = t.bind({});
+Transparent.args = {
+	value: LocalDate.now(),
+	transparent: true,
+};
+
 export const WithMinMaxDates: ComponentStory<typeof LocalDatePicker> = t.bind({});
 WithMinMaxDates.args = {
 	value: LocalDate.now(),
 	minDate: LocalDate.now().minusMonths(2),
 	maxDate: LocalDate.now().plusMonths(2),
+};
+
+export const WithoutIcon: ComponentStory<typeof LocalDatePicker> = t.bind({});
+WithoutIcon.args = {
+	value: LocalDate.now(),
+	hideIcon: true,
 };
