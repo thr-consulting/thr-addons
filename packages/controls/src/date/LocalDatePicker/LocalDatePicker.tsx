@@ -3,7 +3,7 @@ import {toDate, toLocalDate} from '@thx/date';
 import debug from 'debug';
 import {useEffect, useState} from 'react';
 import type {ReactDatePickerProps} from 'react-datepicker';
-import {Grid, GridColumn, GridRow, Icon, Input, InputProps} from 'semantic-ui-react';
+import {Icon, Input, InputProps} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
 import '../DatePicker/styles.css';
 import {MaskedDateInput} from './MaskedDateInput';
@@ -126,7 +126,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		// toggle on enter
 		e?.key === 'Enter' && toggleDatePicker();
 		// hide on escape
-		e?.key === 'Escape' && toggleDatePicker();
+		e?.key === 'Escape' && setIsOpen(false);
 	};
 
 	return (
