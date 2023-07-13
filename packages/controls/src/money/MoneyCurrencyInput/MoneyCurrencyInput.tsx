@@ -23,13 +23,11 @@ export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputPr
 
 	const handleChange = useCallback(
 		(v?: Money) => {
-			if (!v) {
-				onChange && onChange(toMoney(0, defaultCurrency));
-			} else {
+			if (v && onChange) {
 				onChange && onChange(v);
 			}
 		},
-		[defaultCurrency, onChange],
+		[onChange],
 	);
 
 	const val = !(value instanceof Money) && value !== undefined ? toMoney(value) : value;

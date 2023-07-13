@@ -56,7 +56,9 @@ export function Main() {
 			{
 				Header: 'Amount',
 				accessor: 'amount',
-				Cell: MoneyEditCell(),
+				Cell: MoneyEditCell({
+					tabIndex: 2,
+				}),
 				Footer: MoneySumFooter<JournalLine>({id: 'amount'}),
 			},
 			{

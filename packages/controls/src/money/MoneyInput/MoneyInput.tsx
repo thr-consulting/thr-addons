@@ -10,8 +10,8 @@ const d = debug('thx.controls.money.MoneyInput');
 
 export interface MoneyInputProps {
 	name?: string;
-	onChange?: (value: Money) => void;
-	value?: Money | MoneyObject;
+	onChange?: (value?: Money) => void;
+	value?: Money | MoneyObject | undefined;
 	defaultCurrency?: Currency; // Defaults to Money.CAD
 	onBlur?: (ev: any) => void;
 	prefix?: string; // Defaults to currency symbol
@@ -25,13 +25,11 @@ export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>
 
 	const handleChange = useCallback(
 		(v?: Money) => {
-			if (!v) {
-				onChange && onChange(toMoney(0, defaultCurrency));
-			} else {
-				onChange && onChange(v);
+			if (v && onChange) {
+				onChange(v);
 			}
 		},
-		[defaultCurrency, onChange],
+		[onChange],
 	);
 
 	const val = !(value instanceof Money) && value !== undefined ? toMoney(value) : value;

@@ -10,11 +10,12 @@ const d = debug('thx.controls.inputs.TableInput.MoneyEditCell');
 
 interface MoneyEditCellOptions<D extends Record<string, unknown>> {
 	/** If function is present, and returns true, will add a new row if tab is pressed on the last row */
-	addRowOnTabIf?: AddRowOnTabIf<D, Money>;
+	addRowOnTabIf?: AddRowOnTabIf<D, Money | undefined>;
+	tabIndex?: number;
 }
 
-export function MoneyEditCell<D extends Record<string, unknown>>(opts?: MoneyEditCellOptions<D>) {
-	return function MoneyEditCellFn(props: TableCellProps<D, Money>) {
+export function MoneyEditCell<D extends Record<string, unknown>>(moneyEditCellProps?: MoneyEditCellOptions<D>) {
+	return function MoneyEditCellFn(props: TableCellProps<D, Money | undefined>) {
 		const {
 			value: initialValue,
 			row: {index: rowIndex},
@@ -23,9 +24,11 @@ export function MoneyEditCell<D extends Record<string, unknown>>(opts?: MoneyEdi
 		} = props;
 
 		const [value, setValue] = useState(initialValue);
+		const {addRowOnTabIf, ...rest} = moneyEditCellProps || {};
 
 		return (
 			<MoneyInput
+				{...rest}
 				fluid
 				transparent
 				value={value}
@@ -33,7 +36,7 @@ export function MoneyEditCell<D extends Record<string, unknown>>(opts?: MoneyEdi
 				onBlur={() => {
 					updateData(rowIndex, id, value);
 				}}
-				onKeyDown={(event: KeyboardEvent) => addRowOnTab(event, value, props, opts?.addRowOnTabIf)}
+				onKeyDown={(event: KeyboardEvent) => addRowOnTab(event, value, props, addRowOnTabIf)}
 			/>
 		);
 	};
