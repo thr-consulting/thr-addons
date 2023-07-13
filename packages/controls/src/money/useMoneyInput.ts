@@ -75,7 +75,7 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 	}, [currencyCode, prefix, showPrefix, wholeNumber]);
 
 	const setVal = useCallback<SetValueFn>(
-		(v?: Money) => {
+		(v?: Money | undefined) => {
 			if (inputElement.current) {
 				d('Value is being set:', v);
 				if (v) {

@@ -1,7 +1,7 @@
 import type {LocalDate} from '@js-joda/core';
 import {toDate, toLocalDate} from '@thx/date';
 import debug from 'debug';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import type {ReactDatePickerProps} from 'react-datepicker';
 import {Grid, GridColumn, GridRow, Icon, Input, InputProps} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
@@ -95,6 +95,10 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [selected, setSelected] = useState(value ? toDate(value) : null);
+
+	useEffect(() => {
+		setSelected(value ? toDate(value) : null);
+	}, [value]);
 
 	const handleDateChange = (date: Date) => {
 		setSelected(date);
