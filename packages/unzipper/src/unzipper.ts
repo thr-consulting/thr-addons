@@ -2,7 +2,7 @@ import debug from 'debug';
 import {Volume} from 'memfs';
 import path from 'path';
 import type {Readable} from 'stream';
-import yauzl from 'yauzl';
+import yauzl from 'yauzl-promise';
 import ZipReader from './ZipReader';
 
 const d = debug('thx.unzipper.unzipper');

@@ -33,9 +33,9 @@
 		}
 	},
 	"dependencies": {
-		"debug": "^4.3.3",
-		"memfs": "^3.4.1",
-		"yauzl": "^2.10.0"
+		"debug": "^4.3.4",
+		"memfs": "^4.2.0",
+		"yauzl-promise": "^4.0.0"
 	},
 	"engines": {
 		"node": ">=16"
