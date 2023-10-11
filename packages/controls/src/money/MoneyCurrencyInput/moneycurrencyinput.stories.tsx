@@ -33,6 +33,7 @@ Main.args = {
 	prefix: undefined,
 	showPrefix: false,
 	locked: false,
+	lockCurrency: true,
 	wholeNumber: false,
 	currencies: [
 		{key: 'CAD', text: 'CAD', value: 'CAD'},
