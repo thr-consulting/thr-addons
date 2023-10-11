@@ -11,10 +11,11 @@ const d = debug('thx.controls.money.MoneyCurrencyInput');
 
 export interface MoneyCurrencyInputProps extends MoneyInputProps {
 	currencies?: {key: string; value: string; text: string}[];
+	lockCurrency?: boolean;
 }
 
 export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputProps, 'onChange'>) {
-	const {name, onBlur, prefix, defaultCurrency, onChange, showPrefix, value, wholeNumber, currencies, locked, ...rest} = props;
+	const {name, onBlur, prefix, defaultCurrency, onChange, showPrefix, value, wholeNumber, currencies, locked, lockCurrency, ...rest} = props;
 
 	const options = currencies || [
 		{key: 'CAD', text: 'CAD', value: 'CAD'},
@@ -54,7 +55,7 @@ export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputPr
 		<Input {...rest} labelPosition="right">
 			<input name={name} ref={inputElement} onBlur={onBlur} readOnly={locked} />
 			<Label basic>
-				<Dropdown disabled={locked} options={options} value={currencyCode} onChange={handleDropdownChange} />
+				<Dropdown disabled={locked || lockCurrency} options={options} value={currencyCode} onChange={handleDropdownChange} />
 			</Label>
 		</Input>
 	);
