@@ -39,7 +39,6 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		fluid,
 		focus,
 		icon = true,
-		iconPosition,
 		inverted,
 		label,
 		labelPosition,
@@ -90,7 +89,6 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		loading,
 		size,
 		transparent,
-		iconPosition,
 	};
 
 	const [isOpen, setIsOpen] = useState(false);
@@ -101,16 +99,24 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 	}, [value]);
 
 	const handleDateChange = (date: Date) => {
-		setSelected(date);
-		onChange && onChange(date ? toLocalDate(date) : null);
+		let allowedDate = toLocalDate(date);
+
+		if (minDate?.isAfter(allowedDate)) {
+			allowedDate = minDate;
+		}
+		if (maxDate?.isBefore(allowedDate)) {
+			allowedDate = maxDate;
+		}
+		setSelected(toDate(allowedDate));
+		onChange && onChange(date ? allowedDate : null);
 		setIsOpen(false);
 	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value;
 		const date = inputValue ? toDate(inputValue) : null;
-		setSelected(date);
-		onChange && onChange(date ? toLocalDate(date) : null);
+
+		date && handleDateChange(date);
 	};
 
 	const handleDatePickerBlur = (e: React.FocusEvent<HTMLInputElement>) => {
