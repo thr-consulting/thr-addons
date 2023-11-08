@@ -158,6 +158,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 			enableTabLoop={openOnFocus}
 			preventOpenOnFocus={openOnFocus}
 			onBlur={handleDatePickerBlur}
+			onClickOutside={() => setIsOpen(false)}
 		/>
 	);
 }
