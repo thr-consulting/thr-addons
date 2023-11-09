@@ -10706,10 +10706,10 @@ inline-style-parser@0.1.1:
   resolved "https://registry.yarnpkg.com/inline-style-parser/-/inline-style-parser-0.1.1.tgz#ec8a3b429274e9c0a1f1c4ffa9453a7fef72cea1"
   integrity sha512-7NXolsK4CAS5+xvdj5OMMbI962hU/wvwoxk+LWR9Ek9bVtyuuYScDN6eS0rUm6TxApFpw7CX1o4uJzcd4AyD3Q==
 
-inputmask@^5.0.8-beta.47:
-  version "5.0.8-beta.47"
-  resolved "https://registry.yarnpkg.com/inputmask/-/inputmask-5.0.8-beta.47.tgz#9d91d9fd9b2c6231f1695c5bcebbd24cdd391b79"
-  integrity sha512-muLaYYIXUcncsN43gb5MJwguik2aIwCbVpphdK/jic3FqRUj4COyEsnTuOWz9kkyjECdAvtErc9I/7c2LYYzhw==
+inputmask@^5.0.9-beta.39:
+  version "5.0.9-beta.39"
+  resolved "https://registry.yarnpkg.com/inputmask/-/inputmask-5.0.9-beta.39.tgz#6769faaa29d7a13e4e5e6974cf0a1faa92885f2b"
+  integrity sha512-g8Nvk2VyM4fBAAaEWgkyKNOvEUqBwy/MmCH3u/Xwtr7VgFbbCErsCkd7qNp/07IiTffWeHzlZPqxJaNdeeaK1Q==
 
 inquirer@^7.3.3:
   version "7.3.3"

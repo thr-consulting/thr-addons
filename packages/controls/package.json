@@ -41,7 +41,7 @@
     "eventemitter3": "^4.0.0",
     "flat": "^5.0.0",
     "formik": "^2.2.9",
-    "inputmask": "^5.0.8-beta.47",
+    "inputmask": "^5.0.9-beta.39",
     "js-money": "^0.6.3",
     "lodash-es": "^4.17.15",
     "luhn": "^2.4.1",
