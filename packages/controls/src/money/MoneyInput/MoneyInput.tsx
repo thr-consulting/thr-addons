@@ -25,7 +25,7 @@ export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>
 
 	const handleChange = useCallback(
 		(v?: Money) => {
-			if (v && onChange) {
+			if (onChange) {
 				onChange(v);
 			}
 		},

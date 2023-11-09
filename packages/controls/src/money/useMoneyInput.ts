@@ -6,8 +6,7 @@ import {MutableRefObject, useCallback, useEffect, useRef} from 'react';
 
 const d = debug('thx.controls.money.useMoneyInput');
 
-// @ts-ignore inputmask .d.ts file is correct, but ESM causes some difficulty. -mk
-const InputmaskClass = Inputmask.default || Inputmask;
+const InputmaskClass = Inputmask;
 
 interface UseMoneyInputProps {
 	value?: Money;
@@ -27,13 +26,10 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 	const inputElement = useRef<HTMLInputElement | null>(null);
 	const maskInstance = useRef<Inputmask.Instance | null>(null);
 
-	// set the adjCurrency
-	// let adjCurrency = Money.CAD;
-	// if (value?.currency && Money[value?.currency]) adjCurrency = Money[value?.currency];
-	// if (defaultCurrency) adjCurrency = defaultCurrency;
 	const currencyCode = value?.currency || 'CAD';
 
 	useEffect(() => {
+		onChange && onChange(toMoney(inputElement.current?.value, currencyCode));
 		if (!inputElement.current) throw new Error('Could not get input element');
 
 		d('Creating input mask instance');
@@ -61,7 +57,6 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 				if (onChange) onChange(toMoney(inputElement.current?.value, currencyCode));
 			},
 		});
-		// @ts-ignore We just created the instance but typescript can't figure it out. -mk
 		maskInstance.current.mask(inputElement.current);
 
 		return () => {
