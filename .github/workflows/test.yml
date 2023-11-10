@@ -35,23 +35,23 @@ jobs:
       - name: Build code
         uses: ./.github/workflows/buildcode
 
-#  tests:
-#    needs: [installdeps, build, typescript]
-#    name: Tests
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v2
-#      - name: Fetch build artifacts
-#        uses: actions/download-artifact@v2
-#        with:
-#          name: build
-#      - name: Fetch ts artifacts
-#        uses: actions/download-artifact@v2
-#        with:
-#          name: ts
-#      - name: Run tests
-#        uses: ./.github/workflows/tests
+  tests:
+    needs: [installdeps, build, typescript]
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Fetch build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+      - name: Fetch ts artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: ts
+      - name: Run tests
+        uses: ./.github/workflows/tests
 
   typescript:
     needs: installdeps
