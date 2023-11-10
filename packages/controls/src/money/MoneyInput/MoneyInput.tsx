@@ -1,5 +1,4 @@
 import {toMoney} from '@thx/money';
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import debug from 'debug';
 import Money, {Currency, MoneyObject} from 'js-money';
 import {useCallback} from 'react';

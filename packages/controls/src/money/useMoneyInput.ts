@@ -6,8 +6,6 @@ import {MutableRefObject, useCallback, useEffect, useRef} from 'react';
 
 const d = debug('thx.controls.money.useMoneyInput');
 
-const InputmaskClass = Inputmask;
-
 interface UseMoneyInputProps {
 	value?: Money;
 	onChange?: (value?: Money) => void;
@@ -29,11 +27,10 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 	const currencyCode = value?.currency || 'CAD';
 
 	useEffect(() => {
-		onChange && onChange(toMoney(inputElement.current?.value, currencyCode));
 		if (!inputElement.current) throw new Error('Could not get input element');
 
 		d('Creating input mask instance');
-		maskInstance.current = new InputmaskClass({
+		maskInstance.current = new Inputmask({
 			alias: 'numeric',
 			groupSeparator: ',',
 			digits: wholeNumber ? '0' : Money[currencyCode].decimal_digits.toString(),
