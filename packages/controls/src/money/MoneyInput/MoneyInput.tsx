@@ -1,16 +1,17 @@
-import {toMoney} from '@thx/money';
 import debug from 'debug';
-import Money, {Currency, MoneyObject} from 'js-money';
-import {useCallback} from 'react';
+import type {Currency} from 'js-money';
+import type Money from 'js-money';
 import {Input, InputProps} from 'semantic-ui-react';
-import {useMoneyInput} from '../useMoneyInput';
+import CurrencyInput, {CurrencyInputProps} from 'react-currency-input-field';
+import {useCallback, useEffect, useState} from 'react';
+import {toMoney} from '@thx/money';
 
 const d = debug('thx.controls.money.MoneyInput');
 
 export interface MoneyInputProps {
 	name?: string;
 	onChange?: (value?: Money) => void;
-	value?: Money | MoneyObject | undefined;
+	value?: Money | undefined;
 	defaultCurrency?: Currency; // Defaults to Money.CAD
 	onBlur?: (ev: any) => void;
 	prefix?: string; // Defaults to currency symbol
@@ -21,23 +22,37 @@ export interface MoneyInputProps {
 
 export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>) {
 	const {name, onBlur, locked, prefix, defaultCurrency, onChange, showPrefix, value, wholeNumber, ...rest} = props;
+	const [localValue, setLocalValue] = useState<string | undefined>('');
 
-	const handleChange = useCallback(
-		(v?: Money) => {
+	const handleChange: CurrencyInputProps['onValueChange'] = useCallback(
+		(v): void => {
 			if (onChange) {
-				onChange(v);
+				setLocalValue(v);
+				onChange(toMoney(v || 0, defaultCurrency || 'CAD'));
 			}
 		},
-		[onChange],
+		[defaultCurrency, onChange],
 	);
 
-	const val = !(value instanceof Money) && value !== undefined ? toMoney(value) : value;
-
-	const [inputElement] = useMoneyInput({onChange: handleChange, prefix, showPrefix, value: val, wholeNumber});
+	useEffect(() => {
+		if (!localValue && value) {
+			setLocalValue(value?.toDecimal().toString());
+		}
+	}, [localValue, value]);
 
 	return (
 		<Input {...rest}>
-			<input name={name} ref={inputElement} onBlur={onBlur} readOnly={locked} />
+			<CurrencyInput
+				name={name}
+				disabled={locked}
+				placeholder="0.00"
+				decimalsLimit={wholeNumber ? -1 : 2}
+				prefix={showPrefix ? prefix || '$' : undefined}
+				onValueChange={handleChange}
+				style={{textAlign: 'right'}}
+				onBlur={onBlur}
+				value={localValue}
+			/>
 		</Input>
 	);
 }

@@ -2,6 +2,7 @@ import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
 import Money from 'js-money';
+import {toMoney} from '@thx/money';
 import {MoneyInput} from './MoneyInput';
 
 const d = debug('thx.controls.money.MoneyInput.moneyinput.stories');
@@ -28,7 +29,7 @@ const t: ComponentStory<typeof MoneyInput> = args => {
 
 export const Main = t.bind({});
 Main.args = {
-	value: undefined,
+	value: toMoney(100.12),
 	defaultCurrency: Money.CAD,
 	prefix: undefined,
 	showPrefix: false,

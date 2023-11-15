@@ -4411,6 +4411,11 @@
   resolved "https://registry.yarnpkg.com/@types/inputmask/-/inputmask-5.0.3.tgz#f23492d5b5862c5737ae24bfe9fb8b2acf77b453"
   integrity sha512-9aTXacRhf9D3+porVydLR28ll8/y3TQIrXEXv7ZWY0c3Lzl/1r4nHoaesZeh2Fd+UIefpWZrg2tkSnDn/dKUsw==
 
+"@types/inputmask@^5.0.6":
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@types/inputmask/-/inputmask-5.0.6.tgz#d0d065e1dbb61eabe9d4931c874a4f0f5ac8d450"
+  integrity sha512-a+co9RV8MNMLztpk0JJktA6NvSi5a1+dGbylc0Hky9RHeRgbexiCXdOufmMv63HxgSJeeCfg/gkWYp0X6GHO8Q==
+
 "@types/is-function@^1.0.0":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/is-function/-/is-function-1.0.1.tgz#2d024eace950c836d9e3335a66b97960ae41d022"
@@ -10721,10 +10726,10 @@ inline-style-parser@0.1.1:
   resolved "https://registry.yarnpkg.com/inline-style-parser/-/inline-style-parser-0.1.1.tgz#ec8a3b429274e9c0a1f1c4ffa9453a7fef72cea1"
   integrity sha512-7NXolsK4CAS5+xvdj5OMMbI962hU/wvwoxk+LWR9Ek9bVtyuuYScDN6eS0rUm6TxApFpw7CX1o4uJzcd4AyD3Q==
 
-inputmask@^5.0.9-beta.39:
-  version "5.0.9-beta.39"
-  resolved "https://registry.yarnpkg.com/inputmask/-/inputmask-5.0.9-beta.39.tgz#6769faaa29d7a13e4e5e6974cf0a1faa92885f2b"
-  integrity sha512-g8Nvk2VyM4fBAAaEWgkyKNOvEUqBwy/MmCH3u/Xwtr7VgFbbCErsCkd7qNp/07IiTffWeHzlZPqxJaNdeeaK1Q==
+inputmask@^5.0.8-beta.72:
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/inputmask/-/inputmask-5.0.8.tgz#cd0f70b058c3291a0d4f27de25dbfc179c998bb4"
+  integrity sha512-1WcbyudPTXP1B28ozWWyFa6QRIUG4KiLoyR6LFHlpT4OfTzRqFfWgHFadNvRuMN1S9XNVz9CdNvCGjJi+uAMqQ==
 
 inquirer@^7.3.3:
   version "7.3.3"
@@ -15239,6 +15244,11 @@ react-credit-cards@^0.8.3:
   integrity sha512-88XJErkkdDjeFevOxfWYV2dUs4ddNNXJMIgutqTlUH2pYfcaDeFv9MXNGCcJKvBv4+6GEnxbCToymNRNbEt/uw==
   dependencies:
     payment "^2.3.0"
+
+react-currency-input-field@^3.6.12:
+  version "3.6.12"
+  resolved "https://registry.yarnpkg.com/react-currency-input-field/-/react-currency-input-field-3.6.12.tgz#6c59bec50b9a769459c971f94f9a67b7bf9046f7"
+  integrity sha512-92mVEo1u7tF8Lz5JeaEHpQY/p6ulmnfSk9r3dVMyykQNLoScvgQ7GczvV3uGDr81xkTF3czj7CTJ9Ekqq4+pIA==
 
 react-datepicker@^4.7.0:
   version "4.7.0"

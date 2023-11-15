@@ -48,7 +48,6 @@ export {
 export type {AddRowOnTabIf} from './inputs/TableInput';
 
 // Money
-export {useMoneyInput} from './money/useMoneyInput';
 export {MoneyInput} from './money/MoneyInput';
 export type {MoneyInputProps} from './money/MoneyInput';
 export {MoneyCurrencyInput} from './money/MoneyCurrencyInput';
