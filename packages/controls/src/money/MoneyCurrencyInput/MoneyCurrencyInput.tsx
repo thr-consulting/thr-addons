@@ -29,10 +29,10 @@ export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputPr
 		(v): void => {
 			if (onChange) {
 				setLocalValue(v);
-				onChange(toMoney(v || 0, defaultCurrency || 'CAD'));
+				onChange(toMoney(v || 0, currencyCode || 'CAD'));
 			}
 		},
-		[defaultCurrency, onChange],
+		[currencyCode, onChange],
 	);
 
 	const handleDropdownChange = useCallback(
