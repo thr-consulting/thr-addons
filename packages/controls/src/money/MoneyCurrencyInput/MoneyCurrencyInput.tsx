@@ -3,7 +3,7 @@ import {toMoney} from '@thx/money';
 import debug from 'debug';
 import Money, {CurrencyString} from 'js-money';
 import {SyntheticEvent, useCallback, useEffect, useState} from 'react';
-import {Dropdown, DropdownProps, Input, InputProps, Label} from 'semantic-ui-react';
+import {Dropdown, DropdownProps, Input, InputProps} from 'semantic-ui-react';
 import CurrencyInput, {CurrencyInputProps} from 'react-currency-input-field';
 import type {MoneyInputProps} from '../MoneyInput';
 
