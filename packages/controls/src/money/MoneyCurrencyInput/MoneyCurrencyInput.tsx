@@ -2,10 +2,10 @@ import {toMoney} from '@thx/money';
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import debug from 'debug';
 import Money, {CurrencyString} from 'js-money';
-import {SyntheticEvent, useCallback} from 'react';
+import {SyntheticEvent, useCallback, useEffect, useState} from 'react';
 import {Dropdown, DropdownProps, Input, InputProps, Label} from 'semantic-ui-react';
+import CurrencyInput, {CurrencyInputProps} from 'react-currency-input-field';
 import type {MoneyInputProps} from '../MoneyInput';
-import {useMoneyInput} from '../useMoneyInput';
 
 const d = debug('thx.controls.money.MoneyCurrencyInput');
 
@@ -16,24 +16,24 @@ export interface MoneyCurrencyInputProps extends MoneyInputProps {
 
 export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputProps, 'onChange'>) {
 	const {name, onBlur, prefix, defaultCurrency, onChange, showPrefix, value, wholeNumber, currencies, locked, lockCurrency, ...rest} = props;
+	const [localValue, setLocalValue] = useState<string | undefined>('');
 
 	const options = currencies || [
 		{key: 'CAD', text: 'CAD', value: 'CAD'},
 		{key: 'USD', text: 'USD', value: 'USD'},
 	];
 
-	const handleChange = useCallback(
-		(v?: Money) => {
-			if (v && onChange) {
-				onChange && onChange(v);
+	const currencyCode = value?.currency || defaultCurrency?.code || 'CAD';
+
+	const handleChange: CurrencyInputProps['onValueChange'] = useCallback(
+		(v): void => {
+			if (onChange) {
+				setLocalValue(v);
+				onChange(toMoney(v || 0, defaultCurrency || 'CAD'));
 			}
 		},
-		[onChange],
+		[defaultCurrency, onChange],
 	);
-
-	const val = !(value instanceof Money) && value !== undefined ? toMoney(value) : value;
-
-	const [inputElement] = useMoneyInput({onChange: handleChange, prefix, showPrefix, value: val, wholeNumber});
 
 	const handleDropdownChange = useCallback(
 		(e: SyntheticEvent<HTMLElement, Event>, v: DropdownProps) => {
@@ -48,15 +48,33 @@ export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputPr
 		[onChange, value],
 	);
 
-	const currencyCode = value?.currency || defaultCurrency?.code || 'CAD';
-	d('Render', value, currencyCode);
+	useEffect(() => {
+		if (!localValue && value) {
+			setLocalValue(value?.toDecimal().toString());
+		}
+	}, [localValue, value]);
 
 	return (
-		<Input {...rest} labelPosition="right">
-			<input name={name} ref={inputElement} onBlur={onBlur} readOnly={locked} />
-			<Label basic>
-				<Dropdown disabled={locked || lockCurrency} options={options} value={currencyCode} onChange={handleDropdownChange} />
-			</Label>
+		<Input {...rest}>
+			<CurrencyInput
+				name={name}
+				disabled={locked}
+				placeholder="0.00"
+				decimalsLimit={wholeNumber ? -1 : 2}
+				prefix={showPrefix ? prefix || '$' : undefined}
+				onValueChange={handleChange}
+				style={{textAlign: 'right'}}
+				onBlur={onBlur}
+				value={localValue}
+				className="ui right labeled input"
+			/>
+			<Dropdown
+				disabled={locked || lockCurrency}
+				options={options}
+				value={currencyCode}
+				onChange={handleDropdownChange}
+				className="ui basic label dropdown"
+			/>
 		</Input>
 	);
 }
