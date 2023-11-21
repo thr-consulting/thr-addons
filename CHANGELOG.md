@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.7.0](https://github.com/thr-consulting/thr-addons/compare/v16.6.1...v16.7.0) (2023-11-21)
+
+
+### Features
+
+* allow locking currency on moneyCurrencyInput ([#375](https://github.com/thr-consulting/thr-addons/issues/375)) ([faa1186](https://github.com/thr-consulting/thr-addons/commit/faa1186a1bcdebd4773279b50a4650b8a3aecd1f))
+
+
+
+
+
 ## [16.6.1](https://github.com/thr-consulting/thr-addons/compare/v16.6.0...v16.6.1) (2023-07-20)
 
 **Note:** Version bump only for package thx
