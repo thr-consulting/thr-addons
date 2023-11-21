@@ -1,10 +1,10 @@
+import {toMoney} from '@thx/money';
 import debug from 'debug';
 import type {Currency} from 'js-money';
 import type Money from 'js-money';
-import {Input, InputProps} from 'semantic-ui-react';
-import CurrencyInput, {CurrencyInputProps} from 'react-currency-input-field';
 import {useCallback, useEffect, useState} from 'react';
-import {toMoney} from '@thx/money';
+import CurrencyInput, {CurrencyInputProps} from 'react-currency-input-field';
+import {Input, InputProps} from 'semantic-ui-react';
 
 const d = debug('thx.controls.money.MoneyInput');
 
