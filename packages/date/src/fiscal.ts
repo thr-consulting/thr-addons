@@ -37,6 +37,15 @@ export function getFiscalPeriod(period: PeriodEnum): Period {
 }
 
 /**
+ * Returns the fiscal year of a date
+ * @param date
+ * @param yearEnd
+ */
+export function getFiscalYear(date: LocalDate, yearEnd: LocalDate): number {
+	return date.isAfter(yearEnd.withYear(date.year())) ? date.year() + 1 : date.year();
+}
+
+/**
  * Returns the start and end dates for the date's year of fiscal year
  * @param date
  * @param yearEnd
