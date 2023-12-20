@@ -1,6 +1,6 @@
 import {LocalDate, Period} from '@js-joda/core';
 import {expect} from 'chai';
-import {getFiscalPeriod, getFiscalYearRange, PeriodEnum, PeriodEnumLookup} from './fiscal';
+import {getFiscalYear, getFiscalPeriod, getFiscalYearRange, PeriodEnum, PeriodEnumLookup} from './fiscal';
 
 describe('Fiscal Functions', () => {
 	it('should return the Period Enum', () => {
@@ -66,5 +66,14 @@ describe('Fiscal Functions', () => {
 		expect(getFiscalYearRange(e, ye).end.equals(LocalDate.of(2022, 12, 31))).to.be.true;
 		expect(getFiscalYearRange(f, ye).start.equals(LocalDate.of(2022, 1, 1))).to.be.true;
 		expect(getFiscalYearRange(f, ye).end.equals(LocalDate.of(2022, 12, 31))).to.be.true;
+	});
+
+	it('should return the correct fiscal year based on the date and year end', () => {
+		const yearEnd = LocalDate.of(2020, 12, 31);
+		expect(getFiscalYear(LocalDate.of(2020, 1, 1), yearEnd)).to.equal(2020);
+		expect(getFiscalYear(LocalDate.of(2020, 12, 31), yearEnd)).to.equal(2020);
+		expect(getFiscalYear(LocalDate.of(2021, 1, 1), yearEnd)).to.equal(2021);
+		expect(getFiscalYear(LocalDate.of(2021, 12, 31), yearEnd)).to.equal(2021);
+		expect(getFiscalYear(LocalDate.of(2020, 12, 31), yearEnd)).to.equal(2020);
 	});
 });

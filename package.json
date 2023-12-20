@@ -26,6 +26,7 @@
     "test": "thx test",
     "ts": "thx ts"
   },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@babel/helper-string-parser": "^7.18.10",
