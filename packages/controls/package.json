@@ -47,7 +47,7 @@
     "luhn": "^2.4.1",
     "react-credit-cards": "^0.8.3",
     "react-currency-input-field": "^3.6.12",
-    "react-datepicker": "^4.7.0",
+    "react-datepicker": "^4.25.0",
     "react-table": "^7.6.3",
     "social-insurance-number": "^0.2.2",
     "use-deep-compare-effect": "1.4.0"

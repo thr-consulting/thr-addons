@@ -4,7 +4,7 @@ import type Money from 'js-money';
 import {Input, InputProps} from 'semantic-ui-react';
 import CurrencyInput, {CurrencyInputProps} from 'react-currency-input-field';
 import {useCallback, useEffect, useState} from 'react';
-import {toMoney} from '@thx/money';
+import {formatMoney, toMoney} from '@thx/money';
 
 const d = debug('thx.controls.money.MoneyInput');
 
@@ -35,13 +35,12 @@ export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>
 	);
 
 	useEffect(() => {
-		if (!localValue && value) {
-			setLocalValue(value?.toDecimal().toString());
-		}
+		setLocalValue(formatMoney(value) || '0.00');
 	}, [localValue, value]);
 
 	return (
 		<Input {...rest}>
+			{value?.toString()}
 			<CurrencyInput
 				name={name}
 				disabled={locked}
