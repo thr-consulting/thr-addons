@@ -139,7 +139,6 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 	return (
 		<DatePicker
 			{...rest}
-			selected={selected}
 			onChange={handleDateChange}
 			customInput={
 				<Input {...inputProps}>
