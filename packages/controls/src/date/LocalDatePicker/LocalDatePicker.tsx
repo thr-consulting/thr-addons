@@ -92,7 +92,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 	};
 
 	const [isOpen, setIsOpen] = useState(false);
-	const [selected, setSelected] = useState(value ? toDate(value) : null);
+	const [selected, setSelected] = useState<Date | null>();
 
 	useEffect(() => {
 		setSelected(value ? toDate(value) : null);
@@ -107,8 +107,8 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		if (maxDate?.isBefore(allowedDate)) {
 			allowedDate = maxDate;
 		}
-		setSelected(toDate(allowedDate));
 		onChange && onChange(date ? allowedDate : null);
+		setSelected(toDate(allowedDate));
 		setIsOpen(false);
 	};
 
@@ -122,6 +122,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 	const handleDatePickerBlur = (e: React.FocusEvent<HTMLInputElement>) => {
 		setIsOpen(false);
 		onBlur && onBlur(e);
+		handleInputChange(e);
 	};
 
 	const toggleDatePicker = () => {
@@ -144,8 +145,8 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 				<Input {...inputProps}>
 					<MaskedDateInput
 						{...maskedInputProps}
-						value={selected ? toDate(selected) : ''}
-						onChange={handleInputChange}
+						onBlur={handleDatePickerBlur}
+						value={selected}
 						onClick={({target}: {target: HTMLInputElement}) => (openOnFocus ? setIsOpen(!isOpen) : target.select())}
 						onKeyDown={handleOnKeyDown}
 					/>

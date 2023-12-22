@@ -1,6 +1,6 @@
 {
   "name": "@thx/controls",
-  "version": "16.7.0",
+  "version": "16.8.1",
   "description": "A collection of components designed with SemanticUI.",
   "bugs": {
     "url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@js-joda/core": "^5.1.0",
-    "@thx/date": "^16.7.0",
+    "@thx/date": "^16.8.0",
     "@thx/money": "^16.0.0",
     "@thx/yup-types": "^16.0.0",
     "@types/inputmask": "^5.0.6",
@@ -41,13 +41,13 @@
     "eventemitter3": "^4.0.0",
     "flat": "^5.0.0",
     "formik": "^2.2.9",
-    "inputmask": "^5.0.8-beta.72",
+    "inputmask": "^5.0.9-beta.45",
     "js-money": "^0.6.3",
     "lodash-es": "^4.17.15",
     "luhn": "^2.4.1",
     "react-credit-cards": "^0.8.3",
     "react-currency-input-field": "^3.6.12",
-    "react-datepicker": "^4.7.0",
+    "react-datepicker": "^4.25.0",
     "react-table": "^7.6.3",
     "social-insurance-number": "^0.2.2",
     "use-deep-compare-effect": "1.4.0"

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.8.1](https://github.com/thr-consulting/thr-addons/compare/v16.8.0...v16.8.1) (2023-12-21)
+
+**Note:** Version bump only for package thx
+
+
+
+
+
+# [16.8.0](https://github.com/thr-consulting/thr-addons/compare/v16.7.0...v16.8.0) (2023-12-21)
+
+
+### Bug Fixes
+
+* date picker ([#382](https://github.com/thr-consulting/thr-addons/issues/382)) ([f91148f](https://github.com/thr-consulting/thr-addons/commit/f91148f1545d5e3cdfd90d760235d44781866ed1))
+
+
+### Features
+
+* **date:** add fiscal year util ([#381](https://github.com/thr-consulting/thr-addons/issues/381)) ([8ce7706](https://github.com/thr-consulting/thr-addons/commit/8ce770660b52ddd9ce706602ae20ea3bece5b34d))
+
+
+
+
+
 # [16.7.0](https://github.com/thr-consulting/thr-addons/compare/v16.6.1...v16.7.0) (2023-11-21)
 
 
