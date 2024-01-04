@@ -2,7 +2,7 @@ import {toMoney} from '@thx/money';
 import debug from 'debug';
 import type {Currency} from 'js-money';
 import type Money from 'js-money';
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback} from 'react';
 import CurrencyInput, {CurrencyInputProps} from 'react-currency-input-field';
 import {Input, InputProps} from 'semantic-ui-react';
 
@@ -22,23 +22,15 @@ export interface MoneyInputProps {
 
 export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>) {
 	const {name, onBlur, locked, prefix, defaultCurrency, onChange, showPrefix, value, wholeNumber, ...rest} = props;
-	const [localValue, setLocalValue] = useState<string | undefined>('');
 
 	const handleChange: CurrencyInputProps['onValueChange'] = useCallback(
 		(v): void => {
 			if (onChange) {
-				setLocalValue(v);
 				onChange(toMoney(v || 0, defaultCurrency || 'CAD'));
 			}
 		},
 		[defaultCurrency, onChange],
 	);
-
-	useEffect(() => {
-		if (!localValue && value) {
-			setLocalValue(value?.toDecimal().toString());
-		}
-	}, [localValue, value]);
 
 	return (
 		<Input {...rest}>
@@ -51,7 +43,7 @@ export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>
 				onValueChange={handleChange}
 				style={{textAlign: 'right'}}
 				onBlur={onBlur}
-				value={localValue}
+				value={value?.toDecimal() || 0}
 			/>
 		</Input>
 	);
