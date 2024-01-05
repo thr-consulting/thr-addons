@@ -16,7 +16,6 @@ export interface MoneyCurrencyInputProps extends MoneyInputProps {
 
 export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputProps, 'onChange'>) {
 	const {name, onBlur, prefix, defaultCurrency, onChange, showPrefix, value, wholeNumber, currencies, locked, lockCurrency, ...rest} = props;
-	const [localValue, setLocalValue] = useState<string | undefined>('');
 
 	const options = currencies || [
 		{key: 'CAD', text: 'CAD', value: 'CAD'},
@@ -28,7 +27,6 @@ export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputPr
 	const handleChange: CurrencyInputProps['onValueChange'] = useCallback(
 		(v): void => {
 			if (onChange) {
-				setLocalValue(v);
 				onChange(toMoney(v || 0, currencyCode || 'CAD'));
 			}
 		},
@@ -48,12 +46,6 @@ export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputPr
 		[onChange, value],
 	);
 
-	useEffect(() => {
-		if (!localValue && value) {
-			setLocalValue(value?.toDecimal().toString());
-		}
-	}, [localValue, value]);
-
 	return (
 		<Input {...rest}>
 			<CurrencyInput
@@ -65,7 +57,7 @@ export function MoneyCurrencyInput(props: MoneyCurrencyInputProps & Omit<InputPr
 				onValueChange={handleChange}
 				style={{textAlign: 'right'}}
 				onBlur={onBlur}
-				value={localValue}
+				value={value?.toDecimal() || 0}
 				className="ui right labeled input"
 			/>
 			<Dropdown
