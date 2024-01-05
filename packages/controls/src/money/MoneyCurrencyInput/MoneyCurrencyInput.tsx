@@ -2,7 +2,7 @@ import {toMoney} from '@thx/money';
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import debug from 'debug';
 import Money, {CurrencyString} from 'js-money';
-import {SyntheticEvent, useCallback, useEffect, useState} from 'react';
+import {SyntheticEvent, useCallback} from 'react';
 import CurrencyInput, {CurrencyInputProps} from 'react-currency-input-field';
 import {Dropdown, DropdownProps, Input, InputProps} from 'semantic-ui-react';
 import type {MoneyInputProps} from '../MoneyInput';
