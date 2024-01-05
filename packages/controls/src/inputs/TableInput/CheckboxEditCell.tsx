@@ -29,8 +29,6 @@ export function CheckboxEditCell<D extends Record<string, unknown>>(options?: Ch
 
 		return (
 			<Checkbox
-				fluid
-				transparent
 				{...inputProps}
 				checked={value}
 				onChange={(ev, v) => {
