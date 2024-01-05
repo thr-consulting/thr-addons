@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.8.4](https://github.com/thr-consulting/thr-addons/compare/v16.8.3...v16.8.4) (2024-01-05)
+
+
+### Bug Fixes
+
+* fixed lint errors ([9a64614](https://github.com/thr-consulting/thr-addons/commit/9a646149ee66736d6a1d1693da3a01e0c7cf8f1a))
+
+
+
+
+
 ## [16.8.3](https://github.com/thr-consulting/thr-addons/compare/v16.8.2...v16.8.3) (2024-01-05)
 
 
