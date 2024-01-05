@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.8.3](https://github.com/thr-consulting/thr-addons/compare/v16.8.2...v16.8.3) (2024-01-05)
+
+
+### Bug Fixes
+
+* money input not updating ([#385](https://github.com/thr-consulting/thr-addons/issues/385)) ([c826598](https://github.com/thr-consulting/thr-addons/commit/c826598bac5895bc571a77c62c1e37b06266d737))
+
+
+
+
+
 ## [16.8.2](https://github.com/thr-consulting/thr-addons/compare/v16.8.1...v16.8.2) (2023-12-22)
 
 **Note:** Version bump only for package @thx/controls
