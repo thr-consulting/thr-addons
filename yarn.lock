@@ -15264,11 +15264,6 @@ react-credit-cards@^0.8.3:
   dependencies:
     payment "^2.3.0"
 
-react-currency-input-field@^3.6.14:
-  version "3.6.14"
-  resolved "https://registry.yarnpkg.com/react-currency-input-field/-/react-currency-input-field-3.6.14.tgz#63e1de0345b709536335247793414f309552f233"
-  integrity sha512-pUM4oK1KkUjjcFH7t6GksbuYwGpNhX3We2l41V9PIyJjm1HVlJGbKNksr0PNXGsQZqXDIKBJxL3TAbTS4cbKgg==
-
 react-datepicker@^4.25.0:
   version "4.25.0"
   resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-4.25.0.tgz#86b3ee8ac764bad1650046d0cf9280837bf6d845"

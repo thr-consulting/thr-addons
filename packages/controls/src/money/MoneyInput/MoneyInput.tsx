@@ -1,17 +1,16 @@
 import {toMoney} from '@thx/money';
 import debug from 'debug';
-import type {Currency} from 'js-money';
-import type Money from 'js-money';
+import Money, {Currency, MoneyObject} from 'js-money';
 import {useCallback} from 'react';
-import CurrencyInput, {CurrencyInputProps} from 'react-currency-input-field';
 import {Input, InputProps} from 'semantic-ui-react';
+import {useMoneyInput} from '../useMoneyInput';
 
 const d = debug('thx.controls.money.MoneyInput');
 
 export interface MoneyInputProps {
 	name?: string;
-	onChange?: (value?: Money) => void;
-	value?: Money | undefined;
+	onChange?: (value: Money) => void;
+	value?: Money | MoneyObject;
 	defaultCurrency?: Currency; // Defaults to Money.CAD
 	onBlur?: (ev: any) => void;
 	prefix?: string; // Defaults to currency symbol
@@ -23,28 +22,24 @@ export interface MoneyInputProps {
 export function MoneyInput(props: MoneyInputProps & Omit<InputProps, 'onChange'>) {
 	const {name, onBlur, locked, prefix, defaultCurrency, onChange, showPrefix, value, wholeNumber, ...rest} = props;
 
-	const handleChange: CurrencyInputProps['onValueChange'] = useCallback(
-		(v): void => {
-			if (onChange) {
-				onChange(toMoney(v || 0, defaultCurrency || 'CAD'));
+	const handleChange = useCallback(
+		(v?: Money) => {
+			if (!v) {
+				onChange && onChange(toMoney(0, defaultCurrency));
+			} else {
+				onChange && onChange(v);
 			}
 		},
 		[defaultCurrency, onChange],
 	);
 
+	const val = !(value instanceof Money) && value !== undefined ? toMoney(value) : value;
+
+	const [inputElement] = useMoneyInput({onChange: handleChange, prefix, showPrefix, value: val, wholeNumber});
+
 	return (
 		<Input {...rest}>
-			<CurrencyInput
-				name={name}
-				disabled={locked}
-				placeholder="0.00"
-				decimalsLimit={wholeNumber ? -1 : 2}
-				prefix={showPrefix ? prefix || '$' : undefined}
-				onValueChange={handleChange}
-				style={{textAlign: 'right'}}
-				onBlur={onBlur}
-				value={value?.toDecimal() || 0}
-			/>
+			<input name={name} ref={inputElement} onBlur={onBlur} readOnly={locked} />
 		</Input>
 	);
 }
