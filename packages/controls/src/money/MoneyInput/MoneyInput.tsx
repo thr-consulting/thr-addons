@@ -1,7 +1,7 @@
 import {toMoney} from '@thx/money';
 import debug from 'debug';
 import Money, {Currency, MoneyObject} from 'js-money';
-import React, {useCallback} from 'react';
+import {useCallback} from 'react';
 import {Input, InputProps} from 'semantic-ui-react';
 import {useMoneyInput} from '../useMoneyInput';
 
