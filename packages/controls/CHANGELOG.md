@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.9.0](https://github.com/thr-consulting/thr-addons/compare/v16.8.5...v16.9.0) (2024-02-26)
+
+
+### Bug Fixes
+
+* invalid class ([#388](https://github.com/thr-consulting/thr-addons/issues/388)) ([2734e5d](https://github.com/thr-consulting/thr-addons/commit/2734e5d042dd6288fd0c7710ef42ec9f9278c0b0))
+
+
+### Features
+
+* added refs to Masked inputs and select and focus options to LocalDatePicker ([#392](https://github.com/thr-consulting/thr-addons/issues/392)) ([f51ac14](https://github.com/thr-consulting/thr-addons/commit/f51ac143cd335cdc42f89757d9566f4342049ebb))
+
+
+
+
+
 ## [16.8.5](https://github.com/thr-consulting/thr-addons/compare/v16.8.4...v16.8.5) (2024-01-08)
 
 **Note:** Version bump only for package @thx/controls
