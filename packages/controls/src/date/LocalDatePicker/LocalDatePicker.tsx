@@ -19,7 +19,7 @@ interface ILocalDatePicker {
 	icon?: boolean;
 	openOnFocus?: boolean;
 	startFocused?: boolean;
-	select?: boolean;
+	startSelected?: boolean;
 }
 
 type InputPropsOmitted = Omit<InputProps, 'onChange'>;
