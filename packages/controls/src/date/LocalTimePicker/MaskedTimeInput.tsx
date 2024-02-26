@@ -21,7 +21,7 @@ function MaskedTimeInputInner(props: MaskedTimeInputProps & Omit<MaskedInputProp
 	return (
 		<MaskedInput
 			mask={{alias: 'datetime', inputFormat: 'hh:MM TT'}}
-			onChange={value => {
+			onChange={(value: string) => {
 				if (onChange) onChange({target: {value: value || ''}});
 			}}
 			{...rest}

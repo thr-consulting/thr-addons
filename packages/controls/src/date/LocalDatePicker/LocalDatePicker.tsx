@@ -1,12 +1,12 @@
 import type {LocalDate} from '@js-joda/core';
 import {toDate, toLocalDate} from '@thx/date';
 import debug from 'debug';
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import type {ReactDatePickerProps} from 'react-datepicker';
 import {Icon, Input, InputProps} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
 import '../DatePicker/styles.css';
-import {MaskedDateInput} from './MaskedDateInput';
+import {MaskedDateInput, MaskedDateInputRef} from './MaskedDateInput';
 
 const d = debug('thx.controls.date.LocalDatePicker');
 
@@ -18,6 +18,8 @@ interface ILocalDatePicker {
 	maxDate?: LocalDate;
 	icon?: boolean;
 	openOnFocus?: boolean;
+	startFocused?: boolean;
+	select?: boolean;
 }
 
 type InputPropsOmitted = Omit<InputProps, 'onChange'>;
@@ -47,6 +49,8 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 		tabIndex,
 		transparent,
 		openOnFocus = false,
+		startFocused,
+		startSelected,
 		...rest
 	} = props;
 
@@ -93,10 +97,23 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [selected, setSelected] = useState<Date | null>();
+	const ref = useRef<MaskedDateInputRef>(null);
 
 	useEffect(() => {
 		setSelected(value ? toDate(value) : null);
 	}, [value]);
+
+	useEffect(() => {
+		if (startFocused) {
+			ref.current?.focus();
+		}
+	}, [startFocused]);
+
+	useEffect(() => {
+		if (startSelected) {
+			ref.current?.select();
+		}
+	}, [startSelected]);
 
 	const handleDateChange = (date: Date) => {
 		let allowedDate = toLocalDate(date);
@@ -149,6 +166,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
 						value={selected}
 						onClick={({target}: {target: HTMLInputElement}) => (openOnFocus ? setIsOpen(!isOpen) : target.select())}
 						onKeyDown={handleOnKeyDown}
+						ref={ref}
 					/>
 					{icon && <Icon {...iconProps} onClick={toggleDatePicker} tabIndex={-1} name="calendar alternate" link />}
 				</Input>

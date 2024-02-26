@@ -4,6 +4,7 @@ import {useArgs} from '@storybook/client-api';
 import type {ComponentStory, Meta} from '@storybook/react';
 import debug from 'debug';
 import 'react-datepicker/dist/react-datepicker.css';
+import {Button} from 'semantic-ui-react';
 import '../DatePicker/styles.css';
 import {LocalDatePicker} from './LocalDatePicker';
 
@@ -24,19 +25,46 @@ const t: ComponentStory<typeof LocalDatePicker> = args => {
 	const [, updateArgs] = useArgs();
 
 	return (
-		<LocalDatePicker
-			{...args}
-			onChange={value => {
-				updateArgs({value});
-				args.onChange && args.onChange(value);
-			}}
-		/>
+		<>
+			<LocalDatePicker
+				{...args}
+				onChange={value => {
+					updateArgs({value});
+					args.onChange && args.onChange(value);
+				}}
+			/>
+			<div style={{marginTop: '2rem'}}>
+				<Button
+					onClick={() => {
+						updateArgs({startFocused: true});
+					}}
+				>
+					Focus
+				</Button>
+				<Button
+					onClick={() => {
+						updateArgs({startSelected: true});
+					}}
+				>
+					Select
+				</Button>
+				<Button
+					onClick={() => {
+						updateArgs({startFocused: false, startSelected: false});
+					}}
+				>
+					Reset
+				</Button>
+			</div>
+		</>
 	);
 };
 
 export const Main: ComponentStory<typeof LocalDatePicker> = t.bind({});
 Main.args = {
 	value: LocalDate.now(),
+	startFocused: false,
+	startSelected: false,
 };
 
 export const Transparent: ComponentStory<typeof LocalDatePicker> = t.bind({});
