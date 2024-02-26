@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.9.1](https://github.com/thr-consulting/thr-addons/compare/v16.9.0...v16.9.1) (2024-02-26)
+
+
+### Bug Fixes
+
+* fixed small type bug in LocalDatePicker ([6c326b8](https://github.com/thr-consulting/thr-addons/commit/6c326b8ca225cb8ead315c1e13b2c7f457dca5ae))
+
+
+
+
+
 # [16.9.0](https://github.com/thr-consulting/thr-addons/compare/v16.8.5...v16.9.0) (2024-02-26)
 
 
