@@ -40,7 +40,7 @@
 		"yup": "^0.32.11"
 	},
 	"engines": {
-		"node": ">=16"
+		"node": ">=20"
 	},
 	"publishConfig": {
 		"access": "public"
