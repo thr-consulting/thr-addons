@@ -1,6 +1,6 @@
 {
 	"name": "@thx/env",
-	"version": "16.1.7",
+	"version": "17.0.0-alpha.0",
 	"description": "Environment globals",
 	"bugs": {
 		"url": "https://github.com/darkadept/imperium/issues"
