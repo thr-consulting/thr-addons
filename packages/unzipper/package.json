@@ -1,6 +1,6 @@
 {
 	"name": "@thx/unzipper",
-	"version": "16.0.0",
+	"version": "17.0.0-alpha.1",
 	"description": "Process files inside a ZIP file",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"

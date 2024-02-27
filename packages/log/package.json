@@ -1,6 +1,6 @@
 {
 	"name": "@thx/log",
-	"version": "17.0.0-alpha.0",
+	"version": "17.0.0-alpha.1",
 	"description": "Logging Functions",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
