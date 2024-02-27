@@ -1,6 +1,6 @@
 {
 	"name": "@thx/pdfform",
-	"version": "17.0.0-alpha.0",
+	"version": "16.1.11",
 	"description": "PDF form filling library",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -35,7 +35,7 @@
 		}
 	},
 	"dependencies": {
-		"@thx/yup-types": "^17.0.0-alpha.0",
+		"@thx/yup-types": "^16.0.0",
 		"lodash-es": "^4.17.21",
 		"pdf-lib": "^1.17.1"
 	},
