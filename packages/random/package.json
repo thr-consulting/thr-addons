@@ -33,7 +33,7 @@
 	},
 	"dependencies": {
 		"@js-joda/core": "^5.2.0",
-		"@thx/date": "^16.8.2",
+		"@thx/date": "^17.0.0-alpha.1",
 		"nanoid": "^3.2.0"
 	},
 	"engines": {

@@ -33,8 +33,8 @@
 		}
 	},
 	"dependencies": {
-		"@thx/date": "^16.8.2",
-		"@thx/money": "^16.0.0"
+		"@thx/date": "^17.0.0-alpha.1",
+		"@thx/money": "^17.0.0-alpha.1"
 	},
 	"peerDependencies": {
 		"@mikro-orm/core": "4.x"

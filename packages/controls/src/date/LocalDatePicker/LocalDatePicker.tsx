@@ -23,7 +23,7 @@ interface ILocalDatePicker {
 }
 
 type InputPropsOmitted = Omit<InputProps, 'onChange'>;
-type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange' | 'minDate' | 'maxDate'>;
+type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange' | 'minDate' | 'maxDate' | 'icon'>;
 export type LocalDatePickerProps = ILocalDatePicker & InputPropsOmitted & ReactDatePickerPropsOmitted;
 
 export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {

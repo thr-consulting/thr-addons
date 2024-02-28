@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"incremental": true,
+		"incremental": false,
 		"target": "ESNext",
 		"module": "ESNext",
 		"moduleResolution": "Node",
@@ -14,7 +14,8 @@
 		"noImplicitAny": true,
 		"importsNotUsedAsValues": "error",
 		"experimentalDecorators": true,
-		"emitDecoratorMetadata": true
+		"emitDecoratorMetadata": true,
+		"skipLibCheck": true
 	},
 	"exclude": [
 		"src/**/*.test.ts",
