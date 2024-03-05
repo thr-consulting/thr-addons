@@ -9,6 +9,7 @@ export interface RollupConfigOptions {
 	run?: string;
 	delete?: boolean; // Defaults to true
 	analysis?: boolean; // Defaults to true
+	commonjsOpts?: Record<string, any>;
 }
 
 export type RollupConfigModifier = (config: RollupOptions) => RollupOptions;

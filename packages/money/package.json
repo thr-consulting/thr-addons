@@ -1,6 +1,6 @@
 {
 	"name": "@thx/money",
-	"version": "16.0.0",
+	"version": "17.0.0-alpha.2",
 	"description": "Money utils",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -37,9 +37,10 @@
 		"js-money": "^0.6.3"
 	},
 	"engines": {
-		"node": ">=16"
+		"node": ">=20"
 	},
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"gitHead": "78e6c4a8504dbb1fc70ad7ddb78bb504aed14b2b"
 }

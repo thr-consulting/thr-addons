@@ -1,6 +1,6 @@
 {
 	"name": "@thx/mimetype",
-	"version": "16.3.10",
+	"version": "17.0.0-alpha.2",
 	"description": "Mimetype and file type utilities",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -38,9 +38,10 @@
 		"mime-types": "^2.1.35"
 	},
 	"engines": {
-		"node": ">=16"
+		"node": ">=20"
 	},
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"gitHead": "78e6c4a8504dbb1fc70ad7ddb78bb504aed14b2b"
 }

@@ -1,6 +1,6 @@
 {
 	"name": "@thx/unzipper",
-	"version": "16.0.0",
+	"version": "17.0.0-alpha.2",
 	"description": "Process files inside a ZIP file",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -38,9 +38,10 @@
 		"yauzl": "^2.10.0"
 	},
 	"engines": {
-		"node": ">=16"
+		"node": ">=20"
 	},
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"gitHead": "78e6c4a8504dbb1fc70ad7ddb78bb504aed14b2b"
 }

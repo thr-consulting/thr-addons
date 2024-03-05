@@ -1,6 +1,6 @@
 {
 	"name": "@thx/yup-types",
-	"version": "16.0.0",
+	"version": "17.0.0-alpha.2",
 	"description": "Custom Yup types",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -34,15 +34,16 @@
 	},
 	"dependencies": {
 		"@js-joda/core": "^5.2.0",
-		"@thx/money": "^16.0.0",
+		"@thx/money": "^17.0.0-alpha.2",
 		"debug": "^4.3.3",
 		"js-money": "^0.6.3",
 		"yup": "^0.32.11"
 	},
 	"engines": {
-		"node": ">=16"
+		"node": ">=20"
 	},
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"gitHead": "78e6c4a8504dbb1fc70ad7ddb78bb504aed14b2b"
 }

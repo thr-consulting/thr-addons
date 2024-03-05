@@ -1,6 +1,6 @@
 {
 	"name": "@thx/sharedcache",
-	"version": "16.4.0",
+	"version": "17.0.0-alpha.2",
 	"description": "Redis shared cache",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -36,9 +36,10 @@
 		"ioredis": "^5.x"
 	},
 	"engines": {
-		"node": ">=16"
+		"node": ">=20"
 	},
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"gitHead": "78e6c4a8504dbb1fc70ad7ddb78bb504aed14b2b"
 }

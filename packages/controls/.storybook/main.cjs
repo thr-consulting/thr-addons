@@ -1,11 +1,18 @@
+const {
+    dirname,
+    join
+} = require("path");
+
 module.exports = {
-	stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-	addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
-	framework: '@storybook/react',
-	core: {
-		builder: 'storybook-builder-vite',
-	},
-	async viteFinal(config) {
+    stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+    addons: [getAbsolutePath("@storybook/addon-links"), getAbsolutePath("@storybook/addon-essentials"), getAbsolutePath("@storybook/addon-interactions")],
+
+    framework: {
+        name: getAbsolutePath("@storybook/react-vite"),
+        options: {}
+    },
+
+    async viteFinal(config) {
 		return {
 			...config,
 			// esbuild: {
@@ -30,4 +37,12 @@ module.exports = {
 			// },
 		};
 	},
+
+    docs: {
+        autodocs: true
+    }
 };
+
+function getAbsolutePath(value) {
+    return dirname(require.resolve(join(value, "package.json")));
+}

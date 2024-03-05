@@ -15,7 +15,7 @@ import analyze from 'rollup-plugin-analyzer';
 import visualizer from 'rollup-plugin-visualizer';
 
 export function rollupLibConfig(opts, additionalConfig, modifier) {
-	const {name, srcPath, mode, type, sourcemap, run, delete: del, analysis} = opts;
+	const {name, srcPath, mode, type, sourcemap, run, delete: del, analysis, commonjsOpts} = opts;
 
 	// Variables
 	const isProduction = mode === 'production';
@@ -32,7 +32,7 @@ export function rollupLibConfig(opts, additionalConfig, modifier) {
 
 	// Base plugins
 	const plugins = [
-		commonjs(),
+		commonjs(commonjsOpts),
 		nodeExternals(),
 		renameNodeModules('external'),
 		nodeResolve({extensions, preferBuiltins: true}),

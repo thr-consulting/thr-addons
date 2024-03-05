@@ -1,6 +1,6 @@
 {
 	"name": "@thx/file-location",
-	"version": "16.6.0",
+	"version": "17.0.0-alpha.2",
 	"description": "File function abstraction",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -40,9 +40,10 @@
 		"lodash-es": "^4.17.21"
 	},
 	"engines": {
-		"node": ">=16"
+		"node": ">=20"
 	},
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"gitHead": "78e6c4a8504dbb1fc70ad7ddb78bb504aed14b2b"
 }
