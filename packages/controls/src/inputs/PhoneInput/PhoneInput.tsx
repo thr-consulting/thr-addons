@@ -27,6 +27,7 @@ export function PhoneInput(props: PhoneInputProps & Omit<MaskedInputProps, 'mask
 		tabIndex,
 		transparent,
 		extension,
+		...rest
 	} = props;
 
 	const inputProps = {
@@ -46,21 +47,6 @@ export function PhoneInput(props: PhoneInputProps & Omit<MaskedInputProps, 'mask
 		transparent,
 	};
 
-	const maskedInputProps = {
-		as,
-		action,
-		actionPosition,
-		className,
-		error,
-		focus,
-		inverted,
-		label,
-		labelPosition,
-		loading,
-		size,
-		tabIndex,
-		transparent,
-	};
 	const mask = {
 		mask: extension ? '((999) 999-9999[ x9999])|(+9 (999) 999-9999[ x9999])' : '((999) 999-9999)|( +9 (999) 999-9999)',
 		greedy: false,
@@ -69,7 +55,7 @@ export function PhoneInput(props: PhoneInputProps & Omit<MaskedInputProps, 'mask
 
 	return (
 		<Input {...inputProps}>
-			<MaskedInput {...maskedInputProps} value={value} mask={mask} />
+			<MaskedInput {...rest} value={value} mask={mask} />
 		</Input>
 	);
 }
