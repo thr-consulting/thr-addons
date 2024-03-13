@@ -23,6 +23,7 @@ const t: ComponentStory<typeof LocalTimePicker> = args => {
 	return (
 		<LocalTimePicker
 			{...args}
+			fluid
 			onChange={value => {
 				updateArgs({value});
 				args.onChange && args.onChange(value);
