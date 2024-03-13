@@ -17,6 +17,7 @@ const t: ComponentStory<typeof PhoneInput> = args => {
 	return (
 		<PhoneInput
 			{...args}
+			fluid
 			onChange={value => {
 				updateArgs({value});
 				args.onChange && args.onChange(value);

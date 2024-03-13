@@ -1,6 +1,6 @@
 import debug from 'debug';
 import {forwardRef, useImperativeHandle} from 'react';
-import {Input, InputProps} from 'semantic-ui-react';
+import type {InputProps} from 'semantic-ui-react';
 import {useMaskedInput, UseMaskedInputProps} from './useMaskedInput';
 
 const d = debug('thx.controls.inputs.MaskedInput');
@@ -17,7 +17,7 @@ export type MaskedInputProps = {
 	Omit<InputProps, 'onChange'>;
 
 export const MaskedInput = forwardRef<MaskedInputRef, MaskedInputProps>((props, ref) => {
-	const {name, onBlur, disabled, onChange, mask, value, ...rest} = props;
+	const {name, onBlur, disabled, onChange, mask, value} = props;
 
 	const inputRef = useMaskedInput({mask, value, onChange});
 
@@ -34,9 +34,5 @@ export const MaskedInput = forwardRef<MaskedInputRef, MaskedInputProps>((props, 
 		[inputRef],
 	);
 
-	return (
-		<Input {...rest}>
-			<input disabled={disabled} name={name} ref={inputRef} onBlur={onBlur} />
-		</Input>
-	);
+	return <input disabled={disabled} name={name} ref={inputRef} onBlur={onBlur} />;
 });

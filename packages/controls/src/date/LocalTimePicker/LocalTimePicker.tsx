@@ -2,7 +2,7 @@ import {LocalTime} from '@js-joda/core';
 import {toDate, toLocalTime} from '@thx/date';
 import debug from 'debug';
 import type {ReactDatePickerProps} from 'react-datepicker';
-import type {InputProps} from 'semantic-ui-react';
+import {Input, type InputProps} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
 import {MaskedTimeInput} from './MaskedTimeInput';
 
@@ -78,7 +78,11 @@ export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
 			timeIntervals={15}
 			timeCaption="Time"
 			dateFormat="hh:mm aa"
-			customInput={<MaskedTimeInput {...inputProps} />}
+			customInput={
+				<Input {...inputProps}>
+					<MaskedTimeInput {...inputProps} />
+				</Input>
+			}
 		/>
 	);
 }
