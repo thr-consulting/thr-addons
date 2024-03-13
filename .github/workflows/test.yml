@@ -1,4 +1,6 @@
 name: Test Workflow
+env:
+  DISABLE_V8_COMPILE_CACHE: 1
 on:
   push:
     branches-ignore:
