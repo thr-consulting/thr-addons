@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.0.1](https://github.com/thr-consulting/thr-addons/compare/v17.0.0...v17.0.1) (2024-03-13)
+
+### Bug Fixes
+
+- fixed issues with github actions and package versions ([#396](https://github.com/thr-consulting/thr-addons/issues/396)) ([fec74a9](https://github.com/thr-consulting/thr-addons/commit/fec74a971f91d4e659d09d85461324e29f3c8e5c))
+
+### Features
+
+- add fluid to date picker ([#394](https://github.com/thr-consulting/thr-addons/issues/394)) ([9873149](https://github.com/thr-consulting/thr-addons/commit/9873149c9a31864be571fa569ff9eef602120b73))
+
 # [17.0.0](https://github.com/thr-consulting/thr-addons/compare/v16.9.1...v17.0.0) (2024-03-05)
 
 **Note:** Version bump only for package thx
