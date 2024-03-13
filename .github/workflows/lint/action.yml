@@ -26,4 +26,5 @@ runs:
     - name: Run linting
       shell: bash
       run: |
+        yarn nx reset
         yarn lint -v

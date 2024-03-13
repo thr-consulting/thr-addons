@@ -26,4 +26,5 @@ runs:
     - name: Run tests
       shell: bash
       run: |
+        yarn nx reset
         yarn test -v

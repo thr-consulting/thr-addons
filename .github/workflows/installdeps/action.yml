@@ -33,4 +33,5 @@ runs:
     - name: Check dependencies
       shell: bash
       run: |
+        yarn nx reset
         yarn deps -v

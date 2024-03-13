@@ -26,6 +26,7 @@ runs:
     - name: Run build
       shell: bash
       run: |
+        yarn nx reset
         yarn build -v
 
     - name: Store build artifacts

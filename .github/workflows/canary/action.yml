@@ -44,16 +44,19 @@ runs:
       if: steps.cache.outputs.cache-hit != 'true'
       shell: bash
       run: |
+        yarn nx reset
         yarn install
 
     - name: Run build
       shell: bash
       run: |
+        yarn nx reset
         yarn build -v
 
     - name: Run typescript
       shell: bash
       run: |
+        yarn nx reset
         yarn ts -v
 
     - name: Publish canary

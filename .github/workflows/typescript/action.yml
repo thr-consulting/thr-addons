@@ -25,6 +25,7 @@ runs:
     - name: Run ts
       shell: bash
       run: |
+        yarn nx reset
         yarn ts -v
 
     - name: Store ts artifacts
