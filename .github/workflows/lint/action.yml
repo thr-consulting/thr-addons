@@ -15,16 +15,16 @@ runs:
         cache: 'yarn'
 
     - name: node_modules cache
-      uses: actions/cache@v4
+      uses: actions/cache/restore@v4
       id: cache
       with:
         path: |
           node_modules
           */*/node_modules
+          !node_modules/.cache/nx
         key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
 
     - name: Run linting
       shell: bash
       run: |
-        yarn nx reset
         yarn lint -v
