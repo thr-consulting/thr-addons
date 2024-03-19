@@ -103,6 +103,17 @@ export function toEpochDay(date: any, zone: ZoneId = ZoneId.SYSTEM): number {
 	throw new Error('Cannot convert value to epoch integer');
 }
 
+export function toSecondOfDay(time: any): number {
+	if (typeof time === 'number') {
+		return time;
+	}
+	if (time instanceof LocalTime) {
+		return time.toSecondOfDay();
+	}
+
+	throw new Error('Cannot convert value to time integer');
+}
+
 export function toLocalDateTime(date: any, zone: ZoneId = ZoneId.SYSTEM): LocalDateTime {
 	if (date instanceof LocalDateTime) {
 		return date;
