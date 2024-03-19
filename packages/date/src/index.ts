@@ -1,7 +1,7 @@
 export {formatDate, FormatDateType} from './formatDate';
 export {getMonthNames} from './getMonthNames';
 export {getNumberOfDaysInMonth} from './getNumberOfDaysInMonth';
-export {toLocalDate, toLocalDateTime, toDate, toEpochDay, toLocalTime} from './conversion';
+export {toLocalDate, toLocalDateTime, toDate, toEpochDay, toLocalTime, toSecondOfDay} from './conversion';
 export {getTimeOfDay} from './specialFormats';
 export {
 	getFiscalYear,
