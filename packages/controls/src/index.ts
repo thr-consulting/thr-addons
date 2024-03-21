@@ -39,6 +39,7 @@ export {
 	CheckboxEditCell,
 	LocalDateCell,
 	LocalDateEditCell,
+	LocalTimeEditCell,
 	MoneySumFooter,
 	StringEditCell,
 	DropdownCell,
