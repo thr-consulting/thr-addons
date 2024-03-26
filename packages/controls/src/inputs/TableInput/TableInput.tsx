@@ -24,7 +24,7 @@ interface TableInputProps<A extends DefaultTableType> {
 	values: A[];
 	columns: Column<A>[];
 	setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
-	createRow: () => A;
+	createRow?: () => A;
 	tableProps?: TableProps;
 	headerRowProps?: HeaderGroupPropGetter<A>;
 	headerCellProps?: HeaderPropGetter<A>;
@@ -76,7 +76,9 @@ function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps
 			setFieldValue(`${name}[${rowIndex}].${columnId}`, value);
 		},
 		addRow() {
-			arrayHelpers.push(createRow());
+			if (createRow) {
+				arrayHelpers.push(createRow());
+			}
 		},
 		arrayHelpers,
 	});
