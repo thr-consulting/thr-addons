@@ -13,6 +13,7 @@ import {MoneyEditCell} from './MoneyEditCell';
 import {MoneySumFooter} from './MoneySumFooter';
 import {StringEditCell} from './StringEditCell';
 import {TableInput} from './TableInput';
+import {NumberEditCell} from "./NumberEditCell";
 
 const d = debug('thx.controls.inputs.TableInput.main.story');
 
@@ -47,6 +48,11 @@ export function Main() {
 				accessor: 'name',
 				Header: 'Name',
 				Cell: StringEditCell(),
+			},
+			{
+				accessor: 'number',
+				Header: 'Number',
+				Cell: NumberEditCell(),
 			},
 			{
 				accessor: 'date',

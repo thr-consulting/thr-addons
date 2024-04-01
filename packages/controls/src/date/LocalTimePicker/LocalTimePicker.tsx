@@ -88,7 +88,6 @@ export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
 			{...rest}
 			selected={selected}
 			onChange={date => {
-				console.log('on change');
 				if (onChange) onChange(date ? toLocalTime(date) : null);
 			}}
 			showTimeSelect

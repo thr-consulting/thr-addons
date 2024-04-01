@@ -41,6 +41,7 @@ export {
 	LocalDateEditCell,
 	LocalTimeEditCell,
 	MoneySumFooter,
+	NumberEditCell,
 	StringEditCell,
 	DropdownCell,
 	HoverCell,
