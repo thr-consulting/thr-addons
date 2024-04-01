@@ -27,12 +27,9 @@ export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
 		action,
 		actionPosition,
 		className,
-		disabled,
 		error,
 		fluid,
 		focus,
-		icon,
-		iconPosition,
 		inverted,
 		label,
 		labelPosition,
@@ -40,24 +37,19 @@ export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
 		size,
 		tabIndex,
 		transparent,
+		startFocused,
+		startSelected,
 		...rest
 	} = props;
-
-	let selected;
-	if (typeof value === 'number') selected = toDate(LocalTime.ofSecondOfDay(value));
-	else selected = value ? toDate(value) : null;
 
 	const inputProps = {
 		as,
 		action,
 		actionPosition,
-		className,
-		disabled,
+		className: `${className || ''} icon`,
 		error,
-		fluid,
 		focus,
-		icon,
-		iconPosition,
+		fluid,
 		inverted,
 		label,
 		labelPosition,
@@ -66,6 +58,26 @@ export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
 		tabIndex,
 		transparent,
 	};
+
+	const maskedInputProps = {
+		as,
+		action,
+		actionPosition,
+		className,
+		error,
+		focus,
+		inverted,
+		label,
+		labelPosition,
+		loading,
+		size,
+		tabIndex,
+		transparent,
+	};
+
+	let selected;
+	if (typeof value === 'number') selected = toDate(LocalTime.ofSecondOfDay(value));
+	else selected = value ? toDate(value) : null;
 
 	const handleDatePickerBlur = (e: React.FocusEvent<HTMLInputElement>) => {
 		onBlur && onBlur(e);
@@ -85,7 +97,7 @@ export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
 			dateFormat="hh:mm aa"
 			customInput={
 				<Input {...inputProps}>
-					<MaskedTimeInput {...inputProps} onBlur={handleDatePickerBlur} />
+					<MaskedTimeInput {...maskedInputProps} onBlur={handleDatePickerBlur} />
 				</Input>
 			}
 			onBlur={handleDatePickerBlur}

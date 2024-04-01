@@ -6,6 +6,7 @@ export {CheckboxEditCell} from './CheckboxEditCell';
 export {LocalDateEditCell} from './LocalDateEditCell';
 export {LocalTimeEditCell} from './LocalTimeEditCell';
 export {MoneySumFooter} from './MoneySumFooter';
+export {NumberEditCell} from './NumberEditCell';
 export {StringEditCell} from './StringEditCell';
 export {DropdownCell} from './DropdownCell';
 export {HoverCell} from './HoverCell';
