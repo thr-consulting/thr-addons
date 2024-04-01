@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.1.0](https://github.com/thr-consulting/thr-addons/compare/v17.0.1...v17.1.0) (2024-04-01)
+
+### Features
+
+- localtime mikroorm type ([#397](https://github.com/thr-consulting/thr-addons/issues/397)) ([b14aa1c](https://github.com/thr-consulting/thr-addons/commit/b14aa1c4c66f7f85a481ff6846ca0a88ef82b0d1))
+
 # [17.0.0](https://github.com/thr-consulting/thr-addons/compare/v16.9.1...v17.0.0) (2024-03-05)
 
 **Note:** Version bump only for package @thx/date
