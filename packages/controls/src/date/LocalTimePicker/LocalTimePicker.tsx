@@ -22,6 +22,7 @@ export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
 	const {
 		value,
 		onChange,
+		onBlur,
 		as,
 		action,
 		actionPosition,
@@ -66,6 +67,10 @@ export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
 		transparent,
 	};
 
+	const handleDatePickerBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+		onBlur && onBlur(e);
+	};
+
 	return (
 		<DatePicker
 			{...rest}
@@ -80,9 +85,10 @@ export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
 			dateFormat="hh:mm aa"
 			customInput={
 				<Input {...inputProps}>
-					<MaskedTimeInput {...inputProps} />
+					<MaskedTimeInput {...inputProps} onBlur={handleDatePickerBlur} />
 				</Input>
 			}
+			onBlur={handleDatePickerBlur}
 		/>
 	);
 }
