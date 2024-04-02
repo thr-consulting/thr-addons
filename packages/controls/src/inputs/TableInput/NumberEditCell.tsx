@@ -25,21 +25,22 @@ export function NumberEditCell<D extends Record<number, unknown>>(options?: Numb
 			updateData,
 		} = props;
 
-		const [value, setValue] = useState(initialValue);
+		const [value, setValue] = useState(initialValue?.toString());
 
 		return (
 			<Input
+				type="number"
 				fluid
 				transparent
 				{...inputProps}
 				value={value}
 				onChange={(ev, v) => {
-					setValue(v.value ? parseFloat(v.value) : 0);
+					setValue(v.value);
 				}}
 				onBlur={() => {
-					updateData(index, id, value);
+					updateData(index, id, parseFloat(value || '0'));
 				}}
-				onKeyDown={(event: KeyboardEvent) => addRowOnTab(event, value, props, addRowOnTabIf)}
+				onKeyDown={(event: KeyboardEvent) => addRowOnTab(event, parseFloat(value), props, addRowOnTabIf)}
 			/>
 		);
 	};
