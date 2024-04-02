@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.1.0](https://github.com/thr-consulting/thr-addons/compare/v17.0.1...v17.1.0) (2024-04-01)
+
+### Features
+
+- add onblur to local time picker ([#401](https://github.com/thr-consulting/thr-addons/issues/401)) ([08c1316](https://github.com/thr-consulting/thr-addons/commit/08c13168326b38792591828317b5ed80f1a8de1d))
+- localTimeEditCell ([#398](https://github.com/thr-consulting/thr-addons/issues/398)) ([4569854](https://github.com/thr-consulting/thr-addons/commit/4569854913704dce2a2592cfbe8b7d1c1018d284))
+- make createRow optional in table input ([#400](https://github.com/thr-consulting/thr-addons/issues/400)) ([b3004de](https://github.com/thr-consulting/thr-addons/commit/b3004de839a1609e1070ba97d5e67d53ca57bcbf))
+
 ## [17.0.1](https://github.com/thr-consulting/thr-addons/compare/v17.0.0...v17.0.1) (2024-03-13)
 
 ### Features

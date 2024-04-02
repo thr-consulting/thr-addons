@@ -1,10 +1,10 @@
 import type {LocalTime} from '@js-joda/core';
 import debug from 'debug';
 import {useState} from 'react';
-import type {TableCellProps} from './TableInput';
 import {LocalTimePicker} from '../../date/LocalTimePicker';
+import type {TableCellProps} from './TableInput';
 
-const d = debug('thx.controls.inputs.TableInput.LocalDateEditCell');
+const d = debug('thx.controls.inputs.TableInput.LocalTimeEditCell');
 
 export function LocalTimeEditCell<D extends Record<string, unknown>>() {
 	return function LocalTimeEditCellFn(props: TableCellProps<D, LocalTime | null>) {

@@ -11,6 +11,7 @@ import {LocalDateEditCell} from './LocalDateEditCell';
 import {MoneyCell} from './MoneyCell';
 import {MoneyEditCell} from './MoneyEditCell';
 import {MoneySumFooter} from './MoneySumFooter';
+import {NumberEditCell} from './NumberEditCell';
 import {StringEditCell} from './StringEditCell';
 import {TableInput} from './TableInput';
 import {NumberEditCell} from './NumberEditCell';
