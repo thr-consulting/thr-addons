@@ -58,6 +58,8 @@ export function isImage(mimetype: string): boolean {
 		case 'image/tif':
 		case 'image/tiff':
 		case 'image/bmp':
+		case 'image/avif':
+		case 'image/heic':
 		case 'image/*': // This is not a valid mimetype, but it is used for images sometimes
 			return true;
 		default:
