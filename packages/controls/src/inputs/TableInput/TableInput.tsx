@@ -122,15 +122,16 @@ function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps
 				{rows.map(row => {
 					prepareRow(row);
 					return (
-						// eslint-disable-next-line react/jsx-key
 						<Table.Row
 							{...{...row.getRowProps(), ...row.getRowProps(rowProps)}}
 							onMouseEnter={() => setHoverRow(row.id)}
 							onMouseLeave={() => setHoverRow('')}
+							key={row.getRowProps().key}
 						>
 							{row.cells.map(cell => (
-								// eslint-disable-next-line react/jsx-key
-								<Table.Cell {...{...cell.getCellProps(), ...cell.getCellProps(cellProps)}}>{cell.render('Cell', {hoverRow})}</Table.Cell>
+								<Table.Cell {...{...cell.getCellProps(), ...cell.getCellProps(cellProps)}} key={cell.getCellProps().key}>
+									{cell.render('Cell', {hoverRow})}
+								</Table.Cell>
 							))}
 						</Table.Row>
 					);
