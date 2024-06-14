@@ -1,4 +1,4 @@
-export {formatDate, FormatDateType, type FormatDateParams} from './formatDate';
+export {formatDate, FormatDateType} from './formatDate';
 export {getMonthNames} from './getMonthNames';
 export {getNumberOfDaysInMonth} from './getNumberOfDaysInMonth';
 export {toLocalDate, toLocalDateTime, toDate, toEpochDay, toLocalTime, toSecondOfDay} from './conversion';
@@ -14,3 +14,4 @@ export {
 	PeriodEnum,
 } from './fiscal';
 export type {FiscalDateRange} from './fiscal';
+export type {FormatDateParams} from './formatDate';
