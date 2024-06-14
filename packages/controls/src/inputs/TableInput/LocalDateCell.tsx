@@ -10,6 +10,8 @@ interface LocalDateCellOptions<D extends Record<string, unknown>> {
 
 export function LocalDateCell<D extends Record<string, unknown>>(options?: LocalDateCellOptions<D>) {
 	return function LocalDateCellFn(props: CellProps<D, LocalDate>) {
-		return <div style={{textAlign: 'right'}}>{formatDate(options?.overrideValue ? options.overrideValue(props) : props.value, options?.dateFormat)}</div>;
+		return (
+			<div style={{textAlign: 'right'}}>{formatDate(options?.overrideValue ? options.overrideValue(props) : props.value, options?.dateFormat)}</div>
+		);
 	};
 }
