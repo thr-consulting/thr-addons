@@ -1,4 +1,4 @@
-export {formatDate, FormatDateType} from './formatDate';
+export {formatDate, FormatDateType, type FormatDateParams} from './formatDate';
 export {getMonthNames} from './getMonthNames';
 export {getNumberOfDaysInMonth} from './getNumberOfDaysInMonth';
 export {toLocalDate, toLocalDateTime, toDate, toEpochDay, toLocalTime, toSecondOfDay} from './conversion';
