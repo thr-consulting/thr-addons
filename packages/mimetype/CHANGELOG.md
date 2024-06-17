@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.1.1](https://github.com/thr-consulting/thr-addons/compare/v17.1.0...v17.1.1) (2024-06-17)
+
+### Features
+
+- add more image mimetypes ([#404](https://github.com/thr-consulting/thr-addons/issues/404)) ([66f659f](https://github.com/thr-consulting/thr-addons/commit/66f659f376849051582f0f40ce4f98965becaf37))
+
 # [17.0.0](https://github.com/thr-consulting/thr-addons/compare/v16.9.1...v17.0.0) (2024-03-05)
 
 **Note:** Version bump only for package @thx/mimetype

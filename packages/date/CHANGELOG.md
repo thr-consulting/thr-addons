@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.1.1](https://github.com/thr-consulting/thr-addons/compare/v17.1.0...v17.1.1) (2024-06-17)
+
+### Bug Fixes
+
+- format date type export ([ce008ea](https://github.com/thr-consulting/thr-addons/commit/ce008ea9dffe50876e1130b2b54552ee5f3511b4))
+
+### Features
+
+- allow setting date edit cell format ([#407](https://github.com/thr-consulting/thr-addons/issues/407)) ([ad6ce28](https://github.com/thr-consulting/thr-addons/commit/ad6ce282758f5f673928e2c70771283e78564f67))
+
 # [17.1.0](https://github.com/thr-consulting/thr-addons/compare/v17.0.1...v17.1.0) (2024-04-01)
 
 ### Features

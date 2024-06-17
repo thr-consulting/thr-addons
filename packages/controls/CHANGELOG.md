@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.1.1](https://github.com/thr-consulting/thr-addons/compare/v17.1.0...v17.1.1) (2024-06-17)
+
+### Features
+
+- add key to table input ([#406](https://github.com/thr-consulting/thr-addons/issues/406)) ([8471e13](https://github.com/thr-consulting/thr-addons/commit/8471e130127408600a8420edf7a53c263092f7d8))
+- allow setting date edit cell format ([#407](https://github.com/thr-consulting/thr-addons/issues/407)) ([ad6ce28](https://github.com/thr-consulting/thr-addons/commit/ad6ce282758f5f673928e2c70771283e78564f67))
+
 # [17.1.0](https://github.com/thr-consulting/thr-addons/compare/v17.0.1...v17.1.0) (2024-04-01)
 
 ### Features

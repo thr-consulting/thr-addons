@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.1.1](https://github.com/thr-consulting/thr-addons/compare/v17.1.0...v17.1.1) (2024-06-17)
+
+**Note:** Version bump only for package @thx/random
+
 # [17.1.0](https://github.com/thr-consulting/thr-addons/compare/v17.0.1...v17.1.0) (2024-04-01)
 
 **Note:** Version bump only for package @thx/random
