@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.1.2](https://github.com/thr-consulting/thr-addons/compare/v17.1.1...v17.1.2) (2024-07-05)
+
+### Bug Fixes
+
+- fixes bug with fiscal year falling in the middle of a month ([#408](https://github.com/thr-consulting/thr-addons/issues/408)) ([df2f8c5](https://github.com/thr-consulting/thr-addons/commit/df2f8c5eda03e044053b01eaf53196b309ff9880))
+
 ## [17.1.1](https://github.com/thr-consulting/thr-addons/compare/v17.1.0...v17.1.1) (2024-06-17)
 
 ### Bug Fixes
