@@ -51,8 +51,10 @@ export function getFiscalYear(date: LocalDate, yearEnd: LocalDate): number {
  * @param yearEnd
  */
 export function getFiscalYearRange(date: LocalDate, yearEnd: LocalDate): FiscalDateRange {
-	const startMD = yearEnd.with(TemporalAdjusters.firstDayOfNextMonth());
+	const startMD = yearEnd.plusDays(1);
+
 	if (date.compareTo(yearEnd.withYear(date.year())) > 0) {
+		// console.log(`Cur date: ${date.toString()} is after ye MD of ${yearEnd.toString()}`);
 		return {
 			start: startMD.withYear(date.year()),
 			end: startMD.withYear(date.year()).plusYears(1).minusDays(1),
@@ -66,6 +68,7 @@ export function getFiscalYearRange(date: LocalDate, yearEnd: LocalDate): FiscalD
 		};
 	}
 
+	// console.log(`Cur date: ${date.toString()} is before ye MD of ${yearEnd.toString()}`);
 	return {
 		start: startMD.withYear(date.year() - 1),
 		end: startMD.withYear(date.year()).minusDays(1),
@@ -78,23 +81,14 @@ export function getFiscalYearRange(date: LocalDate, yearEnd: LocalDate): FiscalD
  * @param yearEnd
  */
 export function getFiscalQuarter(date: LocalDate, yearEnd: LocalDate): 1 | 2 | 3 | 4 {
-	const month = date.monthValue(); // aug = 8
-	const {start} = getFiscalYearRange(date, yearEnd);
+	// const day = date.dayOfMonth();
+	// const month = date.monthValue(); // aug = 8
+	const {start, end} = getFiscalYearRange(date, yearEnd);
 
-	if (start.monthValue() === month) return 1;
-	if (start.plusMonths(1).monthValue() === month) return 1;
-	if (start.plusMonths(2).monthValue() === month) return 1;
-	if (start.plusMonths(3).monthValue() === month) return 2;
-	if (start.plusMonths(4).monthValue() === month) return 2;
-	if (start.plusMonths(5).monthValue() === month) return 2;
-	if (start.plusMonths(6).monthValue() === month) return 3;
-	if (start.plusMonths(7).monthValue() === month) return 3;
-	if (start.plusMonths(8).monthValue() === month) return 3;
-	if (start.plusMonths(9).monthValue() === month) return 4;
-	if (start.plusMonths(10).monthValue() === month) return 4;
-	if (start.plusMonths(11).monthValue() === month) return 4;
-
-	throw new Error('Invalid month');
+	if (date.isBefore(start.plusMonths(3))) return 1;
+	if (date.isBefore(start.plusMonths(6))) return 2;
+	if (date.isBefore(start.plusMonths(9))) return 3;
+	return 4;
 }
 
 /**
