@@ -6648,11 +6648,6 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.6:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
-  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
-
 clean-stack@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/clean-stack/-/clean-stack-2.2.0.tgz#ee8472dbb129e727b31e8a10a427dee9dfe4008b"
@@ -6751,6 +6746,11 @@ clsx@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.1.tgz#98b3134f9abbdf23b2663491ace13c5c03a73188"
   integrity sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
+
+clsx@^2.1.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.1.1.tgz#eed397c9fd8bd882bfb18deab7102049a2f32999"
+  integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
 
 cluster-key-slot@^1.1.0:
   version "1.1.0"
@@ -10265,10 +10265,10 @@ init-package-json@5.0.0:
     validate-npm-package-license "^3.0.4"
     validate-npm-package-name "^5.0.0"
 
-inputmask@^5.0.9-beta.45:
-  version "5.0.9-beta.45"
-  resolved "https://registry.yarnpkg.com/inputmask/-/inputmask-5.0.9-beta.45.tgz#2699ebfd1e99f572815fb8f2ac23c548198f9ec6"
-  integrity sha512-Nh6RHifykvEfPvnpCiwEER8LcDTAWvWKWUnVsRjqOyutGwAdjFuucCDI3YAm8tTVmhsmAydqEs+ORwllkN7Pfw==
+inputmask@^5.0.9:
+  version "5.0.9"
+  resolved "https://registry.yarnpkg.com/inputmask/-/inputmask-5.0.9.tgz#7bf4e83f5e199c88c0edf28545dc23fa208ef4be"
+  integrity sha512-s0lUfqcEbel+EQXtehXqwCJGShutgieOaIImFKC/r4reYNvX3foyrChl6LOEvaEgxEbesePIrw1Zi2jhZaDZbQ==
 
 inquirer@^8.0.0:
   version "8.2.0"
@@ -14559,13 +14559,13 @@ react-credit-cards@^0.8.3:
   dependencies:
     payment "^2.3.0"
 
-react-datepicker@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-6.2.0.tgz#c32a45a6798ce92faa648b4ed418f740e8c64233"
-  integrity sha512-GzEOiE6yLfp9P6XNkOhXuYtZHzoAx3tirbi7/dj2WHlGM+NGE1lefceqGR0ZrYsYaqsNJhIJFTgwUpzVzA+mjw==
+react-datepicker@^6.9.0:
+  version "6.9.0"
+  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-6.9.0.tgz#0ad234dad81d567ae64cad79697bbad69c95490b"
+  integrity sha512-QTxuzeem7BUfVFWv+g5WuvzT0c5BPo+XTCNbMTZKSZQLU+cMMwSUHwspaxuIcDlwNcOH0tiJ+bh1fJ2yxOGYWA==
   dependencies:
     "@floating-ui/react" "^0.26.2"
-    classnames "^2.2.6"
+    clsx "^2.1.0"
     date-fns "^3.3.1"
     prop-types "^15.7.2"
     react-onclickoutside "^6.13.0"
