@@ -90,6 +90,32 @@ export default class SharedCache {
 		return !!(await this.redis.del(getRedisKey(this.prefix, key)));
 	}
 
+	async clearPrefix(prefix: string): Promise<boolean> {
+		const pattern = `${prefix}:*`;
+
+		// Recursive function to scan and delete keys
+		const scanAndDelete = async (cursor = '0'): Promise<void> => {
+			const result = await this.redis.scan(cursor, 'MATCH', pattern, 'COUNT', 100);
+			const nextCursor = result[0];
+			const keys = result[1];
+
+			if (keys.length > 0) {
+				await this.redis.del(...keys);
+			}
+
+			if (nextCursor !== '0') {
+				await scanAndDelete(nextCursor);
+			}
+		};
+
+		try {
+			await scanAndDelete();
+			return true;
+		} catch (error) {
+			return false;
+		}
+	}
+
 	/**
 	 * Gets multiple keys from a hash key
 	 * @param key
