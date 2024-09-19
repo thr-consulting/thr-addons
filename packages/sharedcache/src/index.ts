@@ -91,7 +91,8 @@ export default class SharedCache {
 	}
 
 	async clearPrefix(prefix: string): Promise<boolean> {
-		const pattern = `${prefix}:*`;
+		const mainPrefix = this.prefix.length > 0 ? `${this.prefix}:` : '';
+		const pattern = `${mainPrefix}${prefix}:*`;
 
 		// Recursive function to scan and delete keys
 		const scanAndDelete = async (cursor = '0'): Promise<void> => {
