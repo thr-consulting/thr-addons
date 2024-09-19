@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.1.4](https://github.com/thr-consulting/thr-addons/compare/v17.1.3...v17.1.4) (2024-09-19)
+
+### Bug Fixes
+
+- fix bug with sharedcache ([dd87fea](https://github.com/thr-consulting/thr-addons/commit/dd87feae935e91e464e84eb056d36f7ad3be2362))
+
 ## [17.1.3](https://github.com/thr-consulting/thr-addons/compare/v17.1.2...v17.1.3) (2024-09-19)
 
 ### Features
