@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.1.3](https://github.com/thr-consulting/thr-addons/compare/v17.1.2...v17.1.3) (2024-09-19)
+
+### Features
+
+- updated sharedcache to clear a prefix ([#410](https://github.com/thr-consulting/thr-addons/issues/410)) ([f8156f3](https://github.com/thr-consulting/thr-addons/commit/f8156f30b9dbf3a51fc191091bd75d4dfc32e8f9))
+
 # [17.0.0](https://github.com/thr-consulting/thr-addons/compare/v16.9.1...v17.0.0) (2024-03-05)
 
 **Note:** Version bump only for package @thx/sharedcache
