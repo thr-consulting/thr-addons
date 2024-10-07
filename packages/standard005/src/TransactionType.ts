@@ -30,4 +30,8 @@ export enum TransactionType {
 	RDSPContribution = 274,
 	Interest = 280,
 	LotteryPrizePayment = 281,
+	/*
+		There are a LOT more of these
+	 */
+	FeesDues = 470,
 }

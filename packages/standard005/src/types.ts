@@ -20,7 +20,7 @@ export interface Target {
 }
 
 export interface Send {
-	type: TransactionType;
+	type: TransactionType | number;
 	amount: Money;
 	payee: Target;
 	sequence: number;
@@ -28,7 +28,7 @@ export interface Send {
 }
 
 export interface Receive {
-	type: TransactionType;
+	type: TransactionType | number;
 	amount: Money;
 	payor: Target;
 	sequence: number;
