@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.1.5](https://github.com/thr-consulting/thr-addons/compare/v17.1.4...v17.1.5) (2024-10-07)
+
+### Features
+
+- added support for custom types in Standard005 ([#411](https://github.com/thr-consulting/thr-addons/issues/411)) ([b3fb3c8](https://github.com/thr-consulting/thr-addons/commit/b3fb3c897ebad1f848d1c5a74b477f569f0666f5))
+
 ## [17.1.4](https://github.com/thr-consulting/thr-addons/compare/v17.1.3...v17.1.4) (2024-09-19)
 
 ### Bug Fixes
