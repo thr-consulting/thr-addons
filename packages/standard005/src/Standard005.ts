@@ -226,7 +226,7 @@ export class Standard005 {
 					}, new Money(0, this.currency)),
 					14,
 			  )
-			: filler(14);
+			: generateNumber(0, 14);
 
 		const dAmount = this.receive
 			? generateAmount(
@@ -235,7 +235,7 @@ export class Standard005 {
 					}, new Money(0, this.currency)),
 					14,
 			  )
-			: filler(14);
+			: generateNumber(0, 14);
 
 		const data = [
 			'Z',
@@ -277,6 +277,6 @@ export class Standard005 {
 		recordCount += 1;
 		data.push(this.generateZRecord(recordCount));
 
-		return data.join('\r\n');
+		return `${data.join('\r\n')}\r\n`;
 	}
 }
