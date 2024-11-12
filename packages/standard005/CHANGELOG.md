@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.1.7](https://github.com/thr-consulting/thr-addons/compare/v17.1.6...v17.1.7) (2024-11-12)
+
+### Bug Fixes
+
+- fixed standard005 bugs ([#413](https://github.com/thr-consulting/thr-addons/issues/413)) ([5e24815](https://github.com/thr-consulting/thr-addons/commit/5e248157ccf783d46d76a75b2acd7b2ce64bbf11))
+
 ## [17.1.6](https://github.com/thr-consulting/thr-addons/compare/v17.1.5...v17.1.6) (2024-11-12)
 
 ### Bug Fixes
