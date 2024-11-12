@@ -277,6 +277,6 @@ export class Standard005 {
 		recordCount += 1;
 		data.push(this.generateZRecord(recordCount));
 
-		return data.join('\n');
+		return data.join('\r\n');
 	}
 }
