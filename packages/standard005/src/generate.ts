@@ -1,11 +1,13 @@
-import type {LocalDate} from '@js-joda/core';
+import {ChronoField, type LocalDate} from '@js-joda/core';
 import {numberToHexString} from '@thx/util';
 import Crc32 from 'crc-32';
 import type Money from 'js-money';
 import type {Institution} from './types';
 
 export function generateDate(date: LocalDate): string {
-	return `0${date.year().toFixed().slice(2, 4)}${date.dayOfYear().toFixed().padStart(3, '0')}`;
+	const dateField = `0${date.year().toFixed().slice(2, 4)}${date.get(ChronoField.DAY_OF_YEAR)}`;
+	if (dateField.length !== 6) throw new Error('Invalid date field length');
+	return dateField;
 }
 
 export function generateAmount(amount: Money, length: number): string {
