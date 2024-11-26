@@ -11,6 +11,7 @@ interface Standard005Constructor {
 	originator: Originator;
 	fileCreationNum: number; // 0 to 9999
 	fileCreationDate?: LocalDate;
+	dueDate: LocalDate;
 	dataCentreId: number; // 5 digits
 	send?: {
 		returns: Returns;
@@ -25,7 +26,8 @@ export class Standard005 {
 	private originator: Originator;
 	private readonly fileCreationNum: number;
 	private readonly fileCreationDate = LocalDate.now();
-	private dataCentreId: number;
+	private readonly dueDate: LocalDate;
+	private readonly dataCentreId: number;
 	private readonly send:
 		| {
 				returns: Returns;
@@ -50,6 +52,7 @@ export class Standard005 {
 		this.originator = verifyOriginator(opts.originator);
 		this.fileCreationNum = verifyInteger(opts.fileCreationNum, 4, 'File creation number', {max: 9999, min: 1});
 		this.dataCentreId = verifyInteger(opts.dataCentreId, 5, 'Data centre ID');
+		this.dueDate = opts.dueDate;
 
 		if (opts.send) {
 			this.send = {
@@ -119,7 +122,7 @@ export class Standard005 {
 		const data = [
 			generateNumber(sendTransaction.type, 3),
 			generateAmount(sendTransaction.amount, 10),
-			generateDate(this.fileCreationDate),
+			generateDate(this.dueDate),
 			generateInstitution(sendTransaction.payee.institution),
 			generateString(sendTransaction.payee.accountNum, 12),
 			`${dataCentreStr.slice(0, 4)}${dataCentreStr}${generateNumber(this.fileCreationNum, 4)}${generateNumber(sendTransaction.sequence, 9)}`,
@@ -173,7 +176,7 @@ export class Standard005 {
 		const data = [
 			generateNumber(recvTransaction.type, 3),
 			generateAmount(recvTransaction.amount, 10),
-			generateDate(this.fileCreationDate),
+			generateDate(this.dueDate),
 			generateInstitution(recvTransaction.payor.institution),
 			generateString(recvTransaction.payor.accountNum, 12),
 			`${dataCentreStr.slice(0, 4)}${dataCentreStr}${generateNumber(this.fileCreationNum, 4)}${generateNumber(recvTransaction.sequence, 9)}`,

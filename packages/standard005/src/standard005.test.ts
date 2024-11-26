@@ -9,6 +9,7 @@ const con1 = {
 	dataCentreId: 12345,
 	fileCreationNum: 7879,
 	fileCreationDate: LocalDate.ofEpochDay(19000),
+	dueDate: LocalDate.ofEpochDay(19005),
 	currency: Money.CAD,
 	originator: {
 		id: 1234567890,
@@ -21,6 +22,7 @@ const con2 = {
 	dataCentreId: 56789,
 	fileCreationNum: 1,
 	fileCreationDate: LocalDate.ofEpochDay(19000),
+	dueDate: LocalDate.ofEpochDay(19005),
 	currency: Money.CAD,
 	originator: {
 		id: 5428713698,
@@ -42,6 +44,7 @@ const con3 = {
 	dataCentreId: 54784,
 	fileCreationNum: 9999,
 	fileCreationDate: LocalDate.ofEpochDay(19000),
+	dueDate: LocalDate.ofEpochDay(19005),
 	currency: Money.CAD,
 	originator: {
 		id: 4521781369,
