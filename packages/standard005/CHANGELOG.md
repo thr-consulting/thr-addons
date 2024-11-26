@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.1.8](https://github.com/thr-consulting/thr-addons/compare/v17.1.7...v17.1.8) (2024-11-26)
+
+### Bug Fixes
+
+- fixed an issue with date generation in 005 files ([#414](https://github.com/thr-consulting/thr-addons/issues/414)) ([92de64c](https://github.com/thr-consulting/thr-addons/commit/92de64c2f718115e610f7cd88d14e0feb861318f))
+
 ## [17.1.7](https://github.com/thr-consulting/thr-addons/compare/v17.1.6...v17.1.7) (2024-11-12)
 
 ### Bug Fixes
