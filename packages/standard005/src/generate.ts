@@ -5,7 +5,7 @@ import type Money from 'js-money';
 import type {Institution} from './types';
 
 export function generateDate(date: LocalDate): string {
-	const dateField = `0${date.year().toFixed().slice(2, 4)}${date.get(ChronoField.DAY_OF_YEAR)}`;
+	const dateField = `0${date.year().toFixed().slice(2, 4)}${date.get(ChronoField.DAY_OF_YEAR).toFixed().padStart(3, '0')}`;
 	if (dateField.length !== 6) throw new Error('Invalid date field length');
 	return dateField;
 }
