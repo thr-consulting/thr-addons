@@ -84,7 +84,7 @@ export default class SharedCache {
 	/**
 	 * Removes a key from the store
 	 * @param key
-	 * @return {Promise<boolean>} True if they key exists and is cleared, otherwise false
+	 * @return {Promise<boolean>} True if the key exists and is cleared, otherwise false
 	 */
 	async clear(key: string): Promise<boolean> {
 		return !!(await this.redis.del(getRedisKey(this.prefix, key)));

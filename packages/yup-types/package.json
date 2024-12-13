@@ -35,7 +35,7 @@
 	"dependencies": {
 		"@js-joda/core": "^5.2.0",
 		"@thx/money": "^17.0.0",
-		"debug": "^4.3.3",
+		"debug": "^4.4.0",
 		"js-money": "^0.6.3",
 		"yup": "^0.32.11"
 	},
