@@ -34,7 +34,7 @@
 	},
 	"dependencies": {
 		"dataloader": "^2.0.0",
-		"debug": "^4.3.3",
+		"debug": "^4.4.0",
 		"lodash-es": "^4.17.21"
 	},
 	"engines": {

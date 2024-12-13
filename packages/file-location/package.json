@@ -34,7 +34,7 @@
 	},
 	"dependencies": {
 		"aws-sdk": "^2.1177.0",
-		"debug": "^4.3.3",
+		"debug": "^4.4.0",
 		"delete-empty": "^3.0.0",
 		"fs-extra": "^10.0.1",
 		"lodash-es": "^4.17.21"
