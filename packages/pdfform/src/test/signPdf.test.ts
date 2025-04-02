@@ -2,7 +2,7 @@ import {config, expect} from 'chai';
 import {readFile} from 'node:fs/promises';
 import {dirname, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {PDFSignature, signPdfDoc} from '../signPdf';
+import {type PDFSignature, signPdfDoc} from '../signPdf';
 
 config.truncateThreshold = 0;
 
