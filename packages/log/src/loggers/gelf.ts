@@ -1,6 +1,6 @@
-import Gelf, {Logger} from 'gelf-pro';
+import Gelf, {type Logger} from 'gelf-pro';
 import winston, {format} from 'winston';
-import Transport, {TransportStreamOptions} from 'winston-transport';
+import Transport, {type TransportStreamOptions} from 'winston-transport';
 
 interface GelfTransportOptions extends TransportStreamOptions {
 	gelfPro: any; // This should be gelf-pro.Settings but it's too restrictive.

@@ -2,7 +2,7 @@ import type {LocalDate} from '@js-joda/core';
 import {toDate, toLocalDate} from '@thx/date';
 import debug from 'debug';
 import type {ReactDatePickerProps} from 'react-datepicker';
-import {InputProps, Input} from 'semantic-ui-react';
+import {type InputProps, Input} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
 
 const d = debug('thx.controls.date.MonthDayPicker');
