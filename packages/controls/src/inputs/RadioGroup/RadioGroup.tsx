@@ -1,6 +1,6 @@
 import debug from 'debug';
 import {Children, cloneElement} from 'react';
-import {Form, Radio, FormRadio, FormGroupProps} from 'semantic-ui-react';
+import {Form, Radio, FormRadio, type FormGroupProps} from 'semantic-ui-react';
 
 const d = debug('thx.controls.inputs.RadioGroup');
 

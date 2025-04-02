@@ -1,4 +1,4 @@
-import {Scriptel, ScriptelProps} from './Scriptel';
+import {Scriptel, type ScriptelProps} from './Scriptel';
 
 /**
  * A HoC that provides a connection to a Scriptel Omniscript device.

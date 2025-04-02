@@ -1,4 +1,4 @@
-import {createContext, MutableRefObject} from 'react';
+import {createContext, type MutableRefObject} from 'react';
 import type {ScriptelSocket} from './scriptel';
 import type {RenderedImage} from './scriptel/messages';
 

@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import {Transform, TransformOptions, TransformCallback} from 'node:stream';
+import {Transform, type TransformOptions, type TransformCallback} from 'node:stream';
 
 export class CounterStream extends Transform {
 	private _counter: number;
