@@ -267,8 +267,9 @@ case "${CMD}" in
     if [ "$LR" = "$PWD" ]; then
       spinop "Checking types" "yarn" "-s lerna run ts"
     else
-      if [ -f "$LR/node_modules/.bin/ttsc" ]; then
-        yarn -s ttsc "${@:2}"
+      if [ -f "$LR/node_modules/.bin/tspc" ]; then
+      if [ -f "$LR/node_modules/.bin/tspc" ]; then
+        yarn -s tspc "${@:2}"
       else
         yarn -s tsc "${@:2}"
       fi
@@ -280,8 +281,8 @@ case "${CMD}" in
     if [ "$LR" = "$PWD" ]; then
       printf "Can't run ts in watch mode from lerna root"
     else
-      if [ -f "$LR/node_modules/.bin/ttsc" ]; then
-        yarn -s ttsc --watch "${@:2}"
+      if [ -f "$LR/node_modules/.bin/tspc" ]; then
+        yarn -s tspc --watch "${@:2}"
       else
         yarn -s tsc --watch "${@:2}"
       fi
