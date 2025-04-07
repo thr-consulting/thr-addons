@@ -1,6 +1,6 @@
 import {isMoneyObject, toMoney} from '@thx/money';
 import Money from 'js-money';
-import {MixedSchema, addMethod} from 'yup';
+import {MixedSchema} from 'yup';
 import type {Maybe} from 'yup/lib/types';
 
 class MoneySchemaType extends MixedSchema<Money> {
@@ -20,6 +20,20 @@ class MoneySchemaType extends MixedSchema<Money> {
 
 	protected _typeCheck(value: any): value is NonNullable<Money> {
 		return value instanceof Money;
+	}
+
+	not(notValue: Money, message?: string) {
+		return this.test({
+			// eslint-disable-next-line no-template-curly-in-string
+			message: message || '${path} must be less than or equal to ${max}',
+			name: 'not',
+			exclusive: true,
+			params: {not: notValue},
+			test(value: Maybe<Money>) {
+				if (!value) return true;
+				return !value.equals(notValue);
+			},
+		});
 	}
 
 	max(maxValue: Money, message?: string) {
