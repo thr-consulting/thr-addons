@@ -1,7 +1,7 @@
 import {DateTimeFormatter, LocalDate, LocalDateTime, LocalTime, ZonedDateTime, ZoneId} from '@js-joda/core';
 import {Locale} from '@js-joda/locale_en';
 import '@js-joda/timezone';
-import {toLocalDate, toLocalDateTime, type ILocalDateLike, isLocalDateLike} from './conversion';
+import {toLocalDate, toLocalDateTime, ILocalDateLike, isLocalDateLike} from './conversion';
 
 export enum FormatDateType {
 	short = 'short',

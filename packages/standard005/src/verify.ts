@@ -1,5 +1,5 @@
 import {formatMoney} from '@thx/money';
-import Money, {type CurrencyString} from 'js-money';
+import Money, {CurrencyString} from 'js-money';
 import type {Institution, Originator, Receive, Returns, Send, Target} from './types';
 
 export function verifyInteger(num: number, maxLength: number, name: string, opts?: {max?: number; min?: number}): number {

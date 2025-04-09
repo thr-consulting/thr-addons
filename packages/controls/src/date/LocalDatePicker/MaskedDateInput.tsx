@@ -1,6 +1,6 @@
 import debug from 'debug';
 import {forwardRef} from 'react';
-import {MaskedInput, type MaskedInputProps} from '../../inputs/MaskedInput';
+import {MaskedInput, MaskedInputProps} from '../../inputs/MaskedInput';
 import type {MaskedInputRef} from '../../inputs/MaskedInput/MaskedInput';
 
 const d = debug('thx.controls.date.LocalDatePicker.MaskedDateInput');

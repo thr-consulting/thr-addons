@@ -1,6 +1,6 @@
 import debug from 'debug';
 import {Input} from 'semantic-ui-react';
-import {MaskedInput, type MaskedInputProps} from '../MaskedInput';
+import {MaskedInput, MaskedInputProps} from '../MaskedInput';
 
 const d = debug('thx.controls.inputs.PhoneInput');
 

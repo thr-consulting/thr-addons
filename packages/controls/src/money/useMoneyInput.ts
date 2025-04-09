@@ -2,7 +2,7 @@ import {toMoney} from '@thx/money';
 import debug from 'debug';
 import Inputmask from 'inputmask';
 import Money from 'js-money';
-import {type MutableRefObject, useCallback, useEffect, useRef} from 'react';
+import {MutableRefObject, useCallback, useEffect, useRef} from 'react';
 
 const d = debug('thx.controls.money.useMoneyInput');
 

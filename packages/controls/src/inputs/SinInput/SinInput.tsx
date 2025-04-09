@@ -1,6 +1,6 @@
 import debug from 'debug';
 import {useCallback, useMemo, useState} from 'react';
-import {Icon, Input, type SemanticCOLORS} from 'semantic-ui-react';
+import {Icon, Input, SemanticCOLORS} from 'semantic-ui-react';
 import SIN from 'social-insurance-number';
 import type {MaskedInputProps} from '../MaskedInput';
 import {useMaskedInput} from '../MaskedInput/useMaskedInput';

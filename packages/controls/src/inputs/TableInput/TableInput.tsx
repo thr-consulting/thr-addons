@@ -1,19 +1,19 @@
 import debug from 'debug';
-import {FieldArray, type FieldArrayRenderProps} from 'formik';
+import {FieldArray, FieldArrayRenderProps} from 'formik';
 import {useMemo, useState} from 'react';
 import {
-	type CellPropGetter,
-	type CellProps,
-	type Column,
-	type FooterGroupPropGetter,
-	type FooterPropGetter,
-	type HeaderGroupPropGetter,
-	type HeaderPropGetter,
-	type RowPropGetter,
-	type TableBodyPropGetter,
+	CellPropGetter,
+	CellProps,
+	Column,
+	FooterGroupPropGetter,
+	FooterPropGetter,
+	HeaderGroupPropGetter,
+	HeaderPropGetter,
+	RowPropGetter,
+	TableBodyPropGetter,
 	useTable,
 } from 'react-table';
-import {Table, type TableProps} from 'semantic-ui-react';
+import {Table, TableProps} from 'semantic-ui-react';
 
 const d = debug('thx.controls.inputs.TableInput');
 

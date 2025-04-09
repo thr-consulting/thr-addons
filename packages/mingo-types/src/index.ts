@@ -1,6 +1,6 @@
 import {toLocalDate, toLocalDateTime, toLocalTime} from '@thx/date';
 import {toMoney} from '@thx/money';
-import {addOperators, type AddOperatorsMap, OperatorType} from 'mingo/core';
+import {addOperators, AddOperatorsMap, OperatorType} from 'mingo/core';
 
 type Convert<T> = (value: any) => T;
 type Compare<T> = (lhs: T, rhs: T) => boolean;

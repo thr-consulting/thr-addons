@@ -3,10 +3,10 @@ import {toDate, toLocalDate} from '@thx/date';
 import debug from 'debug';
 import {useEffect, useRef, useState} from 'react';
 import type {ReactDatePickerProps} from 'react-datepicker';
-import {Icon, Input, type InputProps} from 'semantic-ui-react';
+import {Icon, Input, InputProps} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
 import '../DatePicker/styles.css';
-import {MaskedDateInput, type MaskedDateInputRef} from './MaskedDateInput';
+import {MaskedDateInput, MaskedDateInputRef} from './MaskedDateInput';
 
 const d = debug('thx.controls.date.LocalDatePicker');
 
