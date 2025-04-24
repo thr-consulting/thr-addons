@@ -4233,6 +4233,14 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
+"@storybook/client-api@^7.6.20":
+  version "7.6.20"
+  resolved "https://registry.yarnpkg.com/@storybook/client-api/-/client-api-7.6.20.tgz#1b39a3d0c31696fd47df487f047cbbb2e7cc5d00"
+  integrity sha512-q7fG11XesBG+kDMMjUHiVOIKhFRawfyUEb+8YJpGHqWCzMk4obpNwK+YjGua9vsRsen6yhMqJ/KSZmDvnR6x9g==
+  dependencies:
+    "@storybook/client-logger" "7.6.20"
+    "@storybook/preview-api" "7.6.20"
+
 "@storybook/client-logger@7.6.20":
   version "7.6.20"
   resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-7.6.20.tgz#1d6e93443091cccd50e269371aa786172d0c4659"
@@ -4874,10 +4882,10 @@
   resolved "https://registry.yarnpkg.com/@types/inputmask/-/inputmask-5.0.3.tgz#f23492d5b5862c5737ae24bfe9fb8b2acf77b453"
   integrity sha512-9aTXacRhf9D3+porVydLR28ll8/y3TQIrXEXv7ZWY0c3Lzl/1r4nHoaesZeh2Fd+UIefpWZrg2tkSnDn/dKUsw==
 
-"@types/inputmask@^5.0.6":
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/@types/inputmask/-/inputmask-5.0.6.tgz#d0d065e1dbb61eabe9d4931c874a4f0f5ac8d450"
-  integrity sha512-a+co9RV8MNMLztpk0JJktA6NvSi5a1+dGbylc0Hky9RHeRgbexiCXdOufmMv63HxgSJeeCfg/gkWYp0X6GHO8Q==
+"@types/inputmask@^5.0.7":
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/@types/inputmask/-/inputmask-5.0.7.tgz#ae1afdbb0a7b825b90703e0b08b4ef5be7d2c34e"
+  integrity sha512-uojbVPWzBQ/n/0jc/d16fLqmGasFIptbrLD2WrCPWArlk+5PgblOqH4EDkI3AoobXLAlOK5yF01V8jMmvMG5qg==
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.4"
