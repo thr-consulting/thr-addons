@@ -1,5 +1,5 @@
 import {useArgs} from '@storybook/client-api';
-import type {ComponentStory, Meta} from '@storybook/react';
+import type {StoryFn, Meta} from '@storybook/react';
 import debug from 'debug';
 import {CreditCardInput} from './CreditCardInput';
 
@@ -10,7 +10,7 @@ export default {
 	component: CreditCardInput,
 } as Meta;
 
-const t: ComponentStory<typeof CreditCardInput> = args => {
+const t: StoryFn<typeof CreditCardInput> = args => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 	// const [data, setData] = useState();
@@ -28,7 +28,7 @@ const t: ComponentStory<typeof CreditCardInput> = args => {
 	);
 };
 
-export const Main: ComponentStory<typeof CreditCardInput> = t.bind({});
+export const Main: StoryFn<typeof CreditCardInput> = t.bind({});
 Main.args = {
 	disabled: false,
 	value: {

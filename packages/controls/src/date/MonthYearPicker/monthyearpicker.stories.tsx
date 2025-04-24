@@ -1,7 +1,7 @@
 import {LocalDate} from '@js-joda/core';
 import {useArgs} from '@storybook/client-api';
 /* eslint-disable react-hooks/rules-of-hooks */
-import type {ComponentStory, Meta} from '@storybook/react';
+import type {StoryFn, Meta} from '@storybook/react';
 import debug from 'debug';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../DatePicker/styles.css';
@@ -20,7 +20,7 @@ export default {
 	},
 } as Meta;
 
-const t: ComponentStory<typeof MonthYearPicker> = args => {
+const t: StoryFn<typeof MonthYearPicker> = args => {
 	const [, updateArgs] = useArgs();
 
 	return (

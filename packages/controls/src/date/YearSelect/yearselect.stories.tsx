@@ -1,5 +1,5 @@
 import {useArgs} from '@storybook/client-api';
-import type {ComponentStory, Meta} from '@storybook/react';
+import type {StoryFn, Meta} from '@storybook/react';
 /* eslint-disable react-hooks/rules-of-hooks */
 import debug from 'debug';
 import {YearSelect} from './YearSelect';
@@ -18,7 +18,7 @@ export default {
 	},
 } as Meta;
 
-const t: ComponentStory<typeof YearSelect> = args => {
+const t: StoryFn<typeof YearSelect> = args => {
 	const [, updateArgs] = useArgs();
 
 	return (
