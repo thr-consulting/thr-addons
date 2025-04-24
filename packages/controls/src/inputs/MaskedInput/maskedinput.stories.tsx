@@ -1,5 +1,5 @@
 import {useArgs} from '@storybook/client-api';
-import type {ComponentStory, Meta} from '@storybook/react';
+import type {StoryFn, Meta} from '@storybook/react';
 import debug from 'debug';
 import {MaskedInput} from './MaskedInput';
 
@@ -10,7 +10,7 @@ export default {
 	component: MaskedInput,
 } as Meta;
 
-const t: ComponentStory<typeof MaskedInput> = args => {
+const t: StoryFn<typeof MaskedInput> = args => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 

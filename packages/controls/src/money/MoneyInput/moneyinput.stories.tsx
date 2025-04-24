@@ -1,5 +1,5 @@
 import {useArgs} from '@storybook/client-api';
-import type {ComponentStory, Meta} from '@storybook/react';
+import type {StoryFn, Meta} from '@storybook/react';
 import {toMoney} from '@thx/money';
 import debug from 'debug';
 import Money from 'js-money';
@@ -12,7 +12,7 @@ export default {
 	component: MoneyInput,
 } as Meta;
 
-const t: ComponentStory<typeof MoneyInput> = args => {
+const t: StoryFn<typeof MoneyInput> = args => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 

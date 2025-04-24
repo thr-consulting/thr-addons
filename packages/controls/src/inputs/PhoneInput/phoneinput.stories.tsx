@@ -1,5 +1,5 @@
 import {useArgs} from '@storybook/client-api';
-import type {ComponentStory, Meta} from '@storybook/react';
+import type {StoryFn, Meta} from '@storybook/react';
 import debug from 'debug';
 import {PhoneInput} from './PhoneInput';
 
@@ -10,7 +10,7 @@ export default {
 	component: PhoneInput,
 } as Meta;
 
-const t: ComponentStory<typeof PhoneInput> = args => {
+const t: StoryFn<typeof PhoneInput> = args => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 

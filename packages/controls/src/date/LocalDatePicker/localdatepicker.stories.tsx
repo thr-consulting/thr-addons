@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import {LocalDate} from '@js-joda/core';
 import {useArgs} from '@storybook/client-api';
-import type {ComponentStory, Meta} from '@storybook/react';
+import type {Meta, StoryFn} from '@storybook/react';
 import debug from 'debug';
 import 'react-datepicker/dist/react-datepicker.css';
 import {Button} from 'semantic-ui-react';
@@ -21,7 +21,7 @@ export default {
 	},
 } as Meta;
 
-const t: ComponentStory<typeof LocalDatePicker> = args => {
+const t: StoryFn<typeof LocalDatePicker> = args => {
 	const [, updateArgs] = useArgs();
 
 	return (
@@ -60,27 +60,27 @@ const t: ComponentStory<typeof LocalDatePicker> = args => {
 	);
 };
 
-export const Main: ComponentStory<typeof LocalDatePicker> = t.bind({});
+export const Main: StoryFn<typeof LocalDatePicker> = t.bind({});
 Main.args = {
 	value: LocalDate.now(),
 	startFocused: false,
 	startSelected: false,
 };
 
-export const Transparent: ComponentStory<typeof LocalDatePicker> = t.bind({});
+export const Transparent: StoryFn<typeof LocalDatePicker> = t.bind({});
 Transparent.args = {
 	value: LocalDate.now(),
 	transparent: true,
 };
 
-export const WithMinMaxDates: ComponentStory<typeof LocalDatePicker> = t.bind({});
+export const WithMinMaxDates: StoryFn<typeof LocalDatePicker> = t.bind({});
 WithMinMaxDates.args = {
 	value: LocalDate.now(),
 	minDate: LocalDate.now().minusMonths(2),
 	maxDate: LocalDate.now().plusMonths(2),
 };
 
-export const WithoutIcon: ComponentStory<typeof LocalDatePicker> = t.bind({});
+export const WithoutIcon: StoryFn<typeof LocalDatePicker> = t.bind({});
 WithoutIcon.args = {
 	value: LocalDate.now(),
 	hideIcon: true,

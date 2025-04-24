@@ -1,5 +1,5 @@
 import {useArgs} from '@storybook/client-api';
-import type {ComponentStory, Meta} from '@storybook/react';
+import type {StoryFn, Meta} from '@storybook/react';
 /* eslint-disable react-hooks/rules-of-hooks */
 import debug from 'debug';
 import '../DatePicker/styles.css';
@@ -17,7 +17,7 @@ export default {
 	},
 } as Meta;
 
-const t: ComponentStory<typeof LocalMonthSelect> = args => {
+const t: StoryFn<typeof LocalMonthSelect> = args => {
 	const [, updateArgs] = useArgs();
 
 	return (

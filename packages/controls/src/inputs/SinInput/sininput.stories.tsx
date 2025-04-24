@@ -1,5 +1,5 @@
 import {useArgs} from '@storybook/client-api';
-import type {ComponentStory, Meta} from '@storybook/react';
+import type {StoryFn, Meta} from '@storybook/react';
 import debug from 'debug';
 import {SinInput} from './SinInput';
 
@@ -14,7 +14,7 @@ export default {
 	},
 } as Meta;
 
-const t: ComponentStory<typeof SinInput> = args => {
+const t: StoryFn<typeof SinInput> = args => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
