@@ -1,6 +1,6 @@
 import debug from 'debug';
 import type Money from 'js-money';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {MoneyInput} from '../../money/MoneyInput';
 import type {TableCellProps} from './TableInput';
 import type {AddRowOnTabIf} from './addRowOnTab';
@@ -25,6 +25,12 @@ export function MoneyEditCell<D extends Record<string, unknown>>(moneyEditCellPr
 
 		const [value, setValue] = useState(initialValue);
 		const {addRowOnTabIf, ...rest} = moneyEditCellProps || {};
+
+		useEffect(() => {
+			if (initialValue) {
+				setValue(initialValue);
+			}
+		}, [initialValue]);
 
 		return (
 			<MoneyInput
