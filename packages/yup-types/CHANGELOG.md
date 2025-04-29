@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.1.10](https://github.com/thr-consulting/thr-addons/compare/v17.1.9...v17.1.10) (2025-04-29)
+
+### Features
+
+- update debug package ([#416](https://github.com/thr-consulting/thr-addons/issues/416)) ([e4cd4b3](https://github.com/thr-consulting/thr-addons/commit/e4cd4b3ebba917e27fe8abc3eb095a62a5c3009a))
+
 # [17.0.0](https://github.com/thr-consulting/thr-addons/compare/v16.9.1...v17.0.0) (2024-03-05)
 
 **Note:** Version bump only for package @thx/yup-types
