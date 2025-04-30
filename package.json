@@ -40,7 +40,7 @@
     "@storybook/core-common": "^7.6.20",
     "@storybook/react": "^7.6.20",
     "@storybook/react-vite": "^7.6.20",
-    "@thx/eslint-config-thx": "^17.0.0",
+    "@thx/eslint-config-thx": "^17.1.11-alpha.1",
     "@thx/prettier-config-thx": "^17.0.0",
     "@thx/rollup-config-thx": "^17.0.0",
     "@thx/tools": "^17.0.0",
