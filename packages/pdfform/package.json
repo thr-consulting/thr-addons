@@ -40,7 +40,7 @@
 		"pdf-lib": "^1.17.1"
 	},
 	"engines": {
-		"node": ">=20"
+		"node": ">=22"
 	},
 	"publishConfig": {
 		"access": "public"
