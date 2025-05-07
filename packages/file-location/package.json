@@ -1,6 +1,6 @@
 {
 	"name": "@thx/file-location",
-	"version": "17.1.10",
+	"version": "17.2.1",
 	"description": "File function abstraction",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"

@@ -1,6 +1,6 @@
 {
 	"name": "@thx/promise-sequential",
-	"version": "17.0.0",
+	"version": "17.2.1",
 	"description": "Execute promises sequentially",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
