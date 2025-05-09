@@ -23,15 +23,17 @@ export default function transform(fileInfo: FileInfo, api: API) {
 		// @ts-ignore
 		const decs = v.node.decorators as Decorator[];
 		if (decs) {
-			const entities = decs.map((h: Decorator) => {
-				if (h.expression.type === 'CallExpression' && h.expression.callee.type === 'Identifier') {
-					if (h.expression.callee.name === 'Entity') {
-						// @ts-ignore
-						return v.node.id.name;
+			const entities = decs
+				.map((h: Decorator) => {
+					if (h.expression.type === 'CallExpression' && h.expression.callee.type === 'Identifier') {
+						if (h.expression.callee.name === 'Entity') {
+							// @ts-ignore
+							return v.node.id.name;
+						}
 					}
-				}
-				return null;
-			}).filter(h => !!h);
+					return null;
+				})
+				.filter(h => !!h);
 
 			if (entities.length > 1) throw new Error('Cannot have multiple entities per file');
 			if (entities.length === 1) entity = entities[0];

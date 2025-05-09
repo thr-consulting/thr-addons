@@ -90,10 +90,8 @@ function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps
 	const footer = hasFooter ? (
 		<Table.Footer>
 			{footerGroups.map(group => (
-				// eslint-disable-next-line react/jsx-key
 				<Table.Row {...{...group.getFooterGroupProps(), ...group.getFooterGroupProps(footerRowProps)}}>
 					{group.headers.map(column => (
-						// eslint-disable-next-line react/jsx-key
 						<Table.HeaderCell {...{...column.getFooterProps(), ...column.getFooterProps(footerCellProps)}}>
 							{column.render('Footer')}
 						</Table.HeaderCell>
@@ -107,10 +105,8 @@ function TableInputTable<A extends DefaultTableType>(props: TableInputTableProps
 		<Table {...{...getTableProps(), ...getTableProps(tableProps)}}>
 			<Table.Header>
 				{headerGroups.map(headerGroup => (
-					// eslint-disable-next-line react/jsx-key
 					<Table.Row {...{...headerGroup.getHeaderGroupProps(), ...headerGroup.getHeaderGroupProps(headerRowProps)}}>
 						{headerGroup.headers.map(column => (
-							// eslint-disable-next-line react/jsx-key
 							<Table.HeaderCell {...{...column.getHeaderProps(), ...column.getHeaderProps(headerCellProps)}}>
 								{column.render('Header')}
 							</Table.HeaderCell>

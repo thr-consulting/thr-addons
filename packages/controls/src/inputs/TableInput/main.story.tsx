@@ -30,7 +30,6 @@ const options = [
 ];
 
 export function Main() {
-	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
 	const mainColumns = useMemo<Column<JournalLine>[]>(

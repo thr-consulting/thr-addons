@@ -14,12 +14,12 @@ if (process.env.ESLINT_CONFIG_THX) {
 }
 
 let config = {
-	plugins: [options.jest && 'jest', options.react && 'react-hooks', options.typescript && '@typescript-eslint'].filter(Boolean),
+	plugins: [options.jest && 'jest', options.react && 'react-hooks', options.typescript && '@typescript-eslint', options.react && 'jsx-a11y'].filter(Boolean),
 	extends: [
 		options.react && 'airbnb',
 		!options.react && 'airbnb-base',
 		options.typescript && options.react && 'airbnb-typescript',
-		// options.typescript && !options.react && 'airbnb-typescript/base',
+		options.typescript && !options.react && './eslint-config-airbnb-typescript.js',
 		options.react && 'plugin:react/recommended',
 		// Uses the recommended rules from the @typescript-eslint/eslint-plugin
 		options.typescript && 'plugin:@typescript-eslint/recommended',
@@ -29,6 +29,7 @@ let config = {
 	parserOptions: {
 		ecmaVersion: 2021,
 		sourceType: 'module',
+		project: ['./tsconfig-eslint.json'],
 	},
 	env: {
 		es2021: true,
@@ -42,7 +43,7 @@ let config = {
 		'no-return-assign': ['error', 'except-parens'],
 		'no-console': ['error'],
 		'no-plusplus': 'off',
-		// 'no-unused-vars': ['error', {varsIgnorePattern: 'd', argsIgnorePattern: 'server|context|ctx|type'}],
+		'no-unused-vars': ['error', {varsIgnorePattern: 'd', argsIgnorePattern: 'server|context|ctx|type'}],
 		// 'lines-between-class-members': ['error', 'always', {exceptAfterSingleLine: true}],
 		'lines-between-class-members': ['off'],
 		'no-use-before-define': ['off'],
@@ -56,8 +57,6 @@ let config = {
 		'import/extensions': 'off',
 		'import/no-named-default': 'off',
 		'import/no-default-export': 'off',
-
-		'no-unused-vars': 'off',
 	},
 };
 

@@ -1,6 +1,5 @@
 import {useArgs} from '@storybook/client-api';
 import type {StoryFn, Meta} from '@storybook/react';
-/* eslint-disable react-hooks/rules-of-hooks */
 import debug from 'debug';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../DatePicker/styles.css';

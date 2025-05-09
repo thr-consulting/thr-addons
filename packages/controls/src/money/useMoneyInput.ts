@@ -1,13 +1,13 @@
 import {toMoney} from '@thx/money';
 import debug from 'debug';
-import Inputmask from 'inputmask';
+import InputMask from 'inputmask';
 import Money from 'js-money';
 import {MutableRefObject, useCallback, useEffect, useRef} from 'react';
 
 const d = debug('thx.controls.money.useMoneyInput');
 
 // @ts-ignore inputmask .d.ts file is correct, but ESM causes some difficulty. -mk
-const InputmaskClass = Inputmask.default || Inputmask;
+const InputmaskClass = InputMask.default || InputMask;
 
 interface UseMoneyInputProps {
 	value?: Money;
@@ -25,7 +25,7 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 	const {value, onChange, onSet, showPrefix, prefix, wholeNumber} = props;
 
 	const inputElement = useRef<HTMLInputElement | null>(null);
-	const maskInstance = useRef<Inputmask.Instance | null>(null);
+	const maskInstance = useRef<InputMask.Instance | null>(null);
 
 	// set the adjCurrency
 	// let adjCurrency = Money.CAD;
@@ -61,8 +61,7 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 				if (onChange) onChange(toMoney(inputElement.current?.value, currencyCode));
 			},
 		});
-		// @ts-ignore We just created the instance but typescript can't figure it out. -mk
-		maskInstance.current.mask(inputElement.current);
+		maskInstance.current?.mask(inputElement.current);
 
 		return () => {
 			if (maskInstance.current) {
@@ -71,7 +70,6 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 				maskInstance.current = null;
 			}
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currencyCode, prefix, showPrefix, wholeNumber]);
 
 	const setVal = useCallback<SetValueFn>(

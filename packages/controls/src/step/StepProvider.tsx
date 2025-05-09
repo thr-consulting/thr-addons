@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import debug from 'debug';
 import {cloneElement, Children, useMemo, useState} from 'react';
 import {Prompt} from 'react-router-dom';

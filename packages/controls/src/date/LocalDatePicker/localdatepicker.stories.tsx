@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import {LocalDate} from '@js-joda/core';
 import {useArgs} from '@storybook/client-api';
 import type {Meta, StoryFn} from '@storybook/react';

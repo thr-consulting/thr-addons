@@ -36,7 +36,6 @@ function TrashIcon({onClick}: {onClick: () => void}) {
 }
 
 export function WithHover() {
-	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
 	const [showDeleteModal, setShowDeleteModal] = useState(false);

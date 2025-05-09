@@ -1,6 +1,5 @@
 import {LocalDate} from '@js-joda/core';
 import {useArgs} from '@storybook/client-api';
-/* eslint-disable react-hooks/rules-of-hooks */
 import type {StoryFn, Meta} from '@storybook/react';
 import debug from 'debug';
 import 'react-datepicker/dist/react-datepicker.css';

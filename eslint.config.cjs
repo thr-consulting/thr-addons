@@ -16,4 +16,5 @@ const compat = new FlatCompat({
 
 module.exports = defineConfig([{
     extends: compat.extends("@thx/eslint-config-thx"),
+    ignores: ["./packages/eslint-config-thx/**"],
 }]);

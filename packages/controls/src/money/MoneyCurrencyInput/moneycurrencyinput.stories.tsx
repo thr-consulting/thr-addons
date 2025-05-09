@@ -13,7 +13,6 @@ export default {
 } as Meta;
 
 const t: StoryFn<typeof MoneyCurrencyInput> = args => {
-	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
 	return (

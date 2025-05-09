@@ -6,7 +6,7 @@ export class LocalTimeProperty extends Type {
 		try {
 			if (!value) return value;
 			return toSecondOfDay(value);
-		} catch (err) {
+		} catch {
 			throw ValidationError.invalidType(LocalTimeProperty, value, 'JS');
 		}
 	}
@@ -15,7 +15,7 @@ export class LocalTimeProperty extends Type {
 		try {
 			if (!value) return value;
 			return toLocalTime(value);
-		} catch (err) {
+		} catch {
 			throw ValidationError.invalidType(LocalTimeProperty, value, 'database');
 		}
 	}

@@ -1,5 +1,5 @@
-import type {Collection, JSCodeshift, TSPropertySignature, TSTypeAnnotation, TSTypeReference} from 'jscodeshift';
-import type { TSTypeKind } from 'ast-types/gen/kinds';
+import type {Collection, JSCodeshift, TSPropertySignature, TSTypeAnnotation} from 'jscodeshift';
+import type {TSTypeKind} from 'ast-types/gen/kinds';
 
 function makeTypeName(str: string) {
 	const a = /^(.*)(Query|Mutation|Subscription)$/.exec(str);
@@ -31,7 +31,11 @@ function isolateGraphqlReturnType(typeAnno: TSTypeAnnotation['typeAnnotation']):
 		}
 
 		const firstUnionMember = typeAnno.types[0];
-		if (firstUnionMember.type === 'TSTypeReference' && firstUnionMember.typeName.type === 'Identifier' && firstUnionMember.typeName.name === 'Array') {
+		if (
+			firstUnionMember.type === 'TSTypeReference' &&
+			firstUnionMember.typeName.type === 'Identifier' &&
+			firstUnionMember.typeName.name === 'Array'
+		) {
 			return isolateArrayType(firstUnionMember.typeParameters?.params[0]);
 		}
 		return firstUnionMember;
@@ -50,7 +54,11 @@ export function addCustomGraphqlType(root: Collection, j: JSCodeshift) {
 	const u = root.find(j.CallExpression).filter(v => {
 		if (v.node.callee.type === 'MemberExpression') {
 			if (v.node.callee.property.type === 'Identifier') {
-				return v.node.callee.property.name === 'useQuery' || v.node.callee.property.name === 'useMutation' || v.node.callee.property.name === 'useSubscription';
+				return (
+					v.node.callee.property.name === 'useQuery' ||
+					v.node.callee.property.name === 'useMutation' ||
+					v.node.callee.property.name === 'useSubscription'
+				);
 			}
 		}
 		return false;

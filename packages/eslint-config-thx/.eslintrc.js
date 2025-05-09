@@ -3,7 +3,3 @@ process.env.ESLINT_CONFIG_THX = JSON.stringify({
 	babel: false,
 	jest: false,
 });
-
-module.exports = {
-	extends: ['@thx/eslint-config-thx'],
-};

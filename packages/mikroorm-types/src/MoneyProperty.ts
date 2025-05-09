@@ -7,7 +7,7 @@ export class MoneyProperty extends Type {
 			if (!value) return value;
 			if (!isMoneyObject(value)) throw new Error();
 			return JSON.stringify(value);
-		} catch (err) {
+		} catch {
 			throw ValidationError.invalidType(MoneyProperty, value, 'JS');
 		}
 	}
@@ -16,7 +16,7 @@ export class MoneyProperty extends Type {
 		try {
 			if (!value) return value;
 			return toMoney(value);
-		} catch (err) {
+		} catch {
 			throw ValidationError.invalidType(MoneyProperty, value, 'database');
 		}
 	}
