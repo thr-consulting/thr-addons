@@ -224,20 +224,26 @@ export class Standard005 {
 	private generateZRecord(recordCount: number) {
 		const cAmount = this.send
 			? generateAmount(
-					this.send.transactions.reduce((memo, v) => {
-						return memo.add(v.amount);
-					}, new Money(0, this.currency)),
+					this.send.transactions.reduce(
+						(memo, v) => {
+							return memo.add(v.amount);
+						},
+						new Money(0, this.currency),
+					),
 					14,
-			  )
+				)
 			: generateNumber(0, 14);
 
 		const dAmount = this.receive
 			? generateAmount(
-					this.receive.transactions.reduce((memo, v) => {
-						return memo.add(v.amount);
-					}, new Money(0, this.currency)),
+					this.receive.transactions.reduce(
+						(memo, v) => {
+							return memo.add(v.amount);
+						},
+						new Money(0, this.currency),
+					),
 					14,
-			  )
+				)
 			: generateNumber(0, 14);
 
 		const data = [
