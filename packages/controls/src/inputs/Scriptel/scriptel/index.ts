@@ -43,10 +43,10 @@ function deviceConnected(msg: DeviceOpenResponse, socket: WebSocket, args: Scrip
 				penStyle: penStyle
 					? {
 							renderFunction: penStyle,
-					  }
+						}
 					: {
 							renderFunction: ScriptelPenStyle.Plain,
-					  },
+						},
 			},
 		}),
 	);
