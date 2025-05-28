@@ -1,12 +1,11 @@
-import type {ScriptelSchemaType} from '@thx/yup-types';
 import {Buffer} from 'node:buffer';
 import {Readable} from 'node:stream';
 import type {PDFDocument} from 'pdf-lib';
 import {getPdfDoc} from './getPdfDoc';
-import type {PdfInputType} from './types';
+import {PdfInputType, SignatureSchemaType} from './types';
 
 export interface PDFSignature {
-	signature: ScriptelSchemaType;
+	signature: SignatureSchemaType;
 	location: {
 		width?: number;
 		height?: number;
