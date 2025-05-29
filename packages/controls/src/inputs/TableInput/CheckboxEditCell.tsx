@@ -1,6 +1,6 @@
 import debug from 'debug';
 import {useState} from 'react';
-import {Checkbox, CheckboxProps} from 'semantic-ui-react';
+import {Checkbox, type CheckboxProps} from 'semantic-ui-react';
 import type {TableCellProps} from './TableInput';
 import type {AddRowOnTabIf} from './addRowOnTab';
 import {addRowOnTab} from './addRowOnTab';

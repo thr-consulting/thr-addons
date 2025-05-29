@@ -1,7 +1,7 @@
 import debug from 'debug';
 import {forwardRef, useImperativeHandle} from 'react';
 import type {InputProps} from 'semantic-ui-react';
-import {useMaskedInput, UseMaskedInputProps} from './useMaskedInput';
+import {useMaskedInput, type UseMaskedInputProps} from './useMaskedInput';
 
 const d = debug('thx.controls.inputs.MaskedInput');
 

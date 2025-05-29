@@ -1,7 +1,7 @@
 import flatten from 'flat';
-import {FormikValues, useFormik, FormikErrors, FormikTouched} from 'formik';
+import {type FormikValues, useFormik, type FormikErrors, type FormikTouched} from 'formik';
 import {get, property, uniq} from 'lodash-es';
-import {FormEvent, useEffect, useState} from 'react';
+import {type FormEvent, useEffect, useState} from 'react';
 import {Message, Segment} from 'semantic-ui-react';
 import type {TFormConfig} from './types';
 

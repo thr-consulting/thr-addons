@@ -1,6 +1,6 @@
 import {Readable} from 'stream';
 import toArray from 'stream-to-array';
-import unzipper, {OnFileCallback} from './unzipper';
+import unzipper, {type OnFileCallback} from './unzipper';
 
 // Zip file that contains a single file called 'sample.txt' with the text 'This is a sample file.\n'.
 const zipFileBuffer = Buffer.from([

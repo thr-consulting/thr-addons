@@ -1,7 +1,7 @@
 import {isString} from 'lodash-es';
 import {Buffer} from 'node:buffer';
 import {Readable} from 'node:stream';
-import {PDFDocument, PDFDropdown, PDFTextField} from 'pdf-lib';
+import {type PDFDocument, PDFDropdown, PDFTextField} from 'pdf-lib';
 import {getPdfDoc} from './getPdfDoc';
 import type {PdfInputType} from './types';
 
