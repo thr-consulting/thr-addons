@@ -7,6 +7,7 @@ const d = debug('thx.file-location.FileCleaner');
 /** Class that records written files and cleans up after */
 export class FileCleaner {
 	private _files: string[];
+
 	private _fileLocation: FileLocationInterface;
 
 	constructor(fileLocation: FileLocationInterface) {

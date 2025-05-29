@@ -23,7 +23,9 @@ interface ISharedCacheConstructor {
 
 export default class SharedCache {
 	private redis: Redis;
+
 	private readonly _expire: number | null;
+
 	private readonly prefix: string;
 
 	/**
@@ -112,7 +114,7 @@ export default class SharedCache {
 		try {
 			await scanAndDelete();
 			return true;
-		} catch (error) {
+		} catch {
 			return false;
 		}
 	}

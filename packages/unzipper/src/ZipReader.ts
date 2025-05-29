@@ -3,6 +3,7 @@ import {RandomAccessReader} from 'yauzl';
 
 export default class ZipReader extends RandomAccessReader {
 	private _fs: Volume;
+
 	private _file: string;
 
 	/**

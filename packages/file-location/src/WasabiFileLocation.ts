@@ -9,7 +9,9 @@ const d = debug('thx.file-location.WasabiFileLocation');
 
 export class WasabiFileLocation implements FileLocationInterface {
 	wasabi: AWS.S3;
+
 	bucket: string;
+
 	basePath: string;
 
 	constructor({

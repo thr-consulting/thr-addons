@@ -6,7 +6,7 @@ export class LocalDateProperty extends Type {
 		try {
 			if (!value) return value;
 			return toEpochDay(value);
-		} catch (err) {
+		} catch {
 			throw ValidationError.invalidType(LocalDateProperty, value, 'JS');
 		}
 	}
@@ -15,7 +15,7 @@ export class LocalDateProperty extends Type {
 		try {
 			if (!value) return value;
 			return toLocalDate(value);
-		} catch (err) {
+		} catch {
 			throw ValidationError.invalidType(LocalDateProperty, value, 'database');
 		}
 	}

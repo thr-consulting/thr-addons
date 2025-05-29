@@ -18,8 +18,8 @@ let config = {
 	extends: [
 		options.react && 'airbnb',
 		!options.react && 'airbnb-base',
-		options.typescript && options.react && 'airbnb-typescript',
-		options.typescript && !options.react && 'airbnb-typescript/base',
+		options.typescript && options.react && '@kesills/airbnb-typescript',
+		options.typescript && !options.react && '@kesills/airbnb-typescript/base',
 		options.react && 'plugin:react/recommended',
 		// Uses the recommended rules from the @typescript-eslint/eslint-plugin
 		options.typescript && 'plugin:@typescript-eslint/recommended',
@@ -57,7 +57,6 @@ let config = {
 		'import/no-named-default': 'off',
 		'import/no-default-export': 'off',
 		'unused-imports/no-unused-imports': 'error',
-		'unused-imports/no-unused-vars': ['error', {vars: 'all', varsIgnorePattern: 'd'}],
 	},
 };
 
@@ -86,6 +85,7 @@ if (options.typescript) {
 				fixStyle: 'inline-type-imports',
 			},
 		],
+		'@typescript-eslint/class-methods-use-this': ['off'],
 	});
 }
 

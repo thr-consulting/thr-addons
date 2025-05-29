@@ -10,6 +10,7 @@ const d = debug('thx.file-location.LocalFileLocation');
 
 export class LocalFileLocation implements FileLocationInterface {
 	_rootPath: string;
+
 	_publishUrl: string | undefined;
 
 	constructor({rootPath, publishUrl}: {rootPath: string; publishUrl?: string}) {

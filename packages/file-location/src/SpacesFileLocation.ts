@@ -9,7 +9,9 @@ const d = debug('thx.file-location.SpacesFileLocation');
 
 export class SpacesFileLocation implements FileLocationInterface {
 	spaces: AWS.S3;
+
 	bucket: string;
+
 	basePath: string;
 
 	constructor({
