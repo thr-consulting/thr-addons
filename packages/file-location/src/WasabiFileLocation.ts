@@ -39,7 +39,7 @@ export class WasabiFileLocation implements FileLocationInterface {
 		this.basePath = basePath || '';
 
 		// Create bucket if it doesn't exist
-		this.createBucket(this.bucket, 'private', true);
+		this.createBucket(this.bucket, 'private', true).catch(e => d(e));
 	}
 
 	/**

@@ -89,8 +89,8 @@ export function AddressEditForm(args: TFormConfig<AddressEditFormType>) {
 		...args,
 		initialValues: {line1: '', line2: ''},
 		validationSchema: addressEditFormValidation,
-		onSubmit(value, helpers) {
-			args.onSubmit(addressEditFormValidation.validateSync(value, {stripUnknown: true}), helpers);
+		async onSubmit(value, helpers) {
+			await args.onSubmit(addressEditFormValidation.validateSync(value, {stripUnknown: true}), helpers);
 		},
 	});
 

@@ -16,7 +16,7 @@ export class LocalFileLocation implements FileLocationInterface {
 		this._rootPath = path.resolve(rootPath);
 		this._publishUrl = publishUrl;
 
-		mkdirp(this._rootPath);
+		mkdirp(this._rootPath).catch(e => d(e));
 	}
 
 	async createBucket() {
