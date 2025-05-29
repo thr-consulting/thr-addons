@@ -14,7 +14,7 @@ if (process.env.ESLINT_CONFIG_THX) {
 }
 
 let config = {
-	plugins: [options.jest && 'jest', options.react && 'react-hooks', options.typescript && '@typescript-eslint'].filter(Boolean),
+	plugins: ['unused-imports', options.jest && 'jest', options.react && 'react-hooks', options.typescript && '@typescript-eslint'].filter(Boolean),
 	extends: [
 		options.react && 'airbnb',
 		!options.react && 'airbnb-base',
@@ -56,6 +56,8 @@ let config = {
 		'import/extensions': 'off',
 		'import/no-named-default': 'off',
 		'import/no-default-export': 'off',
+		'unused-imports/no-unused-imports': 'error',
+		'unused-imports/no-unused-vars': ['error', {vars: 'all', varsIgnorePattern: 'd'}],
 	},
 };
 
@@ -76,6 +78,14 @@ if (options.typescript) {
 		'@typescript-eslint/interface-name-prefix': ['off'],
 		'@typescript-eslint/no-before-define': ['off'], // This was disabled to support optional chaining: https://github.com/typescript-eslint/typescript-eslint/issues/1116
 		'@typescript-eslint/explicit-module-boundary-types': ['off'],
+		'@typescript-eslint/no-floating-promises': 'error',
+		'@typescript-eslint/await-thenable': 'error',
+		'@typescript-eslint/consistent-type-imports': [
+			'error',
+			{
+				fixStyle: 'inline-type-imports',
+			},
+		],
 	});
 }
 
