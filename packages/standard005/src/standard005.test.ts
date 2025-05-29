@@ -1,6 +1,7 @@
 import {LocalDate} from '@js-joda/core';
 import {toMoney} from '@thx/money';
 import Money from 'js-money';
+import {expect} from 'chai';
 import {Standard005} from './Standard005';
 import {TransactionType} from './TransactionType';
 import type {Receive, Send} from './types';
@@ -62,35 +63,6 @@ const con3 = {
 		},
 	},
 };
-// const con4 = {
-// 	dataCentreId: 47861,
-// 	fileCreationNum: 5874,
-// 	currency: Money.CAD,
-// 	originator: {
-// 		id: 5874196328,
-// 		longName: 'Test Company',
-// 		shortName: 'Test',
-// 		userId: 'FJVB3483',
-// 	},
-// 	send: {
-// 		returns: {
-// 			accountNum: '487518496458',
-// 			institution: {
-// 				transit: 33322,
-// 				route: 323,
-// 			},
-// 		},
-// 	},
-// 	receive: {
-// 		returns: {
-// 			accountNum: '784561585487',
-// 			institution: {
-// 				transit: 84667,
-// 				route: 589,
-// 			},
-// 		},
-// 	},
-// };
 
 const target1 = {
 	name: 'John Doe',
@@ -214,8 +186,9 @@ describe('Standard005', () => {
 
 	it('should throw errors while constructing', () => {
 		expect(() => {
-			// eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
-			const s = new Standard005({
+			// @ts-ignore
+			// eslint-disable-next-line no-new
+			new Standard005({
 				dataCentreId: 12344564565,
 				fileCreationNum: 7879,
 				currency: Money.CAD,

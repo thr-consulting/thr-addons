@@ -10,7 +10,9 @@ interface OrderedDataLoaderOptions<K, V, C = K> extends DataLoader.Options<K, V,
 
 export default class OrderedDataLoader<K, V, C = K> {
 	private dataloader: DataLoader<K, V | undefined, C>;
+
 	private readonly batchLoadFn: DataLoader.BatchLoadFn<K, V>;
+
 	private options: OrderedDataLoaderOptions<K, V, C>;
 
 	constructor(findByIds: DataLoader.BatchLoadFn<K, V>, orderedDataLoaderOptions?: OrderedDataLoaderOptions<K, V, C>) {

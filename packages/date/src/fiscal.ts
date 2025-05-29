@@ -1,4 +1,4 @@
-import {LocalDate, Period, TemporalAdjusters} from '@js-joda/core';
+import {type LocalDate, Period} from '@js-joda/core';
 
 export enum PeriodEnum {
 	'Yearly' = 'yearly',

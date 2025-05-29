@@ -4,7 +4,7 @@ import type {StoryFn, Meta} from '@storybook/react';
 import debug from 'debug';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../DatePicker/styles.css';
-import {MaskedTimeInput, MaskedTimeInputValue} from './MaskedTimeInput';
+import {MaskedTimeInput, type MaskedTimeInputValue} from './MaskedTimeInput';
 
 const d = debug('thx.controls.date.LocalTimePicker.maskedtimeinput.stories');
 

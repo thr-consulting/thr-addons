@@ -2,7 +2,7 @@ import {Buffer} from 'node:buffer';
 import {Readable} from 'node:stream';
 import type {PDFDocument} from 'pdf-lib';
 import {getPdfDoc} from './getPdfDoc';
-import {PdfInputType, SignatureSchemaType} from './types';
+import {type PdfInputType, type SignatureSchemaType} from './types';
 
 export interface PDFSignature {
 	signature: SignatureSchemaType;

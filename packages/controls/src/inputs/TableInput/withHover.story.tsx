@@ -2,7 +2,7 @@ import {useArgs} from '@storybook/client-api';
 import {toMoney} from '@thx/money';
 import debug from 'debug';
 import type Money from 'js-money';
-import {useMemo, useState, MouseEvent} from 'react';
+import {useMemo, useState, type MouseEvent} from 'react';
 import {Button, Grid, Icon, Modal} from 'semantic-ui-react';
 import {TForm} from '../../form/TForm';
 import {DropdownCell} from './DropdownCell';

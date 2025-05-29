@@ -11,8 +11,7 @@ export function DropdownCell<D extends Record<string, unknown>>(dropdownProps: D
 			updateData,
 		} = props;
 
-		// eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
-		const {value: v, onChange, ...rest} = dropdownProps;
+		const {onChange, ...rest} = dropdownProps;
 
 		return (
 			<Dropdown

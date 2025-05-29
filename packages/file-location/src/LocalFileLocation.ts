@@ -10,13 +10,14 @@ const d = debug('thx.file-location.LocalFileLocation');
 
 export class LocalFileLocation implements FileLocationInterface {
 	_rootPath: string;
+
 	_publishUrl: string | undefined;
 
 	constructor({rootPath, publishUrl}: {rootPath: string; publishUrl?: string}) {
 		this._rootPath = path.resolve(rootPath);
 		this._publishUrl = publishUrl;
 
-		mkdirp(this._rootPath);
+		mkdirp(this._rootPath).catch(e => d(e));
 	}
 
 	async createBucket() {

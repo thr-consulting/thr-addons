@@ -1,5 +1,5 @@
 import debug from 'debug';
-import {FormikValues, isFunction, FormikProvider, isEmptyChildren} from 'formik';
+import {type FormikValues, isFunction, FormikProvider, isEmptyChildren} from 'formik';
 import {useImperativeHandle, Children, createElement} from 'react';
 import type {ReactNode} from 'react';
 import type {TFormConfig, TFormProps} from './types';

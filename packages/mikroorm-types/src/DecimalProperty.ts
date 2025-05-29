@@ -7,7 +7,7 @@ export class DecimalProperty extends Type {
 			const number = parseFloat(value);
 			if (Number.isNaN(number)) throw new Error();
 			return JSON.stringify(number);
-		} catch (err) {
+		} catch {
 			throw ValidationError.invalidType(DecimalProperty, value, 'JS');
 		}
 	}
@@ -18,7 +18,7 @@ export class DecimalProperty extends Type {
 			const number = parseFloat(value);
 			if (Number.isNaN(number)) throw new Error();
 			return number;
-		} catch (err) {
+		} catch {
 			throw ValidationError.invalidType(DecimalProperty, value, 'database');
 		}
 	}

@@ -9,7 +9,9 @@ const d = debug('thx.file-location.SpacesFileLocation');
 
 export class SpacesFileLocation implements FileLocationInterface {
 	spaces: AWS.S3;
+
 	bucket: string;
+
 	basePath: string;
 
 	constructor({
@@ -39,7 +41,7 @@ export class SpacesFileLocation implements FileLocationInterface {
 		this.basePath = basePath || '';
 
 		// Create bucket if it doesn't exist
-		this.createBucket(this.bucket, 'private', true);
+		this.createBucket(this.bucket, 'private', true).catch(e => d(e));
 	}
 
 	/**

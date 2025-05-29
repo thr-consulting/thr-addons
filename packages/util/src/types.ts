@@ -6,7 +6,7 @@ export type TypeOfPromise<T> = T extends Promise<infer U> ? U : never;
 /*
 	Like the Partial<> type but travels down the tree.
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line ,@typescript-eslint/no-unsafe-function-type,@typescript-eslint/no-unsafe-function-type
 export type DeepPartial<T> = T extends Function ? T : T extends Record<string, unknown> ? {[P in keyof T]?: DeepPartial<T[P]>} : T;
 
 /*

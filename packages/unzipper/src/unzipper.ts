@@ -58,9 +58,13 @@ export default function unzipper(zipReadStream: Readable, onFile: OnFileCallback
 								onFile({
 									stream: zipEntryFileReadStream,
 									filename: path.basename(entry.fileName),
-								}).then(() => {
-									zipfile.readEntry();
-								});
+								})
+									.then(() => {
+										zipfile.readEntry();
+									})
+									.catch(e => {
+										throw new Error(e);
+									});
 							});
 						}
 					});

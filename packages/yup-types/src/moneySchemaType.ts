@@ -1,6 +1,6 @@
 import {isMoneyObject, toMoney} from '@thx/money';
 import Money from 'js-money';
-import {MixedSchema, addMethod} from 'yup';
+import {MixedSchema} from 'yup';
 import type {Maybe} from 'yup/lib/types';
 
 class MoneySchemaType extends MixedSchema<Money> {

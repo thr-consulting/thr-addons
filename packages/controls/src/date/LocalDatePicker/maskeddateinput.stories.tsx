@@ -2,7 +2,7 @@ import {useArgs} from '@storybook/client-api';
 import type {Meta} from '@storybook/react';
 import {useRef} from 'react';
 import {Button} from 'semantic-ui-react';
-import {MaskedDateInput, MaskedDateInputRef, MaskedDateInputValue} from './MaskedDateInput';
+import {MaskedDateInput, type MaskedDateInputRef, type MaskedDateInputValue} from './MaskedDateInput';
 
 export default {
 	title: 'Date/MaskedDateInput',

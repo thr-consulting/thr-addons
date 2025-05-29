@@ -23,17 +23,24 @@ interface Standard005Constructor {
 
 export class Standard005 {
 	private readonly currency: CurrencyString;
+
 	private originator: Originator;
+
 	private readonly fileCreationNum: number;
+
 	private readonly fileCreationDate = LocalDate.now();
+
 	private readonly dueDate: LocalDate;
+
 	private readonly dataCentreId: number;
+
 	private readonly send:
 		| {
 				returns: Returns;
 				transactions: Send[];
 		  }
 		| undefined;
+
 	private readonly receive:
 		| {
 				returns: Returns;

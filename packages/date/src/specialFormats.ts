@@ -1,4 +1,4 @@
-import {ChronoField, LocalTime} from '@js-joda/core';
+import {ChronoField, type LocalTime} from '@js-joda/core';
 
 interface TimeOfDay {
 	time: string;
