@@ -3113,20 +3113,20 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@js-joda/core@^5.1.0", "@js-joda/core@^5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@js-joda/core/-/core-5.2.0.tgz#fcebb14cffbf25adaaeec20d4579530e896ecd4a"
-  integrity sha512-0OriPYIaMLB3XiLQMe0BXKVIqeriTn3H7JMOzTsHEtt7Zqq+TetCu97KnAhU3ckiQZKBxfZshft+H1OC4D1lXw==
+"@js-joda/core@^5.6.5":
+  version "5.6.5"
+  resolved "https://registry.yarnpkg.com/@js-joda/core/-/core-5.6.5.tgz#c766894b49eb8044480b91625fb7dc370e8182ef"
+  integrity sha512-3zwefSMwHpu8iVUW8YYz227sIv6UFqO31p1Bf1ZH/Vom7CmNyUsXjDBlnNzcuhmOL1XfxZ3nvND42kR23XlbcQ==
 
-"@js-joda/locale_en@^4.7.0":
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/@js-joda/locale_en/-/locale_en-4.7.0.tgz#f6ab26bd7fccba053c865c447c2d634b04e4f0d1"
-  integrity sha512-FPoc0Y8ClxOzQSY8sq75DmlVcwKNxzbYxV/Ermf4f+5vY/0WdYb51jLvlQJTxhKQO0nmQ8Bf6Og7pbrUHFfTTQ==
+"@js-joda/locale_en@^4.15.1":
+  version "4.15.1"
+  resolved "https://registry.yarnpkg.com/@js-joda/locale_en/-/locale_en-4.15.1.tgz#9c51609b8eaaf8e4b5731a50b944a3786e5f5716"
+  integrity sha512-HgjN66i+8tAL9VSb8Gu6C5rPnFrB/AI5qrm8ykt80Nr158KB9QGgBWpF2ikZz4xjRtJfOGr1CrdSCbpwNcbRdg==
 
-"@js-joda/timezone@^2.12.0":
-  version "2.12.0"
-  resolved "https://registry.yarnpkg.com/@js-joda/timezone/-/timezone-2.12.0.tgz#a0b89ec5b4b2a53c0837f0308503ba5ecc8abc5f"
-  integrity sha512-1bpkGU3bh80wqR1TCpMXpgpwVs7RpIkYmq75JIGl+NRFIKEhE3qHYBtS4EFSAkVxCTZSj6b9dolr8ijq36GJEQ==
+"@js-joda/timezone@^2.22.0":
+  version "2.22.0"
+  resolved "https://registry.yarnpkg.com/@js-joda/timezone/-/timezone-2.22.0.tgz#dc0eea2b33c6bac4404240ce91095573543f5d3e"
+  integrity sha512-9UNXxEztbcofD6XvV7xPrbzB2nE/AWaHr/XfugRZgVqg2vCZOVPnD8QI7GW164EFIWMw0c97Gs6STJ5dh0J99Q==
 
 "@juggle/resize-observer@^3.3.1":
   version "3.4.0"

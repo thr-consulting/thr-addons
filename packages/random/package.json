@@ -32,7 +32,7 @@
 		}
 	},
 	"dependencies": {
-		"@js-joda/core": "^5.2.0",
+		"@js-joda/core": "^5.6.5",
 		"@thx/date": "^17.3.1",
 		"nanoid": "^3.2.0"
 	},
