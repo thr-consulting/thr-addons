@@ -1,6 +1,6 @@
 {
 	"name": "@thx/codegen",
-	"version": "17.2.1",
+	"version": "17.3.3",
 	"description": "Dev tool for mapping graphql to code",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
