@@ -160,18 +160,27 @@ if [ "$LR" = "$PWD" ]; then
   fi
 
   # Generate TS code with codegen in each package
-  if [ "$IS_DEBUG" = "1" ]; then
-    op "Generating TS code from graphql schema"
-    yarn -s lerna run codegen
+  CHANGED_GRAPHQL_FILES=$(git diff --name-only master -- '*.graphql' | grep "^${PACKAGE_DIR}/" || true)
+
+  if [ -z "$CHANGED_GRAPHQL_FILES" ]; then
+    echo "No changed .graphql files detected from master. Skipping codegen."
   else
-    coproc bfd { yarn -s lerna run codegen 2>&1; }
-    exec 3>&${bfd[0]}
-    spinner "$!" "Generating TS code from graphql schema"
-    ret="$?"
-    if [ "$ret" -ne "0" ]; then
-      IFS= read -d '' -u 3 O
-      printf "\n%s\n" "${O}"
-      exit $ret
+    echo "Changed .graphql files detected:"
+    echo "$CHANGED_GRAPHQL_FILES"
+
+    if [ "$IS_DEBUG" = "1" ]; then
+      op "Generating TS code from graphql schema on changed .graphql files"
+      yarn graphql-codegen --config codegen.yml --files $CHANGED_GRAPHQL_FILES
+    else
+      coproc bfd { yarn graphql-codegen --config codegen.yml --files $CHANGED_GRAPHQL_FILES 2>&1; }
+      exec 3>&${bfd[0]}
+      spinner "$!" "Generating TS code from graphql schema on changed .graphql files"
+      ret="$?"
+      if [ "$ret" -ne "0" ]; then
+        IFS= read -d '' -u 3 O
+        printf "\n%s\n" "${O}"
+        exit $ret
+      fi
     fi
   fi
 
