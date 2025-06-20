@@ -159,6 +159,31 @@ if [ "$LR" = "$PWD" ]; then
     fi
   fi
 
+  op "Checking for duplicate graphql definitions"
+
+  TMP_DEF_LIST=$(mktemp)
+  find "$PACKAGE_DIR" -type f \( -name "*.graphqls" -o -name "*.graphql" \) | while read -r file; do
+    grep -E '^(type|enum|input|scalar|interface) ' "$file" | awk -v f="$file" '{ print $2 "|" f }'
+  done >> "$TMP_DEF_LIST"
+
+  DUPLICATES=$(cut -d'|' -f1 "$TMP_DEF_LIST" | sort | uniq -d)
+
+  if [ -n "$DUPLICATES" ]; then
+    echo " * Duplicate GraphQL definitions detected:"
+    while IFS= read -r type; do
+      echo "   - $type:"
+      grep "^$type|" "$TMP_DEF_LIST" | cut -d'|' -f2 | sed 's/^/       • /'
+    done <<< "$DUPLICATES"
+    echo ""
+    echo "* Please ensure each type/enum/input/etc. is defined only once across all .graphqls files."
+    rm "$TMP_DEF_LIST"
+    exit 1
+  else
+  op " * None found!"
+  fi
+
+  rm "$TMP_DEF_LIST"
+
   # Generate TS code with codegen in each package
   if [ "$IS_DEBUG" = "1" ]; then
     op "Generating TS code from graphql schema"
