@@ -159,30 +159,39 @@ if [ "$LR" = "$PWD" ]; then
     fi
   fi
 
-  op "Checking for duplicate graphql definitions"
+  op "Checking for duplicate GraphQL definitions"
 
   TMP_DEF_LIST=$(mktemp)
+  DUP_LOG_FILE=$(mktemp)
+
+  # Collect all type-like declarations into a temp file
   find "$PACKAGE_DIR" -type f \( -name "*.graphqls" -o -name "*.graphql" \) | while read -r file; do
     grep -E '^(type|enum|input|scalar|interface) ' "$file" | awk -v f="$file" '{ print $2 "|" f }'
   done >> "$TMP_DEF_LIST"
 
+  # Extract duplicates
   DUPLICATES=$(cut -d'|' -f1 "$TMP_DEF_LIST" | sort | uniq -d)
 
   if [ -n "$DUPLICATES" ]; then
-    echo " * Duplicate GraphQL definitions detected:"
-    while IFS= read -r type; do
-      echo "   - $type:"
-      grep "^$type|" "$TMP_DEF_LIST" | cut -d'|' -f2 | sed 's/^/       • /'
-    done <<< "$DUPLICATES"
-    echo ""
-    echo "* Please ensure each type/enum/input/etc. is defined only once across all .graphqls files."
-    rm "$TMP_DEF_LIST"
+    {
+      echo "❌ Duplicate GraphQL definitions detected:"
+      echo ""
+      while IFS= read -r type; do
+        echo " • $type"
+        grep "^$type|" "$TMP_DEF_LIST" | cut -d'|' -f2 | sed 's/^/    ↳ /'
+        echo ""
+      done <<< "$DUPLICATES"
+      echo "Please ensure each type/enum/input/etc. is defined only once across all .graphql(s) files."
+    } > "$DUP_LOG_FILE"
+
+    # Display with spinner-like style
+    cat "$DUP_LOG_FILE"
+    rm "$TMP_DEF_LIST" "$DUP_LOG_FILE"
     exit 1
   else
-  op " * None found!"
+    echo "✅ No duplicate GraphQL definitions found!"
+    rm "$TMP_DEF_LIST" "$DUP_LOG_FILE"
   fi
-
-  rm "$TMP_DEF_LIST"
 
   # Generate TS code with codegen in each package
   if [ "$IS_DEBUG" = "1" ]; then
@@ -217,14 +226,14 @@ if [ "$LR" = "$PWD" ]; then
   fi
 
   # Run lint.fix per package with timings
-  op "Running lint fix per package with timings"
+  op "Running lint fix"
 
   IFS=',' read -ra PKG_ARR <<< "$PKG_CODEGEN_NAMES"
 
   for pkg in "${PKG_ARR[@]}"; do
     full_scope="@${SCOPE}/${pkg}"
 
-    echo "⏳ Starting lint.fix for package: $full_scope"
+    echo "$full_scope - Running..."
     START_TIME=$(date +%s)
 
     LOG_FILE=$(mktemp)
@@ -235,14 +244,14 @@ if [ "$LR" = "$PWD" ]; then
     DURATION=$((END_TIME - START_TIME))
 
     if [ "$ret" -ne 0 ]; then
-      echo "❌ Lint fix failed for package: $full_scope (took ${DURATION}s)"
+      echo "❌ $full_scope - Failed (took ${DURATION}s)"
       echo "---- Output ----"
       cat "$LOG_FILE"
       echo "----------------"
       rm "$LOG_FILE"
       exit $ret
     else
-      echo "✅ Lint fix succeeded for package: $full_scope (took ${DURATION}s)"
+      echo "✅ $full_scope Completed - (took ${DURATION}s)"
     fi
 
     rm "$LOG_FILE"
