@@ -189,7 +189,7 @@ if [ "$LR" = "$PWD" ]; then
     rm "$TMP_DEF_LIST" "$DUP_LOG_FILE"
     exit 1
   else
-    echo "✅ No duplicate GraphQL definitions found!"
+    echo " * None found!"
     rm "$TMP_DEF_LIST" "$DUP_LOG_FILE"
   fi
 
@@ -233,7 +233,7 @@ if [ "$LR" = "$PWD" ]; then
   for pkg in "${PKG_ARR[@]}"; do
     full_scope="@${SCOPE}/${pkg}"
 
-    echo "$full_scope - Running..."
+    echo " * $full_scope - Running..."
     START_TIME=$(date +%s)
 
     LOG_FILE=$(mktemp)
@@ -244,14 +244,14 @@ if [ "$LR" = "$PWD" ]; then
     DURATION=$((END_TIME - START_TIME))
 
     if [ "$ret" -ne 0 ]; then
-      echo "❌ $full_scope - Failed (took ${DURATION}s)"
+      echo " * $full_scope - Failed (took ${DURATION}s)"
       echo "---- Output ----"
       cat "$LOG_FILE"
       echo "----------------"
       rm "$LOG_FILE"
       exit $ret
     else
-      echo "✅ $full_scope Completed - (took ${DURATION}s)"
+      echo " * $full_scope - Completed (took ${DURATION}s)"
     fi
 
     rm "$LOG_FILE"
