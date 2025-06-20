@@ -65,7 +65,7 @@ IGNORE_DIRS=""
 SRC="src"
 LR=$(get_lerna_root)
 
-while getopts "h?vp:e:s:i:" opt; do
+while getopts "h?vp:e:s:i:r:" opt; do
 	case "$opt" in
 	h|\?)
 		show_help
@@ -80,6 +80,8 @@ while getopts "h?vp:e:s:i:" opt; do
 	s)  SCOPE=$OPTARG
 	  ;;
 	i)  IGNORE_DIRS=$OPTARG
+	  ;;
+	r)  SRC=$OPTARG
 	  ;;
 	esac
 done
@@ -189,21 +191,37 @@ if [ "$LR" = "$PWD" ]; then
     fi
   fi
 
-  # Run lint.fix
-  if [ "$IS_DEBUG" = "1" ]; then
-    op "Running lint fix in: ${PKG_CODEGEN_NAMES}"
-    yarn lerna run lint.fix --scope "@${SCOPE}/{${PKG_CODEGEN_NAMES}}"
-  else
-    coproc bfd { yarn lerna run lint.fix --scope "@${SCOPE}/{${PKG_CODEGEN_NAMES}}" 2>&1; }
-    exec 3>&${bfd[0]}
-    spinner "$!" "Running lint fix in: ${PKG_CODEGEN_NAMES}"
+  # Run lint.fix per package with timings
+  op "Running lint fix per package with timings"
+
+  IFS=',' read -ra PKG_ARR <<< "$PKG_CODEGEN_NAMES"
+
+  for pkg in "${PKG_ARR[@]}"; do
+    full_scope="@${SCOPE}/${pkg}"
+
+    echo "⏳ Starting lint.fix for package: $full_scope"
+    START_TIME=$(date +%s)
+
+    LOG_FILE=$(mktemp)
+    yarn lerna run lint.fix --scope "$full_scope" &> "$LOG_FILE"
     ret="$?"
-    if [ "$ret" -ne "0" ]; then
-      IFS= read -d '' -u 3 O
-      printf "\n%s\n" "${O}"
+
+    END_TIME=$(date +%s)
+    DURATION=$((END_TIME - START_TIME))
+
+    if [ "$ret" -ne 0 ]; then
+      echo "❌ Lint fix failed for package: $full_scope (took ${DURATION}s)"
+      echo "---- Output ----"
+      cat "$LOG_FILE"
+      echo "----------------"
+      rm "$LOG_FILE"
       exit $ret
+    else
+      echo "✅ Lint fix succeeded for package: $full_scope (took ${DURATION}s)"
     fi
-  fi
+
+    rm "$LOG_FILE"
+  done
 
   # Remove tmp file
   rm -f /tmp/imp_codegen_entity_map.txt
