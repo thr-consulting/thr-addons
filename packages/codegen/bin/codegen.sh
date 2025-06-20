@@ -40,6 +40,19 @@ get_thxcodegen_dir () {
 }
 THXCODEGEN_DIR=$(get_thxcodegen_dir)
 
+# Get all changed files since origin/master
+CHANGED_FILES=$(git diff --name-only origin/master)
+
+# Filter changed graphql files
+CHANGED_GRAPHQL_FILES=$(echo "$CHANGED_FILES" | grep -E '\.graphql$' || true)
+
+if [ -z "$CHANGED_GRAPHQL_FILES" ]; then
+  RUN_CODEGEN=0
+else
+  RUN_CODEGEN=1
+fi
+
+
 show_help () {
   printf "${LCYAN}Thx Codegen Script${NC}\n\n"
   printf "Usage:  thx.codegen [OPTIONS]\n\n"
@@ -160,19 +173,23 @@ if [ "$LR" = "$PWD" ]; then
   fi
 
   # Generate TS code with codegen in each package
-  if [ "$IS_DEBUG" = "1" ]; then
-    op "Generating TS code from graphql schema"
-    yarn -s lerna run codegen
-  else
-    coproc bfd { yarn -s lerna run codegen 2>&1; }
-    exec 3>&${bfd[0]}
-    spinner "$!" "Generating TS code from graphql schema"
-    ret="$?"
-    if [ "$ret" -ne "0" ]; then
-      IFS= read -d '' -u 3 O
-      printf "\n%s\n" "${O}"
-      exit $ret
+  if [ "$RUN_CODEGEN" -eq 1 ]; then
+    if [ "$IS_DEBUG" = "1" ]; then
+      op "Generating TS code from graphql schema"
+      yarn -s lerna run codegen
+    else
+      coproc bfd { yarn -s lerna run codegen 2>&1; }
+      exec 3>&${bfd[0]}
+      spinner "$!" "Generating TS code from graphql schema"
+      ret="$?"
+      if [ "$ret" -ne "0" ]; then
+        IFS= read -d '' -u 3 O
+        printf "\n%s\n" "${O}"
+        exit $ret
+      fi
     fi
+  else
+    echo "Skipping codegen because no changed graphql files."
   fi
 
   # Create enums, fix imports, sort imports
@@ -192,14 +209,14 @@ if [ "$LR" = "$PWD" ]; then
   fi
 
   # Run lint.fix per package with timings
-  op "Running lint fix per package with timings"
+  op "Running lint fix:"
 
   IFS=',' read -ra PKG_ARR <<< "$PKG_CODEGEN_NAMES"
 
   for pkg in "${PKG_ARR[@]}"; do
     full_scope="@${SCOPE}/${pkg}"
 
-    echo "⏳ Starting lint.fix for package: $full_scope"
+    echo "⏳ Package: $full_scope - Running"
     START_TIME=$(date +%s)
 
     LOG_FILE=$(mktemp)
@@ -210,14 +227,14 @@ if [ "$LR" = "$PWD" ]; then
     DURATION=$((END_TIME - START_TIME))
 
     if [ "$ret" -ne 0 ]; then
-      echo "❌ Lint fix failed for package: $full_scope (took ${DURATION}s)"
+      echo "⏳ Package: $full_scope - Failed (${DURATION}s)"
       echo "---- Output ----"
       cat "$LOG_FILE"
       echo "----------------"
       rm "$LOG_FILE"
       exit $ret
     else
-      echo "✅ Lint fix succeeded for package: $full_scope (took ${DURATION}s)"
+      echo "⏳ Package: $full_scope - Completed (${DURATION}s)"
     fi
 
     rm "$LOG_FILE"
