@@ -65,7 +65,7 @@ IGNORE_DIRS=""
 SRC="src"
 LR=$(get_lerna_root)
 
-while getopts "h?vp:e:s:i:" opt; do
+while getopts "h?vp:e:s:i:r:" opt; do
 	case "$opt" in
 	h|\?)
 		show_help
@@ -80,6 +80,8 @@ while getopts "h?vp:e:s:i:" opt; do
 	s)  SCOPE=$OPTARG
 	  ;;
 	i)  IGNORE_DIRS=$OPTARG
+	  ;;
+	r)  SRC=$OPTARG
 	  ;;
 	esac
 done
@@ -157,6 +159,40 @@ if [ "$LR" = "$PWD" ]; then
     fi
   fi
 
+  op "Checking for duplicate GraphQL definitions"
+
+  TMP_DEF_LIST=$(mktemp)
+  DUP_LOG_FILE=$(mktemp)
+
+  # Collect all type-like declarations into a temp file
+  find "$PACKAGE_DIR" -type f \( -name "*.graphqls" -o -name "*.graphql" \) | while read -r file; do
+    grep -E '^(type|enum|input|scalar|interface) ' "$file" | awk -v f="$file" '{ print $2 "|" f }'
+  done >> "$TMP_DEF_LIST"
+
+  # Extract duplicates
+  DUPLICATES=$(cut -d'|' -f1 "$TMP_DEF_LIST" | sort | uniq -d)
+
+  if [ -n "$DUPLICATES" ]; then
+    {
+      echo "❌ Duplicate GraphQL definitions detected:"
+      echo ""
+      while IFS= read -r type; do
+        echo " • $type"
+        grep "^$type|" "$TMP_DEF_LIST" | cut -d'|' -f2 | sed 's/^/    ↳ /'
+        echo ""
+      done <<< "$DUPLICATES"
+      echo "Please ensure each type/enum/input/etc. is defined only once across all .graphql(s) files."
+    } > "$DUP_LOG_FILE"
+
+    # Display with spinner-like style
+    cat "$DUP_LOG_FILE"
+    rm "$TMP_DEF_LIST" "$DUP_LOG_FILE"
+    exit 1
+  else
+    echo " * None found!"
+    rm "$TMP_DEF_LIST" "$DUP_LOG_FILE"
+  fi
+
   # Generate TS code with codegen in each package
   if [ "$IS_DEBUG" = "1" ]; then
     op "Generating TS code from graphql schema"
@@ -189,21 +225,37 @@ if [ "$LR" = "$PWD" ]; then
     fi
   fi
 
-  # Run lint.fix
-  if [ "$IS_DEBUG" = "1" ]; then
-    op "Running lint fix in: ${PKG_CODEGEN_NAMES}"
-    yarn lerna run lint.fix --scope "@${SCOPE}/{${PKG_CODEGEN_NAMES}}"
-  else
-    coproc bfd { yarn lerna run lint.fix --scope "@${SCOPE}/{${PKG_CODEGEN_NAMES}}" 2>&1; }
-    exec 3>&${bfd[0]}
-    spinner "$!" "Running lint fix in: ${PKG_CODEGEN_NAMES}"
+  # Run lint.fix per package with timings
+  op "Running lint fix"
+
+  IFS=',' read -ra PKG_ARR <<< "$PKG_CODEGEN_NAMES"
+
+  for pkg in "${PKG_ARR[@]}"; do
+    full_scope="@${SCOPE}/${pkg}"
+
+    echo " * $full_scope - Running..."
+    START_TIME=$(date +%s)
+
+    LOG_FILE=$(mktemp)
+    yarn lerna run lint.fix --scope "$full_scope" &> "$LOG_FILE"
     ret="$?"
-    if [ "$ret" -ne "0" ]; then
-      IFS= read -d '' -u 3 O
-      printf "\n%s\n" "${O}"
+
+    END_TIME=$(date +%s)
+    DURATION=$((END_TIME - START_TIME))
+
+    if [ "$ret" -ne 0 ]; then
+      echo " * $full_scope - Failed (took ${DURATION}s)"
+      echo "---- Output ----"
+      cat "$LOG_FILE"
+      echo "----------------"
+      rm "$LOG_FILE"
       exit $ret
+    else
+      echo " * $full_scope - Completed (took ${DURATION}s)"
     fi
-  fi
+
+    rm "$LOG_FILE"
+  done
 
   # Remove tmp file
   rm -f /tmp/imp_codegen_entity_map.txt
