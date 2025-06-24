@@ -5,7 +5,7 @@
     "url": "https://github.com/thr-consulting/thr-addons.git"
   },
   "license": "MIT",
-  "author": "Mike Kornelson <darkadept@durbn.net>",
+  "author": "MYMC <tech@makingyourmilescount.com>",
   "workspaces": {
     "packages": [
       "packages/*"
