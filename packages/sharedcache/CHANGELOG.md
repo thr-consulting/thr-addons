@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.3.6](https://github.com/thr-consulting/thr-addons/compare/v17.3.5...v17.3.6) (2025-06-26)
+
+**Note:** Version bump only for package @thx/sharedcache
+
 ## [17.3.5](https://github.com/thr-consulting/thr-addons/compare/v17.3.4...v17.3.5) (2025-06-24)
 
 ### Features

@@ -1,6 +1,6 @@
 {
 	"name": "@thx/prettier-config-thx",
-	"version": "17.2.1",
+	"version": "17.3.6",
 	"description": "Prettier config",
 	"license": "MIT",
 	"sideEffects": false,

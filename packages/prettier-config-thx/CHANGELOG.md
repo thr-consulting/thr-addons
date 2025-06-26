@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.3.6](https://github.com/thr-consulting/thr-addons/compare/v17.3.5...v17.3.6) (2025-06-26)
+
+**Note:** Version bump only for package @thx/prettier-config-thx
+
 ## [17.2.1](https://github.com/thr-consulting/thr-addons/compare/v17.2.0...v17.2.1) (2025-05-07)
 
 **Note:** Version bump only for package @thx/prettier-config-thx
