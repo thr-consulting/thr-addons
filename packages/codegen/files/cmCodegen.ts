@@ -8,6 +8,7 @@ import {addCustomGraphqlType} from './lib/addCustomGraphqlType';
 import {renameAliasImports} from './lib/renameAliasImports';
 import {sortImports} from './lib/sortImports';
 import {fixDebugNamespace} from './lib/fixDebugNamespace';
+import {fixRepositorySuperName} from './lib/fixRepositorySuperName';
 
 export default function transform(fileInfo: FileInfo, api: API) {
 	const j = api.jscodeshift;
@@ -34,6 +35,7 @@ export default function transform(fileInfo: FileInfo, api: API) {
 	renameAliasImports(root, j, fileInfo);
 	sortImports(root, j);
 	fixDebugNamespace(root, j, fileInfo);
+	fixRepositorySuperName(root, j, fileInfo)
 
 	return root.toSource({quote: 'single'});
 }
