@@ -84,11 +84,10 @@ export function toLocalDate(date: any, zone: ZoneId = ZoneId.SYSTEM): LocalDate 
 		if (iso8601ContainsZone.test(date)) {
 			return ZonedDateTime.parse(date).toLocalDate();
 		}
-		const cleanedDate = date
-			.replace(' ', 'T') // make it ISO-style
-			.replace(/([+-]\d{2})(:?(\d{2}))?$/, ''); // strip timezone
+		// ISO compliance: replace ' ' with 'T' and '+00' with '+00:00'
+		const isoStr = date.replace(' ', 'T').replace(/\+(\d{2})$/, '+$1:00');
 
-		return LocalDateTime.parse(cleanedDate).toLocalDate();
+		return LocalDateTime.parse(isoStr).toLocalDate();
 	}
 	throw new Error('Cannot convert value to LocalDate');
 }
