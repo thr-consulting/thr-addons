@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.4.1](https://github.com/thr-consulting/thr-addons/compare/v17.4.0...v17.4.1) (2025-07-11)
+
+### Bug Fixes
+
+- date time parse ([42be41d](https://github.com/thr-consulting/thr-addons/commit/42be41d452cf753993e00ff239f855a7838fd57c))
+
 # [17.4.0](https://github.com/thr-consulting/thr-addons/compare/v17.3.7...v17.4.0) (2025-07-11)
 
 **Note:** Version bump only for package @thx/date
