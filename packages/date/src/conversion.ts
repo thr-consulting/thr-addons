@@ -161,7 +161,10 @@ export function toDate(date: any): Date {
 		return toDate(toLocalDate(date));
 	}
 	if (typeof date === 'string') {
-		return new Date(date);
+		// ISO compliance: replace ' ' with 'T' and '+00' with '+00:00'
+		const isoStr = date.replace(' ', 'T').replace(/\+(\d{2})$/, '+$1:00');
+
+		return new Date(isoStr);
 	}
 	throw new Error('Cannot convert value to Date');
 }
