@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.4.4](https://github.com/thr-consulting/thr-addons/compare/v17.4.3...v17.4.4) (2025-07-14)
+
+**Note:** Version bump only for package @thx/controls
+
 ## [17.4.3](https://github.com/thr-consulting/thr-addons/compare/v17.4.2...v17.4.3) (2025-07-14)
 
 **Note:** Version bump only for package @thx/controls
