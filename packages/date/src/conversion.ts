@@ -137,8 +137,7 @@ export function toLocalDateTime(date: any, zone: ZoneId = ZoneId.SYSTEM): LocalD
 		if (iso8601ContainsZone.test(date)) {
 			return ZonedDateTime.parse(date).toLocalDateTime();
 		}
-		// ISO compliance: replace ' ' with 'T' and '+00' with '+00:00'
-		const isoStr = date.replace(' ', 'T').replace(/\+(\d{2})$/, '+$1:00');
+		const isoStr = date.replace(' ', 'T').split('+')[0]; // => '2025-07-08T13:46:12'
 		return LocalDateTime.parse(isoStr);
 	}
 	throw new Error('Cannot convert value to LocalDateTime');
