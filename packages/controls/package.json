@@ -1,6 +1,6 @@
 {
 	"name": "@thx/controls",
-	"version": "17.4.1",
+	"version": "17.4.2",
 	"description": "A collection of components designed with SemanticUI.",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -31,7 +31,7 @@
 	},
 	"dependencies": {
 		"@js-joda/core": "^5.6.5",
-		"@thx/date": "^17.4.1",
+		"@thx/date": "^17.4.2",
 		"@thx/money": "^17.3.6",
 		"@types/inputmask": "^5.0.7",
 		"@types/react-datepicker": "^6.0.1",
