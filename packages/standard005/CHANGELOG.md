@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.0.0](https://github.com/thr-consulting/thr-addons/compare/v17.3.7...v18.0.0) (2025-07-15)
+
+**Note:** Version bump only for package @thx/standard005
+
 ## [17.3.6](https://github.com/thr-consulting/thr-addons/compare/v17.3.5...v17.3.6) (2025-06-26)
 
 **Note:** Version bump only for package @thx/standard005

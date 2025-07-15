@@ -1,6 +1,6 @@
 {
 	"name": "@thx/standard005",
-	"version": "17.3.6",
+	"version": "18.0.0",
 	"description": "Create Standard 005 files",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -34,8 +34,8 @@
 	},
 	"dependencies": {
 		"@js-joda/core": "^5.6.5",
-		"@thx/money": "^17.3.6",
-		"@thx/util": "^17.3.6",
+		"@thx/money": "^18.0.0",
+		"@thx/util": "^18.0.0",
 		"crc-32": "^1.2.1",
 		"js-money": "^0.6.3",
 		"lodash-es": "^4.17.21"
