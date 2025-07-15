@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.0.0](https://github.com/thr-consulting/thr-addons/compare/v17.3.7...v19.0.0) (2025-07-15)
+
+**Note:** Version bump only for package @thx/rollup-config-thx
+
 # [18.0.0](https://github.com/thr-consulting/thr-addons/compare/v17.3.7...v18.0.0) (2025-07-15)
 
 **Note:** Version bump only for package @thx/rollup-config-thx

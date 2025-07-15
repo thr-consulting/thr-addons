@@ -1,6 +1,6 @@
 {
 	"name": "@thx/rollup-config-thx",
-	"version": "18.0.0",
+	"version": "19.0.0",
 	"description": "Rollup Config for THX projects",
 	"license": "MIT",
 	"sideEffects": false,
