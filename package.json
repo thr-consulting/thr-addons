@@ -11,6 +11,10 @@
       "packages/*"
     ]
   },
+  "resolutions": {
+    "@babel/core": "^7.24.0",
+    "json5": "2.2.3"
+  },
   "scripts": {
     "build": "thx build",
     "ci": "thx ci",
