@@ -31,6 +31,9 @@
 			"project": "./tsconfig-eslint.json"
 		}
 	},
+        "devDependencies": {
+              "@thx/rollup-config-thx": "^17.0.0"
+        },
 	"engines": {
 		"node": ">=22"
 	},

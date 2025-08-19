@@ -28,6 +28,9 @@
 		"ts": "thx ts",
 		"typedoc": "typedoc"
 	},
+        "devDependencies": {
+              "@thx/rollup-config-thx": "^17.0.0"
+        },
 	"eslintConfig": {
 		"parserOptions": {
 			"project": "./tsconfig-eslint.json"

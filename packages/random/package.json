@@ -36,6 +36,9 @@
 		"@thx/date": "^19.0.0",
 		"nanoid": "^3.2.0"
 	},
+        "devDependencies": {
+              "@thx/rollup-config-thx": "^17.0.0"
+        },
 	"engines": {
 		"node": ">=22"
 	},
