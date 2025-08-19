@@ -1,6 +1,6 @@
 import {Buffer} from 'node:buffer';
 import {Readable} from 'node:stream';
-import {PDFDocument} from 'pdf-lib';
+import {PDFDocument, rgb} from 'pdf-lib';
 
 export interface SignatureSchemaType {
 	type: 'image/png' | 'image/jpeg' | 'image/svg+xml';
@@ -141,7 +141,7 @@ export async function signPdfDoc(srcPdf: PdfInputType, signature: PDFSignature[]
 						y: drawY,
 						width: finalWidth,
 						height: finalHeight,
-						borderColor: {type: 'RGB', red: 0.7, green: 0.7, blue: 0.7},
+						borderColor: rgb(0.7, 0.7, 0.7),
 						borderWidth: 0.5,
 						borderOpacity: 0.3,
 					});
@@ -166,7 +166,7 @@ export async function signPdfDoc(srcPdf: PdfInputType, signature: PDFSignature[]
 						y: drawY,
 						width: finalWidth,
 						height: finalHeight,
-						borderColor: {type: 'RGB', red: 0.7, green: 0.7, blue: 0.7},
+						borderColor: rgb(0.7, 0.7, 0.7),
 						borderWidth: 0.5,
 						borderOpacity: 0.3,
 					});

@@ -1,6 +1,7 @@
 import {LocalTime} from '@js-joda/core';
 import {toDate, toLocalTime} from '@thx/date';
 import debug from 'debug';
+import {type ReactElement} from 'react';
 import type {ReactDatePickerProps} from 'react-datepicker';
 import {Input, type InputProps} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
@@ -18,7 +19,7 @@ type InputPropsOmitted = Omit<InputProps, 'onChange'>;
 type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange'>;
 export type LocalTimePickerProps = ILocalTimePicker & InputPropsOmitted & ReactDatePickerPropsOmitted;
 
-export function LocalTimePicker(props: LocalTimePickerProps): JSX.Element {
+export function LocalTimePicker(props: LocalTimePickerProps): ReactElement {
 	const {
 		value,
 		onChange,

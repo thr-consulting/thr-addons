@@ -1,7 +1,7 @@
 import type {LocalDate} from '@js-joda/core';
 import {toDate, toLocalDate} from '@thx/date';
 import debug from 'debug';
-import {useEffect, useRef, useState} from 'react';
+import {type ReactElement, useEffect, useRef, useState} from 'react';
 import type {ReactDatePickerProps} from 'react-datepicker';
 import {Icon, Input, type InputProps} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
@@ -26,7 +26,7 @@ type InputPropsOmitted = Omit<InputProps, 'onChange'>;
 type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange' | 'minDate' | 'maxDate' | 'icon'>;
 export type LocalDatePickerProps = ILocalDatePicker & InputPropsOmitted & ReactDatePickerPropsOmitted;
 
-export function LocalDatePicker(props: LocalDatePickerProps): JSX.Element {
+export function LocalDatePicker(props: LocalDatePickerProps): ReactElement {
 	const {
 		minDate,
 		maxDate,

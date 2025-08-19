@@ -1,6 +1,7 @@
 import type {LocalDate} from '@js-joda/core';
 import {toDate, toLocalDate} from '@thx/date';
 import debug from 'debug';
+import {type ReactElement} from 'react';
 import type {ReactDatePickerProps} from 'react-datepicker';
 import {type InputProps, Input} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
@@ -59,7 +60,7 @@ type InputPropsOmitted = Omit<InputProps, 'onChange'>;
 type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange'>;
 export type MonthDayPickerProps = IMonthDayPickerProps & InputPropsOmitted & ReactDatePickerPropsOmitted;
 
-export function MonthDayPicker(props: MonthDayPickerProps): JSX.Element {
+export function MonthDayPicker(props: MonthDayPickerProps): ReactElement {
 	const {
 		value,
 		onChange,

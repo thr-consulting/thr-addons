@@ -42,7 +42,7 @@
 		"winston-transport": "^4.5.0"
 	},
 	"devDependencies": {
-		"@thx/rollup-config-thx": "^17.0.0"
+		"@thx/rollup-config-thx": "^19.0.0"
 	},
 	"engines": {
 		"node": ">=22"

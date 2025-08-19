@@ -1,9 +1,10 @@
 import debug from 'debug';
+import {type ReactElement} from 'react';
 
 const d = debug('thx.controls.step.Step');
 
 interface StepProps {
-	children?: JSX.Element | JSX.Element[];
+	children?: ReactElement | ReactElement[];
 	title?: string;
 	step?: number;
 	hidden?: boolean | ((state: any, step: number) => boolean);

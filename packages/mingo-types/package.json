@@ -37,7 +37,7 @@
 		"@thx/money": "^19.0.0"
 	},
 	"devDependencies": {
-		"@thx/rollup-config-thx": "^17.0.0"
+		"@thx/rollup-config-thx": "^19.0.0"
 	},
 	"peerDependencies": {
 		"mingo": "^5.x"

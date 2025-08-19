@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import debug from 'debug';
-import {cloneElement, Children, useMemo, useState} from 'react';
+import {cloneElement, Children, useMemo, useState, type ReactElement} from 'react';
 import {Prompt} from 'react-router-dom';
 import {Grid, Step as SemanticStep, StepGroup} from 'semantic-ui-react';
 import {FormStep} from './FormStep';
@@ -10,7 +10,7 @@ import {StepContext} from './stepContext';
 const d = debug('thx.controls.step.StepProvider');
 
 interface StepProviderProps {
-	children: (JSX.Element | null | false)[];
+	children: (ReactElement<any> | null | false)[];
 	onSubmit: (values: any) => void;
 	values?: any;
 	warnOnReroute?: boolean;
@@ -23,7 +23,7 @@ export function StepProvider(props: StepProviderProps) {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const titles: string[] = [];
-	const children: JSX.Element[] = [];
+	const children: ReactElement[] = [];
 
 	Children.forEach(props?.children, (child, index) => {
 		if (!child) return;
