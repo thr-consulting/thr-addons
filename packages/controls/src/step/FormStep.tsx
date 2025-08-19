@@ -1,11 +1,11 @@
 import debug from 'debug';
-import {cloneElement, Children} from 'react';
+import {cloneElement, Children, type ReactElement} from 'react';
 import {useStep} from './useStep';
 
 const d = debug('thx.controls.step.FormStep');
 
 interface FormStepProps {
-	children: JSX.Element;
+	children: ReactElement<any>;
 	title?: string;
 	stepKey: string;
 	hidden?: boolean | ((state: any, step: number) => boolean);

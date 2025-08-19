@@ -8,11 +8,12 @@ export function createConsoleLogger() {
 			format.colorize(),
 			format.timestamp(),
 			format.printf(info => {
+				const error = info.error as Error | undefined;
 				const fApp = `${chalk.white(chalk.bold(info.app))}`;
 				const fSession = info.session ? `[${chalk.yellow(chalk.bold(info.session))}]` : `[${chalk.yellow(chalk.bold(`${info.pid}`))}]`;
 				const fGroup = info.group ? `{${chalk.white(chalk.bold(info.group))}}` : null;
 				const fLevel = `<${info.level}>`;
-				const fStack = info.error?.stack ? `\n  ${info.error?.stack}` : null;
+				const fStack = error?.stack ? `\n  ${error?.stack}` : null;
 				return compact([chalk.cyan(info.timestamp), `${fApp}${fSession}`, fGroup, fLevel, info.message, fStack]).join(' ');
 			}),
 		),

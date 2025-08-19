@@ -36,6 +36,9 @@
 		"@thx/date": "^19.0.0",
 		"@thx/money": "^19.0.0"
 	},
+	"devDependencies": {
+		"@thx/rollup-config-thx": "^19.0.0"
+	},
 	"peerDependencies": {
 		"@mikro-orm/core": "5.x"
 	},

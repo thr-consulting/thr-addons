@@ -1,6 +1,7 @@
 import {LocalDate} from '@js-joda/core';
 import {toDate, toLocalDate} from '@thx/date';
 import debug from 'debug';
+import {type ReactElement} from 'react';
 import type {ReactDatePickerProps} from 'react-datepicker';
 import {type InputProps, Input} from 'semantic-ui-react';
 import {DatePicker} from '../DatePicker/index';
@@ -19,7 +20,7 @@ type InputPropsOmitted = Omit<InputProps, 'onChange'>;
 type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value' | 'minDate' | 'maxDate'>, 'onChange'>;
 export type MonthYearPickerProps = IMonthYearPickerProps & InputPropsOmitted & ReactDatePickerPropsOmitted;
 
-export function MonthYearPicker(props: MonthYearPickerProps): JSX.Element {
+export function MonthYearPicker(props: MonthYearPickerProps): ReactElement {
 	const {
 		value,
 		onChange,

@@ -39,6 +39,9 @@
 		"js-money": "^0.6.3",
 		"yup": "^0.32.11"
 	},
+	"devDependencies": {
+		"@thx/rollup-config-thx": "^19.0.0"
+	},
 	"engines": {
 		"node": ">=22"
 	},

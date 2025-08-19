@@ -64,9 +64,10 @@ export interface GelfLoggerParams {
 
 export function createGelfLogger({host, proto, port}: GelfLoggerParams) {
 	const gelfFormat = winston.format(info => {
+		const error = info.error as Error | undefined;
 		// Pull the error stack out properly if it exists
-		if (info.error && info.error.stack) {
-			return {...info, stack: info.error.stack};
+		if (error && error.stack) {
+			return {...info, stack: error.stack};
 		}
 		return info;
 	});

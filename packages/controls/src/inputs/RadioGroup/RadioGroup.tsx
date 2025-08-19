@@ -1,11 +1,11 @@
 import debug from 'debug';
-import {Children, cloneElement} from 'react';
-import {Form, Radio, FormRadio, type FormGroupProps} from 'semantic-ui-react';
+import {Children, cloneElement, type ReactElement} from 'react';
+import {Form, Radio, FormRadio, type FormGroupProps, type FormRadioProps} from 'semantic-ui-react';
 
 const d = debug('thx.controls.inputs.RadioGroup');
 
 export interface RadioGroupProps {
-	children?: JSX.Element[] | JSX.Element;
+	children?: ReactElement[] | ReactElement;
 	onChange?: (value?: string | number) => void;
 	value?: string | number;
 }
@@ -16,13 +16,16 @@ export function RadioGroup(props: RadioGroupProps & Omit<FormGroupProps, 'childr
 	return (
 		<Form.Group {...rest}>
 			{Children.map(props.children, child => {
-				if (child?.type === FormRadio || child?.type === Radio || child?.type === Form.Radio) {
-					return cloneElement(child, {
-						onChange: (ev: any, args: {value?: string | number}) => {
-							if (onChange) onChange(args.value);
-						},
-						checked: value === child.props.value,
-					});
+				if (child && typeof child === 'object' && 'props' in child) {
+					if (child.type === FormRadio || child.type === Radio || child.type === Form.Radio) {
+						const radioChild = child as ReactElement<FormRadioProps>;
+						return cloneElement(radioChild, {
+							onChange: (ev: any, args: {value?: string | number}) => {
+								if (onChange) onChange(args.value);
+							},
+							checked: value === radioChild.props.value,
+						});
+					}
 				}
 				return child;
 			})}

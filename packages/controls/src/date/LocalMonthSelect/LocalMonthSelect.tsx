@@ -1,5 +1,6 @@
 import {LocalDate} from '@js-joda/core';
 import debug from 'debug';
+import {type ReactElement} from 'react';
 import {Select, type SelectProps} from 'semantic-ui-react';
 
 const d = debug('thx.controls.date.LocalMonthSelect');
@@ -28,7 +29,7 @@ interface ILocalMonthSelectProps {
 
 export type LocalMonthSelectProps = ILocalMonthSelectProps & Omit<SelectProps, 'options'>;
 
-export function LocalMonthSelect(props: LocalMonthSelectProps): JSX.Element {
+export function LocalMonthSelect(props: LocalMonthSelectProps): ReactElement {
 	const {value, onChange, year, handleBlur, ...rest} = props;
 
 	const theYear = year || LocalDate.now().year();

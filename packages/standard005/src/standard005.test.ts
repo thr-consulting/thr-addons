@@ -1,7 +1,7 @@
 import {LocalDate} from '@js-joda/core';
 import {toMoney} from '@thx/money';
-import Money from 'js-money';
 import {expect} from 'chai';
+import Money from 'js-money';
 import {Standard005} from './Standard005';
 import {TransactionType} from './TransactionType';
 import type {Receive, Send} from './types';
