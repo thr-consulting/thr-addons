@@ -49,9 +49,9 @@
 		"social-insurance-number": "^0.2.2",
 		"use-deep-compare-effect": "1.4.0"
 	},
-        "devDependencies": {
-              "@thx/rollup-config-thx": "^17.0.0"
-        },
+	"devDependencies": {
+		"@thx/rollup-config-thx": "^17.0.0"
+	},
 	"peerDependencies": {
 		"react": "17.x",
 		"react-dom": "17.x",

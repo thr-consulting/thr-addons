@@ -37,9 +37,9 @@
 		"debug": "^4.4.0",
 		"lodash-es": "^4.17.21"
 	},
-        "devDependencies": {
-              "@thx/rollup-config-thx": "^17.0.0"
-        },
+	"devDependencies": {
+		"@thx/rollup-config-thx": "^17.0.0"
+	},
 	"engines": {
 		"node": ">=22"
 	},

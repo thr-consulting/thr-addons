@@ -34,9 +34,9 @@
 			"project": "./tsconfig-eslint.json"
 		}
 	},
-        "devDependencies": {
-              "@thx/rollup-config-thx": "^17.0.0"
-        },
+	"devDependencies": {
+		"@thx/rollup-config-thx": "^17.0.0"
+	},
 	"dependencies": {
 		"@js-joda/core": "^5.6.5",
 		"@js-joda/locale_en": "^4.15.1",

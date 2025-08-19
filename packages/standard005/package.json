@@ -40,9 +40,9 @@
 		"js-money": "^0.6.3",
 		"lodash-es": "^4.17.21"
 	},
-        "devDependencies": {
-              "@thx/rollup-config-thx": "^17.0.0"
-        },
+	"devDependencies": {
+		"@thx/rollup-config-thx": "^17.0.0"
+	},
 	"engines": {
 		"node": ">=22"
 	},

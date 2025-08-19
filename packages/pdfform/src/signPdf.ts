@@ -88,7 +88,7 @@ function calculateAspectRatioFit(
 
 export async function getPdfDoc(srcPdf: PdfInputType): Promise<PDFDocument> {
 	const pdfBytes = await convertToBuffer(srcPdf);
-	return await PDFDocument.load(pdfBytes);
+	return PDFDocument.load(pdfBytes);
 }
 
 export async function signPdfDoc(srcPdf: PdfInputType, signature: PDFSignature[]): Promise<PDFDocument> {
