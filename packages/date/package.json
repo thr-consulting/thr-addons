@@ -1,6 +1,6 @@
 {
 	"name": "@thx/date",
-	"version": "19.0.0",
+	"version": "19.1.0",
 	"description": "Date utils",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"

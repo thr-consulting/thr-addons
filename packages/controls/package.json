@@ -1,6 +1,6 @@
 {
 	"name": "@thx/controls",
-	"version": "19.0.0",
+	"version": "19.1.0",
 	"description": "A collection of components designed with SemanticUI.",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -31,8 +31,8 @@
 	},
 	"dependencies": {
 		"@js-joda/core": "^5.6.5",
-		"@thx/date": "^19.0.0",
-		"@thx/money": "^19.0.0",
+		"@thx/date": "^19.1.0",
+		"@thx/money": "^19.1.0",
 		"@types/inputmask": "^5.0.7",
 		"@types/react-datepicker": "^6.0.1",
 		"credit-card-type": "^9.1.0",
