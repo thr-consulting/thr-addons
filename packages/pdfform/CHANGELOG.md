@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0](https://github.com/thr-consulting/thr-addons/compare/v19.1.0...v19.2.0) (2025-09-04)
+
+### Features
+
+- **pdfform:** date ([#443](https://github.com/thr-consulting/thr-addons/issues/443)) ([fdbf243](https://github.com/thr-consulting/thr-addons/commit/fdbf243998b9c38369111bc69755f061d8088303))
+
 # [19.1.0](https://github.com/thr-consulting/thr-addons/compare/v19.0.0...v19.1.0) (2025-08-19)
 
 **Note:** Version bump only for package @thx/pdfform
