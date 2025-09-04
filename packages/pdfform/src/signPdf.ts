@@ -1,6 +1,6 @@
 import {Buffer} from 'node:buffer';
 import {Readable} from 'node:stream';
-import {PDFDocument, rgb} from 'pdf-lib';
+import {PDFDocument, rgb, StandardFonts} from 'pdf-lib';
 
 export interface SignatureSchemaType {
 	type: 'image/png' | 'image/jpeg' | 'image/svg+xml';
@@ -16,6 +16,16 @@ export interface PDFSignature {
 		x: number;
 		y: number;
 		onPage: number;
+	};
+	dateLocation?: {
+		width?: number;
+		height?: number;
+		x: number;
+		y: number;
+		onPage: number;
+		fontSize?: number;
+		color?: {r: number; g: number; b: number};
+		alignment?: 'left' | 'center' | 'right';
 	};
 }
 
@@ -86,6 +96,15 @@ function calculateAspectRatioFit(
 	return {width: calculatedWidth, height: calculatedHeight};
 }
 
+function formatSignatureDate(date?: Date): string {
+	const signatureDate = date || new Date();
+	return signatureDate.toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
+}
+
 export async function getPdfDoc(srcPdf: PdfInputType): Promise<PDFDocument> {
 	const pdfBytes = await convertToBuffer(srcPdf);
 	return PDFDocument.load(pdfBytes);
@@ -98,6 +117,8 @@ export async function signPdfDoc(srcPdf: PdfInputType, signature: PDFSignature[]
 
 	const pdfDoc = await getPdfDoc(srcPdf);
 	const pages = pdfDoc.getPages();
+
+	const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
 	await Promise.all(
 		signature.map(async s => {
@@ -177,6 +198,62 @@ export async function signPdfDoc(srcPdf: PdfInputType, signature: PDFSignature[]
 				throw new Error(
 					`Failed to add signature on page ${s.location.onPage}: ${signatureError instanceof Error ? signatureError.message : 'Unknown error'}`,
 				);
+			}
+		}),
+	);
+
+	await Promise.all(
+		signature.map(async s => {
+			if (!s.dateLocation) return;
+
+			const datePageIndex = s.dateLocation.onPage - 1;
+			const datePage = pages[datePageIndex];
+			if (!datePage) {
+				throw new Error(`Date page ${s.dateLocation.onPage} not found in PDF`);
+			}
+
+			const {width: datePageWidth, height: datePageHeight} = datePage.getSize();
+			const dateText = formatSignatureDate(s.signature.timestamp);
+			const fontSize = s.dateLocation.fontSize || 12;
+			const color = s.dateLocation.color || {r: 0, g: 0, b: 0};
+			const alignment = s.dateLocation.alignment || 'left';
+
+			const dateWidth = s.dateLocation.width ? s.dateLocation.width : 200;
+			const dateHeight = s.dateLocation.height ? s.dateLocation.height : fontSize + 4;
+			const dateX = (s.dateLocation.x / 100) * datePageWidth;
+			const dateY = datePageHeight - (s.dateLocation.y / 100) * datePageHeight - dateHeight;
+
+			try {
+				datePage.drawRectangle({
+					x: dateX,
+					y: dateY,
+					width: dateWidth,
+					height: dateHeight,
+					borderColor: rgb(0.9, 0.9, 0.9),
+					borderWidth: 0.5,
+					borderOpacity: 0.8,
+				});
+
+				let textX = dateX + 4; // Default left padding
+				const textWidth = font.widthOfTextAtSize(dateText, fontSize);
+
+				if (alignment === 'center') {
+					textX = dateX + (dateWidth - textWidth) / 2;
+				} else if (alignment === 'right') {
+					textX = dateX + dateWidth - textWidth - 4; // Right with padding
+				}
+
+				const textY = dateY + (dateHeight - fontSize) / 2;
+
+				datePage.drawText(dateText, {
+					x: Math.max(dateX + 2, textX),
+					y: textY,
+					size: fontSize,
+					font,
+					color: rgb(color.r, color.g, color.b),
+				});
+			} catch (error) {
+				throw new Error(`Failed to add signature/date on page ${s.dateLocation.onPage}: ${error instanceof Error ? error.message : 'Unknown error'}`);
 			}
 		}),
 	);
