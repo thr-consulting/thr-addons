@@ -39,7 +39,7 @@ export function getFiscalPeriod(period: PeriodEnum): Period {
 /**
  * Utility to get the correct year-end date for a target year, handling Feb 29.
  */
-function safeYearEndForYear(yearEnd: LocalDate, targetYear: number): LocalDate {
+export function safeYearEndForYear(yearEnd: LocalDate, targetYear: number): LocalDate {
 	const month = yearEnd.monthValue();
 	const day = yearEnd.dayOfMonth();
 
@@ -135,4 +135,17 @@ export function getFiscalRange(period: PeriodEnum, date: LocalDate, yearEnd: Loc
 	}
 
 	return getFiscalQuarterRange(date, yearEnd);
+}
+
+/**
+ * Shifts a given fiscal date range to a different target fiscal year.
+ * @param baseRange
+ * @param targetYear
+ */
+export function shiftFiscalRangeToYear(baseRange: FiscalDateRange, targetYear: number): FiscalDateRange {
+	const offset = targetYear - baseRange.end.year();
+	return {
+		start: baseRange.start.plusYears(offset),
+		end: baseRange.end.plusYears(offset),
+	};
 }
