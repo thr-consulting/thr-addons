@@ -9,6 +9,7 @@ import {
 	getFiscalQuarter,
 	getFiscalQuarterRange,
 	getFiscalRange,
+	shiftFiscalRangeToYear,
 } from '../fiscal';
 
 const dates = {
@@ -401,5 +402,43 @@ describe('Fiscal Functions', () => {
 		expect(getFiscalRange(PeriodEnum.Quarterly, date, dates.jun_30_2020)).to.deep.equal(expectedQRange);
 		expect(getFiscalRange(PeriodEnum.Quarterly, date, dates.jun_30_2020).start.equals(LocalDate.of(2025, 1, 1))).to.be.true;
 		expect(getFiscalRange(PeriodEnum.Quarterly, date, dates.jun_30_2020).end.equals(LocalDate.of(2025, 3, 31))).to.be.true;
+	});
+
+	const baseRange1 = {
+		start: LocalDate.of(2023, 3, 1),
+		end: LocalDate.of(2024, 2, 29),
+	};
+
+	const baseRange2 = {
+		start: LocalDate.of(2022, 1, 1),
+		end: LocalDate.of(2022, 12, 31),
+	};
+
+	it('should shift a range to a later target year preserving duration', () => {
+		const shifted = shiftFiscalRangeToYear(baseRange1, 2026);
+		expect(shifted.start.equals(LocalDate.of(2025, 3, 1))).to.be.true;
+		expect(shifted.end.equals(LocalDate.of(2026, 2, 28))).to.be.true; // Feb 29 → Feb 28 in non-leap year
+	});
+
+	it('should shift a range to an earlier target year', () => {
+		const shifted = shiftFiscalRangeToYear(baseRange2, 2020);
+		expect(shifted.start.equals(LocalDate.of(2020, 1, 1))).to.be.true;
+		expect(shifted.end.equals(LocalDate.of(2020, 12, 31))).to.be.true;
+	});
+
+	it('should handle shifting within a leap year', () => {
+		const baseLeap = {
+			start: LocalDate.of(2019, 3, 1),
+			end: LocalDate.of(2020, 2, 29),
+		};
+		const shifted = shiftFiscalRangeToYear(baseLeap, 2024);
+		expect(shifted.start.equals(LocalDate.of(2023, 3, 1))).to.be.true;
+		expect(shifted.end.equals(LocalDate.of(2024, 2, 29))).to.be.true; // stays Feb 29 because 2024 is leap
+	});
+
+	it('should return identical range if target year equals end year', () => {
+		const shifted = shiftFiscalRangeToYear(baseRange2, 2022);
+		expect(shifted.start.equals(baseRange2.start)).to.be.true;
+		expect(shifted.end.equals(baseRange2.end)).to.be.true;
 	});
 });
