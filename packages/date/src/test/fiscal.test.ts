@@ -204,14 +204,14 @@ describe('Fiscal Functions', () => {
 
 	it('should return the correct fiscal year for boundary dates', () => {
 		// YE 6/30
-		expect(getFiscalYear(dates.jun_30_2024, dates.jun_30_2020)).to.equal(2024); // Ends 6/30/2024
-		expect(getFiscalYear(dates.jul_01_2024, dates.jun_30_2020)).to.equal(2025); // Starts 7/1/2024
+		expect(getFiscalYear(dates.jun_30_2024, dates.jun_30_2020)).to.equal(2024);
+		expect(getFiscalYear(dates.jul_01_2024, dates.jun_30_2020)).to.equal(2025);
 		// YE 1/1
-		expect(getFiscalYear(dates.jan_01_2024, dates.jan_01_2020)).to.equal(2024); // Ends 1/1/2024
-		expect(getFiscalYear(dates.jan_02_2024, dates.jan_01_2020)).to.equal(2025); // Starts 1/2/2024
+		expect(getFiscalYear(dates.jan_01_2024, dates.jan_01_2020)).to.equal(2024);
+		expect(getFiscalYear(dates.jan_02_2024, dates.jan_01_2020)).to.equal(2025);
 		// YE 2/28
-		expect(getFiscalYear(dates.feb_29_2024, dates.feb_28_2020)).to.equal(2025); // After 2/28/2024
-		expect(getFiscalYear(dates.feb_28_2025, dates.feb_28_2020)).to.equal(2025); // On 2/28/2025
+		expect(getFiscalYear(dates.feb_29_2024, dates.feb_28_2020)).to.equal(2025);
+		expect(getFiscalYear(dates.feb_28_2025, dates.feb_28_2020)).to.equal(2025);
 	});
 
 	it('should handle leap year dates (Feb 29) correctly', () => {
@@ -226,7 +226,6 @@ describe('Fiscal Functions', () => {
 	});
 
 	it('should handle getFiscalYearRange for YE 2/28 with non-leap start year', () => {
-		// Date: Jan 1, 2024. FY is 2023-03-01 to 2024-02-28 (non-leap start year 2023)
 		expect(getFiscalYearRange(dates.jan_01_2024, dates.feb_28_2020)).to.deep.equal({
 			start: LocalDate.of(2023, 3, 1),
 			end: LocalDate.of(2024, 2, 28),
@@ -234,9 +233,8 @@ describe('Fiscal Functions', () => {
 	});
 
 	it('should handle getFiscalYearRange for YE 2/28 with leap start year (forces Mar 1 start)', () => {
-		// Date: Mar 1, 2024. FY is 2024-03-01 to 2025-02-28 (leap start year 2024)
 		expect(getFiscalYearRange(dates.mar_01_2024, dates.feb_28_2020)).to.deep.equal({
-			start: LocalDate.of(2024, 3, 1), // Should be 2/29/2024 + 1 day = 3/1/2024
+			start: LocalDate.of(2024, 3, 1),
 			end: LocalDate.of(2025, 2, 28),
 		});
 	});
@@ -345,13 +343,13 @@ describe('Fiscal Functions', () => {
 	});
 
 	it('should return the correct quarter on boundary dates (YE 6/30)', () => {
-		expect(getFiscalQuarter(dates.sep_30_2024, dates.jun_30_2024)).to.equal(1); // Q1 end
-		expect(getFiscalQuarter(dates.oct_01_2024, dates.jun_30_2024)).to.equal(2); // Q2 start
-		expect(getFiscalQuarter(dates.dec_31_2024, dates.jun_30_2024)).to.equal(2); // Q2 end
-		expect(getFiscalQuarter(dates.jan_01_2025, dates.jun_30_2024)).to.equal(3); // Q3 start
-		expect(getFiscalQuarter(dates.mar_31_2025, dates.jun_30_2024)).to.equal(3); // Q3 end
-		expect(getFiscalQuarter(dates.apr_01_2025, dates.jun_30_2024)).to.equal(4); // Q4 start
-		expect(getFiscalQuarter(dates.jun_30_2025, dates.jun_30_2024)).to.equal(4); // Q4 end (FYE)
+		expect(getFiscalQuarter(dates.sep_30_2024, dates.jun_30_2024)).to.equal(1);
+		expect(getFiscalQuarter(dates.oct_01_2024, dates.jun_30_2024)).to.equal(2);
+		expect(getFiscalQuarter(dates.dec_31_2024, dates.jun_30_2024)).to.equal(2);
+		expect(getFiscalQuarter(dates.jan_01_2025, dates.jun_30_2024)).to.equal(3);
+		expect(getFiscalQuarter(dates.mar_31_2025, dates.jun_30_2024)).to.equal(3);
+		expect(getFiscalQuarter(dates.apr_01_2025, dates.jun_30_2024)).to.equal(4);
+		expect(getFiscalQuarter(dates.jun_30_2025, dates.jun_30_2024)).to.equal(4);
 	});
 
 	it('should return the correct range for Q1 start date (Jul 1)', () => {
