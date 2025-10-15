@@ -1,7 +1,7 @@
 import {Instant, LocalDate, LocalDateTime, LocalTime, ZonedDateTime, ZoneId, ZoneOffset} from '@js-joda/core';
 import {expect, config} from 'chai';
 import {register, unregister} from 'timezone-mock';
-import {toDate, toEpochDay, toLocalDate, toLocalDateTime, toLocalTime} from './conversion';
+import {toDate, toEpochDay, toLocalDate, toLocalDateTime, toLocalTime} from '../conversion';
 
 config.truncateThreshold = 0;
 

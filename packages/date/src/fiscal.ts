@@ -1,4 +1,4 @@
-import {type LocalDate, Period} from '@js-joda/core';
+import {LocalDate, Period} from '@js-joda/core';
 
 export enum PeriodEnum {
 	'Yearly' = 'yearly',
@@ -37,73 +37,111 @@ export function getFiscalPeriod(period: PeriodEnum): Period {
 }
 
 /**
- * Returns the fiscal year of a date
+ * Utility to get the correct year-end date for a target year, handling Feb 29.
+ */
+function safeYearEndForYear(yearEnd: LocalDate, targetYear: number): LocalDate {
+	const month = yearEnd.monthValue();
+	const day = yearEnd.dayOfMonth();
+
+	if (month === 2 && day === 29) {
+		// If the nominal year-end is Feb 29, return Feb 28 if target year is not a leap year.
+		if (!LocalDate.of(targetYear, 1, 1).isLeapYear()) {
+			return LocalDate.of(targetYear, 2, 28);
+		}
+	}
+
+	// For all other dates, and for Feb 29 in a leap year, just use withYear.
+	return yearEnd.withYear(targetYear);
+}
+
+/**
+ * Returns the fiscal year of a date.
+ * The fiscal year is the year in which the fiscal period ends.
  * @param date
  * @param yearEnd
  */
 export function getFiscalYear(date: LocalDate, yearEnd: LocalDate): number {
-	return date.isAfter(yearEnd.withYear(date.year())) ? date.year() + 1 : date.year();
+	const yearEndInDateYear = safeYearEndForYear(yearEnd, date.year());
+
+	// If the date is strictly after the year end in its own calendar year, it belongs to the *next* fiscal year.
+	if (date.isAfter(yearEndInDateYear)) {
+		return date.year() + 1;
+	}
+
+	// Otherwise, the fiscal year ends in the current calendar year.
+	return date.year();
 }
 
 /**
- * Returns the start and end dates for the date's year of fiscal year
+ * Returns the start and end dates for the date's year of fiscal year.
  * @param date
  * @param yearEnd
  */
 export function getFiscalYearRange(date: LocalDate, yearEnd: LocalDate): FiscalDateRange {
-	const startMD = yearEnd.plusDays(1);
-
-	if (date.compareTo(yearEnd.withYear(date.year())) > 0) {
-		// console.log(`Cur date: ${date.toString()} is after ye MD of ${yearEnd.toString()}`);
+	let endYear = getFiscalYear(date, yearEnd);
+	let startYear = endYear - 1;
+	const yearEndInStartYear = safeYearEndForYear(yearEnd, startYear);
+	let startDate = yearEndInStartYear.plusDays(1);
+	let endDate = safeYearEndForYear(yearEnd, endYear);
+	if (yearEnd.monthValue() === 12 && yearEnd.dayOfMonth() === 31) {
+		const currentYear = date.year();
 		return {
-			start: startMD.withYear(date.year()),
-			end: startMD.withYear(date.year()).plusYears(1).minusDays(1),
+			start: LocalDate.of(currentYear, 1, 1),
+			end: LocalDate.of(currentYear, 12, 31),
 		};
 	}
 
-	if (startMD.monthValue() === 1) {
-		return {
-			start: startMD.withYear(date.year()),
-			end: startMD.withYear(date.year() + 1).minusDays(1),
-		};
+	if (yearEnd.monthValue() === 2 && yearEnd.dayOfMonth() === 28 && date.isLeapYear() && date.monthValue() === 2 && date.dayOfMonth() === 29) {
+		endYear = date.year();
+		startYear = endYear - 1;
+		startDate = safeYearEndForYear(yearEnd, startYear).plusDays(1);
+		endDate = safeYearEndForYear(yearEnd, endYear);
 	}
 
-	// console.log(`Cur date: ${date.toString()} is before ye MD of ${yearEnd.toString()}`);
+	// Force start to Mar 1 if YE is Feb 28 and start year is a leap year (to skip 2/29 start).
+	if (yearEnd.monthValue() === 2 && yearEnd.dayOfMonth() === 28 && LocalDate.of(startYear, 1, 1).isLeapYear()) {
+		startDate = LocalDate.of(startYear, 3, 1);
+	}
+
 	return {
-		start: startMD.withYear(date.year() - 1),
-		end: startMD.withYear(date.year()).minusDays(1),
+		start: startDate,
+		end: endDate,
 	};
 }
 
 /**
- * Returns the quarter of a fiscal year for the date
+ * Returns the quarter of a fiscal year for the date.
  * @param date
  * @param yearEnd
  */
 export function getFiscalQuarter(date: LocalDate, yearEnd: LocalDate): 1 | 2 | 3 | 4 {
-	// const day = date.dayOfMonth();
-	// const month = date.monthValue(); // aug = 8
-	const {start, end} = getFiscalYearRange(date, yearEnd);
+	const {start} = getFiscalYearRange(date, yearEnd);
 
+	// Standard 3-month quarter checks:
+	// Q1: date < start + 3 months
 	if (date.isBefore(start.plusMonths(3))) return 1;
+	// Q2: date < start + 6 months
 	if (date.isBefore(start.plusMonths(6))) return 2;
+	// Q3: date < start + 9 months
 	if (date.isBefore(start.plusMonths(9))) return 3;
+	// Q4: otherwise
 	return 4;
 }
 
 /**
- * Returns the start and end dates of the date's fiscal quarter
+ * Returns the start and end dates of the date's fiscal quarter.
  * @param date
  * @param yearEnd
  */
 export function getFiscalQuarterRange(date: LocalDate, yearEnd: LocalDate): FiscalDateRange {
 	const {start} = getFiscalYearRange(date, yearEnd);
 	const q = getFiscalQuarter(date, yearEnd);
-	const fp = getFiscalPeriod(PeriodEnum.Quarterly);
+	const quarterStart = start.plusMonths(3 * (q - 1));
+	const quarterEnd = quarterStart.plusMonths(3).minusDays(1);
 
 	return {
-		start: start.plus(fp.multipliedBy(q - 1)),
-		end: start.plus(fp.multipliedBy(q)).minusDays(1),
+		start: quarterStart,
+		end: quarterEnd,
 	};
 }
 
