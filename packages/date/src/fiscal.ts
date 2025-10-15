@@ -81,14 +81,6 @@ export function getFiscalYearRange(date: LocalDate, yearEnd: LocalDate): FiscalD
 	const yearEndInStartYear = safeYearEndForYear(yearEnd, startYear);
 	const startDate = yearEndInStartYear.plusDays(1);
 	const endDate = safeYearEndForYear(yearEnd, endYear);
-	if (yearEnd.monthValue() === 12 && yearEnd.dayOfMonth() === 31) {
-		const currentYear = date.year();
-		return {
-			start: LocalDate.of(currentYear, 1, 1),
-			end: LocalDate.of(currentYear, 12, 31),
-		};
-	}
-
 	return {
 		start: startDate,
 		end: endDate,
