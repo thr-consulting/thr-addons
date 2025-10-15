@@ -76,29 +76,17 @@ export function getFiscalYear(date: LocalDate, yearEnd: LocalDate): number {
  * @param yearEnd
  */
 export function getFiscalYearRange(date: LocalDate, yearEnd: LocalDate): FiscalDateRange {
-	let endYear = getFiscalYear(date, yearEnd);
-	let startYear = endYear - 1;
+	const endYear = getFiscalYear(date, yearEnd);
+	const startYear = endYear - 1;
 	const yearEndInStartYear = safeYearEndForYear(yearEnd, startYear);
-	let startDate = yearEndInStartYear.plusDays(1);
-	let endDate = safeYearEndForYear(yearEnd, endYear);
+	const startDate = yearEndInStartYear.plusDays(1);
+	const endDate = safeYearEndForYear(yearEnd, endYear);
 	if (yearEnd.monthValue() === 12 && yearEnd.dayOfMonth() === 31) {
 		const currentYear = date.year();
 		return {
 			start: LocalDate.of(currentYear, 1, 1),
 			end: LocalDate.of(currentYear, 12, 31),
 		};
-	}
-
-	if (yearEnd.monthValue() === 2 && yearEnd.dayOfMonth() === 28 && date.isLeapYear() && date.monthValue() === 2 && date.dayOfMonth() === 29) {
-		endYear = date.year();
-		startYear = endYear - 1;
-		startDate = safeYearEndForYear(yearEnd, startYear).plusDays(1);
-		endDate = safeYearEndForYear(yearEnd, endYear);
-	}
-
-	// Force start to Mar 1 if YE is Feb 28 and start year is a leap year (to skip 2/29 start).
-	if (yearEnd.monthValue() === 2 && yearEnd.dayOfMonth() === 28 && LocalDate.of(startYear, 1, 1).isLeapYear()) {
-		startDate = LocalDate.of(startYear, 3, 1);
 	}
 
 	return {

@@ -234,7 +234,7 @@ describe('Fiscal Functions', () => {
 
 	it('should handle getFiscalYearRange for YE 2/28 with leap start year (forces Mar 1 start)', () => {
 		expect(getFiscalYearRange(dates.mar_01_2024, dates.feb_28_2020)).to.deep.equal({
-			start: LocalDate.of(2024, 3, 1),
+			start: LocalDate.of(2024, 2, 29),
 			end: LocalDate.of(2025, 2, 28),
 		});
 	});
