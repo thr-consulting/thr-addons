@@ -10,6 +10,8 @@ export {
 	getFiscalQuarterRange,
 	getFiscalQuarter,
 	getFiscalRange,
+	shiftFiscalRangeToYear,
+	safeYearEndForYear,
 	PeriodEnumLookup,
 	PeriodEnum,
 } from './fiscal';
