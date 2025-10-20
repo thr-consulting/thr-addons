@@ -1,4 +1,7 @@
-import {LocalDate, Period} from '@js-joda/core';
+import {LocalDate, type LocalDateTime, type LocalTime, Period, type ZonedDateTime} from '@js-joda/core';
+import {type ILocalDateLike, toLocalDate} from './conversion';
+
+type DateInput = ILocalDateLike | Date | LocalDate | number | string | LocalDateTime | LocalTime | ZonedDateTime | null | undefined;
 
 export enum PeriodEnum {
 	'Yearly' = 'yearly',
@@ -39,7 +42,8 @@ export function getFiscalPeriod(period: PeriodEnum): Period {
 /**
  * Utility to get the correct year-end date for a target year, handling Feb 29.
  */
-export function safeYearEndForYear(yearEnd: LocalDate, targetYear: number): LocalDate {
+export function safeYearEndForYear(yearEnd1: DateInput, targetYear: number): LocalDate {
+	const yearEnd = toLocalDate(yearEnd1);
 	const month = yearEnd.monthValue();
 	const day = yearEnd.dayOfMonth();
 
@@ -58,8 +62,9 @@ export function safeYearEndForYear(yearEnd: LocalDate, targetYear: number): Loca
  * @param date
  * @param yearEnd
  */
-export function getFiscalYear(date: LocalDate, yearEnd: LocalDate): number {
-	const yearEndInDateYear = safeYearEndForYear(yearEnd, date.year());
+export function getFiscalYear(date1: DateInput, yearEnd: DateInput): number {
+	const date = toLocalDate(date1);
+	const yearEndInDateYear = safeYearEndForYear(toLocalDate(yearEnd), date.year());
 
 	// If the date is strictly after the year end in its own calendar year, it belongs to the next fiscal year.
 	if (date.isAfter(yearEndInDateYear)) {
@@ -75,8 +80,8 @@ export function getFiscalYear(date: LocalDate, yearEnd: LocalDate): number {
  * @param date
  * @param yearEnd
  */
-export function getFiscalYearRange(date: LocalDate, yearEnd: LocalDate): FiscalDateRange {
-	const endYear = getFiscalYear(date, yearEnd);
+export function getFiscalYearRange(date: DateInput, yearEnd: DateInput): FiscalDateRange {
+	const endYear = getFiscalYear(toLocalDate(date), toLocalDate(yearEnd));
 	const startYear = endYear - 1;
 	const yearEndInStartYear = safeYearEndForYear(yearEnd, startYear);
 	const startDate = yearEndInStartYear.plusDays(1);
@@ -92,8 +97,9 @@ export function getFiscalYearRange(date: LocalDate, yearEnd: LocalDate): FiscalD
  * @param date
  * @param yearEnd
  */
-export function getFiscalQuarter(date: LocalDate, yearEnd: LocalDate): 1 | 2 | 3 | 4 {
-	const {start} = getFiscalYearRange(date, yearEnd);
+export function getFiscalQuarter(dateInput: DateInput, yearEnd: DateInput): 1 | 2 | 3 | 4 {
+	const date = toLocalDate(dateInput);
+	const {start} = getFiscalYearRange(date, toLocalDate(yearEnd));
 
 	// 3-month quarter checks:
 	// Q1: date < start + 3 months
@@ -111,8 +117,8 @@ export function getFiscalQuarter(date: LocalDate, yearEnd: LocalDate): 1 | 2 | 3
  * @param date
  * @param yearEnd
  */
-export function getFiscalQuarterRange(date: LocalDate, yearEnd: LocalDate): FiscalDateRange {
-	const {start} = getFiscalYearRange(date, yearEnd);
+export function getFiscalQuarterRange(date: DateInput, yearEnd: DateInput): FiscalDateRange {
+	const {start} = getFiscalYearRange(toLocalDate(date), toLocalDate(yearEnd));
 	const q = getFiscalQuarter(date, yearEnd);
 	const quarterStart = start.plusMonths(3 * (q - 1));
 	const quarterEnd = quarterStart.plusMonths(3).minusDays(1);
@@ -129,7 +135,9 @@ export function getFiscalQuarterRange(date: LocalDate, yearEnd: LocalDate): Fisc
  * @param date
  * @param yearEnd
  */
-export function getFiscalRange(period: PeriodEnum, date: LocalDate, yearEnd: LocalDate): FiscalDateRange {
+export function getFiscalRange(period: PeriodEnum, date1: DateInput, yearEnd1: DateInput): FiscalDateRange {
+	const date = toLocalDate(date1);
+	const yearEnd = toLocalDate(yearEnd1);
 	if (period === PeriodEnum.Yearly) {
 		return getFiscalYearRange(date, yearEnd);
 	}
