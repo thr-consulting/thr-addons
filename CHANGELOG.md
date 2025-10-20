@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0](https://github.com/thr-consulting/thr-addons/compare/v19.2.0...v19.3.0) (2025-10-15)
+
+### Features
+
+- **date:** add shiftFiscalRangeToYear ([#445](https://github.com/thr-consulting/thr-addons/issues/445)) ([91b1838](https://github.com/thr-consulting/thr-addons/commit/91b18387e89c55ebb18d95d59d261d10f0e0b555))
+
 # [19.2.0](https://github.com/thr-consulting/thr-addons/compare/v19.1.0...v19.2.0) (2025-09-04)
 
 ### Features
