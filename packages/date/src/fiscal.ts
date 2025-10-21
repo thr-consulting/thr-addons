@@ -20,8 +20,8 @@ export function PeriodEnumLookup(value: string) {
 }
 
 export interface FiscalDateRange {
-	start: LocalDate;
-	end: LocalDate;
+	startDate: LocalDate;
+	endDate: LocalDate;
 }
 
 /**
@@ -87,8 +87,8 @@ export function getFiscalYearRange(date: DateInput, yearEnd: DateInput): FiscalD
 	const startDate = yearEndInStartYear.plusDays(1);
 	const endDate = safeYearEndForYear(yearEnd, endYear);
 	return {
-		start: startDate,
-		end: endDate,
+		startDate,
+		endDate,
 	};
 }
 
@@ -99,15 +99,15 @@ export function getFiscalYearRange(date: DateInput, yearEnd: DateInput): FiscalD
  */
 export function getFiscalQuarter(dateInput: DateInput, yearEnd: DateInput): 1 | 2 | 3 | 4 {
 	const date = toLocalDate(dateInput);
-	const {start} = getFiscalYearRange(date, toLocalDate(yearEnd));
+	const {startDate} = getFiscalYearRange(date, toLocalDate(yearEnd));
 
 	// 3-month quarter checks:
 	// Q1: date < start + 3 months
-	if (date.isBefore(start.plusMonths(3))) return 1;
+	if (date.isBefore(startDate.plusMonths(3))) return 1;
 	// Q2: date < start + 6 months
-	if (date.isBefore(start.plusMonths(6))) return 2;
+	if (date.isBefore(startDate.plusMonths(6))) return 2;
 	// Q3: date < start + 9 months
-	if (date.isBefore(start.plusMonths(9))) return 3;
+	if (date.isBefore(startDate.plusMonths(9))) return 3;
 	// Q4: otherwise
 	return 4;
 }
@@ -118,14 +118,14 @@ export function getFiscalQuarter(dateInput: DateInput, yearEnd: DateInput): 1 | 
  * @param yearEnd
  */
 export function getFiscalQuarterRange(date: DateInput, yearEnd: DateInput): FiscalDateRange {
-	const {start} = getFiscalYearRange(toLocalDate(date), toLocalDate(yearEnd));
+	const {startDate} = getFiscalYearRange(toLocalDate(date), toLocalDate(yearEnd));
 	const q = getFiscalQuarter(date, yearEnd);
-	const quarterStart = start.plusMonths(3 * (q - 1));
+	const quarterStart = startDate.plusMonths(3 * (q - 1));
 	const quarterEnd = quarterStart.plusMonths(3).minusDays(1);
 
 	return {
-		start: quarterStart,
-		end: quarterEnd,
+		startDate: quarterStart,
+		endDate: quarterEnd,
 	};
 }
 
@@ -151,9 +151,9 @@ export function getFiscalRange(period: PeriodEnum, date1: DateInput, yearEnd1: D
  * @param targetYear
  */
 export function shiftFiscalRangeToYear(baseRange: FiscalDateRange, targetYear: number): FiscalDateRange {
-	const offset = targetYear - baseRange.end.year();
+	const offset = targetYear - baseRange.endDate.year();
 	return {
-		start: baseRange.start.plusYears(offset),
-		end: baseRange.end.plusYears(offset),
+		startDate: baseRange.startDate.plusYears(offset),
+		endDate: baseRange.endDate.plusYears(offset),
 	};
 }
