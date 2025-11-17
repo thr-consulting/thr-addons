@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.5.2](https://github.com/thr-consulting/thr-addons/compare/v19.5.1...v19.5.2) (2025-11-17)
+
+### Features
+
+- support for mikro orm 6 ([dd73f1c](https://github.com/thr-consulting/thr-addons/commit/dd73f1c908dd90158b1556c25b99b3f00c7bda83))
+
 ## [19.5.1](https://github.com/thr-consulting/thr-addons/compare/v19.5.0...v19.5.1) (2025-11-17)
 
 ### Features
