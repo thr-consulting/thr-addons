@@ -15,6 +15,12 @@ export class MoneyProperty extends Type {
 	convertToJSValue(value: any): any {
 		try {
 			if (!value) return value;
+
+			if (typeof value === 'string') {
+				const parsed = JSON.parse(value);
+				return toMoney(parsed);
+			}
+
 			return toMoney(value);
 		} catch {
 			throw ValidationError.invalidType(MoneyProperty, value, 'database');
