@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.5.3](https://github.com/thr-consulting/thr-addons/compare/v19.5.2...v19.5.3) (2025-11-18)
+
+### Reverts
+
+- Revert "Mikro-orm 6 (#449)" ([5907491](https://github.com/thr-consulting/thr-addons/commit/5907491caacd7f971635a555338b6951b7942b71)), closes [#449](https://github.com/thr-consulting/thr-addons/issues/449)
+- Revert "feat: support for mikro orm 6" ([a442a34](https://github.com/thr-consulting/thr-addons/commit/a442a3470cb5c161353bad5fc1c5a4f7fa642290))
+
 ## [19.5.2](https://github.com/thr-consulting/thr-addons/compare/v19.5.1...v19.5.2) (2025-11-17)
 
 ### Features
