@@ -13,7 +13,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-- parse string to json (mikro orm 6 support)([09d8c6a](https://github.com/thr-consulting/thr-addons/commit/09d8c6aead974220bddb6568f616de61581f95a0))
+- parse string to json ([09d8c6a](https://github.com/thr-consulting/thr-addons/commit/09d8c6aead974220bddb6568f616de61581f95a0))
 
 # [19.5.0](https://github.com/thr-consulting/thr-addons/compare/v19.4.0...v19.5.0) (2025-11-17)
 
