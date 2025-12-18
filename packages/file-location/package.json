@@ -33,7 +33,9 @@
 		}
 	},
 	"dependencies": {
-		"aws-sdk": "^2.1177.0",
+		"@aws-sdk/client-s3": "^3.47.0",
+		"@aws-sdk/lib-storage": "^3.955.0",
+		"@aws-sdk/s3-request-presigner": "^3.955.0",
 		"debug": "^4.4.0",
 		"delete-empty": "^3.0.0",
 		"fs-extra": "^10.0.1",
