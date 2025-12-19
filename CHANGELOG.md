@@ -3,8 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-**Note:** Version bump only for package thr-addons
-
 ## [19.5.3](https://github.com/thr-consulting/thr-addons/compare/v19.5.2...v19.5.3) (2025-11-18)
 
 ### Reverts

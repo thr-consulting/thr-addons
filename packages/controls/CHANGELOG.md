@@ -3,8 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-**Note:** Version bump only for package @thx/controls
-
 # [19.4.0](https://github.com/thr-consulting/thr-addons/compare/v19.3.0...v19.4.0) (2025-10-21)
 
 **Note:** Version bump only for package @thx/controls
