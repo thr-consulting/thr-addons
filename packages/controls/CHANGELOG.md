@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.6.0](https://github.com/thr-consulting/thr-addons/compare/v19.5.3...v19.6.0) (2025-12-19)
+
+### Features
+
+- made the LocalTimePicker accept different time inputs & lots of fixes ([2b48eda](https://github.com/thr-consulting/thr-addons/commit/2b48edae6038f5af65e10d1cadab30a268735aa0))
+
 # [19.4.0](https://github.com/thr-consulting/thr-addons/compare/v19.3.0...v19.4.0) (2025-10-21)
 
 **Note:** Version bump only for package @thx/controls
