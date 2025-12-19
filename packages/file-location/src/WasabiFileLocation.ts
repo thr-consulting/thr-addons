@@ -33,6 +33,7 @@ export class WasabiFileLocation implements FileLocationInterface {
 		secret,
 		bucket,
 		basePath,
+		region,
 		options,
 	}: {
 		endpoint: string;
@@ -40,11 +41,13 @@ export class WasabiFileLocation implements FileLocationInterface {
 		secret: string;
 		bucket: string;
 		basePath?: string;
+		region?: string;
 		options?: S3ClientConfig;
 	}) {
 		// @ts-ignore
 		this.wasabi = new S3Client({
-			endpoint,
+			endpoint: endpoint.startsWith('http') ? endpoint : `https://${endpoint}`,
+			region: region || 'SFO2',
 			credentials: {
 				accessKeyId: accessKey,
 				secretAccessKey: secret,

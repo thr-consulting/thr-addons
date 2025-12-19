@@ -33,6 +33,7 @@ export class SpacesFileLocation implements FileLocationInterface {
 		secret,
 		bucket,
 		basePath,
+		region,
 		options,
 	}: {
 		endpoint: string;
@@ -40,11 +41,13 @@ export class SpacesFileLocation implements FileLocationInterface {
 		secret: string;
 		bucket: string;
 		basePath?: string;
+		region?: string;
 		options?: S3ClientConfig;
 	}) {
 		// @ts-ignore
 		this.spaces = new S3Client({
-			endpoint,
+			endpoint: endpoint.startsWith('http') ? endpoint : `https://${endpoint}`,
+			region: region || 'SFO2',
 			credentials: {
 				accessKeyId: accessKey,
 				secretAccessKey: secret,
