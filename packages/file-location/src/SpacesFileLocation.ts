@@ -1,4 +1,15 @@
-import AWS from 'aws-sdk';
+import {
+	type S3,
+	type S3ClientConfig,
+	S3Client,
+	CreateBucketCommand,
+	BucketCannedACL,
+	GetObjectCommand,
+	DeleteObjectCommand,
+	PutObjectCommand,
+} from '@aws-sdk/client-s3';
+import {Upload} from '@aws-sdk/lib-storage';
+import {getSignedUrl} from '@aws-sdk/s3-request-presigner';
 import debug from 'debug';
 import {find} from 'lodash-es';
 import path from 'path';
@@ -8,7 +19,7 @@ import type {FileLocationInterface} from './FileLocationInterface';
 const d = debug('thx.file-location.SpacesFileLocation');
 
 export class SpacesFileLocation implements FileLocationInterface {
-	spaces: AWS.S3;
+	spaces: S3;
 
 	bucket: string;
 
@@ -27,13 +38,15 @@ export class SpacesFileLocation implements FileLocationInterface {
 		secret: string;
 		bucket: string;
 		basePath?: string;
-		options?: AWS.S3.Types.ClientConfiguration;
+		options?: S3ClientConfig;
 	}) {
 		// @ts-ignore
-		this.spaces = new AWS.S3({
+		this.spaces = new S3Client({
 			endpoint,
-			accessKeyId: accessKey,
-			secretAccessKey: secret,
+			credentials: {
+				accessKeyId: accessKey,
+				secretAccessKey: secret,
+			},
 			...options,
 		});
 
@@ -50,75 +63,84 @@ export class SpacesFileLocation implements FileLocationInterface {
 	 * @param acl - Either `private` or `public-read`
 	 * @param checkIfExists
 	 */
-	async createBucket(bucket: string, acl = 'private', checkIfExists = false) {
+	async createBucket(bucket: string, acl = BucketCannedACL.private, checkIfExists = false) {
 		if (checkIfExists) {
-			const buckets = await this.spaces.listBuckets().promise();
+			const buckets = await this.spaces.listBuckets();
 			const checkBucket = find(buckets.Buckets, {Name: bucket});
 			if (checkBucket) return;
 		}
 
-		await this.spaces
-			.createBucket({
+		await this.spaces.send(
+			new CreateBucketCommand({
 				Bucket: bucket,
 				ACL: acl,
-			})
-			.promise();
+			}),
+		);
 	}
 
 	async putObject(name: string, stream: Readable, mimetype: string) {
-		await this.spaces
-			.upload({
+		const upload = new Upload({
+			client: this.spaces,
+			params: {
 				Bucket: this.bucket,
 				Key: this.getFullName(name),
 				Body: stream,
 				ContentType: mimetype || undefined,
-			})
-			.promise();
+			},
+		});
+
+		await upload.done();
 	}
 
-	getObject(name: string): Readable {
-		return this.spaces
-			.getObject({
+	async getObject(name: string): Promise<Readable> {
+		const res = await this.spaces.send(
+			new GetObjectCommand({
 				Bucket: this.bucket,
 				Key: this.getFullName(name),
-			})
-			.createReadStream();
+			}),
+		);
+
+		if (!res.Body) {
+			throw new Error('Empty object body');
+		}
+
+		return res.Body as Readable;
 	}
 
 	async deleteObject(name: string) {
-		await this.spaces
-			.deleteObject({
+		await this.spaces.send(
+			new DeleteObjectCommand({
 				Bucket: this.bucket,
 				Key: this.getFullName(name),
-			})
-			.promise();
+			}),
+		);
 	}
 
-	getObjectUrl(name: string, {expires} = {expires: 60}): string {
-		return this.spaces.getSignedUrl('getObject', {
+	getObjectUrl(name: string, {expires} = {expires: 60}): Promise<string> {
+		const command = new GetObjectCommand({
 			Bucket: this.bucket,
 			Key: this.getFullName(name),
-			Expires: expires,
 		});
+
+		return getSignedUrl(this.spaces, command, {expiresIn: expires});
 	}
 
-	putObjectUrl(name: string, mimetype?: string, {expires} = {expires: 60}): string {
-		return this.spaces.getSignedUrl('putObject', {
+	async putObjectUrl(name: string, mimetype?: string, {expires} = {expires: 60}): Promise<string> {
+		const command = new PutObjectCommand({
 			Bucket: this.bucket,
 			Key: this.getFullName(name),
-			Expires: expires,
-			ContentType: mimetype || undefined, // 'application/pdf',
+			ContentType: mimetype || undefined,
 		});
+
+		return getSignedUrl(this.spaces, command, {expiresIn: expires});
 	}
 
 	async getObjectSize(name: string) {
 		try {
-			const headObject = await this.spaces
-				.headObject({
-					Bucket: this.bucket,
-					Key: this.getFullName(name),
-				})
-				.promise();
+			const headObject = await this.spaces.headObject({
+				Bucket: this.bucket,
+				Key: this.getFullName(name),
+			});
 			return headObject.ContentLength;
 		} catch (err: any) {
 			if (err.statusCode === 404) return undefined;
@@ -128,12 +150,10 @@ export class SpacesFileLocation implements FileLocationInterface {
 
 	async objectExists(name: string): Promise<boolean> {
 		try {
-			await this.spaces
-				.headObject({
-					Bucket: this.bucket,
-					Key: this.getFullName(name),
-				})
-				.promise();
+			await this.spaces.headObject({
+				Bucket: this.bucket,
+				Key: this.getFullName(name),
+			});
 			return true;
 		} catch (err: any) {
 			if (err.statusCode === 404) return false;
@@ -150,14 +170,12 @@ export class SpacesFileLocation implements FileLocationInterface {
 	}
 
 	async listObjects(prefix?: string, maxKeys = 1000, cursor?: string) {
-		const response = await this.spaces
-			.listObjectsV2({
-				Bucket: this.bucket,
-				Prefix: prefix,
-				MaxKeys: maxKeys,
-				ContinuationToken: cursor,
-			})
-			.promise();
+		const response = await this.spaces.listObjectsV2({
+			Bucket: this.bucket,
+			Prefix: prefix,
+			MaxKeys: maxKeys,
+			ContinuationToken: cursor,
+		});
 		const objects = (response.Contents ?? []).map(({Key: key}) => key).filter((val): val is string => val !== undefined);
 		return {objects, nextCursor: response.NextContinuationToken};
 	}
