@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.6.0](https://github.com/thr-consulting/thr-addons/compare/v19.5.3...v19.6.0) (2025-12-19)
+
+### Features
+
+- made the LocalTimePicker accept different time inputs & lots of fixes ([2b48eda](https://github.com/thr-consulting/thr-addons/commit/2b48edae6038f5af65e10d1cadab30a268735aa0))
+
+### Reverts
+
+- Revert "chore(release): publish [skip-ci]" ([11f7f64](https://github.com/thr-consulting/thr-addons/commit/11f7f64810f99a96a7d1e9f5bd9205b51227fb29))
+- Revert "chore(release): publish [skip-ci]" ([4ee6cb4](https://github.com/thr-consulting/thr-addons/commit/4ee6cb4f83eba0c354564b65fb0fb4028e7d2250))
+- Revert "chore(release): publish [skip-ci]" ([0223783](https://github.com/thr-consulting/thr-addons/commit/0223783a13207b4059c566d36f06486a85f3a3a6))
+- Revert "chore(release): publish [skip-ci]" ([254ce52](https://github.com/thr-consulting/thr-addons/commit/254ce52ce251a0d2c2305cb0b959e031ecd37207))
+
 # [19.4.0](https://github.com/thr-consulting/thr-addons/compare/v19.3.0...v19.4.0) (2025-10-21)
 
 **Note:** Version bump only for package @thx/controls
