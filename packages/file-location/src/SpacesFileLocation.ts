@@ -1,5 +1,4 @@
 import {
-	type S3,
 	type S3ClientConfig,
 	S3Client,
 	CreateBucketCommand,
@@ -7,6 +6,9 @@ import {
 	GetObjectCommand,
 	DeleteObjectCommand,
 	PutObjectCommand,
+	HeadObjectCommand,
+	ListObjectsV2Command,
+	ListBucketsCommand,
 } from '@aws-sdk/client-s3';
 import {Upload} from '@aws-sdk/lib-storage';
 import {getSignedUrl} from '@aws-sdk/s3-request-presigner';
@@ -19,7 +21,7 @@ import type {FileLocationInterface} from './FileLocationInterface';
 const d = debug('thx.file-location.SpacesFileLocation');
 
 export class SpacesFileLocation implements FileLocationInterface {
-	spaces: S3;
+	spaces: S3Client;
 
 	bucket: string;
 
@@ -65,8 +67,9 @@ export class SpacesFileLocation implements FileLocationInterface {
 	 */
 	async createBucket(bucket: string, acl = BucketCannedACL.private, checkIfExists = false) {
 		if (checkIfExists) {
-			const buckets = await this.spaces.listBuckets();
-			const checkBucket = find(buckets.Buckets, {Name: bucket});
+			const response = await this.spaces.send(new ListBucketsCommand({}));
+			const buckets = response.Buckets ?? [];
+			const checkBucket = find(buckets, {Name: bucket});
 			if (checkBucket) return;
 		}
 
@@ -137,11 +140,8 @@ export class SpacesFileLocation implements FileLocationInterface {
 
 	async getObjectSize(name: string) {
 		try {
-			const headObject = await this.spaces.headObject({
-				Bucket: this.bucket,
-				Key: this.getFullName(name),
-			});
-			return headObject.ContentLength;
+			const head = await this.spaces.send(new HeadObjectCommand({Bucket: this.bucket, Key: this.getFullName(name)}));
+			return head.ContentLength;
 		} catch (err: any) {
 			if (err.statusCode === 404) return undefined;
 			throw err;
@@ -150,10 +150,7 @@ export class SpacesFileLocation implements FileLocationInterface {
 
 	async objectExists(name: string): Promise<boolean> {
 		try {
-			await this.spaces.headObject({
-				Bucket: this.bucket,
-				Key: this.getFullName(name),
-			});
+			await this.spaces.send(new HeadObjectCommand({Bucket: this.bucket, Key: this.getFullName(name)}));
 			return true;
 		} catch (err: any) {
 			if (err.statusCode === 404) return false;
@@ -170,12 +167,14 @@ export class SpacesFileLocation implements FileLocationInterface {
 	}
 
 	async listObjects(prefix?: string, maxKeys = 1000, cursor?: string) {
-		const response = await this.spaces.listObjectsV2({
-			Bucket: this.bucket,
-			Prefix: prefix,
-			MaxKeys: maxKeys,
-			ContinuationToken: cursor,
-		});
+		const response = await this.spaces.send(
+			new ListObjectsV2Command({
+				Bucket: this.bucket,
+				Prefix: prefix,
+				MaxKeys: maxKeys,
+				ContinuationToken: cursor,
+			}),
+		);
 		const objects = (response.Contents ?? []).map(({Key: key}) => key).filter((val): val is string => val !== undefined);
 		return {objects, nextCursor: response.NextContinuationToken};
 	}
