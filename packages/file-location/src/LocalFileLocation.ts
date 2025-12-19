@@ -4,8 +4,8 @@ import fs from 'fs';
 import {mkdirp, pathExists} from 'fs-extra';
 import path from 'path';
 import type {Readable} from 'stream';
-import type {FileLocationInterface} from './FileLocationInterface';
 import {createReadStream, existsSync} from 'node:fs';
+import type {FileLocationInterface} from './FileLocationInterface';
 
 const d = debug('thx.file-location.LocalFileLocation');
 
