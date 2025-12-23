@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.6.3](https://github.com/thr-consulting/thr-addons/compare/v19.6.2...v19.6.3) (2025-12-23)
+
+### Bug Fixes
+
+- date picker ([762d15e](https://github.com/thr-consulting/thr-addons/commit/762d15e805a080def543e4e325d449af4973188e))
+
 ## [19.6.2](https://github.com/thr-consulting/thr-addons/compare/v19.6.1...v19.6.2) (2025-12-19)
 
 ### Features
