@@ -34,5 +34,5 @@ export const MaskedInput = forwardRef<MaskedInputRef, MaskedInputProps>((props, 
 		[inputRef],
 	);
 
-	return <input {...props} disabled={disabled} name={name} ref={inputRef} onBlur={onBlur} />;
+	return <input disabled={disabled} name={name} ref={inputRef} onBlur={onBlur} />;
 });
