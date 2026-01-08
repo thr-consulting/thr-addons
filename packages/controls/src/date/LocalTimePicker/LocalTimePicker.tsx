@@ -33,7 +33,7 @@ function clamp(v: number, lo: number, hi: number): number {
 	return Math.max(lo, Math.min(hi, v));
 }
 
-function formatLocalTime(localTime: LocalTime): string {
+export function formatLocalTime(localTime: LocalTime): string {
 	const hours = localTime.hour();
 	const minutes = localTime.minute();
 	const period = hours >= 12 ? 'PM' : 'AM';
