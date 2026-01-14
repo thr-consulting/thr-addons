@@ -49,6 +49,19 @@ export function useTaskEngine(options: UseTaskEngineOptions) {
 		[setState],
 	);
 
+	const toggleStep = useCallback(
+		(stepId: string) => {
+			setState(s => {
+				const isCompleted = s.completedStepIds.includes(stepId);
+				return {
+					...s,
+					completedStepIds: isCompleted ? s.completedStepIds.filter(id => id !== stepId) : [...s.completedStepIds, stepId],
+				};
+			});
+		},
+		[setState],
+	);
+
 	const setDecision = useCallback(
 		(key: string, value: boolean) => {
 			setState(s => ({...s, decisions: {...s.decisions, [key]: value}}));
@@ -79,6 +92,7 @@ export function useTaskEngine(options: UseTaskEngineOptions) {
 		isComplete: progress.completed === progress.total && progress.total > 0,
 		completeStep,
 		uncompleteStep,
+		toggleStep,
 		setDecision,
 		setRole,
 		reset,
