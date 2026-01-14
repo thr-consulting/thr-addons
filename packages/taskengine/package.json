@@ -1,7 +1,7 @@
 {
-	"name": "@thx/mikroorm-types",
-	"version": "19.5.3",
-	"description": "Custom Mikro-orm types",
+	"name": "@thx/taskengine",
+	"version": "19.1.0",
+	"description": "Generic task list/workflow engine for React",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
 	},
@@ -32,21 +32,16 @@
 			"project": "./tsconfig-eslint.json"
 		}
 	},
-	"dependencies": {
-		"@thx/date": "^19.4.0",
-		"@thx/money": "^19.1.0"
+	"peerDependencies": {
+		"react": ">=17.0.0"
 	},
 	"devDependencies": {
 		"@thx/rollup-config-thx": "^19.0.0"
-	},
-	"peerDependencies": {
-		"@mikro-orm/core": "5.x"
 	},
 	"engines": {
 		"node": ">=22"
 	},
 	"publishConfig": {
 		"access": "public"
-	},
-	"gitHead": "78e6c4a8504dbb1fc70ad7ddb78bb504aed14b2b"
+	}
 }

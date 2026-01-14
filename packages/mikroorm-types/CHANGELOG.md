@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.5.3](https://github.com/thr-consulting/thr-addons/compare/v19.5.2...v19.5.3) (2025-11-18)
+
+### Reverts
+
+- Revert "Mikro-orm 6 (#449)" ([5907491](https://github.com/thr-consulting/thr-addons/commit/5907491caacd7f971635a555338b6951b7942b71)), closes [#449](https://github.com/thr-consulting/thr-addons/issues/449)
+- Revert "feat: support for mikro orm 6" ([a442a34](https://github.com/thr-consulting/thr-addons/commit/a442a3470cb5c161353bad5fc1c5a4f7fa642290))
+
+## [19.5.2](https://github.com/thr-consulting/thr-addons/compare/v19.5.1...v19.5.2) (2025-11-17)
+
+### Features
+
+- support for mikro orm 6 ([dd73f1c](https://github.com/thr-consulting/thr-addons/commit/dd73f1c908dd90158b1556c25b99b3f00c7bda83))
+
+## [19.5.1](https://github.com/thr-consulting/thr-addons/compare/v19.5.0...v19.5.1) (2025-11-17)
+
+### Features
+
+- parse string to json ([09d8c6a](https://github.com/thr-consulting/thr-addons/commit/09d8c6aead974220bddb6568f616de61581f95a0))
+
+# [19.5.0](https://github.com/thr-consulting/thr-addons/compare/v19.4.0...v19.5.0) (2025-11-17)
+
+**Note:** Version bump only for package @thx/mikroorm-types
+
+# [19.4.0](https://github.com/thr-consulting/thr-addons/compare/v19.3.0...v19.4.0) (2025-10-21)
+
+**Note:** Version bump only for package @thx/mikroorm-types
+
 # [19.3.0](https://github.com/thr-consulting/thr-addons/compare/v19.2.0...v19.3.0) (2025-10-15)
 
 **Note:** Version bump only for package @thx/mikroorm-types

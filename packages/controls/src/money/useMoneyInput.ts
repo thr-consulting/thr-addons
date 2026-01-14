@@ -76,12 +76,12 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 
 	const setVal = useCallback<SetValueFn>(
 		(v?: Money) => {
-			if (inputElement.current) {
+			if (inputElement.current && maskInstance.current) {
 				d('Value is being set:', v);
 				if (v) {
-					inputElement.current.value = v.toDecimal().toString();
+					maskInstance.current.setValue(v.toDecimal().toString());
 				} else {
-					inputElement.current.value = '';
+					maskInstance.current.setValue('');
 				}
 				onSet && onSet(v);
 			}

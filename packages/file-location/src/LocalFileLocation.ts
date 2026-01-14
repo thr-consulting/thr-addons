@@ -4,6 +4,7 @@ import fs from 'fs';
 import {mkdirp, pathExists} from 'fs-extra';
 import path from 'path';
 import type {Readable} from 'stream';
+import {createReadStream, existsSync} from 'node:fs';
 import type {FileLocationInterface} from './FileLocationInterface';
 
 const d = debug('thx.file-location.LocalFileLocation');
@@ -35,8 +36,18 @@ export class LocalFileLocation implements FileLocationInterface {
 		});
 	}
 
-	getObject(name: string): Readable {
-		return fs.createReadStream(this.getFullName(name));
+	async getObject(name: string): Promise<Readable> {
+		const fullPath = this.getFullName(name);
+
+		if (!existsSync(fullPath)) {
+			throw new Error(`File not found: ${fullPath}`);
+		}
+
+		return new Promise((resolve, reject) => {
+			const stream = createReadStream(fullPath);
+			stream.once('open', () => resolve(stream));
+			stream.once('error', err => reject(err));
+		});
 	}
 
 	async deleteObject(name: string): Promise<void> {
@@ -59,8 +70,10 @@ export class LocalFileLocation implements FileLocationInterface {
 		return Promise.resolve();
 	}
 
-	getObjectUrl(name: string): string {
-		if (!this._publishUrl) throw new Error('Publish URL not specified');
+	async getObjectUrl(name: string): Promise<string> {
+		if (!this._publishUrl) {
+			throw new Error('Publish URL not specified');
+		}
 		return `${this._publishUrl}/static/${name}`;
 	}
 
@@ -82,7 +95,7 @@ export class LocalFileLocation implements FileLocationInterface {
 		}
 	}
 
-	putObjectUrl(): string {
+	putObjectUrl(): Promise<string> {
 		throw new Error('Not implemented for Local location');
 	}
 

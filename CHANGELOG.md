@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.6.4](https://github.com/thr-consulting/thr-addons/compare/v19.6.3...v19.6.4) (2026-01-09)
+
+**Note:** Version bump only for package thr-addons
+
+## [19.6.3](https://github.com/thr-consulting/thr-addons/compare/v19.6.2...v19.6.3) (2025-12-23)
+
+### Bug Fixes
+
+- date picker ([762d15e](https://github.com/thr-consulting/thr-addons/commit/762d15e805a080def543e4e325d449af4973188e))
+
+## [19.6.2](https://github.com/thr-consulting/thr-addons/compare/v19.6.1...v19.6.2) (2025-12-19)
+
+### Features
+
+- auto add http, and option to pass in region ([84deac0](https://github.com/thr-consulting/thr-addons/commit/84deac0b570a003302171e083e691ba769c612d4))
+
+## [19.6.1](https://github.com/thr-consulting/thr-addons/compare/v19.6.0...v19.6.1) (2025-12-19)
+
+**Note:** Version bump only for package thr-addons
+
+# [19.6.0](https://github.com/thr-consulting/thr-addons/compare/v19.5.3...v19.6.0) (2025-12-19)
+
+### Features
+
+- made the LocalTimePicker accept different time inputs & lots of fixes ([2b48eda](https://github.com/thr-consulting/thr-addons/commit/2b48edae6038f5af65e10d1cadab30a268735aa0))
+
+### Reverts
+
+- Revert "chore(release): publish [skip-ci]" ([11f7f64](https://github.com/thr-consulting/thr-addons/commit/11f7f64810f99a96a7d1e9f5bd9205b51227fb29))
+- Revert "chore(release): publish [skip-ci]" ([4ee6cb4](https://github.com/thr-consulting/thr-addons/commit/4ee6cb4f83eba0c354564b65fb0fb4028e7d2250))
+- Revert "chore(release): publish [skip-ci]" ([0223783](https://github.com/thr-consulting/thr-addons/commit/0223783a13207b4059c566d36f06486a85f3a3a6))
+- Revert "chore(release): publish [skip-ci]" ([254ce52](https://github.com/thr-consulting/thr-addons/commit/254ce52ce251a0d2c2305cb0b959e031ecd37207))
+
+## [19.5.3](https://github.com/thr-consulting/thr-addons/compare/v19.5.2...v19.5.3) (2025-11-18)
+
+### Reverts
+
+- Revert "Mikro-orm 6 (#449)" ([5907491](https://github.com/thr-consulting/thr-addons/commit/5907491caacd7f971635a555338b6951b7942b71)), closes [#449](https://github.com/thr-consulting/thr-addons/issues/449)
+- Revert "feat: support for mikro orm 6" ([a442a34](https://github.com/thr-consulting/thr-addons/commit/a442a3470cb5c161353bad5fc1c5a4f7fa642290))
+
+## [19.5.2](https://github.com/thr-consulting/thr-addons/compare/v19.5.1...v19.5.2) (2025-11-17)
+
+### Features
+
+- support for mikro orm 6 ([dd73f1c](https://github.com/thr-consulting/thr-addons/commit/dd73f1c908dd90158b1556c25b99b3f00c7bda83))
+
+## [19.5.1](https://github.com/thr-consulting/thr-addons/compare/v19.5.0...v19.5.1) (2025-11-17)
+
+### Features
+
+- parse string to json ([09d8c6a](https://github.com/thr-consulting/thr-addons/commit/09d8c6aead974220bddb6568f616de61581f95a0))
+
+# [19.5.0](https://github.com/thr-consulting/thr-addons/compare/v19.4.0...v19.5.0) (2025-11-17)
+
+**Note:** Version bump only for package thr-addons
+
+# [19.4.0](https://github.com/thr-consulting/thr-addons/compare/v19.3.0...v19.4.0) (2025-10-21)
+
+**Note:** Version bump only for package thr-addons
+
 # [19.3.0](https://github.com/thr-consulting/thr-addons/compare/v19.2.0...v19.3.0) (2025-10-15)
 
 ### Features
