@@ -4,7 +4,7 @@ export {LocalDatePicker} from './date/LocalDatePicker';
 export type {LocalDatePickerProps} from './date/LocalDatePicker';
 export {LocalMonthSelect} from './date/LocalMonthSelect';
 export type {LocalMonthSelectProps} from './date/LocalMonthSelect';
-export {LocalTimePicker} from './date/LocalTimePicker';
+export {LocalTimePicker, formatLocalTime, parseTimeStringToLocalTime} from './date/LocalTimePicker';
 export type {LocalTimePickerProps} from './date/LocalTimePicker';
 export {MonthDayPicker} from './date/MonthDayPicker';
 export type {MonthDayPickerProps} from './date/MonthDayPicker';

@@ -15,7 +15,7 @@ const d = debug('thx.controls.date.LocalTimePicker');
  * - Provide a single robust parser that accepts a wide variety of user input styles:
  *   - explicit "h:mm AM/PM" (preferred)
  *   - compact with suffix: "334pm", "1234AM", "5pm"
- *   - decimal hours: "5.5", "5,5", "5.5pm", "17.25"  (fraction -> minutes; rounded)
+ *   - decimal hours: "5.5", "5,5", "5.5pm", "17.25" (fraction -> minutes; rounded)
  *   - 24h colon "21:34"
  *   - HHMM "2145"
  *   - 3-digit compact "734" -> 7:34
@@ -169,19 +169,40 @@ interface ILocalTimePicker {
 	onBlur?: (e: React.FocusEvent<HTMLInputElement> | any) => void;
 }
 
-export type InputPropsOmitted = Omit<InputProps, 'onChange' | 'value'>;
-export type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange' | 'onBlur'>;
+type InputPropsOmitted = Omit<InputProps, 'onChange' | 'value'>;
+type ReactDatePickerPropsOmitted = Omit<Omit<ReactDatePickerProps, 'value'>, 'onChange' | 'onBlur'>;
 
 export type LocalTimePickerProps = ILocalTimePicker & InputPropsOmitted & ReactDatePickerPropsOmitted;
 
 export function LocalTimePicker(props: LocalTimePickerProps): ReactElement {
-	const {value, onChange, onBlur, placeholder, name, ...rest} = props;
+	// extract minTime/maxTime so we can validate/clamp typed input
+	const {value, onChange, onBlur, placeholder, name, minTime, maxTime, ...rest} = props;
 
 	const selected = value ? toDate(value) : null;
+
+	// helper to clamp a LocalTime to min/max Date props (if provided)
+	function clampToRange(lt: LocalTime): LocalTime {
+		let out = lt;
+		try {
+			if (minTime) {
+				const minLt = toLocalTime(minTime);
+				if (out.isBefore(minLt)) out = minLt;
+			}
+			if (maxTime) {
+				const maxLt = toLocalTime(maxTime);
+				if (out.isAfter(maxLt)) out = maxLt;
+			}
+		} catch {
+			// if conversion fails for any reason, just return original
+		}
+		return out;
+	}
 
 	return (
 		<DatePicker
 			{...rest}
+			minTime={minTime}
+			maxTime={maxTime}
 			selected={selected}
 			showTimeSelect
 			showTimeSelectOnly
@@ -192,18 +213,24 @@ export function LocalTimePicker(props: LocalTimePickerProps): ReactElement {
 			placeholderText={placeholder ?? '...9:45AM'}
 			onChange={date => {
 				const lt = date ? toLocalTime(date) : null;
-				onChange?.(lt);
+				if (lt) {
+					const clamped = clampToRange(lt);
+					onChange?.(clamped);
+				} else {
+					onChange?.(null);
+				}
 			}}
 			onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
 				// Parse raw input and commit parsed value, then defer blur so parent validation
 				// (e.g. Formik) sees the new value after setFieldValue completes.
-				const raw = (e.target as HTMLInputElement).value;
+				const raw = e.target.value;
 				const parsed = parseTimeStringToLocalTime(raw);
 
 				if (parsed) {
-					onChange?.(parsed);
+					const clamped = clampToRange(parsed);
+					onChange?.(clamped);
 					setTimeout(() => {
-						const synthetic: any = {target: {name, value: parsed}};
+						const synthetic: any = {target: {name, value: clamped}};
 						onBlur?.(synthetic);
 					}, 0);
 				} else {
@@ -211,7 +238,7 @@ export function LocalTimePicker(props: LocalTimePickerProps): ReactElement {
 					// text to the parent's display to avoid garbage staying in the field.
 					const parentDisplay = value ? formatLocalTime(value) : '';
 					try {
-						(e.target as HTMLInputElement).value = parentDisplay;
+						e.target.value = parentDisplay;
 					} catch {
 						/* ignore DOM quirks */
 					}

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.6.6](https://github.com/thr-consulting/thr-addons/compare/v19.6.5...v19.6.6) (2026-01-13)
+
+**Note:** Version bump only for package thr-addons
+
+## [19.6.5](https://github.com/thr-consulting/thr-addons/compare/v19.6.4...v19.6.5) (2026-01-13)
+
+### Reverts
+
+- Revert "Fix internal money input state sync (#453)" ([4a2a6b1](https://github.com/thr-consulting/thr-addons/commit/4a2a6b1bb6105805a4298f6ed5a91365f559ce7b)), closes [#453](https://github.com/thr-consulting/thr-addons/issues/453)
+
 ## [19.6.4](https://github.com/thr-consulting/thr-addons/compare/v19.6.3...v19.6.4) (2026-01-09)
 
 **Note:** Version bump only for package thr-addons
