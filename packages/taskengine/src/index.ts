@@ -9,4 +9,4 @@ export {useTaskEngine} from './useTaskEngine';
 export type {UseTaskEngineOptions} from './useTaskEngine';
 
 // Built-in workflows
-export {onboardingConfig, offboardingConfig} from './workflows';
+export {onboardingConfig, offboardingConfig, DocumentTypes} from './workflows';
