@@ -9,16 +9,6 @@ import {
 	TaskUserType,
 } from './types';
 
-// Derive decisions from completed steps that have decision values
-export function deriveDecisions(steps: TaskStep[], completedIds: Set<string>): TaskDecisions {
-	return steps
-		.filter(step => step.isDecision && completedIds.has(step.id) && step.decisionValue !== undefined)
-		.reduce((decisions, step) => {
-			const key = step.outputs?.[0];
-			return key ? {...decisions, [key]: step.decisionValue} : decisions;
-		}, {} as TaskDecisions);
-}
-
 export function isStepEnabled(step: TaskStep, completedIds: Set<string>, decisions: TaskDecisions): boolean {
 	const dependenciesMet = step.dependsOn.every(id => completedIds.has(id));
 	if (!dependenciesMet) return false;
@@ -82,69 +72,159 @@ export function getProgress(steps: ComputedStep[]): TaskProgress {
 	return {completed, total, percent: total > 0 ? Math.round((completed / total) * 100) : 0};
 }
 
-export interface ConfigValidationError {
-	stepId: string;
-	message: string;
+export interface DbWorkflowPhase {
+	key: string;
+	label: string;
+	sortOrder: number;
 }
 
-// Validate config for errors (missing references etc.)
-export function validateConfig(config: TaskConfig): ConfigValidationError[] {
-	const stepIds = new Set(config.steps.map(s => s.id));
-
-	return config.steps.flatMap(step => {
-		const stepErrors: ConfigValidationError[] = [];
-
-		// Check dependsOn references
-		step.dependsOn
-			.filter(depId => !stepIds.has(depId))
-			.forEach(depId => {
-				stepErrors.push({stepId: step.id, message: `dependsOn references non-existent step: ${depId}`});
-			});
-
-		// Check conditional references
-		if (step.conditional) {
-			const outputExists = config.steps.some(s => s.outputs?.includes(step.conditional!));
-			if (!outputExists) {
-				stepErrors.push({stepId: step.id, message: `conditional references non-existent output: ${step.conditional}`});
-			}
-		}
-
-		return stepErrors;
-	});
+export interface DbWorkflowStep {
+	stepKey: string;
+	label: string;
+	phase: {key: string};
+	sortOrder: number;
+	dependsOn: string[];
+	conditional?: string | null;
+	outputs: string[];
+	assignedTo: string;
+	isDecision: boolean;
+	decisionLabel?: string | null;
+	requiresFiles: boolean;
+	fileTypeId?: string | null;
+	fileTypes: string[];
+	uploadButtonLabel?: string | null;
+	helpText?: string | null;
+	actionUrl?: string | null;
+	actionUrlLabel?: string | null;
 }
 
-export interface ServerStepData {
-	stepId: string;
+export interface DbWorkflow {
+	name: string;
+	title: string;
+	completionMessage?: string | null;
+	phases: DbWorkflowPhase[];
+	steps: DbWorkflowStep[];
+}
+
+export interface DbWorkflowStepInstance {
+	workflowStep: {stepKey: string};
 	completedAt?: Date | string | null;
 	completedByWorkstation?: {givenName?: string; surname?: string} | null;
 	completedByClient?: {givenName?: string; surname?: string} | null;
 	decisionValue?: boolean | null;
 }
 
-export function reconcileWithServer(configSteps: TaskStep[], serverSteps: ServerStepData[]): {steps: TaskStep[]; completedIds: Set<string>} {
-	const completedIds = new Set<string>();
-	const serverMap = new Map(serverSteps.map(s => [s.stepId, s]));
+export interface DbWorkflowInstance {
+	stepInstances: DbWorkflowStepInstance[];
+}
 
-	const steps = configSteps.map(localStep => {
-		const serverStep = serverMap.get(localStep.id);
-		if (!serverStep) return localStep;
+// Normalize assignedTo value to uppercase to match TaskUserType enum
+function normalizeUserType(value: string): TaskUserType {
+	const upper = value.toUpperCase();
+	if (upper === 'CLIENT') return TaskUserType.Client;
+	if (upper === 'WORKSTATION') return TaskUserType.Workstation;
+	if (upper === 'SYSTEM') return TaskUserType.System;
+	return TaskUserType.Workstation; // fallback
+}
 
-		if (serverStep.completedAt) {
-			completedIds.add(localStep.id);
-		}
+export function workflowToConfig(workflow: DbWorkflow): TaskConfig {
+	const phases = workflow.phases
+		.sort((a, b) => a.sortOrder - b.sortOrder)
+		.reduce((acc, p) => ({...acc, [p.key]: p.label}), {} as Record<string, string>);
+
+	const steps: TaskStep[] = workflow.steps
+		.sort((a, b) => a.sortOrder - b.sortOrder)
+		.map(s => ({
+			id: s.stepKey,
+			label: s.label,
+			phase: s.phase.key,
+			dependsOn: s.dependsOn,
+			conditional: s.conditional,
+			outputs: s.outputs,
+			assignedTo: normalizeUserType(s.assignedTo),
+			isDecision: s.isDecision,
+			decisionLabel: s.decisionLabel ?? undefined,
+			requiresFiles: s.requiresFiles,
+			fileTypeId: s.fileTypeId ?? undefined,
+			fileTypes: s.fileTypes,
+			uploadButtonLabel: s.uploadButtonLabel ?? undefined,
+			helpText: s.helpText ?? undefined,
+			actionUrl: s.actionUrl ?? undefined,
+			actionUrlLabel: s.actionUrlLabel ?? undefined,
+		}));
+
+	return {
+		id: workflow.name,
+		title: workflow.title,
+		completionMessage: workflow.completionMessage ?? undefined,
+		phases,
+		steps,
+	};
+}
+
+export function instanceToState(instance: DbWorkflowInstance | null | undefined, role?: TaskUserType): TaskState {
+	if (!instance) {
+		return {completedStepIds: [], decisions: {}, currentRole: role};
+	}
+
+	const completedStepIds = instance.stepInstances.filter(si => si.completedAt).map(si => si.workflowStep.stepKey);
+
+	const decisions = instance.stepInstances
+		.filter(si => si.decisionValue !== null && si.decisionValue !== undefined)
+		.reduce((acc, si) => ({...acc, [si.workflowStep.stepKey]: si.decisionValue!}), {} as TaskDecisions);
+
+	return {completedStepIds, decisions, currentRole: role};
+}
+
+export function mergeInstanceIntoSteps(steps: TaskStep[], instance: DbWorkflowInstance | null | undefined): TaskStep[] {
+	if (!instance) return steps;
+
+	const instanceMap = new Map(instance.stepInstances.map(si => [si.workflowStep.stepKey, si]));
+
+	return steps.map(step => {
+		const si = instanceMap.get(step.id);
+		if (!si) return step;
 
 		return {
-			...localStep,
-			completedDate: serverStep.completedAt ? new Date(serverStep.completedAt).toISOString() : undefined,
-			completedByWorkstation: serverStep.completedByWorkstation
-				? `${serverStep.completedByWorkstation.givenName || ''} ${serverStep.completedByWorkstation.surname || ''}`.trim()
+			...step,
+			completed: !!si.completedAt,
+			completedDate: si.completedAt ? new Date(si.completedAt as string).toISOString() : undefined,
+			completedByWorkstation: si.completedByWorkstation
+				? `${si.completedByWorkstation.givenName || ''} ${si.completedByWorkstation.surname || ''}`.trim() || undefined
 				: undefined,
-			completedByClient: serverStep.completedByClient
-				? `${serverStep.completedByClient.givenName || ''} ${serverStep.completedByClient.surname || ''}`.trim()
+			completedByClient: si.completedByClient
+				? `${si.completedByClient.givenName || ''} ${si.completedByClient.surname || ''}`.trim() || undefined
 				: undefined,
-			decisionValue: serverStep.decisionValue ?? localStep.decisionValue,
+			decisionValue: si.decisionValue ?? undefined,
 		};
 	});
+}
 
-	return {steps, completedIds};
+export function getAssigneeLabel(assignedTo?: TaskUserType): string {
+	if (assignedTo === TaskUserType.Client) return 'Client';
+	if (assignedTo === TaskUserType.Workstation) return 'Workstation';
+	if (assignedTo === TaskUserType.System) return 'System';
+	return assignedTo || 'Unassigned';
+}
+
+export function getAssigneeColor(assignedTo?: TaskUserType): 'purple' | 'grey' | 'teal' {
+	if (assignedTo === TaskUserType.Client) return 'purple';
+	if (assignedTo === TaskUserType.System) return 'grey';
+	return 'teal';
+}
+
+export function getAssigneeDisplayName(assignedTo?: TaskUserType | string): string {
+	if (assignedTo === TaskUserType.Client) return 'the client';
+	if (assignedTo === TaskUserType.Workstation) return 'the workstation team';
+	if (assignedTo === TaskUserType.System) return 'the system';
+	if (typeof assignedTo === 'string' && assignedTo.includes('@')) {
+		const name = assignedTo.split('@')[0];
+		return name.charAt(0).toUpperCase() + name.slice(1);
+	}
+	return assignedTo || 'other team members';
+}
+
+export function canCompleteStepWithFiles(step: ComputedStep, uploadedDocumentCount: number): boolean {
+	if (!step.requiresFiles) return true;
+	return uploadedDocumentCount > 0;
 }

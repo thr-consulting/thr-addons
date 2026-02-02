@@ -29,7 +29,7 @@ export interface TaskStep {
 	fileTypes?: string[];
 	uploadButtonLabel?: string;
 	helpText?: string;
-	actionUrl?: string | ((contextId: string) => string);
+	actionUrl?: string;
 	actionUrlLabel?: string;
 	decisionValue?: boolean;
 	completedByWorkstation?: string | null;
