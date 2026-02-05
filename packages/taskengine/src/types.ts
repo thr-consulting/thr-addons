@@ -37,6 +37,7 @@ export interface TaskStep {
 	completedDate?: string;
 	files?: TaskFile[];
 	completed?: boolean;
+	vendorId?: string;
 }
 
 export interface TaskConfig {

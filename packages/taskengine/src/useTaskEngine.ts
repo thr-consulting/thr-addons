@@ -1,4 +1,4 @@
-import {useState, useMemo, useCallback} from 'react';
+import {useState, useMemo, useCallback, useEffect, useRef} from 'react';
 import type {TaskConfig, TaskState, TaskUserType} from './types';
 import * as utils from './utils';
 
@@ -11,22 +11,28 @@ export interface UseTaskEngineOptions {
 export function useTaskEngine(options: UseTaskEngineOptions) {
 	const {config, initialState, onStateChange} = options;
 
+	const onStateChangeRef = useRef(onStateChange);
+	onStateChangeRef.current = onStateChange;
+
 	const [state, setStateInternal] = useState<TaskState>({
 		completedStepIds: initialState?.completedStepIds || [],
 		decisions: initialState?.decisions || {},
 		currentRole: initialState?.currentRole,
 	});
 
-	const setState = useCallback(
-		(updater: (s: TaskState) => TaskState) => {
-			setStateInternal(prev => {
-				const next = updater(prev);
-				onStateChange?.(next);
-				return next;
-			});
-		},
-		[onStateChange],
-	);
+	const isInitialMount = useRef(true);
+
+	useEffect(() => {
+		if (isInitialMount.current) {
+			isInitialMount.current = false;
+			return;
+		}
+		onStateChangeRef.current?.(state);
+	}, [state]);
+
+	const setState = useCallback((updater: (s: TaskState) => TaskState) => {
+		setStateInternal(updater);
+	}, []);
 
 	const steps = useMemo(() => utils.computeSteps(config, state), [config, state]);
 	const currentStep = useMemo(() => utils.getCurrentStep(steps), [steps]);
@@ -69,6 +75,16 @@ export function useTaskEngine(options: UseTaskEngineOptions) {
 		[setState],
 	);
 
+	const clearDecision = useCallback(
+		(key: string) => {
+			setState(s => ({
+				...s,
+				decisions: Object.fromEntries(Object.entries(s.decisions).filter(([k]) => k !== key)),
+			}));
+		},
+		[setState],
+	);
+
 	const setRole = useCallback(
 		(role: TaskUserType) => {
 			setState(s => ({...s, currentRole: role}));
@@ -94,6 +110,7 @@ export function useTaskEngine(options: UseTaskEngineOptions) {
 		uncompleteStep,
 		toggleStep,
 		setDecision,
+		clearDecision,
 		setRole,
 		reset,
 	};
