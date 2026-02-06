@@ -44,7 +44,7 @@ export function getCurrentStep(steps: ComputedStep[]): ComputedStep | null {
 }
 
 export function getNextSteps(steps: ComputedStep[], count = 3): ComputedStep[] {
-	return steps.filter(s => s.isVisible && !s.isCompleted && s.canComplete).slice(0, count);
+	return steps.filter(s => s.isVisible && s.isEnabled && !s.isCompleted && s.canComplete).slice(0, count);
 }
 
 export function getWaitingSteps(steps: ComputedStep[], currentRole?: TaskUserType): ComputedStep[] {
@@ -72,6 +72,25 @@ export function getProgress(steps: ComputedStep[]): TaskProgress {
 	return {completed, total, percent: total > 0 ? Math.round((completed / total) * 100) : 0};
 }
 
+export function validateConfig(config: TaskConfig): string[] {
+	const ids = new Set(config.steps.map(s => s.id));
+	const outputs = new Set(config.steps.flatMap(s => s.outputs || []));
+	const errors: string[] = [];
+
+	const hasCycle = (id: string, path = new Set<string>()): boolean => {
+		if (path.has(id)) return true;
+		const step = config.steps.find(s => s.id === id);
+		return step?.dependsOn.some(d => hasCycle(d, new Set([...path, id]))) ?? false;
+	};
+
+	config.steps.forEach(s => {
+		if (s.dependsOn.some(d => !ids.has(d))) errors.push(`"${s.id}" has unknown dependency`);
+		if (s.conditional && !outputs.has(s.conditional)) errors.push(`"${s.id}" has unknown conditional`);
+		if (hasCycle(s.id)) errors.push(`"${s.id}" has circular dependency`);
+	});
+	return errors;
+}
+
 export interface DbWorkflowPhase {
 	key: string;
 	label: string;
@@ -96,6 +115,7 @@ export interface DbWorkflowStep {
 	helpText?: string | null;
 	actionUrl?: string | null;
 	actionUrlLabel?: string | null;
+	vendor?: {id: string} | null;
 }
 
 export interface DbWorkflow {
@@ -107,7 +127,7 @@ export interface DbWorkflow {
 }
 
 export interface DbWorkflowStepInstance {
-	workflowStep: {stepKey: string};
+	workflowStep: {stepKey: string; outputs?: string[]; isDecision?: boolean};
 	completedAt?: Date | string | null;
 	completedByWorkstation?: {givenName?: string; surname?: string} | null;
 	completedByClient?: {givenName?: string; surname?: string} | null;
@@ -151,6 +171,7 @@ export function workflowToConfig(workflow: DbWorkflow): TaskConfig {
 			helpText: s.helpText ?? undefined,
 			actionUrl: s.actionUrl ?? undefined,
 			actionUrlLabel: s.actionUrlLabel ?? undefined,
+			vendorId: s.vendor?.id ?? undefined,
 		}));
 
 	return {
@@ -170,8 +191,13 @@ export function instanceToState(instance: DbWorkflowInstance | null | undefined,
 	const completedStepIds = instance.stepInstances.filter(si => si.completedAt).map(si => si.workflowStep.stepKey);
 
 	const decisions = instance.stepInstances
-		.filter(si => si.decisionValue !== null && si.decisionValue !== undefined)
-		.reduce((acc, si) => ({...acc, [si.workflowStep.stepKey]: si.decisionValue!}), {} as TaskDecisions);
+		.filter(si => si.decisionValue !== null && si.decisionValue !== undefined && si.workflowStep.isDecision)
+		.reduce((acc, si) => {
+			(si.workflowStep.outputs || []).forEach(output => {
+				acc[output] = si.decisionValue!;
+			});
+			return acc;
+		}, {} as TaskDecisions);
 
 	return {completedStepIds, decisions, currentRole: role};
 }
