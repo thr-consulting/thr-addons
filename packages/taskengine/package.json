@@ -1,6 +1,7 @@
 {
 	"name": "@thx/taskengine",
 	"version": "19.1.0",
+	"version": "19.7.1",
 	"description": "Generic task list/workflow engine for React",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
