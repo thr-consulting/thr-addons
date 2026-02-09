@@ -183,6 +183,24 @@ export function workflowToConfig(workflow: DbWorkflow): TaskConfig {
 	};
 }
 
+export function cascadeDecisions(steps: Array<{id: string; isDecision?: boolean; conditional?: string | null}>, decisions: TaskDecisions): void {
+	let changed = true;
+	while (changed) {
+		changed = false;
+		steps.forEach(step => {
+			if (step.isDecision && step.conditional && decisions[step.conditional] === false) {
+				const stepKeyLower = step.id.toLowerCase();
+				if (decisions[`${stepKeyLower}_yes`] !== false) {
+					decisions[`${stepKeyLower}_completed`] = false;
+					decisions[`${stepKeyLower}_yes`] = false;
+					decisions[`${stepKeyLower}_no`] = false;
+					changed = true;
+				}
+			}
+		});
+	}
+}
+
 export function instanceToState(instance: DbWorkflowInstance | null | undefined, role?: TaskUserType): TaskState {
 	if (!instance) {
 		return {completedStepIds: [], decisions: {}, currentRole: role};
