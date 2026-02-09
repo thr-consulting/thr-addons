@@ -183,22 +183,28 @@ export function workflowToConfig(workflow: DbWorkflow): TaskConfig {
 	};
 }
 
-export function cascadeDecisions(steps: Array<{id: string; isDecision?: boolean; conditional?: string | null}>, decisions: TaskDecisions): void {
-	let changed = true;
-	while (changed) {
-		changed = false;
-		steps.forEach(step => {
-			if (step.isDecision && step.conditional && decisions[step.conditional] === false) {
+export function cascadeDecisions(
+	steps: Array<{id: string; isDecision?: boolean; conditional?: string | null}>,
+	decisions: TaskDecisions,
+): TaskDecisions {
+	const result = {...decisions};
+	while (
+		steps.some(step => {
+			if (step.isDecision && step.conditional && result[step.conditional] === false) {
 				const stepKeyLower = step.id.toLowerCase();
-				if (decisions[`${stepKeyLower}_yes`] !== false) {
-					decisions[`${stepKeyLower}_completed`] = false;
-					decisions[`${stepKeyLower}_yes`] = false;
-					decisions[`${stepKeyLower}_no`] = false;
-					changed = true;
+				if (result[`${stepKeyLower}_yes`] !== false) {
+					result[`${stepKeyLower}_completed`] = false;
+					result[`${stepKeyLower}_yes`] = false;
+					result[`${stepKeyLower}_no`] = false;
+					return true;
 				}
 			}
-		});
+			return false;
+		})
+	) {
+		// continue until some() returns false
 	}
+	return result;
 }
 
 export function instanceToState(instance: DbWorkflowInstance | null | undefined, role?: TaskUserType): TaskState {
