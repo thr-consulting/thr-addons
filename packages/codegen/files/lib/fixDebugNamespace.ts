@@ -1,6 +1,5 @@
 import type {Collection, FileInfo, JSCodeshift} from 'jscodeshift';
 import path from 'path';
-import {env} from 'process';
 
 function replaceDebugNamespace(namespace: string, root: Collection) {
 	root.findVariableDeclarators('d').forEach(v => {
