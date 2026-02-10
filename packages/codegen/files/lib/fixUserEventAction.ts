@@ -1,7 +1,7 @@
 import type {Collection, FileInfo, JSCodeshift} from 'jscodeshift';
 import path from 'path';
 
-function replaceDebugNamespace(namespace: string, root: Collection) {
+function replaceUserEventAction(namespace: string, root: Collection) {
 	root.findVariableDeclarators('d').forEach(v => {
 		if (v.value.init?.type === 'CallExpression' && v.value.init.callee.type === 'Identifier' && v.value.init.callee.name === 'debug') {
 			const arg = v.value.init.arguments[0];
@@ -12,7 +12,7 @@ function replaceDebugNamespace(namespace: string, root: Collection) {
 	});
 }
 
-export function fixDebugNamespace(root: Collection, j: JSCodeshift, fileInfo: FileInfo) {
+export function fixUserEventAction(root: Collection, j: JSCodeshift, fileInfo: FileInfo) {
 	// Parse the current file's path
 	const re = new RegExp(`${process.env.PACKAGE_DIR}\/(.+)\/src\\/(.*)`)
 	const pathMatched = re.exec(fileInfo.path);
@@ -34,5 +34,5 @@ export function fixDebugNamespace(root: Collection, j: JSCodeshift, fileInfo: Fi
 		.join('.');
 
 	// Replace `d` variable declarators
-	replaceDebugNamespace(name.replace(/\//g, '.'), root);
+	replaceUserEventAction(name.replace(/\//g, '.'), root);
 }
