@@ -1,0 +1,50 @@
+{
+	"name": "@thx/taskengine-react",
+	"version": "19.7.4",
+	"description": "React hooks for task workflow engine",
+	"bugs": {
+		"url": "https://github.com/thr-consulting/thr-addons/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thr-consulting/thr-addons.git"
+	},
+	"license": "MIT",
+	"author": "MYMC <tech@makingyourmilescount.com>",
+	"sideEffects": false,
+	"type": "module",
+	"main": "./dist/esm/index.js",
+	"types": "./dist/types/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "thx build.roll",
+		"clean": "thx clean",
+		"deps": "thx deps",
+		"lint": "thx lint",
+		"lint.fix": "thx lint.fix",
+		"sort": "thx sort",
+		"ts": "thx ts"
+	},
+	"eslintConfig": {
+		"parserOptions": {
+			"project": "./tsconfig-eslint.json"
+		}
+	},
+	"dependencies": {
+		"@thx/taskengine-core": "*"
+	},
+	"peerDependencies": {
+		"react": ">=17.0.0"
+	},
+	"devDependencies": {
+		"@thx/rollup-config-thx": "^19.0.0"
+	},
+	"engines": {
+		"node": ">=22"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
