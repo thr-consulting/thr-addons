@@ -138,6 +138,7 @@ export interface DbWorkflowInstance {
 	stepInstances: DbWorkflowStepInstance[];
 }
 
+// Normalize assignedTo value to uppercase to match TaskUserType enum
 function normalizeUserType(value: string): TaskUserType {
 	const upper = value.toUpperCase();
 	if (upper === 'CLIENT') return TaskUserType.Client;
@@ -201,6 +202,7 @@ export function cascadeDecisions(
 			return false;
 		})
 	) {
+                // continue until some() returns false
 	}
 	return result;
 }
