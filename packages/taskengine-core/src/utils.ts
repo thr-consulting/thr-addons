@@ -144,7 +144,7 @@ function normalizeUserType(value: string): TaskUserType {
 	if (upper === 'CLIENT') return TaskUserType.Client;
 	if (upper === 'WORKSTATION') return TaskUserType.Workstation;
 	if (upper === 'SYSTEM') return TaskUserType.System;
-	return TaskUserType.Workstation; // fallback
+	return TaskUserType.Workstation;
 }
 
 export function workflowToConfig(workflow: DbWorkflow): TaskConfig {

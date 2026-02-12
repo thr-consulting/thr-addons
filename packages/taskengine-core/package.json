@@ -1,7 +1,7 @@
 {
-	"name": "@thx/taskengine",
-	"version": "19.7.3",
-	"description": "Generic task list/workflow engine for React",
+	"name": "@thx/taskengine-core",
+	"version": "19.7.4",
+	"description": "Server-safe types and utilities for task workflow engine",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
 	},
@@ -31,9 +31,6 @@
 		"parserOptions": {
 			"project": "./tsconfig-eslint.json"
 		}
-	},
-	"peerDependencies": {
-		"react": ">=17.0.0"
 	},
 	"devDependencies": {
 		"@thx/rollup-config-thx": "^19.0.0"

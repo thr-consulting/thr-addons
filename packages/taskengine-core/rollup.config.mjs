@@ -1,6 +1,6 @@
 import {rollupLibConfig} from '@thx/rollup-config-thx';
 
 export default rollupLibConfig({
-	name: '@thx/taskengine',
+	name: '@thx/taskengine-core',
 	type: 'node',
 });
