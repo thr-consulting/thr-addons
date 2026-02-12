@@ -202,7 +202,7 @@ export function cascadeDecisions(
 			return false;
 		})
 	) {
-                // continue until some() returns false
+		// continue until some() returns false
 	}
 	return result;
 }
