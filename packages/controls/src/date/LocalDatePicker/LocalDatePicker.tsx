@@ -131,8 +131,14 @@ export function LocalDatePicker(props: LocalDatePickerProps): ReactElement {
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value;
-		const date = inputValue ? toDate(inputValue) : null;
 
+		if (!inputValue) {
+			onChange?.(null);
+			setSelected(null);
+			return;
+		}
+
+		const date = toDate(inputValue);
 		date && handleDateChange(date);
 	};
 
