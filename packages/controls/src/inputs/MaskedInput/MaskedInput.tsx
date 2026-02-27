@@ -34,5 +34,15 @@ export const MaskedInput = forwardRef<MaskedInputRef, MaskedInputProps>((props, 
 		[inputRef],
 	);
 
-	return <input disabled={disabled} name={name} ref={inputRef} onBlur={onBlur} />;
+	return (
+		<input
+			autoComplete="on"
+			disabled={disabled}
+			name={name}
+			ref={inputRef}
+			onBlur={onBlur}
+			defaultValue={value}
+			onInput={e => onChange?.((e.target as HTMLInputElement).value)}
+		/>
+	);
 });
