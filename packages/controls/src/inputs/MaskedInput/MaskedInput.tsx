@@ -44,4 +44,5 @@ export const MaskedInput = forwardRef<MaskedInputRef, MaskedInputProps>((props, 
 			defaultValue={value}
 			onInput={e => onChange?.((e.target as HTMLInputElement).value)}
 		/>
-	);});
+	);
+});
