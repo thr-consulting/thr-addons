@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.9.2](https://github.com/thr-consulting/thr-addons/compare/v19.9.1...v19.9.2) (2026-03-20)
+
+### Reverts
+
+- Revert "chore(release): publish [skip-ci]" ([298c14d](https://github.com/thr-consulting/thr-addons/commit/298c14dc0af2f1a4343e11a3d5220c3e8c1ff9d6))
+- Revert "chore(release): publish [skip-ci]" ([a278b9b](https://github.com/thr-consulting/thr-addons/commit/a278b9bc1ae535248bbb0e92408529506a047e60))
+
 # [19.1.0](https://github.com/thr-consulting/thr-addons/compare/v19.0.0...v19.1.0) (2025-08-19)
 
 **Note:** Version bump only for package @thx/mimetype
