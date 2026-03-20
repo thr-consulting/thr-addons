@@ -15,14 +15,28 @@ export function isPdf(mimetype: string): boolean {
  * @return {boolean}
  */
 export function isDoc(mimetype: string): boolean {
-	switch (mimetype) {
+	switch (mimetype.trim()) {
+		case 'application/x-cfb':
 		case 'application/msword':
-		case 'application/vnd.ms-excel':
-		case 'application/vnd.oasis.opendocument.text':
-		case 'application/vnd.oasis.opendocument.graphics':
-		case 'application/vnd.oasis.opendocument.spreadsheet':
+		case 'application/vnd.ms-office':
 		case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+		case 'application/vnd.ms-word.document.macroenabled.12':
+		case 'application/vnd.openxmlformats-officedocument.wordprocessingml.template':
+		case 'application/vnd.ms-excel':
+		case 'application/msexcel':
+		case 'application/x-excel':
+		case 'application/x-msexcel':
 		case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+		case 'application/vnd.ms-excel.sheet.macroenabled.12':
+		case 'application/vnd.ms-excel.sheet.binary.macroenabled.12':
+		case 'application/vnd.ms-powerpoint':
+		case 'application/mspowerpoint':
+		case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
+		case 'application/vnd.ms-powerpoint.presentation.macroenabled.12':
+		case 'application/vnd.oasis.opendocument.text':
+		case 'application/vnd.oasis.opendocument.spreadsheet':
+		case 'application/vnd.oasis.opendocument.presentation':
+		case 'application/vnd.oasis.opendocument.graphics':
 			return true;
 		default:
 			return false;
@@ -35,7 +49,7 @@ export function isDoc(mimetype: string): boolean {
  * @return {boolean}
  */
 export function isZip(mimetype: string): boolean {
-	switch (mimetype) {
+	switch (mimetype.trim()) {
 		case 'application/x-zip-compressed':
 		case 'application/zip':
 			return true;
@@ -50,7 +64,7 @@ export function isZip(mimetype: string): boolean {
  * @return {boolean}
  */
 export function isImage(mimetype: string): boolean {
-	switch (mimetype) {
+	switch (mimetype.trim()) {
 		case 'image/jpeg':
 		case 'image/jpg': // This is invalid but it is still used sometimes.
 		case 'image/png':
@@ -72,7 +86,7 @@ export function isImage(mimetype: string): boolean {
  * @param mimetype
  */
 export function isJpg(mimetype: string): boolean {
-	return mimetype === 'image/jpeg';
+	return mimetype.trim() === 'image/jpeg';
 }
 
 export function mimetypeFromFilename(filename: string) {
@@ -80,5 +94,5 @@ export function mimetypeFromFilename(filename: string) {
 }
 
 export function extFromMimetype(mimetype: string) {
-	return mime.extension(mimetype);
+	return mime.extension(mimetype.trim());
 }
