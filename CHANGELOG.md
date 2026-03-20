@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.9.2](https://github.com/thr-consulting/thr-addons/compare/v19.9.1...v19.9.2) (2026-03-20)
+
+### Reverts
+
+- Revert "chore(release): publish [skip-ci]" ([d60a904](https://github.com/thr-consulting/thr-addons/commit/d60a90496ff11a310a9a4c022daf815e15ef3710))
+- Revert "chore(release): publish [skip-ci]" ([2dee37f](https://github.com/thr-consulting/thr-addons/commit/2dee37fd127fb209a9f5b47a0bfb1c6da9cfa84c))
+- Revert "chore(release): publish [skip-ci]" ([b2b1187](https://github.com/thr-consulting/thr-addons/commit/b2b118778b99b9181cb5f2fdf500e784e5bd2123))
+- Revert "chore(release): publish [skip-ci]" ([4ee7799](https://github.com/thr-consulting/thr-addons/commit/4ee77991fc1aa9dcf581378683d99b54cef71196))
+- Revert "chore(release): publish [skip-ci]" ([298c14d](https://github.com/thr-consulting/thr-addons/commit/298c14dc0af2f1a4343e11a3d5220c3e8c1ff9d6))
+- Revert "chore(release): publish [skip-ci]" ([a278b9b](https://github.com/thr-consulting/thr-addons/commit/a278b9bc1ae535248bbb0e92408529506a047e60))
+
 ## [19.9.1](https://github.com/thr-consulting/thr-addons/compare/v19.9.0...v19.9.1) (2026-03-02)
 
 **Note:** Version bump only for package thr-addons
