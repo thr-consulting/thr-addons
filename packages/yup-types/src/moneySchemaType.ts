@@ -40,7 +40,7 @@ class MoneySchemaType extends MixedSchema<Money> {
 		return this.test({
 			// eslint-disable-next-line no-template-curly-in-string
 			message: message || '${path} must be greater than or equal to ${min}',
-			name: 'max',
+			name: 'min',
 			exclusive: true,
 			params: {min: minValue},
 			test(value: Maybe<Money>) {
