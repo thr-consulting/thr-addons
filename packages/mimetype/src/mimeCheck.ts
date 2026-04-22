@@ -89,6 +89,20 @@ export function isJpg(mimetype: string): boolean {
 	return mimetype.trim() === 'image/jpeg';
 }
 
+/**
+Returns true if the mimetype is an Xps file
+ * @param mimetype
+ */
+export function isXps(mimetype: string): boolean {
+	switch (mimetype.trim()) {
+		case 'application/vnd.ms-xpsdocument':
+		case 'application/oxps':
+			return true;
+		default:
+			return false;
+	}
+}
+
 export function mimetypeFromFilename(filename: string) {
 	return mime.lookup(filename);
 }
