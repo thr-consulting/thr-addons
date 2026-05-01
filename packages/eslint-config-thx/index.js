@@ -78,6 +78,7 @@ if (options.typescript) {
 		'@typescript-eslint/no-before-define': ['off'], // This was disabled to support optional chaining: https://github.com/typescript-eslint/typescript-eslint/issues/1116
 		'@typescript-eslint/explicit-module-boundary-types': ['off'],
 		'@typescript-eslint/no-floating-promises': 'error',
+		'@typescript-eslint/no-unnecessary-condition': 'error',
 		'@typescript-eslint/await-thenable': 'error',
 		'@typescript-eslint/consistent-type-imports': [
 			'error',
