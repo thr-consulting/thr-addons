@@ -138,6 +138,7 @@ case "${CMD}" in
       yarn -s rimraf ./.eslintcache
       yarn -s rimraf ./tsconfig.tsbuildinfo
     fi
+    find . -type d -empty -delete
     ;;
   codemod)
     yarn -s jscodeshift --extensions=ts,tsx --parser=tsx "${@:2}"
