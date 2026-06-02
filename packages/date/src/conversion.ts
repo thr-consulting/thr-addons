@@ -54,6 +54,27 @@ const iso8601DateOnly = /^\d{4}-\d{2}-\d{2}$/;
 const iso8601ContainsZone = /(Z|[+-]\d{2}:\d{2})$/;
 const iso8601TimeOnly = /^\d{2}:\d{2}(:\d{2}(\.\d{1,9})?)?$/;
 
+function normalizeDateTimeString(str: string): string {
+	let normalized = str;
+
+	// Replace Postgres space separator with 'T'
+	if (/^\d{4}-\d{2}-\d{2} \d{2}/.test(normalized)) {
+		normalized = normalized.replace(' ', 'T');
+	}
+
+	// Convert short offsets like +00 to Z
+	if (normalized.endsWith('+00')) {
+		normalized = `${normalized.slice(0, -3)}Z`;
+	}
+	// Append missing minutes to short offsets (e.g., +02 -> +02:00)
+	// The ':\d{2}' guard prevents it from matching the day portion of YYYY-MM-DD
+	else if (/:\d{2}([+-]\d{2})$/.test(normalized)) {
+		normalized += ':00';
+	}
+
+	return normalized;
+}
+
 export function toLocalDate(date: any, zone: ZoneId = ZoneId.SYSTEM): LocalDate {
 	if (date instanceof LocalDate) {
 		return date;
@@ -78,13 +99,15 @@ export function toLocalDate(date: any, zone: ZoneId = ZoneId.SYSTEM): LocalDate 
 		return LocalDate.of(date._year, date._month, date._day);
 	}
 	if (typeof date === 'string') {
-		if (iso8601DateOnly.test(date)) {
-			return LocalDate.parse(date);
+		const str = normalizeDateTimeString(date);
+
+		if (iso8601DateOnly.test(str)) {
+			return LocalDate.parse(str);
 		}
-		if (iso8601ContainsZone.test(date)) {
-			return ZonedDateTime.parse(date).toLocalDate();
+		if (iso8601ContainsZone.test(str)) {
+			return ZonedDateTime.parse(str).toLocalDate();
 		}
-		return LocalDateTime.parse(date).toLocalDate();
+		return LocalDateTime.parse(str).toLocalDate();
 	}
 	throw new Error('Cannot convert value to LocalDate');
 }
@@ -129,13 +152,15 @@ export function toLocalDateTime(date: any, zone: ZoneId = ZoneId.SYSTEM): LocalD
 		return LocalDateTime.of(localDate.year(), localDate.monthValue(), localDate.dayOfMonth(), 0, 0, 0, 0);
 	}
 	if (typeof date === 'string') {
-		if (iso8601DateOnly.test(date)) {
-			return toLocalDateTime(LocalDate.parse(date));
+		const str = normalizeDateTimeString(date);
+
+		if (iso8601DateOnly.test(str)) {
+			return toLocalDateTime(LocalDate.parse(str));
 		}
-		if (iso8601ContainsZone.test(date)) {
-			return ZonedDateTime.parse(date).toLocalDateTime();
+		if (/(Z|[+-]\d{2}:\d{2})$/.test(str)) {
+			return ZonedDateTime.parse(str).toLocalDateTime();
 		}
-		return LocalDateTime.parse(date);
+		return LocalDateTime.parse(str);
 	}
 	throw new Error('Cannot convert value to LocalDateTime');
 }
