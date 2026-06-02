@@ -56,16 +56,22 @@ const iso8601TimeOnly = /^\d{2}:\d{2}(:\d{2}(\.\d{1,9})?)?$/;
 
 function normalizeDateTimeString(str: string): string {
 	let normalized = str;
+
 	// Replace Postgres space separator with 'T'
 	if (/^\d{4}-\d{2}-\d{2} \d{2}/.test(normalized)) {
 		normalized = normalized.replace(' ', 'T');
 	}
-	// Convert short offsets like +00 to Z, or append missing minutes (e.g., +02 -> +02:00)
+
+	// Convert short offsets like +00 to Z
 	if (normalized.endsWith('+00')) {
 		normalized = `${normalized.slice(0, -3)}Z`;
-	} else if (/([+-]\d{2})$/.test(normalized)) {
+	}
+	// Append missing minutes to short offsets (e.g., +02 -> +02:00)
+	// The ':\d{2}' guard prevents it from matching the day portion of YYYY-MM-DD
+	else if (/:\d{2}([+-]\d{2})$/.test(normalized)) {
 		normalized += ':00';
 	}
+
 	return normalized;
 }
 
