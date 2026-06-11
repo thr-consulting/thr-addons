@@ -22,7 +22,7 @@ runs:
           node_modules
           */*/node_modules
           !node_modules/.cache/nx
-        key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
+        key: ${{ runner.os }}-nm2-${{ hashFiles('yarn.lock') }}
 
     - name: Run linting
       shell: bash
