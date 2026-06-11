@@ -60,7 +60,7 @@
 		"semantic-ui-react": "2.x"
 	},
 	"engines": {
-		"node": ">=22"
+		"node": ">=24"
 	},
 	"publishConfig": {
 		"access": "public"
