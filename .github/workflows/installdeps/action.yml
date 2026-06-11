@@ -14,27 +14,24 @@ runs:
         node-version: ${{ inputs.node-version }}
         cache: 'yarn'
 
-    - name: Restore node_modules
-      id: restore-cache
-      uses: actions/cache/restore@v5
-      with:
-        path: |
-          node_modules
-          */*/node_modules
-        key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
-
     - name: Install dependencies
-      if: steps.restore-cache.outputs.cache-hit != 'true'
+      if: steps.cache.outputs.cache-hit != 'true'
       shell: bash
       run: |
         yarn install
         yarn run thx check-git-status
 
-    - name: Save node_modules
-      if: steps.restore-cache.outputs.cache-hit != 'true'
+    - name: Check dependencies
+      shell: bash
+      run: |
+        yarn deps -v
+
+    - name: node_modules cache
       uses: actions/cache/save@v5
+      id: cache
       with:
         path: |
           node_modules
           */*/node_modules
+          !node_modules/.cache/nx
         key: ${{ runner.os }}-nm-${{ hashFiles('yarn.lock') }}
