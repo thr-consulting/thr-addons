@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0](https://github.com/thr-consulting/thr-addons/compare/v19.10.3...v20.0.0) (2026-06-11)
+
+**Note:** Version bump only for package @thx/yup-types
+
 ## [19.9.3](https://github.com/thr-consulting/thr-addons/compare/v19.9.2...v19.9.3) (2026-04-22)
 
 **Note:** Version bump only for package @thx/yup-types

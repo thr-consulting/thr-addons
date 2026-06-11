@@ -1,6 +1,6 @@
 {
 	"name": "@thx/yup-types",
-	"version": "19.9.3",
+	"version": "20.0.0",
 	"description": "Custom Yup types",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -34,13 +34,13 @@
 	},
 	"dependencies": {
 		"@js-joda/core": "^5.6.5",
-		"@thx/money": "^19.1.0",
+		"@thx/money": "^20.0.0",
 		"debug": "^4.4.0",
 		"js-money": "^0.6.3",
 		"yup": "^0.32.11"
 	},
 	"devDependencies": {
-		"@thx/rollup-config-thx": "^19.0.0"
+		"@thx/rollup-config-thx": "^20.0.0"
 	},
 	"engines": {
 		"node": ">=24"

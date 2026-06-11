@@ -1,6 +1,6 @@
 {
 	"name": "@thx/date",
-	"version": "19.10.2",
+	"version": "20.0.0",
 	"description": "Date utils",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -40,7 +40,7 @@
 		"@js-joda/timezone": "^2.22.0"
 	},
 	"devDependencies": {
-		"@thx/rollup-config-thx": "^19.0.0"
+		"@thx/rollup-config-thx": "^20.0.0"
 	},
 	"engines": {
 		"node": ">=24"

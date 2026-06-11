@@ -1,6 +1,6 @@
 {
 	"name": "@thx/taskengine-core",
-	"version": "19.9.0",
+	"version": "20.0.0",
 	"description": "Server-safe types and utilities for task workflow engine",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -33,7 +33,7 @@
 		}
 	},
 	"devDependencies": {
-		"@thx/rollup-config-thx": "^19.0.0"
+		"@thx/rollup-config-thx": "^20.0.0"
 	},
 	"engines": {
 		"node": ">=24"

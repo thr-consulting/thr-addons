@@ -1,6 +1,6 @@
 {
 	"name": "@thx/mikroorm-types",
-	"version": "19.10.3",
+	"version": "20.0.0",
 	"description": "Custom Mikro-orm types",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -33,11 +33,11 @@
 		}
 	},
 	"dependencies": {
-		"@thx/date": "^19.10.2",
-		"@thx/money": "^19.1.0"
+		"@thx/date": "^20.0.0",
+		"@thx/money": "^20.0.0"
 	},
 	"devDependencies": {
-		"@thx/rollup-config-thx": "^19.0.0"
+		"@thx/rollup-config-thx": "^20.0.0"
 	},
 	"peerDependencies": {
 		"@mikro-orm/core": "6.x"

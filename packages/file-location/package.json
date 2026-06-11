@@ -1,6 +1,6 @@
 {
 	"name": "@thx/file-location",
-	"version": "19.6.2",
+	"version": "20.0.0",
 	"description": "File function abstraction",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -42,7 +42,7 @@
 		"lodash-es": "^4.17.21"
 	},
 	"devDependencies": {
-		"@thx/rollup-config-thx": "^19.0.0"
+		"@thx/rollup-config-thx": "^20.0.0"
 	},
 	"engines": {
 		"node": ">=24"
