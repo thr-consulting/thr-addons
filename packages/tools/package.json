@@ -12,7 +12,7 @@
 	"license": "MIT",
 	"author": "MYMC <tech@makingyourmilescount.com>",
 	"bin": {
-		"thx": "./bin/thx.sh"
+		"thx": "./bin/thx.js"
 	},
 	"type": "module",
 	"sideEffects": false,
