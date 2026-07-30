@@ -18,4 +18,4 @@ npm-debug.log*
 .npmrc
 tsconfig.tsbuildinfo
 dist
-.yarn
+.yarn/install-state.gz
