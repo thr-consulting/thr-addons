@@ -277,7 +277,7 @@ get_changed_packages () {
   local -n pkgs=$1
 
   check_cmds commands_needed
-  pkgs=($(yarn -s lerna changed --json | jq -r '.[].name'))
+  pkgs=($(yarn lerna changed --silent --json | jq -r '.[].name'))
 }
 
 # Joins an array of strings together with a delimiter

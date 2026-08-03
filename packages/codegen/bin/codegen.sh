@@ -196,9 +196,9 @@ if [ "$LR" = "$PWD" ]; then
   # Generate TS code with codegen in each package
   if [ "$IS_DEBUG" = "1" ]; then
     op "Generating TS code from graphql schema"
-    yarn -s lerna run codegen
+    yarn -lerna run codegen --silent
   else
-    coproc bfd { yarn -s lerna run codegen 2>&1; }
+    coproc bfd { yarn lerna run codegen --silent  2>&1; }
     exec 3>&${bfd[0]}
     spinner "$!" "Generating TS code from graphql schema"
     ret="$?"
@@ -261,5 +261,5 @@ if [ "$LR" = "$PWD" ]; then
   rm -f /tmp/imp_codegen_entity_map.txt
 else
   # Run graphql-codegen
-  yarn -s graphql-codegen "${@:2}"
+  yarn graphql-codegen --silent "${@:2}"
 fi

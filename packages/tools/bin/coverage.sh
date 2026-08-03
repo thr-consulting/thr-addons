@@ -21,12 +21,12 @@ source "$TOOLS_DIR/bin/common.sh"
 show_help () {
   printf "${LCYAN}Coverage Script${NC}\n\n"
   printf "Usage:  coverage.sh [OPTIONS]\n\n"
-	printf "A helper script for gathering test coverage info.\n\n"
-	printf "Options:\n"
-	printf "  -p  string  Packages directory [required]\n"
-	printf "  -c  string  Coverage directory [required]\n"
-	printf "  -i  string  Comma separated list of package dirs to ignore\n"
-	printf "\n"
+  printf "A helper script for gathering test coverage info.\n\n"
+  printf "Options:\n"
+  printf "  -p  string  Packages directory [required]\n"
+  printf "  -c  string  Coverage directory [required]\n"
+  printf "  -i  string  Comma separated list of package dirs to ignore\n"
+  printf "\n"
 }
 
 # A POSIX variable
@@ -40,18 +40,18 @@ IGNORE_DIRS=""
 BINDIR=$(get_node_modules_bin_dir "$TOOLS_DIR")
 
 while getopts "h?c:p:i:" opt; do
-	case "$opt" in
-	h|\?)
-		show_help
-		exit 0
-		;;
+  case "$opt" in
+  h|\?)
+   show_help
+   exit 0
+   ;;
   p)  PACKAGE_DIR=$OPTARG
-		;;
-	c)  COVERAGE_DIR=$(realpath $OPTARG)
-		;;
+   ;;
+  c)  COVERAGE_DIR=$(realpath "$OPTARG")
+   ;;
   i)  IGNORE_DIRS=$OPTARG
     ;;
-	esac
+  esac
 done
 
 shift $((OPTIND-1))
@@ -88,20 +88,15 @@ do
   fi
 
   # Generate coverage info
-  yarn -s test --coverage --silent --collectCoverageFrom="<rootDir>/src/**/*.[jt]s" --coverageDirectory="${COVERAGE_DIR}/${PKGBASE}" --passWithNoTests
+  yarn test --coverage --silent --collectCoverageFrom="<rootDir>/src/**/*.[jt]s" --coverageDirectory="${COVERAGE_DIR}/${PKGBASE}" --passWithNoTests
   # node --experimental-vm-modules "${BINDIR:?}/jest" --coverage --silent --collectCoverageFrom="<rootDir>/src/**/*.[jt]s" --coverageDirectory="${COVERAGE_DIR}/${PKGBASE}" --passWithNoTests
 
   # Generate coverage badge
   LCOV="${COVERAGE_DIR:?}/$PKGBASE/lcov.info"
   if [ -f "$LCOV" ]; then
-    printf "${COVERAGE_DIR:?} / ${PKGBASE}"
+    printf "${COVERAGE_DIR:?} / ${PKGBASE}\n"
     cat "$LCOV" | "$BINDIR"/coverbadge -o "${COVERAGE_DIR:?}/$PKGBASE/coverage.svg"
   fi
 done
 
 restore_cwd
-
-## Copy template index.html and replace text
-#cp $PWD/../../tools/template.html $COVERAGE/$NAME/index.html
-#sed -i -e 's/IFRAMEURL/\.\/lcov-report\/index.html/g' $COVERAGE/$NAME/index.html
-#sed -i -e "s/XX_TITLE/$NAME/g" $COVERAGE/$NAME/index.html
