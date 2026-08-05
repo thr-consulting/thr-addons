@@ -6,7 +6,20 @@ import mime from 'mime-types';
  * @return {boolean}
  */
 export function isPdf(mimetype: string): boolean {
-	return mimetype === 'application/pdf';
+	if (!mimetype) return false;
+	const clean = mimetype.trim().toLowerCase().split(';')[0];
+
+	switch (clean) {
+		case 'application/pdf':
+		case 'application/x-pdf':
+		case 'application/acrobat':
+		case 'applications/vnd.pdf':
+		case 'text/pdf':
+		case 'text/x-pdf':
+			return true;
+		default:
+			return false;
+	}
 }
 
 /**
