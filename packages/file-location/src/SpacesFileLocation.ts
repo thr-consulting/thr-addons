@@ -9,6 +9,7 @@ import {
 	HeadObjectCommand,
 	ListObjectsV2Command,
 	ListBucketsCommand,
+	NotFound,
 } from '@aws-sdk/client-s3';
 import {Upload} from '@aws-sdk/lib-storage';
 import {getSignedUrl} from '@aws-sdk/s3-request-presigner';
@@ -145,8 +146,8 @@ export class SpacesFileLocation implements FileLocationInterface {
 		try {
 			const head = await this.spaces.send(new HeadObjectCommand({Bucket: this.bucket, Key: this.getFullName(name)}));
 			return head.ContentLength;
-		} catch (err: any) {
-			if (err.statusCode === 404) return undefined;
+		} catch (err) {
+			if (err instanceof NotFound) return undefined;
 			throw err;
 		}
 	}
@@ -155,8 +156,8 @@ export class SpacesFileLocation implements FileLocationInterface {
 		try {
 			await this.spaces.send(new HeadObjectCommand({Bucket: this.bucket, Key: this.getFullName(name)}));
 			return true;
-		} catch (err: any) {
-			if (err.statusCode === 404) return false;
+		} catch (err) {
+			if (err instanceof NotFound) return false;
 			throw err;
 		}
 	}
