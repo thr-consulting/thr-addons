@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.2](https://github.com/thr-consulting/thr-addons/compare/v20.0.1...v20.0.2) (2026-08-17)
+
+### Bug Fixes
+
+- **file-location:** bugfix NotFound to s3 packages' latest upgrade ([#474](https://github.com/thr-consulting/thr-addons/issues/474)) ([f927f2e](https://github.com/thr-consulting/thr-addons/commit/f927f2e0774f89039be0d48527647522bff7dc81))
+
 # [20.0.0](https://github.com/thr-consulting/thr-addons/compare/v19.10.3...v20.0.0) (2026-06-11)
 
 **Note:** Version bump only for package @thx/file-location
