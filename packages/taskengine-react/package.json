@@ -1,6 +1,6 @@
 {
 	"name": "@thx/taskengine-react",
-	"version": "20.0.0",
+	"version": "20.1.0",
 	"description": "React hooks for task workflow engine",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
