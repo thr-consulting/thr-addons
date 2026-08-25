@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0](https://github.com/thr-consulting/thr-addons/compare/v20.0.2...v20.1.0) (2026-08-25)
+
+### Reverts
+
+- Revert "chore(release): publish [skip-ci]" ([87bfd0e](https://github.com/thr-consulting/thr-addons/commit/87bfd0ede72b857db78acca35bde54a738f7bb04))
+
 ## [20.0.2](https://github.com/thr-consulting/thr-addons/compare/v20.0.1...v20.0.2) (2026-08-17)
 
 ### Bug Fixes
