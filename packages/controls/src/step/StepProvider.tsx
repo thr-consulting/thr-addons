@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import debug from 'debug';
-import {cloneElement, Children, useMemo, useState, type ReactElement} from 'react';
-import {Prompt} from 'react-router-dom';
+import {cloneElement, Children, useMemo, useState, useCallback, type ReactElement} from 'react';
+import {useBeforeUnload} from 'react-router-dom';
 import {Grid, Step as SemanticStep, StepGroup} from 'semantic-ui-react';
 import {FormStep} from './FormStep';
 import {Step} from './Step';
@@ -41,7 +41,17 @@ export function StepProvider(props: StepProviderProps) {
 		}
 	});
 
-	const onNavigate = () => 'Are you sure you want to end this process? All the entered data will be lost!';
+	// Warn users before leaving or refreshing when warnOnReroute is true and form is not submitting
+	useBeforeUnload(
+		useCallback(
+			(event: BeforeUnloadEvent) => {
+				if (props.warnOnReroute && !isSubmitting) {
+					event.preventDefault();
+				}
+			},
+			[props.warnOnReroute, isSubmitting],
+		),
+	);
 
 	const valueProps = useMemo(() => {
 		return {
@@ -62,7 +72,6 @@ export function StepProvider(props: StepProviderProps) {
 	if (props.vertical) {
 		return (
 			<StepContext.Provider value={valueProps}>
-				{props.warnOnReroute && <Prompt message={onNavigate} when={!isSubmitting} />}
 				<Grid divided stackable>
 					<Grid.Row>
 						<Grid.Column width={3}>
@@ -93,7 +102,6 @@ export function StepProvider(props: StepProviderProps) {
 
 	return (
 		<StepContext.Provider value={valueProps}>
-			{props.warnOnReroute && <Prompt message={onNavigate} />}
 			<StepGroup ordered size="mini">
 				{titles?.map((title, index) => {
 					return (

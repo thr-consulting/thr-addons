@@ -55,8 +55,8 @@
 	"peerDependencies": {
 		"react": "18.x",
 		"react-dom": "18.x",
-		"react-router": "5.x",
-		"react-router-dom": "5.x",
+		"react-router": "6.x",
+		"react-router-dom": "6.x",
 		"semantic-ui-react": "2.x"
 	},
 	"engines": {
