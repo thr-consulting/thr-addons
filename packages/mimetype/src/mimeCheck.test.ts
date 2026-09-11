@@ -1,13 +1,4 @@
-import {
-	isPdf,
-	isDoc,
-	isZip,
-	isImage,
-	isJpg,
-	isXps,
-	mimetypeFromFilename,
-	extFromMimetype,
-} from './mimeCheck';
+import {isPdf, isDoc, isZip, isImage, isJpg, isXps, mimetypeFromFilename, extFromMimetype} from './mimeCheck';
 
 describe('mimeCheck', () => {
 	it('should check pdf', () => {
