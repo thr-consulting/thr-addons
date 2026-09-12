@@ -50,6 +50,14 @@ export function isDoc(mimetype: string): boolean {
 		case 'application/vnd.oasis.opendocument.spreadsheet':
 		case 'application/vnd.oasis.opendocument.presentation':
 		case 'application/vnd.oasis.opendocument.graphics':
+		case 'application/rtf':
+		case 'text/rtf':
+		case 'application/vnd.apple.pages':
+		case 'application/vnd.apple.numbers':
+		case 'application/vnd.apple.keynote':
+		case 'application/vnd.google-apps.document':
+		case 'application/vnd.google-apps.spreadsheet':
+		case 'application/vnd.google-apps.presentation':
 			return true;
 		default:
 			return false;
@@ -65,6 +73,8 @@ export function isZip(mimetype: string): boolean {
 	switch (mimetype.trim()) {
 		case 'application/x-zip-compressed':
 		case 'application/zip':
+		case 'application/x-zip':
+		case 'application/zip-compressed':
 			return true;
 		default:
 			return false;
@@ -87,6 +97,10 @@ export function isImage(mimetype: string): boolean {
 		case 'image/bmp':
 		case 'image/avif':
 		case 'image/heic':
+		case 'image/heif':
+		case 'image/webp':
+		case 'image/svg+xml':
+		case 'image/apng':
 		case 'image/*': // This is not a valid mimetype, but it is used for images sometimes
 			return true;
 		default:
@@ -103,7 +117,7 @@ export function isJpg(mimetype: string): boolean {
 }
 
 /**
-Returns true if the mimetype is an Xps file
+ Returns true if the mimetype is an Xps file
  * @param mimetype
  */
 export function isXps(mimetype: string): boolean {
