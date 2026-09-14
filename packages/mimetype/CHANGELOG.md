@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.1.1](https://github.com/thr-consulting/thr-addons/compare/v20.1.0...v20.1.1) (2026-09-14)
+
+**Note:** Version bump only for package @thx/mimetype
+
 ## [20.0.1](https://github.com/thr-consulting/thr-addons/compare/v20.0.0...v20.0.1) (2026-08-05)
 
 **Note:** Version bump only for package @thx/mimetype
