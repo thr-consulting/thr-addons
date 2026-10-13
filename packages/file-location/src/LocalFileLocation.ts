@@ -2,9 +2,9 @@ import debug from 'debug';
 import deleteEmpty from 'delete-empty';
 import fs from 'fs';
 import {mkdirp, pathExists} from 'fs-extra';
+import {createReadStream, existsSync} from 'node:fs';
 import path from 'path';
 import type {Readable} from 'stream';
-import {createReadStream, existsSync} from 'node:fs';
 import type {FileLocationInterface} from './FileLocationInterface';
 
 const d = debug('thx.file-location.LocalFileLocation');

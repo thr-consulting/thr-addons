@@ -38,7 +38,7 @@
 		"credit-card-type": "^9.1.0",
 		"debug": "^4.4.0",
 		"flat": "^5.0.0",
-		"formik": "^2.2.9",
+		"formik": "^2.4.9",
 		"inputmask": "^5.0.9",
 		"js-money": "^0.6.3",
 		"lodash-es": "^4.17.15",

@@ -1,6 +1,6 @@
-import {useState, useMemo, useCallback, useEffect, useRef} from 'react';
 import type {TaskConfig, TaskState, TaskUserType} from '@thx/taskengine-core';
 import * as utils from '@thx/taskengine-core';
+import {useState, useMemo, useCallback, useEffect, useRef} from 'react';
 
 export interface UseTaskEngineOptions {
 	config: TaskConfig;

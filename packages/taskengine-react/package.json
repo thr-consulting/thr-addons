@@ -35,11 +35,11 @@
 	"dependencies": {
 		"@thx/taskengine-core": "^20.0.0"
 	},
-	"peerDependencies": {
-		"react": ">=17.0.0"
-	},
 	"devDependencies": {
 		"@thx/rollup-config-thx": "^20.0.0"
+	},
+	"peerDependencies": {
+		"react": ">=17.0.0"
 	},
 	"engines": {
 		"node": ">=24"
