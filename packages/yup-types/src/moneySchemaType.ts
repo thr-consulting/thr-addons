@@ -1,11 +1,20 @@
 import {isMoneyObject, toMoney} from '@thx/money';
 import Money from 'js-money';
-import {MixedSchema} from 'yup';
-import type {Maybe} from 'yup/lib/types';
+import {MixedSchema, type AnyObject, type Flags, type Maybe} from 'yup';
 
-class MoneySchemaType extends MixedSchema<Money> {
+class MoneySchemaType<
+	TType extends Maybe<Money> = Money | undefined,
+	TContext = AnyObject,
+	TDefault = undefined,
+	TFlags extends Flags = '',
+> extends MixedSchema<TType, TContext, TDefault, TFlags> {
 	constructor() {
-		super();
+		super({
+			type: 'money',
+			check(value: any): value is NonNullable<TType> {
+				return value instanceof Money;
+			},
+		});
 
 		this.withMutation(() => {
 			this.transform(function transform(value) {
@@ -16,10 +25,6 @@ class MoneySchemaType extends MixedSchema<Money> {
 				return null;
 			});
 		});
-	}
-
-	protected _typeCheck(value: any): value is NonNullable<Money> {
-		return value instanceof Money;
 	}
 
 	max(maxValue: Money, message?: string) {

@@ -1,9 +1,19 @@
 import {LocalTime} from '@js-joda/core';
-import {MixedSchema} from 'yup';
+import {MixedSchema, type AnyObject, type Flags, type Maybe} from 'yup';
 
-class LocalTimeSchemaType extends MixedSchema<LocalTime> {
+class LocalTimeSchemaType<
+	TType extends Maybe<LocalTime> = LocalTime | undefined,
+	TContext = AnyObject,
+	TDefault = undefined,
+	TFlags extends Flags = '',
+> extends MixedSchema<TType, TContext, TDefault, TFlags> {
 	constructor() {
-		super();
+		super({
+			type: 'localTime',
+			check(value: any): value is NonNullable<TType> {
+				return value instanceof LocalTime;
+			},
+		});
 
 		this.withMutation(() => {
 			this.transform(function transform(value) {
@@ -11,10 +21,6 @@ class LocalTimeSchemaType extends MixedSchema<LocalTime> {
 				return null;
 			});
 		});
-	}
-
-	protected _typeCheck(value: any): value is NonNullable<LocalTime> {
-		return value instanceof LocalTime;
 	}
 }
 
