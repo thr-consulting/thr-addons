@@ -152,8 +152,15 @@ export function workflowToConfig(workflow: DbWorkflow): TaskConfig {
 		.sort((a, b) => a.sortOrder - b.sortOrder)
 		.reduce((acc, p) => ({...acc, [p.key]: p.label}), {} as Record<string, string>);
 
+	const phaseOrderMap = new Map(workflow.phases.map(p => [p.key, p.sortOrder]));
+
 	const steps: TaskStep[] = workflow.steps
-		.sort((a, b) => a.sortOrder - b.sortOrder)
+		.sort((a, b) => {
+			const phaseOrderA = phaseOrderMap.get(a.phase.key) ?? 0;
+			const phaseOrderB = phaseOrderMap.get(b.phase.key) ?? 0;
+			if (phaseOrderA !== phaseOrderB) return phaseOrderA - phaseOrderB;
+			return a.sortOrder - b.sortOrder;
+		})
 		.map(s => ({
 			id: s.stepKey,
 			label: s.label,
