@@ -213,7 +213,7 @@ case "${CMD}" in
     #   - JS, TS,  and TSX files
     #   - 'src' folder
     if [ "$LR" = "$PWD" ]; then
-      spinop "Linting" "yarn" "-s lerna run lint"
+      spinop "Linting" "yarn" "-s lerna run lint --concurrency 4"
     else
       yarn -s eslint --cache --ext js,ts,tsx src "${@:2}"
     fi
