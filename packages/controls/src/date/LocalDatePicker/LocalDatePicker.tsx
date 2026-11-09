@@ -124,7 +124,7 @@ export function LocalDatePicker(props: LocalDatePickerProps): ReactElement {
 		if (maxDate?.isBefore(allowedDate)) {
 			allowedDate = maxDate;
 		}
-		onChange && onChange(date ? allowedDate : null);
+		onChange && onChange(allowedDate);
 		setSelected(toDate(allowedDate));
 		setIsOpen(false);
 	};
