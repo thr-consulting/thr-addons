@@ -14,7 +14,13 @@ export function isMoney(x: any): x is Money {
 }
 
 export function isMoneyObject(x: any): x is MoneyObject {
-	return (x as MoneyObject).amount !== undefined && (x as MoneyObject).currency !== undefined;
+	const typedX = x as
+		| {
+				amount?: number;
+				currency?: CurrencyString;
+		  }
+		| undefined;
+	return !!typedX && typedX.amount !== undefined && typedX.currency !== undefined;
 }
 
 export function toMoney(

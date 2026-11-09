@@ -33,7 +33,7 @@ export default function unzipper(zipReadStream: Readable, onFile: OnFileCallback
 					lazyEntries: true,
 				},
 				(err, zipfile) => {
-					if (err || !zipfile) {
+					if (err) {
 						rejectUnzipper(err);
 						return;
 					}
@@ -52,7 +52,6 @@ export default function unzipper(zipReadStream: Readable, onFile: OnFileCallback
 							// file entry
 							zipfile.openReadStream(entry, (zerr, zipEntryFileReadStream) => {
 								if (zerr) throw zerr;
-								if (!zipEntryFileReadStream) throw new Error(`Error opening read stream from zipped file: ${entry.fileName}`);
 								d(`> Reading file in zip: ${entry.fileName}`);
 
 								onFile({
