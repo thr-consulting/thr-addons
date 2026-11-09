@@ -1,6 +1,5 @@
 import type {Redis} from 'ioredis';
 
-/* eslint-disable no-underscore-dangle */
 function getRedisKey(prefix: string, key: string): string {
 	return prefix ? `${prefix}:${key}` : key;
 }

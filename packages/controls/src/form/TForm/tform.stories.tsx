@@ -192,7 +192,7 @@ UsingHooks.args = {
 
 export function OutsideSubmit(args) {
 	const [, updateArgs] = useArgs();
-	const formSubmitFn = useRef<() => Promise<void>>();
+	const formSubmitFn = useRef<(() => Promise<void>) | undefined>(undefined);
 
 	return (
 		<>

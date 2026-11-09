@@ -22,7 +22,7 @@ export function isStepVisible(step: TaskStep, decisions: TaskDecisions): boolean
 }
 
 export function canRoleComplete(step: TaskStep, role?: TaskUserType): boolean {
-	if (!role || !step.assignedTo) return true;
+	if (!role) return true;
 	if (step.assignedTo === TaskUserType.System) return false;
 	if (role === TaskUserType.Workstation) return true;
 	return step.assignedTo === role;
@@ -261,7 +261,7 @@ export function getAssigneeLabel(assignedTo?: TaskUserType): string {
 	if (assignedTo === TaskUserType.Client) return 'Client';
 	if (assignedTo === TaskUserType.Workstation) return 'Workstation';
 	if (assignedTo === TaskUserType.System) return 'System';
-	return assignedTo || 'Unassigned';
+	return 'Unassigned';
 }
 
 export function getAssigneeColor(assignedTo?: TaskUserType): 'purple' | 'grey' | 'teal' {

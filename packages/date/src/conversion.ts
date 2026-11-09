@@ -24,8 +24,11 @@ export function isLocalDateLike(date: any): date is ILocalDateLike {
 		date !== null &&
 		date !== undefined &&
 		typeof date === 'object' &&
+		// eslint-disable-next-line no-underscore-dangle
 		typeof date._year !== 'undefined' &&
+		// eslint-disable-next-line no-underscore-dangle
 		typeof date._month !== 'undefined' &&
+		// eslint-disable-next-line no-underscore-dangle
 		typeof date._day !== 'undefined'
 	);
 }
@@ -42,9 +45,13 @@ export function isLocalTimeLike(time: any): time is ILocalTimeLike {
 		time !== null &&
 		time !== undefined &&
 		typeof time === 'object' &&
+		// eslint-disable-next-line no-underscore-dangle
 		typeof time._hour !== 'undefined' &&
+		// eslint-disable-next-line no-underscore-dangle
 		typeof time._minute !== 'undefined' &&
+		// eslint-disable-next-line no-underscore-dangle
 		typeof time._second !== 'undefined' &&
+		// eslint-disable-next-line no-underscore-dangle
 		typeof time._nano !== 'undefined'
 	);
 }

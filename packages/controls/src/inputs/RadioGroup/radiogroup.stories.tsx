@@ -16,7 +16,6 @@ export default {
 } as Meta;
 
 export function Main(args) {
-	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
 	return (
@@ -38,7 +37,6 @@ Main.args = {
 };
 
 export function WithoutRadioGroup(args) {
-	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [, updateArgs] = useArgs();
 
 	const val = args.value;
