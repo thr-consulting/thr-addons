@@ -6,7 +6,7 @@ interface MoneySumFooterOptions<A extends Record<string, unknown>> {
 }
 
 export function MoneySumFooter<A extends Record<string, unknown>>(options: MoneySumFooterOptions<A>) {
-	const {id} = options || {};
+	const {id} = options;
 
 	return function MoneySumFooterInstance(info: TableInstance<A>) {
 		const sum = info.rows.reduce((memo, row) => {

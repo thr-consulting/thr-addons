@@ -25,7 +25,7 @@ export function NumberEditCell<D extends Record<number, unknown>>(options?: Numb
 			updateData,
 		} = props;
 
-		const [value, setValue] = useState(initialValue?.toString());
+		const [value, setValue] = useState(initialValue.toString());
 
 		return (
 			<Input

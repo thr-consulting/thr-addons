@@ -23,7 +23,7 @@ const t: StoryFn<typeof SinInput> = args => {
 			{...args}
 			onChange={value => {
 				updateArgs({value});
-				args.onChange && args.onChange(value);
+				args.onChange(value);
 			}}
 		/>
 	);

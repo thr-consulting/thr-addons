@@ -48,7 +48,7 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 			oncomplete() {
 				if (onChange) {
 					if (inputElement.current?.value) {
-						onChange(toMoney(inputElement.current?.value, currencyCode));
+						onChange(toMoney(inputElement.current.value, currencyCode));
 					} else {
 						onChange();
 					}
