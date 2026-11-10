@@ -26,6 +26,7 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 
 	const inputElement = useRef<HTMLInputElement | null>(null);
 	const maskInstance = useRef<Inputmask.Instance | null>(null);
+	const previousValue = useRef(value);
 
 	// set the adjCurrency
 	// let adjCurrency = Money.CAD;
@@ -91,6 +92,20 @@ export function useMoneyInput(props: UseMoneyInputProps): [MutableRefObject<HTML
 
 	// If we change the value prop we need to sync the DOM value to display the new value
 	useEffect(() => {
+		const previouslySetValue = previousValue.current;
+		previousValue.current = value;
+
+		const maskedInput = inputElement.current as (HTMLInputElement & {inputmask?: Inputmask.Instance}) | null;
+		const unmaskedValue = maskedInput?.inputmask?.unmaskedvalue();
+		const isEditingNegativeZero =
+			value?.amount === 0 &&
+			(!previouslySetValue || (previouslySetValue.amount === 0 && previouslySetValue.currency === value.currency)) &&
+			typeof unmaskedValue === 'string' &&
+			unmaskedValue.startsWith('-') &&
+			Number(unmaskedValue.replace(/,/g, '')) === 0;
+
+		if (isEditingNegativeZero) return;
+
 		const whatCurrentlyIsDisplayed = inputElement.current?.value || ''; // string | undef
 		const whatWeAreSetting = value ? value.toString() : ''; // money | undef
 
