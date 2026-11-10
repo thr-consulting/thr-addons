@@ -15,7 +15,7 @@ export interface TaskDecisions {
 }
 
 export interface TaskStep {
-	id: string
+	id: string;
 	label: string;
 	phase: string;
 	dependsOn: string[];
