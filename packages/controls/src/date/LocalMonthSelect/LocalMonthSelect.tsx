@@ -42,7 +42,7 @@ export function LocalMonthSelect(props: LocalMonthSelectProps): ReactElement {
 			onChange={(ev, v) => {
 				if (onChange) {
 					if (typeof v.value === 'number') {
-						onChange(v ? LocalDate.of(theYear, v.value, 1) : null);
+						onChange(LocalDate.of(theYear, v.value, 1));
 					} else {
 						onChange(null);
 					}

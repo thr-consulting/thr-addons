@@ -45,7 +45,7 @@ export function SinInput(props: SinInputProps) {
 		mask,
 		value,
 		onChange: v => {
-			onChange && onChange(v);
+			onChange(v);
 		},
 		onSet: v => {
 			checkValidation([v || '']);

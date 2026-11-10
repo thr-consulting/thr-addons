@@ -3,9 +3,7 @@ import type {ExcludeFalse} from './types';
 
 describe('ExcludeFalse', () => {
 	it('should exclude false values', () => {
-		const bool1 = true;
-		const bool2 = false;
-		const arr = ['string A', 555, null, undefined, bool1 && 'string B', bool2 && 'string C'];
+		const arr = ['string A', 555, null, undefined, 'string B', false];
 
 		expect(arr.filter(Boolean as any as ExcludeFalse)).toMatchSnapshot();
 	});

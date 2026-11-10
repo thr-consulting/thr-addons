@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import {Transform, type TransformOptions, type TransformCallback} from 'node:stream';
 
 export class CounterStream extends Transform {

@@ -27,4 +27,4 @@ runs:
     - name: Run linting
       shell: bash
       run: |
-        yarn lint -v
+        NX_SKIP_NX_CACHE=true yarn -s lerna run lint --concurrency 1 --stream

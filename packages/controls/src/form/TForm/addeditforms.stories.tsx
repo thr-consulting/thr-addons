@@ -71,7 +71,7 @@ export function AddressCreateForm(args: {onSubmit: (value: any) => any}) {
 		initialValues: {line1: '', line2: ''},
 		validationSchema: addressFormValidation,
 		onSubmit(value) {
-			args.onSubmit && args.onSubmit(addressFormValidation.validateSync(value, {stripUnknown: true}));
+			args.onSubmit(addressFormValidation.validateSync(value, {stripUnknown: true}));
 		},
 	});
 

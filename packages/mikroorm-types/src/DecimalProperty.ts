@@ -12,7 +12,7 @@ export class DecimalProperty extends Type {
 		}
 	}
 
-	convertToJSValue(value: string): any {
+	convertToJSValue(value: string | null | undefined): any {
 		try {
 			if (value === undefined || value === null) return value;
 			const number = parseFloat(value);

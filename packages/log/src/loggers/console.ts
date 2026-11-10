@@ -13,7 +13,7 @@ export function createConsoleLogger() {
 				const fSession = info.session ? `[${chalk.yellow(chalk.bold(info.session))}]` : `[${chalk.yellow(chalk.bold(`${info.pid}`))}]`;
 				const fGroup = info.group ? `{${chalk.white(chalk.bold(info.group))}}` : null;
 				const fLevel = `<${info.level}>`;
-				const fStack = error?.stack ? `\n  ${error?.stack}` : null;
+				const fStack = error?.stack ? `\n  ${error.stack}` : null;
 				return compact([chalk.cyan(info.timestamp), `${fApp}${fSession}`, fGroup, fLevel, info.message, fStack]).join(' ');
 			}),
 		),

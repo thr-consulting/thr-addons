@@ -29,6 +29,8 @@ export interface PDFSignature {
 	};
 }
 
+type PDFSignatureInput = PDFSignature[] | null | undefined;
+
 export type PdfInputType = Buffer | Uint8Array | ArrayBuffer | Readable;
 
 function streamToBuffer(stream: Readable): Promise<Buffer> {
@@ -110,7 +112,7 @@ export async function getPdfDoc(srcPdf: PdfInputType): Promise<PDFDocument> {
 	return PDFDocument.load(pdfBytes);
 }
 
-export async function signPdfDoc(srcPdf: PdfInputType, signature: PDFSignature[]): Promise<PDFDocument> {
+export async function signPdfDoc(srcPdf: PdfInputType, signature: PDFSignatureInput): Promise<PDFDocument> {
 	if (!signature || signature.length < 1) {
 		throw new Error('The signatureLocationArray is empty');
 	}
@@ -123,10 +125,10 @@ export async function signPdfDoc(srcPdf: PdfInputType, signature: PDFSignature[]
 	await Promise.all(
 		signature.map(async s => {
 			const index = s.location.onPage - 1;
-			const page = pages[index];
-			if (!page) {
+			if (!Number.isInteger(index) || index < 0 || index >= pages.length) {
 				return;
 			}
+			const page = pages[index];
 
 			const {width: pageWidth, height: pageHeight} = page.getSize();
 			const {width, height} = s.location;
@@ -141,7 +143,11 @@ export async function signPdfDoc(srcPdf: PdfInputType, signature: PDFSignature[]
 			const drawY = pageHeight - y - finalHeight;
 
 			try {
-				if (s.signature.type === 'image/png') {
+				const signatureType: string = s.signature.type;
+				if (signatureType === 'image/svg+xml') {
+					throw new Error('SVG signature embedding is not implemented yet');
+				}
+				if (signatureType === 'image/png') {
 					const imageData = decodeImageData(s.signature.data);
 					const pngImage = await pdfDoc.embedPng(imageData);
 
@@ -166,7 +172,7 @@ export async function signPdfDoc(srcPdf: PdfInputType, signature: PDFSignature[]
 						borderWidth: 0.5,
 						borderOpacity: 0.3,
 					});
-				} else if (s.signature.type === 'image/jpeg') {
+				} else if (signatureType === 'image/jpeg') {
 					const imageData = decodeImageData(s.signature.data);
 					const jpgImage = await pdfDoc.embedJpg(imageData);
 
@@ -191,8 +197,6 @@ export async function signPdfDoc(srcPdf: PdfInputType, signature: PDFSignature[]
 						borderWidth: 0.5,
 						borderOpacity: 0.3,
 					});
-				} else if (s.signature.type === 'image/svg+xml') {
-					throw new Error('SVG signature embedding is not implemented yet');
 				}
 			} catch (signatureError) {
 				throw new Error(
@@ -207,10 +211,10 @@ export async function signPdfDoc(srcPdf: PdfInputType, signature: PDFSignature[]
 			if (!s.dateLocation) return;
 
 			const datePageIndex = s.dateLocation.onPage - 1;
-			const datePage = pages[datePageIndex];
-			if (!datePage) {
+			if (!Number.isInteger(datePageIndex) || datePageIndex < 0 || datePageIndex >= pages.length) {
 				throw new Error(`Date page ${s.dateLocation.onPage} not found in PDF`);
 			}
+			const datePage = pages[datePageIndex];
 
 			const {width: datePageWidth, height: datePageHeight} = datePage.getSize();
 			const dateText = formatSignatureDate(s.signature.timestamp);
@@ -261,13 +265,13 @@ export async function signPdfDoc(srcPdf: PdfInputType, signature: PDFSignature[]
 	return pdfDoc;
 }
 
-export async function signPdf(srcPdf: PdfInputType, signature: PDFSignature[]): Promise<Buffer> {
+export async function signPdf(srcPdf: PdfInputType, signature: PDFSignatureInput): Promise<Buffer> {
 	const pdfDoc = await signPdfDoc(srcPdf, signature);
 	const array = await pdfDoc.save();
 	return Buffer.from(array);
 }
 
-export async function signPdfStream(srcPdf: PdfInputType, signature: PDFSignature[]): Promise<Readable> {
+export async function signPdfStream(srcPdf: PdfInputType, signature: PDFSignatureInput): Promise<Readable> {
 	const pdf = await signPdf(srcPdf, signature);
 	return new Readable({
 		read() {

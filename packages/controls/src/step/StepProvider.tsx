@@ -25,19 +25,19 @@ export function StepProvider(props: StepProviderProps) {
 	const titles: string[] = [];
 	const children: ReactElement[] = [];
 
-	Children.forEach(props?.children, (child, index) => {
+	Children.forEach(props.children, (child, index) => {
 		if (!child) return;
-		if (child?.type !== Step && child?.type !== FormStep) {
-			throw new Error(`Can not render '${child?.type}' as child of 'StepProvider'. Must be of type 'Step' or 'FormStep'`);
+		if (child.type !== Step && child.type !== FormStep) {
+			throw new Error(`Can not render '${child.type}' as child of 'StepProvider'. Must be of type 'Step' or 'FormStep'`);
 		}
 		if (child.props.hidden) {
 			if (typeof child.props.hidden === 'function' && !child.props.hidden(state, index)) {
-				titles.push(child?.props?.title || '');
-				children.push(cloneElement(child, {step: index, key: child?.key || index.toString()}));
+				titles.push(child.props?.title || '');
+				children.push(cloneElement(child, {step: index, key: child.key || index.toString()}));
 			}
 		} else {
-			titles.push(child?.props?.title || '');
-			children.push(cloneElement(child, {step: index, key: child?.key || index.toString()}));
+			titles.push(child.props?.title || '');
+			children.push(cloneElement(child, {step: index, key: child.key || index.toString()}));
 		}
 	});
 
@@ -47,7 +47,7 @@ export function StepProvider(props: StepProviderProps) {
 		return {
 			state,
 			handleSubmit: (values: any, stepKey: string) => {
-				if (currentStep + 1 === children?.length) {
+				if (currentStep + 1 === children.length) {
 					setState({...state, [stepKey]: values});
 					setIsSubmitting(true);
 					props.onSubmit({...state, [stepKey]: values});
@@ -57,7 +57,7 @@ export function StepProvider(props: StepProviderProps) {
 				}
 			},
 		};
-	}, [children?.length, currentStep, props, state]);
+	}, [children.length, currentStep, props, state]);
 
 	if (props.vertical) {
 		return (
@@ -67,7 +67,7 @@ export function StepProvider(props: StepProviderProps) {
 					<Grid.Row>
 						<Grid.Column width={3}>
 							<StepGroup ordered size="mini" vertical widths={1}>
-								{titles?.map((title, index) => {
+								{titles.map((title, index) => {
 									return (
 										<SemanticStep
 											key={index.toString()}
@@ -84,7 +84,7 @@ export function StepProvider(props: StepProviderProps) {
 								})}
 							</StepGroup>
 						</Grid.Column>
-						<Grid.Column width={13}>{children?.[currentStep]}</Grid.Column>
+						<Grid.Column width={13}>{children.at(currentStep)}</Grid.Column>
 					</Grid.Row>
 				</Grid>
 			</StepContext.Provider>
@@ -95,7 +95,7 @@ export function StepProvider(props: StepProviderProps) {
 		<StepContext.Provider value={valueProps}>
 			{props.warnOnReroute && <Prompt message={onNavigate} />}
 			<StepGroup ordered size="mini">
-				{titles?.map((title, index) => {
+				{titles.map((title, index) => {
 					return (
 						<SemanticStep
 							key={index.toString()}
@@ -111,7 +111,7 @@ export function StepProvider(props: StepProviderProps) {
 					);
 				})}
 			</StepGroup>
-			{children?.[currentStep]}
+			{children.at(currentStep)}
 		</StepContext.Provider>
 	);
 }
