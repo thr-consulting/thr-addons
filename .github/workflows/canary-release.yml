@@ -24,4 +24,3 @@ jobs:
           preid: 'alpha'
           name: 'THR-Addons'
           npm-token: ${{ secrets.NPM_TOKEN }}
-          discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}

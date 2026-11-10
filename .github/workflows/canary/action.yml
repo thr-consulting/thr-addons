@@ -15,9 +15,6 @@ inputs:
   npm-token:
     description: 'npm token'
     required: true
-  discord-webhook:
-    description: 'Webhook for posting to discord'
-    required: true
   node-version:
     description: 'Node version to use'
     required: true
@@ -65,11 +62,3 @@ runs:
       run: |
         echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > "$NPMRC/.npmrc"
         yarn lerna publish ${{ inputs.publish-level }} -c --preid ${{ inputs.preid }} --yes
-
-    - name: Notify discord
-      env:
-        DISCORD_WEBHOOK: ${{ inputs.discord-webhook }}
-        MSG: ${{ format('There is a new canary release available {0}', github.ref) }}
-      shell: bash
-      run: |
-        yarn run thx discord - "${{ inputs.name }} Canary Release" "$MSG"
