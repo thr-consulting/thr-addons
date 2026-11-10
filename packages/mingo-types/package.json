@@ -1,6 +1,6 @@
 {
 	"name": "@thx/mingo-types",
-	"version": "20.0.0",
+	"version": "20.2.0",
 	"description": "Mingo operators for custom types",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -33,8 +33,8 @@
 		}
 	},
 	"dependencies": {
-		"@thx/date": "^20.0.0",
-		"@thx/money": "^20.0.0"
+		"@thx/date": "^20.2.0",
+		"@thx/money": "^20.2.0"
 	},
 	"devDependencies": {
 		"@thx/rollup-config-thx": "^20.0.0"
