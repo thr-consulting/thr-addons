@@ -465,19 +465,3 @@ Streams multiple streams to tmp files
 
 
 * * *
-
-<a name="unzipper"></a>
-
-## unzipper(zipReadStream, onFile)
-
-| Param | Type | Description |
-| --- | --- | --- |
-| zipReadStream | <code>Readable</code> | The readable zip file stream. |
-| onFile | <code>OnFileCallback</code> | Called for each file in the zip file. |
-
-Unzips a zip file calling a callback for each file in the zip file.
-
-**Returns**: <code>Promise.&lt;void&gt;</code> - Returns a promise when the zip file is complete.  
-
-* * *
-
