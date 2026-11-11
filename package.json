@@ -67,7 +67,7 @@
 		"@types/use-deep-compare-effect": "^1.5.1",
 		"@types/yauzl": "^2.9.2",
 		"eslint": "^10.14.0",
-		"graphql": "^16.8.1",
+		"graphql": "^17.1.0",
 		"husky": "^7.0.4",
 		"ioredis": "^5.2.4",
 		"jest": "^27.5.1",
