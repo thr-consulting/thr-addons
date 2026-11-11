@@ -19,20 +19,20 @@
 		"files"
 	],
 	"dependencies": {
-		"@graphql-codegen/add": "^5.0.3",
-		"@graphql-codegen/cli": "^5.0.7",
-		"@graphql-codegen/import-types-preset": "^3.0.1",
-		"@graphql-codegen/near-operation-file-preset": "^3.0.1",
-		"@graphql-codegen/time": "^5.0.1",
-		"@graphql-codegen/typescript": "^4.1.6",
-		"@graphql-codegen/typescript-operations": "^4.6.1",
-		"@graphql-codegen/typescript-react-apollo": "^4.3.3",
-		"@graphql-codegen/typescript-resolvers": "^4.5.1",
+		"@graphql-codegen/add": "^8.0.0",
+		"@graphql-codegen/cli": "^8.0.0",
+		"@graphql-codegen/import-types-preset": "^5.0.0",
+		"@graphql-codegen/near-operation-file-preset": "^6.0.0",
+		"@graphql-codegen/time": "^8.0.0",
+		"@graphql-codegen/typescript": "^7.0.1",
+		"@graphql-codegen/typescript-operations": "^7.0.1",
+		"@graphql-codegen/typescript-react-apollo": "^6.0.1",
+		"@graphql-codegen/typescript-resolvers": "^7.0.0",
 		"@thx/graphql-typescript-scalar-type-policies": "^2.0.0",
 		"find-root": "^1.1.0",
-		"graphql-tag": "^2.12.6",
+		"graphql-tag": "^2.12.7",
 		"js-yaml": "^4.1.0",
-		"lodash-es": "^4.17.21"
+		"lodash-es": "^4.18.1"
 	},
 	"peerDependencies": {
 		"graphql": "16.x"
