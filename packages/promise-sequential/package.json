@@ -1,6 +1,6 @@
 {
 	"name": "@thx/promise-sequential",
-	"version": "20.0.0",
+	"version": "21.0.0",
 	"description": "Execute promises sequentially",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -32,7 +32,7 @@
 		}
 	},
 	"devDependencies": {
-		"@thx/rollup-config-thx": "^20.0.0"
+		"@thx/rollup-config-thx": "^21.0.0"
 	},
 	"engines": {
 		"node": ">=24"
