@@ -116,6 +116,7 @@ export interface DbWorkflowStep {
 	actionUrl?: string | null;
 	actionUrlLabel?: string | null;
 	vendor?: {id: string} | null;
+	pseudoVendor?: string | null;
 }
 
 export interface DbWorkflow {
@@ -179,6 +180,7 @@ export function workflowToConfig(workflow: DbWorkflow): TaskConfig {
 			actionUrl: s.actionUrl ?? undefined,
 			actionUrlLabel: s.actionUrlLabel ?? undefined,
 			vendorId: s.vendor?.id ?? undefined,
+			pseudoVendor: s.pseudoVendor ?? undefined,
 		}));
 
 	return {
