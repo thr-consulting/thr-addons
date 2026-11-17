@@ -5594,36 +5594,6 @@
     change-case "^4.1.1"
     ts-poet "^4.5.0"
 
-"@thx/prettier-config-thx@^17.0.0":
-  version "17.3.6"
-  resolved "https://registry.yarnpkg.com/@thx/prettier-config-thx/-/prettier-config-thx-17.3.6.tgz#71c4bbb210e1a2f1f0b00092f23902bfcacf2974"
-  integrity sha512-7r18YWjDjAhFL8pqKPKEjRNtbby/+SFiTk6XhyYixMqc3k/nrBR8JCus+qoeYvdTxyNi3hBje5H4yCvPM/+kCw==
-
-"@thx/tools@^17.0.0":
-  version "17.3.6"
-  resolved "https://registry.yarnpkg.com/@thx/tools/-/tools-17.3.6.tgz#461ceab2417b48dbbc90146be28a9530ee0a9e07"
-  integrity sha512-JGjGT7PzqRytq5FEinaqhCxPMAh1YlTQLU3WRQWhwwGXrnRVYEcOV0GQuYcKmpdWnKQ4kiq1ur/uCqkJRBefFQ==
-  dependencies:
-    "@babel/core" "^7.17.5"
-    "@babel/preset-env" "^7.16.11"
-    "@types/chai" "^4.3.0"
-    "@types/chai-as-promised" "^7.1.5"
-    "@types/jscodeshift" "^0.11.3"
-    "@types/mocha" "^9.1.0"
-    chai "^4.3.6"
-    chai-as-promised "^7.1.1"
-    debug "^4.4.0"
-    depcheck "^1.4.3"
-    find-up "^5.0.0"
-    jscodeshift "^0.13.1"
-    lodash-es "^4.17.21"
-    mocha "^9.2.2"
-    rimraf "^3.0.2"
-    sort-package-json "^1.54.0"
-    testdouble "^3.16.4"
-    ts-node "^10.9.0"
-    yaml "^1.10.2"
-
 "@tokenizer/inflate@^0.2.7":
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/@tokenizer/inflate/-/inflate-0.2.7.tgz#32dd9dfc9abe457c89b3d9b760fc0690c85a103b"

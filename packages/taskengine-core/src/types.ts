@@ -38,6 +38,7 @@ export interface TaskStep {
 	files?: TaskFile[];
 	completed?: boolean;
 	vendorId?: string;
+	pseudoVendor?: string | null;
 }
 
 export interface TaskConfig {
