@@ -1,6 +1,6 @@
 {
 	"name": "@thx/taskengine-core",
-	"version": "21.0.0",
+	"version": "21.0.1",
 	"description": "Server-safe types and utilities for task workflow engine",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
