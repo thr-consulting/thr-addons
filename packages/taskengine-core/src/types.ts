@@ -14,7 +14,7 @@ export interface TaskDecisions {
 	[key: string]: boolean | undefined;
 }
 
-export interface TaskStep {
+export interface TaskStep<P> {
 	id: string;
 	label: string;
 	phase: string;
@@ -38,14 +38,14 @@ export interface TaskStep {
 	files?: TaskFile[];
 	completed?: boolean;
 	vendorId?: string;
-	pseudoVendor?: string | null;
+	pseudoVendor?: P | null;
 }
 
-export interface TaskConfig {
+export interface TaskConfig<P> {
 	id: string;
 	title: string;
 	phases: Record<string, string>;
-	steps: TaskStep[];
+	steps: TaskStep<P>[];
 	completionMessage?: string;
 }
 
@@ -55,17 +55,17 @@ export interface TaskState {
 	currentRole?: TaskUserType;
 }
 
-export interface ComputedStep extends TaskStep {
+export interface ComputedStep<P> extends TaskStep<P> {
 	isCompleted: boolean;
 	isEnabled: boolean;
 	isVisible: boolean;
 	canComplete: boolean;
 }
 
-export interface TaskPhase {
+export interface TaskPhase<P> {
 	key: string;
 	label: string;
-	steps: ComputedStep[];
+	steps: ComputedStep<P>[];
 	completed: number;
 	total: number;
 }

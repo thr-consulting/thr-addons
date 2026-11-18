@@ -9,26 +9,26 @@ import {
 	TaskUserType,
 } from './types';
 
-export function isStepEnabled(step: TaskStep, completedIds: Set<string>, decisions: TaskDecisions): boolean {
+export function isStepEnabled<P>(step: TaskStep<P>, completedIds: Set<string>, decisions: TaskDecisions): boolean {
 	const dependenciesMet = step.dependsOn.every(id => completedIds.has(id));
 	if (!dependenciesMet) return false;
 	if (step.conditional) return decisions[step.conditional] === true;
 	return true;
 }
 
-export function isStepVisible(step: TaskStep, decisions: TaskDecisions): boolean {
+export function isStepVisible<P>(step: TaskStep<P>, decisions: TaskDecisions): boolean {
 	if (!step.conditional) return true;
 	return decisions[step.conditional] !== false;
 }
 
-export function canRoleComplete(step: TaskStep, role?: TaskUserType): boolean {
+export function canRoleComplete<P>(step: TaskStep<P>, role?: TaskUserType): boolean {
 	if (!role) return true;
 	if (step.assignedTo === TaskUserType.System) return false;
 	if (role === TaskUserType.Workstation) return true;
 	return step.assignedTo === role;
 }
 
-export function computeSteps(config: TaskConfig, state: TaskState): ComputedStep[] {
+export function computeSteps<P>(config: TaskConfig<P>, state: TaskState): ComputedStep<P>[] {
 	const completedSet = new Set(state.completedStepIds);
 	return config.steps.map(step => ({
 		...step,
@@ -39,20 +39,20 @@ export function computeSteps(config: TaskConfig, state: TaskState): ComputedStep
 	}));
 }
 
-export function getCurrentStep(steps: ComputedStep[]): ComputedStep | null {
+export function getCurrentStep<P>(steps: ComputedStep<P>[]): ComputedStep<P> | null {
 	return steps.find(s => s.isVisible && s.isEnabled && !s.isCompleted && s.canComplete) || null;
 }
 
-export function getNextSteps(steps: ComputedStep[], count = 3): ComputedStep[] {
+export function getNextSteps<P>(steps: ComputedStep<P>[], count = 3): ComputedStep<P>[] {
 	return steps.filter(s => s.isVisible && s.isEnabled && !s.isCompleted && s.canComplete).slice(0, count);
 }
 
-export function getWaitingSteps(steps: ComputedStep[], currentRole?: TaskUserType): ComputedStep[] {
+export function getWaitingSteps<P>(steps: ComputedStep<P>[], currentRole?: TaskUserType): ComputedStep<P>[] {
 	if (!currentRole) return [];
 	return steps.filter(s => s.isVisible && s.isEnabled && !s.isCompleted && !s.canComplete);
 }
 
-export function groupByPhase(steps: ComputedStep[], phases: Record<string, string>): TaskPhase[] {
+export function groupByPhase<P>(steps: ComputedStep<P>[], phases: Record<string, string>): TaskPhase<P>[] {
 	return Object.entries(phases).map(([key, label]) => {
 		const phaseSteps = steps.filter(s => s.phase === key && s.isVisible);
 		return {
@@ -65,14 +65,14 @@ export function groupByPhase(steps: ComputedStep[], phases: Record<string, strin
 	});
 }
 
-export function getProgress(steps: ComputedStep[]): TaskProgress {
+export function getProgress<P>(steps: ComputedStep<P>[]): TaskProgress {
 	const visible = steps.filter(s => s.isVisible);
 	const completed = visible.filter(s => s.isCompleted).length;
 	const total = visible.length;
 	return {completed, total, percent: total > 0 ? Math.round((completed / total) * 100) : 0};
 }
 
-export function validateConfig(config: TaskConfig): string[] {
+export function validateConfig<P>(config: TaskConfig<P>): string[] {
 	const ids = new Set(config.steps.map(s => s.id));
 	const outputs = new Set(config.steps.flatMap(s => s.outputs || []));
 	const errors: string[] = [];
@@ -97,7 +97,7 @@ export interface DbWorkflowPhase {
 	sortOrder: number;
 }
 
-export interface DbWorkflowStep {
+export interface DbWorkflowStep<P> {
 	stepKey: string;
 	label: string;
 	phase: {key: string};
@@ -116,15 +116,15 @@ export interface DbWorkflowStep {
 	actionUrl?: string | null;
 	actionUrlLabel?: string | null;
 	vendor?: {id: string} | null;
-	pseudoVendor?: string | null;
+	pseudoVendor?: P | null;
 }
 
-export interface DbWorkflow {
+export interface DbWorkflow<P> {
 	name: string;
 	title: string;
 	completionMessage?: string | null;
 	phases: DbWorkflowPhase[];
-	steps: DbWorkflowStep[];
+	steps: DbWorkflowStep<P>[];
 }
 
 export interface DbWorkflowStepInstance {
@@ -148,14 +148,14 @@ function normalizeUserType(value: string): TaskUserType {
 	return TaskUserType.Workstation;
 }
 
-export function workflowToConfig(workflow: DbWorkflow): TaskConfig {
+export function workflowToConfig<P>(workflow: DbWorkflow<P>): TaskConfig<P> {
 	const phases = workflow.phases
 		.sort((a, b) => a.sortOrder - b.sortOrder)
 		.reduce((acc, p) => ({...acc, [p.key]: p.label}), {} as Record<string, string>);
 
 	const phaseOrderMap = new Map(workflow.phases.map(p => [p.key, p.sortOrder]));
 
-	const steps: TaskStep[] = workflow.steps
+	const steps: TaskStep<P>[] = workflow.steps
 		.sort((a, b) => {
 			const phaseOrderA = phaseOrderMap.get(a.phase.key) ?? 0;
 			const phaseOrderB = phaseOrderMap.get(b.phase.key) ?? 0;
@@ -235,7 +235,7 @@ export function instanceToState(instance: DbWorkflowInstance | null | undefined,
 	return {completedStepIds, decisions, currentRole: role};
 }
 
-export function mergeInstanceIntoSteps(steps: TaskStep[], instance: DbWorkflowInstance | null | undefined): TaskStep[] {
+export function mergeInstanceIntoSteps<P>(steps: TaskStep<P>[], instance: DbWorkflowInstance | null | undefined): TaskStep<P>[] {
 	if (!instance) return steps;
 
 	const instanceMap = new Map(instance.stepInstances.map(si => [si.workflowStep.stepKey, si]));
@@ -283,7 +283,7 @@ export function getAssigneeDisplayName(assignedTo?: TaskUserType | string): stri
 	return assignedTo || 'other team members';
 }
 
-export function canCompleteStepWithFiles(step: ComputedStep, uploadedDocumentCount: number): boolean {
+export function canCompleteStepWithFiles<P>(step: ComputedStep<P>, uploadedDocumentCount: number): boolean {
 	if (!step.requiresFiles) return true;
 	return uploadedDocumentCount > 0;
 }
