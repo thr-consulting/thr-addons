@@ -1,6 +1,6 @@
 {
 	"name": "@thx/taskengine-react",
-	"version": "21.0.2",
+	"version": "21.0.3",
 	"description": "React hooks for task workflow engine",
 	"bugs": {
 		"url": "https://github.com/thr-consulting/thr-addons/issues"
@@ -33,7 +33,7 @@
 		}
 	},
 	"dependencies": {
-		"@thx/taskengine-core": "^21.0.2"
+		"@thx/taskengine-core": "^21.0.3"
 	},
 	"devDependencies": {
 		"@thx/rollup-config-thx": "^21.0.0"
