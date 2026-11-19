@@ -2,13 +2,13 @@ import type {TaskConfig, TaskState, TaskUserType} from '@thx/taskengine-core';
 import * as utils from '@thx/taskengine-core';
 import {useState, useMemo, useCallback, useEffect, useRef} from 'react';
 
-export interface UseTaskEngineOptions<P> {
+export interface UseTaskEngineOptions<P = string> {
 	config: TaskConfig<P>;
 	initialState?: Partial<TaskState>;
 	onStateChange?: (state: TaskState) => void;
 }
 
-export function useTaskEngine<P>(options: UseTaskEngineOptions<P>) {
+export function useTaskEngine<P = string>(options: UseTaskEngineOptions<P>) {
 	const {config, initialState, onStateChange} = options;
 
 	const onStateChangeRef = useRef(onStateChange);

@@ -9,26 +9,41 @@ import {
 	TaskUserType,
 } from './types';
 
-export function isStepEnabled<P>(step: TaskStep<P>, completedIds: Set<string>, decisions: TaskDecisions): boolean {
+export function normalizeUserType(value?: string | null): TaskUserType {
+	if (!value) return TaskUserType.Workstation;
+	const upper = value.toUpperCase();
+	if (upper === 'CLIENT') return TaskUserType.Client;
+	if (upper === 'WORKSTATION') return TaskUserType.Workstation;
+	if (upper === 'SYSTEM') return TaskUserType.System;
+	return TaskUserType.Workstation;
+}
+
+export function isStepEnabled(
+	step: {dependsOn: string[]; conditional?: string | null},
+	completedIds: Set<string>,
+	decisions: TaskDecisions,
+): boolean {
 	const dependenciesMet = step.dependsOn.every(id => completedIds.has(id));
 	if (!dependenciesMet) return false;
 	if (step.conditional) return decisions[step.conditional] === true;
 	return true;
 }
 
-export function isStepVisible<P>(step: TaskStep<P>, decisions: TaskDecisions): boolean {
+export function isStepVisible(step: {conditional?: string | null}, decisions: TaskDecisions): boolean {
 	if (!step.conditional) return true;
 	return decisions[step.conditional] !== false;
 }
 
-export function canRoleComplete<P>(step: TaskStep<P>, role?: TaskUserType): boolean {
+export function canRoleComplete(step: {assignedTo?: TaskUserType | string}, role?: TaskUserType | string): boolean {
 	if (!role) return true;
-	if (step.assignedTo === TaskUserType.System) return false;
-	if (role === TaskUserType.Workstation) return true;
-	return step.assignedTo === role;
+	const normalizedAssigned = typeof step.assignedTo === 'string' ? normalizeUserType(step.assignedTo) : step.assignedTo;
+	const normalizedRole = typeof role === 'string' ? normalizeUserType(role) : role;
+	if (normalizedAssigned === TaskUserType.System) return false;
+	if (normalizedRole === TaskUserType.Workstation) return true;
+	return normalizedAssigned === normalizedRole;
 }
 
-export function computeSteps<P>(config: TaskConfig<P>, state: TaskState): ComputedStep<P>[] {
+export function computeSteps<P = string>(config: TaskConfig<P>, state: TaskState): ComputedStep<P>[] {
 	const completedSet = new Set(state.completedStepIds);
 	return config.steps.map(step => ({
 		...step,
@@ -39,20 +54,20 @@ export function computeSteps<P>(config: TaskConfig<P>, state: TaskState): Comput
 	}));
 }
 
-export function getCurrentStep<P>(steps: ComputedStep<P>[]): ComputedStep<P> | null {
+export function getCurrentStep<P = string>(steps: ComputedStep<P>[]): ComputedStep<P> | null {
 	return steps.find(s => s.isVisible && s.isEnabled && !s.isCompleted && s.canComplete) || null;
 }
 
-export function getNextSteps<P>(steps: ComputedStep<P>[], count = 3): ComputedStep<P>[] {
+export function getNextSteps<P = string>(steps: ComputedStep<P>[], count = 3): ComputedStep<P>[] {
 	return steps.filter(s => s.isVisible && s.isEnabled && !s.isCompleted && s.canComplete).slice(0, count);
 }
 
-export function getWaitingSteps<P>(steps: ComputedStep<P>[], currentRole?: TaskUserType): ComputedStep<P>[] {
+export function getWaitingSteps<P = string>(steps: ComputedStep<P>[], currentRole?: TaskUserType): ComputedStep<P>[] {
 	if (!currentRole) return [];
 	return steps.filter(s => s.isVisible && s.isEnabled && !s.isCompleted && !s.canComplete);
 }
 
-export function groupByPhase<P>(steps: ComputedStep<P>[], phases: Record<string, string>): TaskPhase<P>[] {
+export function groupByPhase<P = string>(steps: ComputedStep<P>[], phases: Record<string, string>): TaskPhase<P>[] {
 	return Object.entries(phases).map(([key, label]) => {
 		const phaseSteps = steps.filter(s => s.phase === key && s.isVisible);
 		return {
@@ -65,14 +80,14 @@ export function groupByPhase<P>(steps: ComputedStep<P>[], phases: Record<string,
 	});
 }
 
-export function getProgress<P>(steps: ComputedStep<P>[]): TaskProgress {
+export function getProgress<P = string>(steps: ComputedStep<P>[]): TaskProgress {
 	const visible = steps.filter(s => s.isVisible);
 	const completed = visible.filter(s => s.isCompleted).length;
 	const total = visible.length;
 	return {completed, total, percent: total > 0 ? Math.round((completed / total) * 100) : 0};
 }
 
-export function validateConfig<P>(config: TaskConfig<P>): string[] {
+export function validateConfig<P = string>(config: TaskConfig<P>): string[] {
 	const ids = new Set(config.steps.map(s => s.id));
 	const outputs = new Set(config.steps.flatMap(s => s.outputs || []));
 	const errors: string[] = [];
@@ -92,34 +107,39 @@ export function validateConfig<P>(config: TaskConfig<P>): string[] {
 }
 
 export interface DbWorkflowPhase {
+	id?: string;
 	key: string;
 	label: string;
 	sortOrder: number;
 }
 
-export interface DbWorkflowStep<P> {
+export interface DbWorkflowStep<P = string> {
+	id?: string;
 	stepKey: string;
 	label: string;
-	phase: {key: string};
-	sortOrder: number;
+	phase: {key: string} | string;
+	sortOrder?: number;
 	dependsOn: string[];
 	conditional?: string | null;
-	outputs: string[];
+	outputs?: string[];
 	assignedTo: string;
-	isDecision: boolean;
+	isDecision?: boolean;
 	decisionLabel?: string | null;
-	requiresFiles: boolean;
+	requiresFiles?: boolean;
 	fileTypeId?: string | null;
-	fileTypes: string[];
+	fileTypes?: string[];
 	uploadButtonLabel?: string | null;
 	helpText?: string | null;
 	actionUrl?: string | null;
 	actionUrlLabel?: string | null;
+	systemStepType?: string | null;
 	vendor?: {id: string} | null;
+	vendorId?: string | null;
 	pseudoVendor?: P | null;
 }
 
-export interface DbWorkflow<P> {
+export interface DbWorkflow<P = string> {
+	id?: string;
 	name: string;
 	title: string;
 	completionMessage?: string | null;
@@ -128,7 +148,7 @@ export interface DbWorkflow<P> {
 }
 
 export interface DbWorkflowStepInstance {
-	workflowStep: {stepKey: string; outputs?: string[]; isDecision?: boolean};
+	workflowStep?: {stepKey?: string; outputs?: string[]; isDecision?: boolean} | null;
 	completedAt?: Date | string | null;
 	completedByWorkstation?: {givenName?: string; surname?: string} | null;
 	completedByClient?: {givenName?: string; surname?: string} | null;
@@ -139,68 +159,68 @@ export interface DbWorkflowInstance {
 	stepInstances: DbWorkflowStepInstance[];
 }
 
-// Normalize assignedTo value to uppercase to match TaskUserType enum
-function normalizeUserType(value: string): TaskUserType {
-	const upper = value.toUpperCase();
-	if (upper === 'CLIENT') return TaskUserType.Client;
-	if (upper === 'WORKSTATION') return TaskUserType.Workstation;
-	if (upper === 'SYSTEM') return TaskUserType.System;
-	return TaskUserType.Workstation;
-}
-
-export function workflowToConfig<P>(workflow: DbWorkflow<P>): TaskConfig<P> {
+export function workflowToConfig<P = string>(workflow: DbWorkflow<P>): TaskConfig<P> {
 	const phases = workflow.phases
+		.slice()
 		.sort((a, b) => a.sortOrder - b.sortOrder)
 		.reduce((acc, p) => ({...acc, [p.key]: p.label}), {} as Record<string, string>);
 
 	const phaseOrderMap = new Map(workflow.phases.map(p => [p.key, p.sortOrder]));
 
 	const steps: TaskStep<P>[] = workflow.steps
+		.slice()
 		.sort((a, b) => {
-			const phaseOrderA = phaseOrderMap.get(a.phase.key) ?? 0;
-			const phaseOrderB = phaseOrderMap.get(b.phase.key) ?? 0;
+			const phaseKeyA = typeof a.phase === 'string' ? a.phase : a.phase.key;
+			const phaseKeyB = typeof b.phase === 'string' ? b.phase : b.phase.key;
+			const phaseOrderA = phaseOrderMap.get(phaseKeyA) ?? 0;
+			const phaseOrderB = phaseOrderMap.get(phaseKeyB) ?? 0;
 			if (phaseOrderA !== phaseOrderB) return phaseOrderA - phaseOrderB;
-			return a.sortOrder - b.sortOrder;
+			return (a.sortOrder ?? 0) - (b.sortOrder ?? 0);
 		})
 		.map(s => ({
 			id: s.stepKey,
+			stepKey: s.stepKey,
 			label: s.label,
-			phase: s.phase.key,
+			phase: typeof s.phase === 'string' ? s.phase : s.phase.key,
+			sortOrder: s.sortOrder,
 			dependsOn: s.dependsOn,
 			conditional: s.conditional,
 			outputs: s.outputs,
 			assignedTo: normalizeUserType(s.assignedTo),
 			isDecision: s.isDecision,
-			decisionLabel: s.decisionLabel ?? undefined,
+			decisionLabel: s.decisionLabel,
 			requiresFiles: s.requiresFiles,
-			fileTypeId: s.fileTypeId ?? undefined,
+			fileTypeId: s.fileTypeId,
 			fileTypes: s.fileTypes,
-			uploadButtonLabel: s.uploadButtonLabel ?? undefined,
-			helpText: s.helpText ?? undefined,
-			actionUrl: s.actionUrl ?? undefined,
-			actionUrlLabel: s.actionUrlLabel ?? undefined,
-			vendorId: s.vendor?.id ?? undefined,
-			pseudoVendor: s.pseudoVendor ?? undefined,
+			uploadButtonLabel: s.uploadButtonLabel,
+			helpText: s.helpText,
+			actionUrl: s.actionUrl,
+			actionUrlLabel: s.actionUrlLabel,
+			systemStepType: s.systemStepType,
+			vendorId: s.vendor?.id ?? s.vendorId,
+			pseudoVendor: s.pseudoVendor,
 		}));
 
 	return {
 		id: workflow.name,
 		title: workflow.title,
-		completionMessage: workflow.completionMessage ?? undefined,
+		completionMessage: workflow.completionMessage,
 		phases,
 		steps,
 	};
 }
 
 export function cascadeDecisions(
-	steps: Array<{id: string; isDecision?: boolean; conditional?: string | null}>,
+	steps: Array<{id?: string; stepKey?: string; isDecision?: boolean; conditional?: string | null}>,
 	decisions: TaskDecisions,
 ): TaskDecisions {
 	const result = {...decisions};
 	while (
 		steps.some(step => {
+			const stepId = step.stepKey || step.id;
+			if (!stepId) return false;
 			if (step.isDecision && step.conditional && result[step.conditional] === false) {
-				const stepKeyLower = step.id.toLowerCase();
+				const stepKeyLower = stepId.toLowerCase();
 				if (result[`${stepKeyLower}_yes`] !== false) {
 					result[`${stepKeyLower}_completed`] = false;
 					result[`${stepKeyLower}_yes`] = false;
@@ -221,12 +241,12 @@ export function instanceToState(instance: DbWorkflowInstance | null | undefined,
 		return {completedStepIds: [], decisions: {}, currentRole: role};
 	}
 
-	const completedStepIds = instance.stepInstances.filter(si => si.completedAt).map(si => si.workflowStep.stepKey);
+	const completedStepIds = instance.stepInstances.filter(si => si.completedAt && si.workflowStep?.stepKey).map(si => si.workflowStep!.stepKey!);
 
 	const decisions = instance.stepInstances
-		.filter(si => si.decisionValue !== null && si.decisionValue !== undefined && si.workflowStep.isDecision)
+		.filter(si => si.decisionValue !== null && si.decisionValue !== undefined && si.workflowStep?.isDecision)
 		.reduce((acc, si) => {
-			(si.workflowStep.outputs || []).forEach(output => {
+			(si.workflowStep?.outputs || []).forEach(output => {
 				acc[output] = si.decisionValue!;
 			});
 			return acc;
@@ -235,10 +255,10 @@ export function instanceToState(instance: DbWorkflowInstance | null | undefined,
 	return {completedStepIds, decisions, currentRole: role};
 }
 
-export function mergeInstanceIntoSteps<P>(steps: TaskStep<P>[], instance: DbWorkflowInstance | null | undefined): TaskStep<P>[] {
+export function mergeInstanceIntoSteps<P = string>(steps: TaskStep<P>[], instance: DbWorkflowInstance | null | undefined): TaskStep<P>[] {
 	if (!instance) return steps;
 
-	const instanceMap = new Map(instance.stepInstances.map(si => [si.workflowStep.stepKey, si]));
+	const instanceMap = new Map(instance.stepInstances.filter(si => si.workflowStep?.stepKey).map(si => [si.workflowStep!.stepKey!, si]));
 
 	return steps.map(step => {
 		const si = instanceMap.get(step.id);
@@ -283,7 +303,7 @@ export function getAssigneeDisplayName(assignedTo?: TaskUserType | string): stri
 	return assignedTo || 'other team members';
 }
 
-export function canCompleteStepWithFiles<P>(step: ComputedStep<P>, uploadedDocumentCount: number): boolean {
+export function canCompleteStepWithFiles(step: {requiresFiles?: boolean | null}, uploadedDocumentCount: number): boolean {
 	if (!step.requiresFiles) return true;
 	return uploadedDocumentCount > 0;
 }
